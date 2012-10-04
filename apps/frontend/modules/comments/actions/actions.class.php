@@ -13,12 +13,7 @@ class commentsActions extends cqFrontendActions
     if ($request->isMethod('post'))
     {
       $form = new FrontendCommentForm($this->getUser());
-      $form->bind(array_merge(
-        $request->getParameter($form->getName()),
-        array(
-          'ip_address' => $request->getRemoteAddress(),
-        )
-      ));
+      $form->bind($request->getParameter($form->getName()));
 
       if ($form->isValid())
       {
@@ -30,14 +25,14 @@ class commentsActions extends cqFrontendActions
         {
           if (method_exists($comment->getModelObject(), 'getCollector'))
           {
-            /** @var $owner Collector */
+            /* @var $owner Collector */
             $owner = $comment->getModelObject()->getCollector();
 
             // if the user is not authenticated or not the owner of the object being
             // commented on and wants to receive comment notifications
             if (
               !$this->getUser()->isAuthenticated() ||
-              ($this->getCollector()->getId() != $owner->getId() && $owner->getNotificationsComment())
+              (!$owner->equals($this->getCollector()) && $owner->getNotificationsComment())
             )
             {
               $ret = $cqEmail->send('Comments/new_comment_on_owned_item_notification', array(
@@ -47,16 +42,24 @@ class commentsActions extends cqFrontendActions
                       'oModelObject' => $comment->getModelObject(),
                       'oNewComment' => $comment,
                       'sThreadUrl' => $request->getReferer(),
-                      'sCommentRemoveUrl' => $this->getController()->genUrl(array(
-                          'sf_route' => 'comments_delete',
-                          'sf_subject' => $comment,
-                        ), true),
+                      'sCommentRemoveUrl' => $this->getController()->genUrlWithAutologin(
+                          $owner,
+                          array(
+                            'sf_route' => 'comments_hide',
+                            'sf_subject' => $comment,
+                          )),
+                      'sCommentReportSpamUrl' => $this->getController()->genUrlWithAutologin(
+                          $owner,
+                          array(
+                            'sf_route' => 'comments_report_spam',
+                            'sf_subject' => $comment,
+                          )),
                   ),
               ));
             }
           }
 
-          /** @var $notify_comments Comment[] */
+          /* @var $notify_comments Comment[] */
           $notify_comments = CommentQuery::create()
             ->filterByModelObject($comment->getModelObject())
             ->filterByIsNotify(true)
@@ -91,12 +94,17 @@ class commentsActions extends cqFrontendActions
                 ),
             ));
           }
+
+          $this->getUser()->setFlash('success', 'Your comment was successfully added.', 'comment');
         }
       }
       else
       {
+
         $this->getUser()->setFlash(
-          'comment_error', $form->getErrorSchema()->__toString()
+          'error',
+          $form->renderAllErrors('There was a problem with posting your comment:'),
+          'comment'
         );
       }
     }
@@ -128,7 +136,10 @@ class commentsActions extends cqFrontendActions
 
       foreach ($comments as $comment)
       {
-        $html .= $this->getPartial('single_comment', array('comment' => $comment));
+        $html .= $this->getPartial('single_comment', array(
+            'comment' => $comment,
+            'with_controls' =>  $this->getUser()->isOwnerOf($this->for_object)
+        ));
       }
 
       return $this->renderText(json_encode(array(
@@ -152,13 +163,13 @@ class commentsActions extends cqFrontendActions
 
     if ($model_object)
     {
-      /** @var $comments PropelObjectCollection */
+      /* @var $comments PropelObjectCollection */
       $comments = CommentQuery::create()
         ->filterByModelObject($model_object)
         ->leftJoinCollector()
         ->find();
 
-      /** @var $comment Comment */
+      /* @var $comment Comment */
       foreach ($comments as $comment)
       {
         if (urldecode($request->getParameter('email')) == $comment->getEmail())
@@ -169,12 +180,121 @@ class commentsActions extends cqFrontendActions
       $comments->save();
 
       $this->getUser()->setFlash(
-        'comment_success',
-        'You have successfully unsubscribed from new comment notifications.'
+        'success',
+        'You have successfully unsubscribed from new comment notifications.',
+        'comment'
       );
     }
 
     $this->redirect($request->getParameter('r', '@homepage') . '#comments');
+  }
+
+  /**
+   * A separate manage page for users with javascript disabled
+   */
+  public function executeManage(cqWebRequest $request)
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
+
+    $this->forward404Unless(
+      // owner of the object that was commented on
+      $this->getUser()->isOwnerOf($comment->getModelObject()) ||
+      // owner of the comment itself
+      $this->getUser()->isOwnerOf($comment)
+    );
+
+    $this->is_object_owner = $this->getUser()->isOwnerOf($comment->getModelObject());
+    $this->comment = $comment;
+
+    return sfView::SUCCESS;
+  }
+
+  /**
+   * Hide a comment (available only to the owner of the object for which
+   * the comment was created)
+   */
+  public function executeHide(cqWebRequest $request)
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
+
+    $this->forward404Unless(
+      (
+      // owner of the object that was commented on
+      $this->getUser()->isOwnerOf($comment->getModelObject()) ||
+      // owner of the comment itself
+      $this->getUser()->isOwnerOf($comment)
+      ) &&
+      !$comment->getIsHidden()
+    );
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $comment->setIsHidden(true);
+      $comment->save();
+
+      if ($request->isXmlHttpRequest())
+      {
+        return $this->renderText(json_encode(array(
+            'status' => 'success',
+        )));
+      }
+      else
+      {
+        $this->getUser()->setFlash('success', 'Comment successfully hidden.', 'comment');
+
+        return $this->redirect(
+          $this->getController()->genUrlForModelObject($comment).'#comments'
+        );
+      }
+    }
+
+    $this->comment = $comment;
+
+    return sfView::SUCCESS;
+  }
+
+  /**
+   * Unhide a comment (available only to the owner of the object for which
+   * the comment was created)
+   */
+  public function executeUnhide(cqWebRequest $request)
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
+
+    // forward 404 unless logged in user is owner of the object that was commented on
+    $this->forward404Unless(
+      $this->getUser()->isOwnerOf($comment->getModelObject()) &&
+      $comment->getIsHidden()
+    );
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $comment->setIsHidden(false);
+      $comment->save();
+
+      if ($request->isXmlHttpRequest())
+      {
+        return $this->renderText(json_encode(array(
+            'status' => 'success',
+        )));
+      }
+      else
+      {
+        $this->getUser()->setFlash('success', 'Comment successfully unhidden.', 'comment');
+
+        return $this->redirect(
+          $this->getController()->genUrlForModelObject($comment)
+          .'#comment-'.$comment->getId()
+        );
+      }
+    }
+
+    $this->comment = $comment;
+
+    return sfView::SUCCESS;
   }
 
   /**
@@ -185,36 +305,92 @@ class commentsActions extends cqFrontendActions
    */
   public function executeDelete(cqWebRequest $request)
   {
-    /** @var $comment Comment */
+    /* @var $comment Comment */
     $comment = $this->getRoute()->getObject();
 
     $this->forward404Unless(
       // owner of the object that was commented on
-      $this->getCollector()->isOwnerOf($comment->getModelObject()) ||
+      $this->getUser()->isOwnerOf($comment->getModelObject()) ||
       // owner of the comment itself
-      $this->getCollector()->isOwnerOf($comment)
+      $this->getUser()->isOwnerOf($comment)
     );
 
-    $form = new CommentDeleteConfirmationForm();
-    if (sfRequest::POST == $request->getMethod())
+    if ($this->getUser()->isOwnerOf($comment))
     {
-      $form->bind($request->getParameter($form->getName()));
-
-      if ($form->isValid())
+      $form = new CommentDeleteConfirmationForm();
+      if (sfRequest::POST == $request->getMethod())
       {
-        $comment->delete();
-        $this->getUser()->setFlash('comment_success', 'Comment successfully deleted.');
+        $form->bind($request->getParameter($form->getName()));
 
-        return $this->redirect(
-          $this->getController()->genUrlForModelObject($comment).'#comments'
-        );
+        if ($form->isValid())
+        {
+          $comment->delete();
+          $this->getUser()->setFlash('success', 'Comment successfully deleted.', 'comment');
+
+          return $this->redirect(
+            $this->getController()->genUrlForModelObject($comment).'#comments'
+          );
+        }
       }
+
+      $this->comment = $comment;
+      $this->form = $form;
+
+      return sfView::SUCCESS;
     }
+    else
+    {
+      return $this->redirect('comments_hide', $comment);
+    }
+  }
 
-    $this->comment = $comment;
-    $this->form = $form;
+  /**
+   * Report a comment as spam. This will perma-hide the comment, and send an
+   * email to the administrators who can judge if the offender should be banned
+   */
+  public function executeReportSpam(cqWebRequest $request)
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
 
-    return sfView::SUCCESS;
+    $this->forward404Unless(
+      // owner of the object that was commented on
+      $this->getUser()->isOwnerOf($comment->getModelObject()) &&
+      !$comment->getIsSpam()
+    );
+      $form = new CommentReportSpamConfirmationForm();
+      if (sfRequest::POST == $request->getMethod())
+      {
+        $form->bind($request->getParameter($form->getName()));
+
+        if ($form->isValid())
+        {
+          $comment->setIsHidden(true);
+          $comment->setIsSpam(true);
+          $comment->save();
+
+          $this->getUser()->setFlash('success', 'Comment was successfully reported as spam. Thank you!', 'comment');
+
+          $cqEmail = new cqEmail($this->getMailer());
+
+          $cqEmail->send('internal/comment_spam_notification', array(
+              'params' => array(
+                  'oComment' => $comment,
+                  'oReporterCollector' => $this->getCollector(),
+                  'oModelObject' => $comment->getModelObject(),
+              ),
+          ));
+
+          return $this->redirect(
+            $this->getController()->genUrlForModelObject($comment).'#comments'
+          );
+        }
+      }
+
+      $this->comment = $comment;
+      $this->form = $form;
+
+      return sfView::SUCCESS;
   }
 
 }

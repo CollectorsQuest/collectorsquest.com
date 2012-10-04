@@ -22,10 +22,12 @@ all:
     options: {}
 
   driver:
-    class:   fpErrorNotifierDriverMailSymfony
+    class:   fpErrorNotifierDriverPHPMailer
     options:
       to:    developers@collectorsquest.com
       from:  no-reply@collectorsquest.com
+      username: AKIAJXXQN5BYO3YM5AAQ
+      password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
 
 
 dev:

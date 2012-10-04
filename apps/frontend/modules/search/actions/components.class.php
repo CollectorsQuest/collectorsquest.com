@@ -80,8 +80,8 @@ class searchComponents extends cqFrontendComponents
     try
     {
       $magnify = cqStatic::getMagnifyClient();
-      $results = $magnify->getContent()->find($q);
-      $this->types['video']['count'] = $results->getTotalResults();
+      //$results = $magnify->getContent()->find($q);
+      //$this->types['video']['count'] = $results->getTotalResults();
     }
     catch (MagnifyException $e)
     {
@@ -94,7 +94,7 @@ class searchComponents extends cqFrontendComponents
     $query = array(
       'q' => $q,
       'groupby' => 'object_type',
-      'filters' => array('thumbnail' => 'yes')
+      'filters' => array('has_thumbnail' => 'yes', 'is_public' => true)
     );
     $matches = cqSphinxPager::search($query, array(), 'matches');
 
@@ -110,7 +110,8 @@ class searchComponents extends cqFrontendComponents
       'q' => $q,
       'filters' => array(
         'object_type' => 'collectible',
-        'thumbnail' => 'yes',
+        'has_thumbnail' => 'yes',
+        'is_public' => true,
         'uint1' => 1
       )
     );

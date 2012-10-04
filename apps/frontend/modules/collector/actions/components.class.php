@@ -36,17 +36,27 @@ class collectorComponents extends cqFrontendComponents
 
   public function executeIndexCollectiblesForSale()
   {
+    // Either get the Collector from the parameter holder or try to find it by ID
     $collector = $this->getVar('collector') ?: CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
 
-    if (!$collector) {
+    // We cannot continue without a valid Collector
+    if (!$collector)
+    {
       return sfView::NONE;
     }
 
-    $q = CollectibleForSaleQuery::create()
-      ->joinCollectible()
+    $this->title = $this->getVar('title') ?: $collector->getDisplayName() . "'s Items for Sale";
+
+    /** @var $q CollectibleForSaleQuery */
+    $q = FrontendCollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
+
+    if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
+    {
+      $q->filterByCollectibleId($collectible->getId(), Criteria::NOT_EQUAL);
+    }
 
     $pager = new PropelModelPager($q, 4);
     $pager->setPage($this->getRequestParameter('p', 1));
@@ -62,14 +72,16 @@ class collectorComponents extends cqFrontendComponents
   {
     $collector = $this->getVar('collector') ?: CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
 
-    if (!$collector) {
+    if (!$collector)
+    {
       return sfView::NONE;
     }
 
-    /** @var $q CollectorCollectionQuery */
-    $q = CollectorCollectionQuery::create()
-      ->filterByCollector($collector)
-      ->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN)
+    /** @var $q FrontendCollectorCollectionQuery */
+    $q = FrontendCollectorCollectionQuery::create()
+      ->hasCollectibles();
+
+    $q->filterByCollector($collector)
       ->orderByCreatedAt(Criteria::DESC)
       ->groupById();
 

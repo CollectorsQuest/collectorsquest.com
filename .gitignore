@@ -50,6 +50,8 @@ base
 # stylesheets
 /web/css/*/*.css
 /web/css/*/*.css.gz
+/web/css/*/jquery/*.css
+/web/css/*/jquery/*.css.gz
 /web/css/*/modules/*.css
 /web/css/*/modules/*.css.gz
 !/web/css/frontend/ie.css

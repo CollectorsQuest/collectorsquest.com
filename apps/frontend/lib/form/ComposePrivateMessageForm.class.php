@@ -16,11 +16,14 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   /** @var string */
   protected $thread;
 
+  /** @var cqFrontendUser */
+  protected $sf_user;
+
   /**
    * The Compose form takes a Collector object in its constructor that
    * will be set the "sender"
    *
-   * If $sf_user parameter is supplied, the for will check how many messages
+   * If the $sf_user parameter is supplied, the form will check how many messages
    * has the user sent in the current session and append a captcha field
    * if over the threshold
    *
@@ -32,14 +35,13 @@ class ComposePrivateMessageForm extends PrivateMessageForm
    */
   public function __construct(
     Collector $sender,
-    cqBaseUser $sf_user = null,
     $thread = null,
     $options = array(),
     $CSRFSecret = null
   ) {
     $this->sender_collector = $sender;
     $this->thread = $thread;
-    $this->sf_user = $sf_user;
+    $this->sf_user = cqContext::getInstance()->getUser();
 
     parent::__construct(null, $options, $CSRFSecret);
   }
@@ -55,6 +57,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     $this->setupRedirectField();
     $this->setupAttachFields();
     $this->setupCopyForSenderField();
+    $this->setupIpAddressField();
 
     $this->widgetSchema->setLabels(array(
         'receiver' => 'To',
@@ -63,6 +66,22 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     ));
 
     $this->unsetFields();
+
+    $this->mergePostValidator(new iceSpamControlValidatorSchema(array(
+        'credentials' => iceSpamControl::CREDENTIALS_ALL,
+        'fields' => array(
+            $this->getIpAddressFieldName() => 'ip',
+        ),
+      ), array(
+        'spam' => 'We are sorry we could not send your private message. Please try again later.',
+    )));
+
+    $this->mergePostValidator(new cqValidatorSchemaTimeoutCheck($this->sf_user, array(
+        'type' => cqValidatorSchemaTimeoutCheck::TIMEOUT_TYPE_PRIVATE_MESSAGES,
+        'threshold' => sfConfig::get('app_private_messages_timeout_threshold', 6),
+        'timeout_duration' => sfConfig::get('app_private_messages_timeout_duration', '30 minutes'),
+        'timeout_check_period' => sfConfig::get('app_private_messages_timeout_check_period', '60 minutes'),
+    )));
   }
 
   protected function setupReceiverField()
@@ -161,8 +180,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
   protected function setupCaptchaField()
   {
-    if ( $this->userGetSentMessagesCount()
-      >= sfConfig::get('app_private_messages_require_captcha_threshold') )
+    // setup captha only every $threshold sent messages
+    if ($this->userSentMessagesCaptchaThresholdReached())
     {
       $this->widgetSchema['captcha'] = new cqWidgetBootstrapCaptcha(array(
           'width' => 200,
@@ -233,8 +252,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   {
     if ($this->sf_user)
     {
-      return $this->sf_user->getAttribute(
-        cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY, 0, 'collector'
+      return $this->sf_user->getSentCount(
+        cqFrontendUser::SENT_COUNT_PRIVATE_MESSAGES
       );
     }
 
@@ -248,39 +267,32 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   {
     if ($this->sf_user)
     {
-      $this->sf_user->setAttribute(
-        cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY,
-        $this->sf_user->getAttribute(
-          cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY, 0, 'collector') + 1,
-        'collector'
+      $this->sf_user->incrementSentCount(
+        cqFrontendUser::SENT_COUNT_PRIVATE_MESSAGES
       );
     }
   }
 
   /**
-   * Reset sent messages count back to 0. We do not want to display captcha
-   * on every message after the threshold, only on every (threshold number) messages
+   * Check if we have reached the captcha threshold for sent messages
    *
-   * If the user solves it right one time they should not be required to do it again
-   * for a while
+   * @return    boolean
    */
-  protected function userResetSentMessagesCount()
+  protected function userSentMessagesCaptchaThresholdReached()
   {
-    if ($this->sf_user)
-    {
-      $this->sf_user->setAttribute(
-        cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY,
-        0, 'collector'
-      );
-    }
+    $sent_messages = $this->userGetSentMessagesCount();
+    $threshold = sfConfig::get('app_private_messages_require_captcha_threshold', 3);
+
+    return (0 != $sent_messages) && (0 == $sent_messages % $threshold);
   }
 
+
   /**
-  * Checking similarity of sent messages in one session
-  *
-  * If message similar to sent before we will send message about spam
-  * else we will save for checking current message
-  */
+   * Checking similarity of sent messages in one session
+   *
+   * If message similar to sent before we will send message about spam
+   * else we will save for checking current message
+   */
   protected function checkingMessagesSimilarity()
   {
     if ($this->sf_user)
@@ -358,22 +370,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   {
     parent::doSave($con);
 
-    // When do we show the captcha?
-    $threshold = sfConfig::get('app_private_messages_require_captcha_threshold', 5);
-
     $this->checkingMessagesSimilarity();
-
-    if ($this->userGetSentMessagesCount() < $threshold)
-    {
-      // we have not reached the threshold yet, so incriment the count
-      $this->userIncrementSentMessagesCount();
-    }
-    else
-    {
-      // we have reached the threshold, and the user successfully solved the captha
-      // so we reset the count to 0
-      $this->userResetSentMessagesCount();
-    }
+    $this->userIncrementSentMessagesCount();
   }
 
   protected function updateDefaultsFromObject()

@@ -20,6 +20,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->setupThumbnailField();
     $this->setupTagsField();
     $this->setupReturnToField();
+    $this->setupContentCategoryField();
 
     $this->validatorSchema['name'] = new cqValidatorName(
       array('required' => true),
@@ -31,6 +32,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     // Define which fields to use from the base form
     $this->useFields(array(
       'collection_collectible_list',
+      'content_category',
       'name',
       'thumbnail',
       'is_alt_view',
@@ -40,8 +42,8 @@ class CollectibleEditForm extends BaseCollectibleForm
     ));
 
     // We do not want to show the thumbnail field
-    // if there are images already for the Collectible
-    if ($collectible->getMultimediaCount('image') > 0)
+    // if there is primary image for the Collectible
+    if ($collectible->getPrimaryImage())
     {
       $this->offsetUnset('thumbnail');
       $this->offsetUnset('is_alt_view');
@@ -67,6 +69,30 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     $this->validatorSchema->setOption('allow_extra_fields', true);
     $this->validatorSchema->setOption('filter_extra_fields', true);
+  }
+
+  protected function setupContentCategoryField()
+  {
+    $category_edit_url = cqContext::getInstance()->getController()->genUrl(array(
+        'sf_route' => 'ajax_mycq',
+        'section' => 'collectible',
+        'page' => 'changeCategory',
+        'collectible_id' => $this->getObject()->getId(),
+    ));
+
+    $this->widgetSchema['content_category'] = new cqWidgetFormPlain(array(
+        'label' => 'Category:',
+        'content_tag' => 'div',
+        'default_html' => '<span>&nbsp;</span>',
+        'extra_html' => sprintf(
+          '<a class="btn btn-mini open-dialog" href="%s" style="margin-top: 3px;">%s</a>',
+          $category_edit_url,
+          'click to change'
+        ),
+      ), array(
+        'style' => 'margin-top: 5px;'
+    ));
+    $this->validatorSchema['content_category'] = new sfValidatorPass();
   }
 
   protected function setupTagsField()
@@ -108,7 +134,7 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     /**
      * We need to make the Thumbnail field required if
-     * the Collection does not have a Thumbnail yet
+     * the Collectible does not have a Thumbnail yet
      */
     if (!$this->getObject()->getPrimaryImage())
     {
@@ -293,6 +319,13 @@ class CollectibleEditForm extends BaseCollectibleForm
   public function updateDefaultsFromObject()
   {
     parent::updateDefaultsFromObject();
+
+    $this->setDefault(
+      'content_category',
+      $this->getObject()->getContentCategory()
+        ? $this->getObject()->getContentCategory()->getPath()
+        : 'No category selected'
+    );
 
     if (isset($this->widgetSchema['collection_collectible_list']))
     {

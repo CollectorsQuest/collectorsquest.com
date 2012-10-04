@@ -92,7 +92,7 @@
     .border-radius(0);
   }
    .thumbnail:last-child {
-      margin-right: 0px;
+      margin-right: 0;
     }
   .well {
     padding: 7px 3px 0 3px;
@@ -261,4 +261,47 @@
   }
 }
 
+#mediaspace {
+  width: 720px;
+  height: 416px;
+  margin: -250px 0 0 -360px;
+  overflow: hidden;
+  .border-radius(0);
+}
 
+#user-collectibles-for-sale {
+  .thumbnails {
+    .span3 {
+      border: 1px solid @boxBorder;
+      width: 133px;
+      margin-bottom: 15px;
+      font-size: 12px;
+      .box-shadow(none);
+      .border-radius(0);
+
+      &:hover {
+        background-color: white;
+        border: 1px solid @blue;
+        .border-radius(0);
+      }
+      p {
+        font-size: 12px;
+        margin-bottom: 2px;
+        padding: 5px 2px 0 2px;
+        .text-overflow();
+      }
+      span {
+        font-weight: bold;
+        color: @blueDark;
+        display: block;
+        text-align: right;
+        padding-right: 2px;
+      }
+    }
+  }
+
+  .well {
+    padding: 10px;
+    padding-bottom: 5px;
+  }
+}

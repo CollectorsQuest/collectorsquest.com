@@ -7,7 +7,19 @@
 slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail below');
 ?>
 
-<?= $form->renderAllErrors(); ?>
+<?php
+  if ($form->hasErrors())
+  {
+    echo $form->renderAllErrors();
+  }
+  else if ($collection->getIsPublic() === false)
+  {
+    echo '<div class="alert"><strong>NOTE:</strong>',
+    ' Your collection will not be publicly viewable until you fill in all the required information!',
+    ' (marked with a <span style="color: #cc0000;">*</span> in the form below)',
+    '</div>';
+  }
+?>
 
 <?php
   cq_sidebar_title(
@@ -77,31 +89,18 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
                 <?= $form; ?>
               </fieldset>
             </div>
-
-            <div class="row-fluid">
-              <div class="span12">
-                <div class="form-actions text-center spacer-inner-15">
-                  <?php $label = $collection->getNumItems() === 0 ? 'Save and Start Adding Items' : 'Save and Add Items'; ?>
-                  <button type="submit" formnovalidate
-                          class="btn btn-primary" name="save_and_go" value="<?= $label ?>">
-                    <?= $label ?>
-                  </button>
-                  &nbsp;&nbsp;
-                  <button type="submit" formnovalidate
-                          class="btn" name="save" value="Save Changes">
-                    Save Changes
-                  </button>
-
-                  <div style="float: right; margin-right: 15px;">
-                    <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>"
-                       class="btn spacer-left">
-                      Cancel
-                    </a>
-                  </div>
-                </div> <!-- .form-actions.text-center.spacer-inner-15 -->
-              </div> <!-- .span12 -->
-            </div> <!-- .row-fluid -->
           </div> <!-- .row-fluid -->
+          <div class="form-actions text-center spacer-inner-15">
+            <button type="submit" formnovalidate class="btn" name="save" value="Save Changes">
+                Save Changes
+            </button>
+            &nbsp;&nbsp;
+            <?php $label = $collection->getNumItems() === 0 ? 'Save and Start Adding Items' : 'Save and Add Items'; ?>
+            <button type="submit" formnovalidate
+                    class="btn btn-primary" name="save_and_go" value="<?= $label ?>">
+              <?= $label ?>
+            </button>
+          </div>
         </form>
 
       </div><!-- .tab-content-inner -->

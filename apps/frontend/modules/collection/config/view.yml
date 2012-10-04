@@ -13,6 +13,6 @@ indexNoCollectibles:
     sidebar_300: [collection, sidebar]
 
 collectibleSuccess:
-  javascripts: [jquery/rcarousel.js]
+  javascripts: [jquery/rcarousel.js, jwplayer.js]
   components:
     sidebar_300: [collection, sidebarCollectible]

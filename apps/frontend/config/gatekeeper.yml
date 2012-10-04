@@ -2,6 +2,9 @@ all:
   pages:
     marketplace_categories: false
     aetn_picked_off: true
+    aetn_american_restoration: true
+    mycq_incomplete: false
+    aetn_mwba: false
 
   features:
     shopping_cart: true
@@ -21,6 +24,9 @@ next:
   pages:
     marketplace_categories: false
     aetn_picked_off: true
+    aetn_american_restoration: true
+    mycq_incomplete: true
+    aetn_mwba: true
 
   features:
     shopping_cart: true
@@ -33,12 +39,15 @@ next:
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
-    expose_collection_categories: false
+    expose_collection_categories: true
 
 dev:
   pages:
     marketplace_categories: true
     aetn_picked_off: true
+    aetn_american_restoration: true
+    mycq_incomplete: true
+    aetn_mwba: true
 
   features:
     shopping_cart: true

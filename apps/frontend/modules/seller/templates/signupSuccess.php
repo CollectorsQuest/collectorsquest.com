@@ -22,7 +22,7 @@
             10 listings
           </span>
           <div class="price red">
-            $20
+            $20.00
             <span class="desc">
               $2.00 per item
             </span>
@@ -35,7 +35,7 @@
             100 listings
           </span>
           <div class="price red">
-            $150
+            $150.00
             <span class="desc">
               $1.50 per item
             </span>
@@ -54,7 +54,7 @@
             for one year
           </span>
           <div class="price red">
-            $250
+            $250.00
           <span class="desc">
             unlimited items
           </span>
@@ -64,16 +64,16 @@
     </div>
     <div class="row-fluid spacer-top-20">
       <div class="span3 text-center">
-        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
+        <?= link_to('Sign up now', '@collector_signup?preselect_package=1', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
+        <?= link_to('Sign up now', '@collector_signup?preselect_package=2', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
+        <?= link_to('Sign up now', '@collector_signup?preselect_package=3', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
+        <?= link_to('Sign up now', '@collector_signup?preselect_package=6', array('class' => 'btn btn-primary')); ?>
       </div>
     </div>
   </div>

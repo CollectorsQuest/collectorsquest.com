@@ -2,7 +2,7 @@
 
 class cqValidatorName extends sfValidatorRegex
 {
-  const REGEX_URL_FORMAT = '~^
+  const REGEX_NAME_FORMAT = '~^
       (
           [\d\-\s]*                     # numbers and dashes/spaces
         |
@@ -41,6 +41,6 @@ class cqValidatorName extends sfValidatorRegex
    */
   public function generateRegex()
   {
-    return self::REGEX_URL_FORMAT;
+    return self::REGEX_NAME_FORMAT;
   }
 }

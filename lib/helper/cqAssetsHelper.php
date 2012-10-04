@@ -147,7 +147,7 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
-        unset($_stylesheets[$stylesheet[0]]);
+        unset($_stylesheets[$stylesheet[0]], $_stylesheets[$stylesheet]);
       }
     }
 
@@ -162,7 +162,7 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
-        unset($_stylesheets[$stylesheet[0]]);
+        unset($_stylesheets[$stylesheet[0]], $_stylesheets[$stylesheet]);
       }
     }
 
@@ -177,7 +177,7 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
-        unset($_stylesheets[$stylesheet[0]]);
+        unset($_stylesheets[$stylesheet[0]], $_stylesheets[$stylesheet]);
       }
     }
 
@@ -221,7 +221,7 @@ function cq_include_javascripts()
       if ($javascript[0] != '/' || substr($javascript, 0, 3) == '/js/')
       {
         $javascripts[] = $javascript;
-        unset($_javascripts[$javascript[0]]);
+        unset($_javascripts[$javascript[0]], $_javascripts[$javascript]);
       }
     }
 
@@ -236,7 +236,7 @@ function cq_include_javascripts()
       if ($javascript[0] != '/' || substr($javascript, 0, 3) == '/js/')
       {
         $javascripts[] = $javascript;
-        unset($_javascripts[$javascript[0]]);
+        unset($_javascripts[$javascript[0]], $_javascripts[$javascript]);
       }
     }
 
@@ -251,7 +251,7 @@ function cq_include_javascripts()
       if ($javascript[0] != '/' || substr($javascript, 0, 3) == '/js/')
       {
         $javascripts[] = $javascript;
-        unset($_javascripts[$javascript[0]]);
+        unset($_javascripts[$javascript[0]], $_javascripts[$javascript]);
       }
     }
 

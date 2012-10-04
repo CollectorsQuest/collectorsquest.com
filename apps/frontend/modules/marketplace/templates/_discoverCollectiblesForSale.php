@@ -17,10 +17,11 @@
   (Or you can <?= link_to('sell something of your own', '@mycq_collections'); ?> on the site!)
 </div>
 <?php elseif ($pager->getPage() > 1): ?>
-<div class="well clear-both" style="margin: 0; margin-left: 13px; padding: 10px;">
-  <i class="icon icon-search"></i>&nbsp;
-  <?= link_to('Not finding what you are looking for? Click here to find it on our search page!', $url); ?>
-</div>
+<!--<div class="well clear-both" style="margin: 0; margin-left: 13px; padding: 10px;">-->
+<!--  <i class="icon icon-search"></i>&nbsp;-->
+<!--  --><?//= link_to('Not finding what you are looking for? Click here to find it on our search page!', $url); ?>
+<!--</div>-->
+<br>
 <?php elseif ($pager->haveToPaginate()): ?>
 <div class="see-more-under-image-set" style="padding: 0; margin-left: 13px;">
   <button class="btn btn-small see-more-full" id="seemore-explore-collectibles">

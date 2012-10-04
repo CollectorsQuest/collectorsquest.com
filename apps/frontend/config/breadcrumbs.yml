@@ -15,26 +15,17 @@ ice_breadcrumbs:
     error404: [{ name: 'This page isn’t here anymore' }]
     error50x: [{ name: 'Unexpected Error' }]
 
-  aent:
+  aetn:
     americanPickers: [{ name: 'As Seen on American Pickers' }]
-    pawnStars: [{ name: 'Pawn Stars' }]
-    storageWars: [{ name: 'Storage Wars' }]
-    pickedOff: [{ name: 'Picked Off' }]
-    collectibleFixedMatching:
-      - { name: '%Collection%', route: collection_by_slug, model: true, subobject: Collection }
-      - { name: '%Name%', model: true }
-    collectible:
-      - { name: '%Collection%', route: collection_by_slug, model: true, subobject: Collection }
-      - { name: '%Name%', model: true }
-    landing: [{ name: 'History' }]
+    americanRestoration: [{ name: 'As Seen on American Restoration' }]
+    pawnStars: [{ name: 'As Seen on Pawn Stars' }]
+    pickedOff: [{ name: 'As Seen on Picked Off' }]
+    storageWars: [{ name: 'As Seen on Storage Wars' }]
 
   collection:
     index:
       - { name: 'Collections', route: collections }
       - { name: '%Name%', model: true }
-    create:
-      - { name: 'Collections' }
-      - { name: 'Create' }
 
   collections:
     index: [{ name: 'Collections' }]
@@ -139,6 +130,10 @@ ice_breadcrumbs:
       - { name: 'Credit History' }
     wanted:
       - { name: 'Wanted List' }
+    incompleteCollections:
+      - { name: 'Incomplete Collections' }
+    incompleteCollectibles:
+      - { name: 'Incomplete Collectibles' }
 
   messages:
     _prepend:

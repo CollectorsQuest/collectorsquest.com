@@ -20,6 +20,9 @@
           <span class="required-token">*</span>
           <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
         </div>
+        <p class="help-block">
+          Choose a category from the list above which best fits your collection.
+        </p>
       </div>
     </div>
 
@@ -57,10 +60,10 @@ $(document).ready(function()
         $("#collection_content_category_id").val($(element).data('object-id'));
       }
       $('#categories').scrollLeft(500);
-      $('#categories .feature').hide();
+      $('.feature', '#categories').hide();
     }
   });
 
-  $('#categories top').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
+  $('.top', '#categories').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
 });
 </script>

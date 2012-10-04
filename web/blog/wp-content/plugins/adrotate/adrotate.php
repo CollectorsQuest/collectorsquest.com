@@ -4,7 +4,7 @@ Plugin Name: AdRotate
 Plugin URI: http://www.adrotateplugin.com
 Description: The very best and most convenient way to publish your ads.
 Author: Arnan de Gans of AJdG Solutions
-Version: 3.7.3.5
+Version: 3.7.4.1
 Author URI: http://www.ajdg.net
 License: GPL2
 */

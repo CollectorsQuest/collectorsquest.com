@@ -5,17 +5,21 @@
  * @var  $collector    Collector
  * @var  $collection   Collection
  * @var  $collectible  Collectible
- * @var  $previous  Collectible
- * @var  $next  Collectible
- * @var  $first Collectible
+ * @var  $previous     Collectible
+ * @var  $next         Collectible
+ * @var  $first        Collectible
  * @var  $collectible_for_sale  CollectibleForSale
- * @var  $editable  boolean
+ * @var  $editable     boolean
  *
  * @var  $additional_multimedia  iceModelMultimedia[]
  *
- * determine page height so we can display more/less sidebar widgets
+ * Determine page height so we can display more/less sidebar widgets
  * @var  $height_main_div  stdClass
+ *
+ * This variable is set when the Collectible is part of A&E Collection
+ * @var  $brand  string
  */
+
   $height_main_div = new stdClass;
   $height_main_div->value = 92;
 ?>
@@ -28,10 +32,35 @@
   <?php end_slot(); ?>
 <?php endif; ?>
 
+<?php if (!empty($aetn_show)): ?>
+  <div class="banners-620 spacer-bottom-20">
+    <?php
+      if ($aetn_show['id'] === 'american_pickers')
+      {
+        echo link_to(image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
+      }
+      else if ($aetn_show['id'] === 'american_restoration')
+      {
+        echo link_to(image_tag('headlines/2012-0777_AR_620x67.jpg'), '@aetn_american_restoration');
+      }
+      else if ($aetn_show['id'] === 'pawn_stars')
+      {
+        echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
+      }
+      else if ($aetn_show['id'] === 'picked_off')
+      {
+        echo link_to(image_tag('headlines/2012-0777_Picked_Off_620x67.jpg'), '@aetn_picked_off');
+      }
+      $height_main_div->value += 87;
+    ?>
+  </div>
+<?php endif; ?>
+
 <?php
   $options = array(
     'id' => sprintf('collectible_%d_name', $collectible->getId()),
-    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar'
+    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar',
+    'itemprop' => 'itemprop = "name"'
   );
 
   cq_page_title($collectible->getName(), null, $options);
@@ -46,12 +75,6 @@
     }
   ?>
   <div class="span<?= $span; ?> text-center relative">
-    <?php /*
-      https://basecamp.com/1759305/projects/127256-collectorsquest-com/todos/14537137-for-the-play-button
-      <span class="holder-icon-play">
-        <i class="icon icon-play"></i>
-      </span>
-    */ ?>
 
     <?php if (isset($previous)): ?>
     <a href="<?= url_for_collectible($previous) ?>"
@@ -69,17 +92,33 @@
     </a>
     <?php endif; ?>
 
-    <a class="zoom-zone" target="_blank" title="Click to zoom"
-       href="<?= src_tag_collectible($collectible, 'original') ?>">
-      <span class="picture-zoom holder-icon-edit">
-        <i class="icon icon-zoom-in"></i>
-      </span>
-    </a>
+    <?php if (!empty($video)): ?>
+      <a class="play-zone" target="_blank" title="Click to play" onclick="return false;"
+         href="<?= url_for_collectible($collectible) ?>#mediaspace">
+        <span class="holder-icon-play">
+          <i class="icon icon-play"></i>
+        </span>
+      </a>
+      <a class="zoom-zone" target="_blank" title="Click to zoom" style="display: none"
+         href="<?= src_tag_collectible($collectible, 'original') ?>">
+          <span class="picture-zoom holder-icon-edit">
+            <i class="icon icon-zoom-in"></i>
+          </span>
+      </a>
+    <?php else: ?>
+      <a class="zoom-zone" target="_blank" title="Click to zoom"
+         href="<?= src_tag_collectible($collectible, 'original') ?>">
+        <span class="picture-zoom holder-icon-edit">
+          <i class="icon icon-zoom-in"></i>
+        </span>
+      </a>
+    <?php endif; ?>
+
     <?php
       echo link_to(
         image_tag_collectible(
           $collectible, '620x0',
-          array('width' => null, 'height' => null)
+          array('width' => null, 'height' => null, 'itemprop' => 'image')
         ),
         src_tag_collectible($collectible, 'original'),
         array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
@@ -106,14 +145,23 @@
       <div id="vertical-carousel">
         <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>"
            title="<?php echo $collectible->getName(); ?>">
-          <?= image_tag_collectible($collectible, '150x150', array(
-            'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+          <?php
+            echo image_tag_collectible($collectible, '150x150',
+              array(
+                'height' => null, 'title' => $collectible->getName(),
+                'style' => 'margin-bottom: 12px;', 'class' => 'first'
+              )
+            );
+          ?>
         </a>
         <?php foreach ($additional_multimedia as $i => $m): ?>
         <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
           <?php
-            echo image_tag_multimedia(
-              $m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')
+            echo image_tag_multimedia($m, '150x150',
+              array(
+                'height' => null, 'title' => $m->getName(),
+                'style' => 'margin-bottom: 12px;', 'itemprop' => 'image'
+              )
             );
           ?>
         </a>
@@ -166,8 +214,20 @@
 
 <?php if ($collectible->getDescription('stripped')): ?>
   <div class="item-description <?= $editable ? 'editable_html' : '' ?>"
-       id="collectible_<?= $collectible->getId(); ?>_description">
+       id="collectible_<?= $collectible->getId(); ?>_description" itemprop = "description">
     <?= $description = $collectible->getDescription('html'); ?>
+
+    <?php if (!empty($aetn_show)): ?>
+      <br><br>
+
+      <small>
+        <i>*&nbsp;<?= $aetn_show['name'] ?>,</i>
+        HISTORY and the History “H” logo are the trademarks of A&amp;E Television Networks, LLC.
+      </small>
+
+      <?php $height_main_div->value += 29 ?>
+    <?php endif; ?>
+
   </div>
 
   <?php
@@ -180,6 +240,7 @@
     // Approximately 2 <br> tags account for a new line
     $br_count = (integer) (substr_count($description, '<br') / 2);
     $height_main_div->value += 20 + 18 * ($br_count + $description_rows);
+
   ?>
 <?php endif; ?>
 
@@ -200,24 +261,51 @@
   }
   else
   {
-    include_partial(
-      'comments/comments',
+    include_component(
+      'comments', 'comments',
       array(
         'for_object' => $collectible->getCollectible(),
         'height' => &$height_main_div
       )
     );
   }
+
+  if (!empty($aetn_show))
+  {
+    include_partial(
+      'collection/aetn_collectible_related',
+      array(
+        'title' => 'Other Items from '. strtoupper($aetn_show['name']),
+        'collectible' => $collectible,
+        'related_collectibles' => $related_collectibles,
+        'height' => &$height_main_div
+      )
+    );
+  }
+
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale())
+  {
+    include_component('collector', 'indexCollectiblesForSale',
+      array(
+        'collector' => $collector, 'collectible' => $collectible->getCollectible(),
+        'title' => 'Other Items from this Seller'
+      )
+    );
+
+    $height_main_div->value += 293;
+  }
+
+  // pass the main div's height to the sidebar
+  $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 ?>
 
-<?php $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal'); ?>
-
-<script>
+<script type="text/javascript">
 $(document).ready(function()
 {
  'use strict';
 
   var $vertical_carousel = $('#vertical-carousel');
+  var first_picture_id = $vertical_carousel.find('img.first').data('id');
 
   // enable vertical carousel only if we have more than 3 alternate views
   if ($vertical_carousel.children().length > 3)
@@ -253,6 +341,19 @@ $(document).ready(function()
     $target
       .siblings('a.zoom-zone')
       .attr('href', path[0] + '/original/' + path[1]);
+
+    <?php if (!empty($video)): ?>
+      if ($source.data('id') == first_picture_id)
+      {
+        $('a.play-zone').show();
+        $('a.zoom-zone').hide();
+      }
+      else
+      {
+        $('a.play-zone').hide();
+        $('a.zoom-zone').show();
+      }
+    <?php endif; ?>
 
     return false;
   });
@@ -290,3 +391,38 @@ $(document).ready(function()
 
 });
 </script>
+
+<?php if (!empty($video)): ?>
+
+<div id="mediaspace" class="modal hide" tabindex="-1" role="dialog">
+  <div id="mediaspace-body" class="modal-body">
+    &nbsp;
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    $("a.play-zone").click(function(e)
+    {
+      e.preventDefault();
+
+      jwplayer('mediaspace-body').setup({
+        flashplayer: '/swf/mediaplayer.swf',
+        file: '<?= src_tag_multimedia($video, 'original'); ?>',
+        autostart: true,
+        width: 720, height: 416,
+        skin: "<?= cq_image_src('glow.zip', false); ?>",
+        'plugins': 'fbit-1,tweetit-1,gapro-2',
+        'gapro.accountid': 'UA-669177-1',
+        'fbit.link': '<?= cq_canonical_url(); ?>',
+        'tweetit.link': '<?= cq_canonical_url(); ?>'
+      });
+
+      $('#mediaspace').modal();
+
+      return false;
+    });
+  });
+</script>
+<?php endif; ?>

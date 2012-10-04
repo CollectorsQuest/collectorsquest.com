@@ -14,7 +14,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
       lang="en" class="no-js lt-ie10 ie9">
 <![endif]-->
-<!--[if gt IE 9]>
+<!--[if gt IE 9]><!-->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
       lang="en" class="no-js">
 <!--<![endif]-->

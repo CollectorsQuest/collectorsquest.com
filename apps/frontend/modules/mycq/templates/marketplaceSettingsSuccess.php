@@ -77,8 +77,9 @@
 
         <div class="form-actions">
           <input type="submit" class="btn btn-primary spacer-right-15"
-                 name="save_and_go" value="Save & Add Items for Sale" />
-          <?= link_to('Save Changes', '@mycq_profile', array('class' => 'btn')); ?>
+                 name="save[and_add_new_items]" value="Save & Add Items for Sale" />
+          <input type="submit" class="btn" value="Save Changes"
+                 name="save[and_stay_where_you_are]" />
         </div>
         <?php echo '</form>'; ?>
 

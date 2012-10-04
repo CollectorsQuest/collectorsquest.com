@@ -50,6 +50,16 @@ class CollectionQuery extends BaseCollectionQuery
       ->filterByNumItems(0, Criteria::GREATER_THAN);
   }
 
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
+  }
+
   /**
    * @param      string  $v
    * @return     CollectionQuery

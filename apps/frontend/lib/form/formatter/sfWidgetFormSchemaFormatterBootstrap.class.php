@@ -25,7 +25,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
   protected $errorListFormatForField     = '<ul class="unstyled alert alert-error">%errors%  </ul>';
   protected $errorListFormatForRowAll    = '<div class="alert alert-error all-errors">
                                               <a class="close" data-dismiss="alert">×</a>
-                                              <h4 class="alert-heading">There were some problems with your data:</h4>
+                                              <h4 class="alert-heading">%errors_header%</h4>
                                               <ul class="unstyled">
                                               %errors%
                                               </ul>
@@ -41,6 +41,14 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
 
   public function formatRow($label, $field, $errors = array(), $help = '', $hiddenFields = null)
   {
+    // we want to hide null fields completely, so we skip all renrering, including
+    // labels (but we still need to output hidden fields)
+    if (cqWidgetFormNullInput::NULL_RENDER === $field)
+    {
+      return "\n" . cqWidgetFormNullInput::NULL_RENDER . "\n"
+        . (null === $hiddenFields ? '%hidden_fields%' : $hiddenFields);
+    }
+
     return strtr($this->getRowFormat(), array(
         '%label%'         => $label,
         '%field%'         => $this->formatRequiredField($field),
@@ -56,8 +64,9 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
    * Displays all errors for a given form, both field and global
    *
    * @param     sfValidatorErrorSchema|null $errors
+   * @param     string $errors_header The header message for the error block
    */
-  public function formatAllErrorsForRow($errors)
+  public function formatAllErrorsForRow($errors, $errors_header = null)
   {
     if (null === $errors || !$errors || !count($errors))
     {
@@ -69,10 +78,12 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
       $errors = array($errors);
     }
 
-    return strtr($this->errorListFormatForRowAll, array('%errors%' => implode('', $this->unnestErrorsForRowAll($errors))));
-    return '<div class="alert alert-error">'
-           . strtr($this->errorListFormatInARow, array('%errors%' => implode('', $this->unnestErrorsForRowAll($errors))))
-           . '</div>';
+    return strtr($this->errorListFormatForRowAll, array(
+        '%errors%' => implode('', $this->unnestErrorsForRowAll($errors)),
+        '%errors_header%' => null !== $errors_header
+          ? $errors_header
+          : 'There were some problems with your data:',
+    ));
   }
 
   /**

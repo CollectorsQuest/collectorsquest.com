@@ -6,17 +6,75 @@
  * @package    CollectorsQuest
  * @subpackage form
  * @author     Kiril Angov
- * @version    SVN: $Id: BaseForm.class.php 20147 2009-07-13 11:46:57Z FabianLange $
  */
 class BaseForm extends sfFormSymfony
 {
+
+  /** @var   string The field name that will be checked on bind and auto-populated */
+  protected $ip_address_field_name = 'ip_address';
+
+  /**
+   * @return    string
+   */
+  public function getIpAddressFieldName()
+  {
+    return $this->ip_address_field_name;
+  }
+
+  /**
+   * @param     string $name
+   * @return    BaseForm
+   */
+  protected function setIpAddressFieldName($name)
+  {
+    $this->ip_address_field_name = $name;
+
+    return $this;
+  }
+
+  /**
+   * Convenience method for fast IP address setup from any form
+   *
+   * @param     string $field_name A specific field name, "ip_address" by default
+   * @return    void
+   */
+  protected function setupIpAddressField($field_name = null)
+  {
+    if (null !== $field_name)
+    {
+      $this->setIpAddressFieldName($field_name);
+    }
+
+    $this->widgetSchema[$this->getIpAddressFieldName()] = new cqWidgetFormNullInput();
+    $this->validatorSchema[$this->getIpAddressFieldName()] = new sfValidatorPass();
+  }
+
+  /**
+   * Auto populate the request's IP address if a field named "ip_address" is present
+   *
+   * @param     array $taintedValues
+   * @param     array $taintedFiles
+   */
+  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  {
+    if (isset($this->widgetSchema[$this->getIpAddressFieldName()]))
+    {
+      /* @var $request cqWebRequest */
+      $request = cqContext::getInstance()->getRequest();
+      $taintedValues = array_merge((array) $taintedValues, array(
+          $this->getIpAddressFieldName() => $request->getRemoteAddress(),
+      ));
+    }
+
+    parent::bind($taintedValues, $taintedFiles);
+  }
 
   /**
    * Renders all errors associated with this form.
    *
    * @return string The rendered errors
    */
-  public function renderAllErrors()
+  public function renderAllErrors($errors_header = null)
   {
     $formatter = $this->widgetSchema->getFormFormatter();
 
@@ -27,7 +85,10 @@ class BaseForm extends sfFormSymfony
         Bootstrap formatter');
     }
 
-    return $this->widgetSchema->getFormFormatter()->formatAllErrorsForRow($this->getErrorSchema());
+    return $this->widgetSchema->getFormFormatter()->formatAllErrorsForRow(
+      $this->getErrorSchema(),
+      $errors_header
+   );
   }
 
   /**
@@ -89,7 +150,6 @@ class BaseForm extends sfFormSymfony
     {
       throw new RuntimeException('Unimplemented error matching pattern "%s" for form %s', $field, $this->widgetSchema->getName());
     }
-
   }
 
 }

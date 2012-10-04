@@ -4,7 +4,10 @@ class searchActions extends cqFrontendActions
 {
   /** @var array */
   private static $_query = array(
-    'filters' => array('thumbnail' => 'yes')
+    'filters' => array(
+      'has_thumbnail' => 'yes',
+      'is_public' => true
+    )
   );
 
   public function preExecute()
@@ -82,19 +85,21 @@ class searchActions extends cqFrontendActions
 
   public function executeIndex(sfWebRequest $request)
   {
+    /** @var $page integer */
     $page = $request->getParameter('page', 1);
 
     $query = array(
       'q' => self::$_query['q'],
-      'limits' => array(4 * ($page - 1), 4),
+      'limits' => array(4 * (min($page, 250) - 1), 4),
       'filters' => array(
         'object_type' => 'collectible',
-        'thumbnail' => 'yes',
+        'has_thumbnail' => 'yes',
         'uint1' => 1
       )
     );
 
     if (
+      $query['limits'][0] <= 1000 &&
       ($pks = cqSphinxPager::search($query, array('collectibles'), 'pks')) &&
       count($pks) >= 3
     ) {

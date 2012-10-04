@@ -128,14 +128,14 @@ $height_main_div->value = 116;
 </div>
 
 <?php
-  include_partial(
-    'comments/comments', array(
+  include_component(
+    'comments', 'comments', array(
       'for_object' => $collection,
       'height' => &$height_main_div
   ));
 ?>
 
-<?php $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal'); ?>
+<?php $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal'); ?>
 
 <?php if ($sf_params->get('show') == 'all'): ?>
 <script>

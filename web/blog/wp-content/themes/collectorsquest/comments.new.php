@@ -39,12 +39,21 @@
     <div class="input-append post-comment">
       <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
 
-        <?php if ( $user_ID ) : ?>
+        <?php
+          if (!empty($_COOKIE['cq_username']) && !empty($_COOKIE['cq_user_email']))
+          {
+            $comment_author = $_COOKIE['cq_username'];
+            $comment_author_email = $_COOKIE['cq_user_email'];
 
-        <p>You are logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="Log out of this account">Logout &raquo;</a></p>
+            $class = 'hide';
+          }
+          else
+          {
+            $class = 'comment-option-wrap';
+          }
+        ?>
 
-        <?php else : ?>
-        <div class="row-fluid comment-option-wrap">
+        <div class="row-fluid <?= $class ?>">
           <p class="span4">
             <input class="span12" type="text" align="left" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="5" />
             <label for="author"><small>Name</small></label>
@@ -54,12 +63,9 @@
             <label for="email"><small>Email (will not be published)</small></label>
           </p>
         </div>
-        <?php endif; ?>
 
-
-          <textarea name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;resize: none;" placeholder=" What do you think?"></textarea>
-          <button type="submit" class="btn btn-large">Comment</button>
-
+        <textarea name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;resize: none;" placeholder=" What do you think?"></textarea>
+        <button type="submit" class="btn btn-large">Comment</button>
 
         <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
 
@@ -83,10 +89,6 @@
       });
     });
   </script>
-
-  <?php if ( !$user_ID ) : ?>
-
-    <?php endif ?>
 
   <?php endif; // If registration required and not logged in ?>
 

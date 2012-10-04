@@ -44,6 +44,7 @@ class FrontendCommentForm extends BaseCommentForm
     $this->setupAuthorEmailField();
     $this->setupTokenField();
     $this->setupRefererField();
+    $this->setupIpAddressField();
 
     $this->widgetSchema->setLabels(array(
         'is_notify' => 'Notify me of follow-up comments by email.',
@@ -54,15 +55,28 @@ class FrontendCommentForm extends BaseCommentForm
     $this->widgetSchema['author_email']->setAttribute('type', 'email');
 
     $this->unsetFields();
+
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
+
     $this->mergePostValidator(
       new FrontendCommentFormValidatorSchema($this->sf_user)
     );
-    $this->mergePostValidator(new iceSpamControlValidatorSchema(null, array(
-        'credentials' => iceSpamControl::CREDENTIALS_COMMENT,
+    $this->mergePostValidator(new iceSpamControlValidatorSchema(array(
+        'credentials' => iceSpamControl::CREDENTIALS_ALL,
         'fields' => array(
             'author_email' => 'email',
-            'ip_address' => 'ip',
+            $this->getIpAddressFieldName() => 'ip',
         )
+      ), array(
+        'spam' => 'We are sorry we could not add your comment. Please try again later.',
+    )));
+
+    $this->mergePostValidator(new cqValidatorSchemaTimeoutCheck($this->sf_user, array(
+        'type' => cqValidatorSchemaTimeoutCheck::TIMEOUT_TYPE_COMMENTS,
+        'threshold' => sfConfig::get('app_comments_timeout_threshold', 6),
+        'timeout_duration' => sfConfig::get('app_comments_timeout_duration', '30 minutes'),
+        'timeout_check_period' => sfConfig::get('app_comments_timeout_check_period', '60 minutes'),
+        'timeout_check_period_increase_for_unsigned' => sfConfig::get('app_comments_timeout_check_period_increase_for_unsigned', '0 minutes'),
     )));
   }
 
@@ -141,6 +155,8 @@ class FrontendCommentForm extends BaseCommentForm
     unset ($this['collection_id']);
     unset ($this['collectible_id']);
     unset ($this['collector_id']);
+    unset ($this['is_hidden']);
+    unset ($this['is_spam']);
     unset ($this['author_url']);
     unset ($this['subject']);
     unset ($this['created_at']);

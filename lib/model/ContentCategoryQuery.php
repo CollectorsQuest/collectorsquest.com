@@ -51,7 +51,16 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   public function hasCollections()
   {
     return $this
-      ->innerJoinCollection()
+      ->innerJoinCollectorCollection()
+      ->groupBy('Id');
+  }
+
+  public function hasCollectionsWithCollectibles()
+  {
+    return $this
+      ->useCollectorCollectionQuery(null, Criteria::INNER_JOIN)
+        ->hasCollectibles()
+      ->endUse()
       ->groupBy('Id');
   }
 
@@ -68,6 +77,17 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
     return $this
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getLeftValue(), Criteria::GREATER_EQUAL)
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getRightValue(), Criteria::LESS_EQUAL);
+  }
+
+  /**
+   * Find all descendants of our root
+   *
+   * @return    ContentCategory[]
+   */
+  public function descendantsOfRoot()
+  {
+    return $this
+      ->descendantsOf(ContentCategoryQuery::create()->findRoot());
   }
 
   /**

@@ -11,6 +11,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   public function isForSale()
   {
     return $this
+      // ->isPartOfCollection()
       ->filterByIsReady(true)
       ->filterByPriceAmount(1, Criteria::GREATER_EQUAL)
       ->filterByQuantity(1, Criteria::GREATER_EQUAL)
@@ -31,6 +32,17 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
         ->usePackageTransactionCreditQuery()
           ->notExpired()
         ->endUse()
+      ->endUse();
+  }
+
+  /**
+   * @return CollectibleForSaleQuery
+   */
+  public function isPartOfCollection()
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->isPartOfCollection()
       ->endUse();
   }
 

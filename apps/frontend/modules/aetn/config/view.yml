@@ -1,0 +1,53 @@
+all:
+  stylesheets:
+    - frontend/modules/aetn.css
+    - frontend/modules/collections.css
+
+americanPickersSuccess:
+  components:
+    sidebar_300: [aetn, sidebarAmericanPickers]
+
+americanRestorationSuccess:
+  components:
+    sidebar_300: [aetn, sidebarAmericanRestoration]
+
+pawnStarsSuccess:
+  components:
+    sidebar_300: [aetn, sidebarPawnStars]
+
+pickedOffSuccess:
+  components:
+    sidebar_300: [aetn, sidebarPickedOff]
+
+mwbaSuccess:
+  components:
+    breadcrumbs: []
+    footer: []
+
+mwbaPetrolianaSuccess:
+  javascripts:
+    - jquery/masonry.js
+  components:
+    slot1: [aetn, headerPetroliana]
+    breadcrumbs: []
+    footer: []
+
+mwbaRooseveltianaSuccess:
+  javascripts:
+    - jquery/masonry.js
+  components:
+    slot1: [aetn, headerRooseveltiana]
+    breadcrumbs: []
+    footer: []
+
+mwbaRailroadianaSuccess:
+  javascripts:
+    - jquery/masonry.js
+  components:
+    slot1: [aetn, headerRailroadiana]
+    breadcrumbs: []
+    footer: []
+
+storageWarsSuccess:
+  components:
+    sidebar_300: [aetn, sidebarStorageWars]
