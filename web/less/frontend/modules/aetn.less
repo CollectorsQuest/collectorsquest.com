@@ -100,7 +100,8 @@
 .title-petroliana-txt, .title-railroadiana-txt, .title-rooseveltiana-txt,
 .next-tiny-arrow, .previous-tiny-arrow, .mwba_title_red_man_page, .seemore-popupbutton,
 .mwba-mp-modal-title-up, .mwba-mp-modal-title-down, .mwba-mp-modal-floral-rooseveltiana,
-.mwba-mp-modal-floral-railroadiana, .mwba-mp-modal-floral-petroliana {
+.mwba-mp-modal-floral-railroadiana, .mwba-mp-modal-floral-petroliana, .previous-tiny-arrow-hover,
+.next-tiny-arrow-hover {
   background: url("@{baseUrl}/misc/mwba/mwba-sprites-man-pages.png") no-repeat;
   display: block;
 }
@@ -153,11 +154,27 @@
 .next-tiny-arrow {
   .size(31px, 18px);
   background-position: -950px -120px;
+  &:hover {
+    background-position: -950px -170px;
+  }
 }
 
 .previous-tiny-arrow {
   .size(31px, 18px);
   background-position: -900px -120px;
+  &:hover {
+    background-position: -900px -170px;
+  }
+}
+
+.next-tiny-arrow-hover {
+  .size(31px, 18px);
+  background-position: -950px -170px;
+}
+
+.previous-tiny-arrow-hover {
+  .size(31px, 18px);
+  background-position: -900px -170px;
 }
 
 .mwba_title_red_man_page {
@@ -271,9 +288,17 @@
     }
     .previous-man {
       left: 0;
+
+      &:hover ~ .previous-tiny-arrow {
+      .previous-tiny-arrow-hover();
+      }
     }
     .next-man {
       right: 0;
+
+      &:hover ~ .next-tiny-arrow {
+        .next-tiny-arrow-hover();
+      }
     }
     .previous-tiny-arrow, .next-tiny-arrow {
       display: block;
@@ -289,6 +314,7 @@
       right: 18px;
     }
   }
+
 
   .paper-wrapper {
     position: absolute;
