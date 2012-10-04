@@ -17,11 +17,16 @@
 
 <p class="text-justify">
   <?= $collection->getDescription('html'); ?>
+  <br>
+  <small>
+    <i>*&nbsp;American Restoration,</i>&nbsp;HISTORY and the History “H”
+    logo are the trademarks of A&amp;E Television Networks, LLC.
+  </small>
 </p>
 
 <?php
   cq_page_title(
-    'Collectibles Seen on <strong><i>American Restoration</i></strong>', null,
+    'Collectibles Seen on <strong><i>AMERICAN RESTORATION</i></strong>™', null,
     array('class' => 'row-fluid header-bar spacer-bottom-15')
   );
 ?>

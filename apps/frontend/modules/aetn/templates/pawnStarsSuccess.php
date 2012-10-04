@@ -20,11 +20,16 @@
   Their customers are carrying on a centuries-old practice: pawning or selling
   their possessions to make a quick buck. What would you be willing to gamble
   on these items from the show?
+  <br><br>
+  <small>
+    <i>*&nbsp;Pawn Stars,</i>&nbsp;HISTORY and the History “H”
+    logo are the trademarks of A&amp;E Television Networks, LLC.
+  </small>
 </p>
 
 <?php
   cq_page_title(
-    'Collectibles Seen on <strong><i>Pawn Stars</i></strong>', null,
+    'Collectibles Seen on <strong><i>PAWN STARS</i></strong>', null,
     array('class' => 'row-fluid header-bar spacer-bottom-15')
   );
 ?>

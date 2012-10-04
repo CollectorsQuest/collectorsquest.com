@@ -24,6 +24,11 @@ class marketplaceComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeIndexSlot2()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeDiscoverCollectiblesForSale()
   {
     $q = $this->getRequestParameter('q');
@@ -37,8 +42,11 @@ class marketplaceComponents extends cqFrontendComponents
     {
       $query = array(
         'q' => $q,
-        'filters' => array('has_thumbnail' => 1, 'uint1' => 1)
-        //TO DO Here shod be public filter
+        'filters' => array(
+          'has_thumbnail' => true,
+          'is_public' => true,
+          'uint1' => 1
+        )
       );
 
       $query['sortby'] = 'date';
@@ -112,16 +120,15 @@ class marketplaceComponents extends cqFrontendComponents
     else
     {
       /** @var $query FrontendCollectibleQuery */
-      $query = FrontendCollectibleQuery::create()
-        ->distinct();
+      $query = FrontendCollectibleQuery::create();
 
       $query
-        ->useCollectionCollectibleQuery(null, Criteria::RIGHT_JOIN)
+        ->useCollectionCollectibleQuery()
           ->groupByCollectionId()
         ->endUse();
 
       $query
-        ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
+        ->useCollectibleForSaleQuery()
           ->isForSale()
           ->orderByMarkedForSaleAt(Criteria::DESC)
           ->orderByCreatedAt(Criteria::DESC)
@@ -130,7 +137,9 @@ class marketplaceComponents extends cqFrontendComponents
       $query
         ->hasThumbnail()
         ->filterById(null, Criteria::NOT_EQUAL)
-        ->orderByCreatedAt(Criteria::DESC);
+        ->orderByCreatedAt(Criteria::DESC)
+        ->clearGroupByColumns()
+        ->groupBy('CollectorId');
 
       $pager = new PropelModelPager($query, 12);
     }

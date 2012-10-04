@@ -9,7 +9,25 @@ class cqFrontendUser extends cqBaseUser
   /** @var array */
   protected $visitor_info_array;
 
-  const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
+
+  /**
+   * Sent counters for comments and private messages; Used for spam thresholds
+   */
+  const SENT_COUNT_COMMENTS = 'sent_count_comments';
+  const SENT_COUNT_PRIVATE_MESSAGES = 'sent_count_private_messages';
+
+  protected static $sent_counter_keys = array(
+      self::SENT_COUNT_COMMENTS,
+      self::SENT_COUNT_PRIVATE_MESSAGES,
+  );
+
+  /**
+   * A sent counter should be incremented only once per request,
+   * we keep a list of the incremented counters here
+   */
+  protected $sent_count_incemented = array();
+
+
   const DROPBOX_OPEN_STATE_COOKIE_NAME = 'cq_mycq_dropbox_open';
   const VISITOR_INFO_COOKIE_NAME = 'cq_visitor';
   const PRIVATE_MESSAGES_SENT_TEXT = 'text_to_check_similarity';
@@ -181,7 +199,7 @@ class cqFrontendUser extends cqBaseUser
       // set username cookie
       $expiration_time = sfConfig::get('app_collector_username_cookie_expiration_age', 15 * 24 * 3600);
       $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
-      $response->setCookie($username_cookie, $this->getCollector()->getUsername(), time() + $expiration_time);
+      $response->setCookie($username_cookie, urlencode($this->getCollector()->getUsername()), time() + $expiration_time);
 
       return true;
     }
@@ -227,7 +245,7 @@ class cqFrontendUser extends cqBaseUser
      */
     if ($this->hasFlash('cq_mycq_dropbox_open', 'cookies'))
     {
-      return (boolean) $this->getFlash('cq_mycq_dropbox_open', false, true, 'cookies');
+      return (boolean) $this->getFlashAndDelete('cq_mycq_dropbox_open', false, 'cookies');
     }
     else
     {
@@ -258,7 +276,7 @@ class cqFrontendUser extends cqBaseUser
   public function getUsernameFromCookie()
   {
     $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
-    return cqContext::getInstance()->getRequest()->getCookie($username_cookie);
+    return urldecode(cqContext::getInstance()->getRequest()->getCookie($username_cookie));
   }
 
   /**
@@ -641,6 +659,75 @@ class cqFrontendUser extends cqBaseUser
     return json_decode(base64_decode($raw_data), true);
   }
 
+  /**
+   * Get the sent count for a specific counter
+   *
+   * @param     string $key
+   * @return    integer
+   */
+  public function getSentCount($key)
+  {
+    $this->checkSentCounterKey($key);
+
+    return $this->getAttribute($key, 0, 'collector');
+  }
+
+  /**
+   * Reset the sent count for a specific counter, or manually set it
+   *
+   * @param type $key
+   * @param type $value
+   *
+   * @return    cqFrontendUser
+   */
+  public function resetSentCount($key, $value = 0)
+  {
+    $this->checkSentCounterKey($key);
+    $this->setAttribute($key, $value, 'collector');
+
+    return $this;
+  }
+
+  /**
+   * Increments a specific sent counter; Will only increment the counter once
+   * per request, even if called multiple times
+   *
+   * @param     string $key
+   * @return    cqFrontendUser
+   */
+  public function incrementSentCount($key)
+  {
+    $this->checkSentCounterKey($key);
+
+    if (!isset($this->sent_count_incemented[$key]))
+    {
+      $this->resetSentCount($key, $this->getSentCount($key) + 1);
+      $this->sent_count_incemented[$key] =  true;
+    }
+
+    return $this;
+  }
+
+  /**
+   * @param     string $key
+   * @throws    RuntimeException
+   *
+   * @return    void
+   */
+  protected function checkSentCounterKey($key)
+  {
+    if (!in_array($key, self::$sent_counter_keys))
+    {
+      throw new RuntimeException(sprintf('Unknown sent counter %s', $key));
+    }
+  }
+
+  /**
+   * Try to delete the related collector; Returns true on successful deletion
+   * and false when the collector was already removed or never committed to teh DB
+   *
+   * @return    boolean
+   */
   public function delete()
   {
     try
@@ -649,11 +736,12 @@ class cqFrontendUser extends cqBaseUser
       $this->Authenticate(false);
       $collector->delete();
     }
-    catch (PropelException $e)
+    catch (Exception $e)
     {
       return false;
     }
 
     return true;
   }
+
 }

@@ -22,6 +22,14 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
     ;
   }
 
+  public function filterByIsPublic($isPublic = null, $comparison = null)
+  {
+    return $this
+      ->useCollectibleQuery(null, Criteria::RIGHT_JOIN)
+        ->filterByIsPublic($isPublic, $comparison)
+      ->endUse();
+  }
+
   public function isForSale()
   {
     return $this

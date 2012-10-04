@@ -78,6 +78,14 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;
 
+    if ($this->image = $this->collector->getPhoto())
+    {
+      $this->aviary_hmac_message = $this->getUser()->hmacSignMessage(
+        json_encode(array('multimedia-id' => $this->image->getId())),
+        cqConfig::getCredentials('aviary', 'hmac_secret')
+      );
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -165,14 +173,17 @@ class mycqActions extends cqFrontendActions
     $collector = $this->getCollector();
 
     $_preferences = array(
-        'newsletter' => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
-        'comments' => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
-        'messages' => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+      'opt_out'     => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
+      'newsletter'  => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+      'comments'    => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+      'messages'    => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE
     );
+
+    // Assume there are no properties changed in this request
+    $_property_changed = false;
 
     foreach ($_preferences as $key => $property)
     {
-      $_property_changed = false;
       if ($request->hasParameter($key))
       {
         $collector->setProperty($property, (boolean) $request->getParameter($key));
@@ -187,9 +198,12 @@ class mycqActions extends cqFrontendActions
           'You\'ve successfully changed your %s notification settings.',
           $_property_changed
         ));
-
-        return $this->redirect('@mycq_profile_email_preferences');
       }
+    }
+
+    if (false !== $_property_changed)
+    {
+      return $this->redirect('@mycq_profile_email_preferences');
     }
 
     $this->collector = $collector;
@@ -309,8 +323,37 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->total = $this->collector->countCollectorCollections();
 
-    // @todo determine this variable properly
-    $this->first_time_on_page = true;
+    // determine weather to show message for incomplete collections/collectibles
+    $this->incomplete_collections = false;
+
+    /*
+     * this variable will be set true only if user doesn't have
+     * incomplete collections but has incomplete collectibles
+     */
+    $this->incomplete_collectibles = false;
+
+    if (IceGateKeeper::open('mycq_incomplete', 'page'))
+    {
+      $q = CollectorCollectionQuery::create()
+        ->filterByCollector($this->collector)
+        ->isIncomplete();
+      if ($q->count() > 0)
+      {
+        $this->incomplete_collections = true;
+      }
+      else
+      {
+        $q = CollectibleQuery::create()
+          ->filterByCollector($this->collector)
+          ->isPartOfCollection()
+          ->isIncomplete();
+        if ($q->count() > 0)
+        {
+          $this->incomplete_collections = true;
+          $this->incomplete_collectibles = true;
+        }
+      }
+    }
 
     return sfView::SUCCESS;
   }
@@ -345,6 +388,13 @@ class mycqActions extends cqFrontendActions
       $collection->setPrimaryImage($collectible->getPrimaryImage()
         ->getAbsolutePath('original'));
       $collection->save();
+    }
+
+    if (1 == $collectible->countCollections(new Criteria()))
+    {
+      // Give the collectible the same category as the collection
+      $collectible->setContentCategoryId($collection->getContentCategoryId());
+      $colletible->save();
     }
 
     return $this->redirect($this->getController()->genUrl(array(
@@ -682,8 +732,21 @@ class mycqActions extends cqFrontendActions
     // Make the collector available to the template
     $this->collector = $collector;
 
-    // @todo determine this variable properly
-    $this->first_time_on_page = true;
+    // determine weather to show message for incomplete collectibles
+    $this->incomplete_collections = false;
+
+    if (IceGateKeeper::open('mycq_incomplete', 'page'))
+    {
+      $q = CollectibleQuery::create()
+        ->filterByCollector($collector)
+        ->isPartOfCollection()
+        ->isForSale()
+        ->isIncomplete();
+      if ($q->count() > 0)
+      {
+        $this->incomplete_collections = true;
+      }
+    }
 
     return sfView::SUCCESS;
   }
@@ -921,9 +984,14 @@ class mycqActions extends cqFrontendActions
   {
     $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
 
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
+    /* @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
+
+    $this->total = $q->count();
 
     $pager = new PropelModelPager($q, 18);
     $pager->setPage($this->getRequestParameter('p', 1));
@@ -938,9 +1006,14 @@ class mycqActions extends cqFrontendActions
   {
     $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
 
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
+    /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
+
+    $this->total = $q->count();
 
     $pager = new PropelModelPager($q, 18);
     $pager->setPage($this->getRequestParameter('p', 1));

@@ -74,7 +74,7 @@ class BaseForm extends sfFormSymfony
    *
    * @return string The rendered errors
    */
-  public function renderAllErrors()
+  public function renderAllErrors($errors_header = null)
   {
     $formatter = $this->widgetSchema->getFormFormatter();
 
@@ -85,7 +85,10 @@ class BaseForm extends sfFormSymfony
         Bootstrap formatter');
     }
 
-    return $this->widgetSchema->getFormFormatter()->formatAllErrorsForRow($this->getErrorSchema());
+    return $this->widgetSchema->getFormFormatter()->formatAllErrorsForRow(
+      $this->getErrorSchema(),
+      $errors_header
+   );
   }
 
   /**

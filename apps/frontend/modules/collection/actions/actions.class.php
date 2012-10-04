@@ -128,6 +128,20 @@ class collectionActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
 
+
+    if ($collection->getIsPublic() === false && $this->getCollector()->isOwnerOf($collection))
+    {
+      $this->getUser()->setFlash(
+        'error',
+        sprintf(
+          'Your collection will not be publicly viewable until you fill in all the required information!<br> %s',
+          link_to('Edit collection', 'mycq_collection_by_section',
+            array('id' => $collection->getId(), 'section' => 'details')
+          )
+        )
+      );
+    }
+
     if ($collection->getNumItems() == 0)
     {
       $this->collections = null;
@@ -165,6 +179,12 @@ class collectionActions extends cqFrontendActions
 
     /** @var $collector Collector */
     $collector = $collectible->getCollector();
+
+    // Stop right here if we are missing any of these
+    $this->forward404Unless($collectible && $collection && $collector);
+
+    // We do not want to show Collectibles which are not assigned to a CollectorCollection
+    $this->forward404Unless($collection->getId());
 
     /**
      * Special checks for the Collectibles of A&E Shows
@@ -261,6 +281,17 @@ class collectionActions extends cqFrontendActions
     // Make the Collectible available to the sidebar
     $this->setComponentVar('collectible', $collectible, 'sidebarCollectible');
 
+    if ($collectible->getIsPublic() === false && $this->getCollector()->isOwnerOf($collectible))
+    {
+      $this->getUser()->setFlash(
+        'error',
+        sprintf(
+          'Your item will not be publicly viewable until you fill in all the required information! %s',
+          link_to('Edit item', 'mycq_collectible_by_slug', $collectible)
+        )
+      );
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -270,7 +301,10 @@ class collectionActions extends cqFrontendActions
     $collectible = $this->getRoute()->getObject();
 
     /** @var $collection Collection */
-    $collection = $collectible->getCollectorCollection();
+    if (!$collection = $collectible->getCollectorCollection())
+    {
+      return false;
+    }
 
     $this->aetn_show = null;
     $aetn_shows = sfConfig::get('app_aetn_shows');

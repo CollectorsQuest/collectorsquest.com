@@ -33,7 +33,7 @@
         else
         {
           // Special case to have American Pickers and American Restoration appear alphabetically in list
-          if ($category->getId() === 152)
+          if ($category->getId() === 402)
           {
             echo '<li><strong>' . link_to('American Pickers', '@aetn_american_pickers') . '</strong></li>';
             if (IceGateKeeper::open('aetn_american_restoration', 'page'))

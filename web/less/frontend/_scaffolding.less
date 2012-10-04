@@ -106,16 +106,15 @@ input[class*="span"] {
 }
 
 #content {
-  background-color: @white;
   padding-top: 40px;
   padding-bottom: 20px;
   border-left: 1px solid #ededed;
+  background-color: @white;
 }
 
 //SLOTS
 #slot1 {
   position: relative;
-//  z-index: 300;
   margin: 0 auto;
   background-color: @white;
   .clearfix();
@@ -130,6 +129,17 @@ input[class*="span"] {
     .span12 {
       margin-bottom: 20px;
     }
+  }
+}
+
+#slot2 {
+  position: relative;
+  margin: 0 auto;
+  background-color: @white;
+  .clearfix();
+
+  .slot2-inner {
+    padding: 0 20px;
   }
 }
 

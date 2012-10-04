@@ -1,6 +1,9 @@
 <?php
-  /**
- * @var $seller Seller
+/**
+ * @var $seller                  Seller
+ * @var $incomplete_collections  boolean
+ * @var $total                   integer
+ * @var $sold_total              integer
  */
 
   SmartMenu::setSelected('mycq_marketplace_tabs', 'collectibles_for_sale');
@@ -10,15 +13,16 @@
   // include_partial('mycq/seller_snapshot', array('seller' => $seller));
 ?>
 
-<?php if ($first_time_on_page && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+<?php if ($incomplete_collections && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
-  <h4 class="alert-heading">Welcome to the My Marketplace page!</h4>
+  <h4 class="alert-heading">Some items for sale need your attention!</h4>
   <p class="spacer-top">
-    You have Collections/Collectibles which are not fully described yet.
-    If you would like others too see and buy them you should describe them as best as you can!
+    You have items for sale which are not fully described yet.
+    If you would like other users to be able to find and buy your items,
+    you should describe them as best as you can!
   </p>
   <br/>
-  <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collectibles') ?>">Fix Incomplete Collectibles</a>
+  <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collectibles') ?>">Fix Incomplete Items</a>
   <button type="button" class="btn" data-dismiss="alert">Ok</button>
 </div>
 <?php endif; ?>

@@ -1,0 +1,19 @@
+{% extends "common/internal.html.twig" %}
+
+{% block content %}
+  <b>Reported by:</b> {{ link_to_collector(oReporterCollector) }}<br>
+  <b>Object url:</b> {{ link_to_model_object(oModelObject, oModelObject) }}<br>
+  <br>
+  {% if oNewComment.isByRegisteredUser %}
+    Author: {{ link_to_collector(oComment.collector, 'text') }} ({{ oComment.ipAddress }})<br />
+  {% else %}
+    Author: {{ oComment.authorName }} ({{ oComment.authorEmail }}) ({{ oComment.ipAddress }})<br />
+  {% endif %}<br>
+  <b>Added on:</b {{ oComment.createdAt }}
+
+  <b>Comment text:</b>
+  <p>
+    <br> {{ oComment.body }}
+  </p>
+  <br><hr>
+{% endblock %}

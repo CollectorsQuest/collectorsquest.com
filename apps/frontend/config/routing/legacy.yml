@@ -50,6 +50,11 @@ legacy_collectible_by_slug:
   param: { module: collection, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
+legacy_marketplace_category_by_slug:
+  url:   /marketplace/category/:id/:slug
+  param: { module: _legacy, action: redirectToMarketplaceCategory }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
 legacy_featured_week_page:
   url:  /featured-week/:slug
   param: { module: _legacy, action: redirectToCollections }

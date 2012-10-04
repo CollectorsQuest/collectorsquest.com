@@ -87,12 +87,12 @@
     )
   ); ?></p>
 
-  <?php if ($return_policy = $collector->getSellerSettingsReturnPolicy()): ?>
-    <p>Return Policy: <?= $return_policy ?></p>
+  <?php if ($refunds_policy = $collector->getSellerSettingsRefunds()): ?>
+    <p><strong>Refunds Policy:</strong> <?= $refunds_policy ?></p>
   <?php endif; ?>
 
-  <?php if ($payment_accepted = $collector->getSellerSettingsPaymentAccepted()): ?>
-    <p>Payment: <?= $payment_accepted; ?></p>
+  <?php if ($shipping_policy = $collector->getSellerSettingsShipping()): ?>
+    <p><strong>Shipping Policy:</strong> <?= $shipping_policy; ?></p>
   <?php endif; ?>
 </div>
 

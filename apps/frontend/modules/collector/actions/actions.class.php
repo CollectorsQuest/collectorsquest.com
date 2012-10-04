@@ -23,13 +23,15 @@ class collectorActions extends cqFrontendActions
     $this->collector = $collector;
     $this->profile   = $profile;
 
-    $c = new Criteria();
-    $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
-    $this->collectionsCount = $collector->countCollectionsWithCollectibles($c);
+    /** @var $q FrontendCollectorCollectionQuery */
+    $q = FrontendCollectorCollectionQuery::create()
+      ->hasCollectibles()
+      ->filterByCollector($collector);
+    $this->collectionsCount = $q->count();
 
-    $c = new Criteria();
-    $c->add(CollectiblePeer::IS_PUBLIC, true);
-    $this->collectiblesCount = $collector->countCollectiblesInCollections($c);
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($collector);
+    $this->collectiblesCount = $q->count();
 
     $this->i_collect_tags = $collector->getICollectTags();
 
@@ -132,6 +134,16 @@ class collectorActions extends cqFrontendActions
           && $this->getUser()->getCollector()->getHasCompletedRegistration(),
       '@mycq');
 
+    // if we are comming from seller signup page, and the user
+    // has selected package to pay for after sign up we need to save it here
+    if ($request->hasParameter('preselect_package'))
+    {
+      $this->getUser()->setAttribute(
+        'preselected_seller_package',
+        $request->getParameter('preselect_package')
+      );
+    }
+
     $this->form = new CollectorSignupStep1Form();
 
     if (sfRequest::POST == $request->getMethod())
@@ -157,6 +169,17 @@ class collectorActions extends cqFrontendActions
 
         // authenticate the collector and redirect to @mycq_profile
         $this->getUser()->Authenticate(true, $collector, false);
+
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
 
         return $this->redirect('@mycq_profile');
       }

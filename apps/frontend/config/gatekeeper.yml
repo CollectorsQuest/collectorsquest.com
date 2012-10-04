@@ -24,7 +24,7 @@ next:
     marketplace_categories: false
     aetn_picked_off: true
     aetn_american_restoration: true
-    mycq_incomplete: false
+    mycq_incomplete: true
 
   features:
     shopping_cart: true
@@ -37,7 +37,7 @@ next:
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
-    expose_collection_categories: false
+    expose_collection_categories: true
 
 dev:
   pages:

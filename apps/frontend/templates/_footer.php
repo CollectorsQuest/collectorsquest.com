@@ -10,13 +10,14 @@
             collections: post a gallery of your neat stuff to share and use as an archive,
             buy and sell treasures quickly and easily, learn what’s going on in the collecting
             world, and meet other like-minded collectors.
-            <?= link_to('Join us', '@misc_guide_to_collecting') ?> to make collecting more fun than ever!
+            <?= link_to('Join us', '@misc_guide_to_collecting?ref='. cq_link_ref('footer')) ?>
+            to make collecting more fun than ever!
           </p>
 
           <div class="contact-us-button">
             <?php
               echo link_to(
-                'Contact Us', 'blog_page', array('slug' => 'contact-us'),
+                'Contact Us', 'blog_page', array('slug' => 'contact-us', 'ref' => cq_link_ref('footer')),
                 array('class' => 'btn btn-primary pull-left')
               );
             ?>
@@ -89,7 +90,7 @@
               <h2 class="Chivo webfont">Show Off</h2>
               <p>
                 Show your collections to the world! Upload and organize your stuff here.<br />
-                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@misc_guide_to_collecting'); ?>
+                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@misc_guide_to_collecting?ref='. cq_link_ref('footer')); ?>
               </p>
             </div>
           </li>
@@ -101,7 +102,7 @@
               <p>
                 Do you have something you'd like to sell?
                 It's easy! Become a member of Collectors Quest and get started.<br/>
-                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_signup'); ?>
+                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_signup?ref='. cq_link_ref('footer')); ?>
               </p>
             </div>
           </li>
@@ -116,7 +117,7 @@
                 <?php
                   echo link_to(
                     'Get&nbsp;Help&nbsp;Now!', 'blog_page',
-                    array('slug' => 'cq-faqs/general-questions', '_decode' => true),
+                    array('slug' => 'cq-faqs/general-questions', 'ref' => cq_link_ref('footer'), '_decode' => true),
                     array('absolute' => true)
                   );
                 ?>

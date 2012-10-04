@@ -299,6 +299,20 @@ function route_for_collector(Collector $collector = null)
       null;
 }
 
+/**
+ * @param  Collector  $collector
+ * @param  string     $redirect_to  Where to redirect to after autologging the Collector
+ * @param  boolean    $absolute
+ *
+ * @return string
+ */
+function url_for_collector_autologin(Collector $collector = null, $redirect_to = null, $absolute = true)
+{
+  $route = '@auto_login?hash=' . $collector->getAutoLoginHash() . '&r=' . $redirect_to;
+
+  return ($collector) ? url_for($route, $absolute) : null;
+}
+
 function link_to_collection($object, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))
 {
   if ($object instanceof Collectible)

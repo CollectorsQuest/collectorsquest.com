@@ -10,6 +10,22 @@ class ContentCategory extends BaseContentCategory
   protected $path = array();
 
   /**
+   * Register extra properties to allow magic getters/setters to be used
+   *
+   * @see     ExtraPropertiesBehavior
+   */
+  public function initializeProperties()
+  {
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_TITLE_PREFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_TITLE_SUFFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_USE_SINGULAR);
+
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_TITLE_PREFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_TITLE_SUFFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_USE_SINGULAR);
+  }
+
+  /**
    * Retrieve a text representation of the path to this content category, ex:
    * Art / Asian / Vases
    *
@@ -212,6 +228,95 @@ class ContentCategory extends BaseContentCategory
       ->orderBy('Name');
 
     return $this->getChildren($q);
+  }
+
+  /**
+   * Page SEO
+   */
+  public function getSeoCollectionsTitle()
+  {
+    $title = 'Collectible ' . $this->getName() .' on Collectors Quest';
+
+    $q = ContentCategoryQuery::create()
+      ->hasCollectionsWithCollectibles()
+      ->limit(3);
+
+    /** @var $descendants ContentCategory[] */
+    $descendants = $this->getDescendants($q);
+
+    $names = array();
+    foreach ($descendants as $descendant)
+    {
+      $names[] = $descendant->getName();
+    }
+
+    if (!empty($names))
+    {
+      $title .= ' - ' . implode(', ', $names);
+    }
+
+    return $title;
+  }
+
+  public function getSeoCollectionsDescription()
+  {
+    return cqStatic::truncateText($this->getDescription(), 160, '', true);
+  }
+
+  public function getSeoCollectionsKeywords()
+  {
+    return null;
+  }
+
+  public function getSeoMarketTitle()
+  {
+    $title = 'Buy ' . $this->getName() .' on Collectors Quest';
+
+    $q = ContentCategoryQuery::create()
+      ->hasCollectionsWithCollectibles()
+      ->limit(3);
+
+    /** @var $descendants ContentCategory[] */
+    $descendants = $this->getDescendants($q);
+
+    $names = array();
+    foreach ($descendants as $descendant)
+    {
+      $names[] = $descendant->getName();
+    }
+
+    if (!empty($names))
+    {
+      $title .= ' - ' . implode(', ', $names);
+    }
+
+    return $title;
+  }
+
+  public function getSeoMarketDescription()
+  {
+    return cqStatic::truncateText($this->getDescription(), 160, '', true);
+  }
+
+  public function getSeoMarketKeywords()
+  {
+    return null;
+  }
+
+  /**
+   * Compute the number of relater collectibles for sale
+   *
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function computeNumCollectiblesForSale(PropelPDO $con)
+  {
+    return CollectibleQuery::create()
+      ->isPartOfCollection()
+      ->isForSale()
+      ->filterByIsPublic(true)
+      ->filterByContentCategoryWithDescendants($this)
+      ->count($con);
   }
 
 }

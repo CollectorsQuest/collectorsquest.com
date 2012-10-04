@@ -93,7 +93,7 @@
     <?php endif; ?>
 
     <?php if (!empty($video)): ?>
-      <a class="play-zone" target="_blank" title="Click to play"
+      <a class="play-zone" target="_blank" title="Click to play" onclick="return false;"
          href="<?= url_for_collectible($collectible) ?>#mediaspace">
         <span class="holder-icon-play">
           <i class="icon icon-play"></i>
@@ -216,6 +216,18 @@
   <div class="item-description <?= $editable ? 'editable_html' : '' ?>"
        id="collectible_<?= $collectible->getId(); ?>_description" itemprop = "description">
     <?= $description = $collectible->getDescription('html'); ?>
+
+    <?php if (!empty($aetn_show)): ?>
+      <br><br>
+
+      <small>
+        <i>*&nbsp;<?= $aetn_show['name'] ?>,</i>
+        HISTORY and the History “H” logo are the trademarks of A&amp;E Television Networks, LLC.
+      </small>
+
+      <?php $height_main_div->value += 29 ?>
+    <?php endif; ?>
+
   </div>
 
   <?php
@@ -228,6 +240,7 @@
     // Approximately 2 <br> tags account for a new line
     $br_count = (integer) (substr_count($description, '<br') / 2);
     $height_main_div->value += 20 + 18 * ($br_count + $description_rows);
+
   ?>
 <?php endif; ?>
 
@@ -248,8 +261,8 @@
   }
   else
   {
-    include_partial(
-      'comments/comments',
+    include_component(
+      'comments', 'comments',
       array(
         'for_object' => $collectible->getCollectible(),
         'height' => &$height_main_div
@@ -262,16 +275,26 @@
     include_partial(
       'collection/aetn_collectible_related',
       array(
-        'title' => 'Other Items from '. $aetn_show['name'],
+        'title' => 'Other Items from '. strtoupper($aetn_show['name']),
         'collectible' => $collectible,
         'related_collectibles' => $related_collectibles,
         'height' => &$height_main_div
       )
     );
   }
-?>
 
-<?php
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale())
+  {
+    include_component('collector', 'indexCollectiblesForSale',
+      array(
+        'collector' => $collector, 'collectible' => $collectible->getCollectible(),
+        'title' => 'Other Items from this Seller'
+      )
+    );
+
+    $height_main_div->value += 293;
+  }
+
   // pass the main div's height to the sidebar
   $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 ?>

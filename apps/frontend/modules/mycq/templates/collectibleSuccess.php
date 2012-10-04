@@ -6,7 +6,9 @@
  * @var $form CollectibleEditForm
  * @var $for_for_sale CollectibleForSaleEditForm
  */
+?>
 
+<?php
 if ($collectible->getMultimediaCount('image') > 0)
 {
   slot(
@@ -27,6 +29,7 @@ else
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
       method="post" enctype="multipart/form-data" novalidate
       id="form-collectible" class="form-horizontal">
+
   <?php
     if ($form->hasErrors())
     {
@@ -70,6 +73,7 @@ else
 
     <div class="span8">
       <?= $form['collection_collectible_list']->renderRow(); ?>
+      <?= $form['content_category']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>
 
       <?php if (isset($form['thumbnail'])): ?>

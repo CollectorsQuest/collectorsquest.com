@@ -105,7 +105,7 @@ class generalActions extends cqFrontendActions
         $q = FrontendCollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
-          ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+          ->addAscendingOrderByColumn('FIELD(collector_collection.id, '. implode(',', $collection_ids) .')');
 
         $this->collections = $q->find();
       }
@@ -123,7 +123,7 @@ class generalActions extends cqFrontendActions
          */
         $q = FrontendCollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
-           ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+           ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
         IceGateKeeper::open('independence_day') ?
           $q->limit(47) : $q->limit(22);
@@ -169,9 +169,21 @@ class generalActions extends cqFrontendActions
       $form->bind($request->getParameter($form->getName()));
       if ($form->isValid())
       {
+
         /* @var $collector Collector */
         $collector = $form->getValue('collector');
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
+
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
 
         $goto = $request->getParameter('r', $form->getValue('goto'));
         $goto = !empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me');
@@ -237,6 +249,16 @@ class generalActions extends cqFrontendActions
       {
         $this->getUser()->Authenticate(true, $collector, true);
 
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
         if ($new_collector)
         {
           return $this->redirect('@mycq_profile');

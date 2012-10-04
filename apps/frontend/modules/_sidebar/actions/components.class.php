@@ -38,7 +38,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create()
       ->filterByTreeLevel($level)
-      ->joinCollectorCollection(null, Criteria::INNER_JOIN)
+      ->hasCollectionsWithCollectibles()
       ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
       ->groupById()
@@ -89,7 +89,7 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->hasCollections()
+      ->hasCollectionsWithCollectibles()
       ->orderBy('Name')
       ->find();
 
@@ -97,7 +97,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
         ->childrenOf($this->current_sub_category)
-        ->hasCollections()
+        ->hasCollectionsWithCollectibles()
         ->find();
     }
 
@@ -120,9 +120,8 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByName('None', Criteria::NOT_EQUAL)
       ->filterByLevel(array(1, 2))
       ->hasCollectiblesForSale()
-      ->orderBy('Name', Criteria::ASC)
-      ->distinct();
-
+      ->filterByNumCollectiblesForSale(6, Criteria::GREATER_EQUAL)
+      ->orderBy('Name', Criteria::ASC);
     $this->categories = $q->find();
 
     return $this->_sidebar_if(count($this->categories) > 0);
@@ -786,7 +785,7 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterById($this->ids, Criteria::IN)
         ->addAscendingOrderByColumn(
-          'FIELD(id, ' . implode(',', $this->ids) . ')'
+          'FIELD(wp_posts.id, ' . implode(',', $this->ids) . ')'
         );
     }
 
