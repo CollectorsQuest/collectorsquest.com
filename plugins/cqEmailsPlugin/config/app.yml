@@ -72,6 +72,10 @@ all:
         subject: "Comment spam reported by {{ oReporterCollector }} on {{ oModelObject }}"
         to: info@collectorsquest.com
         required_params: [ oReporterCollector, oModelObject, oComment ]
+      spam_notification_pm:
+        subject: "Private message spam reported by {{ oReporterCollector }}"
+        to: info@collectorsquest.com
+        required_params: [ oReporterCollector, rqMessages ]
       feedback:
         subject: "[Feedback]"
         required_params: [feedback, browser]

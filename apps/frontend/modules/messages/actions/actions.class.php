@@ -34,6 +34,7 @@ class messagesActions extends cqFrontendActions
         ->filterByIsRead(false)
       ->_endif()
       ->filterByIsDeleted(false)
+      ->filterByIsSpam(false)
       ->_if($is_search)
         //->joinCollectorRelatedBySender(null, Criteria::LEFT_JOIN)
         ->filterBySubject($search)
@@ -243,7 +244,8 @@ class messagesActions extends cqFrontendActions
 
     $q = PrivateMessageQuery::create()
       ->filterByPrimaryKeys($request->getParameter('ids'))
-      ->filterByCollectorRelatedByReceiver($this->getCollector());
+      ->filterByCollectorRelatedByReceiver($this->getCollector())
+      ->keepQuery();
 
     if (isset($action['mark_as_unread']))
     {
@@ -257,6 +259,23 @@ class messagesActions extends cqFrontendActions
     {
       $q->update(array('IsDeleted' => true));
     }
+    elseif (isset($action['report_spam']))
+    {
+      $affected_rows = $q->update(array('IsSpam' => true));
+
+      // if we actually changed any records
+      if ($affected_rows)
+      {
+        // notify an administrator about the spam
+        $cqEmail = new cqEmail($this->getMailer());
+        $sent = $cqEmail->send('internal/spam_notification_pm', array(
+            'params' => array(
+                'rqMessages' => $messages = $q->find(),
+                'oReporterCollector' => $this->getCollector(),
+            ),
+        ));
+      }
+    }
 
     if ($request->isXmlHttpRequest())
     {
@@ -269,7 +288,7 @@ class messagesActions extends cqFrontendActions
       return $this->redirect('messages_inbox', array(
           'filter' => $request->getParameter('filter_hidden') ?: null,
           'search' => $request->getParameter('search') ?: null,
-          ));
+      ));
     }
   }
 

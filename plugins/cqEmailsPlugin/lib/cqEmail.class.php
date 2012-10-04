@@ -83,7 +83,7 @@ class cqEmail
         ->setCharset('UTF-8')
         ->addPart(strip_tags($rendered_template), 'text/plain')
         ->addPart($rendered_template, 'text/html');
-      
+
       $return = $this->getMailer()->send($message);
     }
     catch (Swift_RfcComplianceException $e)
