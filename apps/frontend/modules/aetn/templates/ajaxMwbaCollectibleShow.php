@@ -26,8 +26,7 @@
             $collectible, '620x0',
             array('width' => null, 'height' => null)
           ),
-          src_tag_collectible($collectible, 'original'),
-          array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
+          url_for_collectible($collectible), array('target' => '_blank')
         );
       ?>
 
@@ -77,9 +76,7 @@
         </div>
       <?php endif; ?>
 
-      <?php // include_component('comments', 'comments', array('for_object' => $collectible->getCollectible())); ?>
-
-      <a href="<?= url_for_collection($collection); ?>" class="seemore-popupbutton"></a>
+      <br><a href="<?= url_for_collection($collection); ?>" class="seemore-popupbutton">&nbsp;</a><br>
     </div> <!-- ./modal-collectible -->
   </div> <!-- ./modal-body -->
 </div>
