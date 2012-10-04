@@ -6,7 +6,7 @@
 ?>
 <div class="modal modal-mwba">
   <div class="modal-header">
-    <button class="close" data-dismiss="modal">×</button>
+    &nbsp;
   </div>
   <div class="modal-body">
     <span class="modal-floral-title"></span>
@@ -77,11 +77,7 @@
         </div>
       <?php endif; ?>
 
-      <?php
-        include_component('comments', 'comments', array(
-            'for_object' => $collectible->getCollectible()
-        ));
-      ?>
+      <?php // include_component('comments', 'comments', array('for_object' => $collectible->getCollectible())); ?>
 
       <a href="<?= url_for_collection($collection); ?>" class="seemore-popupbutton"></a>
     </div> <!-- ./modal-collectible -->
