@@ -196,6 +196,9 @@ classes:
       sluggable:  { slug_pattern: "{Name}", permanent: false }
       extra_properties: ~
       nested_set: ~
+      aggregate_column:
+        name: num_collectibles_for_sale
+        foreign_table: collectible
 
   CollectionCollectible:
     isCrossRef: true
@@ -232,6 +235,7 @@ classes:
       id:  ~
       graph_id:          { type: integer, required: false, index: unique }
       collector_id:      { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      content_category_id: { type: integer, foreignClass: ContentCategory, foreignReference: id, required: false, onDelete: setnull }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: unique }
       description:       { type: longvarchar, required: true }
