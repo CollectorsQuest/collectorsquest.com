@@ -68,7 +68,7 @@ all:
         required_params: [ oSeller, oShoppingOrder, oCollectible ]
 
     internal:
-      comment_spam_notification:
+      spam_notification_comment:
         subject: "Comment spam reported by {{ oReporterCollector }} on {{ oModelObject }}"
         to: info@collectorsquest.com
         required_params: [ oReporterCollector, oModelObject, oComment ]
