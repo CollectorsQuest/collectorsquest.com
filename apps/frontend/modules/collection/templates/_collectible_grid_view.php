@@ -15,7 +15,7 @@
   </div>
   <?php
     echo link_to_collectible($collectible, 'image', array(
-      'image_tag' => array('width' => 190, 'height' => 150),
+      'image_tag' => array('width' => 190, 'height' => 150, 'class' => 'lazy'),
       'link_to' => array('class' => 'mosaic-backdrop')
     ));
   ?>

@@ -99,4 +99,21 @@ class ShoppingPayment extends BaseShoppingPayment
       $this->setProperty('paypal.'. $key, serialize($values));
     }
   }
+
+  /**
+   * @return array
+   */
+  public function getPayPalErrors()
+  {
+    $result = array();
+    if ($p = $this->getProperty(ShoppingPaymentPeer::PAYPAL_ERROR))
+    {
+      $p = unserialize($p);
+      if (isset($p['Errors']))
+      {
+        $result = $p['Errors'];
+      }
+    }
+    return $result;
+  }
 }

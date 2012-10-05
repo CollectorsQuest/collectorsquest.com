@@ -10,7 +10,7 @@
 
   <?php
     echo link_to_collectible($collectible, 'image', array(
-      'image_tag' => array('width' => 190, 'height' => 190)
+      'image_tag' => array('width' => 190, 'height' => 190, 'class' => 'lazy')
     ));
   ?>
   <p><?= link_to_collectible($collectible, 'text', array('link_to' => array('class' => 'target'))); ?></p>
