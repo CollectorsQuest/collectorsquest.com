@@ -17,6 +17,9 @@ class Collection extends BaseCollection
   /** @var array */
   public $_counts = array();
 
+  /** @var integer */
+  protected $_old_content_category_id;
+
   /**
    * @param PropelPDO $con
    */
@@ -329,4 +332,56 @@ class Collection extends BaseCollection
       $con->exec($sql);
     }
   }
+
+  /**
+   * Set the value of [content_category_id] column.
+   *
+   * @param      int $v new value
+   * @return     Collection The current object (for fluent API support)
+   */
+  public function setContentCategoryId($v)
+  {
+    if (null === $this->_old_content_category_id)
+    {
+      $this->_old_content_category_id = $this->getContentCategoryId();
+    }
+
+    return parent::setContentCategoryId($v);
+  }
+
+  /**
+   * postUpdate hook
+   */
+  public function postUpdate(\PropelPDO $con = null)
+  {
+    // if the content category id was changed
+    if (
+      null !== $this->_old_content_category_id &&
+      $this->_old_content_category_id != $this->getContentCategoryId()
+    )
+    {
+      // we must update it for all related Collectibles related to this collection
+      // that do not have an uniquie category
+      CollectibleQuery::create()
+        ->filterById(
+          // we cannot directly filter by category because mysql does not support
+          // using UPDATE SET in combination with JOIN. That's why we do things
+          // the roundabout way
+          CollectionCollectibleQuery::create()
+            ->filterByCollection($this)
+            ->select('CollectibleId')
+            ->find()->getArrayCopy(),
+          Criteria::IN
+        )
+        ->filterByContentCategoryId($this->_old_content_category_id)
+        ->update(array(
+            'ContentCategoryId' => $this->getContentCategoryId()
+          ), $con);
+
+    }
+
+
+    return parent::postUpdate($con);
+  }
+
 }

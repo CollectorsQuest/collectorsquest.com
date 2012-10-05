@@ -73,6 +73,7 @@ else
 
     <div class="span8">
       <?= $form['collection_collectible_list']->renderRow(); ?>
+      <?= $form['content_category']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>
 
       <?php if (isset($form['thumbnail'])): ?>
