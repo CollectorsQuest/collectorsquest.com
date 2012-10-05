@@ -653,7 +653,7 @@ class cqFrontendUser extends cqBaseUser
 
     /** @var $request sfWebRequest */
     $request = cqContext::getInstance()->getRequest();
-    $raw_data = $request->getCookie(self::VISITOR_INFO_COOKIE_NAME, null);
+    $raw_data = $request->getCookie(self::VISITOR_INFO_COOKIE_NAME, array());
 
     if (!$raw_data)
     {
