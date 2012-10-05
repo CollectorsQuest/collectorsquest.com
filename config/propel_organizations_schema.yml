@@ -1,0 +1,73 @@
+# This file references the following schemas:
+#  -  propel_main_schema.yml
+
+connection: propel
+noXsd: false
+defaultIdMethod: native
+package: lib.model.organizations
+
+classes:
+
+    # Organization table. Tied to a Collector (founder) by a hard link
+  Organization:
+    columns:
+      id:                     ~
+      founder_id:             { type: integer,      required: true, foreignClass: Collector, foreignReference: id, fkPhpName: Founder  }
+      name:                   { type: varchar(255), required: true, primaryString: true }
+      type:                   { type: integer,      required: false, foreignClass: OrganizationType, foreignReference: id }
+      type_other:             { type: varchar(255), required: false }
+      description:            { type: longvarchar,  required: false }
+      # a note about propel enum: new values should only be added to the end of the value set, or bad things happen
+      access:                 { type: enum,         required: true, valueSet: "moderated, open", default: moderated }
+    propel_behaviors:
+      timestampable:          ~
+      sluggable:
+        pattern:              "{Name}"
+        permanent:            false
+
+    # Initially Antique Malls, Flea Markets, Trade Shows and Collector Clubs. May be expanded
+  OrganizationType:
+    columns:
+      id:                     ~
+      name:                   { type: varchar(255), required: true, primaryString: true }
+    propel_behaviors:
+      symfony:                { form: true, filter: false }
+
+    # M:M table that also holds the status information for the collector / organization relationship
+  OrganizationMember:
+    isCrossRef: true
+    columns:
+      organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
+      collector_id:           { type: integer,      required: true, primaryKey: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      type:                   { type: enum,         required: true, valueSet: "administrator, contributor, member" }
+    propel_behaviors:
+      symfony:                { form: false, filter: false }
+      timestampable:
+        create_column:        joined_at
+
+    # M:M table that holds request for admission in moderated groups
+  OrganizationMemberAdmissionRequest:
+    isCrossRef: true
+    columns:
+      organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
+      collector_id:           { type: integer,      required: true, primaryKey: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      status:                 { type: enum,         required: true, valueSet: "pending, approved, denied" }
+    propel_behaviors:
+      symfony:                { form: false, filter: false }
+      timestampable:          ~
+
+    # Extends Collection. Denotes a collection specific to an organization
+  OrganizationCollection:
+    columns:
+      organization_id:        { type: integer, required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
+    propel_behaviors:
+      concrete_inheritance: { extends: collection, copy_data_to_parent: true }
+
+    # M:M between an Organization and a Collectible. Allows a collectible to be added to an organization
+  OrganizationCollectible:
+    isCrossRef: true
+    columns:
+      organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
+      collectible_id:         { type: integer,      required: true, primaryKey: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+    propel_behaviors:
+      symfony:                { form: false, filter: false }
