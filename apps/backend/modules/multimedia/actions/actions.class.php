@@ -13,4 +13,15 @@ require_once dirname(__FILE__).'/../lib/multimediaGeneratorHelper.class.php';
  */
 class multimediaActions extends autoMultimediaActions
 {
+  /**
+   * @param  sfWebRequest  $request
+   * @return string
+   */
+  public function executeCrop(sfWebRequest $request)
+  {
+    /* @var $multimedia iceModelMultimedia */
+    $multimedia = $this->getRoute()->getObject();
+
+    //return sfView::ERROR;
+  }
 }

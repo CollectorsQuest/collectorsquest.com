@@ -1,8 +1,8 @@
 generator:
-  class: sfPropelGenerator
+  class: IcePropelGenerator
   param:
-    model_class:           Multimedia
-    theme:                 admin15
+    model_class:           iceModelMultimedia
+    theme:                 bootstrap
     non_verbose_templates: true
     with_show:             false
     singular:              Multimedia
@@ -13,8 +13,23 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        id: { label: ID }
+        model: { label: Model }
+        type: { label: Type }
+        created_at: { label: Created At, date_format: 'MM/dd/yyyy' }
+      list:
+        title: Multimedia
+        display:
+          - id
+          - model
+          - type
+          - created_at
+        sort: [created_at, desc]
+        object_actions:
+          _edit: ~
+          _delete: ~
+          crop: { label: "Crop", action: crop }
       filter:  ~
       form:    ~
       edit:    ~
