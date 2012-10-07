@@ -306,7 +306,7 @@ class miscActions extends cqFrontendActions
       $tags_exclude = cqFunctions::explode(',', $values['cq_tags_exclude']);
     }
 
-    if ($_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache'))
+    if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache'))
     {
       // add Collectibles based on Category IDs
       if (!empty($category_ids))
@@ -425,6 +425,9 @@ class miscActions extends cqFrontendActions
       // Cache the result for the life of the session
       $this->getUser()->setAttribute('featured_items_collectible_ids_' . $post_id, $_collectible_ids, 'cache');
     }
+
+    // We cannot show a custom page without custom Collectible IDs
+    $this->forward404Unless(is_array($_collectible_ids));
 
     $q = CollectionCollectibleQuery::create()
       ->filterByCollectibleId($_collectible_ids)
