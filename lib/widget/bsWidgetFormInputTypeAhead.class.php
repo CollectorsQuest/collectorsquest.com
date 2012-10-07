@@ -20,6 +20,7 @@ class bsWidgetFormInputTypeAhead extends sfWidgetFormInput
     $this->addOption('sorter');
     $this->addOption('highlighter');
     $this->addOption('autoselect');
+    $this->addOption('submit_on_enter', true);
 
     parent::__construct($options, $attributes);
   }
@@ -93,8 +94,8 @@ $(document).ready(function()
       }
     }
 
-    // if enter was pressed
-    if (13 === ev.keyCode) {
+    // if enter was pressed and we submit on enter
+    if (13 === ev.keyCode && %s) {
       var Typeahead = self.data('typeahead');
       // and the typeahead is currently hidden, or there is no selection made
       if ( !Typeahead.shown || 0 === Typeahead.\$menu.find('.active').length) {
@@ -109,7 +110,8 @@ $(document).ready(function()
 EOF
           , $this->generateId($name),
           json_encode($typeAheadOptions),
-          is_array($source) ? json_encode($source) : $source
+          is_array($source) ? json_encode($source) : $source,
+          $this->getOption('submit_on_enter') ? 'true' : 'false'
         );
   }
 
