@@ -18,7 +18,7 @@ classes:
       type_other:             { type: varchar(255), required: false }
       description:            { type: longvarchar,  required: false }
       # a note about propel enum: new values should only be added to the end of the value set, or bad things happen
-      access:                 { type: enum,         required: true, valueSet: "moderated, open", default: moderated }
+      access:                 { type: enum,         required: true, valueSet: "open, moderated, private", default: moderated }
     propel_behaviors:
       timestampable:          ~
       sluggable:
@@ -45,12 +45,14 @@ classes:
       timestampable:
         create_column:        joined_at
 
-    # M:M table that holds request for admission in moderated groups
+    # M:M table that holds request for admission in moderated groups, as well as invitations to joint a particular group
   OrganizationMemberAdmissionRequest:
     isCrossRef: true
     columns:
-      organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
-      collector_id:           { type: integer,      required: true, primaryKey: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      id:                     ~
+      organization_id:        { type: integer,      required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
+      collector_id:           { type: integer,      required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      is_invitation:          { type: boolean,      required: true, default: false }
       status:                 { type: enum,         required: true, valueSet: "pending, approved, denied" }
     propel_behaviors:
       symfony:                { form: false, filter: false }
