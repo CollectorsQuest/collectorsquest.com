@@ -45,7 +45,7 @@ class aetnActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($american_pickers['collection'])
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
@@ -81,7 +81,7 @@ class aetnActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollection($collection)
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
@@ -118,7 +118,7 @@ class aetnActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($pawn_stars['collection'])
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
@@ -156,7 +156,7 @@ class aetnActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($picked_off['collection'])
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
