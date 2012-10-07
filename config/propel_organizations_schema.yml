@@ -47,7 +47,6 @@ classes:
 
     # M:M table that holds request for admission in moderated groups, as well as invitations to joint a particular group
   OrganizationMemberAdmissionRequest:
-    isCrossRef: true
     columns:
       id:                     ~
       organization_id:        { type: integer,      required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
