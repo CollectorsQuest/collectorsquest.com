@@ -76,7 +76,7 @@ class cqSessionStorage extends sfSessionStorage
       $this->write('unique', cqStatic::getUserUniqueString());
     }
 
-    if (class_exists('cqStats'))
+    if (class_exists('cqStats') && class_exists('cqFunctions'))
     {
       cqStats::timing(cqFunctions::gethostname() .'.'. $context .'.sessions', microtime(true) - $start);
     }
