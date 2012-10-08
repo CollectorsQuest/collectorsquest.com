@@ -188,6 +188,16 @@ collector:
     column:               id
     with_wildcard_routes: true
 
+collector_add_credits:
+  url:                    /collectors/:id/addCredits
+  class:                  sfPropelORMRoute
+  options:
+    model:                Collector
+    type:                 object
+    column:               id
+  param:                  { module: collectors, action: addCredits }
+  requirements:           { sf_method: [get, post] }
+
 marketplace:
   url:   /marketplace
   param: { module: collectibleForSale, action: index }

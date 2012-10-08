@@ -167,4 +167,46 @@ class collectorsActions extends autoCollectorsActions
     return $this->redirect('@collector');
   }
 
+  /**
+   * Add credits without purchase to a collector
+   */
+  public function executeAddCredits(cqWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+
+    $form = new CollectorAddCreditsForm();
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter($form->getName()));
+      if ($form->isValid())
+      {
+        $transaction = new PackageTransaction();
+        $transaction->setPackageId(PackagePeer::PACKAGE_ID_ADMIN);
+        $transaction->setCollectorId($collector->getId());
+        //$transaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
+        $transaction->setCredits($form->getValue('num_credits'));
+        $transaction->setExpiryDate(strtotime('+1 year'));
+        $transaction->confirmPayment(); // includes save()
+
+        $this->getUser()->setFlash('success', sprintf(
+          '%d credits added for the user %s.',
+          $form->getValue('num_credits'),
+          $collector
+        ));
+
+        return $this->redirect('collector_add_credits', $collector);
+      }
+    }
+
+    $this->collector = $collector;
+    $this->package_transactions = PackageTransactionQuery::create()
+      ->filterByCollector($collector)
+      ->find();
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
 }
