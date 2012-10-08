@@ -17,7 +17,7 @@ use_helper('cqBackend');
             <ul class="nav">
                 <li>
                     <a href='<?php echo url_for_backend('homepage') ?>'>
-                        <i class="icon-wrench icon-white"></i>&nbsp;Admin Dashboard
+                        <i class="icon-wrench icon-white"></i>&nbsp;Go to Backend
                     </a>
                 </li>
               <?php if (count($items)) : ?>
