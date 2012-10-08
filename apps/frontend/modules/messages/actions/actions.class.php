@@ -34,6 +34,7 @@ class messagesActions extends cqFrontendActions
         ->filterByIsRead(false)
       ->_endif()
       ->filterByIsDeleted(false)
+      ->filterByIsSpam(false)
       ->_if($is_search)
         //->joinCollectorRelatedBySender(null, Criteria::LEFT_JOIN)
         ->filterBySubject($search)
@@ -110,6 +111,7 @@ class messagesActions extends cqFrontendActions
     // did not change any object
     $messages->save();
 
+    $this->message = $message;
     $this->messages = $messages;
     $this->reply_form = new ComposePrivateMessageForm(
       $this->getCollector(), $message->getThread()
@@ -236,6 +238,9 @@ class messagesActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  /**
+   * Batch actions executable from inbox/sent messages pages
+   */
   public function executeBatchActions(sfWebRequest $request)
   {
     // possible keys: mark_as_read, mark_as_unread, delete
@@ -257,6 +262,25 @@ class messagesActions extends cqFrontendActions
     {
       $q->update(array('IsDeleted' => true));
     }
+    elseif (isset($action['report_spam']))
+    {
+      $affected_rows = $q
+        ->keepQuery()
+        ->update(array('IsSpam' => true));
+
+      // if we actually changed any records
+      if ($affected_rows)
+      {
+        // notify an administrator about the spam
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('internal/spam_notification_pm', array(
+            'params' => array(
+                'rqMessages' => $q->find(),
+                'oReporterCollector' => $this->getCollector(),
+            ),
+        ));
+      }
+    }
 
     if ($request->isXmlHttpRequest())
     {
@@ -269,8 +293,74 @@ class messagesActions extends cqFrontendActions
       return $this->redirect('messages_inbox', array(
           'filter' => $request->getParameter('filter_hidden') ?: null,
           'search' => $request->getParameter('search') ?: null,
-          ));
+      ));
     }
+  }
+
+  /**
+   * Actions that can be executed from within a message (thread) page
+   */
+  public function executeThreadActions(sfWebRequest $request)
+  {
+    // get the first message in the thread
+    $message = PrivateMessageQuery::create()
+      ->orderByCreatedAt(Criteria::ASC)
+      ->findOneByThread($request->getParameter('thread'));
+
+    // forward to 404 if message is not for this user
+    $this->forward404Unless(
+      $message &&
+      $message->getReceiver() == $this->getUser()->getId()
+    );
+
+    // possible keys: delete, mark_as_unread, report_spam
+    $action = $request->getParameter('thread_action');
+
+    $q = PrivateMessageQuery::create()
+      ->filterByThread($request->getParameter('thread'));
+
+    if (isset($action['mark_as_unread']))
+    {
+      // mark the last message as unread
+      $q
+        ->orderByCreatedAt(Criteria::DESC)
+        ->limit(1)
+        ->update(array('IsRead' => false));
+
+      $this->getUser()->setFlash('success', 'The conversation was marked as unread.');
+    }
+    elseif (isset($action['delete']))
+    {
+      // delete all messages in the thread
+      $q->update(array('IsDeleted' => true));
+      $this->getUser()->setFlash('success', 'The conversation was deleted.');
+    }
+    elseif (isset($action['report_spam']))
+    {
+      $affected_rows = $q
+        ->filterByCollectorRelatedBySender(
+          $message->getCollectorRelatedBySender()
+        )
+        ->keepQuery()
+        ->update(array('IsSpam' => true));
+
+      $this->getUser()->setFlash('success', 'The conversation was reported for spam. Thank you.');
+
+      // if we actually changed any records
+      if ($affected_rows)
+      {
+        // notify an administrator about the spam
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('internal/spam_notification_pm', array(
+            'params' => array(
+                'rqMessages' => $q->find(),
+                'oReporterCollector' => $this->getCollector(),
+            ),
+        ));
+      }
+    }
+
+    return $this->redirect('@messages_inbox');
   }
 
 }

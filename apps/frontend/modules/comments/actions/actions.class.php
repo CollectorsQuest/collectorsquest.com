@@ -373,7 +373,7 @@ class commentsActions extends cqFrontendActions
 
           $cqEmail = new cqEmail($this->getMailer());
 
-          $cqEmail->send('internal/comment_spam_notification', array(
+          $cqEmail->send('internal/spam_notification_comment', array(
               'params' => array(
                   'oComment' => $comment,
                   'oReporterCollector' => $this->getCollector(),
