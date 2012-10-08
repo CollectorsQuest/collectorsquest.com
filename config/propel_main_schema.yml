@@ -266,6 +266,7 @@ classes:
       is_forwarded:  { type: boolean, default: false }
       is_marked:     { type: boolean, default: false }
       is_deleted:    { type: boolean, default: false }
+      is_spam:       { type: boolean, default: false }
       created_at:    ~
 
     propel_behaviors:

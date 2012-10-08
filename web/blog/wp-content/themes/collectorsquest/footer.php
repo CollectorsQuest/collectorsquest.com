@@ -5,6 +5,6 @@ if(typeof(networkedblogs)=="undefined"){networkedblogs = {};networkedblogs.blogI
 </script><script src="http://nwidget.networkedblogs.com/getnetworkwidget?bid=493033" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $('div.post a img').parent().attr('rel','shadowbox');
-    $('.gallery-icon a').attr('rel','');
+  $('div.singular div.post a img').parent().attr('rel','shadowbox');
+  $('.gallery-icon a').attr('rel','');
 </script>

@@ -7,7 +7,7 @@
     'Inbox', null,
     array(
       'left' => 8, 'right' => 4,
-      'class'=>'mycq-red-title row-fluid messages-row'
+      'class'=>'mycq-red-title row-fluid messages-header'
     )
   );
 
@@ -15,9 +15,10 @@
 ?>
 
 <form action="<?= url_for('@messages_batch_actions'); ?>" method="post" id="inbox-form">
+  <input type="hidden" id="batchAction" name="" value="on"/>
 
-  <div class="row-fluid messages-row gray-well cf">
-    <div class="span5 spacer-top-5">
+  <div class="row-fluid messages-header gray-well cf">
+    <div class="span6 spacer-top-5">
       <div class="checkbox-arrow pull-left"></div>
       <div class="private-messages-list-select control-group pull-left">
         <div class="btn-group">
@@ -35,11 +36,14 @@
       </div>
 
       <div class="private-messages-list-actions control-group pull-left">
-        <div class="btn-group ">
+        <div class="btn-group pull-left">
           <input type="submit" class="btn btn-mini" name="batch_action[mark_as_read]" value="Mark as Read" />
           <input type="submit" class="btn btn-mini" name="batch_action[mark_as_unread]" value="Mark as Unread" />
-          <input type="hidden" id="batchAction" name="" value="on"/>
-          <input type="submit" onclick="return confirm('Are you sure you sure you want to delete these messages?')" class="btn btn-mini" name="batch_action[delete]" value="Delete" />
+        </div>
+
+        <div class="btn-group pull-left">
+          <input type="submit" data-confirm="Are you sure you sure you want to delete these messages?" class="btn btn-mini" name="batch_action[delete]" value="Delete" />
+          <input type="submit" data-confirm="Are you sure you sure you want to report these messages as spam?" class="btn btn-mini" name="batch_action[report_spam]" value="Report Spam" />
         </div>
       </div>
     </div>
@@ -55,7 +59,7 @@
       </div> <!-- .control-group.pull-left -->
     </div>
 
-    <div class="span4">
+    <div class="span3">
       <div class="mini-input-append-search">
         <div class="input-append pull-right">
             <input type="text" class="input-sort-by" id="search-input" name="search" value="<?= $sf_request->getParameter('search'); ?>"><button class="btn gray-button" id="search-button" type="submit"><strong>Search</strong></button>
@@ -64,7 +68,7 @@
       </div>
     </div>
 
-  </div> <!-- .row-fluid.messages-row -->
+  </div> <!-- .row-fluid.messages-header -->
 
   <div id="messages-table">
     <?php include_partial('inbox_table', array(
@@ -110,11 +114,17 @@
       return false;
     });
 
-    $('.private-messages-list-actions input').click(function()
+    $('.private-messages-list-actions input').click(function(e)
     {
+      var $this = $(this);
+      if ($this.data('confirm') && !confirm($this.data('confirm'))) {
+        e.preventDefault();
+        return false;
+      }
+
       var $form = $('#inbox-form');
 
-      var name = $(this).attr('name');
+      var name = $this.attr('name');
       $('#batchAction').attr('name', name);
 
       $('#messages-table').showLoading();

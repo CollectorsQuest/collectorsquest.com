@@ -11,7 +11,7 @@ class FrontendCollectibleQuery extends CollectibleQuery
        * which are part of a Collection
        */
       return $criteria
-        ->filterByIsPublic(true)
+        ->isComplete()
         ->isPartOfCollection();
     }
 
@@ -30,7 +30,7 @@ class FrontendCollectibleQuery extends CollectibleQuery
      * which are part of a Collection
      */
     $query
-      ->filterByIsPublic(true)
+      ->isComplete()
       ->isPartOfCollection();
 
     return $query;

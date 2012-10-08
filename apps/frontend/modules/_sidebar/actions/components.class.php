@@ -605,9 +605,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       if (isset($values['cq_collector_ids']))
       {
-        $collector_ids = explode(',', (string) $values['cq_collector_ids']);
-        $collector_ids = array_map('trim', $collector_ids);
-        $collector_ids = array_filter($collector_ids);
+        $collector_ids = cqFunctions::explode(',', $values['cq_collector_ids']);
 
         /** @var $q FrontendCollectorQuery */
         $q = FrontendCollectorQuery::create()
