@@ -321,6 +321,8 @@ class Collection extends BaseCollection
     // Update only if there is a change of the public status
     if ($is_public !== $this->getIsPublic())
     {
+      $this->setIsPublic($is_public);
+
       $sql = sprintf(
         'UPDATE %s SET %s = %d WHERE %s = %d',
         CollectionPeer::TABLE_NAME, CollectionPeer::IS_PUBLIC, $is_public,
