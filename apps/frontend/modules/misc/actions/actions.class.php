@@ -175,10 +175,10 @@ class miscActions extends cqFrontendActions
       $mimeType = 'pdf' == $format ? 'application/pdf' : 'application/zip';
       $sourceFile = sfConfig::get('sf_data_dir') . '/download/essential-guide.' . $format;
 
-      header("Expires: 0");
-      header("Cache-control: private");
-      header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-      header("Content-Description: File Transfer");
+      header('Expires: 0');
+      header('Cache-control: private');
+      header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+      header('Content-Description: File Transfer');
       header(sprintf('Content-Type: %s, charset=UTF-8; encoding=UTF-8', $mimeType));
       header('Content-disposition: attachment; filename="' . $filename .'"');
 
@@ -306,7 +306,10 @@ class miscActions extends cqFrontendActions
       $tags_exclude = cqFunctions::explode(',', $values['cq_tags_exclude']);
     }
 
-    if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache'))
+    /** @var $_collectible_ids array */
+    $_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache');
+
+    if (!$_collectible_ids)
     {
       // add Collectibles based on Category IDs
       if (!empty($category_ids))
