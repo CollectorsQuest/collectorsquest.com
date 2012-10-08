@@ -19,6 +19,21 @@ register_taxonomy(
 );
 
 /**
+ * @see http://www.kanasolution.com/2011/01/session-variable-in-wordpress/
+ */
+add_action('init', 'cq_init_session', 1);
+function cq_init_session()
+{
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfSessionStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/collectorsquest/cqSessionStorage.class.php';
+
+  $options = array('session_name' => 'cq_frontend', 'auto_start' => true);
+  $session = new cqSessionStorage($options);
+  $session->initialize(array());
+}
+
+/**
  * @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types
  */
 add_action('init', 'cq_custom_post_type_init');
