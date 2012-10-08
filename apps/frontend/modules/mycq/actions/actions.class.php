@@ -360,13 +360,16 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
+    /** @var $collection CollectorCollection */
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($collection),
       '@mycq_collections'
     );
 
+    /** @var $collectible Collectible */
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
 
@@ -385,8 +388,9 @@ class mycqActions extends cqFrontendActions
     // auto-set collection thumbnail if none set yet
     if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
     {
-      $collection->setPrimaryImage($collectible->getPrimaryImage()
-        ->getAbsolutePath('original'));
+      $collection->setPrimaryImage(
+        $collectible->getPrimaryImage()->getAbsolutePath('original')
+      );
       $collection->save();
     }
 
