@@ -22,6 +22,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
       lang="en" class="no-js">
 <!--<![endif]-->
+<!--[if !IE]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
+      lang="en" class="no-js">
+<!--<![endif]-->
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# collectorsquest: http://ogp.me/ns/fb/collectorsquest#">
   <?php include_partial('global/head'); ?>
 
