@@ -306,10 +306,10 @@ class miscActions extends cqFrontendActions
       $tags_exclude = cqFunctions::explode(',', $values['cq_tags_exclude']);
     }
 
-    $published = $values['cq_post_publish_status'];
+    $status = $wp_post->getPostStatus();
     $_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache');
 
-    if (!$_collectible_ids || $published == 'draft')
+    if (!$_collectible_ids || $status !== 'publish')
     {
       // add Collectibles based on Category IDs
       if (!empty($category_ids))
@@ -411,8 +411,8 @@ class miscActions extends cqFrontendActions
       {
         /** @var $q FrontendCollectionCollectibleQuery */
         $q = FrontendCollectionCollectibleQuery::create()
-          ->select('CollectibleId')
-          ->filterByCollectionId($collection_ids, Criteria::IN);
+          ->filterByCollectionId($collection_ids, Criteria::IN)
+          ->select('CollectibleId');
 
         $_collectible_ids_collection= $q->find()->toArray();
 
@@ -425,9 +425,9 @@ class miscActions extends cqFrontendActions
       {
         /** @var $q FrontendCollectionCollectibleQuery */
         $q = FrontendCollectionCollectibleQuery::create()
-          ->select('CollectibleId')
           ->filterByCollectionId($collection_ids_exclude, Criteria::IN)
-          ->filterByCollectibleId($homepage_collectible_ids, Criteria::NOT_IN);
+          ->filterByCollectibleId($homepage_collectible_ids, Criteria::NOT_IN)
+          ->select('CollectibleId');
 
         $_collectible_ids_collection_exclude = $q->find()->toArray();
 
@@ -460,7 +460,6 @@ class miscActions extends cqFrontendActions
     $this->forward404Unless(is_array($_collectible_ids));
 
     $q = FrontendCollectibleQuery::create()
-      ->groupById()
       ->filterById($_collectible_ids)
       ->addAscendingOrderByColumn(
         'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
