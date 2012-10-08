@@ -50,5 +50,5 @@ if ($_xhprof_on && ((isset($_GET['_profile']) && $_GET['_profile'] == '1') || (2
   include __DIR__ .'/../plugins/iceLibsPlugin/lib/vendor/xhprof/xhprof_runs.php';
 
   $_xhprof_runs = new XHProfRuns_Default();
-  $_xhprof_run = $_xhprof_runs->save_run($_xhprof_data, 'collectorsquest_'. SF_APP);
+  $_xhprof_runs->save_run($_xhprof_data, 'collectorsquest_'. SF_APP);
 }
