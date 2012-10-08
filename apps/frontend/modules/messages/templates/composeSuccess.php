@@ -7,7 +7,7 @@
     'Compose Message', null,
     array(
       'left' => 8, 'right' => 4,
-      'class'=>'mycq-red-title row-fluid messages-row spacer-bottom-15'
+      'class'=>'mycq-red-title row-fluid messages-header spacer-bottom-15'
     )
   );
 

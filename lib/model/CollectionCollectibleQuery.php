@@ -50,4 +50,32 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
       ->endUse();
   }
 
+  /**
+   * @param ContentCategory|PropelCollection $content_category
+   * @param string $comparison
+   *
+   * @return CollectionCollectibleQuery
+   */
+  public function filterByContentCategory($content_category, $comparison = null)
+  {
+    return $this
+      ->useCollectionQuery()
+        ->filterByContentCategory($content_category, $comparison)
+      ->endUse();
+  }
+
+  /**
+   * @param ContentCategory $content_category
+   * @param string $comparison
+   *
+   * @return CollectionCollectibleQuery
+   */
+  public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
+  {
+    return $this
+      ->useCollectionQuery()
+        ->filterByContentCategoryWithDescendants($content_category, $comparison)
+      ->endUse();
+  }
+
 }
