@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * cqSessionStorage based on sfSessionStorage session handler
  */
@@ -23,7 +24,7 @@ class cqSessionStorage extends sfSessionStorage
     /**
      * We do not want to create bogus session data for crowlers
      */
-    else if (false !== IceStatic::isCrawler())
+    else if (class_exists('cqStatic') && false !== cqStatic::isCrawler())
     {
       return;
     }
@@ -58,7 +59,10 @@ class cqSessionStorage extends sfSessionStorage
       {
         session_destroy();
       }
-      catch (Exception $e) { ; }
+      catch (Exception $e)
+      {
+        ;
+      }
 
       ini_set('session.save_handler', 'files');
       ini_set('session.save_path', '/www/tmp');
@@ -67,18 +71,22 @@ class cqSessionStorage extends sfSessionStorage
     }
 
     // Write the unique user string to the session
-    if (!$this->read('unique'))
+    if (class_exists('cqStatic') && !$this->read('unique'))
     {
-      $this->write('unique', IceStatic::getUserUniqueString());
+      $this->write('unique', cqStatic::getUserUniqueString());
     }
 
-    IceStats::timing(IceFunctions::gethostname() .'.'. $context .'.sessions', microtime(true) - $start);
+    if (class_exists('cqStats'))
+    {
+      cqStats::timing(cqFunctions::gethostname() .'.'. $context .'.sessions', microtime(true) - $start);
+    }
   }
 
   /**
    * Initialize the Session
    *
    * @param array $options associative array of options
+   * @return bool|void
    */
   public function initialize($options = null)
   {
@@ -93,6 +101,6 @@ class cqSessionStorage extends sfSessionStorage
         $options = array('session_id' => $session_id);
     }
 
-    parent::initialize($options);
+    return parent::initialize($options);
   }
 }
