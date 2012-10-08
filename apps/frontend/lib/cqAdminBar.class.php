@@ -5,7 +5,7 @@ class cqAdminBar
   private static $instance = null;
   private $application = null;
   private $founded_routes = array();
-  private $objects_edit_menu = array();
+  private $objects_menu = array();
 
   public function __construct(frontendConfiguration $application)
   {
@@ -36,14 +36,26 @@ class cqAdminBar
    */
   private function addObject($object)
   {
+    $label = sfToolkit::pregtr(get_class($object), array('/([A-Z]+)([A-Z][a-z])/' => '\\1 \\2',
+                                                         '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
     if ($url = $this->generateBackendEditUrl($object))
     {
       /** @var $group string */
       $group = 'Edit ';
-      $this->objects_edit_menu[$group][$url] =
-        sfToolkit::pregtr(get_class($object), array('/([A-Z]+)([A-Z][a-z])/' => '\\1 \\2',
-                                                    '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
+      $this->objects_menu[$group][] =
+        array(
+          'type' => 'url',
+          'url' => $url,
+          'label' => $label
+      );
     }
+
+    $this->objects_menu['Rate'][] =
+      array(
+        'type' => 'component',
+        'name' => 'rateMenuItem',
+        'options' => array('class' => get_class($object), 'object' => $object),
+      );
   }
 
   /**
@@ -91,9 +103,9 @@ class cqAdminBar
    *
    * @return array
    */
-  public function getObjectsEditMenu()
+  public function getObjectsMenu()
   {
-    return $this->objects_edit_menu;
+    return $this->objects_menu;
   }
 
   /**
@@ -103,7 +115,7 @@ class cqAdminBar
    */
   public static function getMenu()
   {
-    return self::getInstance()->getObjectsEditMenu();
+    return self::getInstance()->getObjectsMenu();
   }
 
   /**

@@ -246,6 +246,7 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
+      ratable: { max_rate: 6, user_table: collector, dimensions: "Content, Image(s)" }
       timestampable:  ~
 
   PrivateMessage:

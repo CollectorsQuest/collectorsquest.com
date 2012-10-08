@@ -30,9 +30,14 @@ use_helper('cqBackend');
                       <ul class="dropdown-menu">
                        <?php foreach ($sub_item as $key => $item): ?>
                          <li>
-                           <a target="_blank" href="<?= $key ?>">
-                             <span><?= $item ?></span>
-                           </a>
+                           <?php if ($item['type'] == 'url'): ?>
+                             <a target="_blank" href="<?= $key['url'] ?>">
+                               <span><?= $item['label'] ?></span>
+                             </a>
+                           <?php endif ?>
+                           <?php if ($item['type'] == 'component'): ?>
+                             <?php include_component('adminbar', $item['name'], $item['options']) ?>
+                           <?php endif ?>
                          </li>
                        <?php endforeach; ?>
                        </ul>
