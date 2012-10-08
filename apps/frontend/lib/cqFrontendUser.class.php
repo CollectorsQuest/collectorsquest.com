@@ -205,6 +205,10 @@ class cqFrontendUser extends cqBaseUser
       $user_email_cookie = sfConfig::get('app_collector_user_email_cookie_name', 'cq_user_email');
       $response->setCookie($user_email_cookie, urlencode($this->getCollector()->getEmail()), time() + $expiration_time);
 
+      // set user ID cookie
+      $user_id_cookie = sfConfig::get('app_collector_user_id_cookie_name', 'cq_user_id');
+      $response->setCookie($user_id_cookie, urlencode($this->getCollector()->getId()), time() + $expiration_time);
+
       return true;
     }
     else
