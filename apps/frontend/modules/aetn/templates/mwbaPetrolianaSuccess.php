@@ -16,8 +16,8 @@
       // set the link to open modal dialog
       $link = link_to($collectible->getName(), 'ajax_aetn',
         array(
-          'section' => 'mwbaCollectible',
-          'page' => 'show',
+          'section' => 'mwba',
+          'page' => 'collectible',
           'id' => $collectible->getId()
         ),
         array('class' => 'open-dialog', 'onclick' => 'return false;')
