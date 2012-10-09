@@ -1,0 +1,92 @@
+#upprev_box
+{
+    text-align: left;
+    background-color: #fff;
+    position:fixed;
+    z-index:9999999;
+    padding: 10px 20px 10px 10px;
+    border-top: 2px solid #000;
+    border-left: 1px solid #f0f0f0;
+    -moz-box-shadow: 0 4px 10px #666;
+    -webkit-box-shadow: 0 4px 10px #666;
+    box-shadow: 0 4px 10px #666;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, direction=270, strength=7)";
+    filter: progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, direction=270, strength=7);
+    _position: absolute;
+    _top: 0;
+}
+
+#upprev_box h6
+{
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: arial,helvetica,sans-serif;
+    color: #C00;
+    padding:0;
+    margin:0 0 10px 0;
+}
+#upprev_box h6 a, #upprev_box h6 a:visited
+{
+    color: #0A82C2;
+}
+
+#upprev_box h6 .num
+{
+    font-size: inherit;
+    font-weight:normal;
+    font-family: inherit;
+    color:#888;
+}
+
+#upprev_box .upprev_excerpt p
+{
+    overflow:hidden;
+    margin:0
+}
+
+#upprev_box a.upprev_thumbnail img
+{
+    border:0;
+    float:left;
+    margin:0 10px 5px 0;
+}
+#upprev_box div
+,#upprev_box div.upprev_thumbnail br
+{
+    clear:both;
+}
+#upprev_box h5
+{
+    margin-top:0;
+}
+#upprev_box div.upprev_thumbnail h5
+{
+    clear:right;
+    margin:0 0 .5em 0;
+}
+#upprev_close
+{
+    background: #fff url(close.gif) no-repeat 0;
+    border: none;
+    display:block;
+    height: 13px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    right: 5px;
+    text-indent: -999em;
+    top: 5px;
+    width: 13px;
+}
+#upprev_box p.promote
+{
+    clear:both;
+    color:#888;
+    font-size:.9em;
+    margin:0px;
+    padding-top:5px;
+    text-align:right;
+}
+
+
