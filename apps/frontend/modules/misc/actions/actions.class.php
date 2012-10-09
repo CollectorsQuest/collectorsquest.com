@@ -175,10 +175,10 @@ class miscActions extends cqFrontendActions
       $mimeType = 'pdf' == $format ? 'application/pdf' : 'application/zip';
       $sourceFile = sfConfig::get('sf_data_dir') . '/download/essential-guide.' . $format;
 
-      header("Expires: 0");
-      header("Cache-control: private");
-      header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-      header("Content-Description: File Transfer");
+      header('Expires: 0');
+      header('Cache-control: private');
+      header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+      header('Content-Description: File Transfer');
       header(sprintf('Content-Type: %s, charset=UTF-8; encoding=UTF-8', $mimeType));
       header('Content-disposition: attachment; filename="' . $filename .'"');
 
@@ -263,7 +263,7 @@ class miscActions extends cqFrontendActions
     $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
 
     // Initialize the arrays
-    $collection_ids = $collectible_ids = $category_ids = $tags = array();
+    $collection_ids = $collectible_ids = $category_ids = $tags = $homepage_collectible_ids = array();
     $collection_ids_exclude = $collectible_ids_exclude = $category_ids_exclude = $tags_exclude = array();
 
     if (!empty($values['cq_collection_ids']))
@@ -306,7 +306,10 @@ class miscActions extends cqFrontendActions
       $tags_exclude = cqFunctions::explode(',', $values['cq_tags_exclude']);
     }
 
-    if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache'))
+    $status = $wp_post->getPostStatus();
+    $_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache');
+
+    if (!$_collectible_ids || $status !== 'publish')
     {
       // add Collectibles based on Category IDs
       if (!empty($category_ids))
@@ -342,6 +345,7 @@ class miscActions extends cqFrontendActions
         /** @var $q FrontendCollectionCollectibleQuery */
         $q = FrontendCollectionCollectibleQuery::create()
           ->filterByContentCategoryWithDescendants($_content_categories_exclude)
+          ->filterByCollectibleId($homepage_collectible_ids, Criteria::NOT_IN)
           ->select('CollectibleId');
 
         $_collectible_ids_content_categories_exclude = $q->find()->toArray();
@@ -393,6 +397,7 @@ class miscActions extends cqFrontendActions
           ->isComplete()
           ->isPartOfCollection()
           ->filterByTags($tags_exclude)
+          ->filterById($homepage_collectible_ids, Criteria::NOT_IN)
           ->select('Id');
 
         $_collectible_ids_tags_exclude = $q->find()->toArray();
@@ -401,13 +406,38 @@ class miscActions extends cqFrontendActions
         $collectible_ids_exclude = array_unique($collectible_ids_exclude);
       }
 
+      // add Collectibles based on Collection IDs
+      if (!empty($collection_ids))
+      {
+        /** @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectionCollectibleQuery::create()
+          ->filterByCollectionId($collection_ids, Criteria::IN)
+          ->select('CollectibleId');
+
+        $_collectible_ids_collection= $q->find()->toArray();
+
+        $collectible_ids = array_merge($collectible_ids, $_collectible_ids_collection);
+        $collectible_ids = array_unique($collectible_ids);
+      }
+
+      // exclude Collectibles based on Collection IDs
+      if (!empty($collection_ids_exclude))
+      {
+        /** @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectionCollectibleQuery::create()
+          ->filterByCollectionId($collection_ids_exclude, Criteria::IN)
+          ->filterByCollectibleId($homepage_collectible_ids, Criteria::NOT_IN)
+          ->select('CollectibleId');
+
+        $_collectible_ids_collection_exclude = $q->find()->toArray();
+
+        $collectible_ids_exclude = array_merge($collectible_ids_exclude, $_collectible_ids_collection_exclude);
+        $collectible_ids_exclude = array_unique($collectible_ids_exclude);
+      }
+
       /** @var $q FrontendCollectionCollectibleQuery */
       $q = FrontendCollectionCollectibleQuery::create()
         ->select('CollectibleId')
-        ->filterByCollectionId($collection_ids, Criteria::IN)
-        ->_and()
-        ->filterByCollectionId($collection_ids_exclude, Criteria::NOT_IN)
-        ->_or()
         ->filterByCollectibleId($collectible_ids, Criteria::IN)
         ->_and()
         ->filterByCollectibleId($collectible_ids_exclude, Criteria::NOT_IN);
@@ -429,8 +459,8 @@ class miscActions extends cqFrontendActions
     // We cannot show a custom page without custom Collectible IDs
     $this->forward404Unless(is_array($_collectible_ids));
 
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollectibleId($_collectible_ids)
+    $q = FrontendCollectibleQuery::create()
+      ->filterById($_collectible_ids)
       ->addAscendingOrderByColumn(
         'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
       );
