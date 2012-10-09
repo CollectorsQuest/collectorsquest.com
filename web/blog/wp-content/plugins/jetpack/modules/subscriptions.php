@@ -7,7 +7,7 @@
  */
 
 add_action( 'jetpack_modules_loaded', 'jetpack_subscriptions_load' );
-
+ 
 function jetpack_subscriptions_load() {
 	Jetpack::enable_module_configurable( __FILE__ );
 	Jetpack::module_configuration_load( __FILE__, 'jetpack_subscriptions_configuration_load' );
@@ -43,12 +43,12 @@ class Jetpack_Subscriptions {
 
 		// Add Configuration Page
 		add_action( 'admin_init', array( $this, 'configure' ) );
-
+		
 		// Handle Posts
 		add_action( 'transition_post_status', array( $this, 'transition_post_status' ), 10, 3 );
 		add_action( 'trashed_post', array( $this, 'delete_post' ) );
 		add_action( 'delete_post', array( $this, 'delete_post' ) );
-
+		
 		// Handle Taxonomy
 		add_action( 'created_term', array( $this, 'save_taxonomy'), 10, 3);
 		add_action( 'edited_term',  array( $this, 'save_taxonomy'), 10, 3 );
@@ -102,7 +102,7 @@ class Jetpack_Subscriptions {
 			$this->jetpack->sync->post( $the_post->ID );
 		}
 	}
-
+	
 	function save_taxonomy( $term, $tt_id, $taxonomy = null ) {
 		if ( is_null( $taxonomy ) )
 			return;
@@ -115,7 +115,7 @@ class Jetpack_Subscriptions {
 		$tags = get_terms( $taxonomy, array( 'hide_empty' => 0 ) ); // since we can't figure out what the slug is... we will do an array comparison on the remote site and remove old taxonomy...
 		$this->jetpack->sync->delete_taxonomy( $tags, $taxonomy );
 	}
-
+	
 	function delete_post( $id ) {
 		$the_post = get_post( $id );
 		if ( 'post' == $the_post->post_type || 'page' == $the_post->post_type )
@@ -127,9 +127,11 @@ class Jetpack_Subscriptions {
 			return;
 		}
 
-		if ( 1 == $comment->comment_approved ) {
-			$this->jetpack->sync->comment( $id );
+		if ( 'spam' === $comment->comment_approved ) {
+			return;
 		}
+		
+		$this->jetpack->sync->comment( $id );
 	}
 
 	function transition_comment_status( $new, $old, $the_comment ) {
@@ -166,7 +168,7 @@ class Jetpack_Subscriptions {
 	 *
 	 * Jetpack Subscriptions configuration screen.
 	 */
-	function configure() {
+	function configure() {	
 		// Create the section
 		add_settings_section(
 			'jetpack_subscriptions',
@@ -432,9 +434,9 @@ class Jetpack_Subscriptions {
 
 		if ( FALSE === has_filter( 'comment_form', 'show_subscription_checkbox' ) && 1 == get_option( 'stc_enabled', 1 ) ) {
 			// Subscribe to comments checkbox
-      $str .= '<label class="checkbox spacer-top">';
-      $str .= '<input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"' . $comments_checked . ' /> ';
-      $str .= __( 'Notify me of follow-up comments by email.', 'jetpack' ) . '</label>';
+			$str .= '<p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"' . $comments_checked . ' /> ';
+			$str .= '<label class="subscribe-label" id="subscribe-label" for="subscribe_comments">' . __( 'Notify me of follow-up comments by email.', 'jetpack' ) . '</label>';
+			$str .= '</p>';
 		}
 
 		if ( 1 == get_option( 'stb_enabled', 1 ) ) {
@@ -677,7 +679,7 @@ class Jetpack_Subscriptions_Widget extends WP_Widget {
 
 		if ( 'failed' == $subs_fetch['status'] ) {
 			printf( '<div class="error inline"><p>' . __( '%s: %s', 'jetpack' ) . '</p></div>', esc_html( $subs_fetch['code'] ), esc_html( $subs_fetch['message'] ) );
-
+			
 		}
 		$subscribers_total = number_format_i18n( $subs_fetch['value'] );
 

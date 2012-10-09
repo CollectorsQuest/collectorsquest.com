@@ -12,10 +12,10 @@ $_height = 0;
   <?php if ($collectible_for_sale->getIsSold()): ?>
 
     <div id="price-container">
-      <p class="price">
-        Sold
+      <p class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <link itemprop="availability" href="http://schema.org/Discontinued" />Sold
         <small>
-          for <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+          for <span itemprop="price"><?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?></span>
         </small>
       </p>
       Quantity sold: 1
@@ -23,9 +23,11 @@ $_height = 0;
     <?php $_height -= 59; ?>
   <?php elseif ($collectible_for_sale->isForSale()): ?>
     <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
-      <div id="price-container">
+      <div id="price-container" class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <p class="price">
-          <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+          <span itemprop="price">
+            <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+          </span>
 
           <?php if ($collectible_for_sale->isShippingFree()): ?>
             <small class="text-nowrap">with FREE shipping & handling</small>
@@ -33,7 +35,7 @@ $_height = 0;
         </p>
         <button type="submit" class="btn btn-primary pull-left" value="Add Item to Cart">
           <i class="add-to-card-button"></i>
-          <span>Add Item to Cart</span>
+          <span><link itemprop="availability" href="http://schema.org/InStock" />Add Item to Cart</span>
         </button>
       </div>
 
@@ -44,8 +46,8 @@ $_height = 0;
 
 <?php elseif ($collectible_for_sale->isForSale()): // and has no active credit ?>
   <div id="price-container">
-    <p class="price">
-      <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+    <p class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      <span itemprop="price"><?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?></span>
     </p>
     <button type="button" class="btn btn-primary blue-button pull-left" value="Add Item to Cart"
             onclick="$('#form-private-message').find('textarea').focus().click(); return false;">

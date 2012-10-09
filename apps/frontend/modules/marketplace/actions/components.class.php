@@ -100,9 +100,7 @@ class marketplaceComponents extends cqFrontendComponents
 
         if (isset($values['cq_collectible_ids']))
         {
-          $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
-          $collectible_ids = array_map('trim', $collectible_ids);
-          $collectible_ids = array_filter($collectible_ids);
+          $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
 
           /** @var $query FrontendCollectibleQuery */
           $query = FrontendCollectibleQuery::create()

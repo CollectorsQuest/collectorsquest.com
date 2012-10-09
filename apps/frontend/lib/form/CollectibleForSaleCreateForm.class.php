@@ -21,7 +21,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
       'is_ready',
       'price',
       'price_currency',
-      'condition'
+      'condition',
     ));
 
     $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
@@ -116,7 +116,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
     $fields = array_merge($fields, array(
       'name',
       'tags',
-      'thumbnail'
+      'thumbnail',
     ));
     $collectible->useFields($fields);
 

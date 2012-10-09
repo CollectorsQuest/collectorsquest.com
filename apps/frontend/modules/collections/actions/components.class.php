@@ -51,9 +51,7 @@ class collectionsComponents extends cqFrontendComponents
 
       if (isset($values['cq_collectible_ids']))
       {
-        $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
-        $collectible_ids = array_map('trim', $collectible_ids);
-        $collectible_ids = array_filter($collectible_ids);
+        $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
 
         /** @var $q FrontendCollectibleQuery */
         $q = FrontendCollectibleQuery::create()
@@ -81,9 +79,7 @@ class collectionsComponents extends cqFrontendComponents
 
       if (isset($values['cq_collectible_ids']))
       {
-        $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
-        $collectible_ids = array_map('trim', $collectible_ids);
-        $collectible_ids = array_filter($collectible_ids);
+        $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
 
         /** @var $q CollectibleQuery */
         $q = CollectibleQuery::create()
@@ -158,9 +154,7 @@ class collectionsComponents extends cqFrontendComponents
 
         if (isset($values['cq_collection_ids']))
         {
-          $collection_ids = explode(',', (string) $values['cq_collection_ids']);
-          $collection_ids = array_map('trim', $collection_ids);
-          $collection_ids = array_filter($collection_ids);
+          $collection_ids = cqFunctions::explode(',', $values['cq_collection_ids']);
 
           // Adding American Pickers and Pawn Stars at the top
           $collection_ids = array_merge(array(2842, 2841), $collection_ids);
@@ -197,7 +191,7 @@ class collectionsComponents extends cqFrontendComponents
       $pager->init();
 
       $this->pager = $pager;
-      $this->url = '@search_collections?q='. $q . '&s='. $s .'&page='. $pager->getNextPage();
+      $this->url = '@search_collections?q='. $q . '&s='. $s .'&page=1';
 
       return sfView::SUCCESS;
     }

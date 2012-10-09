@@ -92,6 +92,9 @@ require 'lib/model/om/BaseCollector.php';
  *
  * @method     Collector setNotificationsMessage(boolean $v)
  * @method     boolean   getNotificationsMessage()
+ *
+ * @method     Collector setTimeoutIgnoreForUser(boolean $v)
+ * @method     boolean   getTimeoutIgnoreForUser()
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
@@ -163,6 +166,62 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
       CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_DEFAULT);
 
+    $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_COMMENTS_AT);
+    $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_PRIVATE_MESSAGES_AT);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_IGNORE_FOR_USER, false);
+  }
+
+  /**
+   * @param     mixed $v string, integer (timestamp), or DateTime value.
+   *               Empty strings are treated as NULL.
+   * @return    Collector The current object (for fluent API support)
+   */
+  public function setTimeoutCommentsAt($v)
+  {
+    $v = cqPropelTime::translateTimeToString($v);
+
+    return parent::setTimeoutCommentsAt($v);
+  }
+
+  /**
+   * @param     string $format The date/time format string (either date()-style or strftime()-style).
+   *              If format is NULL, then the raw DateTime object will be returned.
+   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @throws    RuntimeException - if unable to parse/validate the date/time value.
+   */
+  public function getTimeoutCommentsAt($format = 'Y-m-d H:i:s')
+  {
+    return cqPropelTime::format(
+      parent::getTimeoutCommentsAt(),
+      $format
+    );
+  }
+
+  /**
+   * @param     mixed $v string, integer (timestamp), or DateTime value.
+   *               Empty strings are treated as NULL.
+   * @return    Collector The current object (for fluent API support)
+   */
+  public function setTimeoutPrivateMessagesAt($v)
+  {
+    $v = cqPropelTime::translateTimeToString($v);
+
+    return parent::setTimeoutPrivateMessagesAt($v);
+  }
+
+  /**
+   * @param     string $format The date/time format string (either date()-style or strftime()-style).
+   *              If format is NULL, then the raw DateTime object will be returned.
+   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @throws    RuntimeException - if unable to parse/validate the date/time value.
+   */
+  public function getTimeoutPrivateMessagesAt($format = 'Y-m-d H:i:s')
+  {
+    return cqPropelTime::format(
+      parent::getTimeoutPrivateMessagesAt(),
+      $format
+    );
   }
 
   /**
@@ -172,7 +231,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setVisitorInfoFirstVisitAt($v)
   {
-    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+    $v = cqPropelTime::translateTimeToString($v);
 
     return parent::setVisitorInfoFirstVisitAt($v);
   }
@@ -186,7 +245,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getVisitorInfoFirstVisitAt($format = 'Y-m-d H:i:s')
   {
-    return CollectorPeer::formatTimePropelSyle(
+    return cqPropelTime::format(
       parent::getVisitorInfoFirstVisitAt(),
       $format
     );
@@ -199,7 +258,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setVisitorInfoLastVisitAt($v)
   {
-    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+    $v = cqPropelTime::translateTimeToString($v);
 
     return parent::setVisitorInfoLastVisitAt($v);
   }
@@ -214,7 +273,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getVisitorInfoLastVisitAt($format = 'Y-m-d H:i:s')
   {
-    return CollectorPeer::formatTimePropelSyle(
+    return cqPropelTime::format(
       parent::getVisitorInfoLastVisitAt(),
       $format
     );

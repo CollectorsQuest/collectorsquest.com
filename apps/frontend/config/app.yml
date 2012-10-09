@@ -1,5 +1,8 @@
 all:
 
+  title: 'Collectors Quest'
+  title_delimiter: ' | '
+
   ssl_redirect:
     # if insecure pages accesed with https should be rerouted to http
     strict: true
@@ -17,12 +20,19 @@ all:
 
   private_messages:
     # require the user to input a captcha every N outgoing messages
-    require_captcha_threshold: 5
+    require_captcha_threshold: 3
+    timeout_threshold: 6
+    timeout_duration: 30 minutes
+    timeout_check_period: 60 minutes
     similarity_percent: 90
     spam_receiver: info@collectorsquest.com
 
   comments:
     num_load: 10
+    timeout_threshold: 6
+    timeout_duration: 30 minutes
+    timeout_check_period: 60 minutes
+    timeout_check_period_increase_for_unsigned: 30 minutes
 
   smart_menus:
     defaults:

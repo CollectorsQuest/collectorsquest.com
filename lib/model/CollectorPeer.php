@@ -57,6 +57,13 @@ class CollectorPeer extends BaseCollectorPeer
   const PROPERTY_NOTIFICATIONS_MESSAGE = 'NOTIFICATIONS_MESSAGE';
   const PROPERTY_NOTIFICATIONS_MESSAGE_DEFAULT = true;
 
+  // Timeouts denote that the user is not allowed to perform a specific action
+  // until the timeout datatime is reached
+  const PROPERTY_TIMEOUT_COMMENTS_AT = 'TIMEOUT_COMMENTS_AT';
+  const PROPERTY_TIMEOUT_PRIVATE_MESSAGES_AT = 'TIMEOUT_PRIVATE_MESSAGES_AT';
+
+  const PROPERTY_TIMEOUT_IGNORE_FOR_USER = 'TIMEOUT_IGNORE_FOR_USER';
+
   const TYPE_COLLECTOR = 'Collector';
   const TYPE_SELLER = 'Seller';
 
@@ -444,70 +451,6 @@ class CollectorPeer extends BaseCollectorPeer
     $criteria->add(self::DISPLAY_NAME, '%' . mysql_real_escape_string($q) . '%', Criteria::LIKE);
 
     return self::doSelectStmt($criteria)->fetchAll(PDO::FETCH_KEY_PAIR);
-  }
-
-  /**
-   * @param     mixed $v string, integer (timestamp), or DateTime value.
-   *                     Empty strings are treated as NULL.
-   * @return    string|null String formatted to "Y-m-d H:i:s"
-   */
-  public static function translateTimeToStringPropelStyle($v)
-  {
-    /** @var $dt PropelDateTime */
-    $dt = PropelDateTime::newInstance($v, null, 'DateTime');
-    return $dt ? $dt->format('Y-m-d H:i:s') : null;
-  }
-
-  /**
-   * @param     mixed $time     string, integer (timestamp), or DateTime value.
-   * @param     string $format  The date/time format string (either date()-style or strftime()-style).
-   *
-   * @throws    RuntimeException
-   * @return    mixed Formatted date/time value as string or
-   *                  DateTime object (if format is NULL),
-   *                  NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
-   *
-   */
-  public static function formatTimePropelSyle($time, $format = 'Y-m-d H:i:s')
-  {
-    if ($time === null)
-    {
-      return null;
-    }
-
-    if ($time === '0000-00-00 00:00:00')
-    {
-      // while technically this is not a default value of NULL,
-      // this seems to be closest in meaning.
-      return null;
-    }
-    else
-    {
-      try
-      {
-        $dt = new DateTime($time);
-      }
-      catch (Exception $x)
-      {
-        throw new RuntimeException(
-          'Internally stored date/time/timestamp value could not be converted to DateTime: ' . var_export($time, true),
-          $x
-        );
-      }
-    }
-
-    if ($format === null)
-    {
-      return $dt;
-    }
-    elseif (strpos($format, '%') !== false)
-    {
-      return strftime($format, $dt->format('U'));
-    }
-    else
-    {
-      return $dt->format($format);
-    }
   }
 
   /**

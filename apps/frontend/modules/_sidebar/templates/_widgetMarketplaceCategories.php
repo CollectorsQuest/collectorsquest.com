@@ -32,15 +32,13 @@
     <?php foreach ($subcategories as $i => $subcategory): ?>
       <li>
         <?php
-          if ($subcategory != $current_subcategory)
+          if ($subcategory && $subcategory != $current_subcategory)
           {
-            if ($subcategory){
-              echo link_to(
-                $subcategory->getName(), 'marketplace_category_by_slug',
-                $subcategory, array('title' => $subcategory->getName())
-              );
-              $_height -= 20;
-            }
+            echo link_to(
+              $subcategory->getName(), 'marketplace_category_by_slug',
+              $subcategory, array('title' => $subcategory->getName())
+            );
+            $_height -= 20;
           }
           else
           {

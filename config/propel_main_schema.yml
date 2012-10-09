@@ -188,12 +188,17 @@ classes:
     columns:
       id: ~
       collection_category_id: { type: integer, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
-      name:         { type: varchar, size: 64, required: true, primaryString: true }
-      slug:         { type: varchar, size: 64, required: true }
-      description:  { type: longvarchar, required: false }
+      name:          { type: varchar, size: 64, required: true, primaryString: true }
+      name_singular: { type: varchar, size: 64, required: false }
+      slug:          { type: varchar, size: 64, required: true }
+      description:   { type: longvarchar, required: false }
     propel_behaviors:
       sluggable:  { slug_pattern: "{Name}", permanent: false }
+      extra_properties: ~
       nested_set: ~
+      aggregate_column:
+        name: num_collectibles_for_sale
+        foreign_table: collectible
 
   CollectionCollectible:
     isCrossRef: true
@@ -230,6 +235,7 @@ classes:
       id:  ~
       graph_id:          { type: integer, required: false, index: unique }
       collector_id:      { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      content_category_id: { type: integer, foreignClass: ContentCategory, foreignReference: id, required: false, onDelete: setnull }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: unique }
       description:       { type: longvarchar, required: true }
@@ -260,6 +266,7 @@ classes:
       is_forwarded:  { type: boolean, default: false }
       is_marked:     { type: boolean, default: false }
       is_deleted:    { type: boolean, default: false }
+      is_spam:       { type: boolean, default: false }
       created_at:    ~
 
     propel_behaviors:
@@ -301,6 +308,8 @@ classes:
       author_email:    { type: varchar(128), required: false }
       author_url:      { type: varchar(255), required: false }
       is_notify:       { type: boolean,      required: true, default: false }
+      is_hidden:       { type: boolean,      required: true, dafault: false }
+      is_spam:         { type: boolean,      required: true, dafault: false }
       subject:         { type: varchar(128), required: false }
       body:            { type: longvarchar,  required: true  }
       ip_address:      { type: varchar(15),  required: false }

@@ -51,7 +51,7 @@
       <?= $collectors_question['content']; ?>
     </div>
   </div>
-  <?php include_partial('comments/comments', array('for_object' => $category)); ?>
+  <?php include_component('comments', 'comments', array('for_object' => $category)); ?>
 
 <?php else: ?>
 

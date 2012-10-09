@@ -1,0 +1,17 @@
+{% extends "common/internal.html.twig" %}
+
+{% block content %}
+  <b>Reported by:</b> {{ link_to_collector(oReporterCollector) }}<br>
+  <b>Offending messages:</b>
+  <br>
+  {% for oMessage in rqMessages %}
+    <b>Author:</b> {{ link_to_collector(oMessage.collectorRelatedBySender, 'text') }}<br />
+    <b>Subject:</b> {{ oMessage.subject }}<br />
+    <b>Added on:</b> {{ oMessage.createdAt('M j Y, H:i:s') }}<br />
+
+    <p style="background-color: #ffffcc">
+      {{ oMessage.body }}
+    </p>
+    <hr>
+  {% endfor %}
+{% endblock %}
