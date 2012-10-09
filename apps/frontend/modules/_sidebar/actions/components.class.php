@@ -826,7 +826,7 @@ class _sidebarComponents extends cqFrontendComponents
     if ($collectible instanceof Collectible)
     {
       /** @var $q CollectionCollectibleQuery */
-      $q = CollectionCollectibleQuery::create()
+      $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollectible($collectible->getCollectible());
 
       if ($collection)
@@ -842,12 +842,9 @@ class _sidebarComponents extends cqFrontendComponents
     $page = $collectible ? (integer) ceil($collectible->getPosition() / $limit) : $limit;
     $page = $this->getRequest()->getParameter('p', $page);
 
-    $q = CollectionCollectibleQuery::create();
-    $q->useCollectibleQuery()
-      ->filterByIsPublic(true)
-      ->endUse();
-    $q->joinWith('Collectible')
-      ->orderBy('Position', Criteria::ASC);
+    $q = FrontendCollectionCollectibleQuery::create()
+       ->joinWith('Collectible')
+       ->orderBy('Position', Criteria::ASC);
 
     // Filter by Collection if specified
     if ($collection)
