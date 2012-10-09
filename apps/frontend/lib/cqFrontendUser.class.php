@@ -201,10 +201,6 @@ class cqFrontendUser extends cqBaseUser
       $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
       $response->setCookie($username_cookie, urlencode($this->getCollector()->getUsername()), time() + $expiration_time);
 
-      // set user email cookie
-      $user_email_cookie = sfConfig::get('app_collector_user_email_cookie_name', 'cq_user_email');
-      $response->setCookie($user_email_cookie, urlencode($this->getCollector()->getEmail()), time() + $expiration_time);
-
       return true;
     }
     else
@@ -322,6 +318,14 @@ class cqFrontendUser extends cqBaseUser
     {
       $this->clearUsernameCookie();
       $this->clearMycqDropboxOpenStateCookie();
+    }
+
+    // when we log in user add $_SESSION variables used in blog
+    if (true == $boolean)
+    {
+      $this->setAttribute('id', $this->getCollector()->getId(), 'collector');
+      $this->setAttribute('email', $this->getCollector()->getEmail(), 'collector');
+      $this->setAttribute('display_name', $this->getCollector()->getDisplayName(), 'collector');
     }
 
     return $ret;

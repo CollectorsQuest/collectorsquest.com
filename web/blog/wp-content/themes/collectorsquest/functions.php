@@ -19,6 +19,21 @@ register_taxonomy(
 );
 
 /**
+ * @see http://www.kanasolution.com/2011/01/session-variable-in-wordpress/
+ */
+add_action('init', 'cq_init_session', 1);
+function cq_init_session()
+{
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfSessionStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/collectorsquest/cqSessionStorage.class.php';
+
+  $options = array('session_name' => 'cq_frontend', 'auto_start' => true);
+  $session = new cqSessionStorage($options);
+  $session->initialize(array());
+}
+
+/**
  * @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types
  */
 add_action('init', 'cq_custom_post_type_init');
@@ -491,9 +506,19 @@ function cq_comment($comment, $args, $depth) {
   <div <?php comment_class(); ?> id="div-comment-<?php comment_ID() ?>">
     <div id="div-comment-<?php comment_ID() ?>" class="row-fluid user-comment">
       <div class="span2 text-right">
-        <a href="#">
-          <?php echo get_avatar( $comment->comment_author_email, 65 ); ?>
-        </a>
+        <?php
+          $comment_author_id = get_comment_meta(get_comment_ID(), "comment_author_id", true);
+
+          if ($comment_author_id)
+          {
+            echo '<img src="/collector/' . $comment_author_id . '/65x65/avatar.jpg"
+                  alt="' . $comment->comment_author . '" width="65" height="65" class="gravatar_photo">';
+          }
+          else
+          {
+            echo get_avatar( $comment->comment_author_email, 65 );
+          }
+        ?>
       </div>
       <div class="span10">
         <p class="bubble left">
@@ -508,6 +533,12 @@ function cq_comment($comment, $args, $depth) {
     </div>
   <?php
   }
+
+// Attach comment_author_id variable to post comments
+add_action ('comment_post', 'add_meta_settings', 1);
+function add_meta_settings($comment_id) {
+  add_comment_meta($comment_id, 'comment_author_id', $_POST['comment_author_id'], true);
+}
 
 // ajax comments
 function add_ajaxurl_cdata_to_front() {
