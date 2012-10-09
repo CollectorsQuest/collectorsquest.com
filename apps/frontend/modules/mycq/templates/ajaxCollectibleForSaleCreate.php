@@ -66,7 +66,7 @@
       Next Step
     </button>
     <button type="reset" class="btn"
-            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+            onClick="$(this).parents('.modal-body.opened').dialog2('close'); return false;">
       Cancel
     </button>
   </div>
