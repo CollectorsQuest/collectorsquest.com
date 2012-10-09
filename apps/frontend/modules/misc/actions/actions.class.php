@@ -456,18 +456,18 @@ class miscActions extends cqFrontendActions
       $this->getUser()->setAttribute('featured_items_collectible_ids_' . $post_id, $_collectible_ids, 'cache');
     }
 
-    // We cannot show a custom page without custom Collectible IDs
-    $this->forward404Unless(is_array($_collectible_ids));
-
     $q = FrontendCollectibleQuery::create()
       ->groupById()
-      ->filterById($_collectible_ids)
-      ->addAscendingOrderByColumn(
-        'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
-      );
+      ->filterById($_collectible_ids);
 
-    // avoid displaying server error if there are no collectibles to display
-    $this->number_of_collectibles = $q->count();
+    // if we have zero collectibles we can't sort by them
+    if (!empty($_collectible_ids))
+    {
+      $q
+        ->addAscendingOrderByColumn(
+          'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
+        );
+    }
 
     $pager = new PropelModelPager($q, 20);
     $pager->setPage($request->getParameter('page', 1));

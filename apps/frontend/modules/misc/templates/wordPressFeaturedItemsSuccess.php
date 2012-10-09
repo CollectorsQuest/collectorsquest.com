@@ -19,16 +19,13 @@ cq_page_title(
 <div class="row" style="margin-left: -12px;">
   <div id="collectibles" class="row-content">
   <?php
-    if ($number_of_collectibles > 0)
+    foreach ($pager->getResults() as $i => $collectible)
     {
-      foreach ($pager->getResults() as $i => $collectible)
-      {
-        // Show the collectible (in grid, list or hybrid view)
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectible, 'i' => (int) $i)
-        );
-      }
+      // Show the collectible (in grid, list or hybrid view)
+      include_partial(
+        'collection/collectible_grid_view_square_small',
+        array('collectible' => $collectible, 'i' => (int) $i)
+      );
     }
   ?>
   </div>
