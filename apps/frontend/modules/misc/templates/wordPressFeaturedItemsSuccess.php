@@ -1,5 +1,8 @@
 <?php
-  cq_page_title(
+/**
+ * @var $number_of_collectibles integer
+ */
+cq_page_title(
     $wp_post->getPostTitle(), null,
     array('class' => 'row-fluid header-bar')
   );
