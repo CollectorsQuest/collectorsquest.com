@@ -54,9 +54,6 @@
           <span class="required-token">*</span>
           <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
         </div>
-        <p class="help-block">
-          Choose a category from the list above.
-        </p>
       </div>
     </div>
   </div>
