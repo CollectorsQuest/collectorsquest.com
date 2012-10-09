@@ -89,6 +89,17 @@ package_transaction:
     column:               id
     with_wildcard_routes: true
 
+package_transaction_add_extra_credits:
+  url:                    /packageTransaction/:id/addExtraCredits
+  class:                  sfPropelORMRoute
+  options:
+    model:                PackageTransaction
+    type:                 object
+    column:               id
+  param:                  { module: packageTransaction, action: addExtraCredits }
+  requirements:           { sf_method: [get, post] }
+
+
 package:
   class: sfPropelORMRouteCollection
   options:
@@ -187,16 +198,6 @@ collector:
     prefix_path:          /collectors
     column:               id
     with_wildcard_routes: true
-
-collector_add_credits:
-  url:                    /collectors/:id/addCredits
-  class:                  sfPropelORMRoute
-  options:
-    model:                Collector
-    type:                 object
-    column:               id
-  param:                  { module: collectors, action: addCredits }
-  requirements:           { sf_method: [get, post] }
 
 marketplace:
   url:   /marketplace
