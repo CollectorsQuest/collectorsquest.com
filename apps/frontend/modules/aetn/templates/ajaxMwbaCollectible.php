@@ -4,15 +4,13 @@
  * @var $collection  Collection
  */
 ?>
-<div class="modal modal-mwba">
-  <div class="modal-header">
-    &nbsp;
-  </div>
-  <div class="modal-body">
+
+<div class="modal modal-mwba not-rounded" data-dynamic="true" tabindex="-1">
+  <div class="modal-body opened" style="max-height: none;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <span class="modal-floral-title"></span>
 
     <div id="modal-collectible">
-
       <div class="red-decorative-title">
         <div class="top">
           <h3 class="Chivo webfont"><?= $collectible->getName() ?></h3>
@@ -20,16 +18,17 @@
         <div class="bottom"></div>
       </div>
 
+      <center>
       <?php
         echo link_to(
           image_tag_collectible(
             $collectible, '620x0',
             array('width' => null, 'height' => null)
           ),
-          src_tag_collectible($collectible, 'original'),
-          array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
+          url_for_collectible($collectible), array('target' => '_blank')
         );
       ?>
+      </center>
 
       <div class="blue-actions-panel spacer-20">
         <div class="row-fluid">
@@ -45,7 +44,7 @@
               </li>
             </ul>
           </div>
-          <div id="social-sharing" class="pull-right share">
+          <div id="social-sharing-<?= $collectible->getId(); ?>" class="pull-right share">
             <!-- AddThis Button BEGIN -->
             <a class="btn-lightblue btn-mini-social addthis_button_email">
               <i class="mail-icon-mini"></i> Email
@@ -77,49 +76,11 @@
         </div>
       <?php endif; ?>
 
-      <?php // include_component('comments', 'comments', array('for_object' => $collectible->getCollectible())); ?>
-
-      <a href="<?= url_for_collection($collection); ?>" class="seemore-popupbutton"></a>
+      <br><a href="<?= url_for_collection($collection); ?>" class="seemore-popupbutton">&nbsp;</a><br>
     </div> <!-- ./modal-collectible -->
   </div> <!-- ./modal-body -->
 </div>
 
-
-<!-- will transfer there styles later -->
-<style>
-  .modal-header {
-    background: none !important;
-  }
-  .post-comment textarea {
-    width: 390px !important;
-  }
-  .modal-body {
-    max-height: 600px !important;
-  }
-  .modal-footer {
-    display: none;
-  }
-  .modal {
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    top: 35%;
-  }
-</style>
-
-<script src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05"></script>
-
 <script type="text/javascript">
-  // expanding of comments section textarea and button
-  $('textarea').focus(function (e) {
-      e.preventDefault();
-
-      $(function () {
-        $('textarea').addClass('expand');
-        $('.btn.btn-large').addClass('expand');
-        $('.extra-fields.non-optional').show();
-      });
-  });
-
- addthis.toolbox("#social-sharing");
+  addthis.toolbox('#social-sharing-<?= $collectible->getId(); ?>');
 </script>

@@ -1,5 +1,4 @@
 <div class="my_meta_control">
-
   <p>Enter comma separated ID numbers. (1,2,3)</p>
 
   <label>Homepage Collectible IDs:
@@ -66,4 +65,7 @@
 
     <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
+  <?php $mb->the_field('cq_post_publish_status'); ?>
+  <?php $id = $_GET['post'] ?>
+  <input name="<?php $mb->the_name(); ?>" type="hidden" value="<?= get_post_status( $id ) ?>">
 </div>

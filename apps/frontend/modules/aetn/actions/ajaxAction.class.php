@@ -10,7 +10,7 @@ class ajaxAction extends cqAjaxAction
     return null;
   }
 
-  public function executeMwbaCollectibleShow(sfWebRequest $request, $template = null)
+  public function executeMwbaCollectible(sfWebRequest $request, $template = null)
   {
     /** @var $collectible Collectible|CollectionCollectible */
     $collectible = CollectibleQuery::create()
