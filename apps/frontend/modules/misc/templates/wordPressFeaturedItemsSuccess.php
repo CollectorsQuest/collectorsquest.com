@@ -1,5 +1,8 @@
 <?php
-  cq_page_title(
+/**
+ * @var $number_of_collectibles integer
+ */
+cq_page_title(
     $wp_post->getPostTitle(), null,
     array('class' => 'row-fluid header-bar')
   );
@@ -16,13 +19,16 @@
 <div class="row" style="margin-left: -12px;">
   <div id="collectibles" class="row-content">
   <?php
-    foreach ($pager->getResults() as $i => $collectible)
+    if ($number_of_collectibles > 0)
     {
-      // Show the collectible (in grid, list or hybrid view)
-      include_partial(
-        'collection/collectible_grid_view_square_small',
-        array('collectible' => $collectible, 'i' => (int) $i)
-      );
+      foreach ($pager->getResults() as $i => $collectible)
+      {
+        // Show the collectible (in grid, list or hybrid view)
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectible, 'i' => (int) $i)
+        );
+      }
     }
   ?>
   </div>

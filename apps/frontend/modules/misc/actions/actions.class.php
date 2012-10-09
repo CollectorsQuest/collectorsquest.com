@@ -466,6 +466,9 @@ class miscActions extends cqFrontendActions
         'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
       );
 
+    // avoid displaying server error if there are no collectibles to display
+    $this->number_of_collectibles = $q->count();
+
     $pager = new PropelModelPager($q, 20);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
