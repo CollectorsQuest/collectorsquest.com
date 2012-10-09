@@ -78,17 +78,21 @@
 
     <?php if (isset($previous)): ?>
     <a href="<?= url_for_collectible($previous) ?>"
-       class="prev-collectible" title="Previous: <?= $previous->getName(); ?>">
-      <span>prev</span>
-      <i class="icon-caret-left white"></i>
+       class="prev-zone" title="Previous: <?= $previous->getName(); ?>">
+      <span class="hide-text">prev</span>
+      <span class="prev-btn">
+        <i class="icon-chevron-left white"></i>
+      </span>
     </a>
     <?php endif; ?>
 
     <?php if (isset($next)): ?>
     <a href="<?= url_for_collectible($next) ?>"
-       class="next-collectible" title="Next: <?= $next->getName(); ?>">
-      <span>next</span>
-      <i class="icon-caret-right white"></i>
+       class="next-zone" title="Next: <?= $next->getName(); ?>">
+      <span class="hide-text">next</span>
+      <span class="next-btn">
+        <i class="icon-chevron-right white"></i>
+      </span>
     </a>
     <?php endif; ?>
 
@@ -168,12 +172,12 @@
         <?php endforeach; ?>
       </div>
       <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible"
-         class="ui-carousel-navigation hidden left-arrow">
-        <i class="icon-chevron-up white"></i>
+         class="ui-carousel-navigation hidden up-arrow">
+          <i class="icon-chevron-up white"></i>
       </a>
       <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible"
-         class="ui-carousel-navigation hidden right-arrow">
-        <i class="icon-chevron-down white"></i>
+         class="ui-carousel-navigation hidden down-arrow">
+          <i class="icon-chevron-down white"></i>
       </a>
     </div>
   </div>
