@@ -196,6 +196,15 @@ item_offers:
   url:   /item/offers
   param: { module: collectibleForSale, action: itemOffers }
 
+object_rate:
+  url:   /ajax/set-rate/:class/:id
+  param: { module: adminbar, action: rate }
+  requirements: { class: "[^/]+", id: '\d+' }
+
+ajax_object_rate:
+  url:   /object/set-rate/:dimension/:class/:id
+  param: { module: adminbar, action: rate }
+  requirements: {dimension: "[^/]+", class: "[^/]+", id: '\d+' }
 
 # default rules
 

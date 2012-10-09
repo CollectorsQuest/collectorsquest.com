@@ -75,7 +75,3 @@ ajax_sidebar:
   url:   /ajax/sidebar
   param: { module: _sidebar, action: ajax }
 
-ajax_object_rate:
-  url:   /ajax/set-rate/:dimension/:class/:id
-  param: { module: adminbar, action: rate }
-  requirements: {dimension: "[^/]+", class: "[^/]+", id: '\d+' }

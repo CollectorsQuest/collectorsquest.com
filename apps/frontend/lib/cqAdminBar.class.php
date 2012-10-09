@@ -4,8 +4,8 @@ class cqAdminBar
 {
   private static $instance = null;
   private $application = null;
-  private $founded_routes = array();
-  private $objects_menu = array();
+  private $found_routes = array();
+  private $object_menu = array();
 
   public function __construct(frontendConfiguration $application)
   {
@@ -42,19 +42,22 @@ class cqAdminBar
     {
       /** @var $group string */
       $group = 'Edit ';
-      $this->objects_menu[$group][] =
+      $this->objects_menu[$group][$url] =
         array(
-          'type' => 'url',
-          'url' => $url,
-          'label' => $label
+          'label' => $label,
+          'attributes' => array('target' => '_blank', 'href' => $url),
       );
     }
 
-    $this->objects_menu['Rate'][] =
+    $this->objects_menu['Rate'][$url = $this->application->generateBackendUrl(
+      'object_rate', array('class' => get_class($object), 'id' => $object->getId())
+    )] =
       array(
-        'type' => 'component',
-        'name' => 'rateMenuItem',
-        'options' => array('class' => get_class($object), 'object' => $object),
+        'label' => $label,
+        'attributes' => array(
+          'onclick' => 'return false;', 'href' => $url,
+          'class' => 'open-dialog', 'title' => 'Rate ' . $object
+        ),
       );
   }
 
@@ -70,9 +73,9 @@ class cqAdminBar
     $routing = $this->application->getBackendRouting()->getRoutes();
     /** @var $route_name string */
     $route_name = null;
-    if (isset($this->founded_routes[get_class($object)]))
+    if (isset($this->found_routes[get_class($object)]))
     {
-      $route_name = $this->founded_routes[get_class($object)];
+      $route_name = $this->found_routes[get_class($object)];
     }
     else
     {
@@ -86,7 +89,7 @@ class cqAdminBar
           && substr($key, -5, 5) == '_edit'
         )
         {
-          $route_name = $this->founded_routes[get_class($object)] = $key;
+          $route_name = $this->found_routes[get_class($object)] = $key;
 
           break;
         }

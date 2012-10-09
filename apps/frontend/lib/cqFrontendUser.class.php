@@ -40,6 +40,7 @@ class cqFrontendUser extends cqBaseUser
     {
       //connect listeners
       $dispatcher->connect('application.show_object', array('cqAdminBar', 'listenShowObject'));
+      sfContext::getInstance()->getResponse()->addStylesheet('frontend/modules/adminbar.css');
     }
   }
 

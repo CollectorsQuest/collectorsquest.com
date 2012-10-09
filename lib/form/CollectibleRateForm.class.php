@@ -12,9 +12,9 @@ class CollectibleRateForm extends BaseCollectibleRateForm
   public function configure()
   {
     // TO DO All this code should be at rate behavior
-
-    $this->widgetSchema['rate'] = new sfWidgetFormChoice(
-      array('choices' => CollectibleRatePeer::getRateChoices(), 'expanded' => true)
+    unset($this['id']);
+    $this->widgetSchema['rate'] = new cqWidgetFormRateStar(
+      array('choices' => CollectibleRatePeer::getRateChoices())
     );
     $this->validatorSchema['rate'] = new sfValidatorChoice(
       array('choices' => CollectibleRatePeer::getRateChoices(), 'required' => true)

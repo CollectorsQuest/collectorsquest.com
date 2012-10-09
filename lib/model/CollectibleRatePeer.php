@@ -25,7 +25,7 @@ class CollectibleRatePeer extends BaseCollectibleRatePeer {
 
   public static function getRateChoices()
   {
-    return array_keys(array_fill(1, self::MAX_RATE, ''));
+    return array_combine(range(1, self::MAX_RATE), range(1, self::MAX_RATE));
   }
 
   public static function getDimensions()

@@ -1,0 +1,71 @@
+@import "../_variables.less";
+
+#admin-bar {
+  .container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    min-width: 950px;
+  }
+}
+
+#object_rate_box {
+
+  .object_rate_form .rating label {
+    display: inline;
+    font-weight: normal;
+  }
+  .object_rate_form .rating input {
+    display: none;
+  }
+
+  .object_rate_form {
+    width: 152px;
+    .rating {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+    }
+
+    .rating > label.checked {
+      &:before, & ~ label:before {
+        color: @red;
+        content: "\2605";
+        position: absolute;
+      }
+    }
+    .rating > label {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      width: 22px;
+      font-size: 30px;
+      &:hover {
+        &:before, & ~ label:before {
+          content: "\2605";
+          position: absolute;
+          color: @yellowLight !important;
+        }
+      }
+    }
+  }
+  .rate-total {
+    .star {
+      font-size: 16px;
+    }
+    .average_rate1 {
+      color: red
+    }
+    .average_rate2 {
+      color: yellow;
+    }
+    .average_rate3 {
+      color: orange;
+    }
+    .average_rate4 {
+      color: blue;
+    }
+    .average_rate5 {
+      color: green
+    }
+  }
+}
