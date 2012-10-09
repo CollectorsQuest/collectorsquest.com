@@ -5,6 +5,13 @@ require 'lib/model/marketplace/om/BasePackagePeer.php';
 class PackagePeer extends BasePackagePeer
 {
 
+  const PACKAGE_ID_1_CREDIT     = 1;
+  const PACKAGE_ID_10_CREDITS   = 2;
+  const PACKAGE_ID_100_CREDITS  = 3;
+  const PACKAGE_ID_UNLIMITED    = 6;
+  const PACKAGE_ID_FREE         = 9999;
+  const PACKAGE_ID_ADMIN        = 10000;
+
   /**
    * @param Promotion $promotion
    * @return Package[]
