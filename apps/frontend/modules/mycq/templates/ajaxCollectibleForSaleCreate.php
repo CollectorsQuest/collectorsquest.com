@@ -54,9 +54,6 @@
           <span class="required-token">*</span>
           <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
         </div>
-        <p class="help-block">
-          Choose a category from the list above.
-        </p>
       </div>
     </div>
   </div>
@@ -66,7 +63,7 @@
       Next Step
     </button>
     <button type="reset" class="btn"
-            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+            onClick="$(this).parents('.modal-body.opened').dialog2('close'); return false;">
       Cancel
     </button>
   </div>

@@ -80,9 +80,9 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   }
 
   /**
-   * Find all descendants of our root
+   * Filter by descendants of our root
    *
-   * @return    ContentCategory[]
+   * @return    ContentCategoryQuery
    */
   public function descendantsOfRoot()
   {

@@ -24,7 +24,7 @@ $_height = 0;
   <?php elseif ($collectible_for_sale->isForSale()): ?>
     <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
       <div id="price-container" class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-        <p>
+        <p class="price">
           <span itemprop="price">
             <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
           </span>
