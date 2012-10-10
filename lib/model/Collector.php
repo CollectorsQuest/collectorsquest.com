@@ -932,6 +932,68 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return implode($glue, $this->getISellTags());
   }
 
+  /**
+   * Return tags for the INTERNAL namespace
+   *
+   * @return    array
+   */
+  public function getInternalTags()
+  {
+    return $this->getNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Add tag or tags to the INTERNAL namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   */
+  public function addInternalTag($tagname)
+  {
+    $this->addNamespacedTag(
+      $tagname,
+      CollectorPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Remove all tags for the INTERNAL namespace
+   */
+  public function removeAllInternalTags()
+  {
+    $this->removeAllNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Set the tags for the INTERNAL namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   */
+  public function setInternalTags($tags)
+  {
+    $this->setNamespacedTags(
+      $tags,
+      CollectorPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Return a string representation of the Internal tags
+   *
+   * @param     string $glue
+   * @return    string
+   */
+  public function getInternal($glue = ', ')
+  {
+    return implode($glue, $this->getInternalTags());
+  }
 
   public function getTerms()
   {

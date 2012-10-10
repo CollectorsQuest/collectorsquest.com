@@ -76,6 +76,8 @@ class CollectorPeer extends BaseCollectorPeer
   const TAGS_KEY_I_COLLECT        = 'icollect';
   const TAGS_NAMESPACE_COLLECTOR  = 'seller';
   const TAGS_KEY_I_SELL           = 'isell';
+  const TAGS_NAMESPACE_INTERNAL   = 'internal';
+  const TAGS_KEY_TAG              = 'tag';
 
   const PAYPAL_ACCOUNT_STATUS_VERIFIED = 'VERIFIED';
 
