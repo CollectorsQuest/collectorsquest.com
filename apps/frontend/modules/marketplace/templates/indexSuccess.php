@@ -56,6 +56,11 @@ $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
   {
     echo link_to(image_tag('headlines/show_and_sell_red_635x111_user.png'), '@seller_packages');
   }
+  // avoid having too much blank space when no banner is displayed
+  else
+  {
+    echo '<style type="text/css">#main { min-height: 400px; } #content { padding-bottom: 0; }</style>';
+  }
   ?>
 </div>
 <?php endif; ?>
