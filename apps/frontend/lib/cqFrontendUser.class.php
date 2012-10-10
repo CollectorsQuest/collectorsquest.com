@@ -777,11 +777,18 @@ class cqFrontendUser extends cqBaseUser
     {
       if ($admin_key == hash_hmac('sha1', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
       {
-        return true;
+        if ($admin_id = $this->getBackendUserId())
+        {
+          return true;
+        }
       }
     }
 
     return false;
+  }
+
+  public function getBackendUserId(){
+    return sfContext::getInstance()->getRequest()->getCookie('cq_bc');
   }
 
 }

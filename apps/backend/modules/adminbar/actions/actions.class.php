@@ -10,8 +10,6 @@
  */
 class adminbarActions extends sfActions
 {
-
-
   public function executeRate(sfWebRequest $request)
   {
     sfConfig::set('sf_web_debug', false);
@@ -19,11 +17,25 @@ class adminbarActions extends sfActions
 
     $dimension = $request->getParameter('dimension');
     $class = $request->getParameter('class');
-    $id = (integer) $request->getParameter('id');
-    $user_id = 12;
 
-    /* @var $object Collectible */
-    $object = CollectiblePeer::retrieveByPK($id);
+    //define classes and methods names
+    $classPeer = $class.'Peer';
+    $classRate = $class.'Rate';
+    $classRatePeer = $classRate.'Peer';
+    $classRateQuery = $classRate.'Query';
+    $countMethod = 'count' . $class . 'Rates';
+    $getRatesMethod = 'get' . $class . 'Rates';
+    $filterMethod = 'filterBy' . $class . 'Id';
+    $setObjectIdMethod = 'set' . $class . 'Id';
+
+    //ObjectRateForm should extend $class.RateForm
+    eval(sprintf('class ObjectRateDynamicExtendForm extends %s {}', $class . 'RateForm'));
+
+    $id = (integer) $request->getParameter('id');
+    $user_id = (integer) $request->getParameter('bc');
+
+
+    $object = $classPeer::retrieveByPK($id);
 
     if ($request->isMethod(sfRequest::GET))
     {
@@ -31,9 +43,9 @@ class adminbarActions extends sfActions
       $this->id = $object->getId();
 
       $c = new Criteria();
-      $c->add(CollectibleRatePeer::COLLECTOR_ID, $user_id);
-      /** @var $objRates CollectibleRate[] */
-      $objRates = $object->getCollectibleRates($c);
+      $c->add($classRatePeer::SF_GUARD_USER_ID, $user_id);
+
+      $objRates = $object->$getRatesMethod($c);
       $temp = array();
       //resort by Dimension
       foreach ($objRates as $rate)
@@ -44,7 +56,7 @@ class adminbarActions extends sfActions
       unset($temp);
 
       $forms = array();
-      foreach (CollectibleRatePeer::getDimensions() as $key => $label)
+      foreach ($classRatePeer::getDimensions() as $key => $label)
       {
         if (isset($objRates[$key]))
         {
@@ -52,17 +64,17 @@ class adminbarActions extends sfActions
         }
         else
         {
-          $rate = new CollectibleRate();
+          $rate = new $classRate();
           $rate
-            ->setCollectorId($user_id)
-            ->setCollectibleId($object->getId())
+            ->setSfGuardUserId($user_id)
+            ->$setObjectIdMethod($object->getId())
             ->setDimension($key);
         }
-        $forms[$key] = new CollectibleRateForm($rate, array(), false);
+        $forms[$key] = new ObjectRateForm($rate, array(), false);
       }
 
       $this->average_rate = $object->getAverageRate();
-      $this->total_rates = round($object->countCollectibleRates() / count(CollectibleRatePeer::getDimensions()));
+      $this->total_rates = round($object->$countMethod() / count($classRatePeer::getDimensions()));
 
       $this->forms = $forms;
 
@@ -72,14 +84,14 @@ class adminbarActions extends sfActions
     if ($request->isMethod(sfRequest::POST))
     {
       $result = array();
-      $q = new CollectibleRateQuery();
+      $q = new $classRateQuery();
       $q
-        ->filterByCollectibleId($id)
+        ->$filterMethod($id)
         ->filterByDimension($dimension)
-        ->filterByCollectorId($user_id);
+        ->filterBySfGuardUserId($user_id);
       $rate = $q->findOneOrCreate();
 
-      $form = new CollectibleRateForm($rate, array(), false);
+      $form = new ObjectRateForm($rate, array(), false);
       $form->bind($request->getParameter($form->getName()));
       if ($form->isValid())
       {
@@ -98,7 +110,7 @@ class adminbarActions extends sfActions
       ));
       $result['total'] = $this->getPartial('adminbar/rateTotal', array(
         'average_rate' =>$object->getAverageRate(),
-        'total_rates' => round($object->countCollectibleRates() / count(CollectibleRatePeer::getDimensions()))
+        'total_rates' => round($object->$countMethod() / count($classRatePeer::getDimensions()))
       ));
       return $this->renderText(json_encode($result));
     }

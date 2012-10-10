@@ -37,11 +37,23 @@ class cqBackendUser extends IceBackendUser
           '/',
           '.'. sfConfig::get('app_domain_name')
         );
+        sfContext::getInstance()->getResponse()->setCookie(
+          'cq_bc',
+          $this->getGuardUser()->getId(),
+          time() + $options['timeout'],
+          '/',
+          '.'. sfConfig::get('app_domain_name')
+        );
       }
       else
       {
         sfContext::getInstance()->getResponse()->setCookie(
           $cq_frontend_admin_cookie, '', time() - $options['timeout'],
+          '/',
+          '.'. sfConfig::get('app_domain_name')
+        );
+        sfContext::getInstance()->getResponse()->setCookie(
+          'cq_bc', '', time() - $options['timeout'],
           '/',
           '.'. sfConfig::get('app_domain_name')
         );

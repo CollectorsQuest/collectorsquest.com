@@ -1,7 +1,5 @@
 <?php
-/**
-
- */
+require_once __DIR__ . '/RateTableBehavior.php';
 
 class RatableBehavior extends Behavior
 {
@@ -103,6 +101,20 @@ class RatableBehavior extends Behavior
       ));
       $pk->setNotNull(true);
       $pk->setPrimaryKey(true);
+
+
+      $rateTableBehavior = new RateTableBehavior();
+      $rateTableBehavior->setName('rate_table');
+      $rateTableBehavior->addParameter(array(
+        'name' => 'dimensions',
+        'value' => $this->getDimensions()
+      ));
+      $rateTableBehavior->addParameter(array(
+        'name' => 'ratable_class_name',
+        'value' => $this->getTable()->getPhpName()
+      ));
+      $rateTable->addBehavior($rateTableBehavior);
+
       // every behavior adding a table should re-execute database behaviors
       foreach ($database->getBehaviors() as $behavior)
       {
@@ -126,11 +138,13 @@ class RatableBehavior extends Behavior
       ));
 
       $this->rateTable = $rateTable;
+
     }
     else
     {
       $this->rateTable = $database->getTable($ratesTableName);
     }
+
   }
 
   protected function addForeignKeyIfNone()
@@ -211,4 +225,6 @@ class RatableBehavior extends Behavior
 
     return $this->dimensions;
   }
+
+
 }
