@@ -89,7 +89,8 @@ $height_main_div->value = 116;
           'marketplace/collectible_for_sale_grid_view_square',
           array(
             'collectible_for_sale' => $collectible->getCollectibleForSale(),
-            'i' => (integer) $i
+            'i' => (integer) $i,
+            'lazy_image' => 'all' != $sf_params->get('show'), // disable lazy images if show all
           )
         );
       }
@@ -100,7 +101,8 @@ $height_main_div->value = 116;
           'collection/collectible_grid_view_square',
           array(
             'collectible' => $collectible,
-            'i' => (integer) $i
+            'i' => (integer) $i,
+            'lazy_image' => 'all' != $sf_params->get('show'), // disable lazy images if show all
           )
         );
       }

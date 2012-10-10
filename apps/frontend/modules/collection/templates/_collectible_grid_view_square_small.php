@@ -1,7 +1,6 @@
 <?php
-/**
- * @var $collectible Collectible
- */
+  /* @var $collectible Collectible */
+  $lazy_image = !isset($lazy_image) || $lazy_image ? 'lazy' : '';
 ?>
 
 <div id="collectible_<?= $collectible->getId(); ?>_grid_view_square_small"
@@ -16,7 +15,7 @@
 
   <?php
     echo link_to_collectible($collectible, 'image', array(
-      'image_tag' => array('width' => 140, 'height' => 140, 'class' => 'lazy'),
+      'image_tag' => array('width' => 140, 'height' => 140, 'class' => $lazy_image),
       'link_to' => array('class' => 'mosaic-backdrop')
     ));
   ?>

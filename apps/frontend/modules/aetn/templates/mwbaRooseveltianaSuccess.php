@@ -16,11 +16,11 @@
       // set the link to open modal dialog
       $link = link_to($collectible->getName(), 'ajax_aetn',
         array(
-          'section' => 'mwbaCollectible',
-          'page' => 'show',
+          'section' => 'mwba',
+          'page' => 'collectible',
           'id' => $collectible->getId()
         ),
-        array('class' => 'open-dialog', 'onclick' => 'return false;')
+        array('class' => 'zoom-zone', 'onclick' => 'return false;')
       );
 
       // which partial we want to show the Collectible with
@@ -54,6 +54,8 @@
   </div>
 </div>
 
+<script src="//s7.addthis.com/js/250/addthis_widget.js?#pubid=ra-4fa2c6240b775d05"></script>
+
 <script>
   $(document).ready(function()
   {
@@ -62,11 +64,28 @@
     $container.imagesLoaded(function()
     {
       $container.masonry(
-        {
-          itemSelector : '.span3, .span6',
-          columnWidth : 140, gutterWidth: 15,
-          isAnimated: !Modernizr.csstransitions
-        });
+      {
+        itemSelector : '.span3, .span6',
+        columnWidth : 140, gutterWidth: 15,
+        isAnimated: !Modernizr.csstransitions
+      });
+    });
+
+    $('a.zoom-zone').click(function(e)
+    {
+      e.preventDefault();
+
+      var $a = $(this);
+      var $div = $('<div></div>');
+
+      $a.closest('.mosaic-overlay').showLoading();
+      $div.appendTo('body').load($(this).attr('href'), function()
+      {
+          $a.closest('.mosaic-overlay').hideLoading();
+          $('.modal', $div).modal('show');
+      });
+
+      return false;
     });
   });
 </script>

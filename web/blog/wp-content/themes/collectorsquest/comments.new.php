@@ -40,10 +40,15 @@
       <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
 
         <?php
-          if (!empty($_COOKIE['cq_username']) && !empty($_COOKIE['cq_user_email']))
+          $comment_author = $comment_author_email = '';
+
+          $collector_session = $_SESSION['symfony/user/sfUser/attributes']['collector'];
+
+          if (!empty($collector_session))
           {
-            $comment_author = $_COOKIE['cq_username'];
-            $comment_author_email = $_COOKIE['cq_user_email'];
+            $comment_author       = $collector_session['display_name'];
+            $comment_author_email = $collector_session['email'];
+            $comment_author_id    = $collector_session['id'];
 
             $class = 'hide';
           }
@@ -62,6 +67,9 @@
             <input class="span12" type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>"  />
             <label for="email"><small>Email (will not be published)</small></label>
           </p>
+          <?php if(isset($comment_author_id)) : ?>
+            <input type="hidden" name="comment_author_id" id="user_id" value="<?php echo $comment_author_id; ?>"  />
+          <?php endif; ?>
         </div>
 
         <textarea name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;resize: none;" placeholder=" What do you think?"></textarea>
