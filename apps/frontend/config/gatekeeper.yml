@@ -3,8 +3,8 @@ all:
     marketplace_categories: false
     aetn_picked_off: true
     aetn_american_restoration: true
-    mycq_incomplete: false
-    aetn_mwba: false
+    mycq_incomplete: true
+    aetn_mwba: true
 
   features:
     shopping_cart: true

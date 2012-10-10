@@ -47,6 +47,8 @@ $(document).ready(function ()
     expandPrefix: '',
     userCollapseText: '[^]',
     onSlice: function() { $(this).show(); }
-  });
+  })
+  .show();
+
 });
 </script>

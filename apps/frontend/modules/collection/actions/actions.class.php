@@ -215,14 +215,14 @@ class collectionActions extends cqFrontendActions
     {
       if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
         $this->previous = $q->findOne();
       }
       else
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
         $this->previous = $q->findOne();
@@ -230,14 +230,14 @@ class collectionActions extends cqFrontendActions
 
       if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[0]);
         $this->next = $q->findOne();
       }
       else
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
         $this->next = $q->findOne();
@@ -245,7 +245,7 @@ class collectionActions extends cqFrontendActions
       /**
        * Figure out the first item in the collection
        */
-      $q = CollectionCollectibleQuery::create()
+      $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollection($collection)
         ->filterByCollectibleId($collectible_ids[0]);
       $this->first = $q->findOne();
@@ -330,7 +330,7 @@ class collectionActions extends cqFrontendActions
     }
 
     /** @var $q CollectionCollectibleQuery */
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollection($collection)
       ->filterByCollectible($collectible->getCollectible(), Criteria::NOT_EQUAL)
       ->addAscendingOrderByColumn('RAND()');
