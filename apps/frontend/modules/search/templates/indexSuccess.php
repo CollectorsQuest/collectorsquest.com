@@ -53,7 +53,7 @@
           echo '<div class="span4 brick fixed-height">';
           include_partial(
             'collection/collectible_'. $display .'_view',
-            array('collectible' => $object, 'i' => $i)
+            array('collectible' => $object, 'i' => $i, 'lazy_image' => 'all' != $sf_params->get('show'))
           );
           echo '</div>';
           break;
