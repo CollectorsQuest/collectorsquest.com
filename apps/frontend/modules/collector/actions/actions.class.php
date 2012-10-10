@@ -27,11 +27,10 @@ class collectorActions extends cqFrontendActions
     $q = FrontendCollectorCollectionQuery::create()
       ->hasCollectibles()
       ->filterByCollector($collector);
-    $collections = $q->find();
-    $this->collectionsCount = count($collections);
+    $this->collectionsCount = $q->count();
 
     $q = FrontendCollectionCollectibleQuery::create()
-      ->filterByCollection($collections);
+      ->filterByCollector($collector);
     $this->collectiblesCount = $q->count();
 
     $this->i_collect_tags = $collector->getICollectTags();
