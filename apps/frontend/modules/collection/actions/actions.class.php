@@ -116,19 +116,29 @@ class collectionActions extends cqFrontendActions
     $this->editable = $this->getUser()->isOwnerOf($collection);
 
     // calculate how many rows of collectibles will be on the page
-    $collectible_rows = count($pager->getResults());
-    $collectible_rows = $collectible_rows % 3 == 0 ? intval($collectible_rows / 3) : intval($collectible_rows / 3 + 1);
-
+    $results_count = count($pager->getResults());
+    $collectible_rows = $results_count % 3 == 0 ? intval($results_count / 3) : intval($results_count / 3 + 1);
     $this->collectible_rows = $collectible_rows;
 
-    // Building the meta tags
-    // $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
-    // $this->getResponse()->addMeta('keywords', $collection->getTagString());
+    // if we don't have (public) Collectibles in Collection
+    if ($results_count == 0)
+    {
+      // user is NOT owner of Collection -> should not display Collection
+      if (!$this->getCollector()->isOwnerOf($collection))
+      {
+        $this->forward404();
+      }
+      // user IS owner of Collection -> display Flash to explain why Collection is not visible
+      else
+      {
+        $this->getUser()->setFlash(
+          'error',
+          'Your collection will not be publicly viewable until you have publicly viewable items in it!'
+        );
+      }
+    }
 
-    // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
-
-
+    // if Collection is not public and user is it's owner
     if ($collection->getIsPublic() === false && $this->getCollector()->isOwnerOf($collection))
     {
       $this->getUser()->setFlash(
@@ -141,6 +151,9 @@ class collectionActions extends cqFrontendActions
         )
       );
     }
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
 
     if ($collection->getNumItems() == 0)
     {
