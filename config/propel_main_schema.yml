@@ -197,15 +197,8 @@ classes:
       extra_properties: ~
       nested_set: ~
       aggregate_column:
-        num_collectibles_for_sale:
-          name: num_collectibles_for_sale
-          foreign_table: collectible
-        num_collectibles:
-          name: num_collectibles
-          foreign_table: collectible
-        num_collections:
-          name: num_collections
-          foreign_table: collection
+        name: num_collectibles_for_sale
+        foreign_table: collectible
 
   CollectionCollectible:
     isCrossRef: true
