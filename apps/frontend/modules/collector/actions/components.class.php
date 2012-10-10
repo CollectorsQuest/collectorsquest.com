@@ -78,8 +78,8 @@ class collectorComponents extends cqFrontendComponents
     }
 
     /** @var $q FrontendCollectorCollectionQuery */
-    $q = FrontendCollectorCollectionQuery::create()
-      ->hasCollectibles();
+    $q = CollectorCollectionQuery::create()
+      ->hasPublicCollectibles();
 
     $q->filterByCollector($collector)
       ->orderByCreatedAt(Criteria::DESC)

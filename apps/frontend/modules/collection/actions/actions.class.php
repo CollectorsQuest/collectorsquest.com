@@ -133,7 +133,7 @@ class collectionActions extends cqFrontendActions
       {
         $this->getUser()->setFlash(
           'error',
-          'Your collection will not be publicly viewable until you have publicly viewable items in it!'
+          'Your collection will not be discoverable until you have publicly viewable items in it!'
         );
       }
     }
@@ -142,13 +142,7 @@ class collectionActions extends cqFrontendActions
     if ($collection->getIsPublic() === false && $this->getCollector()->isOwnerOf($collection))
     {
       $this->getUser()->setFlash(
-        'error',
-        sprintf(
-          'Your collection will not be publicly viewable until you fill in all the required information!<br> %s',
-          link_to('Edit collection', 'mycq_collection_by_section',
-            array('id' => $collection->getId(), 'section' => 'details')
-          )
-        )
+        'error', 'Your collection will not be discoverable until you fill in all the required information!'
       );
     }
 
@@ -297,11 +291,7 @@ class collectionActions extends cqFrontendActions
     if ($collectible->getIsPublic() === false && $this->getCollector()->isOwnerOf($collectible))
     {
       $this->getUser()->setFlash(
-        'error',
-        sprintf(
-          'Your item will not be publicly viewable until you fill in all the required information! %s',
-          link_to('Edit item', 'mycq_collectible_by_slug', $collectible)
-        )
+        'error', 'Your item will not be discoverable until you fill in all the required information!'
       );
     }
 

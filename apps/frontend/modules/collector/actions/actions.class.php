@@ -24,9 +24,9 @@ class collectorActions extends cqFrontendActions
     $this->profile   = $profile;
 
     /** @var $q FrontendCollectorCollectionQuery */
-    $q = FrontendCollectorCollectionQuery::create()
-      ->hasCollectibles()
-      ->filterByCollector($collector);
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($collector)
+      ->hasPublicCollectibles();
     $this->collectionsCount = $q->count();
 
     $q = FrontendCollectionCollectibleQuery::create()
