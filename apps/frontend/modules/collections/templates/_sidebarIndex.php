@@ -41,7 +41,14 @@
               echo '<li><strong>' . link_to('American Restoration', '@aetn_american_restoration') . '</strong></li>';
             }
           }
+          // Special case to display Halloween theme page
+          if ($category->getId() === 1559)
+          {
+            $route = '@wordpress_featured_items?id=31565&slug=halloween-collectibles';
+            echo '<li>', link_to('<strong>Halloween</strong> <sup style="color: #cc0000">NEW!</sup>', $route), '</li>';
+          }
 
+          // display 'regular' popular categories
           echo '<li>', ($category) ? link_to_content_category($category, 'text') : '', '</li>';
         }
       }
