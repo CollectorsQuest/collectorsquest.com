@@ -304,7 +304,7 @@ class ContentCategory extends BaseContentCategory
   }
 
   /**
-   * Compute the number of related collectibles for sale
+   * Compute the number of relater collectibles for sale
    *
    * @param     PropelPDO $con
    * @return    integer
@@ -315,35 +315,6 @@ class ContentCategory extends BaseContentCategory
       ->isPartOfCollection()
       ->isForSale()
       ->filterByIsPublic(true)
-      ->filterByContentCategoryWithDescendants($this)
-      ->count($con);
-  }
-
-  /**
-   * Compute the number of related collectibles
-   *
-   * @param     PropelPDO $con
-   * @return    integer
-   */
-  public function computeNumCollectibles(PropelPDO $con)
-  {
-    return CollectibleQuery::create()
-      ->isPartOfCollection()
-      ->filterByIsPublic(true)
-      ->filterByContentCategoryWithDescendants($this)
-      ->count($con);
-  }
-
-  /**
-   * Compute the number of related collections
-   *
-   * @param     PropelPDO $con
-   * @return    integer
-   */
-  public function computeNumCollections(PropelPDO $con)
-  {
-    return CollectionQuery::create()
-      ->isComplete()
       ->filterByContentCategoryWithDescendants($this)
       ->count($con);
   }
