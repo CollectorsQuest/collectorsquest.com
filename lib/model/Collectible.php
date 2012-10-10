@@ -618,7 +618,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       {
         $is_public = false;
       }
-      else if (!$this->getPrimaryImage())
+      else if (!$this->getPrimaryImage(Propel::CONNECTION_WRITE))
       {
         $is_public = false;
       }
@@ -631,6 +631,8 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     // Update only if there is a change of the public status
     if ($is_public !== $this->getIsPublic())
     {
+      $this->setIsPublic($is_public);
+
       $sql = sprintf(
         'UPDATE %s SET %s = %d WHERE %s = %d',
         CollectiblePeer::TABLE_NAME, CollectiblePeer::IS_PUBLIC, $is_public,

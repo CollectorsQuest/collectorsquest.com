@@ -251,7 +251,6 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getMycqDropboxOpenState()
   {
-    $this->setFlash();
     /**
      * Check if we have requested a different state
      * than the one defined in the cookie
@@ -331,6 +330,14 @@ class cqFrontendUser extends cqBaseUser
     {
       $this->clearUsernameCookie();
       $this->clearMycqDropboxOpenStateCookie();
+    }
+
+    // when we log in user add $_SESSION variables used in blog
+    if (true == $boolean)
+    {
+      $this->setAttribute('id', $this->getCollector()->getId(), 'collector');
+      $this->setAttribute('email', $this->getCollector()->getEmail(), 'collector');
+      $this->setAttribute('display_name', $this->getCollector()->getDisplayName(), 'collector');
     }
 
     return $ret;

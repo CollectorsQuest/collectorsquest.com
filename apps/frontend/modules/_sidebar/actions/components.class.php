@@ -120,28 +120,9 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByName('None', Criteria::NOT_EQUAL)
       ->filterByLevel(array(1, 2))
       ->hasCollectiblesForSale()
+      ->filterByNumCollectiblesForSale(3, Criteria::GREATER_EQUAL)
       ->orderBy('Name', Criteria::ASC);
     $this->categories = $q->find();
-
-
-//    // If we have less than 4 Items For Sale in the category we don't want to display it
-//    $this->categories = array();
-//    foreach ($categories as $category)
-//    {
-//      /** @var $q FrontendCollectibleForSaleQuery */
-//      $q = FrontendCollectibleForSaleQuery::create()
-//        ->filterByContentCategoryWithDescendants($category)
-//        ->isForSale();
-//
-//      // how many items for sale are there in the category
-//      $count_items = $q->count();
-//
-//      // if we have more at least 4 items we display the category in the widget
-//      if ($count_items >= 4)
-//      {
-//        $this->categories[] = $category;
-//      }
-//    }
 
     return $this->_sidebar_if(count($this->categories) > 0);
   }
@@ -624,9 +605,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       if (isset($values['cq_collector_ids']))
       {
-        $collector_ids = explode(',', (string) $values['cq_collector_ids']);
-        $collector_ids = array_map('trim', $collector_ids);
-        $collector_ids = array_filter($collector_ids);
+        $collector_ids = cqFunctions::explode(',', $values['cq_collector_ids']);
 
         /** @var $q FrontendCollectorQuery */
         $q = FrontendCollectorQuery::create()
@@ -847,7 +826,7 @@ class _sidebarComponents extends cqFrontendComponents
     if ($collectible instanceof Collectible)
     {
       /** @var $q CollectionCollectibleQuery */
-      $q = CollectionCollectibleQuery::create()
+      $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollectible($collectible->getCollectible());
 
       if ($collection)
@@ -863,12 +842,9 @@ class _sidebarComponents extends cqFrontendComponents
     $page = $collectible ? (integer) ceil($collectible->getPosition() / $limit) : $limit;
     $page = $this->getRequest()->getParameter('p', $page);
 
-    $q = CollectionCollectibleQuery::create();
-    $q->useCollectibleQuery()
-      ->filterByIsPublic(true)
-      ->endUse();
-    $q->joinWith('Collectible')
-      ->orderBy('Position', Criteria::ASC);
+    $q = FrontendCollectionCollectibleQuery::create()
+       ->joinWith('Collectible')
+       ->orderBy('Position', Criteria::ASC);
 
     // Filter by Collection if specified
     if ($collection)

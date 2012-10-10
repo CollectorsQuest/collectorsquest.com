@@ -128,6 +128,20 @@ class collectionActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
 
+
+    if ($collection->getIsPublic() === false && $this->getCollector()->isOwnerOf($collection))
+    {
+      $this->getUser()->setFlash(
+        'error',
+        sprintf(
+          'Your collection will not be publicly viewable until you fill in all the required information!<br> %s',
+          link_to('Edit collection', 'mycq_collection_by_section',
+            array('id' => $collection->getId(), 'section' => 'details')
+          )
+        )
+      );
+    }
+
     if ($collection->getNumItems() == 0)
     {
       $this->collections = null;
@@ -197,14 +211,14 @@ class collectionActions extends cqFrontendActions
     {
       if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
         $this->previous = $q->findOne();
       }
       else
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
         $this->previous = $q->findOne();
@@ -212,14 +226,14 @@ class collectionActions extends cqFrontendActions
 
       if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[0]);
         $this->next = $q->findOne();
       }
       else
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
         $this->next = $q->findOne();
@@ -227,7 +241,7 @@ class collectionActions extends cqFrontendActions
       /**
        * Figure out the first item in the collection
        */
-      $q = CollectionCollectibleQuery::create()
+      $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollection($collection)
         ->filterByCollectibleId($collectible_ids[0]);
       $this->first = $q->findOne();
@@ -276,6 +290,17 @@ class collectionActions extends cqFrontendActions
           ? $this->collectible->getCollectible() : $this->collectible))
     );
 
+    if ($collectible->getIsPublic() === false && $this->getCollector()->isOwnerOf($collectible))
+    {
+      $this->getUser()->setFlash(
+        'error',
+        sprintf(
+          'Your item will not be publicly viewable until you fill in all the required information! %s',
+          link_to('Edit item', 'mycq_collectible_by_slug', $collectible)
+        )
+      );
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -311,7 +336,7 @@ class collectionActions extends cqFrontendActions
     }
 
     /** @var $q CollectionCollectibleQuery */
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollection($collection)
       ->filterByCollectible($collectible->getCollectible(), Criteria::NOT_EQUAL)
       ->addAscendingOrderByColumn('RAND()');

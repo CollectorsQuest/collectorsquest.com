@@ -1,8 +1,7 @@
 <?php
-/**
- * @var $form CollectibleForSaleEditForm
- * @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm
- */
+  /* @var $form CollectibleForSaleEditForm */
+  /* @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm */
+  /* @var $form_shipping_zz SimpleShippingCollectorCollectibleInternationalForm */
 ?>
 
 <div class="control-group">

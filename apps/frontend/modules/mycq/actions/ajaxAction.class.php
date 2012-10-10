@@ -290,6 +290,44 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
+   * Ajax action used to set the category of a collectible, in the edit form widget
+   */
+  public function executeCollectibleChangeCategory(cqWebRequest $request, $template)
+  {
+    $collectible = CollectiblePeer::retrieveByPK(
+      $request->getParameter('collectible_id')
+    );
+    $this->forward404Unless($this->getUser()->isOwnerOf($collectible));
+
+    $form = new CollectibleCreateForm($collectible);
+    $form->useFields(array('content_category_id'));
+    $form->unsetCollectionIdField();
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter($form->getName()));
+
+      if ($form->isValid())
+      {
+        $form->save();
+
+        return $this->renderPartial('global/loading', array(
+            'url' => $this->generateUrl('mycq_collectible_by_slug', $collectible),
+        ));
+      }
+    }
+
+    $this->form = $form;
+    $this->collectible = $collectible;
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+        ->descendantsOf($root)
+        ->findTree();
+
+    return $template;
+  }
+  /**
    * @param  sfWebRequest  $request
    * @return string
    */
@@ -635,6 +673,7 @@ class ajaxAction extends cqAjaxAction
     {
       $form->setDefault('collection_id', $collection->getId());
       $form->setDefault('tags', $collection->getTags());
+      $form->setDefault('content_category_id', $collection->getContentCategoryId());
     }
 
     if ($collectible_id = $request->getParameter('collectible_id'))

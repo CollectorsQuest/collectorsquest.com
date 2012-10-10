@@ -59,7 +59,8 @@
 <?php
   $options = array(
     'id' => sprintf('collectible_%d_name', $collectible->getId()),
-    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar'
+    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar',
+    'itemprop' => 'itemprop = "name"'
   );
 
   cq_page_title($collectible->getName(), null, $options);
@@ -77,17 +78,21 @@
 
     <?php if (isset($previous)): ?>
     <a href="<?= url_for_collectible($previous) ?>"
-       class="prev-collectible" title="Previous: <?= $previous->getName(); ?>">
-      <span>prev</span>
-      <i class="icon-caret-left white"></i>
+       class="prev-zone" title="Previous: <?= $previous->getName(); ?>">
+      <span class="hide-text">prev</span>
+      <span class="prev-btn">
+        <i class="icon-chevron-left white"></i>
+      </span>
     </a>
     <?php endif; ?>
 
     <?php if (isset($next)): ?>
     <a href="<?= url_for_collectible($next) ?>"
-       class="next-collectible" title="Next: <?= $next->getName(); ?>">
-      <span>next</span>
-      <i class="icon-caret-right white"></i>
+       class="next-zone" title="Next: <?= $next->getName(); ?>">
+      <span class="hide-text">next</span>
+      <span class="next-btn">
+        <i class="icon-chevron-right white"></i>
+      </span>
     </a>
     <?php endif; ?>
 
@@ -117,7 +122,7 @@
       echo link_to(
         image_tag_collectible(
           $collectible, '620x0',
-          array('width' => null, 'height' => null)
+          array('width' => null, 'height' => null, 'itemprop' => 'image')
         ),
         src_tag_collectible($collectible, 'original'),
         array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
@@ -156,20 +161,23 @@
         <?php foreach ($additional_multimedia as $i => $m): ?>
         <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
           <?php
-            echo image_tag_multimedia(
-              $m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')
+            echo image_tag_multimedia($m, '150x150',
+              array(
+                'height' => null, 'title' => $m->getName(),
+                'style' => 'margin-bottom: 12px;', 'itemprop' => 'image'
+              )
             );
           ?>
         </a>
         <?php endforeach; ?>
       </div>
       <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible"
-         class="ui-carousel-navigation hidden left-arrow">
-        <i class="icon-chevron-up white"></i>
+         class="ui-carousel-navigation hidden up-arrow">
+          <i class="icon-chevron-up white"></i>
       </a>
       <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible"
-         class="ui-carousel-navigation hidden right-arrow">
-        <i class="icon-chevron-down white"></i>
+         class="ui-carousel-navigation hidden down-arrow">
+          <i class="icon-chevron-down white"></i>
       </a>
     </div>
   </div>
@@ -210,7 +218,7 @@
 
 <?php if ($collectible->getDescription('stripped')): ?>
   <div class="item-description <?= $editable ? 'editable_html' : '' ?>"
-       id="collectible_<?= $collectible->getId(); ?>_description">
+       id="collectible_<?= $collectible->getId(); ?>_description" itemprop = "description">
     <?= $description = $collectible->getDescription('html'); ?>
 
     <?php if (!empty($aetn_show)): ?>
