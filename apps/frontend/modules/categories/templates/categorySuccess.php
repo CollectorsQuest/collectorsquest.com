@@ -15,6 +15,10 @@
   );
 ?>
 
+<div class="cf spacer-top-20">
+  <?= nl2br($category->getDescription()); ?>
+</div>
+
 <br/>
 <div class="row" style="margin-left: -12px;">
   <div id="collections" class="row-content">
@@ -51,7 +55,7 @@
       <?= $collectors_question['content']; ?>
     </div>
   </div>
-  <?php include_partial('comments/comments', array('for_object' => $category)); ?>
+  <?php include_component('comments', 'comments', array('for_object' => $category)); ?>
 
 <?php else: ?>
 

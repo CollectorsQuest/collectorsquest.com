@@ -59,6 +59,10 @@
         </div>
       </div>
       <?php endif; ?>
+
+      <?php if ($collectible->getIsPublic() === false): ?>
+        <span class="not-public">NOT PUBLIC</span>
+      <?php endif; ?>
     </li>
     <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
     <?php $has_image = isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia; ?>

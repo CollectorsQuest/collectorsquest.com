@@ -1,13 +1,29 @@
 <?php
+
+/* @var $collectible Collectible */
+/* @var $sf_request cqWebRequest */
+/* @var $sf_params sfParameterHolder */
+
 /**
- * @var $collectible Collectible
+ * We do not want to use lazy image loading when we have:
+ *  1) infinite scroll
+ *  2) an Ajax request
  */
+$lazy_image = !isset($lazy_image) || $lazy_image;
+$lazy_image = $lazy_image && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_params->get('show')
+
 ?>
+
 <div class="span3 thumbnail link">
   <?php
-    echo link_to_collectible($collectible, 'image', array(
-      'image_tag' => array('width' => 150, 'height' => 150, 'max_width' => 132, 'max_height' => 132)
-    ));
+    echo link_to_collectible(
+      $collectible, 'image', array(
+        'image_tag' => array(
+          'width' => 150, 'height' => 150, 'max_width' => 132,
+          'max_height' => 132, 'class' => $lazy_image ? 'lazy' : ''
+        )
+      )
+    );
   ?>
   <p>
     <?php

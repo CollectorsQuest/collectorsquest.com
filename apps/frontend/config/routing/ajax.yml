@@ -39,6 +39,12 @@ ajax_mycq:
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
+ajax_aetn:
+  url:   /ajax/aetn/:section/:page.:sf_format
+  param: { module: aetn, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
 ajax_shopping:
   url:   /ajax/shopping/:section/:page.:sf_format
   param: { module: shopping, action: ajax, sf_format: html }
@@ -65,6 +71,11 @@ ajax_feedback:
 ajax_multimedia:
   url:   /ajax/multimedia
   param: { module: _ajax, action: multimedia }
+
+ajax_mailchimp_webhook:
+  url:   /ajax/mailchimp-webhook
+  param: { module: _ajax, action: mailChimpWebhook }
+  requirements: { sf_method: [POST] }
 
 ajax_sidebar:
   url:   /ajax/sidebar

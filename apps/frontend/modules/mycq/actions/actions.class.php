@@ -78,6 +78,14 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;
 
+    if ($this->image = $this->collector->getPhoto())
+    {
+      $this->aviary_hmac_message = $this->getUser()->hmacSignMessage(
+        json_encode(array('multimedia-id' => $this->image->getId())),
+        cqConfig::getCredentials('aviary', 'hmac_secret')
+      );
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -352,13 +360,16 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
+    /** @var $collection CollectorCollection */
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($collection),
       '@mycq_collections'
     );
 
+    /** @var $collectible Collectible */
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
 
@@ -377,9 +388,17 @@ class mycqActions extends cqFrontendActions
     // auto-set collection thumbnail if none set yet
     if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
     {
-      $collection->setPrimaryImage($collectible->getPrimaryImage()
-        ->getAbsolutePath('original'));
+      $collection->setPrimaryImage(
+        $collectible->getPrimaryImage()->getAbsolutePath('original')
+      );
       $collection->save();
+    }
+
+    if (1 == $collectible->countCollections(new Criteria()))
+    {
+      // Give the collectible the same category as the collection
+      $collectible->setContentCategoryId($collection->getContentCategoryId());
+      $collectible->save();
     }
 
     return $this->redirect($this->getController()->genUrl(array(
@@ -393,6 +412,9 @@ class mycqActions extends cqFrontendActions
   {
     /** @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
+
+    /** @var $collection CollectorCollection */
+    $collection = $collectible->getCollectorCollection();
 
     /**
      * Handle sold/purchased Collectibles
@@ -447,12 +469,9 @@ class mycqActions extends cqFrontendActions
     }
 
     $this->redirectUnless(
-      $this->getCollector()->isOwnerOf($collectible),
+      $collection instanceof CollectorCollection && $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
     );
-
-    /** @var $collection CollectorCollection */
-    $collection = $collectible->getCollectorCollection();
 
     if ($request->getParameter('cmd'))
     {
@@ -996,6 +1015,7 @@ class mycqActions extends cqFrontendActions
     /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
+      ->isPartOfCollection()
       ->isIncomplete();
 
     $this->total = $q->count();

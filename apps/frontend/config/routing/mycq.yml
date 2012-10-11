@@ -201,6 +201,11 @@ messages_batch_actions:
   url:   /messages/batch-actions
   param: { module: messages, action: batchActions }
 
+messages_thread_actions:
+  url:   /messages/thread-actions
+  param: { module: messages, action: threadActions }
+  requirements: { sf_method: post }
+
 ### SELL/BUY FEEDBACK
 mycq_collectible_feedback_leave:
   url:    /mycq/feedback/leave/:id

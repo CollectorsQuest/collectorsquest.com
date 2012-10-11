@@ -5,7 +5,11 @@ all:
       Tag: ~ # only load the helper, do not make functions from it available in twig
       Url: [link_to, url_for]
       Asset: [image_path, image_tag]
-      cqLinks: [link_to_collector, link_to_collection, link_to_collectible]
+      cqLinks:
+        - link_to_collector
+        - link_to_collection
+        - link_to_collectible
+        - link_to_model_object
       cqImages: [image_tag_multimedia]
 
     defaults:
@@ -53,7 +57,7 @@ all:
         required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
       new_comment_on_owned_item_notification:
         subject: "Someone posted a new comment about your {{ oModelObject }} on Collectors Quest!"
-        required_params: [ oModelObject, oNewComment, sThreadUrl, sCommentRemoveUrl ]
+        required_params: [ oModelObject, oNewComment, sThreadUrl, sCommentRemoveUrl, sCommentReportSpamUrl ]
 
     Shopping:
       buyer_order_confirmation:
@@ -64,6 +68,14 @@ all:
         required_params: [ oSeller, oShoppingOrder, oCollectible ]
 
     internal:
+      spam_notification_comment:
+        subject: "Comment spam reported by {{ oReporterCollector }} on {{ oModelObject }}"
+        to: info@collectorsquest.com
+        required_params: [ oReporterCollector, oModelObject, oComment ]
+      spam_notification_pm:
+        subject: "Private message spam reported by {{ oReporterCollector }}"
+        to: info@collectorsquest.com
+        required_params: [ oReporterCollector, rqMessages ]
       feedback:
         subject: "[Feedback]"
         required_params: [feedback, browser]

@@ -38,7 +38,7 @@ else
     else if ($collectible->getIsPublic() === false)
     {
       echo '<div class="alert"><strong>NOTE:</strong>',
-           ' Your item will not be publicly viewable until you fill in all the required information!',
+           ' Your item will not be discoverable until you fill in all the required information!',
            ' (marked with a <span style="color: #cc0000;">*</span> in the form below)',
            '</div>';
     }
@@ -73,6 +73,7 @@ else
 
     <div class="span8">
       <?= $form['collection_collectible_list']->renderRow(); ?>
+      <?= $form['content_category']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>
 
       <?php if (isset($form['thumbnail'])): ?>

@@ -64,6 +64,8 @@ var APP = window.APP = {
         }
       };
 
+      $('img.lazy').jail();
+
       COMMON.setupProjectWideHelpers();
     } // init
   }, // common
@@ -212,6 +214,9 @@ var APP = window.APP = {
       AVIARY.setup();
     },
     collectible: function() {
+      AVIARY.setup();
+    },
+    profile: function() {
       AVIARY.setup();
     }
   } // mycq

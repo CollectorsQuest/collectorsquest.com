@@ -2,15 +2,36 @@
 
 /** http://codex.wordpress.org/Post_Thumbnails */
 add_theme_support('post-thumbnails');
-//require_once __DIR__ .'/lib/crop-fix.php';
 
 /** Adding custom image size for the site's homepage (not the blog homepage) */
 add_image_size('homepage', 270, 270, true);
+
 /** Adding custom image size for the blog's homepage */
 add_image_size('blog-homepage-p1', 300, 300, true);
-//bt_add_image_size('thumbnail', 140, 140, array( 'center', 'top' ));
-//bt_add_image_size('large', 620, 440, array( 'center', 'top' ));
 
+// Custon taxonomy for blog posts matching
+register_taxonomy(
+  'matching', 'post',
+  array(
+    'hierarchical' => false, 'label' => 'Matching',
+    'query_var' =>  true, 'rewrite' => true
+  )
+);
+
+/**
+ * @see http://www.kanasolution.com/2011/01/session-variable-in-wordpress/
+ */
+add_action('init', 'cq_init_session', 1);
+function cq_init_session()
+{
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfSessionStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/collectorsquest/cqSessionStorage.class.php';
+
+  $options = array('session_name' => 'cq_frontend', 'auto_start' => true);
+  $session = new cqSessionStorage($options);
+  $session->initialize(array());
+}
 
 /**
  * @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types
@@ -277,7 +298,6 @@ function cq_custom_post_type_init()
   ));
 }
 
-
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
 function map_meta_cap_editorial($caps, $cap, $user_id, $args)
 {
@@ -335,7 +355,6 @@ function hide_edit_permalinks_admin_css() {
   endif;
 
 }
-
 
 // ajax post loading
 function cq_ajax_posts_comments() {
@@ -487,13 +506,39 @@ function cq_comment($comment, $args, $depth) {
   <div <?php comment_class(); ?> id="div-comment-<?php comment_ID() ?>">
     <div id="div-comment-<?php comment_ID() ?>" class="row-fluid user-comment">
       <div class="span2 text-right">
-        <a href="#">
-          <?php echo get_avatar( $comment->comment_author_email, 65 ); ?>
-        </a>
+        <?php
+          $comment_author_id = get_comment_meta(get_comment_ID(), 'comment_author_id', true);
+          $comment_author_slug = get_comment_meta(get_comment_ID(), 'comment_author_slug', true) ?: 'n-a';
+
+          $comment_author_link =
+            '<a href="/collector/' . $comment_author_id . '/' . $comment_author_slug . '"
+                title="' . $comment->comment_author . '">';
+
+          if ($comment_author_id)
+          {
+            echo  $comment_author_link . '<img src="/collector/' . $comment_author_id . '/65x65/avatar.jpg"
+                  alt="' . $comment->comment_author . '" width="65" height="65" class="gravatar_photo"></a>';
+          }
+          else
+          {
+            echo get_avatar( $comment->comment_author_email, 65 );
+          }
+        ?>
       </div>
       <div class="span10">
         <p class="bubble left">
-          <span class="comment-author"><?php comment_author_link() ?></span>
+          <span class="comment-author">
+            <?php
+              if ($comment_author_id)
+              {
+                echo $comment_author_link . $comment->comment_author . '</a>';
+              }
+              else
+              {
+                comment_author_link();
+              }
+            ?>
+          </span>
           <?php if ($comment->comment_approved == '0') : ?>
           <em>Your comment is awaiting moderation.</em>
           <?php endif; ?>
@@ -504,6 +549,13 @@ function cq_comment($comment, $args, $depth) {
     </div>
   <?php
   }
+
+// Attach comment_author_id variable to post comments
+add_action ('comment_post', 'add_meta_settings', 1);
+function add_meta_settings($comment_id) {
+  add_comment_meta($comment_id, 'comment_author_id', $_POST['comment_author_id'], true);
+  add_comment_meta($comment_id, 'comment_author_slug', $_POST['comment_author_slug'], true);
+}
 
 // ajax comments
 function add_ajaxurl_cdata_to_front() {

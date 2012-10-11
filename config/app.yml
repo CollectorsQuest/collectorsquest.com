@@ -18,25 +18,33 @@ all:
   aetn:
     shows:
       american_pickers:
-        name: American Pickers
+        name: American Pickers®
         collector: 6668
         collection: 2842
       american_restoration:
-        name: American Restoration
+        name: American Restoration™
         collector: 14728
         collection: 3961
       pawn_stars:
-        name: Pawn Stars
+        name: Pawn Stars®
         collector: 6667
         collection: 2841
       picked_off:
-        name: Picked Off
+        name: Picked Off™
         collector: 13389
         collection: 3751
-      storage_wars:
-        name: Storage Wars
+      mwba:
+        name: The Men Who Built America
         collector: -1
         collection: -1
+      storage_wars:
+        name: Storage Wars™
+        collector: -1
+        collection: -1
+      franks_picks:
+        name: Frank's Picks
+        collector: 15716
+        collection: 4224
 
     # Leave this for now for BC
     american_pickers:

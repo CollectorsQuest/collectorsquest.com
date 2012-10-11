@@ -23,13 +23,15 @@ class collectorActions extends cqFrontendActions
     $this->collector = $collector;
     $this->profile   = $profile;
 
-    $c = new Criteria();
-    $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
-    $this->collectionsCount = $collector->countCollectionsWithCollectibles($c);
+    /** @var $q FrontendCollectorCollectionQuery */
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($collector)
+      ->hasPublicCollectibles();
+    $this->collectionsCount = $q->count();
 
-    $c = new Criteria();
-    $c->add(CollectiblePeer::IS_PUBLIC, true);
-    $this->collectiblesCount = $collector->countCollectiblesInCollections($c);
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($collector);
+    $this->collectiblesCount = $q->count();
 
     $this->i_collect_tags = $collector->getICollectTags();
 

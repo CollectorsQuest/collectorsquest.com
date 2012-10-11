@@ -24,7 +24,7 @@
 
 <?php
   cq_page_title(
-    'Collectibles Seen on <strong><i>Picked Off</i></strong>', null,
+    'Collectibles Seen on <strong><i>PICKED OFF</i></strong>™', null,
     array('class' => 'row-fluid header-bar spacer-bottom-15')
   );
 ?>

@@ -27,7 +27,7 @@ class wpPost extends BasewpPost
   {
     $excerpt = parent::getPostExcerpt();
 
-    if (empty($excerpt))
+    if (empty($excerpt) && $length > 0)
     {
       $excerpt = strip_tags($this->getPostContentStripped());
     }
