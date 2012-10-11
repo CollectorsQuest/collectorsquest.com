@@ -148,22 +148,25 @@ class ContentCategoryForm extends BaseContentCategoryForm
   {
     parent::doUpdateObject($values);
 
-    // check if we need to reorder the tree
-    $parent = ContentCategoryPeer::retrieveByPK($values['parent_id']);
-
-    if ($this->getObject()->getParent() != $parent)
+    if (isset($values['parent_id']))
     {
-      if ($this->getObject()->isInTree())
+      // check if we need to reorder the tree
+      $parent = ContentCategoryPeer::retrieveByPK($values['parent_id']);
+
+      if ($this->getObject()->getParent() != $parent)
       {
-        // if the current object is somewhere in the tree
-        // we move it to its new parent
-        $this->getObject()->moveToLastChildOf($parent);
-      }
-      else
-      {
-        // if not in tree, then this is a new object
-        // and we insert it as the last child of its parent
-        $this->getObject()->insertAsLastChildOf($parent);
+        if ($this->getObject()->isInTree())
+        {
+          // if the current object is somewhere in the tree
+          // we move it to its new parent
+          $this->getObject()->moveToLastChildOf($parent);
+        }
+        else
+        {
+          // if not in tree, then this is a new object
+          // and we insert it as the last child of its parent
+          $this->getObject()->insertAsLastChildOf($parent);
+        }
       }
     }
 
