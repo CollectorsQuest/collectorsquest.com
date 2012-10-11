@@ -1,8 +1,18 @@
 <?php
+
+/* @var $collection Collection */
+/* @var $sf_request cqWebRequest */
+/* @var $sf_params sfParameterHolder */
+/* @var $i integer */
+
 /**
- * @var $collection Collection
- * @var $i integer
+ * We do not want to use lazy image loading when we have:
+ *  1) infinite scroll
+ *  2) an Ajax request
  */
+$lazy_image = !isset($lazy_image) || $lazy_image;
+$lazy_image = $lazy_image && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_params->get('show')
+
 ?>
 
 <div id="collection_<?= $collection->getId(); ?>_grid_view"
@@ -30,7 +40,7 @@
     </div>
     <?php
       echo link_to_collection($collection, 'image', array(
-          'image_tag' => array('width' => 175, 'height' => 138),
+          'image_tag' => array('width' => 175, 'height' => 138, 'class' => $lazy_image ? 'lazy' : ''),
           'link_to' => array('class' => 'mosaic-backdrop')
       ));
     ?>
