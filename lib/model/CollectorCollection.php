@@ -242,6 +242,145 @@ class CollectorCollection extends BaseCollectorCollection
     $multimedia->makeCustomThumb(190, 190, '190x190', 'top', $watermark);
   }
 
+  /**
+   * Return triple tags according to a namespace
+   *
+   * @param     string $ns
+   * @param     string $key
+   * @return    array
+   */
+  protected function getNamespacedTags($ns, $key)
+  {
+    return $this->getTags(array(
+      'is_triple' => true,
+      'namespace' => $ns,
+      'key'       => $key,
+      'return'    => 'value',
+    ));
+  }
+
+  /**
+   * Add a tag or tags for a namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   * @param     string $ns
+   * @param     string $key
+   *
+   * @return void
+   */
+  protected function addNamespacedTag($tagname, $ns, $key)
+  {
+    $tags = (array) IceTaggableToolkit::explodeTagString($tagname);
+
+    $triple_prefix = sprintf('%s:%s=', $ns, $key);
+
+    array_walk($tags, function(&$tag) use ($triple_prefix)
+    {
+      if (0 !== strpos($tag, $triple_prefix))
+      {
+        $tag = $triple_prefix.$tag;
+      }
+    });
+
+    $this->addTag($tags);
+  }
+
+  /**
+   * Set the tags for a specific namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   * @param     string $ns
+   * @param     string $key
+   *
+   * @return    void
+   */
+  protected function setNamespacedTags($tags, $ns, $key)
+  {
+    $this->removeAllNamespacedTags($ns, $key);
+    $this->addNamespacedTag($tags, $ns, $key);
+  }
+
+  /**
+   * Remove all tags for a specific namespace
+   *
+   * @param     string  $ns
+   * @param     string  $key
+   *
+   * @return    void
+   */
+  protected function removeAllNamespacedTags($ns, $key)
+  {
+    $this->removeTag($this->getTags(array(
+      'is_triple' => true,
+      'namespace' => $ns,
+      'key'       => $key,
+      'return'    => 'tag',
+    )));
+  }
+
+  /**
+   * Return tags for the INTERNAL namespace
+   *
+   * @return    array
+   */
+  public function getInternalTags()
+  {
+    return $this->getNamespacedTags(
+      CollectorCollectionPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorCollectionPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Add tag or tags to the INTERNAL namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   */
+  public function addInternalTag($tagname)
+  {
+    $this->addNamespacedTag(
+      $tagname,
+      CollectorCollectionPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorCollectionPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Remove all tags for the INTERNAL namespace
+   */
+  public function removeAllInternalTags()
+  {
+    $this->removeAllNamespacedTags(
+      CollectorCollectionPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorCollectionPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Set the tags for the INTERNAL namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   */
+  public function setInternalTags($tags)
+  {
+    $this->setNamespacedTags(
+      $tags,
+      CollectorCollectionPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorCollectionPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Return a string representation of the Internal tags
+   *
+   * @param     string $glue
+   * @return    string
+   */
+  public function getInternal($glue = ', ')
+  {
+    return implode($glue, $this->getInternalTags());
+  }
+
 }
 
 sfPropelBehavior::add('CollectorCollection', array('IceMultimediaBehavior'));

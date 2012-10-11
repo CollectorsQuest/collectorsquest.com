@@ -4,6 +4,9 @@ require 'lib/model/om/BaseCollectorCollectionPeer.php';
 
 class CollectorCollectionPeer extends BaseCollectorCollectionPeer
 {
+  const TAGS_NAMESPACE_INTERNAL   = 'internal';
+  const TAGS_KEY_TAG              = 'tag';
+  
   static public function getObjectForRoute($parameters)
   {
     $collection = null;
