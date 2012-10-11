@@ -995,6 +995,41 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return implode($glue, $this->getInternalTags());
   }
 
+  /**
+   * Return array of tags, not triple by default
+   *
+   * @param array $params
+   * @return array
+   */
+  public function getTags($params = array('is_triple' => false))
+  {
+    return parent::getTags($params);
+  }
+
+  /**
+   * Set tags
+   * by default it set only not triple tags
+   *
+   * @param $tags
+   * @param bool $all set all object tags
+   * @return mixed
+   */
+  public function setTags($tags, $all = false)
+  {
+    if (!$all)
+    {
+      $this->removeTag($this->getTags(array(
+        'is_triple' => false,
+      )));
+
+      return $this->addTag($tags);
+    }
+    else
+    {
+      return parent::setTags($tags);
+    }
+  }
+
   public function getTerms()
   {
     return TermPeer::getTerms($this);

@@ -13,6 +13,7 @@ class CollectibleForm extends BaseCollectibleForm
   public function configure()
   {
     $this->setupTagsField();
+    $this->setupInternalTagsField();
   }
 
   protected function setupTagsField()
@@ -21,17 +22,36 @@ class CollectibleForm extends BaseCollectibleForm
     // to keep the field's state between requests...
     $tags = $this->getObject()->getTags();
 
-    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
-      'label' => 'Tags'
+    $this->widgetSchema['tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
     ), array(
-      'name' => 'collectible[tags][]',
       'class' => 'tag'
     ));
 
     $this->widgetSchema['tags']->setDefault($tags);
-    $this->validatorSchema['tags'] = new sfValidatorCallback(
-      array('required' => false, 'callback' => array($this, 'validateTagsField'))
-    );
+    $this->validatorSchema['tags'] = new cqValidatorTags(array(
+    'required' => false,
+  ));
+  }
+
+  protected function setupInternalTagsField()
+  {
+    // pretty ugly hack, but in this case this is the only way
+    // to keep the field's state between requests...
+    $tags = $this->getObject()->getInternalTags();
+
+    $this->widgetSchema['internal_tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Internal Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
+    ), array(
+      'class' => 'tag'
+    ));
+
+    $this->widgetSchema['internal_tags']->setDefault($tags);
+    $this->validatorSchema['internal_tags'] = new cqValidatorTags(array(
+      'required' => false,
+    ));
   }
 
   public function validateTagsField($validator, $values)
@@ -69,6 +89,10 @@ class CollectibleForm extends BaseCollectibleForm
       $object->setTags($values['tags']);
     }
 
+    if (isset($values['internal_tags']))
+    {
+    $object->setInternalTags($values['internal_tags']);
+    }
     $object->save();
 
     return $object;

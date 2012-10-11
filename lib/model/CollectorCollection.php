@@ -407,6 +407,7 @@ class CollectorCollection extends BaseCollectorCollection
       $this->removeTag($this->getTags(array(
         'is_triple' => false,
       )));
+
       return $this->addTag($tags);
     }
     else

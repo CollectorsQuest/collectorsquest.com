@@ -36,6 +36,8 @@ class CollectorEditForm extends BaseFormPropel
       new sfValidatorPropelUnique(array('model' => 'Collector', 'column' => array('email')))
     );
 
+    $this->setupInternalTagsField();
+
     $this->widgetSchema->setNameFormat('collector[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
@@ -43,9 +45,44 @@ class CollectorEditForm extends BaseFormPropel
     parent::setup();
   }
 
+  protected function setupInternalTagsField()
+  {
+    // pretty ugly hack, but in this case this is the only way
+    // to keep the field's state between requests...
+    $tags = $this->getObject()->getInternalTags();
+
+    $this->widgetSchema['internal_tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Internal Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
+    ), array(
+      'class' => 'tag'
+    ));
+
+    $this->widgetSchema['internal_tags']->setDefault($tags);
+    $this->validatorSchema['internal_tags'] = new cqValidatorTags(array(
+      'required' => false,
+    ));
+  }
+
   public function getModelName()
   {
     return 'Collector';
   }
 
+  public function save($con = null)
+  {
+    /* @var $object Collector */
+    $object = parent::save($con);
+
+    /** @var $values array */
+    $values = $this->getValues();
+
+    if (isset($values['internal_tags']))
+    {
+      $object->setInternalTags($values['internal_tags']);
+    }
+    $object->save();
+
+    return $object;
+  }
 }
