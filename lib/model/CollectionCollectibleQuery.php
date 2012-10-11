@@ -73,7 +73,7 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
   public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
   {
     return $this
-      ->useCollectionQuery()
+      ->useCollectibleQuery()
         ->filterByContentCategoryWithDescendants($content_category, $comparison)
       ->endUse();
   }

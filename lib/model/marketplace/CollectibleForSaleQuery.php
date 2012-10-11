@@ -119,11 +119,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   {
     return $this
       ->useCollectibleQuery()
-        ->useCollectionCollectibleQuery()
-          ->useCollectionQuery()
-            ->filterByContentCategoryWithDescendants($content_category, $comparison)
-          ->endUse()
-        ->endUse()
+        ->filterByContentCategoryWithDescendants($content_category, $comparison)
       ->endUse();
   }
 
