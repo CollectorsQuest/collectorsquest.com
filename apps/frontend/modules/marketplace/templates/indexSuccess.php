@@ -45,7 +45,6 @@ $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 </div>
 <?php endif; ?>
 
-<?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
 <div class="banners-620 spacer-top-20">
   <?php
   if (!$sf_user->isAuthenticated())
@@ -63,4 +62,3 @@ $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
   }
   ?>
 </div>
-<?php endif; ?>
