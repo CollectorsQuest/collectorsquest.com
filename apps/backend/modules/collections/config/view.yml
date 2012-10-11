@@ -1,6 +1,6 @@
 editSuccess:
   stylesheets:
-    - jquery/tagedit.css
+    - backend/jquery/tagedit.css
 
   javascripts:
     - jquery/autogrow-input.js

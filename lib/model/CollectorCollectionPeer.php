@@ -172,6 +172,7 @@ class CollectorCollectionPeer extends BaseCollectorCollectionPeer
       }
     }
 
+    /*
     if ($term_ids = TermPeer::getTermIds($object))
     {
       $c = (is_null($criteria)) ? new Criteria() : clone $criteria;
@@ -215,7 +216,7 @@ class CollectorCollectionPeer extends BaseCollectorCollectionPeer
         $pks = array();
       }
     }
-
+*/
     // Check if we have enough $pks and if not get the collection category tags and get
     // collections for those tags
     if ($limit != 0 && count($pks) < $limit)
