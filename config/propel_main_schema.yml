@@ -323,18 +323,6 @@ classes:
     propel_behaviors:
       archivable: { archive_class: CommentArchive, archived_at_column: archived_at }
 
-  Term:
-    columns:
-      id:  ~
-      name:  { type: varchar, size: 100, primaryString: true }
-
-  TermRelationship:
-    columns:
-      id:  ~
-      term_id:   ~
-      model:     { type: varchar, size: 30, index: true }
-      model_id:  { type: integer }
-
   Score:
     columns:
       id:  ~

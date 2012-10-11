@@ -1030,11 +1030,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     }
   }
 
-  public function getTerms()
-  {
-    return TermPeer::getTerms($this);
-  }
-
   public function getCountCollections()
   {
     return $this->countCollections();

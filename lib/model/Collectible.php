@@ -561,7 +561,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   public function getAmazonKeywords()
   {
     $tags = $this->getTags();
-    $keywords = (!empty($tags)) ? $tags : TermPeer::getTerms($this);
+    $keywords = (!empty($tags)) ? $tags : $this->getInternalTags();
 
     if (empty($keywords))
     {
@@ -574,7 +574,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   public function getEbayKeywords()
   {
     $tags = $this->getTags();
-    $keywords = (!empty($tags)) ? $tags : TermPeer::getTerms($this);
+    $keywords = (!empty($tags)) ? $tags : $this->getInternalTags();
     if (empty($keywords))
     {
       $keywords = $this->getCollectionTags();
