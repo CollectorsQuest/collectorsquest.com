@@ -41,6 +41,10 @@ all:
         name: Storage Wars™
         collector: -1
         collection: -1
+      franks_picks:
+        name: Frank's Picks
+        collector: 15716
+        collection: 4224
 
     # Leave this for now for BC
     american_pickers:
