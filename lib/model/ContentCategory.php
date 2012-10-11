@@ -2,6 +2,33 @@
 
 require 'lib/model/om/BaseContentCategory.php';
 
+/**
+ *
+ * @method     ContentCategory setSeoCollectionsTitlePrefix(string $v)
+ * @method     string    getSeoCollectionsTitlePrefix()
+ *
+ * @method     ContentCategory setSeoMarketTitlePrefix(string $v)
+ * @method     string    getSeoMarketTitlePrefix()
+ *
+ * @method     ContentCategory setSeoCollectionsTitleSuffix(string $v)
+ * @method     string    getSeoCollectionsTitleSuffix()
+ *
+ * @method     ContentCategory setSeoMarketTitleSuffix(string $v)
+ * @method     string    getSeoMarketTitleSuffix()
+ *
+ * @method     ContentCategory setSeoCollectionsKeywords(string $v)
+ * @method     string    getSeoCollectionsKeywords()
+ *
+ * @method     ContentCategory setSeoMarketKeywords(string $v)
+ * @method     string    getSeoMarketKeywords()
+ *
+ * @method     ContentCategory setSeoCollectionsUseSingular(boolean $v)
+ * @method     boolean   getSeoCollectionsUseSingular()
+ *
+ * @method     ContentCategory setSeoMarketUseSingular(boolean $v)
+ * @method     boolean   getSeoMarketUseSingular()
+ */
+
 class ContentCategory extends BaseContentCategory
 {
 
@@ -18,10 +45,12 @@ class ContentCategory extends BaseContentCategory
   {
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_TITLE_PREFIX);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_TITLE_SUFFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_KEYWORDS);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_USE_SINGULAR);
 
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_TITLE_PREFIX);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_TITLE_SUFFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_KEYWORDS);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_USE_SINGULAR);
   }
 
@@ -235,24 +264,35 @@ class ContentCategory extends BaseContentCategory
    */
   public function getSeoCollectionsTitle()
   {
-    $title = 'Collectible ' . $this->getName() .' on Collectors Quest';
+    $prefix = $this->getSeoCollectionsTitlePrefix() ?: 'Collectible';
+    $suffix = $this->getSeoCollectionsTitleSuffix() ? ' '. $this->getSeoCollectionsTitleSuffix() : null;
+    $name = $this->getSeoCollectionsUseSingular() ? $this->getNameSingular() : $this->getName();
 
-    $q = ContentCategoryQuery::create()
-      ->hasCollectionsWithCollectibles()
-      ->limit(3);
+    $title = $prefix .' '. $name . $suffix .' on Collectors Quest';
 
-    /** @var $descendants ContentCategory[] */
-    $descendants = $this->getDescendants($q);
-
-    $names = array();
-    foreach ($descendants as $descendant)
+    if (!$keywords = $this->getSeoCollectionsKeywords())
     {
-      $names[] = $descendant->getName();
+      $q = ContentCategoryQuery::create()
+        ->hasCollectionsWithCollectibles()
+        ->limit(3);
+
+      /** @var $descendants ContentCategory[] */
+      $descendants = $this->getDescendants($q);
+
+      $names = array();
+      foreach ($descendants as $descendant)
+      {
+        $names[] = $descendant->getName();
+      }
+
+      if (!empty($names))
+      {
+        $title .= ' - ' . implode(', ', $names);
+      }
     }
-
-    if (!empty($names))
+    else
     {
-      $title .= ' - ' . implode(', ', $names);
+      $title .= ' - ' . $keywords;
     }
 
     return $title;
@@ -263,31 +303,38 @@ class ContentCategory extends BaseContentCategory
     return cqStatic::truncateText($this->getDescription(), 160, '', true);
   }
 
-  public function getSeoCollectionsKeywords()
-  {
-    return null;
-  }
-
   public function getSeoMarketTitle()
   {
-    $title = 'Buy ' . $this->getName() .' on Collectors Quest';
+    $prefix = $this->getSeoMarketTitlePrefix() ?: 'Buy';
+    $suffix = $this->getSeoMarketTitleSuffix() ? ' '. $this->getSeoMarketTitleSuffix() : null;
+    $name = $this->getSeoMarketUseSingular() ? $this->getNameSingular() : $this->getName();
 
-    $q = ContentCategoryQuery::create()
-      ->hasCollectionsWithCollectibles()
-      ->limit(3);
+    $title = $prefix .' '. $name . $suffix .' on Collectors Quest';
 
-    /** @var $descendants ContentCategory[] */
-    $descendants = $this->getDescendants($q);
-
-    $names = array();
-    foreach ($descendants as $descendant)
+    if (!$keywords = $this->getSeoCollectionsKeywords())
     {
-      $names[] = $descendant->getName();
+      // @todo: $q->hasCollectionsWithCollectiblesForSale()
+      $q = ContentCategoryQuery::create()
+        ->hasCollectionsWithCollectibles()
+        ->limit(3);
+
+      /** @var $descendants ContentCategory[] */
+      $descendants = $this->getDescendants($q);
+
+      $names = array();
+      foreach ($descendants as $descendant)
+      {
+        $names[] = $descendant->getName();
+      }
+
+      if (!empty($names))
+      {
+        $title .= ' - ' . implode(', ', $names);
+      }
     }
-
-    if (!empty($names))
+    else
     {
-      $title .= ' - ' . implode(', ', $names);
+      $title .= ' - ' . $keywords;
     }
 
     return $title;
@@ -296,11 +343,6 @@ class ContentCategory extends BaseContentCategory
   public function getSeoMarketDescription()
   {
     return cqStatic::truncateText($this->getDescription(), 160, '', true);
-  }
-
-  public function getSeoMarketKeywords()
-  {
-    return null;
   }
 
   /**

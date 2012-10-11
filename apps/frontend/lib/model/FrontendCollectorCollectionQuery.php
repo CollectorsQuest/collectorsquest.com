@@ -47,10 +47,6 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
    */
   public function hasCollectibles()
   {
-    return parent::hasCollectibles()
-      ->useCollectionCollectibleQuery()
-        ->filterByIsPublic(true)
-      ->endUse()
-      ->groupBy('Id');
+    return $this->hasPublicCollectibles();
   }
 }

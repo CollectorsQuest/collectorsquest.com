@@ -49,6 +49,7 @@
             $comment_author       = $collector_session['display_name'];
             $comment_author_email = $collector_session['email'];
             $comment_author_id    = $collector_session['id'];
+            $comment_author_slug  = $collector_session['slug'];
 
             $class = 'hide';
           }
@@ -67,8 +68,9 @@
             <input class="span12" type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>"  />
             <label for="email"><small>Email (will not be published)</small></label>
           </p>
-          <?php if(isset($comment_author_id)) : ?>
+          <?php if(isset($comment_author_id) && isset($comment_author_slug)) : ?>
             <input type="hidden" name="comment_author_id" id="user_id" value="<?php echo $comment_author_id; ?>"  />
+            <input type="hidden" name="comment_author_slug" id="user_slug" value="<?php echo $comment_author_slug; ?>"  />
           <?php endif; ?>
         </div>
 

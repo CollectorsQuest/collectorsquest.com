@@ -335,9 +335,11 @@ class cqFrontendUser extends cqBaseUser
     // when we log in user add $_SESSION variables used in blog
     if (true == $boolean)
     {
-      $this->setAttribute('id', $this->getCollector()->getId(), 'collector');
-      $this->setAttribute('email', $this->getCollector()->getEmail(), 'collector');
-      $this->setAttribute('display_name', $this->getCollector()->getDisplayName(), 'collector');
+      $collector = $this->getCollector();
+      $this->setAttribute('id', $collector->getId(), 'collector');
+      $this->setAttribute('email', $collector->getEmail(), 'collector');
+      $this->setAttribute('display_name', $collector->getDisplayName(), 'collector');
+      $this->setAttribute('slug', $collector->getSlug(), 'collector');
     }
 
     return $ret;

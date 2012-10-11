@@ -22,12 +22,7 @@ SmartMenu::setSelected('mycq_incomplete_tabs', 'collections');
         <div class="row mycq-collectibles">
           <div class="row-content">
             <?php if ($total == 0): ?>
-              <div class="thumbnail link no-collections-uploaded-box">
-                <span class="Chivo webfont info-no-collections-uploaded">
-                  Great! <br>
-                  You do not have any incomplete collections.
-                </span>
-              </div>
+              &nbsp;&nbsp;<strong>Great!</strong> You do not have any incomplete collections.<br/><br/>
             <?php endif; ?>
 
             <?php foreach ($pager->getResults() as $i => $collection): ?>
