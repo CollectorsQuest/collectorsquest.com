@@ -308,7 +308,7 @@ class SellerPackagesForm extends BaseForm
 
   public function applyPromoCode($validator, $values)
   {
-    if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
+    if (empty($values['promo_code']))
     {
       throw new sfValidatorErrorSchema($validator, array(
         'promo_code'=> new sfValidatorError($validator,
@@ -361,16 +361,6 @@ class SellerPackagesForm extends BaseForm
         if ($this->package->getPackagePrice() <= $this->package->getDiscount())
         {
           $this->validatorSchema['payment_type']->setOption('required', false);
-        }
-        else if (IceGateKeeper::locked('mycq_seller_pay'))
-        {
-          throw new sfValidatorErrorSchema(
-            $validator, array(
-              'promo_code' => new sfValidatorError(
-                $validator, 'This promo code cannot be used in beta testing mode!'
-              )
-            )
-          );
         }
       }
 

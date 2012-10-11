@@ -6,9 +6,9 @@
     $('a[rel="popover"]').popover();
     $('a[rel="clickover"]').clickover();
 
-    $("a[target='_blank']", '#sf_admin_content')
+    $("a[target='_blank']", '#sf_admin_content td.sf_admin_text')
       .attr({title: 'Opens in a new window'})
-      .prepend('<i class="icon-external-link">&nbsp;</i>&nbsp;');
+      .append('&nbsp;<i class="icon-external-link">&nbsp;</i>&nbsp;');
   });
 
   // Adjust table to fit filters if they exist

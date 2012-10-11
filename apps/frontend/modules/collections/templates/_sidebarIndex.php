@@ -20,11 +20,11 @@
         if ($category->getId() === 2266)
         {
           // Special case to have Pawn Stars and Picked Off appear alphabetically in list
-          echo '<li><strong>' . link_to('Pawn Stars', '@aetn_pawn_stars') . '</strong></li>';
+          echo '<li><strong><em>' . link_to('Pawn Stars', '@aetn_pawn_stars') . '</em></strong></li>';
 
           if (IceGateKeeper::open('aetn_picked_off', 'page'))
           {
-            echo '<li><strong>' . link_to('Picked Off', '@aetn_picked_off') . '</strong></li>';
+            echo '<li><strong><em>' . link_to('Picked Off', '@aetn_picked_off') . '</em></strong></li>';
           }
 
           $route = '@wordpress_featured_items?id=29455&slug=political-buttons';
@@ -35,10 +35,10 @@
           // Special case to have American Pickers and American Restoration appear alphabetically in list
           if ($category->getId() === 402)
           {
-            echo '<li><strong>' . link_to('American Pickers', '@aetn_american_pickers') . '</strong></li>';
+            echo '<li><strong><em>' . link_to('American Pickers', '@aetn_american_pickers') . '</em></strong></li>';
             if (IceGateKeeper::open('aetn_american_restoration', 'page'))
             {
-              echo '<li><strong>' . link_to('American Restoration', '@aetn_american_restoration') . '</strong></li>';
+              echo '<li><strong><em>' . link_to('American Restoration', '@aetn_american_restoration') . '</em></strong></li>';
             }
           }
           // Special case to display Halloween theme page

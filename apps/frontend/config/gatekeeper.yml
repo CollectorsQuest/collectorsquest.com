@@ -12,7 +12,6 @@ all:
     mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false
-    mycq_seller_pay: true
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
@@ -34,7 +33,6 @@ next:
     mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false
-    mycq_seller_pay: true
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
@@ -55,7 +53,6 @@ dev:
     mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false
-    mycq_seller_pay: true
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
