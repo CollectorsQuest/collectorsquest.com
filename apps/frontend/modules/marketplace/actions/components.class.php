@@ -32,13 +32,13 @@ class marketplaceComponents extends cqFrontendComponents
   public function executeDiscoverCollectiblesForSale()
   {
     $q = $this->getRequestParameter('q');
-    $s = $this->getRequestParameter('s', 'most-popular');
+    $s = $this->getRequestParameter('s', 'most-recent');
     $p = $this->getRequestParameter('p', 1);
 
     // Initialize the $pager
     $pager = null;
 
-    if (!empty($q) || $s != 'most-popular')
+    if (!empty($q) || $s != 'most-recent')
     {
       $query = array(
         'q' => $q,
@@ -70,11 +70,9 @@ class marketplaceComponents extends cqFrontendComponents
           $query['filters']['uint2'] = array('min' => 25000);
           break;
         case 'most-recent':
+        default:
           $query['sortby'] = 'date';
           $query['order'] = 'desc';
-          break;
-        case 'most-popular':
-        default:
           break;
       }
 
