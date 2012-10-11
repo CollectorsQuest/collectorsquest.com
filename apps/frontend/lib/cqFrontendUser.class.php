@@ -326,6 +326,7 @@ class cqFrontendUser extends cqBaseUser
       $this->setAttribute('id', $this->getCollector()->getId(), 'collector');
       $this->setAttribute('email', $this->getCollector()->getEmail(), 'collector');
       $this->setAttribute('display_name', $this->getCollector()->getDisplayName(), 'collector');
+      $this->setAttribute('slug', $this->getCollector()->getSlug(), 'collector');
     }
 
     return $ret;

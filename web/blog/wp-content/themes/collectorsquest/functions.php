@@ -508,11 +508,17 @@ function cq_comment($comment, $args, $depth) {
       <div class="span2 text-right">
         <?php
           $comment_author_id = get_comment_meta(get_comment_ID(), "comment_author_id", true);
+          $comment_author_slug = get_comment_meta(get_comment_ID(), "comment_author_slug", true);
+          $comment_author_link =
+            '<a
+              href="/collector/' . $comment_author_id . '/' . $comment_author_slug . '"
+              title="' . $comment->comment_author . '"
+            >';
 
           if ($comment_author_id)
           {
-            echo '<img src="/collector/' . $comment_author_id . '/65x65/avatar.jpg"
-                  alt="' . $comment->comment_author . '" width="65" height="65" class="gravatar_photo">';
+            echo  $comment_author_link . '<img src="/collector/' . $comment_author_id . '/65x65/avatar.jpg"
+                  alt="' . $comment->comment_author . '" width="65" height="65" class="gravatar_photo"></a>';
           }
           else
           {
@@ -522,7 +528,18 @@ function cq_comment($comment, $args, $depth) {
       </div>
       <div class="span10">
         <p class="bubble left">
-          <span class="comment-author"><?php comment_author_link() ?></span>
+          <span class="comment-author">
+            <?php
+              if ($comment_author_id)
+              {
+                echo $comment_author_link . $comment->comment_author . '</a>';
+              }
+              else
+              {
+                comment_author_link();
+              }
+            ?>
+          </span>
           <?php if ($comment->comment_approved == '0') : ?>
           <em>Your comment is awaiting moderation.</em>
           <?php endif; ?>
@@ -538,6 +555,7 @@ function cq_comment($comment, $args, $depth) {
 add_action ('comment_post', 'add_meta_settings', 1);
 function add_meta_settings($comment_id) {
   add_comment_meta($comment_id, 'comment_author_id', $_POST['comment_author_id'], true);
+  add_comment_meta($comment_id, 'comment_author_slug', $_POST['comment_author_slug'], true);
 }
 
 // ajax comments
