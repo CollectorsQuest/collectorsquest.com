@@ -1,22 +1,22 @@
 <?php
 
 /**
- * CollectorRating form.
+ * ShoppingOrderFeedack form.
  *
  * @package    CollectorsQuest
  * @subpackage form
  * @author     Collectors Quest, Inc.
  */
-class CollectorRatingForm extends BaseCollectorRatingForm
+class ShoppingOrderFeedackForm extends BaseShoppingOrderFeedbackForm
 {
   public function configure()
   {
-    $this->useFields(array('rate','comment'));
+    $this->useFields(array('rating', 'comment'));
     $this->getWidgetSchema()->setFormFormatterName('BootstrapWithRowFluid');
 
-    $this->widgetSchema['rate'] = new sfWidgetFormSelectRadio(array(
+    $this->widgetSchema['rating'] = new sfWidgetFormSelectRadio(array(
       'choices'   => array_merge(
-        $this->widgetSchema['rate']->getOption('choices'), array(''=>'Leave later')
+        $this->widgetSchema['rating']->getOption('choices'), array(''=>'Leave later')
       ),
       'formatter' => array($this, 'inlineRadioInputFormatter'),
     ));

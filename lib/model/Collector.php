@@ -1517,18 +1517,19 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * @param string $rate
+   * @param  string  $rating
    * @return int
    */
-  public function getFeedbackCount($rate = null)
+  public function getFeedbackCount($rating = null)
   {
-    $q = CollectorRatingQuery::create();
-    $q->add(CollectorRatingPeer::IS_RATED, true);
-    if ($rate)
+    $q = ShoppingOrderFeedbackQuery::create();
+    $q->add(ShoppingOrderFeedbackPeer::IS_RATED, true);
+    if ($rating)
     {
-      $q->filterByRate($rate);
+      $q->filterByRating($rating);
     }
-    return $this->countCollectorRatingsRelatedByToCollectorId($q);
+
+    return $this->countShoppingOrderFeedbacksRelatedByBuyerId($q);
   }
 
   /**
@@ -1538,12 +1539,13 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function getPosFeedbackPercentage()
   {
     $criteria = new Criteria();
-    $criteria->add(CollectorRatingPeer::IS_RATED, true);
-    $total =  $this->countCollectorRatingsRelatedByToCollectorId($criteria);
-    $criteria->add(CollectorRatingPeer::RATE, CollectorRatingPeer::RATE_POSITIVE);
-    $positive = $this->countCollectorRatingsRelatedByToCollectorId($criteria);
+    $criteria->add(ShoppingOrderFeedbackPeer::IS_RATED, true);
+    $total = $this->countShoppingOrderFeedbacksRelatedByBuyerId($criteria);
 
-    return round(($positive/$total) * 100)  ;
+    $criteria->add(ShoppingOrderFeedbackPeer::RATING, ShoppingOrderFeedbackPeer::RATING_POSITIVE);
+    $positive = $this->countShoppingOrderFeedbacksRelatedByBuyerId($criteria);
+
+    return round(($positive / $total) * 100);
   }
 
   /**

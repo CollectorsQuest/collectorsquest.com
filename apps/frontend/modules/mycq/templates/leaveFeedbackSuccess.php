@@ -1,8 +1,8 @@
 <?php
 /**
  * @var $pager PropelModelPager
- * @var $forms CollectorRatingForm[]
- * @var $collector_rating CollectorRating
+ * @var $forms ShoppingOrderFeedbackForm[]
+ * @var $shopping_order_feedback ShoppingOrderFeedback
  */
 
 
@@ -20,8 +20,8 @@
     <div class="tab-pane active">
 
       <div class="tab-content-inner">
-        <?= form_tag(isset($collector_rating)
-        ? '@mycq_collectible_feedback_leave?id='.$collector_rating->getId()
+        <?= form_tag(isset($shopping_order_feedback)
+        ? '@mycq_collectible_feedback_leave?id='.$shopping_order_feedback->getId()
         : '@mycq_feedback_leave?page='.$pager->getPage()); ?>
         <div class="row mycq-collectibles">
             <?php if (count($forms)): ?>

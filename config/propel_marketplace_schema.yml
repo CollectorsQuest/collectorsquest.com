@@ -120,6 +120,23 @@ classes:
       extra_properties: ~
       timestampable:  ~
 
+
+  ShoppingOrderFeedback:
+    columns:
+      id:  ~
+      shopping_order_id:  { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: cascade }
+      collectible_id:     { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      seller_id:          { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      buyer_id:           { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: setnull }
+      rating:             { type: enum, valueSet: "positive, neutral, negative", required: true }
+      rating_for:         { type: enum, valueSet: "seller, buyer", required: true }
+      comment:            { type: longvarchar }
+      is_rated:           { type: boolean, default: false }
+
+    propel_behaviors:
+      timestampable:  ~
+
+
   ShippingReference:
     columns:
       id:                   ~
@@ -212,18 +229,3 @@ classes:
       amount:        { type: float }
       amount_type:   { type: varchar, default: pending, size: 255 }
       created_at:  ~
-
-  CollectorRating:
-    columns:
-      id:  ~
-      from_collector_id:    { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: cascade }
-      to_collector_id:      { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: cascade }
-      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-      rate:                 { type: enum, valueSet: "positive, neutral, negative", required: true }
-      rate_for:             { type: enum, valueSet: "seller, buyer", required: true }
-      comment:              { type: longvarchar }
-      is_rated:             { type: boolean, default: false }
-
-
-    propel_behaviors:
-      timestampable:  ~

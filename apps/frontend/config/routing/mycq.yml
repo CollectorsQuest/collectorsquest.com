@@ -1,4 +1,5 @@
-### MY CQ
+
+### PROFILE
 
 mycq_aviary_update_image:
   url:   /mycq/aviary-update-image
@@ -38,9 +39,26 @@ mycq_profile_addresses_delete:
   options:  { model: CollectorAddress, type: object }
   requirements: { id: '\d+', sf_method: [get, delete] }
 
-mycq_dropbox:
-  url:   /mycq/dropbox
-  param: { module: mycq, action: dropbox }
+mycq_collector_address_new:
+  url:    /mycq/addresses/new
+  param:  { module: mycq, action: addNewAddress }
+
+mycq_collector_address_edit:
+  url:    /mycq/addresses/:id/edit
+  class:  sfPropelORMRoute
+  options: { model: CollectorAddress, type: object }
+  param:  { module: mycq, action: editAddress }
+  requirements: { id: '\d+' }
+
+mycq_collector_address_delete:
+  url:    /mycq/addresses/:id/delete
+  class:  sfPropelORMRoute
+  options: { model: CollectorAddress, type: object }
+  param:  { module: mycq, action: deleteAddress }
+  requirements: { id: '\d+', sf_method: [get, delete] }
+
+
+### COLLECTIONS
 
 mycq_collections:
   url:   /mycq/collections
@@ -97,6 +115,13 @@ mycq_incomplete_collectibles:
   url:   /mycq/incomplete/collectibles
   param: { module: mycq, action: incompleteCollectibles }
 
+mycq_dropbox:
+  url:   /mycq/dropbox
+  param: { module: mycq, action: dropbox }
+
+
+### MARKETPLACE
+
 mycq_marketplace:
   url:   /mycq/marketplace
   param: { module: mycq, action: marketplace }
@@ -117,32 +142,6 @@ mycq_marketplace_credit_history:
   url:   /mycq/marketplace/credit-history
   param: { module: mycq, action: marketplaceCreditHistory }
 
-mycq_wanted:
-  url:   /mycq/wanted
-  param: { module: mycq, action: wanted }
-
-mycq_friends:
-  url:   /mycq/friends
-  param: { module: mycq, action: friends }
-
-mycq_collector_address_new:
-  url:    /mycq/addresses/new
-  param:  { module: mycq, action: addNewAddress }
-
-mycq_collector_address_edit:
-  url:    /mycq/addresses/:id/edit
-  class:  sfPropelORMRoute
-  options: { model: CollectorAddress, type: object }
-  param:  { module: mycq, action: editAddress }
-  requirements: { id: '\d+' }
-
-mycq_collector_address_delete:
-  url:    /mycq/addresses/:id/delete
-  class:  sfPropelORMRoute
-  options: { model: CollectorAddress, type: object }
-  param:  { module: mycq, action: deleteAddress }
-  requirements: { id: '\d+', sf_method: [get, delete] }
-
 mycq_shopping_order_tracking:
   url:   /mycq/order/:uuid/tracking
   class: sfPropelRoute
@@ -156,23 +155,13 @@ mycq_shopping_order:
   options: { model: ShoppingOrder, type: object }
   param: { module: mycq, action: shoppingOrder }
 
-mycq_shopping_orders:
-  url:   /mycq/orders
-  param: { module: mycq, action: shoppingOrders }
+mycq_feedback_leave:
+  url:    /mycq/feedback/leave
+  param:  { module: mycq, action: leaveFeedback }
 
-mycq_upload_cancel:
-  url:   /mycq/upload/:batch/cancel
-  param: { module: mycq, action: uploadCancel }
-  requirements: { batch: '\w{32}' }
-
-mycq_upload_finish:
-  url:   /mycq/upload/:batch/finish
-  param: { module: mycq, action: uploadFinish }
-  requirements: { batch: '\w{32}' }
-
-mycq:
-  url:   /mycq
-  param: { module: mycq, action: index }
+mycq_feedback:
+  url:    /mycq/feedback
+  param:  { module: mycq, action: leaveFeedback }
 
 
 ### MESSAGES
@@ -206,11 +195,27 @@ messages_thread_actions:
   param: { module: messages, action: threadActions }
   requirements: { sf_method: post }
 
-### SELL/BUY FEEDBACK
-mycq_collectible_feedback_leave:
-  url:    /mycq/feedback/leave/:id
-  param:  { module: mycq, action: leaveFeedback }
 
-mycq_feedback_leave:
-  url:    /mycq/feedback/leave
-  param:  { module: mycq, action: leaveFeedback }
+### MISC
+
+mycq_upload_cancel:
+  url:   /mycq/upload/:batch/cancel
+  param: { module: mycq, action: uploadCancel }
+  requirements: { batch: '\w{32}' }
+
+mycq_upload_finish:
+  url:   /mycq/upload/:batch/finish
+  param: { module: mycq, action: uploadFinish }
+  requirements: { batch: '\w{32}' }
+
+mycq_wanted:
+  url:   /mycq/wanted
+  param: { module: mycq, action: wanted }
+
+mycq_friends:
+  url:   /mycq/friends
+  param: { module: mycq, action: friends }
+
+mycq:
+  url:   /mycq
+  param: { module: mycq, action: index }

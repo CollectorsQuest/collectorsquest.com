@@ -453,17 +453,17 @@ class collectorActions extends cqFrontendActions
 
     $this->filter_by = $request->getParameter('filter');
 
-    /* @var $q CollectorRatingQuery */
-    $q = CollectorRatingQuery::create()
+    /* @var $q ShoppingOrderFeedbackQuery */
+    $q = ShoppingOrderFeedbackQuery::create()
       ->filterByIsRated(true);
 
     switch ($this->filter_by)
     {
       case 'others':
-        $q->filterByCollectorRelatedByFromCollectorId($collector);
+        $q->filterByCollectorRelatedBySellerId($collector);
       break;
       default:
-        $q->filterByCollectorRelatedByToCollectorId($collector);
+        $q->filterByCollectorRelatedByBuyerId($collector);
       break;
     }
 

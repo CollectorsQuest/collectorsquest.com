@@ -1033,55 +1033,60 @@ class mycqActions extends cqFrontendActions
   public function executeLeaveFeedback(sfWebRequest $request)
   {
     $this->tab = null;
-    /* @var $q CollectorRatingQuery */
-    $q = CollectorRatingQuery::create()
-      ->filterByCollectorRelatedByFromCollectorId($this->getUser()->getCollector())
+
+    /* @var $q ShoppingOrderFeedbackQuery */
+    $q = ShoppingOrderFeedbackQuery::create()
+      ->filterByCollectorRelatedBySellerId($this->getUser()->getCollector())
       ->filterByIsRated(false);
 
     if ($request->getParameter('id'))
     {
       $q->filterById((int) $request->getParameter('id'));
-      $this->collector_rating = $q->findOne();
-      if (!$this->collector_rating)
+      $this->shopping_order_feedback = $q->findOne();
+      if (!$this->shopping_order_feedback)
       {
         return $this->redirect('mycq_collectible_by_slug',
-          CollectorRatingPeer::retrieveByPK((int) $request->getParameter('id'))->getCollectible());
+          ShoppingOrderFeedbackPeer::retrieveByPK((int) $request->getParameter('id'))->getCollectible());
       }
-      $collector_ratings = array($this->collector_rating);
-      $this->tab = $this->collector_rating->getCollectible()->getName();
+      $shopping_order_feedbacks = array($this->shopping_order_feedback);
+      $this->tab = $this->shopping_order_feedback->getCollectible()->getName();
     }
     else
     {
       $pager = new PropelModelPager($q, 5);
       $pager->setPage($this->getRequestParameter('page', 1));
       $pager->init();
-      /** @var $collector_ratings CollectorRating */
-      $collector_ratings = $pager->getResults();
       $this->pager = $pager;
+
+      /** @var $shopping_order_feedbacks ShoppingOrderFeedback[] */
+      $shopping_order_feedbacks = $pager->getResults();
     }
 
     $success = false;
     $forms = array();
-    foreach ($collector_ratings as $collector_rating)
+
+    foreach ($shopping_order_feedbacks as $shopping_order_feedback)
     {
-      $collector_rating->setRate(null);
-      $form = new CollectorRatingForm($collector_rating);
+      $shopping_order_feedback->setRating(null);
+      $form = new ShoppingOrderFeedbackForm($shopping_order_feedback);
       $f_name = $form->getName();
-      $form->getWidgetSchema()
-        ->setNameFormat($f_name . '[' . $collector_rating->getId(). '][%s]');
+      $form->getWidgetSchema()->setNameFormat($f_name . '[' . $shopping_order_feedback->getId(). '][%s]');
+
       if ($request->isMethod(sfWebRequest::POST))
       {
-        /** @var $collector_rating CollectorRating  */
-        $collector_rating->setIsRated(true);
+        /** @var $shopping_order_feedback ShoppingOrderFeedback  */
+        $shopping_order_feedback->setIsRated(true);
+
         /** @var $p array */
         $p = $request->getParameter($f_name);
-        if (isset($p[$collector_rating->getId()]))
+
+        if (isset($p[$shopping_order_feedback->getId()]))
         {
           // skip feedbacks that left for later
-          if ($p[$collector_rating->getId()]['rate'] != '')
+          if ($p[$shopping_order_feedback->getId()]['rating'] != '')
           {
             // leave only forms with errors
-            if ($form->bindAndSave($p[$collector_rating->getId()]))
+            if ($form->bindAndSave($p[$shopping_order_feedback->getId()]))
             {
               $success = true;
             }
@@ -1091,9 +1096,9 @@ class mycqActions extends cqFrontendActions
             }
           }
           // single item
-          elseif (isset($this->collector_rating))
+          elseif (isset($this->shopping_order_feedback))
           {
-            return $this->redirect('mycq_collectible_by_slug', $this->collector_rating->getCollectible());
+            return $this->redirect('mycq_collectible_by_slug', $this->shopping_order_feedback->getCollectible());
           }
         }
       }
@@ -1102,6 +1107,7 @@ class mycqActions extends cqFrontendActions
         $forms[] = $form;
       }
     }
+
     if ($request->isMethod(sfWebRequest::POST))
     {
       // we have at least one feedback
@@ -1112,16 +1118,16 @@ class mycqActions extends cqFrontendActions
         );
       }
 
-        // we have forms with error
-      if (count($forms) && count($forms) != count($collector_ratings))
+      // we have forms with error
+      if (count($forms) && count($forms) != count($shopping_order_feedbacks))
       {
         $this->tab = 'Current';
       }
       else
       {
-        if (isset($this->collector_rating))
+        if (isset($this->shopping_order_feedback))
         {
-          return $this->redirect('mycq_collectible_by_slug', $this->collector_rating->getCollectible());
+          return $this->redirect('mycq_collectible_by_slug', $this->shopping_order_feedback->getCollectible());
         }
         else
         {
@@ -1130,7 +1136,10 @@ class mycqActions extends cqFrontendActions
       }
 
     }
+
     $this->forms = $forms;;
+
     return sfView::SUCCESS;
   }
+
 }

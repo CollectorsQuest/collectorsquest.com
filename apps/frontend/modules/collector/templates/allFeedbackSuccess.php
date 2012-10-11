@@ -3,7 +3,7 @@
  * @var $sf_user cqFrontendUser
  * @var $collector Collector
  * @var $profile CollectorProfile
- * @var $collector_rating CollectorRating
+ * @var $shopping_order_feedback ShoppingOrderFeedback
  */
 ?>
 
@@ -41,13 +41,13 @@
     </div>
     <div class="span6 pull-right" style="padding-top: 2px;">
       <span class="label label rate_negative pull-right spacer-left">
-        <?= $collector->getFeedbackCount(CollectorRatingPeer::RATE_NEGATIVE) ?> negative
+        <?= $collector->getFeedbackCount(ShoppingOrderFeedbackPeer::RATING_NEGATIVE) ?> negative
       </span>
       <span class="label label rate_neutral pull-right spacer-left">
-        <?= $collector->getFeedbackCount(CollectorRatingPeer::RATE_NEUTRAL) ?> neutral
+        <?= $collector->getFeedbackCount(ShoppingOrderFeedbackPeer::RATING_NEUTRAL) ?> neutral
       </span>
       <span class="label rate_positive pull-right">
-        <?= $collector->getFeedbackCount(CollectorRatingPeer::RATE_POSITIVE) ?> positive
+        <?= $collector->getFeedbackCount(ShoppingOrderFeedbackPeer::RATING_POSITIVE) ?> positive
       </span>
     </div>
   </div>
@@ -55,25 +55,25 @@
 
 <table class="table ">
     <tbody>
-    <?php if (!$pager->isEmpty()): foreach ($pager->getResults() as $collector_rating): ?>
+    <?php if (!$pager->isEmpty()): foreach ($pager->getResults() as $shopping_order_feedback): ?>
     <tr>
         <td>
-          <span class="label rate_<?= strtolower($collector_rating->getRate()) ?>">
-            <?= $collector_rating->getRate() ?>
+          <span class="label rate_<?= strtolower($shopping_order_feedback->getRating()) ?>">
+            <?= $shopping_order_feedback->getRating() ?>
           </span>
         </td>
-        <td style="max-width: 290px;"><?= $collector_rating->getComment() ?></td>
-        <td><?= $collector_rating->getUpdatedAt('M d, Y') ?></td>
+        <td style="max-width: 290px;"><?= $shopping_order_feedback->getComment() ?></td>
+        <td><?= $shopping_order_feedback->getUpdatedAt('M d, Y') ?></td>
         <td>
             <?php
-            echo link_to_collectible($collector_rating->getCollectible(), 'image', array(
+            echo link_to_collectible($shopping_order_feedback->getCollectible(), 'image', array(
                 'image_tag' => array('width' => 50, 'height' => 50)
             ));
             ?>
       </td>
       <td>
-            <?= link_to_collectible($collector_rating->getCollectible(), 'text', array('class' => 'target')); ?>
-            <br />by <?= link_to_collector($collector_rating->getCollectible()->getCollector(), 'text'); ?>
+            <?= link_to_collectible($shopping_order_feedback->getCollectible(), 'text', array('class' => 'target')); ?>
+            <br />by <?= link_to_collector($shopping_order_feedback->getCollectible()->getCollector(), 'text'); ?>
         </td>
     </tr>
         <?php endforeach ?>
@@ -86,7 +86,7 @@
 </table>
 
 <div class="row-fluid text-center">
-  <?php
+<?php
   include_component(
     'global', 'pagination',
     array(
@@ -97,6 +97,6 @@
       )
     )
   );
-  ?>
+?>
 </div>
 
