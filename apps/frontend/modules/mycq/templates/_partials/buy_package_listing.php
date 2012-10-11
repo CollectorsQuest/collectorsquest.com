@@ -20,7 +20,7 @@
             10 listings
           </span>
           <div class="price red">
-            $20
+            $20.00
             <span class="desc">
               $2.00 per listing
             </span>
@@ -33,7 +33,7 @@
             100 listings
           </span>
           <div class="price red">
-            $150
+            $150.00
             <span class="desc">
               $1.50 per listing
             </span>
@@ -52,7 +52,7 @@
             for one year
           </span>
           <div class="price red">
-            $250
+            $250.00
             <span class="desc">
               unlimited items
             </span>

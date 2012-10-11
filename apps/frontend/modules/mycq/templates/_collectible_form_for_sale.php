@@ -1,8 +1,7 @@
 <?php
-/**
- * @var $form CollectibleForSaleEditForm
- * @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm
- */
+  /* @var $form CollectibleForSaleEditForm */
+  /* @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm */
+  /* @var $form_shipping_zz SimpleShippingCollectorCollectibleInternationalForm */
 ?>
 
 <div class="control-group">
@@ -13,7 +12,9 @@
     <label class="cb-disable selected" for="<?= $form['is_ready']->renderId() ?>">
       <span>No</span>
     </label>
-    <?= $form['is_ready']->render(array('class' => 'checkbox hide')); ?>
+    <div class="visuallyhidden">
+      <?= $form['is_ready']->render(array('class' => 'checkbox', 'tabindex'=>'-1')); ?>
+    </div>
   </div>
   <br style="clear: both;"/>
   <?= $form['is_ready']->renderError(); ?>
@@ -129,7 +130,7 @@
     <br/>
   <?php elseif (!$sf_user->getCollector()->hasPayPalDetails()): ?>
     <div class="alert alert-error all-errors">
-      You must <?= link_to('setup your paypal account', '@mycq_marketplace_settings') ?>
+      You must <?= link_to('setup your store settings', '@mycq_marketplace_settings') ?>
       before you can sell in the Market.
     </div>
   <?php endif; ?>

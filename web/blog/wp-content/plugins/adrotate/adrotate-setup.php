@@ -517,8 +517,13 @@ function adrotate_check_upgrade() {
 	$adrotate_db_version = get_option("adrotate_db_version");
 
 	adrotate_database_install();
-	if($adrotate_db_version['current'] < ADROTATE_DB_VERSION) adrotate_database_upgrade();
-	if($adrotate_version['current'] < ADROTATE_VERSION) adrotate_core_upgrade();
+	if((is_array($adrotate_db_version) AND $adrotate_db_version['current'] < ADROTATE_DB_VERSION) 
+		OR (!is_array($adrotate_db_version) AND $adrotate_db_version < ADROTATE_DB_VERSION) 
+		OR $adrotate_db_version == '') adrotate_database_upgrade();
+
+	if((is_array($adrotate_version) AND $adrotate_version['current'] < ADROTATE_VERSION ) 
+		OR (!is_array($adrotate_version) AND $adrotate_version < ADROTATE_VERSION) 
+		OR $adrotate_version == '') adrotate_core_upgrade();
 }
 
 /*-------------------------------------------------------------

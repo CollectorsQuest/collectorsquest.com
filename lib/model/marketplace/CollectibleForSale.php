@@ -240,7 +240,13 @@ class CollectibleForSale extends BaseCollectibleForSale
    */
   public function getCategoryPath()
   {
-    return $this->getCollection()->getContentCategory()->getPath();
+    /** @var $content_category ContentCategory */
+    if ($content_category = $this->getCollection()->getContentCategory())
+    {
+      return $content_category->getPath();
+    }
+
+    return null;
   }
 
   /**

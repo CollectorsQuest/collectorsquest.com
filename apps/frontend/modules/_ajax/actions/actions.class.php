@@ -127,12 +127,13 @@ class _ajaxActions extends cqFrontendActions
       if ($sent)
       {
         $this->getUser()->setFlash(
-          'success_ajax',
+          'success',
           $this->__(
             'Thank you for the feedback. If needed, we will get in
              touch with you within the next business day.',
             array(), 'flash'
-          )
+          ),
+          'ajax'
         );
 
         $this->setTemplate('successFeedback');
@@ -158,6 +159,50 @@ class _ajaxActions extends cqFrontendActions
     $this->which = $request->getParameter('which', 'original');
 
     return sfView::SUCCESS;
+  }
+
+  public function executeMailChimpWebhook(sfWebRequest $request)
+  {
+    // Simple protection against random requests to the webhook
+    $this->forward404Unless($request->getParameter('key') === substr(cqConfig::getCredentials('mailchimp'), 0, 7));
+
+    /** @var $data array */
+    $data = $request->getParameter('data');
+
+    /** @var $collector Collector */
+    $collector = CollectorQuery::create()->findOneByEmail($data['email']);
+
+    // We need a collector to continue
+    $this->forward404Unless($collector instanceof Collector);
+
+    switch ($request->getParameter('type'))
+    {
+      case 'unsubscribe':
+      case 'cleaned':
+
+        // "CollectorsQuest.com Users" list
+        if ($data['list_id'] == '4b51c2b29c')
+        {
+          $collector->setPreferencesNewsletter(false);
+          $collector->save();
+        }
+
+        break;
+      case 'profile':
+
+        /** @var $merges array */
+        $merges = $data['merges'];
+
+        $collector->setPreferencesNewsletter($merges['NEWSLETTER'] === 'No' ? false : true);
+        $collector->setUserType(
+          $merges['TYPE'] == 'Seller' ? CollectorPeer::TYPE_SELLER : CollectorPeer::TYPE_COLLECTOR
+        );
+        $collector->save();
+
+        break;
+    }
+
+    return sfView::NONE;
   }
 
 }

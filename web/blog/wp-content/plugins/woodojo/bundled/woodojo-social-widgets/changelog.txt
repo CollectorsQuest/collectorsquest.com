@@ -1,0 +1,8 @@
+*** WooDojo Social Widgets Changelog ***
+
+2012.09.04 - version 1.0.2
+ * /widgets/widget-woodojo-tweets.php - Optionally find and link users mentioned in tweets.
+ * /widgets/widget-woodojo-instagram.php - Adjust the data type before storing it and decode before output.
+
+2012.07.18 - version 1.0.1
+ * /widgets/widget-woodojo-instagram.php - Check if returned transient is an object, if not then grab fresh data. Sometimes rogue instagrams break the data.

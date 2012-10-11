@@ -59,8 +59,11 @@
         </div>
       </div>
       <?php endif; ?>
+
+      <?php if ($collectible->getIsPublic() === false): ?>
+        <span class="not-public">NOT PUBLIC</span>
+      <?php endif; ?>
     </li>
-    <?php if ($image): ?>
     <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
     <?php $has_image = isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia; ?>
     <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
@@ -99,7 +102,6 @@
       </div>
     </li>
     <?php endfor; ?>
-    <?php endif; ?>
   </ul>
 </div>
 

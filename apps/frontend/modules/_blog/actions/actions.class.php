@@ -45,7 +45,7 @@ class _blogActions extends cqFrontendActions
       $this->addBreadcrumb('', null);
     }
 
-    // We do not want to hightlight the Blog header menu on static pages
+    // We do not want to highlight the Blog header menu on static pages
     if ($this->data['is_page'])
     {
       SmartMenu::setSelected('header', null);

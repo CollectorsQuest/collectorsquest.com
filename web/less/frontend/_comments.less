@@ -9,8 +9,7 @@
   margin: 10px 25px 10px 0;
 
   .username {
-    display: block;
-    width: 100%;
+    display: inline-block;
     margin-bottom: 5px;
     font-weight: bold;
     color: @blue;
@@ -51,12 +50,11 @@
     font-weight: bold;
     line-height: 16px;
     color: #786767;
-    border-top: 1px solid #7cb9da;
-    border-right: 1px solid #7cb9da;
-    border-bottom: 1px solid #7cb9da;
+	  border: 1px solid #7cb9da;
+    border-left-color: #ced3d8;
     #gradient > .vertical(#e1dede,#cecbcb);
     .background-clip(padding-box);
-    .border-radius(0 7px 7px 0);
+    .border-radius(2px 7px 7px 2px);
     .transition(0.3s linear)
   }
   .btn:hover {
@@ -92,18 +90,17 @@
     .box-shadow(inset 2px 2px 2px 2px rgba(0, 0, 0, .07));
     // disable chrome and ff textarea resize control
     resize: none;
+	  .placeholder(@blueDark);
+
+		&:focus {
+			border-color: @blue #B7B7B7 @blue @blue !important;
+		}
 
     &:focus ~ button {
-      border-color: @blue @blue @blue #B7B7B7!important;
-    }
-    &::-webkit-input-placeholder {
-      color: @blueDark;
-    }
-
-    &:-moz-placeholder {
-      color: @blueDark;
+      border-color: @blue @blue @blue #B7B7B7 !important;
     }
   }
+
   form {
     margin-bottom: 0;
   }
@@ -128,28 +125,6 @@
   .box-shadow(-1px 1px 1px rgba(50, 50, 50, 0.1));
   color: #555;
 
-  &:before {
-    border-color: #b8adad transparent;
-    border-style: solid;
-    border-width: 20px 20px 0;
-    bottom: -20px;
-    content: "";
-    display: block;
-    left: 10px;
-    position: absolute;
-    width: 0;
-  }
-  &:after {
-    border-color: #FFFFFF transparent;
-    border-style: solid;
-    border-width: 12px 12px 0;
-    bottom: -13px;
-    content: "";
-    display: block;
-    left: 48px;
-    position: absolute;
-    width: 0;
-  }
   &.left {
     margin-left: 10px;
   }

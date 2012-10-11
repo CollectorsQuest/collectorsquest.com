@@ -72,27 +72,19 @@ class generalActions extends cqFrontendActions
 
       if (!empty($values['cq_collector_ids']))
       {
-        $collector_ids = explode(',', $values['cq_collector_ids']);
-        $collector_ids = array_map('trim', $collector_ids);
-        $collector_ids = array_filter($collector_ids);
+        $collector_ids = cqFunctions::explode(',', $values['cq_collector_ids']);
       }
       if (!empty($values['cq_collection_ids']))
       {
-        $collection_ids = explode(',', $values['cq_collection_ids']);
-        $collection_ids = array_map('trim', $collection_ids);
-        $collection_ids = array_filter($collection_ids);
+        $collection_ids = cqFunctions::explode(',', $values['cq_collection_ids']);
       }
       if (!empty($values['cq_collectible_ids']))
       {
-        $collectible_ids = explode(',', $values['cq_collectible_ids']);
-        $collectible_ids = array_map('trim', $collectible_ids);
-        $collectible_ids = array_filter($collectible_ids);
+        $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
       }
       if (!empty($values['magnify_video_ids']))
       {
-        $video_ids = explode(',', $values['magnify_video_ids']);
-        $video_ids = array_map('trim', $video_ids);
-        $video_ids = array_filter($video_ids);
+        $video_ids = cqFunctions::explode(',', $values['magnify_video_ids']);
       }
 
       if ($collection_ids)
@@ -100,29 +92,30 @@ class generalActions extends cqFrontendActions
         /**
          * Get 2 Collections
          *
-         * @var $q CollectorCollectionQuery
+         * @var $q FrontendCollectorCollectionQuery
          */
-        $q = CollectorCollectionQuery::create()
+        $q = FrontendCollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
-          ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+          ->addAscendingOrderByColumn('FIELD(collector_collection.id, '. implode(',', $collection_ids) .')');
 
         $this->collections = $q->find();
       }
       if ($collectible_ids)
       {
-        if (IceGateKeeper::locked('independence_day')) {
+        if (IceGateKeeper::locked('independence_day'))
+        {
           shuffle($collectible_ids);
         }
 
         /**
          * Get the Collectibles
          *
-         * @var $q CollectibleQuery
+         * @var $q FrontendCollectibleQuery
          */
-        $q = CollectibleQuery::create()
+        $q = FrontendCollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
-           ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+           ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
         IceGateKeeper::open('independence_day') ?
           $q->limit(47) : $q->limit(22);
@@ -168,9 +161,21 @@ class generalActions extends cqFrontendActions
       $form->bind($request->getParameter($form->getName()));
       if ($form->isValid())
       {
+
         /* @var $collector Collector */
         $collector = $form->getValue('collector');
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
+
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
 
         $goto = $request->getParameter('r', $form->getValue('goto'));
         $goto = !empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me');
@@ -236,6 +241,16 @@ class generalActions extends cqFrontendActions
       {
         $this->getUser()->Authenticate(true, $collector, true);
 
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
         if ($new_collector)
         {
           return $this->redirect('@mycq_profile');

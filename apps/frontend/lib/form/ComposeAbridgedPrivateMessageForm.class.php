@@ -28,7 +28,7 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
   ) {
     $this->receiver = $receiver;
 
-    parent::__construct($sender, $sf_user = null, $thread = null, $options, $CSRFSecret);
+    parent::__construct($sender, $thread = null, $options, $CSRFSecret);
 
     $this->setDefault('subject', $subject);
   }
@@ -43,7 +43,8 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
     $this->widgetSchema['goto']->setAttribute('class', 'set-value-to-href');
 
     $this->widgetSchema['body']->setAttribute(
-      'placeholder', "Send a message to ". $this->receiver
+      'placeholder',
+      'Send a message to '. $this->receiver
     );
   }
 

@@ -12,11 +12,14 @@ class BackendCollectorCollectionFormFilter extends BaseCollectorCollectionFormFi
 
   public function configure()
   {
-    $this->widgetSchema['collection_category_id'] = new bsWidgetFormInputTypeAhead(array(
-      'source' => $this->getOption(
-        'collection_category_id_url',
-        cqContext::getInstance()->getController()->genUrl('collections/collectionCategory')
-      ),
+    $this->widgetSchema['content_category_id'] = new cqWidgetFormPropelChoiceByNestedSet(array(
+      'model' => 'ContentCategory',
+      'add_empty' => true, 'chozen' => true
+    ));
+    $this->validatorSchema['content_category_id'] = new sfValidatorPropelChoice(array(
+      'required' => false,
+      'model' => 'ContentCategory',
+      'column' => 'id',
     ));
 
     $this->setupIdField();

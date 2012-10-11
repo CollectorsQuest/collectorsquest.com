@@ -12,9 +12,23 @@ require 'lib/model/om/BaseCollectible.php';
  */
 class Collectible extends BaseCollectible implements ShippingReferencesInterface
 {
-  public
-    $_multimedia = array(),
-    $_counts = array();
+  /** @var array */
+  public $_multimedia = array();
+
+  /** @var array */
+  public $_counts = array();
+
+  public function postSave(PropelPDO $con = null)
+  {
+    parent::postSave($con);
+
+    $this->updateIsPublic($con);
+  }
+
+  public function __toString()
+  {
+    return parent::__toString() ?: 'Untitled';
+  }
 
   public function getGraphId()
   {
@@ -575,6 +589,57 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   {
     return $this->getShippingRateForCountryCode(
       $this->getCollector($con)->getProfile($con)->getCountryIso3166(), $con);
+  }
+
+  public function updateIsPublic(PropelPDO $con = null)
+  {
+    if ($con === null)
+    {
+      $con = Propel::getConnection(
+        CollectiblePeer::DATABASE_NAME, Propel::CONNECTION_WRITE
+      );
+    }
+
+    // Start with the current public status of the Collectible
+    $is_public = $this->getIsPublic();
+
+    // We want to enforce the public status only on records after 15th of September, 2012
+    if ($this->getCreatedAt('U') > 1347667200 || $is_public === false)
+    {
+      if (!$this->getName())
+      {
+        $is_public = false;
+      }
+      else if (!$this->getDescription())
+      {
+        $is_public = false;
+      }
+      else if (!$this->getTags())
+      {
+        $is_public = false;
+      }
+      else if (!$this->getPrimaryImage(Propel::CONNECTION_WRITE))
+      {
+        $is_public = false;
+      }
+      else
+      {
+        $is_public = true;
+      }
+    }
+
+    // Update only if there is a change of the public status
+    if ($is_public !== $this->getIsPublic())
+    {
+      $this->setIsPublic($is_public);
+
+      $sql = sprintf(
+        'UPDATE %s SET %s = %d WHERE %s = %d',
+        CollectiblePeer::TABLE_NAME, CollectiblePeer::IS_PUBLIC, $is_public,
+        CollectiblePeer::ID, $this->getId()
+      );
+      $con->exec($sql);
+    }
   }
 
   /**

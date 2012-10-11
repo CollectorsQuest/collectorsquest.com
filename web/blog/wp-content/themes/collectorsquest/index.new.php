@@ -339,7 +339,7 @@ $lastclass = 0;
             <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
             <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
             <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo get_post_image_url(); ?>" pi:pinit:layout="horizontal"></a>
-            <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
             <!-- AddThis Button END -->
           </div>
           <?php endif; ?>

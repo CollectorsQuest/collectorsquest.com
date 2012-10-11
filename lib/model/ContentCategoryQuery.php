@@ -51,7 +51,16 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   public function hasCollections()
   {
     return $this
-      ->innerJoinCollection()
+      ->innerJoinCollectorCollection()
+      ->groupBy('Id');
+  }
+
+  public function hasCollectionsWithCollectibles()
+  {
+    return $this
+      ->useCollectorCollectionQuery(null, Criteria::INNER_JOIN)
+        ->hasCollectibles()
+      ->endUse()
       ->groupBy('Id');
   }
 
@@ -63,11 +72,22 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
    *
    * @return    ContentCategoryQuery The current query, for fluid interface
    */
-  public function descendantsOfObjectIncluded($contentCategory)
+  public function descendantsOfObjectIncluded(ContentCategory $contentCategory)
   {
     return $this
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getLeftValue(), Criteria::GREATER_EQUAL)
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getRightValue(), Criteria::LESS_EQUAL);
+  }
+
+  /**
+   * Filter by descendants of our root
+   *
+   * @return    ContentCategoryQuery
+   */
+  public function descendantsOfRoot()
+  {
+    return $this
+      ->descendantsOf(ContentCategoryQuery::create()->findRoot());
   }
 
   /**
@@ -78,7 +98,7 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
    *
    * @return    ContentCategoryQuery The current query, for fluid interface
    */
-  public function ancestorsOfObjectIncluded($contentCategory)
+  public function ancestorsOfObjectIncluded(ContentCategory $contentCategory)
   {
     return $this
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getLeftValue(), Criteria::LESS_EQUAL)

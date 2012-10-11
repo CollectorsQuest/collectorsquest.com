@@ -5,10 +5,491 @@
   margin-top: 0;
 }
 
-#mediaspace {
-  width: 720px;
-  height: 416px;
-  margin: -250px 0 0 -360px;
-  overflow: hidden;
-  .border-radius(0);
+//THE MEN WHO BUILT AMERICA LANDING PAGE
+
+#body-aetn-mwba {
+  #content {
+  padding: 0;
+  border-left: none;
+  }
+  .container-fluid.without-column {
+    width: auto;
+    margin: 0;
+  }
+}
+
+.mwba-wrapper {
+  position: relative;
+  .size(702px, 980px);
+  margin-top: 10px;
+  background: url("@{baseUrl}/misc/mwba/mwba-landing-page-bg.jpg") no-repeat 0 18px;
+
+  .top-banner {
+    position: absolute;
+    z-index: 2;
+    margin-left: 137px;
+    .mwba-top-banner();
+  }
+  .labels-ribbons {
+    position: absolute;
+    top: 396px;
+    left: 182px;
+    .size(150px, 624px);
+  }
+  .center-graphic {
+    padding-top: 68px;
+    padding-left: 130px;
+  }
+  .banner {
+    display: block;
+    position: absolute;
+    bottom: 54px;
+    left: 320px;
+  }
+}
+
+//START SPRITES
+//mwba-sprites.png
+
+.rockefeller-button, .roosevelt-button, .vanderbilt-button, .mwba-top-banner {
+  display: block;
+  background: url("@{baseUrl}/misc/mwba/mwba-sprites.png") no-repeat;
+}
+
+.rockefeller-button {
+  float: left;
+  position: relative;
+  top: 10px;
+  left: 2px;
+  .size(126px, 211px);
+  background-position: 0 0;
+  &:hover, &.over {
+    background-position: 0 -130px;
+  }
+}
+
+.roosevelt-button {
+  float: left;
+  .size(117px, 194px);
+  background-position: -219px 0;
+  &:hover, &.over {
+    background-position: -219px -130px;
+  }
+}
+.vanderbilt-button {
+  float: left;
+  position: relative;
+  top: 12px;
+  right: 2px;
+  .size(126px, 210px);
+  background-position: -425px 0;
+  &:hover, &.over {
+    background-position: -425px -130px;
+  }
+}
+
+.mwba-top-banner {
+  .size(180px, 710px);
+  background-position: 0 -264px;
+}
+
+//mwba-sprites-man-pages.png
+
+.mwba-american-flag, .mwba-title-red-man-page, .mwba-rockefeller-page-banner,
+.mwba-roosevelt-page-banner, .mwba-vanderbilt-page-banner, .mwba-man-pages-bg,
+.title-petroliana-txt, .title-railroadiana-txt, .title-rooseveltiana-txt,
+.next-tiny-arrow, .previous-tiny-arrow, .mwba_title_red_man_page, .seemore-popupbutton,
+.mwba-mp-modal-title-up, .mwba-mp-modal-title-down, .mwba-mp-modal-floral-rooseveltiana,
+.mwba-mp-modal-floral-railroadiana, .mwba-mp-modal-floral-petroliana, .previous-tiny-arrow-hover,
+.next-tiny-arrow-hover {
+  background: url("@{baseUrl}/misc/mwba/mwba-sprites-man-pages.png") no-repeat;
+  display: block;
+}
+
+.mwba-american-flag {
+  .size(50px, 980px);
+  background-position: 0 0;
+}
+
+.mwba-title-red-man-page {
+  .size(40px, 943px);
+  background-position: 0 -58px;
+}
+
+.mwba-rockefeller-page-banner {
+  .size(105px, 285px);
+  background-position: 0 -105px;
+}
+
+.mwba-roosevelt-page-banner {
+  .size(105px, 285px);
+  background-position: -290px -105px;
+}
+
+.mwba-vanderbilt-page-banner {
+  .size(105px, 285px);
+  background-position: -580px -105px;
+}
+
+.mwba-man-pages-bg {
+  .size(341px, 691px);
+  background-position: 0 -230px;
+}
+
+.title-petroliana-txt {
+  .size(16px, 193px);
+  background-position: -750px -230px;
+}
+
+.title-railroadiana-txt {
+  .size(16px, 193px);
+  background-position: -750px -270px;
+}
+
+.title-rooseveltiana-txt {
+  .size(16px, 193px);
+  background-position: -750px -250px;
+}
+
+.next-tiny-arrow {
+  .size(31px, 18px);
+  background-position: -950px -120px;
+  &:hover {
+    background-position: -950px -170px;
+  }
+}
+
+.previous-tiny-arrow {
+  .size(31px, 18px);
+  background-position: -900px -120px;
+  &:hover {
+    background-position: -900px -170px;
+  }
+}
+
+.next-tiny-arrow-hover {
+  .size(31px, 18px);
+  background-position: -950px -170px;
+}
+
+.previous-tiny-arrow-hover {
+  .size(31px, 18px);
+  background-position: -900px -170px;
+}
+
+.mwba_title_red_man_page {
+  .size(40px, 944px);
+  background-position: 0 -58px;
+}
+
+.seemore-popupbutton {
+  .size(104px, 268px);
+  background-position: -710px -295px;
+
+  &:hover {
+    background-position: -710px -405px;
+  }
+}
+
+.mwba-mp-modal-title-up {
+  width: 530px;
+  background-position: 0 -575px;
+}
+
+.mwba-mp-modal-title-down {
+  .size(20px, 530px);
+  background-position: 0 -650px;
+}
+
+.mwba-mp-modal-floral-rooseveltiana {
+  .size(30px, 413px);
+  background-position: -546px -615px;
+}
+
+.mwba-mp-modal-floral-railroadiana {
+  .size(30px, 413px);
+  background-position: -546px -650px;
+}
+
+.mwba-mp-modal-floral-petroliana {
+  .size(30px, 413px);
+  background-position: -546px -580px;
+}
+
+//END SPRITES
+
+//THE MEN WHO BUILT AMERICA - MAN PAGES
+
+.mwba-title-red-man-page {
+  margin: 8px auto 0 auto;
+  .clearfix();
+}
+
+#body-aetn-mwbaPetroliana, #body-aetn-mwbaRooseveltiana, #body-aetn-mwbaRailroadiana {
+  .slots-container, #slot1, #footer-links {
+    width: 980px;
+  }
+
+  .slots-container {
+    border-left: none;
+    margin-left: 0;
+  }
+
+  #content, #slot1 {
+    background-image: url("@{baseUrl}/misc/mwba/mwba-man-pages-pattern.png");
+    background-position: 0 0;
+    background-repeat: repeat;
+  }
+
+  #content {
+    padding-top: 25px;
+  }
+
+  .header-mwba {
+    position: relative;
+    .size(385px, 980px);
+
+    .title {
+      position: relative;
+      margin: 10px auto 0 auto;
+    }
+    .text-container {
+      position: absolute;
+      left: 112px;
+      bottom: 0;
+      margin: 0;
+      .size(200px, 474px);
+
+      a {
+        color: #0066ff;
+        &:hover {
+          color: @red;
+        }
+      }
+    }
+    .text-container {
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: bold;
+      font-family: georgia;
+      text-align: justify;
+    }
+
+    .previous-man, .next-man {
+      position: absolute;
+      top: 0;
+      z-index: 50;
+      .size(390px, 60px);
+      &:hover {
+        background-color: #68491f;
+        .opacity(20);
+      }
+
+    }
+    .previous-man {
+      left: 0;
+
+      &:hover ~ .previous-tiny-arrow {
+      .previous-tiny-arrow-hover();
+      }
+    }
+    .next-man {
+      right: 0;
+
+      &:hover ~ .next-tiny-arrow {
+        .next-tiny-arrow-hover();
+      }
+    }
+    .previous-tiny-arrow, .next-tiny-arrow {
+      display: block;
+      position: absolute;
+      top: 185px;
+      font-size: 36px;
+      color: #000;
+    }
+    .previous-tiny-arrow {
+      left: 18px;
+    }
+    .next-tiny-arrow {
+      right: 18px;
+    }
+  }
+
+
+  .paper-wrapper {
+    position: absolute;
+    left: 246px;
+    bottom: 0;
+    .mwba-man-pages-bg();
+  }
+
+  //Fixes
+  .collectible_grid_view_square_small .mosaic-overlay .details a {
+    .square(130px);
+  }
+  .collectible_grid_view_tall .mosaic-overlay .details a {
+    width: 130px;
+  }
+  .collectible_grid_view_square_big .mosaic-overlay .details a {
+    .square(285px);
+  }
+  .collectible_grid_view_wide .mosaic-overlay .details a {
+    width: 285px;
+  }
+  #main {
+    min-height: 400px;
+  }
+
+  //modal boxes
+  .modal.modal-mwba {
+    .modal-body.opened {
+      padding-top: 0;
+    }
+    .modal-header {
+      position: relative;
+      height: 0;
+      padding: 0;
+
+      .close {
+        position: absolute;
+        left: 520px;
+      }
+    }
+
+  }
+}
+
+
+#body-aetn-mwbaPetroliana {
+
+  .header-mwba {
+    background: url("@{baseUrl}/misc/mwba/mwba-page-petroliana-bg.jpg") no-repeat 0 0;
+
+    .title {
+      .mwba-rockefeller-page-banner();
+    }
+    .text-container {
+      background: url("@{baseUrl}/misc/mwba/mwba-petrolania-watermark.png") no-repeat center bottom;
+    }
+  }
+  .name {
+    .title-petroliana-txt();
+    margin: 10px auto 0 auto;
+  }
+
+  //Modal
+  .modal-body.opened {
+    //background: url("@{baseUrl}/misc/mwba/mwba-mp-modal-petroliana-bg.png") no-repeat right 250px;
+
+    .modal-floral-title {
+      .mwba-mp-modal-floral-petroliana();
+    }
+  }
+}
+
+#body-aetn-mwbaRooseveltiana {
+
+  .header-mwba {
+    background: url("@{baseUrl}/misc/mwba/mwba-page-rooseveltiana-bg.jpg") no-repeat 0 0;
+
+    .title {
+      .mwba-roosevelt-page-banner();
+    }
+    .text-container {
+      line-height: 13px;
+      background: url("@{baseUrl}/misc/mwba/mwba-rooseveltiana-watermark.png") no-repeat center bottom;
+    }
+  }
+  .name {
+    .title-rooseveltiana-txt();
+    margin: 10px auto 0 auto;
+  }
+
+   //Modal
+  .modal-body.opened {
+    //background: url("@{baseUrl}/misc/mwba/mwba-mp-modal-rooseveltiana-bg.png") no-repeat right 250px;
+
+    .modal-floral-title {
+      .mwba-mp-modal-floral-rooseveltiana();
+    }
+  }
+}
+
+#body-aetn-mwbaRailroadiana {
+
+  .header-mwba {
+    background: url("@{baseUrl}/misc/mwba/mwba-page-railroadiana-bg.jpg") no-repeat 0 0;
+
+    .title {
+      .mwba-vanderbilt-page-banner();
+    }
+    .text-container {
+      background: url("@{baseUrl}/misc/mwba/mwba-railroadiana-watermark.png") no-repeat center bottom;
+    }
+  }
+  .name {
+    .title-railroadiana-txt();
+    margin: 10px auto 0 auto;
+  }
+
+   //Modal
+  .modal-body.opened {
+    //background: url("@{baseUrl}/misc/mwba/mwba-mp-modal-railroadiana-bg.png") no-repeat right 250px;
+
+    .modal-floral-title {
+      .mwba-mp-modal-floral-railroadiana();
+    }
+  }
+}
+
+
+//
+.mwba-american-flag {
+  .banner {
+    display: block;
+    text-align: center;
+  }
+}
+
+#mwba-collectibles {
+  padding-left: 9px;
+}
+
+.seemore-popupbutton {
+  display: block;
+  margin: auto;
+}
+
+
+//Modal boxes MWBA
+
+.red-decorative-title {
+  margin-bottom: 7px;
+
+  .top {
+    display: block;
+    .mwba-mp-modal-title-up();
+    .clearfix();
+
+    h3 {
+      width: 500px;
+      color: #fff;
+      font-size: 19px;
+      line-height: 19px;
+      font-weight: bold;
+      margin: 14px 0 0 15px;
+    }
+  }
+  .bottom {
+    .mwba-mp-modal-title-down();
+  }
+}
+
+.modal-floral-title {
+  margin: 10px auto 7px auto;
+}
+
+.modal-body #collectible_multimedia_primary {
+  display: block;
+  text-align: center;
 }

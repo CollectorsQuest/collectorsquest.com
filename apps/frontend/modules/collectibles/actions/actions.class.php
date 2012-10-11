@@ -21,13 +21,13 @@ class collectiblesActions extends cqFrontendActions
       $this->redirect('collector_by_slug', $collector, 301);
     }
 
-    $for_sale_ids = CollectibleForSaleQuery::create()
+    $for_sale_ids = FrontendCollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale()
       ->select('CollectibleId')
       ->find()->getArrayCopy();
 
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->groupBy('CollectionCollectible.CollectibleId')
       ->joinWith('CollectionCollectible.Collectible')
       ->joinWith('Collectible.CollectibleForSale')

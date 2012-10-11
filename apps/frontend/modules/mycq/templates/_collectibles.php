@@ -13,7 +13,8 @@
     </a>
     <a href="<?= url_for('@ajax_mycq?section=collectible&page=create&collection_id='. $collection->getId()); ?>"
        id="collectible-create-link" class="open-dialog btn-upload-collectible-txt" onclick="return false;">
-      ADD NEW ITEM
+      ADD NEW ITEM<br>
+      <span style="color: #999;">(a single item)</span>
     </a>
   </div>
 </div>
@@ -21,56 +22,22 @@
 
 <?php if ($pager->getNbResults() > 0): ?>
 
-  <?php foreach ($pager->getResults() as $i => $collectible): ?>
-  <div class="span3 collectible_grid_view_square link">
-    <div class="collectible-view-slot">
-      <?php
-        echo link_to(
-          image_tag_collectible(
-            $collectible, '150x150', array('width' => 140, 'height' => 140)
-          ),
-          'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection')
-        );
-      ?>
-
-      <?php if ($collectible->isSold()): ?>
-        <span class="sold">SOLD</span>
-      <?php elseif ($collectible->isForSale()): ?>
-        <span class="for-sale">FOR SALE</span>
-      <?php endif; ?>
-
-      <p>
-      <?php
-        echo link_to(
-          cqStatic::reduceText($collectible->getName(), 30),
-          'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection'),
-          array('class' => 'target')
-        );
-      ?>
-      </p>
-    </div>
-    <div class="hidden">
-      <div class="add-new-zone ui-droppable ui-state-hover ui-state-highlight mycq-create-collectible">
-        <div class="btn-upload-collectible">
-          <i class="icon-plus icon-white"></i>
-        </div>
-        <div class="btn-upload-collectible-txt">
-          ADD NEW ITEM
-        </div>
-      </div>
-    </div>
-  </div>
-
-
   <?php
-    if (
-      ($pager->getPage() === 1 && $i === 4) ||
-      ($pager->count() === $i+1 && $pager->count() < 5)
-    ) {
-      include_slot('mycq_create_collectible');
+    foreach ($pager->getResults() as $i => $collectible)
+    {
+      include_partial(
+        'mycq/collectible_grid_view',
+        array('collectible' => $collectible, 'i' => $i)
+      );
+
+      if (
+        ($pager->getPage() === 1 && $i === 4) ||
+        ($pager->count() === $i+1 && $pager->count() < 5)
+      ) {
+        include_slot('mycq_create_collectible');
+      }
     }
   ?>
-  <?php endforeach; ?>
 
   <?php if ($pager->haveToPaginate()): ?>
   <div class="row-fluid pagination-wrapper">

@@ -12,6 +12,11 @@ class CollectibleCreateForm extends CollectibleForm
         'required' => 'required',
         'class' => 'input-xlarge'
       )),
+      'content_category_id' => new sfWidgetFormInputHidden(array(
+        'label' => 'Category',
+      ), array(
+        'required' => 'required'
+      )),
       'description' => new sfWidgetFormTextarea(
         array(),
         array(
@@ -37,15 +42,27 @@ class CollectibleCreateForm extends CollectibleForm
         array('required' => true),
         array('invalid' => 'You need to use more descriptive name for your item
                             (is it the camera auto generated name?)')),
+      'content_category_id' => new sfValidatorPropelChoice(array(
+        'required' => true,
+        'model' => 'ContentCategory',
+        'column' => 'id',
+      )),
       'description'  => new sfValidatorString(array('required' => true)),
       'thumbnail'  => new sfValidatorInteger(array('required' => false))
     ));
 
     // Setup the Tags field
     $this->setupTagsField();
+    // Setup the Name field
+    $this->setupNameField();
 
     $this->widgetSchema->setNameFormat('collectible[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
+  }
+
+  public function unsetCollectionIdField()
+  {
+    unset ($this['collection_id']);
   }
 
   protected function setupTagsField()
@@ -80,5 +97,12 @@ class CollectibleCreateForm extends CollectibleForm
     else {
       return $values;
     }
+  }
+
+  protected function setupNameField()
+  {
+    $this->getWidgetSchema()->setHelp(
+      'name', 'Enter a name for this item.'
+    );
   }
 }

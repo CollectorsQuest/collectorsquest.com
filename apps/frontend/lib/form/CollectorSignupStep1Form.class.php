@@ -90,7 +90,7 @@ class CollectorSignupStep1Form extends BaseForm
         ), array(
         'invalid'    => 'This email address is invalid.',
       )),
-      'newsletter'     => new sfValidatorBoolean(array('required' => false))
+      'newsletter'     => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->validatorSchema['password_again'] = clone $this->validatorSchema['password'];
@@ -110,6 +110,17 @@ class CollectorSignupStep1Form extends BaseForm
       array('throw_global_error' => true),
       array('invalid' => 'The two passwords do not match, please enter them again!')
     ));
+
+    $this->setupIpAddressField();
+    $this->mergePostValidator(new iceSpamControlValidatorSchema(array(
+        'credentials' => iceSpamControl::CREDENTIALS_ALL,
+        'fields' => array(
+            $this->getIpAddressFieldName() => 'ip',
+            'email' => 'email',
+        ),
+      ), array(
+        'spam' => 'We are sorry we cannot create an account at this time. Please try again later.',
+    )));
 
     $this->setDefault('seller', 0);
 

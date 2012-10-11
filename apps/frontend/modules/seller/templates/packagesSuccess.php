@@ -288,10 +288,10 @@ $(document).ready(function() {
 
   // on packages change check if we have a free package and hide payment info
   // also trigger the event to get initial state
-  $packages.on('change', function(e, undefined){
+  $packages.on('change', function(e){
     var $checked = $packages.filter(':checked'),
-        $label_holder = $checked.siblings('span.label-holder');
-    if ('$0' === $label_holder.data('actual-price', undefined)) {
+        $label_holder = $checked.siblings('span.label-holder').eq(0);
+    if ('$0' === $label_holder.data('actualPrice')) {
       $('div.payment-type').slideUp();
       $('#payment-header').slideUp();
       $credit_card_info.slideUp();

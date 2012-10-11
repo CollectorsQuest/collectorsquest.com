@@ -32,7 +32,7 @@ class cq_other_news_widget extends WP_Widget {
     $title = apply_filters( 'widget_title', $instance['title'] );
 
     echo $before_widget;
-    if ( ! empty( $title ) ) :
+    if (!empty($title)):
       //echo $before_title . $title . $after_title;
     ?>
 
@@ -45,56 +45,142 @@ class cq_other_news_widget extends WP_Widget {
         </div>
       </div>
 
-      <?php else : ?>
+    <?php else: ?>
 
-    <div class="row-fluid sidebar-title">
-      <div class="span8">
-        <h3 class="Chivo webfont" style="visibility: visible;">In Other News</h3>
+      <div class="row-fluid sidebar-title">
+        <div class="span8">
+          <h3 class="Chivo webfont" style="visibility: visible;">In Other News</h3>
+        </div>
+        <div class="span4 text-right">
+          <a href="/blog" class="text-v-middle link-align">See all posts »</a>&nbsp;
+        </div>
       </div>
-      <div class="span4 text-right">
-        <a href="/blog" class="text-v-middle link-align">See all posts »</a>&nbsp;
-      </div>
-    </div>
 
+    <?php endif; ?>
 
-      <?php endif; ?>
+    <?php
+      global $post;
+      // determine the ID of the post being displayed, we don't want to show the same one in widget
+      $post_id = $post->ID;
 
-      <?php global $post;
-            $cats = get_the_category($post->ID);
+      // find the tags associated with the post and construct tag string to match posts with
+      $tags = array();
 
-            foreach ($cats as $cat) {
-              $cats = $cat->cat_ID;
-            }
-      ?>
+      if ($matching = get_the_terms($post_id, 'matching'))
+      {
+        foreach ($matching as $tag)
+        {
+          $tags[] = $tag->slug;
+        }
+        $tag_string = implode(',', $tags);
+      }
+      else if ($posttags = get_the_tags())
+      {
+        foreach ($posttags as $tag)
+        {
+          $tags[] = $tag->slug;
+        }
+        $tag_string = implode(',', $tags);
+      }
+      else
+      {
+        $tag_string = null;
+      }
 
-      <?php $posts = get_posts("showposts=3&category=".$cats."&exclude=".$post->ID); ?>
+      // construct WP_Query to find posts based on tag matching
+      $args = array(
+        'post_type' => 'post',
+        'post__not_in' => array($post_id),
+        'post_status' => 'publish',
+        'tag' => $tag_string,
+        'showposts' => 2,
+        'caller_get_posts' => 1,
+        'orderby' => 'post_date',
+        'order' => 'DESC'
+      );
+      $the_query = new WP_Query($args);
 
-      <?php foreach($posts as $post) { setup_postdata($post); ?>
+      // display posts based on tag matching
+    ?>
+    <?php while($the_query->have_posts()): $the_query->the_post(); ?>
       <div class="row-fluid bottom-margin">
         <h4 style="margin-bottom: 5px;">
           <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
         </h4>
         <span class="content">
-          <?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>'; ?>
+          <?php
+            $length = 100;
+            $longString = get_the_excerpt('...more');
+            $truncated = substr($longString, 0, strpos($longString, ' ', $length));
+
+            echo $truncated . '... ';
+          ?>
         </span>
         <small style="font-size: 80%">
           <span style="color: grey">
             Posted by <?php the_author_posts_link() ?>
-            <?php
-            /* global $post;
-            $postdate = get_the_date('mdy');
-            $date = date('mdy');
-            if ($date == $postdate ||
-              date('mdy',strtotime($date." -1 day")) == $postdate ||
-              date('mdy',strtotime($date." -2 days")) == $postdate) :
-              echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
-            else :
-            endif;*/
-            echo 'on '.get_the_date('M dS, Y');
-          ?>
-        </span></small>
+            <?= 'on '.get_the_date('M dS, Y'); ?>
+          </span>
+        </small>
       </div>
-      <?php } ?>
+    <?php endwhile; ?>
+
+    <?php
+      /*
+       * display posts based on category matching
+       *
+       * determine how many posts are left to display, ideally we want to display 1
+       * if we did not manage to find posts by matching tags we display up to 3
+       */
+      $showposts = 3 - $the_query->post_count;
+
+      // get category IDs of the post in a comma separated string
+      $cats = get_the_category($post_id);
+      $cats_array = array();
+      if ($cats)
+      {
+        foreach ($cats as $cat)
+        {
+          $cats_array[] = $cat->cat_ID;
+        }
+      }
+
+      // get the posts based on category matching
+      $args = array(
+        'post_type' => 'post',
+        'post__not_in' => array($post_id),
+        'post_status' => 'publish',
+        'category__in' => $cats_array,
+        'showposts' => $showposts,
+        'caller_get_posts' => 1,
+        'orderby' => 'post_date',
+        'order' => 'DESC'
+      );
+      $the_query = new WP_Query($args);
+    ?>
+
+    <?php while($the_query->have_posts()): $the_query->the_post(); ?>
+      <div class="row-fluid bottom-margin">
+        <h4 style="margin-bottom: 5px;">
+          <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+        </h4>
+          <span class="content">
+            <?php
+            $length = 100;
+            $longString = get_the_excerpt('...more');
+            $truncated = substr($longString, 0, strpos($longString, ' ', $length));
+
+            echo $truncated . '... ';
+            ?>
+          </span>
+        <small style="font-size: 80%">
+            <span style="color: grey">
+              Posted by <?php the_author_posts_link() ?>
+              <?= 'on '.get_the_date('M dS, Y'); ?>
+            </span>
+        </small>
+      </div>
+    <?php endwhile; ?>
 
   <?php
     echo $after_widget;

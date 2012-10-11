@@ -41,7 +41,7 @@ $_height = 0;
             );
           ?>
           <p>
-            <?= $collectible_for_sale->getCollectible()->getDescription(); ?>
+            <?= $collectible_for_sale->getCollectible()->getDescription('stripped'); ?>
           </p>
           <span class="price">
             <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>

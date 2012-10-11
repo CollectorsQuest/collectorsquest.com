@@ -22,6 +22,14 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
     ;
   }
 
+  public function filterByIsPublic($isPublic = null, $comparison = null)
+  {
+    return $this
+      ->useCollectibleQuery(null, Criteria::RIGHT_JOIN)
+        ->filterByIsPublic($isPublic, $comparison)
+      ->endUse();
+  }
+
   public function isForSale()
   {
     return $this
@@ -41,4 +49,33 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
         ->search(trim($v))
       ->endUse();
   }
+
+  /**
+   * @param ContentCategory|PropelCollection $content_category
+   * @param string $comparison
+   *
+   * @return CollectionCollectibleQuery
+   */
+  public function filterByContentCategory($content_category, $comparison = null)
+  {
+    return $this
+      ->useCollectionQuery()
+        ->filterByContentCategory($content_category, $comparison)
+      ->endUse();
+  }
+
+  /**
+   * @param ContentCategory $content_category
+   * @param string $comparison
+   *
+   * @return CollectionCollectibleQuery
+   */
+  public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
+  {
+    return $this
+      ->useCollectionQuery()
+        ->filterByContentCategoryWithDescendants($content_category, $comparison)
+      ->endUse();
+  }
+
 }

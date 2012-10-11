@@ -4,7 +4,12 @@ jQuery(document).ready(function($) {
 	// gallery faded layer and container elements
 	var overlay, comments, gallery, container, nextButton, previousButton, info, title,
 	caption, resizeTimeout, mouseTimeout, photo_info, close_hint, commentInterval, buttons,
-	screenPadding = 110, originalOverflow = $('body').css('overflow'), proportion = 85;
+	screenPadding = 110, originalOverflow = $('body').css('overflow'), proportion = 85, isMobile;
+	
+	isMobile = /Android|iPhone|iPod/i.test(navigator.userAgent);
+	
+	if (isMobile)
+		screenPadding = 0;
 
 	var keyListener = function(e){
 		switch(e.which){
@@ -64,7 +69,7 @@ jQuery(document).ready(function($) {
 
 			buttons  = '<a class="jp-carousel-commentlink" href="#">' + jetpackCarouselStrings.comment + '</a>';
 			buttons  = $('<div class="jp-carousel-buttons">' + buttons + '</div>');
-
+			
 			caption    = $('<h2></h2>');
 			photo_info = $('<div class="jp-carousel-photo-info"></div>').append(caption);
 
@@ -127,13 +132,16 @@ jQuery(document).ready(function($) {
 					'bottom'     : '10px',
 					'margin-top' : '20px'
 				});
-
+			
 			leftWidth = ( $(window).width() - ( screenPadding * 2 ) ) - (imageMeta.width() + 40);
 			if ( $.browser.mozilla )
 				leftWidth -= 55;
 			else if ( $.browser.msie )
 				leftWidth -= 20;
 			leftWidth += 'px';
+			
+			if (isMobile)
+				leftWidth = '100%';
 
 			leftColWrapper = $('<div></div>')
 				.addClass('jp-carousel-left-column-wrapper')
@@ -147,7 +155,7 @@ jQuery(document).ready(function($) {
 
 			fadeaway = $('<div></div>')
 				.addClass('jp-carousel-fadeaway');
-
+		 	
 			info = $('<div></div>')
 				.addClass('jp-carousel-info')
 				.css({
@@ -158,6 +166,11 @@ jQuery(document).ready(function($) {
 				.append(photo_info)
 				.append(imageMeta)
 				.append(leftColWrapper);
+				
+			if (isMobile)
+				info.prepend(leftColWrapper);
+			else
+				info.append(leftColWrapper);
 
 			targetBottomPos = ( $(window).height() - parseInt( info.css('top'), 10 ) ) + 'px';
 
@@ -175,7 +188,7 @@ jQuery(document).ready(function($) {
 				'top'    : '40px',
 				'bottom' : targetBottomPos
 			});
-
+			
 			previousButton = $("<div><span></span></div>")
 				.addClass('jp-carousel-previous-button')
 				.css({
@@ -190,7 +203,7 @@ jQuery(document).ready(function($) {
 				'top'    : '40px',
 				'bottom' : targetBottomPos
 			});
-
+			
 			gallery = $('<div></div>')
 				.addClass('jp-carousel')
 				.css({
@@ -205,13 +218,13 @@ jQuery(document).ready(function($) {
 				.css({
 					position : 'fixed'
 				});
-
+			
 			container = $("<div></div>")
 				.addClass('jp-carousel-wrap');
-
+			
 			if ( 'white' == jetpackCarouselStrings.background_color )
 				 container.addClass('jp-carousel-light');
-
+			
 			container.css({
 					'position'   : 'fixed',
 					'top'        : 0,
@@ -315,7 +328,7 @@ jQuery(document).ready(function($) {
 									return;
 								}
 							}
-
+							
 							$.ajax({
 								type:       'POST',
 								url:        jetpackCarouselStrings.ajaxurl,
@@ -358,6 +371,14 @@ jQuery(document).ready(function($) {
 					document.location.hash = '';
 					$(window).scrollTop(scroll);
 				});
+				
+				$('.jp-carousel').touchwipe({
+				     wipeLeft: function() { gallery.jp_carousel('next'); },
+				     wipeRight: function() { gallery.jp_carousel('previous'); },
+				     min_move_x: 20,
+				     min_move_y: 20,
+				     preventDefaultEvents: true
+				});
 
 			nextButton.add(previousButton).click(function(e){
 				e.preventDefault();
@@ -374,7 +395,7 @@ jQuery(document).ready(function($) {
 	var methods = {
 		open: function(options) {
 			var settings = {
-				'items_selector' : ".gallery-item [data-attachment-id]",
+				'items_selector' : ".gallery-item [data-attachment-id], .tiled-gallery-item [data-attachment-id]",
 				'start_index': 0
 			},
 			data = $(this).data('carousel-extra');
@@ -415,7 +436,7 @@ jQuery(document).ready(function($) {
 
 			if ( 0 === selected.length )
 				selected = slides.eq(0);
-
+				
 			gallery.jp_carousel('selectSlide', selected, false);
 			return this;
 		},
@@ -473,29 +494,21 @@ jQuery(document).ready(function($) {
 			gallery.jp_carousel('selectedSlide').removeClass('selected').css({'position': 'fixed'});
 			if (reverse !== true ) {
 				last = slides.last();
-				slides.first().nextAll().not(last).css({'left':gallery.width()+slides.first().width()}).hide();
-				last.css({
-					'left' : -last.width()
-				});
-				last.prev().css({
-					'left' : -last.width() - last.prev().width()
-				});
-				slides.first().css({'left':gallery.width()});
+				slides.first().nextAll().not(last).jp_carousel('setSlidePosition', gallery.width()+slides.first().width()).hide();
+				last.jp_carousel('setSlidePosition', -last.width());
+				last.prev().jp_carousel('setSlidePosition', -last.width() - last.prev().width());
+				slides.first().jp_carousel('setSlidePosition', gallery.width());
 				setTimeout(function(){
 					gallery.jp_carousel('selectSlide', slides.show().first());
 				}, 400);
 
 			} else {
 				first = slides.first();
-				first.css({
-					'left':gallery.width()
-				});
-				first.next().css({
-					'left':gallery.width() + first.width()
-				});
-				first.next().nextAll().hide().css({'left':-slides.last().width()});
-				slides.last().css({'left':-slides.last().width()});
-				slides.last().prevAll().not(first, first.next()).hide().css({'left':-slides.last().width()-slides.last().prev().width()});
+				first.jp_carousel('setSlidePosition', gallery.width());
+				first.next().jp_carousel('setSlidePosition', gallery.width() + first.width());
+				first.next().nextAll().hide().jp_carousel('setSlidePosition', -slides.last().width());
+				slides.last().jp_carousel('setSlidePosition', -slides.last().width());
+				slides.last().prevAll().not(first, first.next()).hide().jp_carousel('setSlidePosition', -slides.last().width()-slides.last().prev().width());
 				setTimeout(function(){
 					gallery.jp_carousel('selectSlide', slides.show().last());
 				}, 400);
@@ -505,6 +518,16 @@ jQuery(document).ready(function($) {
 
 		selectedSlide : function(){
 			return this.find('.selected');
+		},
+		
+		setSlidePosition : function(x) {
+			return this.css({
+					'-webkit-transform':'translate3d(' + x + 'px,0,0)',
+					'-moz-transform':'translate3d(' + x + 'px,0,0)',
+					'-ms-transform':'translate(' + x + 'px,0)',
+					'-o-transform':'translate(' + x + 'px,0)',
+					'transform':'translate3d(' + x + 'px,0,0)'
+			});
 		},
 
 		selectSlide : function(slide, animate){
@@ -521,7 +544,7 @@ jQuery(document).ready(function($) {
 				animated,
 				info_min;
 			// center the main image
-
+			
 			caption.hide();
 
 			method = 'css';
@@ -534,7 +557,7 @@ jQuery(document).ready(function($) {
 			// slide the whole view to the x we want
 			slides.not(animated).hide();
 
-			current[method]({left:left}).show();
+			current.jp_carousel('setSlidePosition', left).show();
 
 			// minimum width
 			gallery.jp_carousel('fitInfo', animate);
@@ -542,24 +565,24 @@ jQuery(document).ready(function($) {
 			// prep the slides
 			var direction = last.is(current.prevAll()) ? 1 : -1;
 			if ( 1 == direction ) {
-				next_next.css({'left':gallery.width() + next.width()}).show();
-				next.hide().css({'left':gallery.width() + current.width()}).show();
-				previous_previous.css({'left':-previous_previous.width() - current.width()});
+				next_next.jp_carousel('setSlidePosition', gallery.width() + next.width()).show();
+				next.hide().jp_carousel('setSlidePosition', gallery.width() + current.width()).show();
+				previous_previous.jp_carousel('setSlidePosition', -previous_previous.width() - current.width()).show();
 			} else {
-				previous.css({'left':-previous.width() - current.width()});
-				next_next.css({'left':gallery.width() + current.width()});
+				previous.jp_carousel('setSlidePosition', -previous.width() - current.width()).show();
+				next_next.jp_carousel('setSlidePosition', gallery.width() + current.width()).show();
 			}
-
+			
 			// if advancing prepare the slide that will enter the screen
-			previous[method]({left:-previous.width() + (screenPadding * 0.75) }).show();
-			next[method]({left:gallery.width() - (screenPadding * 0.75) }).show();
+			previous.jp_carousel('setSlidePosition', -previous.width() + (screenPadding * 0.75)).show();
+			next.jp_carousel('setSlidePosition', gallery.width() - (screenPadding * 0.75)).show();
 
 			document.location.href = document.location.href.replace(/#.*/, '') + '#jp-carousel-' + current.data('attachment-id');
 			gallery.jp_carousel('resetButtons', current);
 			container.trigger('jp_carousel.selectSlide', [current]);
 
 			$( 'div.jp-carousel-image-meta', 'div.jp-carousel-wrap' ).html('');
-
+			
 			gallery.jp_carousel('getTitleDesc', { title: current.data('title'), desc: current.data('desc') } );
 			gallery.jp_carousel('getMeta', current.data('image-meta'));
 			gallery.jp_carousel('getFullSizeLink', current);
@@ -568,7 +591,7 @@ jQuery(document).ready(function($) {
 			gallery.jp_carousel('getComments', {'attachment_id': current.data('attachment-id'), 'offset': 0, 'clear': true});
 
 			$('#jp-carousel-comment-post-results').slideUp();
-
+			
 			// $('<div />').html(sometext).text() is a trick to go to HTML to plain text (including HTML emntities decode, etc)
 			if ( current.data('caption') ) {
 				if ( $('<div />').html(current.data('caption')).text() == $('<div />').html(current.data('title')).text() )
@@ -593,7 +616,7 @@ jQuery(document).ready(function($) {
 			};
 		},
 
-		loadSlide : function(){
+		loadSlide : function() {
 			return this.each(function(){
 				var slide = $(this);
 				slide.find('img')
@@ -642,13 +665,19 @@ jQuery(document).ready(function($) {
 				'left'  : (info.width() - size.width) * 0.5,
 				'width' : size.width
 			});
+			
+			if (isMobile){
+				photo_info.css('left', '0px');
+				photo_info.css('top', '-20px');
+			}
+			
 			return this;
 		},
 
 		fitMeta : function(animated){
 			var newInfoTop   = { top: ( $(window).height() / 100 * proportion + 5 ) + 'px' };
 			var newLeftWidth = { width: ( info.width() - (imageMeta.width() + 80) ) + 'px' };
-
+			
 			if (animated) {
 				info.animate(newInfoTop);
 				leftColWrapper.animate(newLeftWidth);
@@ -666,21 +695,7 @@ jQuery(document).ready(function($) {
 				    method     = 'css',
 				    max        = gallery.jp_carousel('slideDimensions');
 
-				if ( 0 === selected.length ) {
-					dimensions.left = $(window).width();
-				} else if ($this.is(selected)) {
-					dimensions.left = ($(window).width() - dimensions.width) * 0.5;
-				} else if ($this.is(selected.next())) {
-					dimensions.left = gallery.width() - ( screenPadding * 0.75 );
-				} else if ($this.is(selected.prev())) {
-					dimensions.left = -dimensions.width + screenPadding * 0.75;
-				} else {
-					if ($this.is(selected.nextAll())) {
-						dimensions.left = $(window).width();
-					} else {
-						dimensions.left = -dimensions.width;
-					}
-				}
+				dimensions.left = 0;
 				dimensions.top = ( (max.height - dimensions.height) * 0.5 ) + 40;
 				$this[method](dimensions);
 			});
@@ -708,7 +723,7 @@ jQuery(document).ready(function($) {
 					large_file      = src_item.data('large-file') || '';
 
 					src = src_item.data('orig-file');
-
+					
 					src = gallery.jp_carousel('selectBestImageSize', {
 						orig_file   : src,
 						orig_width  : orig_size.width,
@@ -718,9 +733,7 @@ jQuery(document).ready(function($) {
 						medium_file : medium_file,
 						large_file  : large_file
 					});
-
-        console.log(src);
-
+				
 				// Set the final src
 				$(this).data( 'gallery-src', src );
 			});
@@ -743,13 +756,17 @@ jQuery(document).ready(function($) {
 					medium_file     = src_item.data('medium-file') || '',
 					large_file      = src_item.data('large-file') || '';
 
+				var tiledCaption = src_item.parents('div.tiled-gallery-item').find('div.tiled-gallery-caption').html();
+				if ( tiledCaption )
+					caption = tiledCaption;
+
 				if ( !attachment_id || !orig_size )
 					return false; // break the loop if we are missing the data-* attributes
-
+				
 				title       = gallery.jp_carousel('texturize', title);
 				description = gallery.jp_carousel('texturize', description);
 				caption     = gallery.jp_carousel('texturize', caption);
-
+				
 				var slide = $('<div class="jp-carousel-slide"></div>')
 						.hide()
 						.css({
@@ -771,7 +788,7 @@ jQuery(document).ready(function($) {
 						.data('large-file', large_file)
 						.jp_carousel('fitSlide', false);
 
-
+				
 				// Preloading all images
 				slide.find('img').first().attr('src', src );
 			});
@@ -781,25 +798,25 @@ jQuery(document).ready(function($) {
 		selectBestImageSize: function(args) {
 			if ( 'object' != typeof args )
 				args = {};
-
+			
 			if ( 'undefined' == typeof args.orig_file )
 				return '';
-
+			
 			if ( 'undefined' == typeof args.orig_width || 'undefined' == typeof args.max_width )
 				return args.orig_file;
-
+			
 			if ( 'undefined' == typeof args.medium_file || 'undefined' == typeof args.large_file )
 				return args.orig_file;
 
-			var medium_size       = args.medium_file.replace(/-([\d]+x[\d]+)\..+$/, '$1'),
-				medium_size_parts = (medium_size != args.medium_file) ? medium_size.split('x') : [0, 0],
+			var medium_size       = args.medium_file.replace(/^https?:\/\/.+-([\d]+x[\d]+)\..+$/, '$1'),
+				medium_size_parts = (medium_size != args.medium_file) ? medium_size.split('x') : [args.orig_width, 0],
 				medium_width      = parseInt( medium_size_parts[0], 10 ),
 				medium_height     = parseInt( medium_size_parts[1], 10 ),
-				large_size        = args.large_file.replace(/-([\d]+x[\d]+)\..+$/, '$1'),
-				large_size_parts  = (large_size != args.large_file) ? large_size.split('x') : [0, 0],
+				large_size        = args.large_file.replace(/^https?:\/\/.+-([\d]+x[\d]+)\..+$/, '$1'),
+				large_size_parts  = (large_size != args.large_file) ? large_size.split('x') : [args.orig_width, 0],
 				large_width       = parseInt( large_size_parts[0], 10 ),
 				large_height      = parseInt( large_size_parts[1], 10 );
-
+		
 			// Give devices with a higher devicePixelRatio higher-res images (Retina display = 2, Android phones = 1.5, etc)
 			if ('undefined' != typeof window.devicePixelRatio && window.devicePixelRatio > 1) {
 				args.max_width  = args.max_width * window.devicePixelRatio;
@@ -828,7 +845,7 @@ jQuery(document).ready(function($) {
 				return;
 			if ( ! args.replacements || 'undefined' == typeof args.replacements )
 				return args.text;
-			return args.text.replace(/{(\d+)}/g, function(match, number) {
+			return args.text.replace(/{(\d+)}/g, function(match, number) { 
 				return typeof args.replacements[number] != 'undefined' ? args.replacements[number] : match;
 			});
 		},
@@ -889,16 +906,16 @@ jQuery(document).ready(function($) {
 			});
 			return value;
 		},
-
+		
 		getTitleDesc: function( data ) {
 			var title ='', desc = '', markup = '', target, commentWrappere;
-
+			
 			target = $( 'div.jp-carousel-titleanddesc', 'div.jp-carousel-wrap' );
 			target.hide();
-
+			
 			title = gallery.jp_carousel('parseTitleDesc', data.title) || '';
 			desc  = gallery.jp_carousel('parseTitleDesc', data.desc)  || '';
-
+			
 			if ( title.length || desc.length ) {
 				// $('<div />').html(sometext).text() is a trick to go to HTML to plain text (including HTML emntities decode, etc)
 				if ( $('<div />').html(title).text() == $('<div />').html(desc).text() )
@@ -913,16 +930,16 @@ jQuery(document).ready(function($) {
 			$( 'div#jp-carousel-comment-form-container' ).css('margin-top', '20px');
 			$( 'div#jp-carousel-comments-loading' ).css('margin-top', '20px');
 		},
-
+		
 		getMeta: function( meta ) {
 			if ( !meta || 1 != jetpackCarouselStrings.display_exif )
 				return false;
-
+			
 			var $ul = $( '<ul></ul>' );
 			$.each( meta, function( key, val ) {
 				if ( 0 === parseFloat(val) || !val.length || -1 === $.inArray( key, [ 'camera', 'aperture', 'shutter_speed', 'focal_length' ] ) )
 					return;
-
+				
 				switch( key ) {
 					case 'focal_length':
 						val = val + 'mm';
@@ -937,7 +954,7 @@ jQuery(document).ready(function($) {
 						// making jslint happy
 						break;
 				}
-
+				
 				$ul.append( '<li><h5>' + jetpackCarouselStrings[key] + '</h5>' + val + '</li>' );
 			});
 
@@ -957,17 +974,17 @@ jQuery(document).ready(function($) {
 					.addClass( 'jp-carousel-image-download' )
 					.attr( 'href', original )
 					.attr( 'target', '_blank' );
-
+				
 			$( 'div.jp-carousel-image-meta', 'div.jp-carousel-wrap' )
 				.append( permalink );
 		},
-
+		
 		getMap: function( meta ) {
 			if ( !meta.latitude || !meta.longitude || 1 != jetpackCarouselStrings.display_geo )
 				return;
-
-			var latitude  = meta.latitude,
-				longitude = meta.longitude,
+				
+			var latitude  = meta.latitude, 
+				longitude = meta.longitude, 
 				$metabox  = $( 'div.jp-carousel-image-meta', 'div.jp-carousel-wrap' ),
 				$mapbox   = $( '<div></div>' ),
 				style     = '&scale=2&style=feature:all|element:all|invert_lightness:true|hue:0x0077FF|saturation:-50|lightness:-5|gamma:0.91';
@@ -1005,23 +1022,23 @@ jQuery(document).ready(function($) {
 		getComments: function( args ) {
 			if ( 'object' != typeof args )
 				args = {};
-
+			
 			if ( ! args.attachment_id || 'undefined' == typeof args.attachment_id )
 				return;
-
+			
 			if ( ! args.offset || 'undefined' == typeof args.offset || args.offset < 1 )
 				args.offset = 0;
-
+			
 			var comments        = $('.jp-carousel-comments'),
 				commentsLoading = $('#jp-carousel-comments-loading');
-
+			
 			commentsLoading.show();
-
+			
 			if ( args.clear ) {
 				comments.hide();
 				comments.empty();
 			}
-
+			
 			$.ajax({
 				type:       'GET',
 				url:        jetpackCarouselStrings.ajaxurl,
@@ -1058,7 +1075,7 @@ jQuery(document).ready(function($) {
 								+ '</div>'
 							);
 						comments.append(comment);
-
+						
 						// Set the interval to check for a new page of comments.
 						clearInterval( commentInterval );
 						commentInterval = setInterval( function() {
@@ -1068,7 +1085,7 @@ jQuery(document).ready(function($) {
 							}
 						}, 150 );
 					});
-
+					
 					// Verify (late) that the user didn't repeatldy click the arrows really fast, in which case the requested
 					// attachment id might no longer match the current attachment id by the time we get the data back or a now
 					// registered infiniscroll event kicks in, so we don't ever display comments for the wrong image by mistake.
@@ -1081,7 +1098,7 @@ jQuery(document).ready(function($) {
 
 					// Increase the height of the background, semi-transparent overlay to match the new length of the comments list.
 					$('.jp-carousel-overlay').height( $(window).height() + titleAndDescription.height() + commentForm.height() + ( (comments.height() > 0) ? comments.height() : imageMeta.height() ) + 200 );
-
+					
 					comments.show();
 					commentsLoading.hide();
 				},
@@ -1133,17 +1150,17 @@ jQuery(document).ready(function($) {
 	};
 
 	// register the event listener for staring the gallery
-	$( document.body ).on( 'click', 'div.gallery', function(e) {
+	$( document.body ).on( 'click', 'div.gallery,div.tiled-gallery', function(e) {
 		if ( $(e.target).parent().hasClass('gallery-caption') )
 			return;
 		e.preventDefault();
-		$(this).jp_carousel('open', {start_index: $(this).find('.gallery-item').index($(e.target).parents('.gallery-item'))});
+		$(this).jp_carousel('open', {start_index: $(this).find('.gallery-item, .tiled-gallery-item').index($(e.target).parents('.gallery-item, .tiled-gallery-item'))});
 	});
 
 	// start on page load if hash exists
 	if ( document.location.hash && document.location.hash.match(/jp-carousel-(\d+)/) ) {
 		$(document).ready(function(){
-			var gallery = $('div.gallery'), index = -1, n = document.location.hash.match(/jp-carousel-(\d+)/);
+			var gallery = $('div.gallery, div.tiled-gallery'), index = -1, n = document.location.hash.match(/jp-carousel-(\d+)/);
 
 			n = parseInt(n[1], 10);
 
@@ -1159,3 +1176,7 @@ jQuery(document).ready(function($) {
 		});
 	}
 });
+
+// Swipe gesture detection
+(function($){$.fn.touchwipe=function(settings){var config={min_move_x:20,min_move_y:20,wipeLeft:function(){},wipeRight:function(){},wipeUp:function(){},wipeDown:function(){},preventDefaultEvents:true};if(settings)$.extend(config,settings);this.each(function(){var startX;var startY;var isMoving=false;function cancelTouch(){this.removeEventListener('touchmove',onTouchMove);startX=null;isMoving=false}function onTouchMove(e){if(config.preventDefaultEvents){e.preventDefault()}if(isMoving){var x=e.touches[0].pageX;var y=e.touches[0].pageY;var dx=startX-x;var dy=startY-y;if(Math.abs(dx)>=config.min_move_x){cancelTouch();if(dx>0){config.wipeLeft()}else{config.wipeRight()}}else if(Math.abs(dy)>=config.min_move_y){cancelTouch();if(dy>0){config.wipeDown()}else{config.wipeUp()}}}}function onTouchStart(e){if(e.touches.length==1){startX=e.touches[0].pageX;startY=e.touches[0].pageY;isMoving=true;this.addEventListener('touchmove',onTouchMove,false)}}if('ontouchstart'in document.documentElement){this.addEventListener('touchstart',onTouchStart,false)}});return this}})(jQuery);
+

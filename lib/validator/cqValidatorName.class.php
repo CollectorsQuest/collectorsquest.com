@@ -2,13 +2,15 @@
 
 class cqValidatorName extends sfValidatorRegex
 {
-  const REGEX_URL_FORMAT = '~^
+  const REGEX_NAME_FORMAT = '~^
       (
           [\d\-\s]*                     # numbers and dashes/spaces
         |
           (CIMG|DSC_|DSCF|DSCN|DSC
-          |DUW|IMG|JD|MGP|S700
-          |PICT|vlcsnap|KIF|IMAG).*     # have prefix
+          |DUW|JD|MGP|S700
+          |PICT|vlcsnap|KIF|IMG).*     # have prefix
+        |
+          (IMAG|IMAGE)[\d\-\s]*                # have prefix and only dashes/spaces
         |
           .{0,3}                        # have length 3
       )
@@ -39,6 +41,6 @@ class cqValidatorName extends sfValidatorRegex
    */
   public function generateRegex()
   {
-    return self::REGEX_URL_FORMAT;
+    return self::REGEX_NAME_FORMAT;
   }
 }

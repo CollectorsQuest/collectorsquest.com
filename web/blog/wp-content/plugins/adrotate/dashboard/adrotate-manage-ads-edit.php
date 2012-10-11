@@ -13,8 +13,8 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 				$query = "SELECT `id` FROM `".$wpdb->prefix."adrotate` WHERE `type` = 'empty' ORDER BY `id` DESC LIMIT 1;";
 				$edit_id = $wpdb->get_var($query);
 				if($edit_id == 0) {
-					$wpdb->query("INSERT INTO `".$wpdb->prefix."adrotate` (`title`, `bannercode`, `thetime`, `updated`, `author`, `imagetype`, `image`, `link`, `tracker`, `timeframe`, `timeframelength`, `timeframeclicks`, `timeframeimpressions`, `type`, `weight`, `sortorder`) VALUES ('', '', '$now', '$now', '$userdata->user_login', '', '', '', 'N', '', 0, 0, 0, 'empty', 6, 0);");
-					$edit_id = $wpdb->get_var($query);
+				    $wpdb->insert($wpdb->prefix."adrotate", array('title' => '', 'bannercode' => '', 'thetime' => $now, 'updated' => $now, 'author' => $userdata->user_login, 'imagetype' => '', 'image' => '', 'link' => '', 'tracker' => 'N', 'timeframe' => '', 'timeframelength' => 0, 'timeframeclicks' => 0, 'timeframeimpressions' => 0, 'type' => 'empty', 'weight' => 6, 'sortorder' => 0));
+				    $edit_id = $wpdb->insert_id;
 				}
 				$ad_edit_id = $edit_id;
 			} else { ?>
@@ -257,6 +257,8 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 						<td colspan="3">
 							<label for="adrotate_image">
 								<?php _e('Media:', 'adrotate'); ?> <input tabindex="8" size="100" id="adrotate_image" type="text" name="adrotate_image" value="<?php echo $image_field; ?>" /> <input tabindex="15" id="adrotate_image_button" type="button" value="<?php _e('Select Image', 'adrotate'); ?>" /><br />
+							</label>
+							<label for="adrotate_image_dropdown">
 								<?php _e('- OR -', 'adrotate'); ?><br />
 								<?php _e('Banner folder:', 'adrotate'); ?> <select tabindex="9" name="adrotate_image_dropdown" style="min-width: 200px;">
 			   						<option value=""><?php _e('No image selected', 'adrotate'); ?></option>

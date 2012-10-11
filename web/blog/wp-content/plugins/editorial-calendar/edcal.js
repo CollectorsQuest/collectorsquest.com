@@ -754,7 +754,7 @@ var edcal = {
         var _date = edcal._wDate.clone();
 
         var newrow = '<div class="rowcont" id="' + 'row' + edcal._wDate.toString(edcal.internalDateFormat) + '">' +
-                     '<div id="' + 'row' + edcal._wDate.toString(edcal.internalDateFormat) + 'row" class="row">';
+                     '<div id="' + 'row' + edcal._wDate.toString(edcal.internalDateFormat) + 'row" class="edcal_row">';
         for (var i = 0; i < 7; i++) {
             /*
              * Adding all of these calls in the string is kind of messy.  We
@@ -1102,7 +1102,7 @@ var edcal = {
 
         var date = jQuery(this).parent().parent().attr('id');
 
-        var formattedtime = '10:00';
+        var formattedtime = edcal.defaultTime;
         if (edcal.timeFormat !== 'H:i' && edcal.timeFormat !== 'G:i') {
             formattedtime += ' AM';
         }
@@ -1191,7 +1191,7 @@ var edcal = {
          if (post.time !== '') {
             time = Date.parse(post.time);
          } else {
-            time = Date.parse('10:00:00'); // If we don't have a time set, default it to 10am
+            time = Date.parse(edcal.defaultTime); // If we don't have a time set, default it to 10am
          }
          
          var formattedDate;
@@ -1208,7 +1208,8 @@ var edcal = {
                        '&title=' + encodeURIComponent(post.title) +
                        '&content=' + encodeURIComponent(post.content) +
                        '&id=' + encodeURIComponent(post.id) +
-                       '&status=' + encodeURIComponent(post.status);
+                       '&status=' + encodeURIComponent(post.status) + 
+                       '&orig_status=' + encodeURIComponent(post.orig_status);
          
          if (time === null || time === edcal.NO_DATE) {
              postData += '&date_gmt=' + encodeURIComponent('0000-00-00 00:00:00');
@@ -1821,8 +1822,8 @@ var edcal = {
            last day in the last week.  We call children twice to
            work around a small JQuery issue.
          */
-        var firstDate = edcal.getDayFromDayId(items.eq(0).children('.row').children('.day:first').attr('id'));
-        var lastDate = edcal.getDayFromDayId(items.eq(edcal.weeksPref - 1).children('.row').children('.day:last').attr('id'));
+        var firstDate = edcal.getDayFromDayId(items.eq(0).children('.edcal_row').children('.day:first').attr('id'));
+        var lastDate = edcal.getDayFromDayId(items.eq(edcal.weeksPref - 1).children('.edcal_row').children('.day:last').attr('id'));
 
         jQuery('#currentRange').text(edcal.chineseAposWorkaround(firstDate.toString(Date.CultureInfo.formatPatterns.yearMonth)) + ' - ' + 
                                      edcal.chineseAposWorkaround(lastDate.toString(Date.CultureInfo.formatPatterns.yearMonth)));
