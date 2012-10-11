@@ -17,10 +17,6 @@
     both: '<?= javascript_path('frontend/scripts.common.bundle.' . GIT_REVISION . '.js'); ?>',
     complete: function ()
     {
-      // Execute the controller in controller.js
-      // NOTE: It needs to be the first function in the $(document).ready() queue!
-      $(document).ready(CONTROLLER.init);
-
       // http://stackoverflow.com/a/8567229
       (function ($, window, document)
       {
@@ -29,6 +25,11 @@
         }
       }(jQuery, this, this.document));
 
+      // execute the main controller after template level JS to allow
+      // window.cq.settings modifications :)
+      $(document).ready(CONTROLLER.init);
+
+      // Let is "free" :)
       $.holdReady(false);
     }
   }]);
@@ -49,7 +50,7 @@ if (document.getElementById('social-sharing') !== null)
   })(document, 'script');
 
   $(window).load(function() {
-    addthis.init()
+    addthis.toolbox('#social-sharing');
   });
 }
 </script>

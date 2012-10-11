@@ -26,6 +26,16 @@
 
   <?= $form ?>
 
+  <?php
+    /*
+     * we append this "help-block" to description filed using js
+     * if there are form errors we hide it
+     */
+  ?>
+  <p id="description_help" class="help-block" >
+    Add more details about your item.
+  </p>
+
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
       Add Item
@@ -64,6 +74,12 @@
         }
       }
     });
+
+    <?php if($form->hasErrors()): ?>
+      $('#description_help').hide();
+    <?php else: ?>
+      $('textarea#collectible_description').parent().parent().append($('#description_help'));
+    <?php endif; ?>
 
     <?php
       if (isset($collectible) && !$collectible->isNew())

@@ -52,12 +52,29 @@ class ajaxAction extends cqAjaxAction
         $name = preg_replace('/\.(jpg|jpeg|png|gif|bmp)$/iu', '', $file['name']);
         $name = mb_substr(str_replace(array('_', '-'), ' ', ucfirst($name)), 0, 64, 'utf8');
 
+        /**
+         * We need to pass the name through the name validator
+         * before we decide if we should be using it for Collectible name
+         */
+        try
+        {
+          $validator = new cqValidatorName();
+          $collectible_name = $validator->clean($name);
+          $is_name_automatic = true;
+        }
+        catch (sfValidatorError $e)
+        {
+          $collectible_name = null;
+          $is_name_automatic = false;
+        }
+
         try
         {
           $collectible = new Collectible();
           $collectible->setCollector($collector);
-          $collectible->setName($name, true);
+          $collectible->setName($collectible_name, $is_name_automatic);
           $collectible->setBatchHash($request->getParameter('batch', null));
+          $collectible->setIsPublic(false);
           $collectible->save();
 
           // Set the Collection after the collectible has been saved
@@ -222,16 +239,13 @@ class ajaxAction extends cqAjaxAction
       {
         $primary->delete();
       }
-      else if (!$is_primary && !$recipient->getPrimaryImage())
-      {
-        $is_primary = true;
-      }
 
       try
       {
         $image->setIsPrimary($is_primary);
         $image->setModelId($recipient->getId());
         $image->setSource($donor->getId());
+        // $image->setCreatedAt(time());
         $image->save();
       }
       catch (PropelException $e)
@@ -275,6 +289,44 @@ class ajaxAction extends cqAjaxAction
     return sfView::NONE;
   }
 
+  /**
+   * Ajax action used to set the category of a collectible, in the edit form widget
+   */
+  public function executeCollectibleChangeCategory(cqWebRequest $request, $template)
+  {
+    $collectible = CollectiblePeer::retrieveByPK(
+      $request->getParameter('collectible_id')
+    );
+    $this->forward404Unless($this->getUser()->isOwnerOf($collectible));
+
+    $form = new CollectibleCreateForm($collectible);
+    $form->useFields(array('content_category_id'));
+    $form->unsetCollectionIdField();
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter($form->getName()));
+
+      if ($form->isValid())
+      {
+        $form->save();
+
+        return $this->renderPartial('global/loading', array(
+            'url' => $this->generateUrl('mycq_collectible_by_slug', $collectible),
+        ));
+      }
+    }
+
+    $this->form = $form;
+    $this->collectible = $collectible;
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+        ->descendantsOf($root)
+        ->findTree();
+
+    return $template;
+  }
   /**
    * @param  sfWebRequest  $request
    * @return string
@@ -346,16 +398,6 @@ class ajaxAction extends cqAjaxAction
     {
       $object = $multimedia->getModelObject();
 
-      if ($multimedia->getIsPrimary())
-      {
-        $model = $multimedia->getModelObject();
-        if ($alternative = $model->getMultimedia(1, 'image', false, Propel::CONNECTION_WRITE))
-        {
-          $alternative->setIsPrimary(true);
-          $alternative->save();
-        }
-      }
-
       /** @var $archive CollectibleArchive */
       if (
         ($source = $multimedia->getSource()) &&
@@ -367,23 +409,31 @@ class ajaxAction extends cqAjaxAction
         $collectible->save();
 
         $multimedia->setModel($collectible);
+        $multimedia->setIsPrimary(true);
         $multimedia->setSource(null);
         $multimedia->save();
 
         /**
          * Update the Eblob cache
          */
-        if ($object)
-        {
-          $m = iceModelMultimediaPeer::retrieveByModel($object);
-
-          $object->setEblobElement('multimedia', $m->toXML(true));
-          $object->save();
-        }
+        $m = iceModelMultimediaPeer::retrieveByModel($collectible);
+        $collectible->setEblobElement('multimedia', $m->toXML(true));
+        $collectible->save();
       }
       else
       {
         $multimedia->delete();
+      }
+
+      /**
+       * Update the Eblob cache
+       */
+      if ($object)
+      {
+        $m = iceModelMultimediaPeer::retrieveByModel($object);
+
+        $object->setEblobElement('multimedia', $m->toXML(true));
+        $object->save();
       }
     }
 
@@ -422,19 +472,6 @@ class ajaxAction extends cqAjaxAction
     }
 
     return $this->error('Error', 'Error');
-  }
-
-  protected function executeCollectorAvatarDelete()
-  {
-    /** @var $collector Collector */
-    $collector = $this->getUser()->getCollector();
-
-    if ($image = $collector->getPhoto())
-    {
-      $image->delete();
-    }
-
-    return $this->success();
   }
 
   /**
@@ -636,6 +673,7 @@ class ajaxAction extends cqAjaxAction
     {
       $form->setDefault('collection_id', $collection->getId());
       $form->setDefault('tags', $collection->getTags());
+      $form->setDefault('content_category_id', $collection->getContentCategoryId());
     }
 
     if ($collectible_id = $request->getParameter('collectible_id'))
@@ -796,6 +834,7 @@ class ajaxAction extends cqAjaxAction
             $image->setIsPrimary(true);
             $image->setModelId($collectible->getId());
             $image->setSource($donor->getId());
+            // $image->setCreatedAt(time());
             $image->save();
 
             // Archive the $donor, not needed anymore

@@ -10,13 +10,14 @@ class collectorsActions extends cqFrontendActions
    */
   public function executeIndex(sfWebRequest $request)
   {
-    /** @var $q CollectorQuery */
-    $q = CollectorQuery::create();
+    /** @var $q FrontendCollectorQuery */
+    $q = FrontendCollectorQuery::create();
 
     $sortBy = $request->getParameter('sort', 'latest');
     $type = $request->getParameter('type', 'collectors');
 
-    if ('sellers' == $type) {
+    if ('sellers' == $type)
+    {
       $q->filterByUserType(CollectorPeer::TYPE_SELLER, Criteria::EQUAL);
     }
 

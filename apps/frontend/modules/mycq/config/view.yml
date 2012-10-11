@@ -1,7 +1,5 @@
 all:
   stylesheets:
-    - jquery/chosen.css
-    - jquery/tagedit.css
     - frontend/modules/mycq.css
 
   javascripts:

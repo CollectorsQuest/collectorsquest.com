@@ -8,10 +8,10 @@
 $height_main_div = new stdClass;
 $height_main_div->value = 1300;
 
-$sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
+$sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 ?>
 
-<?php cq_page_title('Collectibles Marketplace'); ?>
+<?php cq_page_title('Shop Antique, Collectible and Vintage Items'); ?>
 
 <?php if (isset($wp_post) && $wp_post instanceof wpPost): ?>
 <div class="row-fluid" id="marketplace-spotlight">
@@ -45,7 +45,6 @@ $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
 </div>
 <?php endif; ?>
 
-<?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
 <div class="banners-620 spacer-top-20">
   <?php
   if (!$sf_user->isAuthenticated())
@@ -56,70 +55,10 @@ $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
   {
     echo link_to(image_tag('headlines/show_and_sell_red_635x111_user.png'), '@seller_packages');
   }
+  // avoid having too much blank space when no banner is displayed
+  else
+  {
+    echo '<style type="text/css">#main { min-height: 400px; } #content { padding-bottom: 0; }</style>';
+  }
   ?>
 </div>
-<?php endif; ?>
-
-<?php cq_section_title('Discover More Items for Sale'); ?>
-
-<div class="sort-search-box full-lenght-blue">
-  <div class="input-append">
-    <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
-      <div class="btn-group">
-        <div class="append-left-gray">Sort By <strong id="sortByName">Most Popular</strong></div>
-        <a href="javascript:void(0)" data-toggle="dropdown" class="btn dropdown-toggle">
-          <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="javascript:" class="sortBy" data-name="Most Popular" data-sort="most-popular">Sort by <strong>Most Popular</strong></a></li>
-          <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
-          <li><a href="javascript:" class="sortBy" data-name="Under $100" data-sort="under-100">Sort by <strong>Under $100</strong></a></li>
-          <li><a href="javascript:" class="sortBy" data-name="$100 - $250" data-sort="100-200">Sort by <strong>$100 - $250</strong></a></li>
-          <li><a href="javascript:" class="sortBy" data-name="Over $250" data-sort="over-250">Sort by <strong>Over $250</strong></a></li>
-        </ul>
-      </div>
-      <input name="q" type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn"><strong>Search</strong></button>
-      <!-- keep INPUT and BUTTON elements in same line, if you break to two lines, you will see the "gap" between the text box and button -->
-      <input type="hidden" name="s" id="sortByValue" value="most-popular">
-      </form>
-  </div>
-</div>
-
-<div id="items-for-sale">
-  <div id="collectibles" class="row thumbnails">
-    <?php include_component('marketplace', 'discoverCollectiblesForSale'); ?>
-  </div>
-</div>
-
-<script>
-$(document).ready(function()
-{
-  var $url = '<?= url_for('@ajax_marketplace?section=component&page=discoverCollectiblesForSale') ?>';
-  var $form = $('#form-discover-collectibles');
-
-  $('.dropdown-toggle').dropdown();
-  $('.dropdown-menu a.sortBy').click(function()
-  {
-    $('#sortByName').html($(this).data('name'));
-    $('#sortByValue').val($(this).data('sort'));
-    $form.submit();
-  });
-
-  $form.submit(function()
-  {
-    $('#collectibles').fadeOut();
-
-    $.post($url +'?p=1', $form.serialize(), function(data)
-    {
-      $('#collectibles').html(data).fadeIn();
-    },'html');
-
-    return false;
-  });
-
-  if ($form.find('input').val() !== '')
-  {
-    $form.submit();
-  }
-});
-</script>

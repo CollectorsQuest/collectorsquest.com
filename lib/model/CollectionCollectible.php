@@ -30,9 +30,9 @@ class CollectionCollectible extends BaseCollectionCollectible
 
   public function postSave(PropelPDO $con = null)
   {
-    $this->updateRelatedCollection($con);
+    parent::postSave($con);
 
-    return true;
+    $this->updateRelatedCollection($con);
   }
 
   public function __toString()
@@ -75,6 +75,23 @@ class CollectionCollectible extends BaseCollectionCollectible
   public function getCollectorId(PropelPDO $con = null)
   {
     return $this->getCollectible($con)->getCollectorId();
+  }
+
+  /**
+   * Gets a single CollectorCollection object, which is related to this object by a one-to-one relationship.
+   *
+   * @param      PropelPDO $con optional connection object
+   * @return     CollectorCollection
+   * @throws     PropelException
+   */
+  public function getCollectorCollection(PropelPDO $con = null)
+  {
+    if ($this->singleCollectorCollection === null && !$this->isNew())
+    {
+      $this->singleCollectorCollection = CollectorCollectionQuery::create()->findPk($this->getCollectionId(), $con);
+    }
+
+    return $this->singleCollectorCollection;
   }
 
   /**

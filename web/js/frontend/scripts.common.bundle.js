@@ -9,12 +9,16 @@
 <!--#include virtual="bootstrap/bootstrap-tooltip.js" -->
 <!--#include virtual="/assets/js/jquery/controls.js" -->
 <!--#include virtual="/assets/js/jquery/form.js" -->
+<!--#include virtual="/js/jquery/jail.js" -->
 <!--#include virtual="/assets/js/bootstrap/dialog2.js" -->
 <!--#include virtual="/assets/js/bootstrap/dialog2.helpers.js" -->
 
+// fix bugs with dialog2.js
 $.support.transition = false;
 
 <!--#include virtual="common-plugins.js" -->
+
+<!--#include virtual="custom-plugins.js" -->
 
 <!--#include virtual="application.js" -->
 

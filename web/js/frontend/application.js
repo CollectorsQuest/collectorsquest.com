@@ -64,6 +64,8 @@ var APP = window.APP = {
         }
       };
 
+      $('img.lazy').jail();
+
       COMMON.setupProjectWideHelpers();
     } // init
   }, // common
@@ -84,82 +86,8 @@ var APP = window.APP = {
   collection: {
     // collection/collectible action
     collectible: function() {
-      jQuery.fn.extend({
-        collectionCollectiblesWidget: function(options)
-        {
-          var defaults = {
-            collection_id: 0,
-            nextControl:'.right-arrow',
-            prevControl:'.left-arrow',
-            itemsHolder:'.thumbnails'
-          };
-
-          options = $.extend(defaults, options);
-
-          return this.each(function()
-          {
-            var widget = $(this);
-            var curPage = widget.data('page');
-            var lastPage = widget.data('lastpage');
-            var url = widget.data('url');
-            var cache = {};
-            var holder = $(options.itemsHolder, widget);
-
-            $(options.nextControl, widget).click(function() {
-              loadPage(lastPage === curPage ? 1 : curPage + 1);
-            });
-            $(options.prevControl, widget).click(function() {
-              loadPage(curPage === 1 ? lastPage : curPage - 1);
-            });
-
-            function loadPage(page)
-            {
-              curPage = page;
-              if (page in cache)
-              {
-                update(page);
-              }
-              else
-              {
-                holder.showLoading();
-
-                holder.load(url +' #carousel > *',
-                  {
-                    p: page,
-                    collection_id: options.collection_id
-                  },
-                  function(data)
-                  {
-                    var $carousel = $(data).find('#carousel');
-                    if ($carousel)
-                    {
-                      cache[page] = $carousel.html();
-                    }
-
-                    update(page);
-                  }
-                );
-              }
-            }
-
-            function update(page)
-            {
-              var html = cache[page];
-              if (page !== widget.data('page') && html)
-              {
-                holder.fadeOut(0, function()
-                {
-                  holder.html(html);
-                  holder.imagesLoaded(function()
-                  {
-                    $(this).fadeIn('fast', $(this).hideLoading);
-                  });
-                });
-              }
-              widget.data('page', curPage);
-            }
-          });
-        }
+      $('#collectionCollectiblesWidget').collectionCollectiblesCarousel({
+        collection_id: window.cq.settings.collectionColletiblesWidget.collection_id
       });
     }
   },
@@ -286,6 +214,9 @@ var APP = window.APP = {
       AVIARY.setup();
     },
     collectible: function() {
+      AVIARY.setup();
+    },
+    profile: function() {
       AVIARY.setup();
     }
   } // mycq
@@ -910,6 +841,9 @@ var AVIARY = window.AVIARY = (function(){
       loadAviary(setupAviary);
 
       $('.multimedia-edit').on('click', function clickclackclock() {
+        // make sure we are at the top of the document so the whole editor is visible
+        $('html, body').animate({scrollTop:0}, 'medium');
+
         // if aviary is loaded
         if (undefined !== aviary_editor && AV.feather_loaded) {
           var $this = $(this);

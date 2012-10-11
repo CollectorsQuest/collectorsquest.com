@@ -20,7 +20,8 @@ class cqMailer extends Swift_Mailer
     $address           = '',
     $realtimeTransport = null,
     $force             = false,
-    $redirectingPlugin = null;
+    $redirectingPlugin = null,
+    $forceRedirectOfCollectorsquestEmails = false;
 
   /**
    * Constructor.
@@ -39,13 +40,17 @@ class cqMailer extends Swift_Mailer
         'class' => 'Swift_MailTransport',
         'param' => array(),
        ),
+      'force_redirect_of_collectorsquest_emails' => false,
     ), $options);
 
     $constantName = 'sfMailer::'.strtoupper($options['delivery_strategy']);
     $this->strategy = defined($constantName) ? constant($constantName) : false;
     if (!$this->strategy)
     {
-      throw new InvalidArgumentException(sprintf('Unknown mail delivery strategy "%s" (should be one of realtime, spool, single_address, or none)', $options['delivery_strategy']));
+      throw new InvalidArgumentException(sprintf(
+        'Unknown mail delivery strategy "%s" (should be one of realtime, spool, single_address, or none)',
+        $options['delivery_strategy']
+      ));
     }
 
     // transport
@@ -87,7 +92,9 @@ class cqMailer extends Swift_Mailer
     {
       if (!isset($options['spool_class']))
       {
-        throw new InvalidArgumentException('For the spool mail delivery strategy, you must also define a spool_class option');
+        throw new InvalidArgumentException(
+          'For the spool mail delivery strategy, you must also define a spool_class option'
+        );
       }
       $arguments = isset($options['spool_arguments']) ? $options['spool_arguments'] : array();
 
@@ -107,12 +114,19 @@ class cqMailer extends Swift_Mailer
     {
       if (!isset($options['delivery_address']))
       {
-        throw new InvalidArgumentException('For the single_address mail delivery strategy, you must also define a delivery_address option');
+        throw new InvalidArgumentException(
+          'For the single_address mail delivery strategy, you must also define a delivery_address option'
+        );
       }
+      $this->forceRedirectOfCollectorsquestEmails = $options['force_redirect_of_collectorsquest_emails'];
 
       $this->address = $options['delivery_address'];
 
-      $transport->registerPlugin($this->redirectingPlugin = new cqSwiftPluginsRedirectingPlugin($this->address, array($this, 'shouldMessageUseRedirectingPlugin')));
+      $this->redirectingPlugin = new cqSwiftPluginsRedirectingPlugin(
+        $this->address,
+        array($this, 'shouldMessageUseRedirectingPlugin')
+      );
+      $transport->registerPlugin($this->redirectingPlugin);
     }
 
     parent::__construct($transport);
@@ -288,7 +302,8 @@ class cqMailer extends Swift_Mailer
     $addresses = array_keys($message->getTo());
     $addresses = implode(',', $addresses);
 
-    return false === strpos($addresses, $this->avoidSingleAddressIdentifier);
+    return false === strpos($addresses, $this->avoidSingleAddressIdentifier) ||
+      $this->forceRedirectOfCollectorsquestEmails;
   }
 
   /**
@@ -309,7 +324,10 @@ class cqMailer extends Swift_Mailer
   {
     if (self::SPOOL != $this->strategy)
     {
-      throw new LogicException(sprintf('You can only send messages in the spool if the delivery strategy is "spool" (%s is the current strategy).', $this->strategy));
+      throw new LogicException(sprintf(
+        'You can only send messages in the spool if the delivery strategy is "spool" (%s is the current strategy).',
+        $this->strategy
+      ));
     }
 
     return $this->spool;

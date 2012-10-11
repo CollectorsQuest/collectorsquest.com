@@ -2,8 +2,9 @@
   /* @var $message  PrivateMessage   */ $message;
   /* @var $messages PrivateMessage[] */ $messages;
   /* @var $reply_form ComposePrivateMessageForm */ $reply_form;
+  $user_is_recepient = $sf_user->getCollector()->equals($message->getCollectorRelatedByReceiver());
 
-  if ($messages->getFirst()->getReceiver() == $sf_user->getCollector()->getId())
+  if ($user_is_recepient)
   {
     SmartMenu::setSelected('mycq_messages_sidebar', 'inbox');
   }
@@ -11,7 +12,35 @@
   {
     SmartMenu::setSelected('mycq_messages_sidebar', 'sent');
   }
+
+  cq_sidebar_title(
+    'Conversation with '. ($user_is_recepient
+      ? $message->getCollectorRelatedBySender()
+      : $message->getCollectorRelatedByReceiver()),
+    null,
+    array(
+      'left' => 8, 'right' => 4,
+      'class'=>'mycq-red-title row-fluid messages-header'
+    )
+  );
 ?>
+
+<?php if ($user_is_recepient): ?>
+<form action="<?= url_for('@messages_thread_actions'); ?>" method="post">
+  <input type="hidden" name="thread" value="<?= $message->getThread(); ?>" />
+  <div class="row-fluid gray-well messages-header">
+    <div class="spacer-top-5 spacer-bottom-5 clearfix">
+      <div class="btn-group pull-left">
+        <input type="submit" name="thread_action[mark_as_unread]" class="btn btn-mini" value="Mark Unread" />
+      </div>
+      <div class="btn-group pull-left">
+        <input type="submit" name="thread_action[delete]" class="btn btn-mini" value="Delete" />
+        <input type="submit" name="thread_action[report_spam]" class="btn btn-mini" value="Report Spam" />
+      </div>
+    </div>
+  </div>
+</form>
+<?php endif; ?>
 
 <table class="private-message-thread table table-striped table-bordered">
   <tbody>
@@ -27,7 +56,9 @@
       <td class="sender" rowspan="<?= $message->hasAttachedCollectionOrCollectible() ? 3 : 2 ?>">
         <span>From:&nbsp;<?= link_to_if($sender, $sender, 'collector_by_slug', $sender); ?></span>
         <br/>
-        <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
+        <span title="<?= $message->getCreatedAt('c'); ?>">
+          <?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?>
+        </span>
         <br/>
         <div class="spacer-inner-top-7">
           <?= link_to_collector($sender, 'image'); ?>

@@ -1,5 +1,5 @@
 <!--#include virtual="bootstrap.min.css" -->
-<!--#include virtual="../jquery/ui/bootstrap/theme.min.css" -->
-<!--#include virtual="../jquery/ui/bootstrap/theme.ie.css" -->
+<!--#include virtual="jquery/ui.min.css" -->
+<!--#include virtual="jquery/ui.ie.min.css" -->
 
 <!--#include virtual="main.min.css" -->

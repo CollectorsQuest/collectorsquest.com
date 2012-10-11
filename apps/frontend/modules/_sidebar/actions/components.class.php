@@ -38,7 +38,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create()
       ->filterByTreeLevel($level)
-      ->joinCollectorCollection(null, Criteria::INNER_JOIN)
+      ->hasCollectionsWithCollectibles()
       ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
       ->groupById()
@@ -89,7 +89,7 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->hasCollections()
+      ->hasCollectionsWithCollectibles()
       ->orderBy('Name')
       ->find();
 
@@ -97,7 +97,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
         ->childrenOf($this->current_sub_category)
-        ->hasCollections()
+        ->hasCollectionsWithCollectibles()
         ->find();
     }
 
@@ -120,9 +120,8 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByName('None', Criteria::NOT_EQUAL)
       ->filterByLevel(array(1, 2))
       ->hasCollectiblesForSale()
-      ->orderBy('Name', Criteria::ASC)
-      ->distinct();
-
+      ->filterByNumCollectiblesForSale(3, Criteria::GREATER_EQUAL)
+      ->orderBy('Name', Criteria::ASC);
     $this->categories = $q->find();
 
     return $this->_sidebar_if(count($this->categories) > 0);
@@ -199,6 +198,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->subcategories[] = $this->current_subcategory;
     }
 
+    $this->sub_subcategories = array();
     if ($retrieve_sub_subcategories)
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
@@ -261,8 +261,8 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    /** @var $q CollectorCollectionQuery */
-    $q = CollectorCollectionQuery::create()
+    /** @var $q FrontendCollectorCollectionQuery */
+    $q = FrontendCollectorCollectionQuery::create()
       ->filterByNumItems(3, Criteria::GREATER_EQUAL);
 
     /** @var $collection CollectorCollection */
@@ -533,6 +533,7 @@ class _sidebarComponents extends cqFrontendComponents
         {
           $c->add(CollectorCollectionPeer::ID, $collection->getId(), Criteria::NOT_EQUAL);
         }
+        $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
 
         $this->collections = $collector->getCollectorCollections($c);
       }
@@ -604,12 +605,10 @@ class _sidebarComponents extends cqFrontendComponents
 
       if (isset($values['cq_collector_ids']))
       {
-        $collector_ids = explode(',', (string) $values['cq_collector_ids']);
-        $collector_ids = array_map('trim', $collector_ids);
-        $collector_ids = array_filter($collector_ids);
+        $collector_ids = cqFunctions::explode(',', $values['cq_collector_ids']);
 
-        /** @var $q CollectorQuery */
-        $q = CollectorQuery::create()
+        /** @var $q FrontendCollectorQuery */
+        $q = FrontendCollectorQuery::create()
           ->filterById($collector_ids, Criteria::IN)
           ->filterByUserType(CollectorPeer::TYPE_SELLER)
           ->addAscendingOrderByColumn('RAND()');
@@ -644,6 +643,9 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
+      ->useCollectibleQuery()
+        ->filterByIsPublic(true)
+        ->endUse()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
 
@@ -781,7 +783,7 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterById($this->ids, Criteria::IN)
         ->addAscendingOrderByColumn(
-          'FIELD(id, ' . implode(',', $this->ids) . ')'
+          'FIELD(wp_posts.id, ' . implode(',', $this->ids) . ')'
         );
     }
 
@@ -801,7 +803,7 @@ class _sidebarComponents extends cqFrontendComponents
     $collectible = $this->getVar('collectible') ?: null;
 
     /** @var $collection CollectorCollection */
-    if (!$collection = $this->getVar('collection') ?: null)
+    if (!$collection = ($this->getVar('collection') ?: null))
     {
       if ($collectible)
       {
@@ -820,14 +822,29 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
+    // We need to make sure $collectible is CollectionCollectible
+    if ($collectible instanceof Collectible)
+    {
+      /** @var $q CollectionCollectibleQuery */
+      $q = FrontendCollectionCollectibleQuery::create()
+        ->filterByCollectible($collectible->getCollectible());
+
+      if ($collection)
+      {
+        $q->filterByCollection($collection);
+      }
+
+      $collectible = $q->findOne();
+    }
+
     /** @var $limit integer */
     $limit = (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3);
     $page = $collectible ? (integer) ceil($collectible->getPosition() / $limit) : $limit;
     $page = $this->getRequest()->getParameter('p', $page);
 
-    $q = CollectionCollectibleQuery::create();
-    $q->joinWith('Collectible')
-      ->orderBy('Position', Criteria::ASC);
+    $q = FrontendCollectionCollectibleQuery::create()
+       ->joinWith('Collectible')
+       ->orderBy('Position', Criteria::ASC);
 
     // Filter by Collection if specified
     if ($collection)

@@ -148,7 +148,31 @@ EOF;
       }
       else
       {
-        $this->logSection('success', 'Updated collector '. $collector->getDisplayName());
+        $this->logSection('success', 'Updated collector '. $collector->getEmail());
+      }
+    }
+
+    $q = CollectorArchiveQuery::create()
+      ->filterByCreatedAt(strtotime('yesterday'), Criteria::GREATER_EQUAL)
+      ->filterByCreatedAt(strtotime('today'), Criteria::LESS_THAN)
+      ->orderBy('CreatedAt', Criteria::DESC)
+      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND);
+
+    /** @var $collectors Collector[] */
+    $collectors = $q->find();
+
+    /* @var $collector Collector */
+    foreach ($collectors as $collector)
+    {
+      $mc->listUnsubscribe('4b51c2b29c', $collector->getEmail(), true);
+
+      if ($mc->errorCode)
+      {
+        $this->logSection('error', $mc->errorMessage);
+      }
+      else
+      {
+        $this->logSection('success', 'Unsibscribed collector '. $collector->getEmail());
       }
     }
 

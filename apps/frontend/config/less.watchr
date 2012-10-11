@@ -17,7 +17,7 @@ end
 def watchr2
   web = Pathname.new("#{File.dirname(__FILE__)}/../../../web").realpath.to_s
 
-  crawl(web + "/less/frontend/modules", 1, false) { |file_path, depth|
+  crawl(web + "/less/frontend/jquery", 1, false) { |file_path, depth|
     if File.split(file_path)[ 1 ] =~ Regexp.new('^(?!_).*\.less$', true)
       lessc file_path, file_path.gsub('less', 'css'), web
     end
@@ -25,6 +25,16 @@ def watchr2
 end
 
 def watchr3
+  web = Pathname.new("#{File.dirname(__FILE__)}/../../../web").realpath.to_s
+
+  crawl(web + "/less/frontend/modules", 1, false) { |file_path, depth|
+    if File.split(file_path)[ 1 ] =~ Regexp.new('^(?!_).*\.less$', true)
+      lessc file_path, file_path.gsub('less', 'css'), web
+    end
+  }
+end
+
+def watchr4
   web = Pathname.new("#{File.dirname(__FILE__)}/../../../web").realpath.to_s
 
   less = web + "/less/frontend/bootstrap/bootstrap.less"
@@ -38,6 +48,7 @@ end
 watchr1()
 watchr2()
 watchr3()
+watchr4()
 
 # --------------------------------------------------
 # Watchr Rules (put the more specific ones at the end of the list)
@@ -47,4 +58,5 @@ watch ("web/less/frontend/.*\.less$") {
   watchr1
   watchr2
   watchr3
+  watchr4
 }

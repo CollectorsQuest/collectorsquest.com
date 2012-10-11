@@ -43,11 +43,13 @@ class collectionActions extends cqFrontendActions
      */
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
+    $american_restoration = sfConfig::get('app_aetn_american_restoration');
     $picked_off = sfConfig::get('app_aetn_picked_off');
 
     if (
       in_array($collection->getId(), array(
-        $pawn_stars['collection'], $american_pickers['collection'], $picked_off['collection']
+        $pawn_stars['collection'], $american_pickers['collection'],
+        $american_restoration['collection'], $picked_off['collection']
       ))
     )
     {
@@ -58,6 +60,13 @@ class collectionActions extends cqFrontendActions
       else if ($collection->getId() == $american_pickers['collection'])
       {
         $this->redirect('@aetn_american_pickers', 301);
+      }
+      else if ($collection->getId() == $american_restoration['collection'])
+      {
+       $this->redirectIf(
+          IceGateKeeper::open('aetn_american_restoration', 'page'),
+          '@aetn_american_restoration', 301
+        );
       }
       else if ($collection->getId() == $picked_off['collection'])
       {
@@ -76,6 +85,7 @@ class collectionActions extends cqFrontendActions
 
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
+    $c->add(CollectiblePeer::IS_PUBLIC, true);
 
     if ($collection instanceof CollectionDropbox)
     {
@@ -106,14 +116,35 @@ class collectionActions extends cqFrontendActions
     $this->editable = $this->getUser()->isOwnerOf($collection);
 
     // calculate how many rows of collectibles will be on the page
-    $collectible_rows = count($pager->getResults());
-    $collectible_rows = $collectible_rows % 3 == 0 ? intval($collectible_rows / 3) : intval($collectible_rows / 3 + 1);
-
+    $results_count = count($pager->getResults());
+    $collectible_rows = $results_count % 3 == 0 ? intval($results_count / 3) : intval($results_count / 3 + 1);
     $this->collectible_rows = $collectible_rows;
 
-    // Building the meta tags
-    // $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
-    // $this->getResponse()->addMeta('keywords', $collection->getTagString());
+    // if we don't have (public) Collectibles in Collection
+    if ($results_count == 0)
+    {
+      // user is NOT owner of Collection -> should not display Collection
+      if (!$this->getCollector()->isOwnerOf($collection))
+      {
+        $this->forward404();
+      }
+      // user IS owner of Collection -> display Flash to explain why Collection is not visible
+      else
+      {
+        $this->getUser()->setFlash(
+          'error',
+          'Your collection will not be discoverable until you have publicly viewable items in it!'
+        );
+      }
+    }
+
+    // if Collection is not public and user is it's owner
+    if ($collection->getIsPublic() === false && $this->getCollector()->isOwnerOf($collection))
+    {
+      $this->getUser()->setFlash(
+        'error', 'Your collection will not be discoverable until you fill in all the required information!'
+      );
+    }
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
@@ -124,7 +155,7 @@ class collectionActions extends cqFrontendActions
 
       if (!($collection instanceof CollectionDropbox) && !$this->getUser()->isOwnerOf($collection))
       {
-        $this->collections = CollectorCollectionQuery::create()
+        $this->collections = FrontendCollectorCollectionQuery::create()
           ->_if($collection->getCollectionCategoryId())
             ->filterByCollectionCategoryId($collection->getCollectionCategoryId())
           ->_elseif($collection->getContentCategoryId())
@@ -156,24 +187,16 @@ class collectionActions extends cqFrontendActions
     /** @var $collector Collector */
     $collector = $collectible->getCollector();
 
-    /**
-     * Special checks for the Collectibles of A&E
-     */
-    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
-    $american_pickers = sfConfig::get('app_aetn_american_pickers');
-    $picked_off = sfConfig::get('app_aetn_picked_off');
+    // Stop right here if we are missing any of these
+    $this->forward404Unless($collectible && $collection && $collector);
 
-    if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
-    {
-      $this->redirect('aetn_collectible_by_slug', $collectible);
-    }
-    else if ($collection->getId() == $picked_off['collection'])
-    {
-      $this->redirectIf(
-        IceGateKeeper::open('aetn_picked_off', 'page'),
-        'aetn_collectible_by_slug', $collectible
-      );
-    }
+    // We do not want to show Collectibles which are not assigned to a CollectorCollection
+    $this->forward404Unless($collection->getId());
+
+    /**
+     * Special checks for the Collectibles of A&E Shows
+     */
+    $this->_aetnCollectibleFixedMatching();
 
     /**
      * Increment the number of views
@@ -192,14 +215,14 @@ class collectionActions extends cqFrontendActions
     {
       if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
         $this->previous = $q->findOne();
       }
       else
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
         $this->previous = $q->findOne();
@@ -207,14 +230,14 @@ class collectionActions extends cqFrontendActions
 
       if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[0]);
         $this->next = $q->findOne();
       }
       else
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
         $this->next = $q->findOne();
@@ -222,7 +245,7 @@ class collectionActions extends cqFrontendActions
       /**
        * Figure out the first item in the collection
        */
-      $q = CollectionCollectibleQuery::create()
+      $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollection($collection)
         ->filterByCollectibleId($collectible_ids[0]);
       $this->first = $q->findOne();
@@ -257,6 +280,72 @@ class collectionActions extends cqFrontendActions
     $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
     $this->editable = $this->getUser()->isOwnerOf($collectible);
 
+    if ($videos = $collectible->getMultimedia(1, 'video', false))
+    {
+      $this->video = $videos;
+    }
+
+    // Make the Collectible available to the sidebar
+    $this->setComponentVar('collectible', $collectible, 'sidebarCollectible');
+
+    if ($collectible->getIsPublic() === false && $this->getCollector()->isOwnerOf($collectible))
+    {
+      $this->getUser()->setFlash(
+        'error', 'Your item will not be discoverable until you fill in all the required information!'
+      );
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  private function _aetnCollectibleFixedMatching()
+  {
+    /** @var $collectible Collectible */
+    $collectible = $this->getRoute()->getObject();
+
+    /** @var $collection Collection */
+    if (!$collection = $collectible->getCollectorCollection())
+    {
+      return false;
+    }
+
+    $this->aetn_show = null;
+    $aetn_shows = sfConfig::get('app_aetn_shows');
+
+    foreach ($aetn_shows as $id => $show)
+    {
+      if ($collection->getId() === $show['collection'])
+      {
+        $this->aetn_show = $show;
+        $this->aetn_show['id'] = $id;
+
+        break;
+      }
+    }
+
+    // Stop right here if not an A&E Show's collection
+    if (!$this->aetn_show)
+    {
+      return sfView::NONE;
+    }
+
+    /** @var $q CollectionCollectibleQuery */
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollection($collection)
+      ->filterByCollectible($collectible->getCollectible(), Criteria::NOT_EQUAL)
+      ->addAscendingOrderByColumn('RAND()');
+
+    $this->related_collectibles = $q->limit(8)->find();
+
+    // Make the A&E show available in the sidebar
+    $this->setComponentVar('aetn_show', $this->aetn_show, 'sidebarCollectible');
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl(
+      'http://' . sfConfig::get('app_www_domain') .
+      $this->generateUrl('aetn_collectible_by_slug', array('sf_subject' => $collectible), false)
+    );
+
     return sfView::SUCCESS;
   }
 
@@ -264,4 +353,5 @@ class collectionActions extends cqFrontendActions
   {
     $this->redirect('@mycq_collections');
   }
+
 }

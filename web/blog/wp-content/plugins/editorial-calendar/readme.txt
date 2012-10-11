@@ -1,9 +1,9 @@
-﻿=== Editorial Calendar ===
+=== Editorial Calendar ===
 Contributors: cvernon, justinstresslimit, jkudish, MaryVogt, zgrossbart
 Tags: posts, post, calendar, AJAX, admin, administration
 Requires at least: 2.8.5
 Tested up to: 3.4.1
-Stable tag: 2.4
+Stable tag: 2.5
 
 The Editorial Calendar makes it possible to see all your posts and drag and drop them to manage your blog.
 
@@ -13,7 +13,7 @@ Did you remember to write a post for next Tuesday?  What about the Tuesday after
 
 <h4>Watch the video</h4>
 
-[vimeo http://vimeo.com/13196017]
+[vimeo http://vimeo.com/47251750]
 
 <h4>Try it out</h4>
 Try the calendar before you install it.  Check out the demo installation at <a href="http://www.zackgrossbart.com/extras/sandbox/wp-admin/edit.php?page=cal">Zack's WordPress Sandbox</a>.
@@ -109,7 +109,7 @@ The editorial calendar follows the Week Starts On preference on the WordPress Ge
 
 = What languages does the calendar support? =
 
-The calendar is available in Brazilian Portuguese, Croatian, Czech, Dutch, English, French, German, Greek, Hebrew, Japanese, Lithuanian, Norwegian, Polish, Spanish, and Swedish. 
+The calendar is available in Brazilian Portuguese, Croatian, Czech, Dutch, English, French, German, Greek, Hebrew, Japanese, Lithuanian, Norwegian, Polish, Russian, Spanish, and Swedish. 
 
 = Can I add new languages? =
 
@@ -172,6 +172,20 @@ Moving published posts can cause problems with some RSS feeds and is generally n
 7. Use the new unscheduled drafts section to manage drafts before you schedule them.
 
 == Changelog ==
+
+= 2.5 =
+
+The calendar is now handling the post ID in the same way for each call it uses to get data about each post when returning post data to the calendar to avoid some PHP warnings.
+
+The calendar is now more careful about PHP warnings so it still works if the blog is set to show PHP warnings.
+
+The unit tests are now using the correct CSS reference so they show up properly.
+
+Moved the setting for the default post time to the edcal.php so it's easier to change without recompiling the JavaScript.
+
+The calendar now supports Russian thanks to Danny Zawacki and Lyudmila Kostryka.  Danny blogs at http://dannyzawacki.com
+
+We have started to namespace css classes to avoid conflicts with other plugins & themes. 
 
 = 2.4 =
 

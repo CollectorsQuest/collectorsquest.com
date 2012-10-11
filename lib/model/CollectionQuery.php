@@ -4,11 +4,12 @@ require 'lib/model/om/BaseCollectionQuery.php';
 
 class CollectionQuery extends BaseCollectionQuery
 {
+
   /**
    * @param  array|PropelObjectCollection|ContentCategory  $content_category
    * @param  string  $comparison
    *
-   * @return CollectorCollectionQuery
+   * @return CollectionQuery
    */
   public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
   {
@@ -42,12 +43,40 @@ class CollectionQuery extends BaseCollectionQuery
   }
 
   /**
-   * @return CollectorCollectionQuery
+   * @return CollectionQuery
    */
   public function hasCollectibles()
   {
+    return $this->filterByNumItems(0, Criteria::GREATER_THAN);
+  }
+
+  /**
+   * @return CollectionQuery
+   */
+  public function hasPublicCollectibles()
+  {
     return $this
-      ->filterByNumItems(0, Criteria::GREATER_THAN);
+      ->filterByNumItems(0, Criteria::GREATER_THAN)
+      ->useCollectionCollectibleQuery()
+        ->filterByIsPublic(true)
+      ->endUse()
+      ->groupBy('Id');
+  }
+
+  /**
+   * @return CollectionQuery
+   */
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  /**
+   * @return CollectionQuery
+   */
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
   }
 
   /**
@@ -61,4 +90,5 @@ class CollectionQuery extends BaseCollectionQuery
       ->_or()
       ->filterByDescription('%'. trim($v) .'%', Criteria::LIKE);
   }
+
 }

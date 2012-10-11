@@ -134,6 +134,7 @@ class mycqComponents extends cqFrontendComponents
 
     $q = CollectibleForSaleQuery::create()
         ->filterByCollector($collector)
+        ->isPartOfCollection()
         ->isForSale();
 
     switch ($this->getRequestParameter('s', 'most-recent'))

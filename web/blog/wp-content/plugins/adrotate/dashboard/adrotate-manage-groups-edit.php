@@ -10,8 +10,8 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 					$query = "SELECT `id` FROM `".$wpdb->prefix."adrotate_groups` WHERE `name` = '' ORDER BY `id` DESC LIMIT 1;";
 					$edit_id = $wpdb->get_var($query);
 					if($edit_id == 0) {
-						$wpdb->query("INSERT INTO `".$wpdb->prefix."adrotate_groups` (`name`, `fallback`, `sortorder`, `cat`, `cat_loc`,`page`,`page_loc`) VALUES ('', 0, '', '', 0, '', 0);");
-						$edit_id = $wpdb->get_var($query);
+					    $wpdb->insert($wpdb->prefix."adrotate_groups", array('name' => '', 'fallback' => 0, 'sortorder' => 0, 'cat' => '', 'cat_loc' => 0, 'page' => '', 'page_loc' => 0));
+					    $edit_id = $wpdb->insert_id;
 					}
 					$group_edit_id = $edit_id;
 					?>

@@ -44,12 +44,6 @@
 
 <?php if ($packagesForm->hasGlobalErrors()): ?>
   <?= $packagesForm->renderGlobalErrors(); ?>
-<?php elseif (IceGateKeeper::locked('mycq_seller_pay')): ?>
-  <div class="alert alert-info">
-    The Marketplace is almost ready! If you're interested in becoming a seller,
-    please email <?= mail_to('info@collectorsquest.com', 'info@collectorsquest.com'); ?>
-    and we'll add you to our notification list.
-  </div>
 <?php endif; ?>
 
 <form action="<?= url_for('seller_packages')?>" method="post""
@@ -58,7 +52,6 @@
 
   <?php
     if (
-      IceGateKeeper::open('mycq_seller_pay') &&
       isset($packagesForm['pending_transaction_confirm']) &&
       $packagesForm->isError('pending_transaction_confirm')
     ):
@@ -146,20 +139,18 @@
         <?php endif; ?>
       </div>
     </div>
-    <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
+
     <?php cq_section_title('How would you like to pay?', null, array('id' => 'payment-header')); ?>
-      <div class="payment-type">
-        <div class="control-group">
-          <div class="controls-inline clearfix">
-            <?= $packagesForm['payment_type']->render() ?>
-          </div>
-          <?= $packagesForm['payment_type']->renderError() ?>
+    <div class="payment-type">
+      <div class="control-group">
+        <div class="controls-inline clearfix">
+          <?= $packagesForm['payment_type']->render() ?>
         </div>
+        <?= $packagesForm['payment_type']->renderError() ?>
       </div>
-    <?php endif; ?>
+    </div>
   </fieldset>
 
-  <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
   <fieldset id="credit-card-info" class="js-hide cf">
 
     <div class="credit-card-wrapper">
@@ -222,7 +213,6 @@
     <?= $packagesForm['zip']->renderRow() ?>
     <?= $packagesForm['country']->renderRow() ?>
   </fieldset>
-  <?php endif; ?>
 
   <div class="agreement-checks control-group spacer-bottom-reset">
     <label class="control-label control-label">&nbsp;</label>

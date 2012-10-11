@@ -85,6 +85,18 @@ mycq_collectible_by_slug:
   param: { module: mycq, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
 
+mycq_incomplete:
+  url:   /mycq/incomplete
+  param: { module: mycq, action: incomplete }
+
+mycq_incomplete_collections:
+  url:   /mycq/incomplete/collections
+  param: { module: mycq, action: incompleteCollections }
+
+mycq_incomplete_collectibles:
+  url:   /mycq/incomplete/collectibles
+  param: { module: mycq, action: incompleteCollectibles }
+
 mycq_marketplace:
   url:   /mycq/marketplace
   param: { module: mycq, action: marketplace }
@@ -188,3 +200,8 @@ messages_compose:
 messages_batch_actions:
   url:   /messages/batch-actions
   param: { module: messages, action: batchActions }
+
+messages_thread_actions:
+  url:   /messages/thread-actions
+  param: { module: messages, action: threadActions }
+  requirements: { sf_method: post }

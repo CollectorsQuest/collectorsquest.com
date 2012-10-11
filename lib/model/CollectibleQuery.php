@@ -36,18 +36,47 @@ class CollectibleQuery extends BaseCollectibleQuery
     return $this->where($where);
   }
 
-  public function haveThumbnail()
+  public function hasThumbnail()
   {
     // @todo: to implement
     return $this;
   }
 
+  /**
+   * @return CollectibleQuery
+   */
   public function isForSale()
   {
     return $this
       ->useCollectibleForSaleQuery()
         ->isForSale()
       ->endUse();
+  }
+
+  /**
+   * @return CollectibleQuery
+   */
+  public function isPartOfCollection()
+  {
+    return $this
+      ->join('CollectionCollectible', Criteria::RIGHT_JOIN)
+      ->groupBy('Collectible.Id');
+  }
+
+  /**
+   * @return CollectibleQuery
+   */
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  /**
+   * @return CollectibleQuery
+   */
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
   }
 
   /**
@@ -61,4 +90,42 @@ class CollectibleQuery extends BaseCollectibleQuery
       ->_or()
       ->filterByDescription('%'. trim($v) .'%', Criteria::LIKE);
   }
+
+  /**
+   * @param     array|PropelObjectCollection|ContentCategory  $content_category
+   * @param     string  $comparison
+   *
+   * @return    CollectibleQuery
+   */
+  public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
+  {
+    /** @var $q ContentCategoryQuery */
+    $q = ContentCategoryQuery::create();
+
+    if (is_array($content_category) || $content_category instanceof PropelCollection)
+    {
+      foreach ($content_category as $category)
+      {
+        if ($category instanceof ContentCategory)
+        {
+          $q->_or()
+            ->descendantsOfObjectIncluded($category);
+        }
+      }
+    }
+    else if ($content_category instanceof ContentCategory)
+    {
+      $q->descendantsOfObjectIncluded($content_category);
+    }
+
+    if ($q->hasWhereClause())
+    {
+      return $this->filterByContentCategory($q->find(), $comparison);
+    }
+    else
+    {
+      return $this->filterByContentCategory($content_category, $comparison);
+    }
+  }
+
 }

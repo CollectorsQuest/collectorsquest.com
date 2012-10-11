@@ -22,17 +22,13 @@
     <?php
       if ($sf_params->get('q'))
       {
-        echo link_to(
-          'Not finding what you are looking for? Click here to find it on our search page!',
-          $url
-        );
+        echo link_to('Not finding what you are looking for? Click here to find it on our search page!', $url);
       }
       else
       {
         echo link_to(
-          "Can't find what you're looking for? Try the search bar at the top of the page!",
-          '@collections#top',
-          array('onclick' => 'if (window.jQuery) { $("#q").focus(); } return true;')
+          'Want to discover more great collectibles? Clicking here to explore more of our latest collections!',
+          '@collections_with_sort?sort=latest&page=2'
         );
       }
     ?>

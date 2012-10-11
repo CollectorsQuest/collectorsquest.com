@@ -1,0 +1,490 @@
+# Copyright (C) 2010 upPrev
+# This file is distributed under the same license as the upPrev package.
+msgid ""
+msgstr ""
+"Project-Id-Version: upPrev 3.3.6ru\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/upprev\n"
+"POT-Creation-Date: 2012-02-17 15:48:07+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-08-18 16:59+0400\n"
+"Last-Translator: Vadim Sokhin <scripanul.vs@gmail.com>\n"
+"Language-Team: http://webbizreshenie.ru/ <info@webbizreshenie.ru>\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+"Language: Russian\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. #-#-#-#-#  upprev.pot (upPrev trunk)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: admin/index.php:3 upprev.php:214 upprev.php:215 upprev.php:526
+msgid "upPrev"
+msgstr "upPrev"
+
+#: admin/index.php:7
+msgid "upPrev options saved."
+msgstr "upPrev настройки сохранены."
+
+#: includes/common.php:18
+msgid ""
+"<p>upPrev settings allows you to set the proprites of user notification "
+"showed when reader scroll down the page.</p>"
+msgstr ""
+"<p>upPrev опции позволяют вам менять настройки уведомления пользователя, "
+"которые отображаются во время прокрутки страницы вниз.</p>"
+
+#: includes/show_thubnail_on_admin_post_list.php:5
+msgid "Thumbnail"
+msgstr "Миниатюра"
+
+#: includes/show_thubnail_on_admin_post_list.php:19
+msgid "None"
+msgstr "Не удалось "
+
+#: includes/iworks.options.class.php:58
+msgid "An error occurred while getting the configuration."
+msgstr "Произошла ошибка при получении конфигурации."
+
+#: includes/iworks.options.class.php:291
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: includes/options.php:15
+msgid "Apperance"
+msgstr "Раздел настроек"
+
+#: includes/options.php:27
+msgid "Animation style"
+msgstr "Стиль анимации"
+
+#: includes/options.php:30
+msgid "flyout"
+msgstr "всплывающее"
+
+#: includes/options.php:31
+msgid "fade in/out"
+msgstr "постепенное появление/угасание"
+
+#: includes/options.php:38
+msgid "Position"
+msgstr "Расположение"
+
+#: includes/options.php:41
+msgid "right"
+msgstr "справа"
+
+#: includes/options.php:42
+msgid "left"
+msgstr "слева"
+
+#: includes/options.php:50
+msgid "Margin bottom"
+msgstr "Ширина нижнего поля"
+
+#: includes/options.php:51 includes/options.php:60 includes/options.php:70
+msgid "px"
+msgstr "px"
+
+#: includes/options.php:59
+msgid "Margin side"
+msgstr "Ширина поля (правого/левого)"
+
+#: includes/options.php:61
+msgid "Left or right depending on position."
+msgstr "Влево или вправо, в зависимости от расположения."
+
+#: includes/options.php:69
+msgid "Box width"
+msgstr "Ширина окна"
+
+#: includes/options.php:78
+msgid "Offset"
+msgstr "Смещение"
+
+#: includes/options.php:79
+msgid "%"
+msgstr "%"
+
+#: includes/options.php:80
+msgid "Percentage of the page required to be scrolled to display a box."
+msgstr "Требуемый процент прокрутки страницы для отображения окна"
+
+#: includes/options.php:88
+msgid "Before HTML element."
+msgstr "Перед элементом HTML."
+
+#: includes/options.php:89
+msgid ""
+"If empty, all page length is taken for calculation. If not empty, make sure "
+"to use the ID or class of an existing element. Put # \"hash\" before the ID, "
+"or . \"dot\" before a class name."
+msgstr ""
+"При незаполненном значении, для расчета  берётся вся длина страницы. Для "
+"заполнения используйте значение ID или класс существующего элемента. Ставить "
+"# \"hash\" перед ID, и . \"dot\" перед именем класса."
+
+#: includes/options.php:96
+msgid "Box header"
+msgstr "Заголовок окна"
+
+#: includes/options.php:97
+msgid "Show box header."
+msgstr "Показывать поле заголовка."
+
+#: includes/options.php:104
+msgid "Close button"
+msgstr "Кнопка \"Закрыть\""
+
+#: includes/options.php:105
+msgid "Show close button."
+msgstr "Показывать кнопку \"Закрыть\"."
+
+#: includes/options.php:113
+msgid "Custom CSS"
+msgstr "Пользовательский CSS"
+
+#: includes/options.php:144
+msgid "Content"
+msgstr "Содержание"
+
+#: includes/options.php:150
+msgid "Number of posts to show "
+msgstr "Выводимое количество сообщений"
+
+#: includes/options.php:151
+msgid "Not affected if using YARPP as choose method."
+msgstr "Не влияет, если при использовании метода выбора YARPP не меняется."
+
+#: includes/options.php:158
+msgid "Content filters"
+msgstr "Фильтры контента"
+
+#: includes/options.php:159
+msgid "Remove all filters."
+msgstr "Исключить все фильтры."
+
+#: includes/options.php:160
+msgid ""
+"Untick this if you have some strange things in upPrev box, but unticked have "
+"a lot of chances breaks your layout."
+msgstr ""
+"Если при работе с upPrev возникают непредвиденные проблемы, снимите флажок, "
+"однако в этом случае целостность структуры не гарантируется."
+
+#: includes/options.php:167
+msgid "Previous entry choose method"
+msgstr "Предыдущая запись выбрать метод"
+
+#: includes/options.php:170
+msgid "Just previous."
+msgstr "Предыдущая."
+
+#: includes/options.php:171
+msgid "Previous in category."
+msgstr "Предыдущая в рубрике."
+
+#: includes/options.php:172
+msgid "Previous in tag."
+msgstr "Предыдущая в теге."
+
+#: includes/options.php:173
+msgid "Random entry."
+msgstr "Произвольный выбор."
+
+#: includes/options.php:182
+msgid "Taxonomy limit"
+msgstr "Лимит для описаний"
+
+#: includes/options.php:183
+msgid "Number of taxonomies (tags or categories) to show."
+msgstr "Количество отображаемых описаний (тегов или рубрик), для показа."
+
+#: includes/options.php:184
+msgid "Default value: 0 (no limit)."
+msgstr "Значение по умолчанию: 0 (без ограничений)."
+
+#: includes/options.php:191
+msgid "Match post type"
+msgstr "Выбрать соответствие по типам постов"
+
+#: includes/options.php:192
+msgid "Display only for selected post types."
+msgstr "Отображать только выбранные типы постов."
+
+#: includes/options.php:199
+msgid "Select post types"
+msgstr "Выберите типы"
+
+#: includes/options.php:200
+msgid "Show posts."
+msgstr "Показывать посты"
+
+#: includes/options.php:201
+msgid "If not any, then default value is \"post\"."
+msgstr ""
+"Если тип поста не выбран, система по умолчанию устанавливает тип \"post\"."
+
+#: includes/options.php:204
+msgid "Posts."
+msgstr "Посты."
+
+#: includes/options.php:205
+msgid "Pages."
+msgstr "Страницы."
+
+#: includes/options.php:206
+msgid "Any post type (include custom post types)."
+msgstr "Все типы постов (включая нестандартные)."
+
+#: includes/options.php:216
+msgid "Sticky posts"
+msgstr "Sticky posts (заметки)"
+
+#: includes/options.php:217
+msgid "Ignore sticky posts."
+msgstr "Игнорировать."
+
+#: includes/options.php:227
+msgid "Excerpt"
+msgstr "Выдержка"
+
+#: includes/options.php:228
+msgid "Show excerpt."
+msgstr "Показывать выдержку."
+
+#: includes/options.php:237
+msgid "Number of words to show."
+msgstr "Количество отображаемых слов."
+
+#: includes/options.php:246
+msgid "Featured image"
+msgstr "Рекомендуемое изображение"
+
+#: includes/options.php:247
+msgid "Show featured image."
+msgstr "Показывать изображение."
+
+#: includes/options.php:256
+msgid "Featured image width."
+msgstr "Ширина изображения."
+
+#: includes/options.php:266
+msgid "Links"
+msgstr "Ссылки"
+
+#: includes/options.php:271
+msgid "URL prefix"
+msgstr "URL префикс"
+
+#: includes/options.php:273
+msgid "Will be added before link."
+msgstr "Будет добавлен перед ссылкой."
+
+#: includes/options.php:280
+msgid "URL sufix"
+msgstr "URL суффикс"
+
+#: includes/options.php:282
+msgid "Will be added after link."
+msgstr "Будет добавлен после ссылки."
+
+#: includes/options.php:289
+msgid "Open link"
+msgstr "Открытие ссылки"
+
+#: includes/options.php:290
+msgid "Open link in new window."
+msgstr "Открывать ссылки в новом окне."
+
+#: includes/options.php:291
+msgid "Not recomended!"
+msgstr "Не рекомендуется!"
+
+#: includes/options.php:298
+msgid "Google Analitics"
+msgstr "Google Analitics"
+
+#: includes/options.php:299
+msgid "I don't have GA tracking on site."
+msgstr "У меня нет плагина отслеживания GA на сайте."
+
+#: includes/options.php:300 includes/options.php:326
+msgid "Turn it on if you don't use any other GA tracking plugin."
+msgstr "Включите, если вы не используете любой другой плагин отслеживания GA."
+
+#: includes/options.php:307
+msgid "Google Analitics Account"
+msgstr "Аккаунт Google Analitics"
+
+#: includes/options.php:308
+msgid "Replace UA-XXXXX-X with your web property ID."
+msgstr "Заменить UA-XXXXX-X на свой ID"
+
+#: includes/options.php:317
+msgid "Track views"
+msgstr "Журнал просмотров"
+
+#: includes/options.php:318
+msgid "Track showing of upPrev box."
+msgstr "Отслеживать показ окна upPrev."
+
+#: includes/options.php:325
+msgid "Track clicks"
+msgstr "Отслеживать клики"
+
+#: includes/options.php:333
+msgid "Prevent bounce-rate"
+msgstr "Не учитывать случайные переходы"
+
+#: includes/options.php:334
+msgid ""
+"Turn it on to indicate that the event hit will not be used in bounce-rate "
+"calculation."
+msgstr ""
+"При включении этой функции, исключается попадание случайных  переходов."
+
+#: includes/options.php:343 includes/options.php:348
+msgid "Cache"
+msgstr "Кэш"
+
+#: includes/options.php:349
+msgid "Use Transient Cache."
+msgstr "Использование переходного кэша."
+
+#: includes/options.php:350
+msgid "Using on large site (more than 1000 posts) may crash website."
+msgstr ""
+"Использование на больших сайтах (более 1000 сообщений) может привести к "
+"падению сайта."
+
+#: includes/options.php:357
+msgid "Transients Cache Lifetime."
+msgstr "Время жизни кэша."
+
+#: includes/options.php:358
+msgid "In seconds, default one hour (3600s)."
+msgstr "В секундах, по умолчанию один час (3600s)."
+
+#: includes/options.php:367 includes/options.php:372
+msgid "Mobile devices"
+msgstr "Мобильные устройства"
+
+#: includes/options.php:373
+msgid "Hide for mobile devices."
+msgstr "Скрыть для мобильных устройств."
+
+#: includes/options.php:380
+msgid "Tablets"
+msgstr "Графические планшеты"
+
+#: includes/options.php:381
+msgid "Hide for tablets too."
+msgstr "Скрыть для планшетов."
+
+#: includes/options.php:382
+msgid "Works only when hidding for mobile devices is turn on."
+msgstr ""
+"Работает только при включенной функции блокирования доступа для мобильных "
+"устройств."
+
+#: includes/options.php:391
+msgid "Other"
+msgstr "Дополнительно"
+
+#: includes/options.php:396
+msgid "Promote"
+msgstr "Продвижение"
+
+#: includes/options.php:397
+msgid "Help promote upPrev plugin?"
+msgstr "Помощь в продвижении плагина upPrev"
+
+#: includes/options.php:398
+msgid ""
+"This option will add the code <code>Previous posts box brought to you by &lt;"
+"a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev "
+"plugin&lt;/a&gt;.</code>. Try turning it on, updating your options, and see "
+"the code in the code example to the right. These links and donations are "
+"greatly appreciated.</span>"
+msgstr ""
+"Данная опция добавляет код <code> Окно со ссылками на предыдущие посты "
+"предоставляет вам &lt;a href='http://iworks.pl/produkty/wordpress/wtyczki/"
+"upprev/en/'&gt; плагин upPrev &lt;/a&gt;.</code>. Попробуйте активировать "
+"чекбокс, обновить опции; пример кода расположен справа. Ссылки и "
+"пожертвования приветствуются. </span>"
+
+#: includes/options.php:404 upprev.php:513
+msgid "Donate"
+msgstr "Пожертвование"
+
+#: includes/options.php:405
+msgid ""
+"You can buy me some special coffees if you appreciate my work, thank you! <a "
+"href=\"http://iworks.pl/donate/upprev.php\">Donate to this plugin.</a>"
+msgstr ""
+"Если Вам понравилась моя работа, можете угостить меня кофе какого-нибудь "
+"элитного сорта. Спасибо! <a href=\"http://iworks.pl/donate/upprev.php\"> "
+"Поддержать этот плагин.</a>"
+
+#: includes/options.php:420
+msgid "Custom post type: "
+msgstr "Пользовательский тип поста"
+
+#: includes/options.php:431 includes/options.php:434
+msgid "Related Posts (YARPP)"
+msgstr "Посты по теме (YARPP)"
+
+#: includes/options.php:432
+msgid ". Works only with post and/or pages."
+msgstr ". Работать только с постом и/или страницей."
+
+#: upprev.php:383
+msgid "More in"
+msgstr "Подробнее в"
+
+#: upprev.php:390
+msgid "Read more:"
+msgstr "Подробнее:"
+
+#: upprev.php:392
+msgid "Read previous post:"
+msgstr "Читайте ранее:"
+
+#: upprev.php:462
+msgid "Close"
+msgstr "Закрыть"
+
+#: upprev.php:465
+msgid ""
+"Previous posts box brought to you by <a href=\"http://iworks.pl/produkty/"
+"wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
+msgstr ""
+"Окно со ссылками на предыдущие посты предоставляет вам <a href=\"http://"
+"iworks.pl/produkty/wordpress/wtyczki/upprev/en/\">плагин upPrev</a>."
+
+#: upprev.php:511
+msgid "Settings"
+msgstr "Настройки"
+
+#. Plugin URI of the plugin/theme
+msgid "http://iworks.pl/upprev/"
+msgstr "http://iworks.pl/upprev/"
+
+#. Description of the plugin/theme
+msgid ""
+"When scrolling post down upPrev will display a flyout box with a link to the "
+"previous post from the same category. Based on upPrev Previous Post Animated "
+"Notification by Jason Pelker, Grzegorz Krzyminski"
+msgstr ""
+"При прокрутке поста вниз появится всплывающее окно со ссылкой на предыдущий "
+"пост из той же рубрики. По образцу анимированного уведомления о предыдущих "
+"постах Jason Pelker, Grzegorz Krzyminski"
+
+#. Author of the plugin/theme
+msgid "Marcin Pietrzak"
+msgstr "Marcin Pietrzak"
+
+#. Author URI of the plugin/theme
+msgid "http://iworks.pl/"
+msgstr "http://iworks.pl/"
