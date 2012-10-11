@@ -264,7 +264,7 @@ class ContentCategory extends BaseContentCategory
    */
   public function getSeoCollectionsTitle()
   {
-    $prefix = $this->getSeoCollectionsTitlePrefix() ?: 'Collectile';
+    $prefix = $this->getSeoCollectionsTitlePrefix() ?: 'Collectible';
     $suffix = $this->getSeoCollectionsTitleSuffix() ? ' '. $this->getSeoCollectionsTitleSuffix() : null;
     $name = $this->getSeoCollectionsUseSingular() ? $this->getNameSingular() : $this->getName();
 
