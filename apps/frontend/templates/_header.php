@@ -112,7 +112,7 @@
         <?php else: ?>
           <?php
             echo link_to(
-              'Sign In', 'modal_login', array('ref' => cq_link_ref('header')),
+              'Sign In', '@ajax?section=component&page=modalLogin&ref=header',
               array(
                 'class' => 'open-dialog requires-login bold-links padding-signup',
                 'onclick' => 'return false;'
