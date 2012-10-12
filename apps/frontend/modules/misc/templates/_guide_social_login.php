@@ -1,22 +1,39 @@
 <div class="social-signin-wapper">
-  <a href="<?= url_for('@login#rpx-login'); ?>" title="<?= ucfirst($action) ?> using Facebook"
-     class="facebook-big-icon" rel="tooltip" data-placement="top"
-     onclick="return jQuery && $('#modal-login-holder').modal('show').find('a[href=#modal-login-openid-pane]').tab('show') && false; ">
-    <i class="hide-text"><?= ucfirst($action) ?> using Facebook</i>
-  </a>
-  <a href="<?= url_for('@login#rpx-login'); ?>" title="<?= ucfirst($action) ?> using Twitter"
-     class="twitter-big-icon" rel="tooltip" data-placement="top"
-     onclick="return jQuery && $('#modal-login-holder').modal('show').find('a[href=#modal-login-openid-pane]').tab('show') && false;">
-    <i class="hide-text"><?= ucfirst($action) ?> using Twitter</i>
-  </a>
-  <a href="<?= url_for('@login#rpx-login'); ?>" title="<?= ucfirst($action) ?> using Google+"
-     class="google-big-icon" rel="tooltip" data-placement="top"
-     onclick="return jQuery && $('#modal-login-holder').modal('show').find('a[href=#modal-login-openid-pane]').tab('show') && false;">
-    <i class="hide-text"><?= ucfirst($action) ?> using Google+</i>
-  </a>
-  <a href="<?= url_for('@login#rpx-login'); ?>" title="<?= ucfirst($action) ?> using Windows Live ID"
-     class="live-id-big-icon" rel="tooltip" data-placement="top"
-     onclick="return jQuery && $('#modal-login-holder').modal('show').find('a[href=#modal-login-openid-pane]').tab('show') && false;">
-    <i class="hide-text"><?= ucfirst($action) ?> using Windows Live ID</i>
-  </a>
+  <?php
+    echo link_to(
+      '<i class="hide-text">'. ucfirst($action) .' using Facebook</i>',
+      '@ajax?section=partial&page=socialModalLogin',
+      array(
+        'class' => 'open-dialog facebook-big-icon', 'rel' => 'tooltip', 'data-placement' => 'top',
+        'onclick' => 'return false', 'title' => ucfirst($action).' using Facebook'
+      )
+    );
+
+    echo link_to(
+      '<i class="hide-text">'. ucfirst($action) .' using Twitter</i>',
+      '@ajax?section=partial&page=socialModalLogin',
+      array(
+        'class' => 'open-dialog twitter-big-icon', 'rel' => 'tooltip', 'data-placement' => 'top',
+        'onclick' => 'return false', 'title' => ucfirst($action).' using Twitter'
+      )
+    );
+
+    echo link_to(
+      '<i class="hide-text">'. ucfirst($action) .' using Google+</i>',
+      '@ajax?section=partial&page=socialModalLogin',
+      array(
+        'class' => 'open-dialog google-big-icon', 'rel' => 'tooltip', 'data-placement' => 'top',
+        'onclick' => 'return false', 'title' => ucfirst($action).' using Google+'
+      )
+    );
+
+    echo link_to(
+      '<i class="hide-text">'. ucfirst($action) .' using Windows Live ID</i>',
+      '@ajax?section=partial&page=socialModalLogin',
+      array(
+        'class' => 'open-dialog live-id-big-icon', 'rel' => 'tooltip', 'data-placement' => 'top',
+        'onclick' => 'return false', 'title' => ucfirst($action).' using Windows Live ID'
+      )
+    );
+  ?>
 </div>
