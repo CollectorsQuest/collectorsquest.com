@@ -118,4 +118,15 @@ class globalComponents extends cqFrontendComponents
   {
     return sfView::SUCCESS;
   }
+
+  public function executeAdminBar()
+  {
+    if (!$this->getUser()->isAdmin())
+    {
+      return sfView::NONE;
+    }
+
+    $this->items = cqAdminBar::getMenu();
+    return sfView::SUCCESS;
+  }
 }
