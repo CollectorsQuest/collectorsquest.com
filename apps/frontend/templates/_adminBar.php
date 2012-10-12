@@ -41,7 +41,7 @@
         <li>
         <?php
           echo link_to_backend(
-            '<i class="icon-lock icon-white"></i>&nbsp;' . __('Admin Logout'), 'ice_backend_signout', array(),
+            '<i class="icon-lock icon-white"></i>&nbsp;' . __('Logout'), 'ice_backend_signout', array(),
             array('onclick' => 'return confirm("You will be also logged out of your webmail. Are you sure you want to continue?")')
           );
         ?>

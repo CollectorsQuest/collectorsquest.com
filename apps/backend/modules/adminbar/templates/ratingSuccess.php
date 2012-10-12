@@ -1,4 +1,4 @@
-<div id="object_rating_box">
+<div id="object_rating_box" class="spacer-top">
   <?php foreach ($forms as $form): ?>
     <div class="row rating-row">
       <div class="span2 offset1"><?= $form->getObject()->getDimensionLabel() ?></div>
