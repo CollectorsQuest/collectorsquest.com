@@ -1,13 +1,13 @@
 <?php
 
 /**
- * CollectorRating filter form.
+ * CollectionRate form.
  *
  * @package    CollectorsQuest
- * @subpackage filter
+ * @subpackage form
  * @author     Collectors Quest, Inc.
  */
-class CollectorRatingFormFilter extends BaseCollectorRatingFormFilter
+class CollectionRateForm extends BaseCollectionRateForm
 {
   public function configure()
   {

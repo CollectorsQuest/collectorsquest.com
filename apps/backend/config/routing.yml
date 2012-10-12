@@ -207,14 +207,14 @@ item_offers:
   url:   /item/offers
   param: { module: collectibleForSale, action: itemOffers }
 
-object_rating:
-  url:   /ajax/set-rating/:class/:id
-  param: { module: adminbar, action: rating }
+object_rate:
+  url:   /ajax/set-rate/:class/:id
+  param: { module: adminbar, action: rate }
   requirements: { class: "[^/]+", id: '\d+' }
 
-ajax_object_rating:
-  url:   /object/set-rating/:dimension/:class/:id
-  param: { module: adminbar, action: rating }
+ajax_object_rate:
+  url:   /object/set-rate/:dimension/:class/:id
+  param: { module: adminbar, action: rate }
   requirements: {dimension: "[^/]+", class: "[^/]+", id: '\d+' }
 
 # default rules

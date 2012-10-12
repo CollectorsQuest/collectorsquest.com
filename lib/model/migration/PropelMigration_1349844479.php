@@ -37,26 +37,26 @@ class PropelMigration_1349844479
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
 
-        ALTER TABLE `collectible` ADD `average_rating` FLOAT AFTER `score`;
-        ALTER TABLE `collectible` ADD `average_content_rating` FLOAT AFTER `average_rating`;
-        ALTER TABLE `collectible` ADD `average_images_rating` FLOAT AFTER `average_content_rating`;
+        ALTER TABLE `collectible` ADD `average_rate` FLOAT AFTER `score`;
+        ALTER TABLE `collectible` ADD `average_content_rate` FLOAT AFTER `average_rate`;
+        ALTER TABLE `collectible` ADD `average_images_rate` FLOAT AFTER `average_content_rate`;
 
-        DROP TABLE IF EXISTS `collectible_rating`;
-        CREATE TABLE `collectible_rating`
+        DROP TABLE IF EXISTS `collectible_rate`;
+        CREATE TABLE `collectible_rate`
         (
           `id` INTEGER NOT NULL AUTO_INCREMENT,
           `dimension` VARCHAR(255) NOT NULL,
-          `rating` INTEGER NOT NULL,
+          `rate` INTEGER NOT NULL,
           `collectible_id` INTEGER NOT NULL,
           `collector_id` INTEGER NOT NULL,
           PRIMARY KEY (`id`),
-          INDEX `collectible_rating_FI_1` (`collectible_id`),
-          INDEX `collectible_rating_FI_2` (`collector_id`),
-          CONSTRAINT `collectible_rating_FK_1`
+          INDEX `collectible_rate_FI_1` (`collectible_id`),
+          INDEX `collectible_rate_FI_2` (`collector_id`),
+          CONSTRAINT `collectible_rate_FK_1`
             FOREIGN KEY (`collectible_id`)
             REFERENCES `collectible` (`id`)
             ON DELETE CASCADE,
-          CONSTRAINT `collectible_rating_FK_2`
+          CONSTRAINT `collectible_rate_FK_2`
             FOREIGN KEY (`collector_id`)
             REFERENCES `collector` (`id`)
             ON DELETE CASCADE
@@ -86,11 +86,11 @@ class PropelMigration_1349844479
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
 
-        DROP TABLE IF EXISTS `collectible_rating`;
+        DROP TABLE IF EXISTS `collectible_rate`;
 
-        ALTER TABLE `collectible` DROP `average_rating`;
-        ALTER TABLE `collectible` DROP `average_content_rating`;
-        ALTER TABLE `collectible` DROP `average_images_rating`;
+        ALTER TABLE `collectible` DROP `average_rate`;
+        ALTER TABLE `collectible` DROP `average_content_rate`;
+        ALTER TABLE `collectible` DROP `average_images_rate`;
 
         # This restores the fkey checks, after having unset them earlier
         SET FOREIGN_KEY_CHECKS = 1;

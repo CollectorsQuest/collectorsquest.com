@@ -1,6 +1,6 @@
 <?php
 
-class cqWidgetFormRatingStar extends sfWidgetFormSelectRadio
+class cqWidgetFormRateStar extends sfWidgetFormSelectRadio
 {
 
   protected function configure($options = array(), $attributes = array())
@@ -20,7 +20,7 @@ class cqWidgetFormRatingStar extends sfWidgetFormSelectRadio
         'type'  => 'radio',
         'value' => self::escapeOnce($key),
         'id'    => $id = $this->generateId($name, self::escapeOnce($key)),
-        'class' => 'cq_star_rating_input'
+        'class' => 'cq_star_rate_input'
       );
 
       $labelAttributes = array();
@@ -63,12 +63,12 @@ class cqWidgetFormRatingStar extends sfWidgetFormSelectRadio
   if (!window.initCqRatableStars)
   {
     function initCqRatableStars(){
-      $('.cq_star_rating_input').live('change', function() {
+      $('.cq_star_rate_input').live('change', function() {
         var container = $(this).closest('.%s');
-        $('.cq_star_rating_input', container).each(function(){
+        $('.cq_star_rate_input', container).each(function(){
           $(this).parent('label').removeClass('checked');
         });
-        $('.cq_star_rating_input:checked', container).parent('label').addClass('checked');
+        $('.cq_star_rate_input:checked', container).parent('label').addClass('checked');
       });
     }
     $(document).ready(function() {

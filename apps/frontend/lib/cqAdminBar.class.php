@@ -49,17 +49,17 @@ class cqAdminBar
       );
     }
     //no method - no rating
-    if (method_exists($object, 'getAverageRating'))
+    if (method_exists($object, 'getAverageRate'))
     {
       $backend_user_id = sfContext::getInstance()->getRequest()->getCookie('cq_bc');
-      $this->objects_menu['Rating'][$url = $this->application->generateBackendUrl(
-        'object_rating', array('class' => get_class($object), 'id' => $object->getId(), 'bc' => $backend_user_id)
+      $this->objects_menu['Rate'][$url = $this->application->generateBackendUrl(
+        'object_rate', array('class' => get_class($object), 'id' => $object->getId(), 'bc' => $backend_user_id)
       )] =
         array(
           'label' => $label,
           'attributes' => array(
             'onclick' => 'return false;', 'href' => $url,
-            'class' => 'open-dialog', 'title' => 'Rating for ' . $object
+            'class' => 'open-dialog', 'title' => 'Rate ' . $object
           ),
         );
     }
