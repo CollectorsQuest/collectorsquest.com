@@ -40,7 +40,6 @@ generator:
         title: Edit Content Category
         display:
          '':
-           - parent_id
            - name
            - name_singular
            - description

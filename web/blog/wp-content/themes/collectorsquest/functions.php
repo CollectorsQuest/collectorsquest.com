@@ -507,13 +507,12 @@ function cq_comment($comment, $args, $depth) {
     <div id="div-comment-<?php comment_ID() ?>" class="row-fluid user-comment">
       <div class="span2 text-right">
         <?php
-          $comment_author_id = get_comment_meta(get_comment_ID(), "comment_author_id", true);
-          $comment_author_slug = get_comment_meta(get_comment_ID(), "comment_author_slug", true);
+          $comment_author_id = get_comment_meta(get_comment_ID(), 'comment_author_id', true);
+          $comment_author_slug = get_comment_meta(get_comment_ID(), 'comment_author_slug', true) ?: 'n-a';
+
           $comment_author_link =
-            '<a
-              href="/collector/' . $comment_author_id . '/' . $comment_author_slug . '"
-              title="' . $comment->comment_author . '"
-            >';
+            '<a href="/collector/' . $comment_author_id . '/' . $comment_author_slug . '"
+                title="' . $comment->comment_author . '">';
 
           if ($comment_author_id)
           {
