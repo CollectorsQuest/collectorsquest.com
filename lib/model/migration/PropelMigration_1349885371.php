@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Data object containing the SQL and PHP code to migrate the database
- * up to version 1349885371.
- * Generated on 2012-10-10 12:09:31 by root
+ * Migration to add collector_rating, collector_collection_rating
  */
 class PropelMigration_1349885371
 {
@@ -42,14 +40,9 @@ class PropelMigration_1349885371
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
 
-
-
         ALTER TABLE `collectible_rating` DROP FOREIGN KEY `collectible_rating_FK_2`;
-
         DROP INDEX `collectible_rating_FI_2` ON `collectible_rating`;
-
         ALTER TABLE `collectible_rating` CHANGE `collector_id` `sf_guard_user_id` INTEGER NOT NULL;
-
         CREATE INDEX `collectible_rating_FI_2` ON `collectible_rating` (`sf_guard_user_id`);
 
         ALTER TABLE `collectible_rating` ADD CONSTRAINT `collectible_rating_FK_2`
@@ -64,8 +57,7 @@ class PropelMigration_1349885371
           `average_images_rating` FLOAT
         );
 
-        ALTER TABLE `collector` ADD
-        (
+        ALTER TABLE `collector` ADD (
           `average_rating` FLOAT,
           `average_content_rating` FLOAT,
           `average_images_rating` FLOAT

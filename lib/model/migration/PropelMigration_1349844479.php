@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Migration to add collectible_rating
+ */
 class PropelMigration_1349844479
 {
 
