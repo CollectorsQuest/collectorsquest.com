@@ -57,7 +57,7 @@ generator:
           - _list_url
 
       form:
-        display: [content_category_id, name, description, tags]
+        display: [content_category_id, name, description, tags, internal_tags]
 
       edit:
         title: Edit collection %%name%%

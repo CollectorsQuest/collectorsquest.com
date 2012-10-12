@@ -12,6 +12,7 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
   public function configure()
   {
     $this->setupTagsField();
+    $this->setupInternalTagsField();
     $this->setupContentCategoryIdField();
     $this->widgetSchema['description']->setAttributes(array(
         'rows' => 10, 'cols' => 50,
@@ -45,6 +46,25 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     ));
   }
 
+  protected function setupInternalTagsField()
+  {
+    // pretty ugly hack, but in this case this is the only way
+    // to keep the field's state between requests...
+    $tags = $this->getObject()->getInternalTags();
+
+    $this->widgetSchema['internal_tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Internal Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
+    ), array(
+      'class' => 'tag'
+    ));
+
+    $this->widgetSchema['internal_tags']->setDefault($tags);
+    $this->validatorSchema['internal_tags'] = new cqValidatorTags(array(
+      'required' => false,
+    ));
+  }
+
   public function updateDescriptionColumn($value)
   {
     $this->getObject()->setDescription($value, 'html');
@@ -60,6 +80,7 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
 
     $object->setDescription($values['description'], 'html');
     $object->setTags($values['tags']);
+    $object->setInternalTags($values['internal_tags']);
     $object->save();
 
     return $object;

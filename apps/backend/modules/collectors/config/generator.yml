@@ -72,7 +72,7 @@ generator:
         title: Edit Collector <small>(%%USERNAME%%)</small>
         fields:
           password: { label: Password, help: "If you do not want to change the password, leave the field empty" }
-        display: [display_name, email, password, photo, is_public]
+        display: [display_name, email, password, photo, internal_tags, is_public]
 
       new: ~
       export:

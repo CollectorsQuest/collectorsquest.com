@@ -4,6 +4,9 @@ require 'lib/model/om/BaseCollectorCollectionPeer.php';
 
 class CollectorCollectionPeer extends BaseCollectorCollectionPeer
 {
+  const TAGS_NAMESPACE_INTERNAL   = 'internal';
+  const TAGS_KEY_TAG              = 'tag';
+  
   static public function getObjectForRoute($parameters)
   {
     $collection = null;
@@ -172,6 +175,7 @@ class CollectorCollectionPeer extends BaseCollectorCollectionPeer
       }
     }
 
+    /*
     if ($term_ids = TermPeer::getTermIds($object))
     {
       $c = (is_null($criteria)) ? new Criteria() : clone $criteria;
@@ -215,7 +219,7 @@ class CollectorCollectionPeer extends BaseCollectorCollectionPeer
         $pks = array();
       }
     }
-
+*/
     // Check if we have enough $pks and if not get the collection category tags and get
     // collections for those tags
     if ($limit != 0 && count($pks) < $limit)

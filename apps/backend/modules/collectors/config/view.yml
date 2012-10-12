@@ -6,5 +6,3 @@ editSuccess:
     - jquery/autogrow-input.js
     - jquery/tagedit.js
 
-    - wysihtml5.js
-    - /assets/js/bootstrap/wysihtml5.js

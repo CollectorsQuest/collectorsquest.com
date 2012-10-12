@@ -4,6 +4,8 @@ require 'lib/model/om/BaseCollectiblePeer.php';
 
 class CollectiblePeer extends BaseCollectiblePeer
 {
+  const TAGS_NAMESPACE_INTERNAL   = 'internal';
+  const TAGS_KEY_TAG              = 'tag';
 
   /**
    * @static

@@ -932,10 +932,102 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return implode($glue, $this->getISellTags());
   }
 
-
-  public function getTerms()
+  /**
+   * Return tags for the INTERNAL namespace
+   *
+   * @return    array
+   */
+  public function getInternalTags()
   {
-    return TermPeer::getTerms($this);
+    return $this->getNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Add tag or tags to the INTERNAL namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   */
+  public function addInternalTag($tagname)
+  {
+    $this->addNamespacedTag(
+      $tagname,
+      CollectorPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Remove all tags for the INTERNAL namespace
+   */
+  public function removeAllInternalTags()
+  {
+    $this->removeAllNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Set the tags for the INTERNAL namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   */
+  public function setInternalTags($tags)
+  {
+    $this->setNamespacedTags(
+      $tags,
+      CollectorPeer::TAGS_NAMESPACE_INTERNAL,
+      CollectorPeer::TAGS_KEY_TAG
+    );
+  }
+
+  /**
+   * Return a string representation of the Internal tags
+   *
+   * @param     string $glue
+   * @return    string
+   */
+  public function getInternal($glue = ', ')
+  {
+    return implode($glue, $this->getInternalTags());
+  }
+
+  /**
+   * Return array of tags, not triple by default
+   *
+   * @param array $params
+   * @return array
+   */
+  public function getTags($params = array('is_triple' => false))
+  {
+    return parent::getTags($params);
+  }
+
+  /**
+   * Set tags
+   * by default it set only not triple tags
+   *
+   * @param $tags
+   * @param bool $all set all object tags
+   * @return mixed
+   */
+  public function setTags($tags, $all = false)
+  {
+    if (!$all)
+    {
+      $this->removeTag($this->getTags(array(
+        'is_triple' => false,
+      )));
+
+      return $this->addTag($tags);
+    }
+    else
+    {
+      return parent::setTags($tags);
+    }
   }
 
   public function getCountCollections()
