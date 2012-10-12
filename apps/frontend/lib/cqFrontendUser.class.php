@@ -795,7 +795,7 @@ class cqFrontendUser extends cqBaseUser
     {
       @list($id, $hmac) = explode(':', $cookie);
 
-      if ((string) $hmac === hash_hmac('sha1', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
+      if ((string) $hmac === hash_hmac('sha1', $id .':'. $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
       {
         $this->_sf_guard_user_id = $id;
 

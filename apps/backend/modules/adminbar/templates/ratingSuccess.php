@@ -14,8 +14,8 @@
     </div>
   <?php endforeach ?>
   <div class="row" id="total_row">
-    <div class="span4 offset3">
-      Total rating:
+    <div class="span4 offset3" style="text-align: right;">
+      &nbsp;
     </div>
     <?php include_partial('adminbar/ratingTotal', array(
       'average_rating' => $average_rating, 'total_ratings' => $total_ratings
