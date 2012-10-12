@@ -420,7 +420,6 @@ dev:
   www_domain: "www.collectorsquest.dev"
   static_domain: "www.collectorsquest.dev"
   multimedia_domain: "multimedia.cqcdns.dev"
-  backend_domain: "backend.collectorsquest.dev"
 
   ice_libs:
     kint:
@@ -431,7 +430,7 @@ dev:
     domain: "cqcdns.dev"
 
   paypal:
-    ipn_domain: 'http://221.58.193.147'
+    ipn_domain: 'http://207.237.37.24'
 
 test:
   domain_name: "example.com"
