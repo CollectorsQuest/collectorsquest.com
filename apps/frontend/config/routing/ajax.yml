@@ -80,8 +80,3 @@ ajax_mailchimp_webhook:
 ajax_sidebar:
   url:   /ajax/sidebar
   param: { module: _sidebar, action: ajax }
-
-ajax:
-  url:   /ajax/:section/:page
-  param: { module: _ajax, action: ajax }
-  requirements: { sf_method: [GET], sf_format: json }
