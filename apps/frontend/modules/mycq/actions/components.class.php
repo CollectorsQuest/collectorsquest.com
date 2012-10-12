@@ -288,12 +288,12 @@ class mycqComponents extends cqFrontendComponents
     $this->package_transactions = PackageTransactionQuery::create()
       ->filterByCollector($collector)
       ->_if('dev' != sfConfig::get('sf_environment'))
-      ->paidFor()
+        ->paidFor()
       ->_endif()
       ->find();
 
     // check if the seller has valid credits left
-    $this->has_no_credits = true;
+    $this->has_credits = false;
     foreach ($this->package_transactions as $package)
     {
       /* @var $package PackageTransaction */
@@ -302,9 +302,14 @@ class mycqComponents extends cqFrontendComponents
         $package->getExpiryDate('YmdHis') > date('YmdHis')
       )
       {
-        $this->has_no_credits = false;
+        $this->has_credits = true;
       }
     }
+
+    /**
+     * @todo have $has_credits variable in itemsForSaleHistory partial so
+     * we can not show activate and re-list actions
+     */
 
     return sfView::SUCCESS;
   }
@@ -319,21 +324,19 @@ class mycqComponents extends cqFrontendComponents
 
     $this->filter_by = $this->getRequestParameter('filter_by');
 
-    /*
-     * @todo get query to show adequate items for all cases
-     * @var $q CollectibleForSaleQuery
-     */
+    /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->_if('active' == $this->filter_by)
+        ->filterByIsReady(true)
         ->hasActiveCredit()
       ->_elseif('sold' == $this->filter_by)
         ->filterByIsSold(true)
       ->_elseif('inactive' == $this->filter_by)
-        // should fix this case
-        ->isForSale(false)
+        ->filterByIsReady(false)
       ->_elseif('expired' == $this->filter_by)
-        // should fix this case
+        ->hasActiveCredit(false)
+        ->filterByIsReady(true)
       ->_endif();
 
     switch ($this->getRequestParameter('s', 'most-recent'))

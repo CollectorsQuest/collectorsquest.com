@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var $search  string
+ * @var $filter_by  string
+ * @var $pager   PropelModelPager
+ */
+?>
+
 <div id="items-for-sale">
 
     <table class="table table-striped table-items-for-sale-history">
@@ -11,6 +19,7 @@
       </thead>
       <tbody>
       <?php if ($pager->getNbResults() > 0): foreach ($pager->getResults() as $i => $collectible_for_sale): ?>
+        <?php /** @var $collectible_for_sale CollectibleForSale */ ?>
         <tr>
           <td>
             <div class="row-fluid items">
@@ -44,7 +53,7 @@
           <td>
             <?= $collectible_for_sale->getExpiryDate($format = 'F j, Y'); ?>
           </td>
-          <td>
+          <td class="status">
             <?php // @todo should think of another way to approach this ?>
             <?php if ($collectible_for_sale->getIsSold()): ?>
             Sold
@@ -57,33 +66,37 @@
             <?php endif; ?>
           </td>
           <td>
-            <form action="<?= url_for('@mycq_item_actions'); ?>" method="post" id="inbox-form">
-              <?php // @todo should optimize and not use same function calls as for the previous <td> ?>
-              <?php if ($collectible_for_sale->getIsSold()): ?>
-              -
-              <?php elseif ($collectible_for_sale->getExpiryDate() > date('Y-m-d H:i:s')): ?>
-              <button class="btn btn-mini" type="button" name="action[deactivate]"
-                      onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
+            <?php if ($collectible_for_sale->getIsSold()): ?>
+            -
+            <?php elseif ($collectible_for_sale->getExpiryDate() > date('Y-m-d H:i:s')): ?>
+              <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
+                 class="deactivate btn btn-mini" onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
                 <i class="icon-minus-sign"></i>&nbsp;Deactivate
-              </button>
-              <?php elseif($collectible_for_sale->getExpiryDate() == null): ?>
-              <button class="btn btn-mini" type="button" name="action[activate]"
-                      onclick="return confirm('Are you sure you sure you want to activate this item?')">
+              </a>
+            <?php elseif($collectible_for_sale->getExpiryDate() == null): ?>
+              <?php // @todo this one should open a modal instead ?>
+              <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
+                 class="activate btn btn-mini" onclick="return confirm('Are you sure you sure you want to activate this item?')">
                 <i class="icon-ok"></i>&nbsp;Activate
-              </button>
-              <?php else: ?>
-              <button class="btn btn-mini" type="button" name="action[re-list]"
-                      onclick="return confirm('Are you sure you sure you want to re-list this item?')">
+              </a>
+            <?php else: ?>
+              <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
+                 class="relist btn btn-mini" onclick="return confirm('Are you sure you sure you want to re-list this item?')">
                 <i class="icon-undo"></i>&nbsp;Re-list
-              </button>
-              <?php endif; ?>
-            </form>
+              </a>
+            <?php endif; ?>
           </td>
         </tr>
       <?php // @todo add cases for filters */ ?>
       <?php endforeach; elseif ('' == $search): ?>
       <tr>
-        <td colspan="5">You have no items for sale yet.</td>
+        <td colspan="5">
+          <?php if($filter_by != 'all'): ?>
+            You have no <strong><?= $filter_by ?></strong> items for sale yet.
+          <?php else: ?>
+            You have no items for sale yet.
+          <?php endif; ?>
+        </td>
       </tr>
         <?php else: ?>
       <tr>
@@ -110,7 +123,7 @@
   </div>
 </div> <!-- #items-for-sale -->
 
-<script>
+<script type="text/javascript">
   $(document).ready(function()
   {
     var $url = '<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory', true) ?>';
@@ -136,6 +149,39 @@
 
       return false;
     });
+
+    $('a.deactivate').click(function(e)
+    {
+      e.preventDefault();
+      $(this).parent().parent().showLoading();
+
+      $(this).parent().load(
+        '<?php echo url_for('@ajax_mycq?section=collectible&page=deactivate&id=') ?>' + $(this).data('id'),
+        function() {
+          $(this).parent().parent().hideLoading();
+          $(this).parent().find('td.status').html('Inactive');
+        }
+      );
+
+      return false;
+    });
+
+    $('a.relist').click(function(e)
+    {
+      e.preventDefault();
+      $(this).parent().parent().showLoading();
+
+      $(this).parent().load(
+        '<?php echo url_for('@ajax_mycq?section=collectible&page=relist&id=') ?>' + $(this).data('id'),
+        function() {
+          $(this).parent().parent().hideLoading();
+          $(this).parent().find('td.status').html('Active');
+        }
+      );
+
+      return false;
+    });
+
   });
 </script>
 

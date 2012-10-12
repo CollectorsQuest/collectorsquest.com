@@ -1,4 +1,12 @@
-<?php if($has_no_credits): ?>
+<?php
+ /**
+  * @var $has_credits           boolean
+  * @var $class                 string
+  * @var $package_transactions  PackageTransaction[]
+  */
+?>
+
+<?php if(!$has_credits): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
   <p class="spacer-top">

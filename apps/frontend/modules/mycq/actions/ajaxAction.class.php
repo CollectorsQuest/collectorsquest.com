@@ -741,6 +741,74 @@ class ajaxAction extends cqAjaxAction
     return $template;
   }
 
+  /**
+   * section: collectible
+   * page: activate
+   * params: id
+   */
+  public function executeCollectibleActivate(sfWebRequest $request)
+  {
+    /** @var $collectible Collectible */
+    $collectible = CollectibleQuery::create()
+     ->findOneById($request->getParameter('id'));
+
+    /** @var $collection Collection */
+    $collection = $collectible->getCollection();
+
+    $form = new CollectibleEditForm($collectible);
+    $form->setDefault('return_to', $request->getParameter('return_to'));
+
+    if ($request->getParameter('suggest_tags') && !count($collectible->getTags()))
+    {
+      $form->setDefault('tags', $collection->getTags());
+    }
+
+    $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
+      $collectible,
+      'US',
+      $request->getParameter('shipping_rates_us')
+    );
+    $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
+      $collectible,
+      $request->getParameter('shipping_rates_zz')
+    );
+
+    return sfView::NONE;
+  }
+
+  /**
+   * section: collectible
+   * page: deactivate
+   * params: id
+   */
+  public function executeCollectibleDeactivate(sfWebRequest $request, $template)
+  {
+    /** @var $collectible CollectibleForSale */
+    $collectible_for_sale = CollectibleForSaleQuery::create()
+     ->findOneByCollectibleId($request->getParameter('id'));
+
+    $collectible_for_sale->setIsReady(false);
+    $collectible_for_sale->save();
+
+    $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
+
+    return $template;
+  }
+
+  /**
+   * section: collectible
+   * page: relist
+   * params: id
+   */
+  public function executeCollectibleRelist(sfWebRequest $request, $template)
+  {
+    /** @var $collectible CollectibleForSale */
+    $collectible_for_sale = CollectibleForSaleQuery::create()
+     ->findOneByCollectibleId($request->getParameter('id'));
+
+    return $template;
+  }
+
   public function executeCollectibleForSaleCreate(sfWebRequest $request, $template)
   {
     /** @var $collector Collector */
