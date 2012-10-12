@@ -623,6 +623,30 @@ class shoppingActions extends cqFrontendActions
           $this->getUser()->setOwnerOf($shopping_order);
         }
 
+        /**
+         * Create new feeback records
+         */
+        $seller_feeback = new ShoppingOrderFeedback();
+        $seller_feeback
+          ->setShoppingOrderId($shopping_order->getId())
+          ->setCollectibleId($shopping_order->getCollectibleId())
+          ->setBuyerId($shopping_order->getCollectorId())
+          ->setSellerId($shopping_order->getSellerId())
+          ->setRatingFor(ShoppingOrderFeedbackPeer::RATING_FOR_SELLER)
+          ->save();
+
+        $buyer_feedback = new ShoppingOrderFeedback();
+        $buyer_feedback
+          ->setShoppingOrderId($shopping_order->getId())
+          ->setCollectibleId($shopping_order->getCollectibleId())
+          ->setBuyerId($shopping_order->getCollectorId())
+          ->setSellerId($shopping_order->getSellerId())
+          ->setRatingFor(ShoppingOrderFeedbackPeer::RATING_FOR_BUYER)
+          ->save();
+
+        /**
+         * Send the confirmation emails
+         */
         $cqEmail = new cqEmail($this->getMailer());
         $cqEmail->send('Shopping/buyer_order_confirmation', array(
           'to' => $shopping_order->getBuyerEmail(),

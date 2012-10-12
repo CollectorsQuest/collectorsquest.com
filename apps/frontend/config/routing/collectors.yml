@@ -45,6 +45,13 @@ collector_by_slug:
   param: { module: collector, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
+collector_all_feedback_by_slug:
+  url:  /collector/:id/feedback/all/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collector, action: allFeedback }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
 ### SELLERS
 
 seller_signup:

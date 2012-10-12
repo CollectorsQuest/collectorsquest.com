@@ -440,4 +440,40 @@ class collectorActions extends cqFrontendActions
     return $this->redirect('@mycq_profile');
   }
 
+  public function executeAllFeedback(sfWebRequest $request)
+  {
+    /** @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+
+    /** @var $profile CollectorProfile */
+    $profile = $collector->getProfile();
+
+    $this->collector = $collector;
+    $this->profile   = $profile;
+
+    $this->filter_by = $request->getParameter('filter');
+
+    /* @var $q ShoppingOrderFeedbackQuery */
+    $q = ShoppingOrderFeedbackQuery::create()
+      ->filterByIsRated(true);
+
+    switch ($this->filter_by)
+    {
+      case 'others':
+        $q->filterByCollectorRelatedBySellerId($collector);
+      break;
+      default:
+        $q->filterByCollectorRelatedByBuyerId($collector);
+      break;
+    }
+
+    $pager = new PropelModelPager($q, 5);
+    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+
+    return sfView::SUCCESS;
+  }
+
 }

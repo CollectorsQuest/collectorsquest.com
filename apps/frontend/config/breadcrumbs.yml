@@ -43,6 +43,10 @@ ice_breadcrumbs:
     signup:
       - { name: 'Collectors', route: collectors }
       - { name: 'Signup' }
+    allFeedback:
+      - { name: 'Collectors', route: collectors }
+      - { name: '%DisplayName%', route: collector_by_slug, model: true }
+      - { name: 'Feedback' }
 
   collectibles:
     collectorList:
@@ -134,6 +138,8 @@ ice_breadcrumbs:
       - { name: 'Incomplete Collections' }
     incompleteCollectibles:
       - { name: 'Incomplete Collectibles' }
+    leaveFeedback:
+      - { name: 'Leave Feedback' }
 
   messages:
     _prepend:

@@ -94,4 +94,19 @@ class collectorComponents extends cqFrontendComponents
 
     return $pager->getNbResults() == 0 ? sfView::NONE : sfView::SUCCESS;
   }
+
+  public function executeFeedbackRate()
+  {
+    /** @var $collector Collector */
+    $collector = $this->getVar('collector') ?: CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
+
+    if (!$collector || !$this->total = $collector->getFeedbackCount())
+    {
+      return sfView::NONE;
+    }
+    $this->collector = $collector;
+    $this->pos = $collector->getPosFeedbackPercentage();
+
+    return  sfView::SUCCESS;
+  }
 }

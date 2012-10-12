@@ -39,6 +39,7 @@ $_height = 0;
         From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountryName(); ?>
       </li>
       <?php endif; ?>
+        <li><?php include_component('collector', 'feedbackRate', array('collector' => $collector)) ?></li>
     </ul>
   </div>
 </div>

@@ -1029,4 +1029,117 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+
+  public function executeLeaveFeedback(sfWebRequest $request)
+  {
+    $this->tab = null;
+
+    /* @var $q ShoppingOrderFeedbackQuery */
+    $q = ShoppingOrderFeedbackQuery::create()
+      ->filterByCollectorRelatedBySellerId($this->getUser()->getCollector())
+      ->filterByIsRated(false);
+
+    if ($request->getParameter('id'))
+    {
+      $q->filterById((int) $request->getParameter('id'));
+      $this->shopping_order_feedback = $q->findOne();
+      if (!$this->shopping_order_feedback)
+      {
+        return $this->redirect('mycq_collectible_by_slug',
+          ShoppingOrderFeedbackPeer::retrieveByPK((int) $request->getParameter('id'))->getCollectible());
+      }
+      $shopping_order_feedbacks = array($this->shopping_order_feedback);
+      $this->tab = $this->shopping_order_feedback->getCollectible()->getName();
+    }
+    else
+    {
+      $pager = new PropelModelPager($q, 5);
+      $pager->setPage($this->getRequestParameter('page', 1));
+      $pager->init();
+      $this->pager = $pager;
+
+      /** @var $shopping_order_feedbacks ShoppingOrderFeedback[] */
+      $shopping_order_feedbacks = $pager->getResults();
+    }
+
+    $success = false;
+    $forms = array();
+
+    foreach ($shopping_order_feedbacks as $shopping_order_feedback)
+    {
+      $shopping_order_feedback->setRating(null);
+      $form = new ShoppingOrderFeedbackForm($shopping_order_feedback);
+      $f_name = $form->getName();
+      $form->getWidgetSchema()->setNameFormat($f_name . '[' . $shopping_order_feedback->getId(). '][%s]');
+
+      if ($request->isMethod(sfWebRequest::POST))
+      {
+        /** @var $shopping_order_feedback ShoppingOrderFeedback  */
+        $shopping_order_feedback->setIsRated(true);
+
+        /** @var $p array */
+        $p = $request->getParameter($f_name);
+
+        if (isset($p[$shopping_order_feedback->getId()]))
+        {
+          // skip feedbacks that left for later
+          if ($p[$shopping_order_feedback->getId()]['rating'] != '')
+          {
+            // leave only forms with errors
+            if ($form->bindAndSave($p[$shopping_order_feedback->getId()]))
+            {
+              $success = true;
+            }
+            else
+            {
+              $forms[] = $form;
+            }
+          }
+          // single item
+          elseif (isset($this->shopping_order_feedback))
+          {
+            return $this->redirect('mycq_collectible_by_slug', $this->shopping_order_feedback->getCollectible());
+          }
+        }
+      }
+      else
+      {
+        $forms[] = $form;
+      }
+    }
+
+    if ($request->isMethod(sfWebRequest::POST))
+    {
+      // we have at least one feedback
+      if ($success)
+      {
+        $this->getUser()->setFlash(
+          'success', 'Thank you for your feedback(s).'
+        );
+      }
+
+      // we have forms with error
+      if (count($forms) && count($forms) != count($shopping_order_feedbacks))
+      {
+        $this->tab = 'Current';
+      }
+      else
+      {
+        if (isset($this->shopping_order_feedback))
+        {
+          return $this->redirect('mycq_collectible_by_slug', $this->shopping_order_feedback->getCollectible());
+        }
+        else
+        {
+          return $this->redirect('@mycq_feedback_leave');
+        }
+      }
+
+    }
+
+    $this->forms = $forms;;
+
+    return sfView::SUCCESS;
+  }
+
 }

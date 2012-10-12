@@ -691,6 +691,20 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     return parent::preDelete($con);
   }
 
+  /**
+   * @param Collector $collector
+   * @param bool $rated
+   * @return ShoppingOrderFeedback
+   */
+  public function getShoppingOrderFeedbackFromBuyer(Collector $collector, $rated = true)
+  {
+    $criteria = new Criteria();
+    $criteria->add(ShoppingOrderFeedbackPeer::BUYER_ID, $collector->getId());
+    $criteria->add(ShoppingOrderFeedbackPeer::IS_RATED, $rated);
+
+    return $this->getShoppingOrderFeedbacks($criteria)->getFirst();
+  }
+
 }
 
 sfPropelBehavior::add('Collectible', array('IceMultimediaBehavior'));

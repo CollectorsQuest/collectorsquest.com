@@ -61,6 +61,7 @@
             ?>
           </p>
           <?php endif; ?>
+          <br /><?php include_component('collector', 'feedbackRate', array('collector' => $collector)) ?>
         </div>
       </div>
     </div>

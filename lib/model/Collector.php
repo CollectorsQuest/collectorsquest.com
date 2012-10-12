@@ -1517,6 +1517,38 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
+   * @param  string  $rating
+   * @return int
+   */
+  public function getFeedbackCount($rating = null)
+  {
+    $q = ShoppingOrderFeedbackQuery::create();
+    $q->add(ShoppingOrderFeedbackPeer::IS_RATED, true);
+    if ($rating)
+    {
+      $q->filterByRating($rating);
+    }
+
+    return $this->countShoppingOrderFeedbacksRelatedByBuyerId($q);
+  }
+
+  /**
+   * Get positive feedback percentage
+   * @return int
+   */
+  public function getPosFeedbackPercentage()
+  {
+    $criteria = new Criteria();
+    $criteria->add(ShoppingOrderFeedbackPeer::IS_RATED, true);
+    $total = $this->countShoppingOrderFeedbacksRelatedByBuyerId($criteria);
+
+    $criteria->add(ShoppingOrderFeedbackPeer::RATING, ShoppingOrderFeedbackPeer::RATING_POSITIVE);
+    $positive = $this->countShoppingOrderFeedbacksRelatedByBuyerId($criteria);
+
+    return round(($positive / $total) * 100);
+  }
+
+  /**
    * Returns the number of related FrontendCollectorCollection objects.
    *
    * @return int

@@ -143,6 +143,12 @@ cq_sidebar_title(
         <td>Condition:</td>
         <td><?= $collectible->getCollectibleForSale()->getCondition(); ?></td>
       </tr>
+      <?php
+      include_partial(
+        'mycq/partials/collectible_feedback',
+        array('collectible' => $collectible)
+      );
+      ?>
     </table>
   </div>
   <div class="span4">
