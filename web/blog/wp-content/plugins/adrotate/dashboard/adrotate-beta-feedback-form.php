@@ -11,6 +11,7 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 				else $email = $user->user_email;
 			?>
 			<form name="request" id="post" method="post" action="admin.php?page=adrotate-beta">
+				<?php wp_nonce_field('adrotate_email_beta','adrotate_nonce'); ?>
 		    	<input type="hidden" name="adrotate_username" value="<?php echo $firstname." ".$lastname;?>" />
 		    	<input type="hidden" name="adrotate_email" value="<?php echo $email;?>" />
 		    	<input type="hidden" name="adrotate_version" value="<?php echo ADROTATE_BETA;?>" />

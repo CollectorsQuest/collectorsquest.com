@@ -4,7 +4,7 @@ Donate link: http://meandmymac.net/donate/
 Tags: ads, banner, commercial, admin, plugin, random, rotator, ad, advertising, advertisement, block, blocks, advertiser, analytics, advert, publisher, adsense, referrer, email, menu, statistics, stats
 Requires at least: 3.0, PHP5.2
 Tested up to: 3.4.2
-Stable tag: 3.7.4.1
+Stable tag: 3.7.4.2
  
 The very best way of putting ads on your website. As many as you want... Make making money easy!
 
