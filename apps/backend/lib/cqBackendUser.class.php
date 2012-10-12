@@ -14,7 +14,7 @@ class cqBackendUser extends IceBackendUser
 
   public function getCookieUuid()
   {
-    /** @var $request cqWebRequest */
+    /* @var $request cqWebRequest */
     $request = cqContext::getInstance()->getRequest();
 
     return $request->getCookie('cq_uuid', null);
@@ -24,22 +24,24 @@ class cqBackendUser extends IceBackendUser
   {
     if ((bool) $authenticated !== $this->isAuthenticated())
     {
-      /** @var $options array */
+      /* @var $response cqWebResponse */
+      $response = cqContext::getInstance()->getResponse();
+
+      /* @var $options array */
       $options = $this->getOptions();
-      $cq_frontend_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cq_admin');
+
+      /* @var $cq_admin_cookie string */
+      $cq_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cq_admin');
 
       if ($authenticated === true)
       {
-        sfContext::getInstance()->getResponse()->setCookie(
-          $cq_frontend_admin_cookie,
-          hash_hmac('sha1', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()),
-          time() + $options['timeout'],
-          '/',
-          '.'. sfConfig::get('app_domain_name')
+        $hmac = hash_hmac(
+          'sha1', $this->getGuardUser()->getId() .':'. $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()
         );
-        sfContext::getInstance()->getResponse()->setCookie(
-          'cq_bc',
-          $this->getGuardUser()->getId(),
+
+        $response->setCookie(
+          $cq_admin_cookie,
+          $this->getGuardUser()->getId() .':'. $hmac,
           time() + $options['timeout'],
           '/',
           '.'. sfConfig::get('app_domain_name')
@@ -47,20 +49,14 @@ class cqBackendUser extends IceBackendUser
       }
       else
       {
-        sfContext::getInstance()->getResponse()->setCookie(
-          $cq_frontend_admin_cookie, '', time() - $options['timeout'],
-          '/',
-          '.'. sfConfig::get('app_domain_name')
-        );
-        sfContext::getInstance()->getResponse()->setCookie(
-          'cq_bc', '', time() - $options['timeout'],
+        $response->setCookie(
+          $cq_admin_cookie, '', time() - $options['timeout'],
           '/',
           '.'. sfConfig::get('app_domain_name')
         );
       }
-
     }
 
-    return parent::setAuthenticated($authenticated);
+    parent::setAuthenticated($authenticated);
   }
 }

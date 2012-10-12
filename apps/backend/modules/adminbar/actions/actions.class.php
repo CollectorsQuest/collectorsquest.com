@@ -6,7 +6,6 @@
  * @package    CollectorsQuest
  * @subpackage adminbar
  * @author     Collectors Quest, Inc.
- * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class adminbarActions extends sfActions
 {
@@ -18,7 +17,7 @@ class adminbarActions extends sfActions
     $dimension = $request->getParameter('dimension');
     $class = $request->getParameter('class');
 
-    //define classes and methods names
+    // Define classes and methods names
     $classPeer =          sprintf('%sPeer', $class);
     $classRating =        sprintf('%sRating', $class);
     $classRatingPeer =    sprintf('%sPeer', $classRating);
@@ -28,11 +27,11 @@ class adminbarActions extends sfActions
     $filterMethod =       sprintf('filterBy%sId', $class);
     $setObjectIdMethod =  sprintf('set%sId', $class);
 
-    //ObjectRatingForm should extend $class.RatingForm
+    // ObjectRatingForm should extend $class.RatingForm
     eval(sprintf('class ObjectRatingDynamicExtendForm extends %s {}', $class . 'RatingForm'));
 
     $id = (integer) $request->getParameter('id');
-    $user_id = (integer) $request->getParameter('bc');
+    $user_id = (integer) $request->getParameter('user_id');
 
 
     $object = $classPeer::retrieveByPK($id);
@@ -49,7 +48,8 @@ class adminbarActions extends sfActions
 
       $objRatings = $object->$getRatingsMethod($c);
       $temp = array();
-      //resort by Dimension
+
+      // Resort by Dimension
       foreach ($objRatings as $rating)
       {
         $temp[$rating->getDimension()] = $rating;
@@ -82,22 +82,23 @@ class adminbarActions extends sfActions
 
       return sfView::SUCCESS;
     }
-
-    if ($request->isMethod(sfRequest::POST))
+    else if ($request->isMethod(sfRequest::POST))
     {
       $result = array();
+
       $q = new $classRatingQuery();
-      $q
-        ->$filterMethod($id)
+      $q->$filterMethod($id)
         ->filterByDimension($dimension)
         ->filterBySfGuardUserId($user_id);
       $rating = $q->findOneOrCreate();
 
+      /* @var $form sfFormPropel */
       $form = new ObjectRatingForm($rating, array(), false);
       $form->bind($request->getParameter($form->getName()));
+
       if ($form->isValid())
       {
-       $rating = $form->save();
+        $rating = $form->save();
       }
       else
       {
@@ -106,16 +107,22 @@ class adminbarActions extends sfActions
           'adminbar/ratingForm', array('form' => $form, 'class' => $class, 'id' => $id)
         );
       }
+
       $result['dimension'] = $this->getPartial('adminbar/ratingTotal', array(
-        'average_rating' =>$rating->getAverageRating(),
-        'total_ratings' =>$rating->getTotalRatings()
+        'average_rating' => $rating->getAverageRating(),
+        'total_ratings'  => $rating->getTotalRatings()
       ));
+
       $result['total'] = $this->getPartial('adminbar/ratingTotal', array(
-        'average_rating' =>$object->getAverageRating(),
-        'total_ratings' => round($object->$countMethod() / count($classRatingPeer::getDimensions()))
+        'average_rating' => $object->getAverageRating(),
+        'total_ratings'  => round($object->$countMethod() / count($classRatingPeer::getDimensions()))
       ));
+
       return $this->renderText(json_encode($result));
     }
-
+    else
+    {
+      return sfView::NONE;
+    }
   }
 }

@@ -5,7 +5,7 @@ class cqAdminBar
   private static $instance = null;
   private $application = null;
   private $found_routes = array();
-  private $object_menu = array();
+  private $objects_menu = array();
 
   public function __construct(frontendConfiguration $application)
   {
@@ -21,7 +21,7 @@ class cqAdminBar
   {
     if (is_null(self::$instance))
     {
-      /** @var $application frontendConfiguration */
+      /* @var $application frontendConfiguration */
       $application = sfProjectConfiguration::getActive();
       self::$instance = new cqAdminBar($application);
     }
@@ -40,7 +40,7 @@ class cqAdminBar
                                                          '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
     if ($url = $this->generateBackendEditUrl($object))
     {
-      /** @var $group string */
+      /* @var $group string */
       $group = 'Edit ';
       $this->objects_menu[$group][$url] =
         array(
@@ -48,20 +48,22 @@ class cqAdminBar
           'attributes' => array('target' => '_blank', 'href' => $url),
       );
     }
-    //no method - no rating
+
+    // no method - no rating
     if (method_exists($object, 'getAverageRating'))
     {
-      $backend_user_id = sfContext::getInstance()->getRequest()->getCookie('cq_bc');
-      $this->objects_menu['Rating'][$url = $this->application->generateBackendUrl(
-        'object_rating', array('class' => get_class($object), 'id' => $object->getId(), 'bc' => $backend_user_id)
-      )] =
-        array(
-          'label' => $label,
-          'attributes' => array(
-            'onclick' => 'return false;', 'href' => $url,
-            'class' => 'open-dialog', 'title' => 'Rating for ' . $object
-          ),
-        );
+      $backend_user_id = cqContext::getInstance()->getUser()->getBackendUserId();
+      $url = $this->application->generateBackendUrl(
+        'object_rating', array('class' => get_class($object), 'id' => $object->getId(), 'user_id' => $backend_user_id)
+      );
+
+      $this->objects_menu['Rating'][$url] = array(
+        'label' => $label,
+        'attributes' => array(
+          'onclick' => 'return false;', 'href' => $url,
+          'class' => 'open-dialog', 'title' => 'Rating for ' . $object
+        )
+      );
     }
   }
 
@@ -73,10 +75,12 @@ class cqAdminBar
    */
   private function generateBackendEditUrl($object)
   {
-    /** @var $routing sfRoute[] */
+    /* @var $routing sfRoute[] */
     $routing = $this->application->getBackendRouting()->getRoutes();
-    /** @var $route_name string */
+
+    /* @var $route_name string */
     $route_name = null;
+
     if (isset($this->found_routes[get_class($object)]))
     {
       $route_name = $this->found_routes[get_class($object)];
@@ -130,9 +134,11 @@ class cqAdminBar
    *
    * @param sfEvent $event
    */
-  public static function listenShowObject(sfEvent $event){
-    /** @var $parameters array */
+  public static function listenShowObject(sfEvent $event)
+  {
+    /* @var $parameters array */
     $parameters = $event->getParameters();
+
     if (is_object($parameters['object']))
     {
       self::getInstance()->addObject($parameters['object']);

@@ -3,12 +3,14 @@
 class cqFrontendUser extends cqBaseUser
 {
 
-  /** @var integer */
+  /* @var integer */
   protected $unread_messages_count;
 
-  /** @var array */
+  /* @var array */
   protected $visitor_info_array;
 
+  /* @var integer */
+  protected $_sf_guard_user_id = null;
 
   /**
    * Sent counters for comments and private messages; Used for spam thresholds
@@ -17,8 +19,8 @@ class cqFrontendUser extends cqBaseUser
   const SENT_COUNT_PRIVATE_MESSAGES = 'sent_count_private_messages';
 
   protected static $sent_counter_keys = array(
-      self::SENT_COUNT_COMMENTS,
-      self::SENT_COUNT_PRIVATE_MESSAGES,
+    self::SENT_COUNT_COMMENTS,
+    self::SENT_COUNT_PRIVATE_MESSAGES,
   );
 
   /**
@@ -27,10 +29,13 @@ class cqFrontendUser extends cqBaseUser
    */
   protected $sent_count_incemented = array();
 
+  const PRIVATE_MESSAGES_SENT_TEXT = 'text_to_check_similarity';
 
+  /**
+   * Cookie names
+   */
   const DROPBOX_OPEN_STATE_COOKIE_NAME = 'cq_mycq_dropbox_open';
   const VISITOR_INFO_COOKIE_NAME = 'cq_visitor';
-  const PRIVATE_MESSAGES_SENT_TEXT = 'text_to_check_similarity';
 
   public function __construct(sfEventDispatcher $dispatcher, sfStorage $storage, $options = array())
   {
@@ -38,9 +43,14 @@ class cqFrontendUser extends cqBaseUser
 
     if ($this->isAdmin())
     {
-      //connect listeners
+      // Connect listeners
       $dispatcher->connect('application.show_object', array('cqAdminBar', 'listenShowObject'));
-      sfContext::getInstance()->getResponse()->addStylesheet('frontend/modules/adminbar.css');
+
+      /* @var $response sfWebResponse */
+      $response = sfContext::getInstance()->getResponse();
+
+      // Add the adminbar.css only when the use is admin
+      $response->addStylesheet('frontend/modules/adminbar.css');
     }
   }
 
@@ -211,7 +221,9 @@ class cqFrontendUser extends cqBaseUser
       // set username cookie
       $expiration_time = sfConfig::get('app_collector_username_cookie_expiration_age', 15 * 24 * 3600);
       $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
-      $response->setCookie($username_cookie, urlencode($this->getCollector()->getUsername()), time() + $expiration_time);
+      $response->setCookie(
+        $username_cookie, urlencode($this->getCollector()->getUsername()), time() + $expiration_time
+      );
 
       return true;
     }
@@ -697,8 +709,8 @@ class cqFrontendUser extends cqBaseUser
   /**
    * Reset the sent count for a specific counter, or manually set it
    *
-   * @param type $key
-   * @param type $value
+   * @param     string  $key
+   * @param     mixed  $value
    *
    * @return    cqFrontendUser
    */
@@ -773,24 +785,30 @@ class cqFrontendUser extends cqBaseUser
    */
   public function isAdmin()
   {
-    $cq_frontend_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cq_admin');
+    /* @var $request sfWebRequest */
+    $request = sfContext::getInstance()->getRequest();
 
-    if ($admin_key = sfContext::getInstance()->getRequest()->getCookie($cq_frontend_admin_cookie))
+    /* @var $cq_admin_cookie string */
+    $cq_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cq_admin');
+
+    if ($cookie = $request->getCookie($cq_admin_cookie))
     {
-      if ($admin_key == hash_hmac('sha1', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
+      @list($id, $hmac) = explode(':', $cookie);
+
+      if ((string) $hmac === hash_hmac('sha1', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
       {
-        if ($admin_id = $this->getBackendUserId())
-        {
-          return true;
-        }
+        $this->_sf_guard_user_id = $id;
+
+        return true;
       }
     }
 
     return false;
   }
 
-  public function getBackendUserId(){
-    return sfContext::getInstance()->getRequest()->getCookie('cq_bc');
+  public function getBackendUserId()
+  {
+    return $this->isAdmin() ? $this->_sf_guard_user_id : null;
   }
 
 }
