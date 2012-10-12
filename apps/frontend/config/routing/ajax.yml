@@ -85,3 +85,4 @@ ajax_mailchimp_webhook:
 ajax_sidebar:
   url:   /ajax/sidebar
   param: { module: _sidebar, action: ajax }
+
