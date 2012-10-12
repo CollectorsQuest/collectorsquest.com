@@ -1,6 +1,6 @@
 <?php
 
-class RateTableBehaviorPeerBuilderModifier
+class RatingTableBehaviorPeerBuilderModifier
 {
   protected $behavior, $table, $builder, $objectClassname, $peerClassname;
 
@@ -44,8 +44,8 @@ class RateTableBehaviorPeerBuilderModifier
 
   public function staticAttributes($builder)
   {
-    return $this->behavior->renderTemplate('rateTableAttributes', array(
-      'max_rate'   => $this->getParameter('max_rate'),
+    return $this->behavior->renderTemplate('ratingTableAttributes', array(
+      'max_rating'   => $this->getParameter('max_rating'),
       'dimensions' => $this->getParameter('dimensions')
     ));
   }
@@ -65,9 +65,9 @@ class RateTableBehaviorPeerBuilderModifier
   {
     $script .= "
 /**
- * Return array of possibles rave values, from 1 to max_rate
+ * Return array of possibles rave values, from 1 to max_rating
  */
-public static function getRateChoices()
+public static function getRatingChoices()
 {
   return array_combine(range(1, self::MAX_RATE), range(1, self::MAX_RATE));
 }
@@ -78,7 +78,7 @@ public static function getRateChoices()
   {
     $script .= "
 /**
- * Return array of rate dimensions
+ * Return array of rating dimensions
  */
 public static function getDimensions()
 {

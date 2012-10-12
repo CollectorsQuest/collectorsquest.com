@@ -1,26 +1,26 @@
 <?php
-require_once dirname(__FILE__) . '/RateTableBehaviorObjectBuilderModifier.php';
-require_once dirname(__FILE__) . '/RateTableBehaviorPeerBuilderModifier.php';
+require_once dirname(__FILE__) . '/RatingTableBehaviorObjectBuilderModifier.php';
+require_once dirname(__FILE__) . '/RatingTableBehaviorPeerBuilderModifier.php';
 
-class RateTableBehavior extends Behavior
+class RatingTableBehavior extends Behavior
 {
   protected $parameters = array(
-    'max_rate'        => 5,
+    'max_rating'        => 5,
     'dimensions'        => null,
-    'rate_table'        => null,
+    'rating_table'        => null,
     'user_table'        => null,
   );
   protected
   $peerBuilderModifier,
     $dimensions = array(),
     $userTable,
-    $rateTable;
+    $ratingTable;
 
   public function getObjectBuilderModifier()
   {
     if (is_null($this->objectBuilderModifier))
     {
-      $this->objectBuilderModifier = new RateTableBehaviorObjectBuilderModifier($this);
+      $this->objectBuilderModifier = new RatingTableBehaviorObjectBuilderModifier($this);
     }
 
     return $this->objectBuilderModifier;
@@ -30,7 +30,7 @@ class RateTableBehavior extends Behavior
   {
     if (is_null($this->peerBuilderModifier))
     {
-      $this->peerBuilderModifier = new RateTableBehaviorPeerBuilderModifier($this);
+      $this->peerBuilderModifier = new RatingTableBehaviorPeerBuilderModifier($this);
     }
 
     return $this->peerBuilderModifier;

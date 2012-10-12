@@ -1,18 +1,18 @@
 <?php
-require_once __DIR__ . '/RateTableBehavior.php';
+require_once __DIR__ . '/RatingTableBehavior.php';
 
 class RatableBehavior extends Behavior
 {
   protected $parameters = array(
-    'max_rate'        => 5,
+    'max_rating'        => 5,
     'dimensions'        => null,
-    'rate_table'        => null,
+    'rating_table'        => null,
     'user_table'        => null,
   );
   protected
     $dimensions = array(),
     $userTable,
-    $rateTable,
+    $ratingTable,
     $objectBuilderModifier,
     $queryBuilderModifier,
     $peerBuilderModifier;
@@ -45,17 +45,17 @@ class RatableBehavior extends Behavior
     }
 
     $this->addObjectColumns();
-    $this->addObjectRateTable();
+    $this->addObjectRatingTable();
     $this->addForeignKeyIfNone();
   }
 
   protected function addObjectColumns()
   {
     // add the average column;
-    if (!$this->getTable()->hasColumn('average_rate'))
+    if (!$this->getTable()->hasColumn('average_rating'))
     {
       $this->getTable()->addColumn(array(
-        'name'         => 'average_rate',
+        'name'         => 'average_rating',
         'type'         => 'FLOAT',
         'defaultValue' => null
       ));
@@ -63,10 +63,10 @@ class RatableBehavior extends Behavior
     // add the average column for dimensions;
     foreach ($this->getDimensions() as $dimension => $label)
     {
-      if (!$this->getTable()->hasColumn('average_' . $dimension . '_rate'))
+      if (!$this->getTable()->hasColumn('average_' . $dimension . '_rating'))
       {
         $this->getTable()->addColumn(array(
-          'name'         => 'average_'.$dimension.'_rate',
+          'name'         => 'average_'.$dimension.'_rating',
           'type'         => 'FLOAT',
           'defaultValue' => null
         ));
@@ -74,26 +74,26 @@ class RatableBehavior extends Behavior
     }
   }
 
-  protected function addObjectRateTable()
+  protected function addObjectRatingTable()
   {
     $table = $this->getTable();
     $database = $table->getDatabase();
-    $ratesTableName = $this->getParameter('rate_table')
-      ? $this->getParameter('rate_table')
-      : $table->getName() . '_rate';
+    $ratingsTableName = $this->getParameter('rating_table')
+      ? $this->getParameter('rating_table')
+      : $table->getName() . '_rating';
 
-    if (!$database->hasTable($ratesTableName))
+    if (!$database->hasTable($ratingsTableName))
     {
-      $rateTable = $database->addTable(array(
-        'name'      => $ratesTableName,
-        'phpName'   => $this->getRateTableName(),
+      $ratingTable = $database->addTable(array(
+        'name'      => $ratingsTableName,
+        'phpName'   => $this->getRatingTableName(),
         'package'   => $table->getPackage(),
         'schema'    => $table->getSchema(),
         'namespace' => $table->getNamespace() ? '\\' . $table->getNamespace() : null,
       ));
-      $rateTable->isRateTable = true;
+      $ratingTable->isRatingTable = true;
       // add id column
-      $pk = $rateTable->addColumn(array(
+      $pk = $ratingTable->addColumn(array(
         'name'					=> 'id',
         'autoIncrement' => 'true',
         'type'					=> 'INTEGER',
@@ -103,17 +103,17 @@ class RatableBehavior extends Behavior
       $pk->setPrimaryKey(true);
 
 
-      $rateTableBehavior = new RateTableBehavior();
-      $rateTableBehavior->setName('rate_table');
-      $rateTableBehavior->addParameter(array(
+      $ratingTableBehavior = new RatingTableBehavior();
+      $ratingTableBehavior->setName('rating_table');
+      $ratingTableBehavior->addParameter(array(
         'name' => 'dimensions',
         'value' => $this->getDimensions()
       ));
-      $rateTableBehavior->addParameter(array(
+      $ratingTableBehavior->addParameter(array(
         'name' => 'ratable_class_name',
         'value' => $this->getTable()->getPhpName()
       ));
-      $rateTable->addBehavior($rateTableBehavior);
+      $ratingTable->addBehavior($ratingTableBehavior);
 
       // every behavior adding a table should re-execute database behaviors
       foreach ($database->getBehaviors() as $behavior)
@@ -124,25 +124,25 @@ class RatableBehavior extends Behavior
       // add dimension columns
       if ($this->getDimensions() != array())
       {
-        $rateTable->addColumn(array(
+        $ratingTable->addColumn(array(
           'name'      => 'dimension',
           'type'      => 'VARCHAR',
           'required'  => 'true'
         ));
       }
-      // add rate columns
-      $rateTable->addColumn(array(
-        'name'      => 'rate',
+      // add rating columns
+      $ratingTable->addColumn(array(
+        'name'      => 'rating',
         'type'      => 'INTEGER',
         'required'  => 'true'
       ));
 
-      $this->rateTable = $rateTable;
+      $this->ratingTable = $ratingTable;
 
     }
     else
     {
-      $this->rateTable = $database->getTable($ratesTableName);
+      $this->ratingTable = $database->getTable($ratingsTableName);
     }
 
   }
@@ -150,7 +150,7 @@ class RatableBehavior extends Behavior
   protected function addForeignKeyIfNone()
   {
     $table = $this->getTable();
-    foreach ($this->rateTable->getForeignKeys() as $fk)
+    foreach ($this->ratingTable->getForeignKeys() as $fk)
     {
       if ($table->getCommonName() === $fk->getForeignTableCommonName())
       {
@@ -171,10 +171,10 @@ class RatableBehavior extends Behavior
       $ref_column['required'] = 'true';
       $ref_column['primaryKey'] = 'false';
       $ref_column['autoIncrement'] = 'false';
-      $ref_column = $this->rateTable->addColumn($ref_column);
+      $ref_column = $this->ratingTable->addColumn($ref_column);
       $fk->addReference($ref_column, $column);
     }
-    $this->rateTable->addForeignKey($fk);
+    $this->ratingTable->addForeignKey($fk);
 
     // create the foreign key for user
     /** @var $table Table */
@@ -193,21 +193,21 @@ class RatableBehavior extends Behavior
       $ref_column['required'] = 'true';
       $ref_column['primaryKey'] = 'false';
       $ref_column['autoIncrement'] = 'false';
-      $ref_column = $this->rateTable->addColumn($ref_column);
+      $ref_column = $this->ratingTable->addColumn($ref_column);
       $fk->addReference($ref_column, $column);
     }
-    $this->rateTable->addForeignKey($fk);
+    $this->ratingTable->addForeignKey($fk);
 
   }
 
-  public function getRateTable()
+  public function getRatingTable()
   {
-    return $this->rateTable;
+    return $this->ratingTable;
   }
 
-  protected function getRateTableName()
+  protected function getRatingTableName()
   {
-    return $this->getTable()->getPhpName() . 'Rate';
+    return $this->getTable()->getPhpName() . 'Rating';
   }
 
   private function getDimensions()

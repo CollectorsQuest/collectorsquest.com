@@ -44,95 +44,95 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 
 
-ALTER TABLE `collectible_rate` DROP FOREIGN KEY `collectible_rate_FK_2`;
+ALTER TABLE `collectible_rating` DROP FOREIGN KEY `collectible_rating_FK_2`;
 
-DROP INDEX `collectible_rate_FI_2` ON `collectible_rate`;
+DROP INDEX `collectible_rating_FI_2` ON `collectible_rating`;
 
-ALTER TABLE `collectible_rate` CHANGE `collector_id` `sf_guard_user_id` INTEGER NOT NULL;
+ALTER TABLE `collectible_rating` CHANGE `collector_id` `sf_guard_user_id` INTEGER NOT NULL;
 
-CREATE INDEX `collectible_rate_FI_2` ON `collectible_rate` (`sf_guard_user_id`);
+CREATE INDEX `collectible_rating_FI_2` ON `collectible_rating` (`sf_guard_user_id`);
 
-ALTER TABLE `collectible_rate` ADD CONSTRAINT `collectible_rate_FK_2`
+ALTER TABLE `collectible_rating` ADD CONSTRAINT `collectible_rating_FK_2`
   FOREIGN KEY (`sf_guard_user_id`)
   REFERENCES `sf_guard_user` (`id`)
   ON DELETE CASCADE;
 
 ALTER TABLE `collection` ADD
 (
-  `average_rate` FLOAT,
-  `average_content_rate` FLOAT,
-  `average_images_rate` FLOAT
+  `average_rating` FLOAT,
+  `average_content_rating` FLOAT,
+  `average_images_rating` FLOAT
 );
 
 ALTER TABLE `collector` ADD
 (
-  `average_rate` FLOAT,
-  `average_content_rate` FLOAT,
-  `average_images_rate` FLOAT
+  `average_rating` FLOAT,
+  `average_content_rating` FLOAT,
+  `average_images_rating` FLOAT
 );
 
 ALTER TABLE `collector_collection` ADD
 (
-  `average_rate` FLOAT,
-  `average_content_rate` FLOAT,
-  `average_images_rate` FLOAT
+  `average_rating` FLOAT,
+  `average_content_rating` FLOAT,
+  `average_images_rating` FLOAT
 );
 
-CREATE TABLE `collector_rate`
+CREATE TABLE `collector_rating`
 (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `dimension` VARCHAR(255) NOT NULL,
-  `rate` INTEGER NOT NULL,
+  `rating` INTEGER NOT NULL,
   `collector_id` INTEGER NOT NULL,
   `sf_guard_user_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `collector_rate_FI_1` (`collector_id`),
-  INDEX `collector_rate_FI_2` (`sf_guard_user_id`),
-  CONSTRAINT `collector_rate_FK_1`
+  INDEX `collector_rating_FI_1` (`collector_id`),
+  INDEX `collector_rating_FI_2` (`sf_guard_user_id`),
+  CONSTRAINT `collector_rating_FK_1`
     FOREIGN KEY (`collector_id`)
     REFERENCES `collector` (`id`)
     ON DELETE CASCADE,
-  CONSTRAINT `collector_rate_FK_2`
+  CONSTRAINT `collector_rating_FK_2`
     FOREIGN KEY (`sf_guard_user_id`)
     REFERENCES `sf_guard_user` (`id`)
     ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE `collection_rate`
+CREATE TABLE `collection_rating`
 (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `dimension` VARCHAR(255) NOT NULL,
-  `rate` INTEGER NOT NULL,
+  `rating` INTEGER NOT NULL,
   `collection_id` INTEGER NOT NULL,
   `sf_guard_user_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `collection_rate_FI_1` (`collection_id`),
-  INDEX `collection_rate_FI_2` (`sf_guard_user_id`),
-  CONSTRAINT `collection_rate_FK_1`
+  INDEX `collection_rating_FI_1` (`collection_id`),
+  INDEX `collection_rating_FI_2` (`sf_guard_user_id`),
+  CONSTRAINT `collection_rating_FK_1`
     FOREIGN KEY (`collection_id`)
     REFERENCES `collection` (`id`)
     ON DELETE CASCADE,
-  CONSTRAINT `collection_rate_FK_2`
+  CONSTRAINT `collection_rating_FK_2`
     FOREIGN KEY (`sf_guard_user_id`)
     REFERENCES `sf_guard_user` (`id`)
     ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE `collector_collection_rate`
+CREATE TABLE `collector_collection_rating`
 (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `dimension` VARCHAR(255) NOT NULL,
-  `rate` INTEGER NOT NULL,
+  `rating` INTEGER NOT NULL,
   `collector_collection_id` INTEGER NOT NULL,
   `sf_guard_user_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `collector_collection_rate_FI_1` (`collector_collection_id`),
-  INDEX `collector_collection_rate_FI_2` (`sf_guard_user_id`),
-  CONSTRAINT `collector_collection_rate_FK_1`
+  INDEX `collector_collection_rating_FI_1` (`collector_collection_id`),
+  INDEX `collector_collection_rating_FI_2` (`sf_guard_user_id`),
+  CONSTRAINT `collector_collection_rating_FK_1`
     FOREIGN KEY (`collector_collection_id`)
     REFERENCES `collector_collection` (`id`)
     ON DELETE CASCADE,
-  CONSTRAINT `collector_collection_rate_FK_2`
+  CONSTRAINT `collector_collection_rating_FK_2`
     FOREIGN KEY (`sf_guard_user_id`)
     REFERENCES `sf_guard_user` (`id`)
     ON DELETE CASCADE
@@ -162,42 +162,42 @@ SET FOREIGN_KEY_CHECKS = 1;
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS `collector_rate`;
+DROP TABLE IF EXISTS `collector_rating`;
 
-DROP TABLE IF EXISTS `collection_rate`;
+DROP TABLE IF EXISTS `collection_rating`;
 
-DROP TABLE IF EXISTS `collector_collection_rate`;
+DROP TABLE IF EXISTS `collector_collection_rating`;
 
-ALTER TABLE `collectible_rate` DROP FOREIGN KEY `collectible_rate_FK_2`;
+ALTER TABLE `collectible_rating` DROP FOREIGN KEY `collectible_rating_FK_2`;
 
-DROP INDEX `collectible_rate_FI_2` ON `collectible_rate`;
+DROP INDEX `collectible_rating_FI_2` ON `collectible_rating`;
 
-ALTER TABLE `collectible_rate` CHANGE `sf_guard_user_id` `collector_id` INTEGER NOT NULL;
+ALTER TABLE `collectible_rating` CHANGE `sf_guard_user_id` `collector_id` INTEGER NOT NULL;
 
-CREATE INDEX `collectible_rate_FI_2` ON `collectible_rate` (`collector_id`);
+CREATE INDEX `collectible_rating_FI_2` ON `collectible_rating` (`collector_id`);
 
-ALTER TABLE `collectible_rate` ADD CONSTRAINT `collectible_rate_FK_2`
+ALTER TABLE `collectible_rating` ADD CONSTRAINT `collectible_rating_FK_2`
   FOREIGN KEY (`collector_id`)
   REFERENCES `collector` (`id`)
   ON DELETE CASCADE;
 
-ALTER TABLE `collection` DROP `average_rate`;
+ALTER TABLE `collection` DROP `average_rating`;
 
-ALTER TABLE `collection` DROP `average_content_rate`;
+ALTER TABLE `collection` DROP `average_content_rating`;
 
-ALTER TABLE `collection` DROP `average_images_rate`;
+ALTER TABLE `collection` DROP `average_images_rating`;
 
-ALTER TABLE `collector` DROP `average_rate`;
+ALTER TABLE `collector` DROP `average_rating`;
 
-ALTER TABLE `collector` DROP `average_content_rate`;
+ALTER TABLE `collector` DROP `average_content_rating`;
 
-ALTER TABLE `collector` DROP `average_images_rate`;
+ALTER TABLE `collector` DROP `average_images_rating`;
 
-ALTER TABLE `collector_collection` DROP `average_rate`;
+ALTER TABLE `collector_collection` DROP `average_rating`;
 
-ALTER TABLE `collector_collection` DROP `average_content_rate`;
+ALTER TABLE `collector_collection` DROP `average_content_rating`;
 
-ALTER TABLE `collector_collection` DROP `average_images_rate`;
+ALTER TABLE `collector_collection` DROP `average_images_rating`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

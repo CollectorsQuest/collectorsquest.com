@@ -1,11 +1,11 @@
 <?php
 
 
-require 'lib/model/om/BaseCollectorRatePeer.php';
+require 'lib/model/om/BaseCollectorCollectionRating.php';
 
 
 /**
- * Skeleton subclass for performing query and update operations on the 'collector_rate' table.
+ * Skeleton subclass for representing a row from the 'collector_collection_rating' table.
  *
  * 
  *
@@ -15,6 +15,6 @@ require 'lib/model/om/BaseCollectorRatePeer.php';
  *
  * @package    propel.generator.lib.model
  */
-class CollectorRatePeer extends BaseCollectorRatePeer {
+class CollectorCollectionRating extends BaseCollectorCollectionRating {
 
 }

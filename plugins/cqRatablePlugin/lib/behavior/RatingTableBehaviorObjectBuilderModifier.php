@@ -15,7 +15,7 @@
  * @author     heltem <heltem@o2php.com>
  * @package    propel.generator.behavior.nestedset
  */
-class RateTableBehaviorObjectBuilderModifier
+class RatingTableBehaviorObjectBuilderModifier
 {
 	protected $behavior, $table, $builder, $objectClassname, $peerClassname;
 
@@ -61,26 +61,26 @@ class RateTableBehaviorObjectBuilderModifier
     \$c = new Criteria();
     \$c->add($peerClassname::DIMENSION, \$this->getDimension());
 
-    //Set average rates for dimensions
+    //Set average ratings for dimensions
     \$r = 0;
-    /* @var \$rates {$objectClassname}[] */
-    \$rates = \$object->get{$objectClassname}s(\$c);
-    if (count(\$rates))
+    /* @var \$ratings {$objectClassname}[] */
+    \$ratings = \$object->get{$objectClassname}s(\$c);
+    if (count(\$ratings))
     {
-      foreach (\$rates as \$rate)
+      foreach (\$ratings as \$rating)
       {
-        \$r = \$r + \$rate->getRate();
+        \$r = \$r + \$rating->getRating();
       }
-      \$object->setByName('average_' . \$this->getDimension() . '_rate', \$r / count(\$rates), BasePeer::TYPE_FIELDNAME);
+      \$object->setByName('average_' . \$this->getDimension() . '_rating', \$r / count(\$ratings), BasePeer::TYPE_FIELDNAME);
     }
 
-    //Set average total rates
+    //Set average total ratings
     \$r = 0;
     foreach ($peerClassname::getDimensions() as \$dimension => \$label)
     {
-      \$r = \$r + \$object->getByName('average_' . \$dimension . '_rate', BasePeer::TYPE_FIELDNAME);
+      \$r = \$r + \$object->getByName('average_' . \$dimension . '_rating', BasePeer::TYPE_FIELDNAME);
     }
-    \$object->setAverageRate(\$r / count($peerClassname::getDimensions()));
+    \$object->setAverageRating(\$r / count($peerClassname::getDimensions()));
 
     \$object->save();
 		";
@@ -94,8 +94,8 @@ class RateTableBehaviorObjectBuilderModifier
 		$script = '';
 
     $this->addGetDimensionLabel($script, $builder);
-    $this->addGetAverageRate($script, $builder);
-    $this->addGetTotalRates($script, $builder);
+    $this->addGetAverageRating($script, $builder);
+    $this->addGetTotalRatings($script, $builder);
 
 
 		return $script;
@@ -107,7 +107,7 @@ class RateTableBehaviorObjectBuilderModifier
 
     $script .= "
 /**
-* Get dimension label for current rate object
+* Get dimension label for current rating object
 */
 public function getDimensionLabel()
 {
@@ -118,26 +118,26 @@ public function getDimensionLabel()
 ";
 	}
 
-  protected function addGetAverageRate(&$script, $builder)
+  protected function addGetAverageRating(&$script, $builder)
   {
 
     $class = $this->getParameter('ratable_class_name');
 
     $script .= "
 /**
-* Get average rate for current rate object dimension
+* Get average rating for current rating object dimension
 */
-public function getAverageRate()
+public function getAverageRating()
 {
   /* @var \$object $class */
   \$object = \$this->get$class();
 
-  return \$object->getByName('average_' . \$this->getDimension() . '_rate', BasePeer::TYPE_FIELDNAME);
+  return \$object->getByName('average_' . \$this->getDimension() . '_rating', BasePeer::TYPE_FIELDNAME);
 }
 ";
   }
 
-  protected function addGetTotalRates(&$script, $builder)
+  protected function addGetTotalRatings(&$script, $builder)
   {
     $objectClassname = $builder->getStubObjectBuilder()->getClassname();
     $peerClassname = $builder->getStubPeerBuilder()->getClassname();
@@ -145,9 +145,9 @@ public function getAverageRate()
 
     $script .= "
 /**
-* Get count of rates with the same dimension
+* Get count of ratings with the same dimension
 */
-public function getTotalRates()
+public function getTotalRatings()
 {
   /* @var \$object $class */
   \$object = \$this->get$class();

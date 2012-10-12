@@ -1,10 +1,10 @@
-<form class="object_rate_form" method="POST"
+<form class="object_rating_form" method="POST"
       action="<?= url_for(
-        '@ajax_object_rate?dimension='.$form->getObject()->getDimension()
+        '@ajax_object_rating?dimension='.$form->getObject()->getDimension()
           .'&class='.$class.'&id='.$id.'&bc='.$form->getObject()->getSfGuardUserId(), true
       ); ?>">
   <?= $form->renderGlobalErrors(); ?>
-  <?= $form['rate']->renderError(); ?>
-  <?= $form['rate']; ?>
+  <?= $form['rating']->renderError(); ?>
+  <?= $form['rating']; ?>
   <?= $form->renderHiddenFields(); ?>
 </form>
