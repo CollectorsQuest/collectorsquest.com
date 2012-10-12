@@ -159,6 +159,11 @@
     include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
     include_partial('global/footer_links');
 
+    if (!$sf_user->isAuthenticated())
+    {
+      include_component('_ajax', 'modalLogin');
+    }
+
     // include the html for modal confirmation
     include_partial('global/modal_confirm');
 

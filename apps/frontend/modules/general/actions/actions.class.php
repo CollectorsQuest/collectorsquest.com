@@ -206,41 +206,6 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeModalLogin(sfWebRequest $request)
-  {
-    // Auto login the collector if a hash was provided
-    if ($collector = CollectorPeer::retrieveByHash($request->getParameter('hash')))
-    {
-      $this->getUser()->Authenticate(true, $collector, $remember = false);
-
-      // redirect to last page or homepage after login
-      return $this->redirect($request->getParameter('r', '@collector_me'));
-    }
-    // redirect to homepage if already logged in
-    else if ($this->getUser()->isAuthenticated())
-    {
-      return $this->redirect($request->getParameter('r', '@collector_me'));
-    }
-
-    $this->login_form =  new CollectorLoginForm();
-    $this->rpxnow = sfConfig::get('app_credentials_rpxnow');
-
-    return sfView::SUCCESS;
-  }
-
-  public function executeSocialModalLogin(sfWebRequest $request)
-  {
-    // redirect to homepage if already logged in
-    if ($this->getUser()->isAuthenticated())
-    {
-      return $this->redirect($request->getParameter('r', '@collector_me'));
-    }
-
-    $this->rpxnow = sfConfig::get('app_credentials_rpxnow');
-
-    return sfView::SUCCESS;
-  }
-
   public function executeRPXTokenLogin(sfWebRequest $request)
   {
     $this->forward404Unless($token = $request->getParameter('token'));

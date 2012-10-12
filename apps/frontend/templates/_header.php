@@ -112,11 +112,8 @@
         <?php else: ?>
           <?php
             echo link_to(
-              'Sign In', 'modal_login', array('ref' => cq_link_ref('header')),
-              array(
-                'class' => 'open-dialog requires-login bold-links padding-signup',
-                'onclick' => 'return false;'
-              )
+              'Sign In', 'login', array('ref' => cq_link_ref('header')),
+              array('class' => 'requires-login bold-links padding-signup', 'absolute' => true)
             );
           ?>
           &nbsp;or&nbsp;

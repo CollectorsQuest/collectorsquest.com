@@ -362,9 +362,6 @@ var COMMON = window.COMMON = (function(){
           });
         }
 
-        // make sure modal is fully visible unless explicitly hidden from template
-        $holder.find('.social-only').show()
-
         // if the modal is not available or we are inside an iframe
         // execute a normal click
         if (!$holder.length || Modernizr.insideiframe) {
