@@ -15,7 +15,7 @@ generator:
       actions:  ~
 
       fields:
-        collector_id: { label: Collector }
+        list_collector: { label: Collector }
         promotion_id: { label: Promotion }
         amount:       { label: Amount }
         amount_type:  { label: Amount Type }
@@ -23,7 +23,7 @@ generator:
 
       list:
         title: Promotion Transactions
-        display: [collector, promotion, amount, amount_type, created_at]
+        display: [_list_collector, promotion, amount, amount_type, created_at]
         hide: [id]
         sort: [id, desc]
         object_actions: { }
@@ -31,7 +31,8 @@ generator:
         actions: { }
 
       filter:
-        display: [collector_id, promotion_id, amount]
+        class: BackendPromotionTransactionFormFilter
+        display: [collector_username, collector_email, promotion_id, amount]
         fields:
           amount:
             widgetOptions: { with_empty: false }
