@@ -18,18 +18,18 @@ class BackendPrivateMessageFormFilter extends PrivateMessageFormFilter
 
   public function setupCollectorSender()
   {
-    $this->widgetSchema['collector_sender'] = new BackendWidgetFormModelTypeAhead(array(
+    $this->widgetSchema['collector_sender_username'] = new BackendWidgetFormModelTypeAhead(array(
       'field' => CollectorPeer::USERNAME
     ));
-    $this->validatorSchema['collector_sender'] = new  sfValidatorPass(array('required' => false));
+    $this->validatorSchema['collector_sender_username'] = new  sfValidatorPass(array('required' => false));
   }
 
   public function setupCollectorReceiver()
   {
-    $this->widgetSchema['collector_receiver'] = new BackendWidgetFormModelTypeAhead(array(
+    $this->widgetSchema['collector_receiver_username'] = new BackendWidgetFormModelTypeAhead(array(
       'field' => CollectorPeer::USERNAME
     ));
-    $this->validatorSchema['collector_receiver'] = new  sfValidatorPass(array('required' => false));
+    $this->validatorSchema['collector_receiver_username'] = new  sfValidatorPass(array('required' => false));
   }
 
 }
