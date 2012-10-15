@@ -296,6 +296,32 @@ function cq_custom_post_type_init()
     'menu_position'   => 100,
     'supports'        => array('title', 'revisions')
   ));
+
+  register_post_type('market_theme', array(
+    'labels' => array(
+      'name'               => _x('Market Themes', 'post type general name'),
+      'singular_name'      => _x('Market Theme', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Market Theme'),
+      'add_new_item'       => __('Add New Market Theme'),
+      'edit_item'          => __('Edit Market Theme'),
+      'new_item'           => __('New Market Theme'),
+      'view_item'          => __('View Market Theme'),
+      'search_items'       => __('Search Market Theme'),
+      'not_found'          => __('No Market Themes found'),
+      'not_found_in_trash' => __('No Market Themes found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'taxonomies'      => array('post_tag'),
+    'supports'        => array('title', 'editor', 'revisions', 'custom-fields')
+  ));
 }
 
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
@@ -993,3 +1019,92 @@ $img = wp_get_attachment_url( $post->ID );
   return $actions;
 }
 add_filter('media_row_actions', 'add_media_row_action', 10, 3);
+
+/**
+ * The formatted output of a list of pages.
+ *
+ * @param string|array $args Optional. Overwrite the defaults.
+ * @return string Formatted output in HTML.
+ */
+function custom_wp_link_pages( $args = '' ) {
+  global $page, $numpages, $multipage, $more, $pagenow;
+
+  $defaults = array(
+    'before' => '<p id="post-pagination" class="entry-meta span12">',
+    'after' => '</p>',
+    'text_before' => '',
+    'text_after' => '',
+    'next_or_number' => 'next',
+    'nextpagelink' => __( 'Click Here to See #' ),
+    'previouspagelink' => __( 'Click Here to See #' ),
+    'pagelink' => '%',
+    'echo' => 1
+  );
+
+  $r = wp_parse_args( $args, $defaults );
+  $r = apply_filters( 'wp_link_pages_args', $r );
+  extract( $r, EXTR_SKIP );
+
+  $output = '';
+  if ( $multipage ) {
+    if ( 'number' == $next_or_number ) {
+      $output .= $before;
+      for ( $i = 1; $i < ( $numpages + 1 ); $i = $i + 1 ) {
+        $j = str_replace( '%', $i, $pagelink );
+        $output .= ' ';
+        if ( $i != $page || ( ( ! $more ) && ( $page == 1 ) ) )
+          $output .= _wp_link_page( $i );
+        else
+          $output .= '<span class="current-post-page">';
+
+        $output .= $text_before . $j . $text_after;
+        if ( $i != $page || ( ( ! $more ) && ( $page == 1 ) ) )
+          $output .= '</a>';
+        else
+          $output .= '</span>';
+      }
+      $output .= $after;
+    } else {
+      if ( $more ) {
+        $output .= $before;
+        $i = $page - 1;
+        if ( $i && $more ) {
+          $output .= _wp_link_page( $i );
+          $page_number  = (string) $numpages - $page + 2;
+          $output .= '<span class="previous"><i class="icon-chevron-left"></i>&nbsp;&nbsp;' .
+            $text_before . $previouspagelink . $page_number . $text_after . '<span></a>';
+        }
+        $i = $page + 1;
+        if ( $i <= $numpages && $more ) {
+          $output .= _wp_link_page( $i );
+          $page_number  = (string) $numpages - $page;
+          $output .= '<span class="next">' . $text_before . $nextpagelink . $page_number . $text_after .
+            '&nbsp;&nbsp;<i class="icon-chevron-right"></i><span></a>';
+        }
+        $output .= $after;
+      }
+    }
+  }
+
+  if ( $echo )
+    echo $output;
+
+  return $output;
+}
+
+
+// Add nextpage button to TinyMCE
+add_filter('mce_buttons','cq_wysiwyg_editor');
+function cq_wysiwyg_editor($mce_buttons)
+{
+  $pos = array_search('wp_more', $mce_buttons, true);
+
+  if ($pos !== false)
+  {
+    $tmp_buttons = array_slice($mce_buttons, 0, $pos+1);
+    $tmp_buttons[] = 'wp_page';
+    $mce_buttons = array_merge($tmp_buttons, array_slice($mce_buttons, $pos + 1));
+  }
+
+  return $mce_buttons;
+}
