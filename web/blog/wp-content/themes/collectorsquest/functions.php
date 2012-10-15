@@ -1017,3 +1017,20 @@ function custom_wp_link_pages( $args = '' ) {
 
   return $output;
 }
+
+
+// Add nextpage button to TinyMCE
+add_filter('mce_buttons','cq_wysiwyg_editor');
+function cq_wysiwyg_editor($mce_buttons)
+{
+  $pos = array_search('wp_more', $mce_buttons, true);
+
+  if ($pos !== false)
+  {
+    $tmp_buttons = array_slice($mce_buttons, 0, $pos+1);
+    $tmp_buttons[] = 'wp_page';
+    $mce_buttons = array_merge($tmp_buttons, array_slice($mce_buttons, $pos + 1));
+  }
+
+  return $mce_buttons;
+}
