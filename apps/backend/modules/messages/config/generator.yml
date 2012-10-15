@@ -15,8 +15,8 @@ generator:
       actions: ~
       fields:
         created_at: { label: Date }
-        list_sender:  { label: Sender }
-        list_receiver:  { label: Receiver }
+        list_sender:  { label: Sender, is_sortable: true, sort_method: orderBySenderName}
+        list_receiver:  { label: Receiver,  is_sortable: true, sort_method: orderByReceiverName }
       list:
         title: Messages
         display: [_list_sender, _list_receiver, =subject, is_read, is_replied, is_deleted, created_at]
