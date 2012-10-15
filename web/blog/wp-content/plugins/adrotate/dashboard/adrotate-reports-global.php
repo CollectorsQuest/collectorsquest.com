@@ -84,7 +84,7 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 	      	</tr>
 			</tbody>
 			
-	 			<form method="post" action="admin.php?page=adrotate">
+ 			<form method="post" action="admin.php?page=adrotate">
 			<thead>
 			<tr>
 				<th colspan="5" bgcolor="#DDD"><?php _e('Export options for', 'adrotate'); ?> 'Global report'</th>
@@ -94,6 +94,7 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 		    <tr>
 				<th width="10%"><?php _e('Select period', 'adrotate'); ?></th>
 				<td width="40%" colspan="4">
+					<?php wp_nonce_field('adrotate_report_global','adrotate_nonce'); ?>
 			    	<input type="hidden" name="adrotate_export_id" value="0" />
 	    			<input type="hidden" name="adrotate_export_type" value="global" />
 			        <select name="adrotate_export_month" id="cat" class="postform">

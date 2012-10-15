@@ -23,10 +23,10 @@ generator:
         sort: [created_at, desc]
       filter:
         class: BackendPrivateMessageFormFilter
-        display: [collector_sender,collector_receiver, subject, body, created_at]
+        display: [collector_sender_username, collector_receiver_username, subject, body, created_at]
         fields:
-          collector_sender: {label: "Sender"}
-          collector_receiver: {label: "Receiver"}
+          collector_sender_username: {label: "Sender"}
+          collector_receiver_username: {label: "Receiver"}
       form:
         display: [subject, body]
       edit:    ~

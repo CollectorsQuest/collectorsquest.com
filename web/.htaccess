@@ -6,6 +6,11 @@ Order allow,deny
 Deny  from env=block_me
 Allow from all
 
+<IfModule mod_headers.c>
+  SetEnvIf Origin "^http(s)?://www\.(collectorsquest\.com|cqnext.com|collectorsquest\.dev)$" origin_is=$0
+  Header always set Access-Control-Allow-Origin %{origin_is}e env=origin_is
+</IfModule>
+
 # ----------------------------------------------------------------------
 # Better website experience for IE users
 # ----------------------------------------------------------------------
