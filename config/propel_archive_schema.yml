@@ -18,6 +18,9 @@ classes:
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
       locale:         { type: varchar, size: 5, default: "en_US" }
       score:          { type: integer, default: 0 }
+      average_rating:         { type: float, default: 0 }
+      average_content_rating: { type: float, default: 0 }
+      average_images_rating:  { type: float, default: 0 }
       spam_score:     { type: integer, default: 0 }
       is_spam:        { type: boolean, default: false }
       is_public:      { type: boolean, default: true }
@@ -88,6 +91,9 @@ classes:
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
       score:                   { type: integer, default: 0 }
+      average_rating:          { type: float, default: 0 }
+      average_content_rating:  { type: float, default: 0 }
+      average_images_rating:   { type: float, default: 0 }
       is_public:               { type: boolean, default: true }
       is_featured:             { type: boolean, default: false }
       comments_on:             { type: boolean, default: true }
@@ -127,6 +133,9 @@ classes:
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
       score:                   { type: integer, default: 0 }
+      average_rating:          { type: float, default: 0 }
+      average_content_rating:  { type: float, default: 0 }
+      average_images_rating:   { type: float, default: 0 }
       is_public:               { type: boolean, default: true }
       is_featured:             { type: boolean, default: false }
       comments_on:             { type: boolean, default: true }
@@ -151,6 +160,9 @@ classes:
       num_views:         { type: integer, default: 0 }
       num_comments:      { type: integer, default: 0 }
       score:             { type: integer, default: 0 }
+      average_rating:         { type: float, default: 0 }
+      average_content_rating: { type: float, default: 0 }
+      average_images_rating:  { type: float, default: 0 }
       is_name_automatic: { type: boolean, default: false }
       is_public:         { type: boolean, default: true }
 
