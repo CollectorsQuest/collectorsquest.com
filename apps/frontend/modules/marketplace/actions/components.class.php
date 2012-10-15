@@ -156,4 +156,10 @@ class marketplaceComponents extends cqFrontendComponents
 
     return sfView::NONE;
   }
+
+  public function executeHolidaySlot1()
+  {
+    return sfView::SUCCESS;
+  }
+
 }
