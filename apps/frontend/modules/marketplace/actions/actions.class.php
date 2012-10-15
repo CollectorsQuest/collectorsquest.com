@@ -12,6 +12,11 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeIndex()
   {
+    $this->forwardIf(
+      IceGateKeeper::open('holiday_marketplace', 'page'),
+      'marketplace', 'holiday'
+    );
+
     /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
       ->filterByPostType('marketplace_featured')
@@ -35,12 +40,15 @@ class marketplaceActions extends cqFrontendActions
       {
         if (isset($values['cq_collectible_id_'. $i]))
         {
-          $collectible_for_sale = CollectibleForSaleQuery::create()
+          /* @var $q CollectibleForSaleQuery */
+          $q = CollectibleForSaleQuery::create()
             ->isForSale()
             ->useCollectibleQuery()
               ->filterByIsPublic(true)
-            ->endUse()
-            ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
+            ->endUse();
+
+          /* @var $collectible_for_sale CollectibleForSale */
+          $collectible_for_sale = $q->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
 
           if ($collectible_for_sale)
           {
@@ -62,6 +70,13 @@ class marketplaceActions extends cqFrontendActions
       $this->collectibles_for_sale_text = $collectibles_for_sale_text;
       $this->wp_post = $wp_post;
     }
+
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeHoliday()
+  {
 
 
     return sfView::SUCCESS;

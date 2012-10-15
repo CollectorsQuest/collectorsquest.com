@@ -5,6 +5,11 @@ ajax_typeahead:
   param: { module: _ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
+ajax:
+  url:   /ajax/:section/:page
+  param: { module: _ajax, action: typeAhead }
+  requirements: { sf_method: [GET], sf_format: json }
+
 ajax_collections:
   url:   /ajax/collections/:section/:page.:sf_format
   param: { module: collections, action: ajax, sf_format: html }
@@ -80,3 +85,4 @@ ajax_mailchimp_webhook:
 ajax_sidebar:
   url:   /ajax/sidebar
   param: { module: _sidebar, action: ajax }
+

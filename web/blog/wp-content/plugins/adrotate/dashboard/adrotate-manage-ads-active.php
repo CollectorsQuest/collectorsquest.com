@@ -6,6 +6,7 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 <h3><?php _e('Active Ads', 'adrotate'); ?></h3>
 
 <form name="banners" id="post" method="post" action="admin.php?page=adrotate">
+	<?php wp_nonce_field('adrotate_bulk_ads_active','adrotate_nonce'); ?>
 
 	<div class="tablenav">
 		<div class="alignleft actions">
@@ -70,15 +71,37 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 			$stats = $wpdb->get_row("SELECT SUM(`clicks`) as `clicks`, SUM(`impressions`) as `impressions` FROM `".$wpdb->prefix."adrotate_stats_tracker` WHERE `ad` = '".$banner['id']."';");
 			$stats_today = $wpdb->get_row("SELECT `clicks`, `impressions` FROM `".$wpdb->prefix."adrotate_stats_tracker` WHERE `ad` = '".$banner['id']."' AND `thetime` = '$today';");
 
-			// Get Click Through Rate
-			$ctr = adrotate_ctr($stats->clicks, $stats->impressions);						
-
 			// Prevent gaps in display
-			if($stats->impressions == 0) 		$stats->impressions 		= 0;
-			if($stats->clicks == 0)				$stats->clicks 				= 0;
-			if($stats_today->impressions == 0) 	$stats_today->impressions 	= 0;
-			if($stats_today->clicks == 0) 		$stats_today->clicks 		= 0;
+			if($stats->impressions == 0) { 
+				$impressions = 0;
+			} else {
+				$impressions = $stats->impressions;
+			}
 			
+			if($stats_today->impressions == 0) { 
+				$todayimpressions = 0;
+			} else {
+				$todayimpressions = $stats_today->impressions;
+			}
+			
+			if($banner['tracker'] == 'Y') {
+				$ctr = adrotate_ctr($stats->clicks, $stats->impressions);						
+				$ctr = $ctr.' %';
+
+				if($stats->clicks == 0) { 
+					$clicks = 0;
+				} else { 
+					$clicks = $stats->clicks;
+				}
+				if($stats_today->clicks == 0) { 
+					$todayclicks = 0;
+				} else { 
+					$todayclicks = $stats_today->clicks;
+				}
+			} else {
+				$clicks = $todayclicks = $ctr = '--';
+			}
+
 			if($adrotate_debug['dashboard'] == true) {
 				echo "<tr><td>&nbsp;</td><td><strong>[DEBUG]</strong></td><td colspan='9'><pre>";
 				$memory = (memory_get_usage() / 1024 / 1024);
@@ -134,17 +157,11 @@ Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 				<td><span style="color: <?php echo adrotate_prepare_color($banner['lastactive']);?>;"><?php echo date_i18n("F d, Y", $banner['lastactive']);?></span></td>
 				<td><strong><a class="row-title" href="<?php echo admin_url('/admin.php?page=adrotate&view=edit&ad='.$banner['id']);?>" title="<?php _e('Edit', 'adrotate'); ?>"><?php echo stripslashes(html_entity_decode($banner['title']));?></a></strong> - <a href="<?php echo admin_url('/admin.php?page=adrotate&view=report&ad='.$banner['id']);?>" title="<?php _e('Report', 'adrotate'); ?>"><?php _e('Report', 'adrotate'); ?></a><?php if($groups) echo '<br /><em style="color:#999">'.$grouplist.'</em>'; ?></td>
 				<td><center><?php echo $banner['weight']; ?></center></td>
-				<td><center><?php echo $stats->impressions; ?></center></td>
-				<td><center><?php echo $stats_today->impressions; ?></center></td>
-				<?php if($banner['tracker'] == "Y") { ?>
-				<td><center><?php echo $stats->clicks; ?></center></td>
-				<td><center><?php echo $stats_today->clicks; ?></center></td>
-				<td><center><?php echo $ctr; ?> %</center></td>
-				<?php } else { ?>
-				<td><center>--</center></td>
-				<td><center>--</center></td>
-				<td><center>--</center></td>
-				<?php } ?>
+				<td><center><?php echo $impressions; ?></center></td>
+				<td><center><?php echo $todayimpressions; ?></center></td>
+				<td><center><?php echo $clicks; ?></center></td>
+				<td><center><?php echo $todayclicks; ?></center></td>
+				<td><center><?php echo $ctr; ?></center></td>
 			</tr>
 			<?php } ?>
 		<?php } else { ?>

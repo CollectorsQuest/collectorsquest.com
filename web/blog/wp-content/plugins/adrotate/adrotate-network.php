@@ -41,13 +41,15 @@ function adrotate_receiver() {
 		/* Check if you need to update or insert a new record */
 		if($banner_id > 0) {
 			/* Update */
-			$postquery = "UPDATE `".$wpdb->prefix."adrotate`	SET `title` = '$title', `bannercode` = '$bannercode', `updated` = '$thetime', `author` = '$author', `image` = '', `imagetype` = '', `link` = '$link', `tracker` = 'Y', `maxclicks` = '$maxclicks', `maxshown` = '$maxshown', `targetclicks` = '0', `targetimpressions` = '0', `type` = 'network', `weight` = '6', `sortorder` = '0' WHERE `id` = '$banner_id'";
+/* 			$postquery = "UPDATE `".$wpdb->prefix."adrotate`	SET `title` = '$title', `bannercode` = '$bannercode', `updated` = '$thetime', `author` = '$author', `image` = '', `imagetype` = '', `link` = '$link', `tracker` = 'Y', `maxclicks` = '$maxclicks', `maxshown` = '$maxshown', `targetclicks` = '0', `targetimpressions` = '0', `type` = 'network', `weight` = '6', `sortorder` = '0' WHERE `id` = '$banner_id'"; */
 			$action = "update";
 		} else {
 			/* New */
+/*
 			$postquery = "INSERT INTO `".$wpdb->prefix."adrotate` (
 					`title`, `bannercode`, `thetime`, `updated`, `author`, `image`, `imagetype`, `link`, `tracker`, `maxclicks`, `maxshown` ,`targetclicks`, `targetimpressions`, `type`, `weight`, `sortorder`) 
 			VALUES ('$title', '$bannercode', '$thetime', '$thetime', '$author', '', '', '$link', 'Y', '$maxclicks', '$maxshown', 0, 0, 'network', 6, 0)";
+*/
 			$action = "new";
 		}
 		if($wpdb->query($postquery) !== FALSE) {

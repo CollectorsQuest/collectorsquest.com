@@ -48,7 +48,7 @@ if(isset($_GET['track']) OR $_GET['track'] != '') {
 		if($ip < 1 AND $nocrawler == true AND (!isset($preview) OR empty($preview)) AND (strlen($useragent) > 0 OR !empty($useragent))) {
 			$wpdb->query($wpdb->prepare("UPDATE `".$prefix."adrotate_stats_tracker` SET `clicks` = `clicks` + 1 WHERE `ad` = '%s' AND `group` = '%s' AND `block` = '%s' AND `thetime` = '$today';", $ad, $group, $block));
 			if($remote_ip != "unknown" AND $remote_ip != "") {
-				$wpdb->query($wpdb->prepare("INSERT INTO `".$prefix."adrotate_tracker` (`ipaddress`, `timer`, `bannerid`, `stat`, `useragent`) VALUES ('%s', '$now', '%s', 'c', '%s');", $remote_ip, $ad, $useragent));
+				$wpdb->insert($prefix."adrotate_tracker", array('ipaddress' => $remote_ip, 'timer' => $now, 'bannerid' => $ad, 'stat' => 'c', 'useragent' => $useragent));
 			}
 		}
 
