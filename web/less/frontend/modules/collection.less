@@ -54,8 +54,8 @@
   .thumbnails {
     display: relative;
     overflow: hidden;
-	  height: 90px;
-	  margin: 3px 0 5px 5px;
+	height: 90px;
+	margin: 3px 0 5px -1px;
 
     a {
       float: left;
@@ -67,40 +67,39 @@
     }
 
 	  a.moreItems {
-		  display: block;
-		  .square(80px);
-		  font-size: 13px;
-		  line-height: 13px;
-		  text-align: center;
-		  color: #0A82C2;
-		  border: 5px solid #efefef;
-		  background-color: white;
+        display: block;
+        .square(80px);
+        margin-left: 6px;
+        font-size: 13px;
+        line-height: 13px;
+        text-align: center;
+        color: #0A82C2;
+        border: 5px solid #efefef;
+        background-color: white;
 	    &:hover {
 	      color: @red;
 	      background-color: #f8f8ff;
 		  border-color: #f8f8ff;
 	    }
 	    > span {
-		    display: block;
-		    padding-top: 20px;
-		    padding-bottom: 4px;
-		    font-size: 24px;
-		    line-height: 24px;
-		    font-weight: bold;
+          display: block;
+          padding-top: 20px;
+          padding-bottom: 4px;
+          font-size: 24px;
+          line-height: 24px;
+          font-weight: bold;
 	    }
 	  }
 
   }
   .thumbnail {
     .square(90px);
-    margin-right: 6px;
+    margin-left: 6px;
     padding: 0;
     border: none;
     .border-radius(0);
   }
-   .thumbnail:last-child {
-      margin-right: 0;
-    }
+
   .well {
     padding: 7px 3px 0 3px;
     background: #FFF5D5;
@@ -301,16 +300,18 @@
       }
     }
 
-    .zoom-zone .picture-zoom {
-      display: none;
-    }
-
     .zoom-zone:hover .picture-zoom {
       display: block;
     }
 
     .zoom-zone .picture-zoom, .prev-btn, .next-btn {
       #ie-50-transparent();
+      &:hover {filter: none}
+    }
+
+    .zoom-zone .picture-zoom {
+      display: none;
+      &:hover {#ie-50-transparent();}
     }
   }
 
