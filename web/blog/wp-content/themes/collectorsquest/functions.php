@@ -296,6 +296,32 @@ function cq_custom_post_type_init()
     'menu_position'   => 100,
     'supports'        => array('title', 'revisions')
   ));
+
+  register_post_type('market_theme', array(
+    'labels' => array(
+      'name'               => _x('Market Themes', 'post type general name'),
+      'singular_name'      => _x('Market Theme', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Market Theme'),
+      'add_new_item'       => __('Add New Market Theme'),
+      'edit_item'          => __('Edit Market Theme'),
+      'new_item'           => __('New Market Theme'),
+      'view_item'          => __('View Market Theme'),
+      'search_items'       => __('Search Market Theme'),
+      'not_found'          => __('No Market Themes found'),
+      'not_found_in_trash' => __('No Market Themes found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'taxonomies'      => array('post_tag'),
+    'supports'        => array('title', 'editor', 'revisions', 'custom-fields')
+  ));
 }
 
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
