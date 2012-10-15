@@ -8,20 +8,22 @@
           Machine tags saved successfully!
       </div>
     <?php endif ?>
-    <?= $form->renderGlobalErrors(); ?>
-    <?= $form['tags']->renderError(); ?>
-    <?= $form['tags']; ?>
-    <?= $form['tags']->renderHelp(); ?>
-    <?= $form->renderHiddenFields(); ?>
+
+    <?= $form; ?>
+
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">
             Save
         </button>
         <button type="reset" class="btn"
                 onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
-            Cancel
+            Close
         </button>
     </div>
 </form>
 
-
+<style>
+  .modal .modal-body .tagedit-list {
+    width: auto;
+  }
+</style>
