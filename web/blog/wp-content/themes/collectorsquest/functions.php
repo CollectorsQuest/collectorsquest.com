@@ -945,3 +945,74 @@ $img = wp_get_attachment_url( $post->ID );
   return $actions;
 }
 add_filter('media_row_actions', 'add_media_row_action', 10, 3);
+
+/**
+ * The formatted output of a list of pages.
+ *
+ * @param string|array $args Optional. Overwrite the defaults.
+ * @return string Formatted output in HTML.
+ */
+function custom_wp_link_pages( $args = '' ) {
+  global $page, $numpages, $multipage, $more, $pagenow;
+
+  $defaults = array(
+    'before' => '<p id="post-pagination" class="entry-meta span12">',
+    'after' => '</p>',
+    'text_before' => '',
+    'text_after' => '',
+    'next_or_number' => 'next',
+    'nextpagelink' => __( 'Click Here to See #' ),
+    'previouspagelink' => __( 'Click Here to See #' ),
+    'pagelink' => '%',
+    'echo' => 1,
+    'number_of_items' => 10
+  );
+
+  $r = wp_parse_args( $args, $defaults );
+  $r = apply_filters( 'wp_link_pages_args', $r );
+  extract( $r, EXTR_SKIP );
+
+  $output = '';
+  if ( $multipage ) {
+    if ( 'number' == $next_or_number ) {
+      $output .= $before;
+      for ( $i = 1; $i < ( $numpages + 1 ); $i = $i + 1 ) {
+        $j = str_replace( '%', $i, $pagelink );
+        $output .= ' ';
+        if ( $i != $page || ( ( ! $more ) && ( $page == 1 ) ) )
+          $output .= _wp_link_page( $i );
+        else
+          $output .= '<span class="current-post-page">';
+
+        $output .= $text_before . $j . $text_after;
+        if ( $i != $page || ( ( ! $more ) && ( $page == 1 ) ) )
+          $output .= '</a>';
+        else
+          $output .= '</span>';
+      }
+      $output .= $after;
+    } else {
+      if ( $more ) {
+        $output .= $before;
+        $i = $page - 1;
+        if ( $i && $more ) {
+          $output .= _wp_link_page( $i );
+          $page_number  = (string) $number_of_items - $page + 2;
+          $output .= '<span class="previous">' . $text_before . $previouspagelink . $page_number . $text_after . '</span></a>';
+        }
+        $i = $page + 1;
+        if ( $i <= $numpages && $more ) {
+          $output .= _wp_link_page( $i );
+          $page_number  = (string) $number_of_items - $page;
+          $output .= '<span class="next">' . $text_before . $nextpagelink . $page_number . $text_after . '</span></a>';
+        }
+        $output .= $after;
+      }
+    }
+  }
+
+  if ( $echo )
+    echo $output;
+
+  return $output;
+}

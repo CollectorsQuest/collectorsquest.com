@@ -350,6 +350,19 @@ $lastclass = 0;
           <?php
           if (is_single()) :
              the_content();
+
+             // post pagination if <!--nextpage--> is found
+             $pagination_text = get_post_meta($post->ID, $key = 'pagination_text', true);
+             $number_of_items = get_post_meta($post->ID, $key = 'number_of_items', true);
+             $args = array();
+             if ($pagination_text) :
+               $args['nextpagelink'] = $pagination_text;
+               $args['previouspagelink'] = $pagination_text;
+             endif;
+             if ($number_of_items) :
+               $args['number_of_items'] = $number_of_items;
+             endif;
+             custom_wp_link_pages( $args );
           elseif (is_front_page() || is_archive() || is_search()) :
 
             if (is_front_page() && $count == 1) :
@@ -378,7 +391,8 @@ $lastclass = 0;
 
           <div id="social-sharing" class="entry-share pull-right">
             <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style">
+            <div class="addthis_toolbox addthis_default_style"
+                 addthis:url="<?php the_permalink(); ?>" addthis:title="<?php the_title(); ?>">
               <a class="addthis_button_email"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
