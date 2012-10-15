@@ -217,6 +217,11 @@ ajax_object_rating:
   param: { module: adminbar, action: rating }
   requirements: {dimension: "[^/]+", class: "[^/]+", id: '\d+' }
 
+object_machine_tags:
+  url:   /ajax/machine-tags/:class/:id
+  param: { module: adminbar, action: machinetags }
+  requirements: { class: "[^/]+", id: '\d+' }
+
 # default rules
 
 ga:
