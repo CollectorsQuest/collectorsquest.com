@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:
         id: { label: ID }
-        num_collections: { label: Collections }
+        num_collections: { label: Collections, is_sortable: true, sort_method: orderByNumCollections}
         tree_level: { label: Level }
       list:
         display: [id,  tree_level, =name, _ancestors, _num_collections]
