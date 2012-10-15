@@ -359,7 +359,7 @@ $lastclass = 0;
                $args['nextpagelink'] = $pagination_text;
                $args['previouspagelink'] = $pagination_text;
              endif;
-             if ($number_of_items) :
+             if ((int)$number_of_items == $number_of_items && (int)$number_of_items > 0 ) :
                $args['number_of_items'] = $number_of_items;
              endif;
              custom_wp_link_pages( $args );
