@@ -353,14 +353,10 @@ $lastclass = 0;
 
              // post pagination if <!--nextpage--> is found
              $pagination_text = get_post_meta($post->ID, $key = 'pagination_text', true);
-             $number_of_items = get_post_meta($post->ID, $key = 'number_of_items', true);
              $args = array();
              if ($pagination_text) :
                $args['nextpagelink'] = $pagination_text;
                $args['previouspagelink'] = $pagination_text;
-             endif;
-             if ((int)$number_of_items == $number_of_items && (int)$number_of_items > 0 ) :
-               $args['number_of_items'] = $number_of_items;
              endif;
              custom_wp_link_pages( $args );
           elseif (is_front_page() || is_archive() || is_search()) :

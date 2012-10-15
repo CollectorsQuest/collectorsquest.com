@@ -965,7 +965,6 @@ function custom_wp_link_pages( $args = '' ) {
     'previouspagelink' => __( 'Click Here to See #' ),
     'pagelink' => '%',
     'echo' => 1,
-    'number_of_items' => 10
   );
 
   $r = wp_parse_args( $args, $defaults );
@@ -997,13 +996,13 @@ function custom_wp_link_pages( $args = '' ) {
         $i = $page - 1;
         if ( $i && $more ) {
           $output .= _wp_link_page( $i );
-          $page_number  = (string) $number_of_items - $page + 2;
+          $page_number  = (string) $numpages - $page + 2;
           $output .= '<span class="previous">' . $text_before . $previouspagelink . $page_number . $text_after . '</span></a>';
         }
         $i = $page + 1;
         if ( $i <= $numpages && $more ) {
           $output .= _wp_link_page( $i );
-          $page_number  = (string) $number_of_items - $page;
+          $page_number  = (string) $numpages - $page;
           $output .= '<span class="next">' . $text_before . $nextpagelink . $page_number . $text_after . '</span></a>';
         }
         $output .= $after;
