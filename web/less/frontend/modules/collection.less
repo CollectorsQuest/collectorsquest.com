@@ -301,16 +301,18 @@
       }
     }
 
-    .zoom-zone .picture-zoom {
-      display: none;
-    }
-
     .zoom-zone:hover .picture-zoom {
       display: block;
     }
 
     .zoom-zone .picture-zoom, .prev-btn, .next-btn {
       #ie-50-transparent();
+      &:hover {filter: none}
+    }
+
+    .zoom-zone .picture-zoom {
+      display: none;
+      &:hover {#ie-50-transparent();}
     }
   }
 
