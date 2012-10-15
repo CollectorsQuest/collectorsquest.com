@@ -2,6 +2,7 @@ all:
   stylesheets: [frontend/modules/marketplace.css]
 
 indexSuccess:
+  javascripts: [jquery/infinitescroll.js]
   components:
     sidebar_300: [marketplace, sidebarIndex]
     slot2: [marketplace, indexSlot2]
