@@ -964,7 +964,7 @@ function custom_wp_link_pages( $args = '' ) {
     'nextpagelink' => __( 'Click Here to See #' ),
     'previouspagelink' => __( 'Click Here to See #' ),
     'pagelink' => '%',
-    'echo' => 1,
+    'echo' => 1
   );
 
   $r = wp_parse_args( $args, $defaults );
@@ -997,13 +997,15 @@ function custom_wp_link_pages( $args = '' ) {
         if ( $i && $more ) {
           $output .= _wp_link_page( $i );
           $page_number  = (string) $numpages - $page + 2;
-          $output .= '<span class="previous">' . $text_before . $previouspagelink . $page_number . $text_after . '</span></a>';
+          $output .= '<span class="previous"><i class="icon-chevron-left"></i>&nbsp;&nbsp;' .
+            $text_before . $previouspagelink . $page_number . $text_after . '<span></a>';
         }
         $i = $page + 1;
         if ( $i <= $numpages && $more ) {
           $output .= _wp_link_page( $i );
           $page_number  = (string) $numpages - $page;
-          $output .= '<span class="next">' . $text_before . $nextpagelink . $page_number . $text_after . '</span></a>';
+          $output .= '<span class="next">' . $text_before . $nextpagelink . $page_number . $text_after .
+            '&nbsp;&nbsp;<i class="icon-chevron-right"></i><span></a>';
         }
         $output .= $after;
       }
