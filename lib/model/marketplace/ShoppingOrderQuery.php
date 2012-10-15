@@ -46,20 +46,17 @@ class ShoppingOrderQuery extends BaseShoppingOrderQuery
 
   /**
    * Payment Status Filter
-   * @param $value
-   * @return ShoppingOrderQuery
+   *
+   * @param     $value
+   * @return    ShoppingOrderQuery
    */
   public function filterByPaymentStatus($value)
   {
-    $this->addAlias('payment_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(
-      ShoppingOrderPeer::ID,
-      CollectorPeer::alias('payment_col', ShoppingPaymentPeer::SHOPPING_ORDER_ID), Criteria::LEFT_JOIN
-    );
-    $this->add(
-      CollectorPeer::alias('payment_col', ShoppingPaymentPeer::STATUS), $value
-    );
-    $this->setDistinct();
-    return $this;
+    return $this
+      ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
+        ->filterByStatus($value)
+      ->endUse()
+      ->setDistinct();
   }
+
 }
