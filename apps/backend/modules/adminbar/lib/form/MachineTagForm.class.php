@@ -19,13 +19,12 @@ class MachineTagForm extends MachineTagDynamicExtendForm
     $tags = $this->getObject()->getTags(array('is_triple' => true, 'return' => 'tag'));
 
     $this->widgetSchema['tags'] = new cqWidgetFormInputTags(array(
-      'label' => 'Tags',
+      'label' => 'Machine Tags',
       'autocompleteURL' => url_to_frontend('ajax_typeahead', array('section' => 'tags', 'page' => 'edit')),
     ));
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
-      'tags', 'Please add tags in format "namespace:key=value" like "matching:market=batman"
-      and press "Save"'
+      'tags', 'Please add tags in format "namespace:key=value" like "matching:market=batman" and press "Save"'
     );
     $this->validatorSchema['tags'] = new sfValidatorPass(array('required' => false));
 
