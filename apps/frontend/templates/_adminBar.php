@@ -1,8 +1,10 @@
 <?php
-  /* @var IceBackendUser $sf_user */
-  /* @var array $categories */
+/* @var IceBackendUser $sf_user */
+/* @var array $categories */
 
-  use_helper('cqBackend');
+use_helper('cqBackend');
+use_javascript('jquery/tagedit.js');
+use_javascript('jquery/autogrow-input.js');
 ?>
 
 <div id="admin-bar" class="navbar navbar-inverse">
