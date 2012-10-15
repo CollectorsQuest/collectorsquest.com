@@ -319,7 +319,8 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions')
+    'taxonomies'      => array('post_tag'),
+    'supports'        => array('title', 'editor', 'revisions', 'custom-fields')
   ));
 }
 
