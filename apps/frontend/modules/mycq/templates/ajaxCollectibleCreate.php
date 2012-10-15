@@ -27,10 +27,10 @@
   <?= $form ?>
 
   <?php
-    /*
-     * we append this "help-block" to description filed using js
-     * if there are form errors we hide it
-     */
+  /**
+   * we append this "help-block" to description filed using js
+   * if there are form errors we hide it
+   */
   ?>
   <p id="description_help" class="help-block" >
     Add more details about your item.
@@ -40,8 +40,7 @@
     <button type="submit" class="btn btn-primary spacer-right-15">
       Add Item
     </button>
-    <button type="reset" class="btn"
-            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+    <button type="reset" class="btn" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
       Cancel
     </button>
   </div>
@@ -52,7 +51,7 @@
 <script>
   $(document).ready(function()
   {
-    $('#form-create-collectible input.tag').tagedit({
+    $('input.tag', '#form-create-collectible').tagedit({
       autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
       autocompleteOptions: { minLength: 3 },
       // return, comma, semicolon

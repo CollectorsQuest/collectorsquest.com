@@ -413,6 +413,9 @@ class mycqActions extends cqFrontendActions
     /** @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
 
+    /** @var $collection CollectorCollection */
+    $collection = $collectible->getCollectorCollection();
+
     /**
      * Handle sold/purchased Collectibles
      */
@@ -466,12 +469,9 @@ class mycqActions extends cqFrontendActions
     }
 
     $this->redirectUnless(
-      $this->getCollector()->isOwnerOf($collectible),
+      $collection instanceof CollectorCollection && $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
     );
-
-    /** @var $collection CollectorCollection */
-    $collection = $collectible->getCollectorCollection();
 
     if ($request->getParameter('cmd'))
     {
@@ -1015,6 +1015,7 @@ class mycqActions extends cqFrontendActions
     /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
+      ->isPartOfCollection()
       ->isIncomplete();
 
     $this->total = $q->count();

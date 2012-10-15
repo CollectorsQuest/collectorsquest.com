@@ -21,12 +21,7 @@
         <div class="row mycq-collectibles">
           <div class="row-content">
             <?php if ($total == 0): ?>
-              <div class="thumbnail link no-collections-uploaded-box">
-                  <span class="Chivo webfont info-no-collections-uploaded">
-                    Great! <br>
-                    You do not have any incomplete items.
-                  </span>
-              </div>
+              &nbsp;&nbsp;<strong>Great!</strong> You do not have any incomplete items.<br/><br/>
             <?php endif; ?>
 
             <?php
