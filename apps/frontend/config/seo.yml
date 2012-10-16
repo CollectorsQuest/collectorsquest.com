@@ -42,6 +42,19 @@ seo:
         Check out these collectors items from the Picked Off collection.
         CollectorsQuest.com gives you an inside look at the Picked Off collectibles.
 
+    mwba:
+      title: The Men Who Built America | Collectors Quest
+      description: |
+        Vanderbilt, Roosevelt & Rockefeller : The Men Who Built America
+
+    mwbaPetroliana:
+      title: John D. Rockefeller | Oil, Gas & Petroliana | Collectors Quest
+
+    mwbaRooseveltiana:
+      title: Theodore Roosevelt | Politics & Rooseveltiana | Collectors Quest
+
+    mwbaRailroadiana:
+      title: Cornelius Vanderbilt | Trains & Railroadiana | Collectors Quest
 
   categories:
     index:
