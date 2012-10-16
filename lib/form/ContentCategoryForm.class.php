@@ -161,8 +161,8 @@ class ContentCategoryForm extends BaseContentCategoryForm
       'seo_market_description'           => $this->getObject()->getProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_DESCRIPTION),
       'seo_collections_keywords'         => $this->getObject()->getSeoCollectionsKeywords(),
       'seo_market_keywords'              => $this->getObject()->getSeoMarketKeywords(),
-      'seo_collections_use_singular'     => $this->getObject()->getSeoCollectionsUseSingular(),
-      'seo_market_use_singular'          => $this->getObject()->getSeoMarketUseSingular(),
+      'seo_collections_use_singular'     => (boolean) $this->getObject()->getSeoCollectionsUseSingular(),
+      'seo_market_use_singular'          => (boolean) $this->getObject()->getSeoMarketUseSingular(),
     )));
   }
 
