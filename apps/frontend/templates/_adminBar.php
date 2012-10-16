@@ -21,20 +21,32 @@ use_javascript('jquery/autogrow-input.js');
           </a>
         </li>
         <?php if (count($items)): ?>
-        <?php foreach ($items as $name => $sub_item): ?>
-          <?php if (count($sub_item)): ?>
-            <li class="dropdown">
-              <a href="#nogo" data-toggle="dropdown" class="dropdown-toggle">
-                <?= $name ?> <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <?php foreach ($sub_item as $key => $item): ?>
+          <?php foreach ($items as $name => $sub_item): ?>
+            <?php if (count($sub_item)): ?>
+              <?php if (count($sub_item) == 1): ?>
                 <li>
-                  <?= content_tag('a', $item['label'], $item['attributes']) ?>
+                  <?= content_tag(
+                    'a', $name . (isset($sub_item[0]['info']) ? ' '.$sub_item[0]['info'] : ''),
+                    $sub_item[0]['attributes']
+                  ) ?>
                 </li>
-                <?php endforeach; ?>
-              </ul>
-            </li>
+              <?php else : ?>
+                <li class="dropdown">
+                  <a href="#nogo" data-toggle="dropdown" class="dropdown-toggle">
+                    <?= $name ?> <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <?php foreach ($sub_item as $item): ?>
+                      <li>
+                        <?= content_tag(
+                        'a', $item['label'] . (isset($item['info']) ? ' '.$item['info'] : ''), $item['attributes']
+                          ) ?>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                </li>
+              <?php endif ?>
+
             <?php endif ?>
           <?php endforeach; ?>
         <?php endif ?>

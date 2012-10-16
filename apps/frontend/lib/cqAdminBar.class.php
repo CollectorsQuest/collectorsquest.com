@@ -43,9 +43,10 @@ class cqAdminBar
     {
       /* @var $group string */
       $group = 'Edit ';
-      $this->objects_menu[$group][$url] =
+      $this->objects_menu[$group][] =
         array(
           'label' => $label,
+          'url' => $url,
           'attributes' => array('target' => '_blank', 'href' => $url),
       );
     }
@@ -59,8 +60,10 @@ class cqAdminBar
         )
       );
 
-      $this->objects_menu['Rating'][$url] = array(
+      $this->objects_menu['Rating'][] = array(
         'label' => $label,
+        'url' => $url,
+        'info' => sprintf('(%s)', $object->getAverageRating() ?: 'n/a'),
         'attributes' => array(
           'onclick' => 'return false;', 'href' => $url,
           'class' => 'open-dialog', 'title' => 'Rating for ' . $object
@@ -77,8 +80,10 @@ class cqAdminBar
         )
       );
 
-      $this->objects_menu['Machine Tags'][$url] = array(
+      $this->objects_menu['Machine Tags'][] = array(
         'label' => $label,
+        'url' => $url,
+        'info' => sprintf('(%s)', count($object->getTags(array('is_triple' => true, 'return' => 'tag')))),
         'attributes' => array(
           'onclick' => 'return false;', 'href' => $url,
           'class' => 'open-dialog', 'title' => 'Machine Tags for ' . $object
