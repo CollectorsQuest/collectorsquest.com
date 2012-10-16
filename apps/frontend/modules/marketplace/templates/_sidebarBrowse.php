@@ -29,7 +29,7 @@
 
 
 <?php
-  if (IceGateKeeper::open('marketplace_categories', 'page'))
+  if (IceGateKeeper::open('expose_market_categories'))
   {
     include_component(
       '_sidebar', 'widgetMarketplaceCategories',
