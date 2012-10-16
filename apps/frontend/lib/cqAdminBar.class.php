@@ -68,8 +68,11 @@ class cqAdminBar
       );
     }
 
-    // limitation for the first version
-    if (in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible')))
+    // Limitation for the first version
+    if (
+      IceGateKeeper::open('machine_tags') &&
+      in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible'))
+    )
     {
       $url = $this->application->generateBackendUrl(
         'object_machine_tags', array(
