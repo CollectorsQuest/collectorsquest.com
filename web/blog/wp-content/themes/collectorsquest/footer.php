@@ -5,6 +5,18 @@ if(typeof(networkedblogs)=="undefined"){networkedblogs = {};networkedblogs.blogI
 </script><script src="http://nwidget.networkedblogs.com/getnetworkwidget?bid=493033" type="text/javascript"></script>
 
 <script type="text/javascript">
+  // add shadowbox to all images that are links
   $('div.singular div.post a img').parent().attr('rel','shadowbox');
-  $('.gallery-icon a').attr('rel','');
+
+  // all external links should not have shadowbox
+  $("a:not([href*='//www.collectorsquest.com/']):not([href^='/']) img").parent().removeAttr("rel");
+
+  // remove shadowbox from links that point to the blog post itself (or another blog post)
+  $("a[href*='//www.collectorsquest.com/blog'] img").parent().removeAttr("rel");
+
+  // remove shadowbox from links that open new browser tab
+  $("a[target='_blank'] img").parent().removeAttr("rel");
+
+  // remove shadowbox from galleries so only JetPack gallery appears
+  $('.gallery-icon a').removeAttr("rel");
 </script>
