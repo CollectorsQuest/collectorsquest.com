@@ -134,7 +134,7 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $this->current_category = $this->getVar('current_category');
     // used for widget title
-    $this->category_title = $this->current_category;
+    $this->category_title = $this->current_category->getName();
 
     // initialize as new ContentCategory so we can check in template if value was assigned
     $this->current_subcategory = new ContentCategory();
@@ -171,7 +171,7 @@ class _sidebarComponents extends cqFrontendComponents
       case 2:
         $this->current_subcategory = $this->current_category;
         $this->current_category = $this->current_category->getParent();
-        $this->category_title = $this->current_category;
+        $this->category_title = $this->current_category->getName();
         $retrieve_sub_subcategories = true;
         break;
     }
