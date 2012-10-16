@@ -133,12 +133,16 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetMarketplaceCategories()
   {
     $this->current_category = $this->getVar('current_category');
+    // used for widget title
+    $this->category_title = $this->current_category;
 
     // initialize as new ContentCategory so we can check in template if value was assigned
     $this->current_subcategory = new ContentCategory();
     $this->current_sub_subcategory = new ContentCategory();
     $this->current_sub_sub_subcategory = new ContentCategory();
 
+    // 3rd level categories
+    $this->sub_subcategories = array();
     // 4th level categories
     $this->sub_sub_subcategories = array();
 
@@ -184,7 +188,7 @@ class _sidebarComponents extends cqFrontendComponents
     * current_subcategory by hand if it doesn't exist in list
     */
 
-    $missing_category = true;
+    /* $missing_category = true;
     foreach ($this->subcategories as $subcateogry)
     {
       if ($subcateogry == $this->current_subcategory)
@@ -206,7 +210,7 @@ class _sidebarComponents extends cqFrontendComponents
         ->hasCollectiblesForSale()
         ->filterByLevel(3)
         ->orderBy('Name', Criteria::ASC)
-        ->find();
+        ->find(); */
 
       /*
        * logic of $this->sub_subcategories query should be changed so all sub_subcategories with
@@ -214,7 +218,7 @@ class _sidebarComponents extends cqFrontendComponents
        * current_sub_subcategory by hand if it doesn't exist in list
        */
 
-      $missing_category = true;
+      /* $missing_category = true;
       foreach ($this->sub_subcategories as $sub_subcateogry)
       {
         if ($sub_subcateogry == $this->current_sub_subcategory)
@@ -234,7 +238,7 @@ class _sidebarComponents extends cqFrontendComponents
       ->descendantsOf($this->current_sub_subcategory)
       ->hasCollectiblesForSale()
       ->orderBy('Name', Criteria::ASC)
-      ->find();
+      ->find(); */
 
     return $this->_sidebar_if(count($this->subcategories) > 0);
   }
