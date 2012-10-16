@@ -171,6 +171,7 @@ class _sidebarComponents extends cqFrontendComponents
       case 2:
         $this->current_subcategory = $this->current_category;
         $this->current_category = $this->current_category->getParent();
+        $this->category_title = $this->current_category;
         $retrieve_sub_subcategories = true;
         break;
     }
@@ -178,7 +179,7 @@ class _sidebarComponents extends cqFrontendComponents
     $this->subcategories = ContentCategoryQuery::create()
       ->descendantsOf($this->current_category)
       ->hasCollectiblesForSale()
-      ->filterByLevel(2)
+      ->filterByLevel(array (1, 2))
       ->orderBy('Name', Criteria::ASC)
       ->find();
 
