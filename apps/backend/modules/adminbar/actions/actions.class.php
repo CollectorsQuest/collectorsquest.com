@@ -125,4 +125,37 @@ class adminbarActions extends sfActions
       return sfView::NONE;
     }
   }
+
+  public function executeMachinetags(sfWebRequest $request)
+  {
+    sfConfig::set('sf_web_debug', false);
+    $this->setLayout(false);
+
+    $this->class = $request->getParameter('class');
+    $this->id = (integer) $request->getParameter('id');
+    $this->user_id = (integer) $request->getParameter('user_id');
+
+    // Define classes and methods names
+    $classPeer = sprintf('%sPeer', $this->class);
+    $classForm = sprintf('Base%sForm', $this->class);
+
+    $this->forward404Unless($object = $classPeer::retrieveByPK($this->id));
+
+    // MachineTagForm should extend $classForm
+    eval(sprintf('class MachineTagDynamicExtendForm extends %s {}', $classForm));
+
+    $form = new MachineTagForm($object, array(), false);
+
+    if ($request->isMethod(sfRequest::POST))
+    {
+      $form->bind($request->getParameter($form->getName()));
+      if ($form->isValid())
+      {
+        $object = $form->save();
+      }
+    }
+
+    $this->form = $form;
+    return sfView::SUCCESS;
+  }
 }

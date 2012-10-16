@@ -36,6 +36,7 @@ class cqAdminBar
    */
   private function addObject($object)
   {
+    $backend_user_id = cqContext::getInstance()->getUser()->getBackendUserId();
     $label = sfToolkit::pregtr(get_class($object), array('/([A-Z]+)([A-Z][a-z])/' => '\\1 \\2',
                                                          '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
     if ($url = $this->generateBackendEditUrl($object))
@@ -52,9 +53,10 @@ class cqAdminBar
     // no method - no rating
     if (method_exists($object, 'getAverageRating'))
     {
-      $backend_user_id = cqContext::getInstance()->getUser()->getBackendUserId();
       $url = $this->application->generateBackendUrl(
-        'object_rating', array('class' => get_class($object), 'id' => $object->getId(), 'user_id' => $backend_user_id)
+        'object_rating', array(
+          'class' => get_class($object), 'id' => $object->getId(), 'user_id' => $backend_user_id
+        )
       );
 
       $this->objects_menu['Rating'][$url] = array(
@@ -62,6 +64,24 @@ class cqAdminBar
         'attributes' => array(
           'onclick' => 'return false;', 'href' => $url,
           'class' => 'open-dialog', 'title' => 'Rating for ' . $object
+        )
+      );
+    }
+
+    // limitation for the first version
+    if (in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible')))
+    {
+      $url = $this->application->generateBackendUrl(
+        'object_machine_tags', array(
+          'class' => get_class($object), 'id' => $object->getId(), 'user_id' => $backend_user_id
+        )
+      );
+
+      $this->objects_menu['Machine Tags'][$url] = array(
+        'label' => $label,
+        'attributes' => array(
+          'onclick' => 'return false;', 'href' => $url,
+          'class' => 'open-dialog', 'title' => 'Machine Tags for ' . $object
         )
       );
     }
