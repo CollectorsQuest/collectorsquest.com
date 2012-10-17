@@ -130,18 +130,26 @@
   }
 
   &.left:before {
-    border-color: transparent #b8adad;
-    border-width: 8px 8px 8px 0;
+    content: "";
+    position: absolute;
+    border-right: 8px solid #b8adad;
+    border-right-color: #b8adad;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
     bottom: auto;
     left: -9px;
     top: 14px;
   }
   &.left:after {
-    border-color: transparent #FFFFFF;
-    border-width: 7px 7px 7px 0;
+    content: "";
+    position: absolute;
+    border-right: 8px solid #fff;
+    border-right-color: #fff;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
     bottom: auto;
     left: -7px;
     top: 14px;
-    //top: 15px; without box-shadow
+  //top: 15px; without box-shadow
   }
 }
