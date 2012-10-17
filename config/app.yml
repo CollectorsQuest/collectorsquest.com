@@ -33,10 +33,18 @@ all:
         name: Picked Off™
         collector: 13389
         collection: 3751
+      mwba:
+        name: The Men Who Built America
+        collector: -1
+        collection: -1
       storage_wars:
         name: Storage Wars™
         collector: -1
         collection: -1
+      franks_picks:
+        name: Frank's Picks
+        collector: 15716
+        collection: 4224
 
     # Leave this for now for BC
     american_pickers:
@@ -422,7 +430,7 @@ dev:
     domain: "cqcdns.dev"
 
   paypal:
-    ipn_domain: 'http://221.58.193.147'
+    ipn_domain: 'http://207.237.37.24'
 
 test:
   domain_name: "example.com"

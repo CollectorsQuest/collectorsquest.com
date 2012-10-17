@@ -34,9 +34,10 @@
       class="<?= 'body-'. $sf_context->getModuleName(); ?>"
       data-controller="<?= $sf_context->getModuleName(); ?>"
       data-action="<?= $sf_context->getActionName(); ?>">
+  <?php include_component('global', 'adminBar'); ?>
   <a name="top"></a>
 
-  <!--
+  <?php /*
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function()
@@ -57,7 +58,7 @@
       d.getElementsByTagName('head')[0].appendChild(js);
     }(document));
   </script>
-  //-->
+ */ ?>
 
   <?php
     $k = $sf_user->getShoppingCartCollectiblesCount();

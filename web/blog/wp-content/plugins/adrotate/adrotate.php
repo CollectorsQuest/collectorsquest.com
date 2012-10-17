@@ -4,7 +4,7 @@ Plugin Name: AdRotate
 Plugin URI: http://www.adrotateplugin.com
 Description: The very best and most convenient way to publish your ads.
 Author: Arnan de Gans of AJdG Solutions
-Version: 3.7.4.1
+Version: 3.7.4.2
 Author URI: http://www.ajdg.net
 License: GPL2
 */
@@ -74,7 +74,7 @@ if(strlen(ADROTATE_BETA) > 0) add_action('admin_notices','adrotate_beta_notifica
 if(isset($_POST['adrotate_ad_submit'])) 				add_action('init', 'adrotate_insert_input');
 if(isset($_POST['adrotate_group_submit'])) 				add_action('init', 'adrotate_insert_group');
 if(isset($_POST['adrotate_block_submit'])) 				add_action('init', 'adrotate_insert_block');
-if(isset($_POST['adrotate_action_submit'])) 			add_action('init', 'adrotate_request_action');
+if(isset($_POST['adrotate_action_submit']))				add_action('init', 'adrotate_request_action');
 if(isset($_POST['adrotate_disabled_action_submit']))	add_action('init', 'adrotate_request_action');
 if(isset($_POST['adrotate_error_action_submit']))		add_action('init', 'adrotate_request_action');
 if(isset($_POST['adrotate_beta_submit'])) 				add_action('init', 'adrotate_mail_beta');
@@ -127,7 +127,9 @@ function adrotate_dashboard() {
  Return:    -none-
 -------------------------------------------------------------*/
 function adrotate_manage() {
-	global $wpdb, $current_user, $userdata, $adrotate_config, $adrotate_debug;
+	global $wpdb, $current_user, $adrotate_config, $adrotate_debug;
+	
+	get_currentuserinfo();
 
 	$message 		= $_GET['message'];
 	$view 			= $_GET['view'];
@@ -188,6 +190,8 @@ function adrotate_manage() {
 				<div id="message" class="updated fade"><p><?php _e('Ad(s) deactivated', 'adrotate'); ?></p></div>
 			<?php } else if ($message == 'activate') { ?>
 				<div id="message" class="updated fade"><p><?php _e('Ad(s) activated', 'adrotate'); ?></p></div>
+			<?php } else if ($message == 'weight') { ?>
+				<div id="message" class="updated fade"><p><?php _e('Ad(s) weight changed', 'adrotate'); ?></p></div>
 			<?php } else if ($message == 'field_error') { ?>
 				<div id="message" class="updated fade"><p><?php _e('The ad was saved but has an issue which might prevent it from working properly. Review the yellow marked ad.', 'adrotate'); ?></p></div>
 			<?php } else if ($message == 'no_access') { ?>
@@ -199,7 +203,7 @@ function adrotate_manage() {
 			<?php } ?>
 	
 			<?php
-			$allbanners = $wpdb->get_results("SELECT `id`, `title`, `type`, `tracker`, `weight` FROM `".$wpdb->prefix."adrotate` ORDER BY $order;");
+			$allbanners = $wpdb->get_results($wpdb->prepare("SELECT `id`, `title`, `type`, `tracker`, `weight` FROM `".$wpdb->prefix."adrotate` ORDER BY %s;", $order));
 			
 			foreach($allbanners as $singlebanner) {
 				
@@ -535,7 +539,13 @@ function adrotate_advertiser() {
 
 		} else if($view == "message") {
 			
-			include("dashboard/adrotate-advertiser-message.php");
+			$wpnonceaction = 'adrotate_email_advertiser_'.$request_id;
+			if(wp_verify_nonce($_REQUEST['_wpnonce'], $wpnonceaction)) {
+				include("dashboard/adrotate-advertiser-message.php");
+			} else {
+				adrotate_nonce_error();
+				exit;
+			}
 
 		}
 		?>
@@ -638,6 +648,9 @@ function adrotate_options() {
 		<?php } ?>
 
 	  	<form name="settings" id="post" method="post" action="admin.php?page=adrotate-settings">
+
+			<?php wp_nonce_field('adrotate_email_test','adrotate_nonce'); ?>
+			<?php wp_nonce_field('adrotate_settings','adrotate_nonce_settings'); ?>
 
 	    	<table class="form-table">
 			<tr>

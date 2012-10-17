@@ -26,68 +26,61 @@
 ?>
 <form action="<?= url_for('@ajax_mycq?section=collectibleForSale&page=create'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
-<?= $form->renderHiddenFields() ?>
 
-<div class="modal">
-  <div class="modal-header">
-    <h3>Add a New Item for Sale</h3>
-  </div>
+  <h1>Add a New Item for Sale</h1>
 
-  <div class="modal-body">
-    <?= $form->renderAllErrors(); ?>
+  <?= $form->renderAllErrors(); ?>
 
-    <?php
-      if (isset($form['collectible']['collection_id'])) {
-        echo $form['collectible']['collection_id'];
-      }
-      if (isset($form['collectible']['collection_collectible_list'])) {
-        echo $form['collectible']['collection_collectible_list']->renderRow();
-      }
-    ?>
-    <?= $form['collectible']['name']->renderRow() ?>
-    <?= $form['collectible']['tags']->renderRow() ?>
+  <?php
+    if (isset($form['collectible']['collection_id']))
+    {
+      echo $form['collectible']['collection_id'];
+    }
+    if (isset($form['collectible']['collection_collectible_list']))
+    {
+      echo $form['collectible']['collection_collectible_list']->renderRow();
+    }
+  ?>
+  <?= $form['collectible']['name']->renderRow() ?>
+  <?= $form['collectible']['tags']->renderRow() ?>
 
-    <div class="control-group spacer-bottom-reset">
-      <?= $form['collectible']['content_category_id']->renderLabel('Category') ?>
-      <div class="controls">
-        <div class="with-required-token">
-          <span class="required-token">*</span>
-          <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
-        </div>
-        <p class="help-block">
-          Choose a category from the list above.
-        </p>
+  <div class="control-group spacer-bottom-reset">
+    <?= $form['collectible']['content_category_id']->renderLabel('Category') ?>
+    <div class="controls">
+      <div class="with-required-token">
+        <span class="required-token">*</span>
+        <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
       </div>
     </div>
   </div>
 
-  <div class="modal-footer">
+  <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
       Next Step
     </button>
-    <button type="reset" class="btn"
-            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+    <button type="reset" class="btn" onClick="$(this).parents('.modal-body.opened').dialog2('close'); return false;">
       Cancel
     </button>
   </div>
-</div>
 
+  <?= $form->renderHiddenFields() ?>
 </form>
 
 <script>
 $(document).ready(function()
 {
-  $(".chzn-select").find("option:selected").each(function(index, option)
+  var $chzn = $(".chzn-select");
+
+  $chzn.find("option:selected").each(function(index, option)
   {
     if ($(option).val() === '') {
       $(option).removeAttr("selected");
     }
   });
 
-  $(".chzn-select")
+  $chzn
     .chosen({ no_results_text: "No collections found for" })
-    .change(function()
-    {
+    .change(function() {
       if ($(this).find("option:selected").val() === '')
       {
         $(this).find("option:selected").removeAttr("selected");

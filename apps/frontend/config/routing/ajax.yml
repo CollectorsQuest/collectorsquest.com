@@ -1,7 +1,13 @@
+
 ### AJAX
 
 ajax_typeahead:
   url:   /ajax/typeahead/:section/:page
+  param: { module: _ajax, action: typeAhead }
+  requirements: { sf_method: [GET], sf_format: json }
+
+ajax:
+  url:   /ajax/:section/:page
   param: { module: _ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
@@ -36,6 +42,12 @@ ajax_marketplace:
 ajax_mycq:
   url:   /ajax/mycq/:section/:page.:sf_format
   param: { module: mycq, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
+ajax_aetn:
+  url:   /ajax/aetn/:section/:page.:sf_format
+  param: { module: aetn, action: ajax, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
@@ -74,3 +86,4 @@ ajax_mailchimp_webhook:
 ajax_sidebar:
   url:   /ajax/sidebar
   param: { module: _sidebar, action: ajax }
+

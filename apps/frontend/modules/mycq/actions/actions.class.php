@@ -173,10 +173,12 @@ class mycqActions extends cqFrontendActions
     $collector = $this->getCollector();
 
     $_preferences = array(
-      'opt_out'     => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
-      'newsletter'  => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
-      'comments'    => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
-      'messages'    => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE
+      'opt_out'           => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
+      'newsletter'        => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+      'comments'          => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+      'comments_opt_out'  => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_OPT_OUT,
+      'messages'          => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+      'messages_opt_out'  => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_OPT_OUT
     );
 
     // Assume there are no properties changed in this request
@@ -360,13 +362,16 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
+    /** @var $collection CollectorCollection */
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($collection),
       '@mycq_collections'
     );
 
+    /** @var $collectible Collectible */
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
 
@@ -385,8 +390,9 @@ class mycqActions extends cqFrontendActions
     // auto-set collection thumbnail if none set yet
     if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
     {
-      $collection->setPrimaryImage($collectible->getPrimaryImage()
-        ->getAbsolutePath('original'));
+      $collection->setPrimaryImage(
+        $collectible->getPrimaryImage()->getAbsolutePath('original')
+      );
       $collection->save();
     }
 
@@ -394,7 +400,7 @@ class mycqActions extends cqFrontendActions
     {
       // Give the collectible the same category as the collection
       $collectible->setContentCategoryId($collection->getContentCategoryId());
-      $colletible->save();
+      $collectible->save();
     }
 
     return $this->redirect($this->getController()->genUrl(array(
@@ -408,6 +414,9 @@ class mycqActions extends cqFrontendActions
   {
     /** @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
+
+    /** @var $collection CollectorCollection */
+    $collection = $collectible->getCollectorCollection();
 
     /**
      * Handle sold/purchased Collectibles
@@ -462,12 +471,9 @@ class mycqActions extends cqFrontendActions
     }
 
     $this->redirectUnless(
-      $this->getCollector()->isOwnerOf($collectible),
+      $collection instanceof CollectorCollection && $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
     );
-
-    /** @var $collection CollectorCollection */
-    $collection = $collectible->getCollectorCollection();
 
     if ($request->getParameter('cmd'))
     {
@@ -1011,6 +1017,7 @@ class mycqActions extends cqFrontendActions
     /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
+      ->isPartOfCollection()
       ->isIncomplete();
 
     $this->total = $q->count();

@@ -36,6 +36,7 @@ classes:
     propel_behaviors:
       archivable: { archive_class: CollectorArchive, archived_at_column: archived_at }
       sluggable: { slug_pattern: "{DisplayName}", permanent: false }
+      ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
       extra_properties: ~
       timestampable:  ~
 
@@ -182,6 +183,7 @@ classes:
 
     propel_behaviors:
       sluggable: { slug_pattern: "{Name}", permanent: false }
+      ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
       timestampable:  ~
 
   ContentCategory:
@@ -250,6 +252,7 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
+      ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
       timestampable:  ~
 
   PrivateMessage:
@@ -266,6 +269,7 @@ classes:
       is_forwarded:  { type: boolean, default: false }
       is_marked:     { type: boolean, default: false }
       is_deleted:    { type: boolean, default: false }
+      is_spam:       { type: boolean, default: false }
       created_at:    ~
 
     propel_behaviors:

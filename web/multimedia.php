@@ -68,13 +68,19 @@ if (in_array($type, array('image', 'video')))
        * We want to (re)generate the requested thumbnail if:
        *   1. The requested multimedia is image
        *   2. There is original image file available
-       *   3. The requested thumbnail does not exist already OR for some reason
-       *      the original image was updated after the thumbnail was generated
+       *   3. And one of the below condictions:
+       *      3.1 The requested thumbnail does not exist already
+       *      3.2 For some reason the original image was updated after the thumbnail was generated
+       *      3.3 We have a $_GET['crop'] parameter and we need to adjust the crop method
        */
       if (
         $type === 'image' &&
         is_readable($shared . $original) &&
-        (!$is_readable || filemtime($shared . $original) > filemtime($shared . $path))
+        (
+          !$is_readable ||
+          filemtime($shared . $original) > filemtime($shared . $path) ||
+          !empty($_GET['crop'])
+        )
       )
       {
         @list($width, $height) = getimagesize($shared . $original);
@@ -92,7 +98,7 @@ if (in_array($type, array('image', 'video')))
           /** @var cqApplicationConfiguration $configuration */
           $configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
 
-          $thumb = iceModelMultimediaPeer::makeThumb($shared . $original, $size, 'top', false);
+          $thumb = iceModelMultimediaPeer::makeThumb($shared . $original, $size, @$_GET['crop'] ?: 'top', false);
           $thumb && $thumb->saveAs($shared . $path, 'image/jpeg') && ($is_readable = true);
         }
       }

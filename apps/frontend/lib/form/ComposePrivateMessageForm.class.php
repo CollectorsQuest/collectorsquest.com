@@ -96,9 +96,12 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     {
       // if no, then allow the user to input the receiver
       $this->widgetSchema['receiver'] = new bsWidgetFormInputTypeAhead(array(
-        'source' => cqContext::getInstance()->getController()->genUrl(
-          array('sf_route' => 'ajax_typeahead', 'section' => 'messages', 'page' => 'compose')
-        )
+        'source' => cqContext::getInstance()->getController()->genUrl(array(
+            'sf_route' => 'ajax_typeahead',
+            'section' => 'messages',
+            'page' => 'compose'
+        )),
+        'submit_on_enter' => false,
       ));
     }
 

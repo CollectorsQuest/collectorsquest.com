@@ -133,3 +133,31 @@
     </div>
   </div><!-- ./span4 -->
 </div>
+
+<script>
+if (Modernizr.isproduction)
+{
+  _gaq.push(['_addTrans',
+    '<?= $shopping_order->getUuid() ?>',
+    '<?= addcslashes($shopping_order->getSeller()->getDisplayName(), "'") ?>',
+    '<?= number_format((float) $shopping_order->getTotalAmount(), 2) ?>',
+    '0',
+    '<?= number_format((float) $shopping_order->getShippingFeeAmount(), 2) ?>',
+    '<?= addcslashes($shopping_order->getShippingCity(), "'") ?>',
+    '<?= addcslashes($shopping_order->getShippingStateRegion(), "'") ?>',
+    '<?= $shopping_order->getShippingCountryName() ?>'
+  ]);
+
+  _gaq.push(['_addItem',
+    '<?= $shopping_order->getUuid() ?>',
+    '<?= $collectible->getId(); ?>',
+    '<?= addcslashes($collectible->getName(), "'") ?>',
+    '<?= addcslashes($collectible->getContentCategory(), "'") ?>',
+    '<?= number_format((float) $shopping_order->getCollectiblesAmount(), 2) ?>',
+    '1'
+  ]);
+
+  // Submits transaction to the Analytics servers
+  _gaq.push(['_trackTrans']);
+}
+</script>

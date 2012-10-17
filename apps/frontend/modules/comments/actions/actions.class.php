@@ -85,6 +85,7 @@ class commentsActions extends cqFrontendActions
                     'oNewComment' => $comment,
                     'oYourComment' => $notify_comment,
                     'sThreadUrl' => $request->getReferer() . '#comments',
+                    'oOwner' => $owner,
                     'sUnsubscribeUrl' => $this->generateUrl('comments_unsubscribe', array(
                         'email' => urlencode($notify_comment->getAuthorEmail()),
                         'model_class' => $notify_comment->getModelObjectClass(),
@@ -373,7 +374,7 @@ class commentsActions extends cqFrontendActions
 
           $cqEmail = new cqEmail($this->getMailer());
 
-          $cqEmail->send('internal/comment_spam_notification', array(
+          $cqEmail->send('internal/spam_notification_comment', array(
               'params' => array(
                   'oComment' => $comment,
                   'oReporterCollector' => $this->getCollector(),

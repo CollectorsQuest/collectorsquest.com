@@ -15,6 +15,12 @@
   );
 ?>
 
+<?php if ($description = $category->getDescription()): ?>
+<div class="cf spacer-top-20">
+  <?= $category->getDescription(); ?>
+</div>
+<?php endif; ?>
+
 <br/>
 <div class="row" style="margin-left: -12px;">
   <div id="collections" class="row-content">

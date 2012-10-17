@@ -24,9 +24,9 @@ class collectorActions extends cqFrontendActions
     $this->profile   = $profile;
 
     /** @var $q FrontendCollectorCollectionQuery */
-    $q = FrontendCollectorCollectionQuery::create()
-      ->hasCollectibles()
-      ->filterByCollector($collector);
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($collector)
+      ->hasPublicCollectibles();
     $this->collectionsCount = $q->count();
 
     $q = FrontendCollectionCollectibleQuery::create()
@@ -92,6 +92,10 @@ class collectorActions extends cqFrontendActions
     // Finally add the meta description to the response
     $this->getResponse()->addMeta(
       'description', cqStatic::truncateText(strip_tags($meta_description), 156, '...', true)
+    );
+
+    $this->dispatcher->notify(
+      new sfEvent($this, 'application.show_object', array('object' => $this->collector))
     );
 
     return sfView::SUCCESS;

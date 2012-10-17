@@ -184,11 +184,6 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->validatorSchema['return_to'] = new sfValidatorPass();
   }
 
-  public function updateDescriptionColumn($value)
-  {
-    $this->getObject()->setDescription($value, 'html');
-  }
-
   public function save($con = null)
   {
     /** @var $object Collectible */
