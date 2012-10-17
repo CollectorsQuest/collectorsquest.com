@@ -1,8 +1,47 @@
-<?php
+<div id="HolidayMarketHeader">
+  <!--
+  <h1>Keep It<br>Classics</h1>
+  <h2>for the holidays</h2>
+  -->
+</div>
+<div class="holiday-market-menu-wrapper">
+  <div class="navbar-inner">
+    <ul class="nav">
+      <li class="active">
+        <a href="#">
+          <strong>statue</strong>-esque
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          up in <br><strong>smoke</strong>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <strong>Signs</strong><br> of the times
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          from the <br><strong>kitchen</strong>
+        </a>
+      </li>
+      <li class="active">
+        <a href="#">
+          retro <br><strong>style</strong>
+        </a>
+      </li>
+    </ul>
+    <span class="arrow-previous">
+      <a href="#" class="arrow-white-previous" title="previous"></a>
+    </span>
+    <span class="arrow-next">
+      <a href="#" class="arrow-white-next" title="next"></a>
+    </span>
+  </div>
+</div>
 
-echo cq_image_tag('frontend/mockups/20121001_CQ_Holiday_Wire_r3.pdf.jpg', array('width' => 979));
-
-?>
 <div class="row">
   <div class="row-content" style="margin-left: 24px;">
   <?php
