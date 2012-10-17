@@ -1187,9 +1187,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $params['http-headers'] =
         'HTTP_ACCEPT_LANGUAGE: ' . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "\n" .
         'HTTP_REFERER: ' . $_SERVER['HTTP_REFERER'] . "\n" .
-        'HTTP_ACCEPT_CHARSET: ' . @$_SERVER['HTTP_ACCEPT_CHARSET'] . "\n" .
-        'HTTP_KEEP_ALIVE: ' . @$_SERVER['HTTP_KEEP_ALIVE'] . "\n" .
-        'HTTP_ACCEPT_ENCODING: ' . $_SERVER['HTTP_ACCEPT_ENCODING'] . "\n" .
+        (isset($_SERVER['HTTP_ACCEPT_CHARSET']) ? 'HTTP_ACCEPT_CHARSET: '. $_SERVER['HTTP_ACCEPT_CHARSET'] ."\n" : '') .
+        (isset($_SERVER['HTTP_KEEP_ALIVE']) ? 'HTTP_KEEP_ALIVE: '. $_SERVER['HTTP_KEEP_ALIVE'] ."\n" : '') .
+        (isset($_SERVER['HTTP_ACCEPT_ENCODING']) ? 'HTTP_ACCEPT_ENCODING: '. $_SERVER['HTTP_ACCEPT_ENCODING'] ."\n" : '') .
         'HTTP_CONNECTION: ' . $_SERVER['HTTP_CONNECTION'] . "\n" .
         'HTTP_ACCEPT: ' . $_SERVER['HTTP_ACCEPT'] . "\n" .
         'HTTP_USER_AGENT: ' . $_SERVER['HTTP_USER_AGENT'];
