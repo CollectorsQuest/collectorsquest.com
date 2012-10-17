@@ -173,10 +173,12 @@ class mycqActions extends cqFrontendActions
     $collector = $this->getCollector();
 
     $_preferences = array(
-      'opt_out'     => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
-      'newsletter'  => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
-      'comments'    => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
-      'messages'    => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE
+      'opt_out'           => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
+      'newsletter'        => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+      'comments'          => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+      'comments_opt_out'  => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_OPT_OUT,
+      'messages'          => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+      'messages_opt_out'  => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_OPT_OUT
     );
 
     // Assume there are no properties changed in this request
