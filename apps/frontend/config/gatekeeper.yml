@@ -19,7 +19,6 @@ all:
     independence_day: false
     expose_collection_categories: true
     expose_market_categories: true
-    machine_tags: false
 
 next:
   pages:
@@ -42,7 +41,6 @@ next:
     independence_day: false
     expose_collection_categories: true
     expose_market_categories: true
-    machine_tags: true
 
 dev:
   pages:
@@ -65,4 +63,3 @@ dev:
     independence_day: false
     expose_collection_categories: true
     expose_market_categories: true
-    machine_tags: true
