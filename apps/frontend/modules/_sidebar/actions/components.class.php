@@ -133,112 +133,45 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetMarketplaceCategories()
   {
     $this->current_category = $this->getVar('current_category');
-    // used for widget title
-    $this->category_title = $this->current_category->getName();
+
+    $this->widget_title = $this->current_category->getName();
 
     // initialize as new ContentCategory so we can check in template if value was assigned
     $this->current_subcategory = new ContentCategory();
-    $this->current_sub_subcategory = new ContentCategory();
-    $this->current_sub_sub_subcategory = new ContentCategory();
 
-    // 3rd level categories
-    $this->sub_subcategories = array();
-    // 4th level categories
-    $this->sub_sub_subcategories = array();
-
-    // if current_category is level > 1 we should retrieve sub_subcategories
-    $retrieve_sub_subcategories = false;
-    // if current_category is level > 2 we should retrieve sub_sub_subcategories
-    $retrieve_sub_sub_subcategories = false;
-
-    switch ($this->current_category->getLevel())
+    if ($this->current_category->getLevel() == 2)
     {
-      case 4:
-        $this->current_sub_sub_subcategory = $this->current_category;
-        $this->current_sub_subcategory = $this->current_category->getParent();
-        $this->current_subcategory = $this->current_category->getParent()->getParent();
-        $this->current_category = $this->current_category->getParent()->getParent()->getParent();
-        $retrieve_sub_subcategories = true;
-        $retrieve_sub_sub_subcategories = true;
-        break;
-      case 3:
-        $this->current_sub_subcategory = $this->current_category;
-        $this->current_subcategory = $this->current_category->getParent();
-        $this->current_category = $this->current_category->getParent()->getParent();
-        $retrieve_sub_subcategories = true;
-        $retrieve_sub_sub_subcategories = true;
-        break;
-      case 2:
-        $this->current_subcategory = $this->current_category;
-        $this->current_category = $this->current_category->getParent();
-        $retrieve_sub_subcategories = true;
-        break;
+      // we want to make the current category display as subcategory
+      $this->current_subcategory = $this->current_category;
+      // we want display category parent as widget title
+      $this->current_category = $this->current_category->getParent();
+      if ($this->current_category->getLevel() != 0 )
+      {
+        $this->widget_title = $this->current_category->getName();
+      }
+      // this means we have a level 2 category with parent level 0 (Root)
+      else
+      {
+        $this->widget_title = 'Marketplace categories';
+      }
     }
 
-    $this->subcategories = ContentCategoryQuery::create()
+    /** @var $q ContentCategoryQuery */
+    $q = ContentCategoryQuery::create()
       ->descendantsOf($this->current_category)
       ->hasCollectiblesForSale()
-      ->filterByLevel(array (1, 2))
-      ->orderBy('Name', Criteria::ASC)
-      ->find();
+      ->orderBy('Name', Criteria::ASC);
 
-    /*
-    * logic of $this->subcategories query should be changed so all subcategories with
-    * sub_subcategories that have items for sale should be visible. Currently adding the
-    * current_subcategory by hand if it doesn't exist in list
-    */
-
-    /* $missing_category = true;
-    foreach ($this->subcategories as $subcateogry)
+    if ($this->current_category->getLevel() == 0)
     {
-      if ($subcateogry == $this->current_subcategory)
-      {
-        $missing_category = false;
-      }
+      $q->filterByLevel(array(1, 2));
+    }
+    else
+    {
+      $q->filterByLevel(2);
     }
 
-    if ($missing_category)
-    {
-      $this->subcategories[] = $this->current_subcategory;
-    }
-
-    $this->sub_subcategories = array();
-    if ($retrieve_sub_subcategories)
-    {
-      $this->sub_subcategories = ContentCategoryQuery::create()
-        ->descendantsOf($this->current_subcategory)
-        ->hasCollectiblesForSale()
-        ->filterByLevel(3)
-        ->orderBy('Name', Criteria::ASC)
-        ->find(); */
-
-      /*
-       * logic of $this->sub_subcategories query should be changed so all sub_subcategories with
-       * sub_sub_subcategories that have items for sale should be visible. Currently adding the
-       * current_sub_subcategory by hand if it doesn't exist in list
-       */
-
-      /* $missing_category = true;
-      foreach ($this->sub_subcategories as $sub_subcateogry)
-      {
-        if ($sub_subcateogry == $this->current_sub_subcategory)
-        {
-            $missing_category = false;
-        }
-      }
-
-      if ($missing_category)
-      {
-        $this->sub_subcategories[] = $this->current_sub_subcategory;
-      }
-    }
-
-    if ($retrieve_sub_sub_subcategories)
-    $this->sub_sub_subcategories = ContentCategoryQuery::create()
-      ->descendantsOf($this->current_sub_subcategory)
-      ->hasCollectiblesForSale()
-      ->orderBy('Name', Criteria::ASC)
-      ->find(); */
+    $this->subcategories = $q->find();
 
     return $this->_sidebar_if(count($this->subcategories) > 1);
   }
@@ -646,9 +579,12 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     /** @var $q CollectibleForSaleQuery */
-    $q = FrontendCollectibleForSaleQuery::create()
-      ->isForSale()
-      ->orderByUpdatedAt(Criteria::DESC);
+    $q = CollectibleForSaleQuery::create()
+      ->useCollectibleQuery()
+        ->filterByIsPublic(true)
+        //->isPartOfCollection()
+      ->endUse()
+      ->orderBy('UpdatedAt', Criteria::DESC);
 
     // See if we need to filter by CollectibleId first
     if (!empty($this->ids) && is_array($this->ids))
