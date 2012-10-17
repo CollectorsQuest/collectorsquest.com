@@ -6,33 +6,36 @@
 </div>
 <div class="holiday-market-menu-wrapper">
   <div class="navbar-inner">
-    <ul class="nav">
-      <li class="active">
-        <a href="#">
-          <span><strong>statue</strong>-esque</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          up in <br><strong>smoke</strong>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <strong>Signs</strong><br> of the times
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          from the <br><strong>kitchen</strong>
-        </a>
-      </li>
-      <li class="active">
-        <a href="#">
-          retro <br><strong>style</strong>
-        </a>
-      </li>
-    </ul>
+    <div class="centering">
+      <ul class="nav">
+        <li class="active">
+          <a href="#">
+            <span><strong>statue</strong>-esque</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            up in <br><strong>smoke</strong>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <strong>Signs</strong><br> of the times
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            from the <br><strong>kitchen</strong>
+          </a>
+        </li>
+        <li class="active">
+          <a href="#">
+            retro <br><strong>style</strong>
+          </a>
+        </li>
+      </ul>
+    </div>
+
     <span class="arrow-previous">
       <a href="#" class="arrow-white-previous" title="previous"></a>
     </span>

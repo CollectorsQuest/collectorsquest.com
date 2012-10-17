@@ -228,20 +228,22 @@ div.onecolumn {
 .holiday-market-menu-wrapper {
   .size(68px,100%);
   margin-bottom: 15px;
-  overflow: hidden;
   .clearfix();
 
   .navbar-inner {
     position: relative;
     min-height: 50px;
     width: 100%;
-    float: left;
     clear: both;
     padding: 0;
     #gradient > .vertical-three-colors(#265a2c, #1c5d1d, 50%, #125e03);
     border: none;
     .border-radius(0);
 
+    .centering {
+      display: table;
+      margin: 0 auto;
+    }
     .arrow-previous, .arrow-next {
       display: block;
       position: absolute;
@@ -258,14 +260,11 @@ div.onecolumn {
 
   ul.nav {
     position: relative;
-    left: 50%;
     display: block;
-    float: left;
     margin-bottom: 0;
 
     > li {
       position: relative;
-      right: 50%;
       float: left;
       height: 50px;
 
