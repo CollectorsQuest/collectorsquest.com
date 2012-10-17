@@ -13,26 +13,11 @@
 </div>
 */ ?>
 
-<?php include_partial('marketplace/holidayMarketPromo_300x90'); ?>
+<?php include_partial('marketplace/partials/holidayMarketPromo_300x90'); ?>
 
-<div class="banner-sidebar-promo-300-90">
-  <a href="<?= url_for('@aetn_pawn_stars', true); ?>" title="Check out items seen on Pawn Stars">
-    <img src="/images/headlines/pawn-stars-banner.jpg" alt="Check out items seen on Pawn Stars">
-<?php /*
-    <span>
-      Check out items seen on Pawn Stars
-    </span>
- */ ?>
-  </a>
-</div>
+<?php include_partial('aetn/partials/pawnStarsPromo_300x90'); ?>
 
-<?php if(IceGateKeeper::open('aetn_american_restoration', 'page')): ?>
-  <div class="banner-sidebar-promo-300-90">
-    <a href="<?= url_for('@aetn_american_restoration', true); ?>" title="Check out items seen on American Restoration">
-      <img src="/images/headlines/2012-0777_AR_300x90.jpg" alt="Check out items seen on American Restoration">
-    </a>
-  </div>
-<?php endif; ?>
+<?php include_partial('aetn/partials/americanRestorationPromo_300x90'); ?>
 
 <?php
   include_component(
