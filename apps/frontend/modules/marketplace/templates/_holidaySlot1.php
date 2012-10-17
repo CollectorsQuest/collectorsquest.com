@@ -9,7 +9,7 @@
     <ul class="nav">
       <li class="active">
         <a href="#">
-          <strong>statue</strong>-esque
+          <span><strong>statue</strong>-esque</span>
         </a>
       </li>
       <li>
