@@ -646,9 +646,12 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     /** @var $q CollectibleForSaleQuery */
-    $q = FrontendCollectibleForSaleQuery::create()
-      ->isForSale()
-      ->orderByUpdatedAt(Criteria::DESC);
+    $q = CollectibleForSaleQuery::create()
+      ->useCollectibleQuery()
+        ->filterByIsPublic(true)
+        //->isPartOfCollection()
+      ->endUse()
+      ->orderBy('UpdatedAt', Criteria::DESC);
 
     // See if we need to filter by CollectibleId first
     if (!empty($this->ids) && is_array($this->ids))

@@ -5,7 +5,7 @@ require 'lib/model/om/BasePrivateMessageQuery.php';
 class PrivateMessageQuery extends BasePrivateMessageQuery
 {
   /**
-   * Filter the query by a related Collector object username
+   * Filter the query by a related Collector username
    *
    * @param null $username
    * @param null $comparison
@@ -20,7 +20,7 @@ class PrivateMessageQuery extends BasePrivateMessageQuery
   }
 
   /**
-   * Filter the query by a related Collector object username
+   * Filter the query by a related Collector username
    *
    * @param null $username
    * @param null $comparison
@@ -35,9 +35,8 @@ class PrivateMessageQuery extends BasePrivateMessageQuery
   }
 
   /**
-   * Filter the query by a related Collector object username
-   *
    * Order by Sender Username
+   *
    * @param $type string
    * @return PrivateMessageQuery
    */
