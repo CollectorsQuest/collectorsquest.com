@@ -646,10 +646,7 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->useCollectibleQuery()
-        ->filterByIsPublic(true)
-        ->endUse()
+    $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
 
@@ -741,7 +738,7 @@ class _sidebarComponents extends cqFrontendComponents
     if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
     {
       /* @var $q CollectibleForSaleQuery */
-      $q = CollectibleForSaleQuery::create()
+      $q = FrontendCollectibleForSaleQuery::create()
         ->hasActiveCredit()
         ->isForSale()
         ->addAscendingOrderByColumn('RAND()');
