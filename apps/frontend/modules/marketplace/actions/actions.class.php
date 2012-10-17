@@ -41,11 +41,8 @@ class marketplaceActions extends cqFrontendActions
         if (isset($values['cq_collectible_id_'. $i]))
         {
           /* @var $q CollectibleForSaleQuery */
-          $q = CollectibleForSaleQuery::create()
-            ->isForSale()
-            ->useCollectibleQuery()
-              ->filterByIsPublic(true)
-            ->endUse();
+          $q = FrontendCollectibleForSaleQuery::create()
+             ->isForSale();
 
           /* @var $collectible_for_sale CollectibleForSale */
           $collectible_for_sale = $q->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
@@ -87,11 +84,8 @@ class marketplaceActions extends cqFrontendActions
     /** @var $content_category ContentCategory */
     $content_category = $this->getRoute()->getObject();
 
-    /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->useCollectibleQuery()
-        ->filterByIsPublic(true)
-      ->endUse();
+    /** @var $q FrontendCollectibleForSaleQuery */
+    $q = FrontendCollectibleForSaleQuery::create();
 
      $q->filterByContentCategoryWithDescendants($content_category)
        ->isForSale()

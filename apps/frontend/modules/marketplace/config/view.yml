@@ -9,6 +9,7 @@ indexSuccess:
 
 holidaySuccess:
   javascripts:
+    - jquery/infinitescroll.js
     - jquery/masonry.js
   components:
     slot1: [marketplace, holidaySlot1]

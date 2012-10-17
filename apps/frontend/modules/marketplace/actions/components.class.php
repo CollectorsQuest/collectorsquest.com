@@ -166,8 +166,7 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    $q = CollectibleForSaleQuery::create()
-      ->isPartOfCollection()
+    $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC)
       ->limit(6);
