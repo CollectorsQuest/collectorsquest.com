@@ -19,10 +19,6 @@ all:
     independence_day: false
     expose_collection_categories: true
     expose_market_categories: true
-<<<<<<< HEAD
-=======
-    machine_tags: false
->>>>>>> 6e592d63940e73e558a83e7f87c18b75ea60394e
 
 next:
   pages:
@@ -45,10 +41,6 @@ next:
     independence_day: false
     expose_collection_categories: true
     expose_market_categories: true
-<<<<<<< HEAD
-=======
-    machine_tags: true
->>>>>>> 6e592d63940e73e558a83e7f87c18b75ea60394e
 
 dev:
   pages:
@@ -71,7 +63,3 @@ dev:
     independence_day: false
     expose_collection_categories: true
     expose_market_categories: true
-<<<<<<< HEAD
-=======
-    machine_tags: true
->>>>>>> 6e592d63940e73e558a83e7f87c18b75ea60394e
