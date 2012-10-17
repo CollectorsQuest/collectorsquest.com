@@ -16,4 +16,9 @@
 </p>
 <br style="clear: both;" />
 
+<small>
+  You can unsubscribe from further comment notifications by
+  {{ link_to('clicking here', "@auto_login?hash=#{oSender.autoLoginHash}&r=#{url_for('@mycq_profile_email_preferences?messages=0&messages_opt_out=1', false) | url_encode}", {absolute: true}) }}.
+</small>
+
 {% endblock %}
