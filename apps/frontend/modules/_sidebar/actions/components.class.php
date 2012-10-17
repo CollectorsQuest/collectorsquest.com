@@ -171,7 +171,6 @@ class _sidebarComponents extends cqFrontendComponents
       case 2:
         $this->current_subcategory = $this->current_category;
         $this->current_category = $this->current_category->getParent();
-        $this->category_title = $this->current_category->getName();
         $retrieve_sub_subcategories = true;
         break;
     }
@@ -241,7 +240,7 @@ class _sidebarComponents extends cqFrontendComponents
       ->orderBy('Name', Criteria::ASC)
       ->find(); */
 
-    return $this->_sidebar_if(count($this->subcategories) > 0);
+    return $this->_sidebar_if(count($this->subcategories) > 1);
   }
 
   /**
