@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $form CollectionCreateForm
+ * @var $categories ContentCategory[]
  * @var $collection CollectorCollection
  */
 ?>
@@ -26,7 +27,7 @@
 
 </form>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function()
 {
   $("#categories").columnview({

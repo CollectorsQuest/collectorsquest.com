@@ -485,43 +485,18 @@ class ajaxAction extends cqAjaxAction
 
     if (sfRequest::POST == $request->getMethod())
     {
-      $form->bind($request->getParameter('collection'));
+      $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
       if ($form->isValid())
       {
         $values = $form->getValues();
-
         $values['collector_id'] = $this->getUser()->getCollector()->getId();
 
-        if (isset($values['collectible_id']))
-        {
-          $q = CollectibleQuery::create()
-            ->filterByCollector($this->getUser()->getCollector())
-            ->filterById($values['collectible_id']);
+        /** @var $collection CollectorCollection */
+        $collection = $form->updateObject($values);
+        $collection->save();
 
-          if (($collectible = $q->findOne()) && $this->getUser()->isOwnerOf($collectible))
-          {
-            // Let's create the CollectionCollectible
-            $q = CollectionCollectibleQuery::create()
-              ->filterByCollection($collection)
-              ->filterByCollectible($collectible);
-
-            $collection_collectible = $q->findOneOrCreate();
-            $collection_collectible->save();
-
-            /**
-             * If the Collectible has a thumnail (it should!),
-             * let's add it as the Collection thumbnail also
-             *
-             * @var $thumbnail iceModelMultimedia
-             */
-            if ($thumbnail = $collectible->getPrimaryImage())
-            {
-              $collection->setThumbnail($thumbnail->getAbsolutePath('original'));
-              $collection->save();
-            }
-
-          }
-        }
+        $collection->setThumbnail($values['thumbnail']);
+        $collection->save();
 
         $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
 
@@ -552,25 +527,13 @@ class ajaxAction extends cqAjaxAction
       $this->getUser()->getCollector()->isOwnerOf($collection));
 
     $form = new CollectorCollectionEditForm($collection);
-    if ($collection->hasThumbnail())
-    {
-      $form->useFields(array(
-          'description',
-          'tags',
-          'name',
-          'content_category_plain'
-      ));
-    }
-    else
-    {
-      $form->useFields(array(
-          'thumbnail',
-          'description',
-          'tags',
-          'name',
-          'content_category_plain'
-      ));
-    }
+
+    $form->useFields(array(
+      'name',
+      'description',
+      'tags',
+      'content_category_id'
+    ));
 
     if (sfRequest::POST == $request->getMethod())
     {
@@ -581,11 +544,6 @@ class ajaxAction extends cqAjaxAction
       {
         $values = $form->getValues();
         $collection->setDescription($values['description'], 'html');
-
-        if (isset($values['thumbnail']))
-        {
-          $collection->setThumbnail($values['thumbnail']);
-        }
 
         /** @var $collection CollectorCollection */
         $collection = $form->updateObject($values);
@@ -611,6 +569,7 @@ class ajaxAction extends cqAjaxAction
 
     $this->form = $form;
     $this->collection = $collection;
+    $this->image = $this->collection->getThumbnail();
 
     return $template;
   }
@@ -627,17 +586,20 @@ class ajaxAction extends cqAjaxAction
     );
     $this->forward404Unless($this->getUser()->isOwnerOf($collection));
 
-    $form = new CollectionCreateForm($collection);
+    $form = new CollectorCollectionEditForm($collection);
     $form->useFields(array('content_category_id'));
 
     if (sfRequest::POST == $request->getMethod())
     {
       $taintedValues = $request->getParameter($form->getName());
-      $form->bind($taintedValues, $request->getFiles($form->getName()));
+      $form->bind($taintedValues);
 
       if ($form->isValid())
       {
-        $form->save();
+        $values = $form->getValues();
+
+        $collection->setContentCategoryId($values['content_category_id']);
+        $collection->save();
 
         return $this->renderPartial('global/loading', array(
             'url' => $this->generateUrl('mycq_collection_by_section', array(

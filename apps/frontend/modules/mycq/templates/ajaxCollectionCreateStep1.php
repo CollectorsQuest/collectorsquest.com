@@ -10,16 +10,17 @@
   <h1>Create Collection - Step 1</h1>
   <?= $form ?>
 
+  <?php /*
   <div id="dropzone-wrapper" class="dropzone-container">
     <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
       <span class="info-no-items-to-sort" style="text-align: center">
-        &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
-        use the <strong>Upload Photos</strong> button
+        &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop
       </span>
     </div>
   </div>
+  */ ?>
 
-  <?php include_component('mycq', 'uploadPhotosCollection'); ?>
+  <?php // include_component('mycq', 'uploadPhotosCollection'); ?>
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
@@ -32,10 +33,3 @@
   </div>
 
 </form>
-
-<script type="text/javascript">
-$(document).ready(function()
-{
-
-});
-</script>

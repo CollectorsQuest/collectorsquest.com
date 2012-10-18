@@ -3,6 +3,7 @@
  * @var $form CollectionCreateForm
  * @var $collection CollectorCollection
  * @var $categories ContentCategory[]
+ * @var $image iceModelMultimedia
  */
 ?>
 
@@ -12,22 +13,28 @@
       method="post" class="ajax form-horizontal form-modal">
 
   <?= $form->renderAllErrors(); ?>
-  <?= $form; ?>
 
-  <?php if (isset($form['content_category_id'])): ?>
-  <div class="control-group ">
-    <?= $form['content_category_id']->renderLabel('Category') ?>
-    <div class="controls">
-      <div class="with-required-token">
-        <span class="required-token">*</span>
-        <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
+  <div style="position: relative;">
+    <?= image_tag_multimedia($image, '150x150', array('style'=> 'position: absolute; top: 75px; left: 0px;')); ?>
+
+    <?= $form['name']->renderRow(); ?>
+    <?= $form['description']->renderRow(); ?>
+    <?= $form['tags']->renderRow(); ?>
+
+
+    <div class="control-group ">
+      <?= $form['content_category_id']->renderLabel('Category') ?>
+      <div class="controls">
+        <div class="with-required-token">
+          <span class="required-token">*</span>
+          <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
+        </div>
+        <p class="help-block">
+          Choose a category from the list above which best fits your collection.
+        </p>
       </div>
-      <p class="help-block">
-        Choose a category from the list above which best fits your collection.
-      </p>
     </div>
   </div>
-  <?php endif; ?>
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
@@ -42,6 +49,7 @@
       Skip this for now
     </a>
   </div>
+  <?= $form->renderHiddenFields(); ?>
 </form>
 
 <script type="text/javascript">
@@ -55,7 +63,8 @@ $(document).ready(function()
         $('#collection_description')
           .removeClass('js-hide')
           .removeClass('js-invisible')
-          .removeAttr('required');
+          .removeAttr('required')
+          .css({'height':'75px', 'min-height':'75px'});
       },
       "focus": function() {
         $(editor.composer.iframe).autoResize();
@@ -76,5 +85,9 @@ $(document).ready(function()
   });
 
   $('.top', '#categories').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
+
+  // making editor and categories area shorter
+  $('.wysihtml5-sandbox').css({'height':'93px', 'min-height':'93px'});
+  $('.columnview').css({'height':'127px', 'max-height':'127px'});
 });
 </script>

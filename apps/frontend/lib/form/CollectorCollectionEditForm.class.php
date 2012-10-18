@@ -10,9 +10,11 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     $this->setupDescriptionField();
     $this->setupThumbnailField();
     $this->setupContentCategoryPlainField();
+    $this->setupContentCategoryIdField();
 
     // Define which fields to use from the base form
     $this->useFields(array(
+        'content_category_id',
         'content_category_plain',
         'name',
         'thumbnail',
@@ -24,6 +26,21 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     {
       $this->offsetUnset('thumbnail');
     }
+  }
+
+  protected function setupContentCategoryIdField()
+  {
+    $this->widgetSchema ['content_category_id'] = new sfWidgetFormInputHidden(array(
+      'label' => 'Category',
+    ), array(
+      'required' => 'required'
+    ));
+
+    $this->validatorSchema ['content_category_id'] =  new sfValidatorPropelChoice(array(
+      'required' => true,
+      'model' => 'ContentCategory',
+      'column' => 'id',
+    ));
   }
 
   protected function setupNameField()
@@ -95,7 +112,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     ));
     $this->getWidgetSchema()->setHelp(
       'tags', 'Choose at least three descriptive words
-               or phrases, separated by commas'
+               or phrases'
     );
 
     $this->widgetSchema['tags']->setDefault($tags);
