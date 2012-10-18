@@ -70,6 +70,40 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     $this->validatorSchema['content_category_plain'] = new sfValidatorPass();
   }
 
+  protected function setupTagsField()
+  {
+    // pretty ugly hack, but in this case this is the only way
+    // to keep the field's state between requests...
+    $tags = $this->getObject()->getTags();
+    if (sfContext::hasInstance())
+    {
+      $request = cqContext::getInstance()->getRequest();
+      if (( $values = $request->getParameter($this->getName()) ))
+      {
+        if (isset($values['tags']))
+        {
+          $tags = $values['tags'];
+        }
+      }
+    }
+
+    $this->widgetSchema['tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
+    ), array(
+      'required' => 'required',
+    ));
+    $this->getWidgetSchema()->setHelp(
+      'tags', 'Choose at least three descriptive words
+               or phrases, separated by commas'
+    );
+
+    $this->widgetSchema['tags']->setDefault($tags);
+    $this->validatorSchema['tags'] = new cqValidatorTags(array(), array(
+      'required' => 'Please enter tags for your collection.',
+    ));
+  }
+
   protected function updateDefaultsFromObject()
   {
     parent::updateDefaultsFromObject();

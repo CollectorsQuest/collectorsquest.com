@@ -1,69 +1,41 @@
 <?php
 /**
  * @var $form CollectionCreateForm
- * @var $collection CollectorCollection
  */
 ?>
 
 <form action="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
-      method="post" id="form-create-collection" class="ajax form-horizontal form-modal">
+      method="post" id="fileupload" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
 
   <h1>Create Collection - Step 1</h1>
   <?= $form ?>
 
-  <?php if (isset($form['content_category_id'])): ?>
+  <div id="dropzone-wrapper" class="dropzone-container">
+    <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
+      <span class="info-no-items-to-sort" style="text-align: center">
+        &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
+        use the <strong>Upload Photos</strong> button
+      </span>
+    </div>
+  </div>
 
-    <div class="control-group ">
-      <?= $form['content_category_id']->renderLabel('Category') ?>
-      <div class="controls">
-        <div class="with-required-token">
-          <span class="required-token">*</span>
-          <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
-        </div>
-        <p class="help-block">
-          Choose a category from the list above which best fits your collection.
-        </p>
-      </div>
-    </div>
+  <?php include_component('mycq', 'uploadPhotosCollection'); ?>
 
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary spacer-right-15">
-        Next
-      </button>
-      <button type="reset" class="btn"
-              onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
-        Cancel
-      </button>
-    </div>
-  <?php else: ?>
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary spacer-right-15">
-        Next
-      </button>
-      <button type="reset" class="btn"
-              onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
-        Cancel
-      </button>
-    </div>
-  <?php endif; ?>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary spacer-right-15">
+      Next
+    </button>
+    <button type="reset" class="btn"
+            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+      Cancel
+    </button>
+  </div>
 
 </form>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function()
 {
-  var categories_tabindex = $('#categories').attr('tabIndex') || 0;
-  $("#categories").attr('tabIndex', 0).columnview({
-    multi: false, preview: false,
-    onchange: function(element) {
-      if (0 < $(element).data('object-id')) {
-        $("#collection_content_category_id").val($(element).data('object-id'));
-      }
-      $('#categories').scrollLeft(500);
-      $('.feature', '#categories').hide();
-    }
-  });
 
-  $('.top', '#categories').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
 });
 </script>

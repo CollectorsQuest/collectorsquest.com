@@ -489,12 +489,8 @@ class ajaxAction extends cqAjaxAction
       if ($form->isValid())
       {
         $values = $form->getValues();
-        $values['collector_id'] = $this->getUser()->getCollector()->getId();
 
-        /** @var $collection CollectorCollection */
-        $collection = $form->updateObject($values);
-        $collection->setTags($values['tags']);
-        $collection->save();
+        $values['collector_id'] = $this->getUser()->getCollector()->getId();
 
         if (isset($values['collectible_id']))
         {
@@ -537,11 +533,6 @@ class ajaxAction extends cqAjaxAction
       }
     }
 
-    $root = ContentCategoryQuery::create()->findRoot();
-    $this->categories = ContentCategoryQuery::create()
-        ->descendantsOf($root)
-        ->findTree();
-
     $this->form = $form;
 
     return $template;
@@ -565,6 +556,9 @@ class ajaxAction extends cqAjaxAction
     {
       $form->useFields(array(
           'description',
+          'tags',
+          'name',
+          'content_category_plain'
       ));
     }
     else
@@ -572,6 +566,9 @@ class ajaxAction extends cqAjaxAction
       $form->useFields(array(
           'thumbnail',
           'description',
+          'tags',
+          'name',
+          'content_category_plain'
       ));
     }
 
@@ -590,6 +587,9 @@ class ajaxAction extends cqAjaxAction
           $collection->setThumbnail($values['thumbnail']);
         }
 
+        /** @var $collection CollectorCollection */
+        $collection = $form->updateObject($values);
+        $collection->setTags($values['tags']);
         $collection->save();
 
         // Tell the Dropbox to stay closed
@@ -603,6 +603,11 @@ class ajaxAction extends cqAjaxAction
         ));
       }
     }
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+      ->descendantsOf($root)
+      ->findTree();
 
     $this->form = $form;
     $this->collection = $collection;
