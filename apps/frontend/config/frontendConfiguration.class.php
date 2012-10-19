@@ -21,7 +21,7 @@ class frontendConfiguration extends cqApplicationConfiguration
   public function generateBackendUrl($name, $parameters = array())
   {
     $url = $this->getBackendRouting()->generate($name, $parameters, true);
-    return 'http://backend.'. sfConfig::get('app_domain_name', 'collectorsquest.com') . $url;
+    return 'http://www.'. sfConfig::get('app_domain_name', 'collectorsquest.com') .'/backend.php' . $url;
   }
 
   /**
