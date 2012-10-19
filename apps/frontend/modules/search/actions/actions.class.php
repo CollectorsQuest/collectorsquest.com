@@ -86,7 +86,7 @@ class searchActions extends cqFrontendActions
   public function executeIndex(sfWebRequest $request)
   {
     /** @var $page integer */
-    $page = ($page = (int) $request->getParameter('page', 1) > 0) ? $page : 1;
+    $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
 
     $query = array(
       'q' => self::$_query['q'],
@@ -102,7 +102,8 @@ class searchActions extends cqFrontendActions
       $query['limits'][0] <= 1000 &&
       ($pks = cqSphinxPager::search($query, array('collectibles'), 'pks')) &&
       count($pks) >= 3
-    ) {
+    )
+    {
       $pks = array_map(create_function('$v', 'return $v - 400000000;'), $pks);
 
       $this->collectibles_for_sale = CollectibleForSaleQuery::create()
