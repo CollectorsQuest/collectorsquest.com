@@ -482,7 +482,7 @@ class ajaxAction extends cqAjaxAction
   {
     $model = $request->getParameter('model') ?: 'collectible';
 
-    $form = new CollectionCreateForm();
+    $form = new CollectibleUploadForm();
 
     /** @var $collector Collector */
     $collector = $this->getUser()->getCollector();
@@ -562,12 +562,16 @@ class ajaxAction extends cqAjaxAction
   public function executeCollectionCreate(sfWebRequest $request, $template)
   {
     $collection = new CollectorCollection();
+    $collection->setCollector($this->getUser()->getCollector());
+    $collection->save();
 
-    if (isset($values['collectible_id']))
+    $collectible_id = $request->getParameter('collectible_id');
+
+    if ($collectible_id)
     {
       $q = CollectibleQuery::create()
         ->filterByCollector($this->getUser()->getCollector())
-        ->filterById($values['collectible_id']);
+        ->filterById($collectible_id);
 
       if (($collectible = $q->findOne()) && $this->getUser()->isOwnerOf($collectible))
       {
@@ -576,6 +580,7 @@ class ajaxAction extends cqAjaxAction
           ->filterByCollectible($collectible);
 
         $collection_collectible = $q->findOneOrCreate();
+        $collection_collectible->setCollection($collection);
         $collection_collectible->save();
 
         /**

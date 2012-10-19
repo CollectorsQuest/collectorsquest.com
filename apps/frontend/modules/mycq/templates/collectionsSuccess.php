@@ -90,7 +90,7 @@
   </div>
 </div>
 
-<script>`
+<script>
   $(document).ready(function()
   {
     $('.dropdown-menu a.sortBy').click(function()
