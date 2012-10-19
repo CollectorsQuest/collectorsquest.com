@@ -10,6 +10,7 @@ all:
 
     categories:
       General:
+        icon: sign-blank
         items:
           Categories:
             url: content_category

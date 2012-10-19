@@ -26,6 +26,13 @@ else
   $dbg = isset($_SERVER['SF_DEBUG']) ? (boolean) $_SERVER['SF_DEBUG'] : $env === 'dev';
 }
 
+/**
+ * Special case for when we want to access the backend application via web/backend.php
+ */
+if (trim($_SERVER['SCRIPT_NAME'], '/') === 'backend.php')
+{
+  $app = 'backend';
+}
 if (isset($_COOKIE['sf_debug']) && $_COOKIE['sf_debug'] == '1')
 {
   $env = $env .'_debug';
