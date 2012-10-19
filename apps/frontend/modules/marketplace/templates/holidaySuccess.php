@@ -31,6 +31,15 @@
 
 </div>
 
+<style>
+  .collectible_for_sale_grid_view_masonry_big img
+  {
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
+  }
+</style>
+
 <script>
   $(document).ready(function()
   {

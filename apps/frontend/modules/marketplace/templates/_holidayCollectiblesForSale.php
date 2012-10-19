@@ -3,9 +3,22 @@
   /** @var $collectible Collectible */
   foreach ($pager->getResults() as $i => $collectible)
   {
+    // set the link to open modal dialog
+    $link = link_to($collectible->getName(), 'ajax_marketplace',
+      array(
+        'section' => 'collectible',
+        'page' => 'forSale',
+        'id' => $collectible->getId()
+      ),
+      array('class' => 'target zoom-zone', 'onclick' => 'return false;')
+    );
+
     include_partial(
       'marketplace/collectible_for_sale_masonry_view_big',
-      array('collectible_for_sale' => $collectible->getCollectibleForSale())
+      array(
+        'collectible_for_sale' => $collectible->getCollectibleForSale(),
+        'link' => $link
+      )
     );
   }
 ?>
@@ -49,6 +62,23 @@
         columnWidth : 220, gutterWidth: 18,
         isAnimated: !Modernizr.csstransitions
       });
+    });
+
+    $('a.zoom-zone').click(function(e)
+    {
+      e.preventDefault();
+
+      var $a = $(this);
+      var $div = $('<div></div>');
+
+      $a.closest('.collectible_for_sale_grid_view_masonry_big').showLoading();
+      $div.appendTo('body').load($(this).attr('href'), function()
+      {
+        $a.closest('.collectible_for_sale_grid_view_masonry_big').hideLoading();
+        $('.modal', $div).modal('show');
+      });
+
+      return false;
     });
   });
 </script>
