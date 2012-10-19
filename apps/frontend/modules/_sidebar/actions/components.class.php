@@ -578,12 +578,9 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->useCollectibleQuery()
-        ->filterByIsPublic(true)
-        //->isPartOfCollection()
-      ->endUse()
+    /** @var $q FrontendCollectibleForSaleQuery */
+    $q = FrontendCollectibleForSaleQuery::create()
+      ->isForSale()
       ->orderBy('UpdatedAt', Criteria::DESC);
 
     // See if we need to filter by CollectibleId first
@@ -592,7 +589,7 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterByCollectibleId($this->ids, Criteria::IN)
         ->addAscendingOrderByColumn(
-          'FIELD(collectible_id, ' . implode(',', $this->ids) . ')'
+          'FIELD(collectible_for_sale.collectible_id, ' . implode(',', $this->ids) . ')'
         );
     }
 
