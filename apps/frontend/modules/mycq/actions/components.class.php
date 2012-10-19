@@ -225,13 +225,6 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeUploadPhotosCollection()
-  {
-    $this->batch = cqStatic::getUniqueId(32);
-
-    return sfView::SUCCESS;
-  }
-
   public function executeDropbox()
   {
     $collector = $this->getCollector();

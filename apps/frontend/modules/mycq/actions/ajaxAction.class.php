@@ -99,7 +99,7 @@ class ajaxAction extends cqAjaxAction
           }
           else
           {
-            // We do not want to have a Collectibles without Mutlimedia
+            // We do not want to have Collectibles without Multimedia
             $collectible->delete();
           }
         }
@@ -475,12 +475,18 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
-   * section: collection
-   * page: createStep1
+   * section: collectible
+   * page: upload
    */
-  protected function executeCollectionCreateStep1(sfWebRequest $request, $template)
+  protected function executeCollectibleUpload(sfWebRequest $request, $template)
   {
+    $model = $request->getParameter('model') ?: 'collectible';
+
     $form = new CollectionCreateForm();
+
+    /** @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
     $form->setDefault('collectible_id', $request->getParameter('collectible_id'));
 
     if (sfRequest::POST == $request->getMethod())
@@ -489,42 +495,103 @@ class ajaxAction extends cqAjaxAction
       if ($form->isValid())
       {
         $values = $form->getValues();
-        $values['collector_id'] = $this->getUser()->getCollector()->getId();
+        $file = $values['thumbnail'];
 
-        /** @var $collection CollectorCollection */
-        $collection = $form->updateObject($values);
-        $collection->save();
+        try
+        {
+          $collectible = new Collectible();
+          $collectible->setCollector($collector);
+          $collectible->setName($file, true);
+          $collectible->setBatchHash($request->getParameter('batch', null));
+          $collectible->setIsPublic(false);
+          $collectible->save();
 
-        $collection->setThumbnail($values['thumbnail']);
-        $collection->save();
+          /**
+           * Add the image
+           *
+           * @var $multimedia iceModelMultimedia
+           */
+          if ($multimedia = $collectible->setThumbnail($file))
+          {
+            $multimedia->setName($file);
+            $multimedia->save();
+          }
+          else
+          {
+            // We do not want to have Collectibles without Multimedia
+            $collectible->delete();
+          }
+        }
+        catch (Exception $e)
+        {
+          if ($collectible && !$collectible->isNew())
+          {
+            $collectible->delete();
+          }
 
-        $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
+          return $this->error($e->getCode(), $e->getMessage(), false);
+        }
+
+        $collector->getProfile()->updateProfileProgress();
+
+        // change the dropbox open status depending on whether we have stuff
+        // left in it
+        $this->getUser()->setMycqDropboxOpenState(true);
 
         return $this->redirect('ajax_mycq', array(
-            'section' => 'collection',
-            'page' => 'createStep2',
-            'collection_id' => $collection->getId(),
+            'section' => $model,
+            'page' => 'create',
+            'collectible_id' => $collectible->getId()
         ));
       }
     }
 
     $this->form = $form;
+    $this->model = $model;
+
+    $this->batch = cqStatic::getUniqueId(32);
 
     return $template;
   }
 
   /**
    * section: collection
-   * page: createStep2
+   * page: create
    * params: collection_id
    */
-  public function executeCollectionCreateStep2(sfWebRequest $request, $template)
+  public function executeCollectionCreate(sfWebRequest $request, $template)
   {
-    $collection = CollectorCollectionPeer::retrieveByPK(
-      $request->getParameter('collection_id')
-    );
-    $this->forward404Unless($collection &&
-      $this->getUser()->getCollector()->isOwnerOf($collection));
+    $collection = new CollectorCollection();
+
+    if (isset($values['collectible_id']))
+    {
+      $q = CollectibleQuery::create()
+        ->filterByCollector($this->getUser()->getCollector())
+        ->filterById($values['collectible_id']);
+
+      if (($collectible = $q->findOne()) && $this->getUser()->isOwnerOf($collectible))
+      {
+        // Let's create the CollectionCollectible
+        $q = CollectionCollectibleQuery::create()
+          ->filterByCollectible($collectible);
+
+        $collection_collectible = $q->findOneOrCreate();
+        $collection_collectible->save();
+
+        /**
+         * If the Collectible has a thumnail (it should!),
+         * let's add it as the Collection thumbnail also
+         *
+         * @var $thumbnail iceModelMultimedia
+         */
+        if ($thumbnail = $collectible->getPrimaryImage())
+        {
+          $collection->setThumbnail($thumbnail->getAbsolutePath('original'));
+          $collection->save();
+        }
+
+      }
+    }
 
     $form = new CollectorCollectionEditForm($collection);
 
@@ -549,6 +616,8 @@ class ajaxAction extends cqAjaxAction
         $collection = $form->updateObject($values);
         $collection->setTags($values['tags']);
         $collection->save();
+
+        $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
 
         // Tell the Dropbox to stay closed
         $this->getUser()->setFlash('cq_mycq_dropbox_open', false, true, 'cookies');

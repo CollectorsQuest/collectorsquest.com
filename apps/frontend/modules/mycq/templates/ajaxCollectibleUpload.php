@@ -1,18 +1,31 @@
+<?php
+/**
+ * @var $form  CollectionCreateForm
+ * @var $model string
+ */
+?>
+
+<form action="<?= url_for('@ajax_mycq?section=collectible&page=upload'); ?>"
+      method="post" id="fileupload" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
+
+  <h1>Create <?= $model == 'collectible' ? 'Collectible' : 'Collection'?> - Step 1</h1>
+  <?= $form ?>
+
+  <input type="hidden" name="model" value="<?= $model ?>">
+
+  <div id="dropzone-wrapper" class="dropzone-container">
+    <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
+      <span class="info-no-items-to-sort" style="text-align: center">
+        &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop
+      </span>
+    </div>
+  </div>
 
   <div id="fileupload-modal" class="modal hide">
     <div class="modal-header">
-      <h3>Uploading files, please wait...</h3>
+      <h3>Uploading file, please wait...</h3>
     </div>
     <div class="modal-body">
-      <div class="alert alert-info alert-gcf">
-        <strong>NOTE:</strong> If you want to upload more than one file at a time, please
-        <?php
-          echo link_to(
-            'click here.', 'http://www.google.com/chromeframe',
-            array('target' => '_blank')
-          );
-        ?>
-      </div>
 
       <!-- The table listing the files available for upload/download -->
       <table class="table table-striped" style="width: 515px;">
@@ -44,6 +57,17 @@
     </div>
   </div>
 
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary spacer-right-15">
+      Next
+    </button>
+    <button type="reset" class="btn"
+            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+      Cancel
+    </button>
+  </div>
+
+</form>
 
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
@@ -105,60 +129,60 @@
   {% } %}
 </script>
 
-<script>
-$(document).ready(function()
-{
-  'use strict';
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    'use strict';
 
-  // Initialize the jQuery File Upload widget:
-  $('#fileupload').fileupload();
-  $('#fileupload').fileupload('option', 'autoUpload', true);
-  $('#fileupload').fileupload('option', 'dropZone', $('#dropzone'));
-  $('#fileupload').fileupload('option', 'limitConcurrentUploads', 3);
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload();
+    $('#fileupload').fileupload('option', 'autoUpload', true);
+    $('#fileupload').fileupload('option', 'dropZone', $('#dropzone'));
+    $('#fileupload').fileupload('option', 'limitConcurrentUploads', 3);
 
-  $('#fileupload')
-    .bind('fileuploadstart', function(e, data) {
-      $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
-    })
-    .bind('fileuploadstop', function(e, data)
-    {
-      var finish = '<?= url_for('@mycq_upload_finish?batch='. $batch); ?>';
-
-      if ($('#fileupload-modal td.error').length > 0)
+    $('#fileupload')
+      .bind('fileuploadstart', function(e, data) {
+        $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
+      })
+      .bind('fileuploadstop', function(e, data)
       {
-        $('#button-fileupload').html('Finish Upload');
-        $('#button-fileupload').removeClass('btn-danger');
-        $('#button-fileupload').attr('href', finish);
-      }
-      else
-      {
-        window.location.href = finish;
-      }
+        var finish = '<?= url_for('@mycq_upload_finish?batch='. $batch); ?>';
+
+        if ($('#fileupload-modal td.error').length > 0)
+        {
+          $('#button-fileupload').html('Finish Upload');
+          $('#button-fileupload').removeClass('btn-danger');
+          $('#button-fileupload').attr('href', finish);
+        }
+        else
+        {
+          window.location.href = finish;
+        }
+      });
+
+    // Enable iframe cross-domain access via redirect option:
+    $('#fileupload').fileupload(
+      'option', 'redirect',
+      window.location.href.replace(
+        /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
+      )
+    );
+
+    $('#fileupload').fileupload('option', {
+      maxFileSize: 10000000,
+      acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
     });
 
-  // Enable iframe cross-domain access via redirect option:
-  $('#fileupload').fileupload(
-    'option', 'redirect',
-    window.location.href.replace(
-      /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
-    )
-  );
-
-  $('#fileupload').fileupload('option', {
-    maxFileSize: 10000000,
-    acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
-  });
-
-  // Load existing files:
-  $('#fileupload').each(function () {
-    var that = this;
-    $.getJSON(this.action, function (result) {
-      if (result && result.length) {
-        $(that).fileupload('option', 'done')
-          .call(that, null, {result: result});
-      }
+    // Load existing files:
+    $('#fileupload').each(function () {
+      var that = this;
+      $.getJSON(this.action, function (result) {
+        if (result && result.length) {
+          $(that).fileupload('option', 'done')
+            .call(that, null, {result: result});
+        }
+      });
     });
-  });
 
-});
+  });
 </script>
