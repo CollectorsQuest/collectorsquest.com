@@ -770,7 +770,7 @@ class mycqActions extends cqFrontendActions
 
     $q = ShoppingOrderQuery::create()
       ->filterByCollectorId($this->getCollector()->getId())
-      ->paid();
+      ->isPaidOrConfirmed();
 
     $this->purchases_total = $q->count();
 
