@@ -36,7 +36,7 @@ class cqAdminBar
    */
   private function addObject($object)
   {
-    $backend_user_id = cqContext::getInstance()->getUser()->getBackendUserId();
+
     $label = sfToolkit::pregtr(get_class($object), array('/([A-Z]+)([A-Z][a-z])/' => '\\1 \\2',
                                                          '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
     if ($params = $this->getObjectBackendParameters($object))
@@ -104,7 +104,7 @@ class cqAdminBar
     {
       $url = $this->application->generateBackendUrl(
         'object_rating', array(
-          'class' => get_class($object), 'id' => $object->getId(), 'user_id' => $backend_user_id
+          'class' => get_class($object), 'id' => $object->getId()
         )
       );
 
@@ -127,7 +127,7 @@ class cqAdminBar
     {
       $url = $this->application->generateBackendUrl(
         'object_machine_tags', array(
-          'class' => get_class($object), 'id' => $object->getId(), 'user_id' => $backend_user_id
+          'class' => get_class($object), 'id' => $object->getId()
         )
       );
 

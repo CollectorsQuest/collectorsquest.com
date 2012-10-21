@@ -31,7 +31,7 @@ class adminbarActions extends sfActions
     eval(sprintf('class ObjectRatingDynamicExtendForm extends %s {}', $class . 'RatingForm'));
 
     $id = (integer) $request->getParameter('id');
-    $user_id = (integer) $request->getParameter('user_id');
+    $user_id = $this->getUser()->getGuardUser()->getId();
 
 
     $object = $classPeer::retrieveByPK($id);
@@ -133,7 +133,7 @@ class adminbarActions extends sfActions
 
     $this->class = $request->getParameter('class');
     $this->id = (integer) $request->getParameter('id');
-    $this->user_id = (integer) $request->getParameter('user_id');
+    $user_id = $this->getUser()->getGuardUser()->getId();
 
     // Define classes and methods names
     $classPeer = sprintf('%sPeer', $this->class);
