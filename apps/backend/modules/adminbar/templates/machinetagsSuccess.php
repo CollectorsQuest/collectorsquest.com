@@ -1,6 +1,6 @@
 <form class="ajax form-horizontal form-modal" method="POST"
       action="<?= url_for(
-        '@object_machine_tags?class=' . $class . '&id=' . $id . '&user_id=' . $user_id, true
+        '@object_machine_tags?class=' . $class . '&id=' . $id, true
       ); ?>">
     <?php if ($form->isValid()): ?>
       <div data-alert="alert" class="alert alert-success in">
