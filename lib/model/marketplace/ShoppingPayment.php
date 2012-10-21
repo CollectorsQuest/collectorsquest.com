@@ -41,8 +41,6 @@ class ShoppingPayment extends BaseShoppingPayment
     return null;
   }
 
-
-
   public function setShoppingOrder(ShoppingOrder $shopping_order)
   {
     /**
