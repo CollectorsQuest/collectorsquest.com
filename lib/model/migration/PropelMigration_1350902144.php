@@ -49,12 +49,12 @@ class PropelMigration_1350902144
         SET FOREIGN_KEY_CHECKS = 0;
 
         -- ---------------------------------------------------------------------
-        -- org_organization
+        -- organization
         -- ---------------------------------------------------------------------
 
-        DROP TABLE IF EXISTS `org_organization`;
+        DROP TABLE IF EXISTS `organization`;
 
-        CREATE TABLE `org_organization`
+        CREATE TABLE `organization`
         (
           `id` INTEGER NOT NULL AUTO_INCREMENT,
           `founder_id` INTEGER NOT NULL,
@@ -64,32 +64,31 @@ class PropelMigration_1350902144
           `description` TEXT,
           `type` TINYINT,
           `type_other` VARCHAR(255),
-          `badge_image` VARCHAR(255) NOT NULL,
           `referral_code` VARCHAR(50),
           `access` TINYINT DEFAULT 1 NOT NULL,
           `created_at` DATETIME,
           `updated_at` DATETIME,
           `slug` VARCHAR(255),
           PRIMARY KEY (`id`),
-          UNIQUE INDEX `org_organization_U_1` (`referral_code`),
-          UNIQUE INDEX `org_organization_slug` (`slug`(255)),
-          INDEX `org_organization_FI_1` (`founder_id`),
-          INDEX `org_organization_FI_2` (`type`),
-          CONSTRAINT `org_organization_FK_1`
+          UNIQUE INDEX `organization_U_1` (`referral_code`),
+          UNIQUE INDEX `organization_slug` (`slug`(255)),
+          INDEX `organization_FI_1` (`founder_id`),
+          INDEX `organization_FI_2` (`type`),
+          CONSTRAINT `organization_FK_1`
             FOREIGN KEY (`founder_id`)
             REFERENCES `collector` (`id`),
-          CONSTRAINT `org_organization_FK_2`
+          CONSTRAINT `organization_FK_2`
             FOREIGN KEY (`type`)
-            REFERENCES `org_organization_type` (`type`)
+            REFERENCES `organization_type` (`type`)
         ) ENGINE=InnoDB;
 
         -- ---------------------------------------------------------------------
-        -- org_organization_type
+        -- organization_type
         -- ---------------------------------------------------------------------
 
-        DROP TABLE IF EXISTS `org_organization_type`;
+        DROP TABLE IF EXISTS `organization_type`;
 
-        CREATE TABLE `org_organization_type`
+        CREATE TABLE `organization_type`
         (
           `type` TINYINT NOT NULL,
           `name` VARCHAR(255) NOT NULL,
@@ -98,12 +97,12 @@ class PropelMigration_1350902144
         ) ENGINE=InnoDB;
 
         -- ---------------------------------------------------------------------
-        -- org_organization_membership
+        -- organization_membership
         -- ---------------------------------------------------------------------
 
-        DROP TABLE IF EXISTS `org_organization_membership`;
+        DROP TABLE IF EXISTS `organization_membership`;
 
-        CREATE TABLE `org_organization_membership`
+        CREATE TABLE `organization_membership`
         (
           `organization_id` INTEGER NOT NULL,
           `collector_id` INTEGER NOT NULL,
@@ -111,24 +110,24 @@ class PropelMigration_1350902144
           `joined_at` DATETIME,
           `updated_at` DATETIME,
           PRIMARY KEY (`organization_id`,`collector_id`),
-          INDEX `org_organization_membership_FI_2` (`collector_id`),
-          CONSTRAINT `org_organization_membership_FK_1`
+          INDEX `organization_membership_FI_2` (`collector_id`),
+          CONSTRAINT `organization_membership_FK_1`
             FOREIGN KEY (`organization_id`)
-            REFERENCES `org_organization` (`id`)
+            REFERENCES `organization` (`id`)
             ON DELETE CASCADE,
-          CONSTRAINT `org_organization_membership_FK_2`
+          CONSTRAINT `organization_membership_FK_2`
             FOREIGN KEY (`collector_id`)
             REFERENCES `collector` (`id`)
             ON DELETE CASCADE
         ) ENGINE=InnoDB;
 
         -- ---------------------------------------------------------------------
-        -- org_organization_membership_request
+        -- organization_membership_request
         -- ---------------------------------------------------------------------
 
-        DROP TABLE IF EXISTS `org_organization_membership_request`;
+        DROP TABLE IF EXISTS `organization_membership_request`;
 
-        CREATE TABLE `org_organization_membership_request`
+        CREATE TABLE `organization_membership_request`
         (
           `id` INTEGER NOT NULL AUTO_INCREMENT,
           `organization_id` INTEGER NOT NULL,
@@ -138,18 +137,17 @@ class PropelMigration_1350902144
           `created_at` DATETIME,
           `updated_at` DATETIME,
           PRIMARY KEY (`id`),
-          INDEX `org_organization_membership_request_FI_1` (`organization_id`),
-          INDEX `org_organization_membership_request_FI_2` (`collector_id`),
-          CONSTRAINT `org_organization_membership_request_FK_1`
+          INDEX `organization_membership_request_FI_1` (`organization_id`),
+          INDEX `organization_membership_request_FI_2` (`collector_id`),
+          CONSTRAINT `organization_membership_request_FK_1`
             FOREIGN KEY (`organization_id`)
-            REFERENCES `org_organization` (`id`)
+            REFERENCES `organization` (`id`)
             ON DELETE CASCADE,
-          CONSTRAINT `org_organization_membership_request_FK_2`
+          CONSTRAINT `organization_membership_request_FK_2`
             FOREIGN KEY (`collector_id`)
             REFERENCES `collector` (`id`)
             ON DELETE CASCADE
         ) ENGINE=InnoDB;
-
 
         # This restores the fkey checks, after having unset them earlier
         SET FOREIGN_KEY_CHECKS = 1;
