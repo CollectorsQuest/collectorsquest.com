@@ -66,18 +66,22 @@ classes:
       symfony:                { form: false, filter: false }
       timestampable:          ~
 
-    # Extends Collection. Denotes a collection specific to an organization
-  OrganizationCollection:
-    columns:
-      organization_id:        { type: integer, required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
-    propel_behaviors:
-      concrete_inheritance: { extends: collection, copy_data_to_parent: true }
 
-    # M:M between an Organization and a Collectible. Allows a collectible to be added to an organization
-  OrganizationCollectible:
-    isCrossRef: true
-    columns:
-      organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
-      collectible_id:         { type: integer,      required: true, primaryKey: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-    propel_behaviors:
-      symfony:                { form: false, filter: false }
+#    The following is commented out pending the actual need to implement it,
+#    and will be added when the tables actually become necessary to alleviate confusion
+#
+#    # Extends Collection. Denotes a collection specific to an organization
+#  OrganizationCollection:
+#    columns:
+#      organization_id:        { type: integer, required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
+#    propel_behaviors:
+#      concrete_inheritance: { extends: collection, copy_data_to_parent: true }
+#
+#    # M:M between an Organization and a Collectible. Allows a collectible to be added to an organization
+#  OrganizationCollectible:
+#    isCrossRef: true
+#    columns:
+#      organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
+#      collectible_id:         { type: integer,      required: true, primaryKey: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+#    propel_behaviors:
+#      symfony:                { form: false, filter: false }
