@@ -345,5 +345,45 @@ div.onecolumn {
   background-color: #ecebec;
 }
 
+.collectible_for_sale_grid_view_masonry_big {
+  position: relative;
+  width: 220px;
+  margin-left: 16px;
+  margin-bottom: 20px;
 
+  .text-box {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 90%;
+    padding: 10px 5%;
+    opacity: 0;
+    background-color: rgba(0,0,0,0.6);
+    .transition(all 0.5s linear);
 
+    .target.zoom-zone {
+      font-size: 16px;
+      color: #fff;
+    }
+    span.price {
+      display: block;
+      margin-top: 5px;
+      font-size: 14px;
+      color: #f1f1f1;
+    }
+  }
+
+  &:hover .text-box {
+    opacity: 1;
+  }
+}
+
+.lt-ie9 .collectible_for_sale_grid_view_masonry_big {
+  .text-box {
+    display: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#80000000', endColorstr = '#80000000', GradientType = 0);
+  }
+  &:hover .text-box {
+    display: block;
+  }
+}
