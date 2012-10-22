@@ -4,7 +4,7 @@
     {
       echo link_to(
         cq_image_tag(
-          'headlines/2012-10-17_CQHolidayMarket_160x346.jpg',
+          'headlines/20121018_160x345_final.jpg',
           array('style' => 'margin-bottom: 15px;')
         ),
         'marketplace/holiday', array('ref' => cq_link_ref('sidebar'))
