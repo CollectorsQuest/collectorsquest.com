@@ -227,7 +227,7 @@ div.onecolumn {
 
 .holiday-market-menu-wrapper {
   .size(68px,100%);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   .clearfix();
 
   .navbar-inner {
@@ -236,7 +236,9 @@ div.onecolumn {
     width: 100%;
     clear: both;
     padding: 0;
-    #gradient > .vertical-three-colors(#265a2c, #1c5d1d, 50%, #125e03);
+    //#gradient > .vertical-three-colors(#265a2c, #1c5d1d, 50%, #125e03);
+    #gradient > .vertical(#114F0B, #204A24);
+    .box-shadow(inset 0px 2px 6px 0px rgba(0, 0, 0, 0.15));
     border: none;
     .border-radius(0);
 
@@ -268,44 +270,49 @@ div.onecolumn {
       float: left;
       height: 50px;
 
-    &.active > a {
-      #gradient > .vertical-three-colors(#6cae4a, #6eb74e, 50%, #69b549);
-
-      &:after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 40%;
-        border-top: 16px solid #69b549;
-        border-top-color: #69b549;
-        border-left: 16px solid transparent;
-        border-right: 16px solid transparent;
-      }
-    }
-
-    > a {
-      height: 38px;
-      padding: 6px 40px;
-      font-size: 14px;
-      line-height: 18px;
-      text-align: center;
-      color: #dde4d4;
-      &:hover {
-        #gradient > .vertical-three-colors(#6cae4a, #6eb74e, 50%, #69b549);
-      }
-
-      strong {
-        font-size: 18px;
+      > a {
+        height: 38px;
+        padding: 6px 40px;
+        font-size: 14px;
         line-height: 18px;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-       }
-      //Special hack - Vertical alignment in menu list
-      > span {
-        line-height: 45px;
+        text-align: center;
+        color: #dde4d4;
+        &:hover {
+          background-color: #448828;
+        }
+
+        strong {
+          font-size: 18px;
+          line-height: 18px;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+        //Special hack - Vertical alignment in menu list
+        > span {
+          line-height: 45px;
+        }
       }
-     }
+
+      &.active > a {
+        //#gradient > .vertical-three-colors(#4f9033, #5da93c, 10%, #5eac3d);
+        background-color: #5eac3d;
+        .box-shadow(inset 0 2px 6px 1px rgba(0, 0, 0, 0.15));
+
+        &:hover {
+          background-color: #5eac3d;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 40%;
+          border-top: 16px solid #5eac3d;
+          border-top-color: #5eac3d;
+          border-left: 16px solid transparent;
+          border-right: 16px solid transparent;
+        }
+      }
     }
   }
 }
