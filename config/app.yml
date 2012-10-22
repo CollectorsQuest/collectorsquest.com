@@ -59,6 +59,9 @@ all:
     picked_off:
       collector: 13389
       collection: 3751
+    franks_picks:
+      collector: 15716
+      collection: 4224
 
 
   credentials:

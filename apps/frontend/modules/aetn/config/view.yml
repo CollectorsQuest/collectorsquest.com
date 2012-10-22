@@ -19,6 +19,10 @@ pickedOffSuccess:
   components:
     sidebar_300: [aetn, sidebarPickedOff]
 
+franksPicksSuccess:
+  components:
+    footer: []
+
 mwbaSuccess:
   components:
     breadcrumbs: []
