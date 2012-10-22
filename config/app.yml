@@ -241,7 +241,7 @@ all:
 
     ups:
       # Your UPS Developer license
-      # your UPS XML Access Key TODO: Insert link to get one
+      # your UPS XML Access Key, we need to insert link to get one
       license: ''
 
       # your UPS Developer username
@@ -430,7 +430,7 @@ dev:
     domain: "cqcdns.dev"
 
   paypal:
-    ipn_domain: 'http://207.237.37.24'
+    ipn_domain: 'http://astoria.dyndns-home.com'
 
 test:
   domain_name: "example.com"
