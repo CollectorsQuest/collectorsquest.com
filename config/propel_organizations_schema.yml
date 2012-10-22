@@ -14,6 +14,7 @@ classes:
 
     # Organization table. Tied to a Founder (Collector) by a hard link
   Organization:
+    tableName:                org_organization
     columns:
       id:                     ~
       founder_id:             { type: integer,      required: true, foreignClass: Collector, foreignReference: id, fkPhpName: Founder, fkRefPhpName: FoundedOrganization  }
@@ -35,6 +36,7 @@ classes:
 
     # Initially Antique Malls, Flea Markets, Trade Shows and Collector Clubs. May be expanded
   OrganizationType:
+    tableName:                org_organization_type
     columns:
       type:                   { type: enum,         required: true, valueSet: "collector_club, antique_mall, flea_market, trade_show", primaryKey: true }
       name:                   { type: varchar(255), required: true, primaryString: true }
@@ -44,6 +46,7 @@ classes:
 
     # M:M table that also holds the status information for the collector / organization relationship
   OrganizationMembership:
+    tableName:                org_organization_membership
     isCrossRef: true
     columns:
       organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
@@ -56,6 +59,7 @@ classes:
 
     # M:M table that holds request for admission in moderated groups, as well as invitations to joint a particular group
   OrganizationMembershipRequest:
+    tableName:                org_organization_membership_request
     columns:
       id:                     ~
       organization_id:        { type: integer,      required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
@@ -72,6 +76,7 @@ classes:
 #
 #    # Extends Collection. Denotes a collection specific to an organization
 #  OrganizationCollection:
+#    tableName:                org_organization_collection
 #    columns:
 #      organization_id:        { type: integer, required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
 #    propel_behaviors:
@@ -79,6 +84,7 @@ classes:
 #
 #    # M:M between an Organization and a Collectible. Allows a collectible to be added to an organization
 #  OrganizationCollectible:
+#    tableName:                org_organization_collectible
 #    isCrossRef: true
 #    columns:
 #      organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
