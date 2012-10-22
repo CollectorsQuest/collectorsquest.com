@@ -1,9 +1,16 @@
+<?php
+/* @var $shopping_order ShoppingOrder */
+/* @var $pager sfPropelPager */
+/* @var $sf_params sfParameterHolder */
+?>
+
 <?php if ($pager->getNbResults() > 0): ?>
 
   <?php foreach ($pager->getResults() as $i => $shopping_order): ?>
   <div class="span3 collectible_sold_items_grid_view_square link">
     <?php
-      echo link_to(
+      echo link_to_if(
+        $shopping_order->getShoppingPayment()->getStatus() === ShoppingPaymentPeer::STATUS_COMPLETED,
         image_tag_collectible(
           $shopping_order->getCollectible(), '140x140',
           array('width' => 130, 'height' => 130)
@@ -11,10 +18,16 @@
         'mycq_collectible_by_slug', $shopping_order->getCollectible()
       );
     ?>
-    <span class="purchased">PURCHASED</span>
+    <span class="purchased">
+      <?php
+        echo $shopping_order->getShoppingPayment()->getStatus() === ShoppingPaymentPeer::STATUS_COMPLETED ?
+          'PURCHASED' : 'IN PROGRESS'
+      ?>
+    </span>
     <p>
       <?php
-        echo link_to(
+        echo link_to_if(
+          $shopping_order->getShoppingPayment()->getStatus() === ShoppingPaymentPeer::STATUS_COMPLETED,
           cqStatic::truncateText(
             $shopping_order->getCollectible()->getName(), 30, '...', true
           ),

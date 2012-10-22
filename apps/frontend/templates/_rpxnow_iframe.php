@@ -16,7 +16,12 @@ $rpxnow = sfConfig::get('app_credentials_rpxnow');
   $(document).ready(function()
   {
     $('.modal-rpx-iframe').attr(
-      'src', "<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
+      'src',
+        "<?php echo sprintf(
+          '%s/openid/embed?token_url=%s&flags=%s&default_provider=%s',
+          rtrim($rpxnow['application_domain'], '/'), url_for('@rpx_token', true),
+          isset($flags) ? $flags : '', isset($provider) ? $provider : ''
+        ); ?>"
     );
   });
 </script>

@@ -12,7 +12,7 @@ class FrontendCollectibleForSaleQuery extends CollectibleForSaleQuery
        */
       return $criteria
         ->useCollectibleQuery()
-          ->filterByIsPublic(true)
+          ->isComplete()
           ->isPartOfCollection()
         ->endUse();
     }
@@ -33,7 +33,7 @@ class FrontendCollectibleForSaleQuery extends CollectibleForSaleQuery
      */
     $query
       ->useCollectibleQuery()
-        ->filterByIsPublic(true)
+        ->isComplete()
         ->isPartOfCollection()
       ->endUse();
 
