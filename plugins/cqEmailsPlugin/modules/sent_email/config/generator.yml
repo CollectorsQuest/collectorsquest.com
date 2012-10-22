@@ -29,19 +29,19 @@ generator:
              params:
                popup:
                  '0': 'showhtml'
-                 '1': 'location,width=700,height=480,top=0'
+                 '1': 'location,width=720,height=480,top=0,scrollbars=yes'
            showPlain:
              label: "Show Plain",
              params:
                popup:
                  '0': 'showplain'
-                 '1': 'location,width=700,height=480,top=0'
+                 '1': 'location,width=720,height=480,top=0,scrollbars=yes'
            showHeaders:
              label: "Show Headers",
              params:
                popup:
                  '0': 'showheaders'
-                 '1': 'location,width=600,height=240,top=0'
+                 '1': 'location,width=600,height=240,top=0,scrollbars=yes'
       filter:
         display: [sender_email, receiver_email, subject, result, created_at]
       form:    ~
