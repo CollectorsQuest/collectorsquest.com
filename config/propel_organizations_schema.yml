@@ -8,15 +8,23 @@ package: lib.model.organizations
 
 classes:
 
-    # Organization table. Tied to a Collector (founder) by a hard link
+
+    # TODO: Add archive tables once the schema has stabilized
+
+
+    # Organization table. Tied to a Founder (Collector) by a hard link
   Organization:
     columns:
       id:                     ~
-      founder_id:             { type: integer,      required: true, foreignClass: Collector, foreignReference: id, fkPhpName: Founder  }
+      founder_id:             { type: integer,      required: true, foreignClass: Collector, foreignReference: id, fkPhpName: Founder, fkRefPhpName: FoundedOrganization  }
       name:                   { type: varchar(255), required: true, primaryString: true }
-      type:                   { type: integer,      required: false, foreignClass: OrganizationType, foreignReference: id }
-      type_other:             { type: varchar(255), required: false }
+      url:                    { type: varchar(255), required: false }
+      phone:                  { type: varchar(255), required: false }
       description:            { type: longvarchar,  required: false }
+      type:                   { type: tinyint,      required: false, foreignClass: OrganizationType, foreignReference: type }
+      type_other:             { type: varchar(255), required: false }
+      badge_image:            { type: varchar(255), required: true  }
+      referral_code:          { type: varchar(50),  required: false, index: unique }
       # a note about propel enum: new values should only be added to the end of the value set, or bad things happen
       access:                 { type: enum,         required: true, valueSet: "open, moderated, private", default: moderated }
     propel_behaviors:
@@ -28,13 +36,14 @@ classes:
     # Initially Antique Malls, Flea Markets, Trade Shows and Collector Clubs. May be expanded
   OrganizationType:
     columns:
-      id:                     ~
+      type:                   { type: enum,         required: true, valueSet: "collector_club, antique_mall, flea_market, trade_show", primaryKey: true }
       name:                   { type: varchar(255), required: true, primaryString: true }
+      description:            { type: longvarchar,  required: false }
     propel_behaviors:
       symfony:                { form: true, filter: false }
 
     # M:M table that also holds the status information for the collector / organization relationship
-  OrganizationMember:
+  OrganizationMembership:
     isCrossRef: true
     columns:
       organization_id:        { type: integer,      required: true, primaryKey: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
@@ -46,7 +55,7 @@ classes:
         create_column:        joined_at
 
     # M:M table that holds request for admission in moderated groups, as well as invitations to joint a particular group
-  OrganizationMemberAdmissionRequest:
+  OrganizationMembershipRequest:
     columns:
       id:                     ~
       organization_id:        { type: integer,      required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
