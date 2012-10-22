@@ -61,7 +61,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     $this->widgetSchema['description']->setAttribute('required', 'required');
 
     $this->getWidgetSchema()->setHelp(
-      'description', 'Add more details about your collection. (You can also change this later!)'
+      'description', 'Add more details about your collection. (You can change this later!)'
     );
   }
 

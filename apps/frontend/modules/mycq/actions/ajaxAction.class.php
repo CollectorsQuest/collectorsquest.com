@@ -573,16 +573,19 @@ class ajaxAction extends cqAjaxAction
    */
   public function executeCollectionCreate(sfWebRequest $request, $template)
   {
-    $collectible_id = $request->getParameter('collectible_id');
-    $this->forward404Unless($collectible_id);
-
-    /** @var $q CollectibleQuery */
+    /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
-      ->filterById($collectible_id);
+      ->filterById($request->getParameter('collectible_id'));
 
-    /** @var $collectible Collectible */
+    /* @var $collectible Collectible */
     $collectible = $q->findOne();
+
+    // We redirect to Step 1 if we do not have a Collectible to work with
+    $this->redirectUnless(
+      $collectible instanceof Collectible,
+      '@ajax_mycq?section=collectible&page=upload&model=collection'
+    );
 
     $form = new CollectorCollectionEditForm();
     $form->useFields(array(
@@ -705,18 +708,22 @@ class ajaxAction extends cqAjaxAction
    */
   public function executeCollectibleCreate(sfWebRequest $request, $template)
   {
-    /** @var $collector Collector */
+    /* @var $collector Collector */
     $collector = $this->getUser()->getCollector(true);
 
-    $collectible_id = $request->getParameter('collectible_id');
-    $this->forward404Unless($collectible_id);
-
-    /** @var $q CollectibleQuery */
+    /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($collector)
-      ->filterById($collectible_id);
-    /** @var $collectible Collectible */
+      ->filterById($request->getParameter('collectible_id'));
+
+    /* @var $collectible Collectible */
     $collectible = $q->findOne();
+
+    // We redirect to Step 1 if we do not have a Collectible to work with
+    $this->redirectUnless(
+      $collectible instanceof Collectible,
+      '@ajax_mycq?section=collectible&page=upload&collection_id='. $request->getParameter('collection_id')
+    );
 
     $form = new CollectibleCreateForm($collectible);
 
