@@ -45,7 +45,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
 
   protected function setupNameField()
   {
-    $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['name']->setAttribute('class', 'input-large');
     $this->widgetSchema['name']->setAttribute('required', 'required');
 
     $this->validatorSchema['name'] = new cqValidatorName(

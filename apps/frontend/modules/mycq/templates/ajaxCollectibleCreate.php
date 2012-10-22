@@ -29,7 +29,7 @@
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
-    <?= image_tag_multimedia($image, '150x150', array('style'=> 'position: absolute; top: 96px; left: 0px;')); ?>
+    <?= image_tag_multimedia($image, '75x75', array('style'=> 'position: absolute; top: 0px; right: 10px;')); ?>
 
     <?= $form['name']->renderRow(); ?>
     <?= $form['description']->renderRow(); ?>
@@ -58,7 +58,7 @@
   <?= $form->renderHiddenFields() ?>
 </form>
 
-<script type="text/javascript">
+<script>
   $(document).ready(function()
   {
     $('input.tag', '#form-create-collectible').tagedit({

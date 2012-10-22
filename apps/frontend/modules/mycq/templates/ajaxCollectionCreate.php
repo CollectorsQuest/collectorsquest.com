@@ -15,13 +15,13 @@
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
-    <?= image_tag_multimedia($image, '150x150', array('style'=> 'position: absolute; top: 75px; left: 0px;')); ?>
+    <?= image_tag_multimedia($image, '75x75', array('style'=> 'position: absolute; top: -10px; right: 10px;')); ?>
 
     <?= $form['name']->renderRow(); ?>
     <?= $form['description']->renderRow(); ?>
     <?= $form['tags']->renderRow(); ?>
 
-    <div class="control-group ">
+    <div class="control-group" style="margin-bottom: 0px;">
       <?= $form['content_category_id']->renderLabel('Category') ?>
       <div class="controls">
         <div class="with-required-token">
@@ -46,10 +46,12 @@
   <?= $form->renderHiddenFields(); ?>
 </form>
 
-<script type="text/javascript">
+<script>
 $(document).ready(function()
 {
-  $('#collection_description').wysihtml5({
+  $('#collection_description')
+    .css({'height':'53px', 'min-height':'53px'})
+    .wysihtml5({
     "font-styles": false, "image": false, "link": false,
     events:
     {
@@ -58,10 +60,7 @@ $(document).ready(function()
           .removeClass('js-hide')
           .removeClass('js-invisible')
           .removeAttr('required')
-          .css({'height':'75px', 'min-height':'75px'});
-      },
-      "focus": function() {
-        $(editor.composer.iframe).autoResize();
+          .css({'height':'53px', 'min-height':'53px'});
       }
     }
   });
@@ -80,8 +79,7 @@ $(document).ready(function()
 
   $('.top', '#categories').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
 
-  // making editor and categories area shorter
-  $('.wysihtml5-sandbox').css({'height':'93px', 'min-height':'93px'});
-  $('.columnview').css({'height':'127px', 'max-height':'127px'});
+  // making categories area shorter
+  $('.columnview').css({'height':'107px', 'max-height':'107px'});
 });
 </script>

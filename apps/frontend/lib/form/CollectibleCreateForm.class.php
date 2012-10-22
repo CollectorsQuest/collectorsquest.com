@@ -10,7 +10,7 @@ class CollectibleCreateForm extends CollectibleForm
         'label' => 'Name',
       ), array(
         'required' => 'required',
-        'class' => 'input-xlarge'
+        'class' => 'input-large'
       )),
       'content_category_id' => new sfWidgetFormInputHidden(array(
         'label' => 'Category',
@@ -53,21 +53,21 @@ class CollectibleCreateForm extends CollectibleForm
     $this->setupTagsField();
     // Setup the Name field
     $this->setupNameField();
-    // unset thumbnail field
-    $this->unsetThumbnailField();
 
     $this->widgetSchema->setNameFormat('collectible[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
 
+  protected function unsetFields()
+  {
+    parent::unsetFields();
+
+    unset($this['thumbnail']);
+  }
+
   public function unsetCollectionIdField()
   {
     unset ($this['collection_id']);
-  }
-
-  public function unsetThumbnailField()
-  {
-    unset ($this['thumbnail']);
   }
 
   protected function setupTagsField()
