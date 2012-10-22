@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $form CollectionCreateForm
- * @var $collection CollectorCollection
+ * @var $collectible Collectible
  * @var $categories ContentCategory[]
  * @var $image iceModelMultimedia
  */
@@ -9,7 +9,7 @@
 
 <h1>Create Collection - Step 2</h1>
 
-<form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'create', 'collection_id' => $collection->getId())); ?>"
+<form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'create', 'collectible_id' => $collectible->getId())); ?>"
       method="post" class="ajax form-horizontal form-modal">
 
   <?= $form->renderAllErrors(); ?>
@@ -20,7 +20,6 @@
     <?= $form['name']->renderRow(); ?>
     <?= $form['description']->renderRow(); ?>
     <?= $form['tags']->renderRow(); ?>
-
 
     <div class="control-group ">
       <?= $form['content_category_id']->renderLabel('Category') ?>
@@ -40,14 +39,9 @@
     <button type="submit" class="btn btn-primary spacer-right-15">
       Create Collection
     </button>
-    <a href="javascript:void(0)"
-       onClick="window.location = '<?= url_for('mycq_collection_by_section', array(
-                'id' => $collection->getId(),
-                'section' => 'collectibles',
-            )); ?>'"
-      class="btn">
-      Skip this for now
-    </a>
+    <button type="reset" class="btn" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+      Cancel
+    </button>
   </div>
   <?= $form->renderHiddenFields(); ?>
 </form>

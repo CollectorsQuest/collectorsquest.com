@@ -1,17 +1,19 @@
 <?php
 /**
- * @var $form CollectibleCreateForm
- * @var $collectible Collectible
+ * @var $form               CollectibleCreateForm
+ * @var $collectible        Collectible
+ * @var $collectible_public Collectible
+ * @var $image              iceModelMultimedia
  */
 ?>
 
 <?php
-  if (isset($collectible) && !$collectible->isNew())
+  if (isset($collectible_public) && !$collectible_public->isNew())
   {
     include_partial(
       'global/loading',
       array('url' => url_for(
-        'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection')
+        'mycq_collectible_by_slug', array('sf_subject' => $collectible_public, 'return_to' => 'collection')
       ))
     );
 
@@ -19,12 +21,20 @@
   }
 ?>
 
-<form action="<?= url_for('@ajax_mycq?section=collectible&page=create'); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collectible&page=create&collectible_id=' . $collectible->getId()); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Add a New Item</h1>
+  <h1>Add a New Item - Step 2</h1>
 
-  <?= $form ?>
+  <?= $form->renderAllErrors(); ?>
+
+  <div style="position: relative;">
+    <?= image_tag_multimedia($image, '150x150', array('style'=> 'position: absolute; top: 96px; left: 0px;')); ?>
+
+    <?= $form['name']->renderRow(); ?>
+    <?= $form['description']->renderRow(); ?>
+    <?= $form['tags']->renderRow(); ?>
+  </div>
 
   <?php
   /**
@@ -48,7 +58,7 @@
   <?= $form->renderHiddenFields() ?>
 </form>
 
-<script>
+<script type="text/javascript">
   $(document).ready(function()
   {
     $('input.tag', '#form-create-collectible').tagedit({
@@ -81,7 +91,7 @@
     <?php endif; ?>
 
     <?php
-      if (isset($collectible) && !$collectible->isNew())
+      if (isset($collectible_public) && !$collectible_public->isNew())
       {
         echo '$("#form-create-collectible").showLoading();';
       }

@@ -2,17 +2,21 @@
 /**
  * @var $form  CollectionCreateForm
  * @var $model string
+ * @var $collection_id integer
  */
 ?>
 
 <form action="<?= url_for('@ajax_mycq?section=collectible&page=upload'); ?>"
       method="post" id="fileupload" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
 
-  <h1>Create <?= $model == 'collectible' ? 'Collectible' : 'Collection'?> - Step 1</h1>
-  <?= $form ?>
+  <h1><?= $model == 'collectible' ? 'Add a New Item' : 'Create Collection'?> - Step 1</h1>
+  <?= $form['thumbnail']->renderRow(); ?>
 
   <input type="hidden" name="model" value="<?= $model ?>">
-
+  <?php if ($collection_id) : ?>
+  <input type="hidden" name="collection_id" value="<?= $collection_id ?>">
+  <?php endif; ?>
+  <!--
   <div id="dropzone-wrapper" class="dropzone-container">
     <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
       <span class="info-no-items-to-sort" style="text-align: center">
@@ -20,6 +24,7 @@
       </span>
     </div>
   </div>
+  -->
 
   <div id="fileupload-modal" class="modal hide">
     <div class="modal-header">
@@ -67,6 +72,7 @@
     </button>
   </div>
 
+  <?= $form->renderHiddenFields(); ?>
 </form>
 
 <!-- The template to display files available for upload -->

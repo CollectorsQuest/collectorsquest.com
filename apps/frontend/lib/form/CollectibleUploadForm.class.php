@@ -28,7 +28,7 @@ class CollectibleUploadForm extends sfForm
     ));
 
     $this->getWidgetSchema()->setHelp(
-      'thumbnail', 'Choose a photo which represents your entire collection.'
+      'thumbnail', 'Choose a photo which represents your item.'
     );
   }
 
