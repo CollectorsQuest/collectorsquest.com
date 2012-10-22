@@ -95,4 +95,46 @@ class typeAheadAction extends cqAjaxAction
 
     return $this->output($names);
   }
+
+  protected function executeSentEmailSenderEmail($request)
+  {
+    $q = $request->getParameter('q');
+    $limit = $request->getParameter('limit', 10);
+
+    $names = SentEmailQuery::create()
+      ->filterBySenderEmail("%$q%", Criteria::LIKE)
+      ->limit($limit)
+      ->find()
+      ->toKeyValue('Id', 'SenderEmail');
+
+    return $this->output($names);
+  }
+
+  protected function executeSentEmailReceiverEmail($request)
+  {
+    $q = $request->getParameter('q');
+    $limit = $request->getParameter('limit', 10);
+
+    $names = SentEmailQuery::create()
+      ->filterByReceiverEmail("%$q%", Criteria::LIKE)
+      ->limit($limit)
+      ->find()
+      ->toKeyValue('Id', 'ReceiverEmail');
+
+    return $this->output($names);
+  }
+
+  protected function executeSentEmailSubject($request)
+  {
+    $q = $request->getParameter('q');
+    $limit = $request->getParameter('limit', 10);
+
+    $names = SentEmailQuery::create()
+      ->filterBySubject("%$q%", Criteria::LIKE)
+      ->limit($limit)
+      ->find()
+      ->toKeyValue('Id', 'Subject');
+
+    return $this->output($names);
+  }
 }
