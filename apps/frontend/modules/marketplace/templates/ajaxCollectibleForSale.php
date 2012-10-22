@@ -39,6 +39,13 @@
               <i class="add-to-card-button"></i>
               Add Item to Cart
             </button>
+
+            <?php
+              echo link_to('View Item',
+                url_for_collectible($collectible_for_sale->getCollectible()),
+                array('class' => 'btn btn-primary pull-left', 'style' => 'margin-left: 10px;')
+              );
+            ?>
           </div>
 
           <?= $form->renderHiddenFields(); ?>
