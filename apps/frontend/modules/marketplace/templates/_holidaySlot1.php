@@ -45,19 +45,29 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="row-content" style="margin-left: 24px;">
-  <?php
-    foreach ($collectibles_for_sale as $collectible_for_sale)
-    {
-      include_partial(
-        'collection/collectible_grid_view_square_big',
-        array(
-          'collectible' => $collectible_for_sale->getCollectible(),
-          'i' => $collectible_for_sale->getCollectibleId()
-        )
-      );
-    }
-  ?>
+<div class="collectibles-for-sale-3x-big-wrapper">
+  <div class="row">
+    <div class="row-content" style="margin-left: 24px;">
+      <?php
+      foreach ($collectibles_for_sale as $collectible_for_sale)
+      {
+        include_partial(
+          'collection/collectible_grid_view_square_big',
+          array(
+            'collectible' => $collectible_for_sale->getCollectible(),
+            'i' => $collectible_for_sale->getCollectibleId()
+          )
+        );
+      }
+      ?>
+    </div>
   </div>
+  <div id="pages">
+    <a href="#" class="bullet on"></a>
+    <a href="#" class="bullet off"></a>
+    <a href="#" class="bullet off"></a>
+    <a href="#" class="bullet off"></a>
+  </div>
+  <p class="inform spacer-bottom">More items in this theme</p>
 </div>
+
