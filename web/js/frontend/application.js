@@ -86,9 +86,13 @@ var APP = window.APP = {
   collection: {
     // collection/collectible action
     collectible: function() {
-      $('#collectionCollectiblesWidget').collectionCollectiblesCarousel({
-        collection_id: window.cq.settings.collectionColletiblesWidget.collection_id
-      });
+      // Check if we have collectionColletiblesWidget before depending on it
+      if (window.cq.settings.collectionColletiblesWidget)
+      {
+        $('#collectionCollectiblesWidget').collectionCollectiblesCarousel({
+          collection_id: window.cq.settings.collectionColletiblesWidget.collection_id
+        });
+      }
     }
   },
 

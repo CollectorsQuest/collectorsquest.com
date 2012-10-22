@@ -1,5 +1,4 @@
-<br/>
-<h1 style="font-size: 250%;">There was an error processing the PayPal payment!</h1>
+<h1 style="font-size: 250%;">There was a payment processing error</h1>
 
 <br/>
 <section class="404">

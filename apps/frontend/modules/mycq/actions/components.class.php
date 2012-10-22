@@ -174,9 +174,9 @@ class mycqComponents extends cqFrontendComponents
   {
     $collector = $this->getCollector();
 
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($collector)
-      ->filterByIsSold(true)
+    $q = ShoppingOrderQuery::create()
+      ->isPaid()
+      ->filterBySellerId($collector->getId())
       ->orderByCreatedAt(Criteria::DESC);
 
     if ($this->getRequestParameter('q'))
@@ -199,7 +199,7 @@ class mycqComponents extends cqFrontendComponents
     $collector = $this->getCollector();
 
     $q = ShoppingOrderQuery::create()
-      ->paid()
+      ->isPaidOrConfirmed()
       ->filterByCollectorId($collector->getId())
       ->orderByCreatedAt(Criteria::DESC);
 

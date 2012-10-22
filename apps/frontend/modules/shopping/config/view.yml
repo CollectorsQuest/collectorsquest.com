@@ -23,7 +23,6 @@ orderPaySuccess:
 
 orderReviewSuccess:
   components:
-    header:  [global, headerStripped]
     footer:  []
     sidebar_300: [shopping, sidebarSignup]
 

@@ -173,10 +173,12 @@ class mycqActions extends cqFrontendActions
     $collector = $this->getCollector();
 
     $_preferences = array(
-      'opt_out'     => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
-      'newsletter'  => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
-      'comments'    => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
-      'messages'    => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE
+      'opt_out'           => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
+      'newsletter'        => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+      'comments'          => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+      'comments_opt_out'  => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_OPT_OUT,
+      'messages'          => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+      'messages_opt_out'  => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_OPT_OUT
     );
 
     // Assume there are no properties changed in this request
@@ -719,15 +721,9 @@ class mycqActions extends cqFrontendActions
       ->isForSale();
     $this->total = $q->count();
 
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($collector)
-      ->filterByIsSold(true)
-      ->groupByCollectibleId()
-      ->joinCollectible()
-      ->useCollectibleQuery()
-        ->joinWith('ShoppingOrder', Criteria::RIGHT_JOIN)
-      ->endUse();
-
+    $q = ShoppingOrderQuery::create()
+      ->isPaid()
+      ->filterBySellerId($collector->getId());
     $this->sold_total = $q->count();
 
     // Make the seller available to the template
@@ -768,7 +764,7 @@ class mycqActions extends cqFrontendActions
 
     $q = ShoppingOrderQuery::create()
       ->filterByCollectorId($this->getCollector()->getId())
-      ->paid();
+      ->isPaidOrConfirmed();
 
     $this->purchases_total = $q->count();
 

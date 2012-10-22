@@ -85,6 +85,7 @@ class commentsActions extends cqFrontendActions
                     'oNewComment' => $comment,
                     'oYourComment' => $notify_comment,
                     'sThreadUrl' => $request->getReferer() . '#comments',
+                    'oOwner' => $owner,
                     'sUnsubscribeUrl' => $this->generateUrl('comments_unsubscribe', array(
                         'email' => urlencode($notify_comment->getAuthorEmail()),
                         'model_class' => $notify_comment->getModelObjectClass(),

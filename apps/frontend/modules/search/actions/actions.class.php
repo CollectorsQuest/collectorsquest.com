@@ -86,7 +86,7 @@ class searchActions extends cqFrontendActions
   public function executeIndex(sfWebRequest $request)
   {
     /** @var $page integer */
-    $page = $request->getParameter('page', 1);
+    $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
 
     $query = array(
       'q' => self::$_query['q'],
@@ -102,7 +102,8 @@ class searchActions extends cqFrontendActions
       $query['limits'][0] <= 1000 &&
       ($pks = cqSphinxPager::search($query, array('collectibles'), 'pks')) &&
       count($pks) >= 3
-    ) {
+    )
+    {
       $pks = array_map(create_function('$v', 'return $v - 400000000;'), $pks);
 
       $this->collectibles_for_sale = CollectibleForSaleQuery::create()
@@ -141,8 +142,11 @@ class searchActions extends cqFrontendActions
 
   public function executeCollections(sfWebRequest $request)
   {
+    /** @var $page integer */
+    $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
+
     $pager = new cqSphinxPager(self::$_query, array('collections'), 24);
-    $pager->setPage($request->getParameter('page', 1));
+    $pager->setPage($page);
     $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
@@ -155,8 +159,11 @@ class searchActions extends cqFrontendActions
 
   public function executeCollectors(sfWebRequest $request)
   {
+    /** @var $page integer */
+    $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
+
     $pager = new cqSphinxPager(self::$_query, array('collectors'), 24);
-    $pager->setPage($request->getParameter('page', 1));
+    $pager->setPage($page);
     $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
@@ -169,8 +176,11 @@ class searchActions extends cqFrontendActions
 
   public function executeCollectibles(sfWebRequest $request)
   {
+    /** @var $page integer */
+    $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
+
     $pager = new cqSphinxPager(self::$_query, array('collectibles'), 24);
-    $pager->setPage($request->getParameter('page', 1));
+    $pager->setPage($page);
     $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
@@ -185,8 +195,11 @@ class searchActions extends cqFrontendActions
   {
     self::$_query['filters']['uint1'] = 1;
 
+    /** @var $page integer */
+    $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
+
     $pager = new cqSphinxPager(self::$_query, array('collectibles'), 24);
-    $pager->setPage($request->getParameter('page', 1));
+    $pager->setPage($page);
     $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
@@ -199,8 +212,11 @@ class searchActions extends cqFrontendActions
 
   public function executeBlog(sfWebRequest $request)
   {
+    /** @var $page integer */
+    $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
+
     $pager = new cqSphinxPager(self::$_query, array('blog'), 24);
-    $pager->setPage($request->getParameter('page', 1));
+    $pager->setPage($page);
     $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
@@ -213,8 +229,11 @@ class searchActions extends cqFrontendActions
 
   public function executeVideos(sfWebRequest $request)
   {
+    /** @var $page integer */
+    $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
+
     $pager = new cqMagnifyPager($request->getParameter('q'), 24);
-    $pager->setPage($request->getParameter('page', 1));
+    $pager->setPage($page);
     $pager->init();
 
     $this->pager = $pager;
