@@ -61,6 +61,9 @@ $(document).ready(function()
           .removeClass('js-invisible')
           .removeAttr('required')
           .css({'height':'53px', 'min-height':'53px'});
+      },
+      "focus": function() {
+        $(editor.composer.iframe).autoResize();
       }
     }
   });
