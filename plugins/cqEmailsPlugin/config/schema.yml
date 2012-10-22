@@ -13,6 +13,6 @@ propel:
     text_html:              { type: longvarchar }
     headers:                { type: longvarchar }
     result:                 { type: varchar, size: 64}
-    date:                   { type: integer}SentEmail
+    date:                   { type: integer}
     created_at: ~
 
