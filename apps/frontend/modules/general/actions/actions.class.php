@@ -372,4 +372,9 @@ class generalActions extends cqFrontendActions
       sfView::HEADER_ONLY : sfView::SUCCESS;
   }
 
+  public function executeStartPage()
+  {
+    return sfView::SUCCESS;
+  }
+
 }
