@@ -199,18 +199,16 @@ class aetnActions extends cqFrontendActions
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($franks_picks['collection'])
+      ->isForSale()
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
-    $pager = new PropelModelPager($q, 9);
+    $pager = new PropelModelPager($q, 12);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
     $this->pager = $pager;
 
     $this->collection = $collection;
-
-    // Make the Collection available in the sidebar
-    $this->setComponentVar('collection', $collection, 'sidebarPickedOff');
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
