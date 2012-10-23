@@ -17,15 +17,14 @@ classes:
     columns:
       id:                     ~
       founder_id:             { type: integer,      required: true, foreignClass: Collector, foreignReference: id, fkPhpName: Founder, fkRefPhpName: FoundedOrganization  }
+      type:                   { type: tinyint,      required: false, foreignClass: OrganizationType, foreignReference: type }
+      type_other:             { type: varchar(255), required: false }
       name:                   { type: varchar(255), required: true, primaryString: true }
       url:                    { type: varchar(255), required: false }
       phone:                  { type: varchar(255), required: false }
       description:            { type: longvarchar,  required: false }
-      type:                   { type: tinyint,      required: false, foreignClass: OrganizationType, foreignReference: type }
-      type_other:             { type: varchar(255), required: false }
-      referral_code:          { type: varchar(50),  required: false, index: unique }
-      # a note about propel enum: new values should only be added to the end of the value set, or bad things happen
       access:                 { type: enum,         required: true, valueSet: "open, moderated, private", default: moderated }
+      referral_code:          { type: varchar(50),  required: false, index: unique }
     propel_behaviors:
       timestampable:          ~
       sluggable:
@@ -35,6 +34,7 @@ classes:
     # Initially Antique Malls, Flea Markets, Trade Shows and Collector Clubs. May be expanded
   OrganizationType:
     columns:
+      # a note about propel enum: new values should only be added to the end of the value set, or bad things happen
       type:                   { type: enum,         required: true, valueSet: "collector_club, antique_mall, flea_market, trade_show", primaryKey: true }
       name:                   { type: varchar(255), required: true, primaryString: true }
       description:            { type: longvarchar,  required: false }
