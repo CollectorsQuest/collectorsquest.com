@@ -1,23 +1,25 @@
 <div id="collectibles" class="row thumbnails" style="margin-left: 0;">
 <?php
-  /** @var $collectible Collectible */
+  /* @var $collectible Collectible */
+  /* @var $pager       PropelModelPager */
   foreach ($pager->getResults() as $i => $collectible)
   {
     // set the link to open modal dialog
-    $link = link_to($collectible->getName(), 'ajax_marketplace',
+    $url = url_for('ajax_marketplace',
       array(
         'section' => 'collectible',
         'page' => 'forSale',
         'id' => $collectible->getId()
-      ),
-      array('class' => 'target zoom-zone', 'onclick' => 'return false;')
+      )
     );
+    $link_parameters = 'class="target zoom-zone" onclick="return false;"';
 
     include_partial(
       'marketplace/collectible_for_sale_masonry_view_big',
       array(
         'collectible_for_sale' => $collectible->getCollectibleForSale(),
-        'link' => $link
+        'url' => $url,
+        'link_parameters' => $link_parameters
       )
     );
   }

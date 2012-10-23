@@ -355,11 +355,17 @@ div.onecolumn {
     position: absolute;
     bottom: 0;
     display: block;
-    width: 90%;
-    padding: 10px 5%;
+    width: 100%;
     opacity: 0;
     background-color: rgba(0,0,0,0.6);
     .transition(all 0.5s linear);
+
+    a {
+      display: block;
+      width: 90%;
+      padding: 10px 5%;
+      height: 100%;
+    }
 
     .target.zoom-zone {
       font-size: 16px;
