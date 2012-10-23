@@ -32,7 +32,6 @@
     'global', 'pagination',
     array(
       'pager' => $pager,
-      'height' => &$height_main_div,
       'options' => array(
         'id' => 'collectibles-pagination',
         'url' => url_for('@ajax_marketplace?section=component&page=holidayCollectiblesForSale'),
@@ -51,12 +50,19 @@
   Try a broader search, or browse around for other neat stuff.
   (Or you can <?= link_to('sell something of your own', '@mycq_collections'); ?> on the site!)
 </div>
+<?php elseif ($pager->haveToPaginate()): ?>
+<div class="see-more-under-image-set" style="padding: 0;">
+  <button class="btn btn-small see-more-full" id="seemore-explore-collectibles">
+    See more
+  </button>
+</div>
 <?php endif; ?>
 
 <script>
   $(document).ready(function()
   {
     var $container = $('#collectibles');
+    var $form = $('#form-discover-collectibles');
 
     $container.imagesLoaded(function() {
       $container.masonry({
@@ -82,5 +88,48 @@
 
       return false;
     });
+
+    $('#seemore-explore-collectibles').click(function()
+    {
+      var $button = $(this);
+      $button.hide();
+
+      $container.infinitescroll(
+      {
+        navSelector:'#collectibles-pagination',
+        nextSelector:'#collectibles-pagination li.next a',
+        itemSelector:'#collectibles .span4',
+        loading:{
+          msgText:'Loading more collectibles...',
+          finishedMsg:'No more pages to load.',
+          img:'<?= image_path('frontend/progress.gif'); ?>'
+        },
+        state: {
+          curPage: 2
+        },
+        pathParse: function(path, page) {
+          // add the search params from the form
+          path = path + '&' + $form.serialize();
+          return path = path.match(/^(.*?)2(.*?$)/).slice(1);
+        },
+        bufferPx:150
+      },
+      // trigger Masonry as a callback
+      function(selector) {
+        // hide new bricks while they are loading
+        var $bricks = $(selector).css({opacity: 0});
+
+        // ensure that images load before adding to masonry layout
+        $bricks.imagesLoaded(function() {
+          // show bricks now that they're ready
+          $bricks.animate({opacity: 1});
+          $container.masonry('appended', $bricks, true);
+        });
+      });
+
+      // force infinite scroll load
+      $container.infinitescroll('retrieve');
+    });
+
   });
 </script>

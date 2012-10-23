@@ -24,7 +24,7 @@
   </div>
 
   <div id="items-for-sale">
-    <div id="collectibles" class="row thumbnails">
+    <div id="collectibles-holder" class="row thumbnails">
       <?php include_component('marketplace', 'holidayCollectiblesForSale'); ?>
     </div>
   </div>
