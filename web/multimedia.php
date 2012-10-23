@@ -133,7 +133,18 @@ if (in_array($type, array('image', 'video')))
       {
         // Send Content-Type and the X-SendFile header
         header('Content-Type: '. $content_type);
-        header('X-SendFile: '. $shared . $path);
+
+        if (php_sapi_name() === 'fpm-fcgi')
+        {
+          header('HTTP/1.0 200 OK');
+          header('Access-Control-Allow-Origin: *');
+          header('Access-Control-Allow-Methods: GET');
+          header('X-Accel-Redirect: '. $path);
+        }
+        else
+        {
+          header('X-SendFile: '. $shared . $path);
+        }
 
         exit;
       }
@@ -143,7 +154,18 @@ if (in_array($type, array('image', 'video')))
 
         // Send Content-Type and the X-SendFile header
         header('Content-Type: image/png');
-        header('X-SendFile: '. $web . $path);
+
+        if (php_sapi_name() === 'fpm-fcgi')
+        {
+          header('HTTP/1.0 200 OK');
+          header('Access-Control-Allow-Origin: *');
+          header('Access-Control-Allow-Methods: GET');
+          header('X-Accel-Redirect: '. $path);
+        }
+        else
+        {
+          header('X-SendFile: '. $web . $path);
+        }
 
         exit;
       }
