@@ -41,7 +41,7 @@ class cqEmailLog implements Swift_Events_SendListener
     //save each receivers as single email record
     foreach ($message->getTo() as $email => $receiver)
     {
-      $sent_email = new SentEmail();
+      $sent_email = new EmailsLog();
       $sent_email
           ->setBody($message->getBody())
           ->setTextHtml($text_html)

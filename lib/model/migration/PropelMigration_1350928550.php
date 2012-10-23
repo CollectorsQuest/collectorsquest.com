@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Migration to add new sent_email table, that store all sent emails
+ * Migration to add new emails_log table, that store all sent emails
  */
 class PropelMigration_1350928550
 {
@@ -40,7 +40,7 @@ class PropelMigration_1350928550
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
 
-        CREATE TABLE `sent_email`
+        CREATE TABLE `emails_log`
         (
           `id` INTEGER NOT NULL AUTO_INCREMENT,
           `sender_name` VARCHAR(255),
@@ -82,7 +82,7 @@ class PropelMigration_1350928550
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
 
-        DROP TABLE IF EXISTS `sent_email`;
+        DROP TABLE IF EXISTS `emails_log`;
 
         # This restores the fkey checks, after having unset them earlier
         SET FOREIGN_KEY_CHECKS = 1;

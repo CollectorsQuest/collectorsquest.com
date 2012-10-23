@@ -1,13 +1,13 @@
 generator:
   class: IcePropelGenerator
   param:
-    model_class:           SentEmail
+    model_class:           EmailsLog
     theme:                 bootstrap
     non_verbose_templates: true
     with_show:             false
-    singular:              SentEmail
-    plural:                SentEmails
-    route_prefix:          sent_email
+    singular:              EmailsLog
+    plural:                EmailsLogs
+    route_prefix:          emails_log
     with_propel_route:     1
     actions_base_class:    cqBackendActions
 
@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:
-        title: Sent Emails
+        title: Emails Log
         fields:
           created_at: { label: Date }
           list_sender: { label: Sender, is_sortable: true, sort_method: orderBySenderEmail }

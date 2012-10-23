@@ -79,8 +79,8 @@ all:
       Emails:
         icon: envelope
         items:
-          Sent Emails:
-            url: sent_email
+          Emails Log:
+            url: emails_log
             image: theme/icons/messaging.png
 
 

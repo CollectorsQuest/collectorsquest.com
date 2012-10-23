@@ -1,7 +1,7 @@
 propel:
   _attributes:      { package: plugins.cqEmailsPlugin.lib.model }
 
-  sent_email:
+  emails_log:
     id: ~
     sender_name:            { type: varchar, size: 255}
     sender_email:           { type: varchar, size: 128}

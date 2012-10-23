@@ -1,11 +1,11 @@
 <?php
 
 
-require 'plugins/cqEmailsPlugin/lib/model/om/BaseSentEmailQuery.php';
+require 'plugins/cqEmailsPlugin/lib/model/om/BaseEmailsLog.php';
 
 
 /**
- * Skeleton subclass for performing query and update operations on the 'sent_email' table.
+ * Skeleton subclass for representing a row from the 'emails_log' table.
  *
  * 
  *
@@ -15,6 +15,6 @@ require 'plugins/cqEmailsPlugin/lib/model/om/BaseSentEmailQuery.php';
  *
  * @package    propel.generator.plugins.cqEmailsPlugin.lib.model
  */
-class SentEmailQuery extends BaseSentEmailQuery {
+class EmailsLog extends BaseEmailsLog {
 
 }
