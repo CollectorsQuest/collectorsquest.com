@@ -1,3 +1,12 @@
+organization:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                Organization
+    module:               organization
+    prefix_path:          /organization
+    column:               id
+    with_wildcard_routes: true
+
 shopping_order:
   class: sfPropelORMRouteCollection
   options:
