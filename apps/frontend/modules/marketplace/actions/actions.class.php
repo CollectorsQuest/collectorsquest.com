@@ -34,7 +34,7 @@ class marketplaceActions extends cqFrontendActions
       $collectibles_for_sale = array();
       $collectibles_for_sale_text = array();
 
-      $values = unserialize($wp_post->getPostMetaValue('_market_featured_items'));
+      $values = $wp_post->getPostMetaValue('_market_featured_items');
 
       for ($i = 1; $i <= 6; $i++)
       {

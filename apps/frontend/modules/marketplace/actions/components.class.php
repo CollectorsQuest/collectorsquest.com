@@ -94,7 +94,7 @@ class marketplaceComponents extends cqFrontendComponents
       /** @var $wp_post wpPost */
       if ($wp_post = $query->findOne())
       {
-        $values = unserialize($wp_post->getPostMetaValue('_market_explore_items'));
+        $values = $wp_post->getPostMetaValue('_market_explore_items');
 
         if (isset($values['cq_collectible_ids']))
         {
@@ -266,7 +266,7 @@ class marketplaceComponents extends cqFrontendComponents
       /** @var $wp_post wpPost */
       if ($wp_post = $query->findOne())
       {
-        $values = unserialize($wp_post->getPostMetaValue('_market_explore_items'));
+        $values = $wp_post->getPostMetaValue('_market_explore_items');
 
         if (isset($values['cq_collectible_ids']))
         {
