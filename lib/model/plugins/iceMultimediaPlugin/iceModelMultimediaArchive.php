@@ -1,11 +1,11 @@
 <?php
 
 
-require 'lib/model/plugins/iceMultimediaPlugin/om/BaseMultimediaArchive.php';
+require 'lib/model/plugins/iceMultimediaPlugin/om/BaseiceModelMultimediaArchive.php';
 
 
 /**
- * Skeleton subclass for representing a row from the 'multimedia_archive' table.
+ * Skeleton subclass for representing a row from the 'ice_model_multimedia_archive' table.
  *
  * 
  *
@@ -15,7 +15,6 @@ require 'lib/model/plugins/iceMultimediaPlugin/om/BaseMultimediaArchive.php';
  *
  * @package    propel.generator.lib.model.plugins.iceMultimediaPlugin
  */
-class MultimediaArchive extends BaseMultimediaArchive
-{
+class iceModelMultimediaArchive extends BaseiceModelMultimediaArchive {
 
 }

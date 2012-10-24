@@ -1,11 +1,11 @@
 <?php
 
 
-require 'lib/model/plugins/iceMultimediaPlugin/om/BaseMultimediaArchivePeer.php';
+require 'lib/model/plugins/iceMultimediaPlugin/om/BaseiceModelMultimediaArchiveQuery.php';
 
 
 /**
- * Skeleton subclass for performing query and update operations on the 'multimedia_archive' table.
+ * Skeleton subclass for performing query and update operations on the 'ice_model_multimedia_archive' table.
  *
  * 
  *
@@ -15,7 +15,6 @@ require 'lib/model/plugins/iceMultimediaPlugin/om/BaseMultimediaArchivePeer.php'
  *
  * @package    propel.generator.lib.model.plugins.iceMultimediaPlugin
  */
-class MultimediaArchivePeer extends BaseMultimediaArchivePeer
-{
+class iceModelMultimediaArchiveQuery extends BaseiceModelMultimediaArchiveQuery {
 
 }
