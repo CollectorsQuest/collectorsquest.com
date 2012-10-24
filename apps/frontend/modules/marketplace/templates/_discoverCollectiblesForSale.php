@@ -1,3 +1,4 @@
+<div id="collectibles" class="row thumbnails">
 <?php
   /** @var $collectible Collectible */
   foreach ($pager->getResults() as $i => $collectible)
@@ -8,6 +9,24 @@
     );
   }
 ?>
+</div>
+<div class="row-fluid text-center hidden">
+  <?php
+  include_component(
+    'global', 'pagination',
+    array(
+      'pager' => $pager,
+      'height' => &$height_main_div,
+      'options' => array(
+        'id' => 'collectibles-pagination',
+        'show_all' => true,
+        'url' => url_for('@ajax_marketplace?section=component&page=discoverCollectiblesForSale'),
+        'page_param' => 'p',
+      )
+    )
+  );
+  ?>
+</div>
 
 <?php if ($pager->getNbResults() === 0): ?>
 <div style="margin: 15px 20px;">
@@ -23,7 +42,7 @@
 <!--</div>-->
 <br>
 <?php elseif ($pager->haveToPaginate()): ?>
-<div class="see-more-under-image-set" style="padding: 0; margin-left: 13px;">
+<div class="see-more-under-image-set" style="padding: 0;">
   <button class="btn btn-small see-more-full" id="seemore-explore-collectibles">
     See more
   </button>
@@ -33,21 +52,41 @@
 <script>
   $(document).ready(function()
   {
-    var $url = '<?= url_for('@ajax_marketplace?section=component&page=discoverCollectiblesForSale') ?>';
     var $form = $('#form-discover-collectibles');
 
     $('#seemore-explore-collectibles').click(function()
     {
       var $button = $(this);
-      $button.html('loading...');
+      $button.hide();
 
-      $.post($url +'?p=2', $form.serialize(), function(data)
+      $('#collectibles').infinitescroll(
       {
-        $('#collectibles').append(data);
+        navSelector:'#collectibles-pagination',
+        nextSelector:'#collectibles-pagination li.next a',
+        itemSelector:'#collectibles .span3',
+        loading:{
+          msgText:'Loading more collectibles...',
+          finishedMsg:'No more pages to load.',
+          img:'<?= image_path('frontend/progress.gif'); ?>'
+        },
+        state: {
+          curPage: 2
+        },
+        pathParse: function(path, page) {
+          // add the search params from the form
+          path = path + '&' + $form.serialize();
+          return path = path.match(/^(.*?)2(.*?$)/).slice(1);
+        },
+        bufferPx:150
+      },
+      function () {
+        $('.collectible_grid_view').mosaic({
+          animation:'slide'
+        });
+      });
 
-        $button.hide();
-        $button.parent().hide();
-      },'html');
+      // force infinite scroll load
+      $('#collectibles').infinitescroll('retrieve');
     });
 
     $("a.target").bigTarget({

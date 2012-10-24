@@ -16,8 +16,12 @@ require 'lib/model/om/BaseContentCategory.php';
  * @method     ContentCategory setSeoMarketTitleSuffix(string $v)
  * @method     string    getSeoMarketTitleSuffix()
  *
+ * @method     ContentCategory setSeoCollectionsDescription(string $v)
+ *
  * @method     ContentCategory setSeoCollectionsKeywords(string $v)
  * @method     string    getSeoCollectionsKeywords()
+ *
+ * @method     ContentCategory setSeoMarketDescription(string $v)
  *
  * @method     ContentCategory setSeoMarketKeywords(string $v)
  * @method     string    getSeoMarketKeywords()
@@ -45,11 +49,13 @@ class ContentCategory extends BaseContentCategory
   {
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_TITLE_PREFIX);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_TITLE_SUFFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_DESCRIPTION);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_KEYWORDS);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_USE_SINGULAR);
 
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_TITLE_PREFIX);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_TITLE_SUFFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_DESCRIPTION);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_KEYWORDS);
     $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_USE_SINGULAR);
   }
@@ -300,7 +306,12 @@ class ContentCategory extends BaseContentCategory
 
   public function getSeoCollectionsDescription()
   {
-    return cqStatic::truncateText($this->getDescription(), 160, '', true);
+    if (!$description = $this->getProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_DESCRIPTION))
+    {
+      $description = strip_tags($this->getDescription());
+    }
+
+    return cqStatic::truncateText($description, 160, '', true);
   }
 
   public function getSeoMarketTitle()
@@ -342,7 +353,12 @@ class ContentCategory extends BaseContentCategory
 
   public function getSeoMarketDescription()
   {
-    return cqStatic::truncateText($this->getDescription(), 160, '', true);
+    if (!$description = $this->getProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_DESCRIPTION))
+    {
+      $description = strip_tags($this->getDescription());
+    }
+
+    return cqStatic::truncateText($description, 160, '', true);
   }
 
   /**

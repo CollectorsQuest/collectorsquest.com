@@ -119,7 +119,7 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeCategories()
   {
-    if (IceGateKeeper::locked('marketplace_categories', 'page'))
+    if (IceGateKeeper::locked('expose_market_categories'))
     {
       $this->redirect('@marketplace', 302);
     }

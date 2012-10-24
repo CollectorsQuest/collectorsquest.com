@@ -410,8 +410,6 @@ class sellerActions extends cqFrontendActions
         if ($verified && 'COMPLETED' === strtoupper($request->getParameter('payment_status')))
         {
           $collector = $package_transaction->getCollector();
-          $package = $package_transaction->getPackage();
-
           $collector->setUserType(CollectorPeer::TYPE_SELLER);
           $collector->save();
 
@@ -430,7 +428,7 @@ class sellerActions extends cqFrontendActions
             $collector->save();
           }
 
-          // Send Mail To Seller
+          // Send Email To Seller
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Seller/package_confirmation', array(
             'to'     => $collector->getEmail(),

@@ -16,6 +16,7 @@ class ContentCategoryForm extends BaseContentCategoryForm
     $this->setupCollectionCategoryIdField();
     $this->setupParentIdField();
     $this->setupSlugField();
+    $this->setupDescriptionField();
     $this->setupSEOCollectionFields();
     $this->setupSEOMarketFields();
 
@@ -36,6 +37,11 @@ class ContentCategoryForm extends BaseContentCategoryForm
         'add_empty' => true,
         'id_to_make_first' => 0,
     ));
+  }
+
+  protected function setupDescriptionField()
+  {
+    $this->widgetSchema['description'] = new sfWidgetFormTextareaTinyMCE();
   }
 
   protected function setupParentIdField()
@@ -76,6 +82,13 @@ class ContentCategoryForm extends BaseContentCategoryForm
       array('required' => false)
     );
 
+    $this->widgetSchema['seo_collections_description'] = new sfWidgetFormTextarea(
+      array('label' => 'Description')
+    );
+    $this->validatorSchema['seo_collections_description'] = new sfValidatorString(
+      array('required' => false)
+    );
+
     $this->widgetSchema['seo_collections_keywords'] = new sfWidgetFormInputText(
       array('label' => 'Keywords')
     );
@@ -109,6 +122,13 @@ class ContentCategoryForm extends BaseContentCategoryForm
       array('required' => false)
     );
 
+    $this->widgetSchema['seo_market_description'] = new sfWidgetFormTextarea(
+      array('label' => 'Description')
+    );
+    $this->validatorSchema['seo_market_description'] = new sfValidatorString(
+      array('required' => false)
+    );
+
     $this->widgetSchema['seo_market_keywords'] = new sfWidgetFormInputText(
       array('label' => 'Keywords')
     );
@@ -137,10 +157,12 @@ class ContentCategoryForm extends BaseContentCategoryForm
       'seo_market_title_prefix'          => $this->getObject()->getSeoMarketTitlePrefix(),
       'seo_collections_title_suffix'     => $this->getObject()->getSeoCollectionsTitleSuffix(),
       'seo_market_title_suffix'          => $this->getObject()->getSeoMarketTitleSuffix(),
+      'seo_collections_description'      => $this->getObject()->getProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_DESCRIPTION),
+      'seo_market_description'           => $this->getObject()->getProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_DESCRIPTION),
       'seo_collections_keywords'         => $this->getObject()->getSeoCollectionsKeywords(),
       'seo_market_keywords'              => $this->getObject()->getSeoMarketKeywords(),
-      'seo_collections_use_singular'     => $this->getObject()->getSeoCollectionsUseSingular(),
-      'seo_market_use_singular'          => $this->getObject()->getSeoMarketUseSingular(),
+      'seo_collections_use_singular'     => (boolean) $this->getObject()->getSeoCollectionsUseSingular(),
+      'seo_market_use_singular'          => (boolean) $this->getObject()->getSeoMarketUseSingular(),
     )));
   }
 
@@ -193,6 +215,19 @@ class ContentCategoryForm extends BaseContentCategoryForm
     {
       $this->getObject()->setSeoMarketTitleSuffix(
         (string) $values['seo_market_title_suffix']
+      );
+    }
+
+    if (isset($values['seo_collections_description']))
+    {
+      $this->getObject()->setSeoCollectionsDescription(
+        (string) $values['seo_collections_description']
+      );
+    }
+    if (isset($values['seo_market_description']))
+    {
+      $this->getObject()->setSeoMarketDescription(
+        (string) $values['seo_market_description']
       );
     }
 

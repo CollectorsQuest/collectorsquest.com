@@ -15,9 +15,11 @@
   );
 ?>
 
+<?php if ($description = $category->getDescription()): ?>
 <div class="cf spacer-top-20">
-  <?= nl2br($category->getDescription()); ?>
+  <?= $category->getDescription(); ?>
 </div>
+<?php endif; ?>
 
 <br/>
 <div class="row" style="margin-left: -12px;">

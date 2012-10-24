@@ -145,6 +145,13 @@ class marketplaceComponents extends cqFrontendComponents
       $pager->setPage($p);
       $pager->init();
 
+      // if we are trying to get an out of bounds page
+      if ($p > $pager->getLastPage())
+      {
+        // return empty response
+        return sfView::NONE;
+      }
+
       $this->pager = $pager;
       $this->url = sprintf(
         '@search_collectibles_for_sale?q=%s&s=%s&page=%d',

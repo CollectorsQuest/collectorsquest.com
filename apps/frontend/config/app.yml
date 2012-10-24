@@ -83,10 +83,6 @@ all:
         compose:  { name: 'Compose Message', icon: edit, uri: "messages_compose" }
 
 dev:
-  domain_name: "collectorsquest.dev"
-  www_domain: "www.collectorsquest.dev"
-  static_domain: "www.collectorsquest.dev"
-  multimedia_domain: "multimedia.cqcdns.dev"
 
   ssl_redirect:
     # do not force SSL on collectorsquest.dev

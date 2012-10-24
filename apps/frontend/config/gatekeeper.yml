@@ -16,8 +16,8 @@ all:
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
-    expose_collection_categories: false
-    expose_market_categories: false
+    expose_collection_categories: true
+    expose_market_categories: true
 
 next:
   pages:
@@ -38,6 +38,7 @@ next:
     collectible_allow_no_shipping: true
     independence_day: false
     expose_collection_categories: true
+    expose_market_categories: true
 
 dev:
   pages:
@@ -58,3 +59,4 @@ dev:
     collectible_allow_no_shipping: true
     independence_day: false
     expose_collection_categories: true
+    expose_market_categories: true

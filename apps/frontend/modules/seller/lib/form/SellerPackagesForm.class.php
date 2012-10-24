@@ -310,16 +310,6 @@ class SellerPackagesForm extends BaseForm
   {
     if (empty($values['promo_code']))
     {
-      throw new sfValidatorErrorSchema($validator, array(
-        'promo_code'=> new sfValidatorError($validator,
-          'A promo code is required while we are in private beta!<br/>
-           Please email info@collectorsquest.com for more information.'
-        ))
-      );
-    }
-
-    if (empty($values['promo_code']))
-    {
       return $values;
     }
 

@@ -3,7 +3,7 @@ Contributors: billerickson
 Tags: gallery, image, images, metabox
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 1.4
+Stable tag: 1.5
 
 Displays all the post's attached images on the Edit screen.
 
@@ -11,11 +11,16 @@ Displays all the post's attached images on the Edit screen.
 
 I use the WordPress Gallery a lot on websites I build. It's a wonderful tool, but it's hard to find. Instead of telling users "Click the first icon next to Upload/Insert, then click the gallery tab", I created this simple plugin to display all the attached images in a metabox. 
 
-It's also customizable for developers (documentation).
+It's also customizable for developers (see documentation).
 
 [Documentation](https://github.com/billerickson/Gallery-Metabox/wiki) | [Support Forum](https://github.com/billerickson/Gallery-Metabox/issues)
 
 == Changelog ==
+
+= 1.5 = 
+* Fix multisite issue. See issue #3 on GitHub
+* Rebuild the plugin as a class, props @norcross
+* Rebuild AJAX refresh according to WP Standards, props @norcross
 
 = 1.4 = 
 * Fixed an issue of compatiblity with other plugins

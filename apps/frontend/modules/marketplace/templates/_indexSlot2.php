@@ -24,7 +24,7 @@
   </div>
 
   <div id="items-for-sale">
-    <div id="collectibles" class="row thumbnails">
+    <div id="collectibles-holder">
       <?php include_component('marketplace', 'discoverCollectiblesForSale'); ?>
     </div>
   </div>
@@ -47,11 +47,11 @@
 
     $form.submit(function()
     {
-      $('#collectibles').fadeOut();
+      $('#collectibles-holder').fadeOut();
 
       $.post($url +'?p=1', $form.serialize(), function(data)
       {
-        $('#collectibles').html(data).fadeIn();
+        $('#collectibles-holder').html(data).fadeIn();
       },'html');
 
       return false;

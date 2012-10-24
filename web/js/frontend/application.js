@@ -86,9 +86,13 @@ var APP = window.APP = {
   collection: {
     // collection/collectible action
     collectible: function() {
-      $('#collectionCollectiblesWidget').collectionCollectiblesCarousel({
-        collection_id: window.cq.settings.collectionColletiblesWidget.collection_id
-      });
+      // Check if we have collectionColletiblesWidget before depending on it
+      if (window.cq.settings.collectionColletiblesWidget)
+      {
+        $('#collectionCollectiblesWidget').collectionCollectiblesCarousel({
+          collection_id: window.cq.settings.collectionColletiblesWidget.collection_id
+        });
+      }
     }
   },
 
@@ -159,7 +163,10 @@ var APP = window.APP = {
       /**
        * @see: https://basecamp.com/1759305/projects/824949-collectorsquest-com/todos/11926034-when-going-from-page
        */
-      $.scrollTo('#slot1', { offset: -10, duration: 500, easing: 'easeOutExpo' });
+      if (0 === $(window).scrollTop()) {
+        // scroll the window only if the user hasn't done it already
+        $.scrollTo('#slot1', { offset: -10, duration: 500, easing: 'easeOutExpo' });
+      }
 
       /**
        * When the jquery-controls plugin is added to a website,
