@@ -1,7 +1,7 @@
 <?php
 
 
-require 'lib/model/plugins/iceMultimediaPlugin/om/BaseMultimediaQuery.php';
+require 'lib/model/plugins/iceMultimediaPlugin/om/BaseiceModelMultimediaQuery.php';
 
 
 /**
@@ -15,7 +15,7 @@ require 'lib/model/plugins/iceMultimediaPlugin/om/BaseMultimediaQuery.php';
  *
  * @package    propel.generator.lib.model.plugins.iceMultimediaPlugin
  */
-class MultimediaQuery extends BaseMultimediaQuery
+class iceModelMultimediaQuery extends PluginiceModelMultimediaQuery
 {
 
   /**
