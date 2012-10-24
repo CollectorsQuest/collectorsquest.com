@@ -6,7 +6,6 @@
     <div class="span6 sort-actions">
       <button type="button" class="btn thin">View all</button>
 
-
       <div class="sort-search-box">
         <div class="input-append">
           <form action="/search/collectibles-for-sale" method="post" id="form-discover-collectibles1">
@@ -49,35 +48,12 @@
     <div class="span6">
       <div class="mini-input-append-search">
         <div class="input-append pull-right">
-          <form action="/ajax/mycq/component/collections" id="form-mycq-collections" method="post">
+          <form action="/search/collectibles-for-sale" id="form-mycq-collections" method="post">
             <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
             <input type="hidden" value="most-recent" id="sortByValue" name="s">
           </form>
         </div>
       </div>
-    </div>
-  </div>
-
-
-  <div class="sort-search-box full-lenght-blue">
-    <div class="input-append">
-      <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
-        <div class="btn-group">
-          <div class="append-left-gray">Sort By <strong id="sortByName">Most Recent</strong></div>
-          <a href="javascript:void(0)" data-toggle="dropdown" class="btn dropdown-toggle">
-            <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
-            <li><a href="javascript:" class="sortBy" data-name="Under $100" data-sort="under-100">Sort by <strong>Under $100</strong></a></li>
-            <li><a href="javascript:" class="sortBy" data-name="$100 - $250" data-sort="100-200">Sort by <strong>$100 - $250</strong></a></li>
-            <li><a href="javascript:" class="sortBy" data-name="Over $250" data-sort="over-250">Sort by <strong>Over $250</strong></a></li>
-          </ul>
-        </div>
-        <input name="q" type="text" size="16" id="appendedPrependedInput" class="input-sort-by" style="width: 660px;"><button type="submit" class="btn"><strong>Search</strong></button>
-        <!-- keep INPUT and BUTTON elements in same line, if you break to two lines, you will see the "gap" between the text box and button -->
-        <input type="hidden" name="s" id="sortByValue" value="most-recent">
-      </form>
     </div>
   </div>
 

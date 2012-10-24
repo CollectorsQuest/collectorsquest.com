@@ -166,6 +166,31 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
+    /** @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterByPostType('market_theme')
+      ->filterByPostParent(0)
+      ->orderByPostDate(Criteria::DESC);
+
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
+
+    /** @var $wp_posts wpPost[] */
+    $wp_posts = $q->limit(4)->find();
+
+    $this->menu = array(
+      0 => array('id' => -1, 'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks')
+    );
+    foreach ($wp_posts as $wp_post)
+    {
+      $meta = $wp_post->getPostMetaValue('_market_theme');
+      $name = !empty($meta['cq_menu_name']) ? $meta['cq_menu_name'] : $wp_post->getPostTitle();
+
+      $this->menu[] = array('id' => $wp_post->getId(), 'name' => $name, 'slug' => $wp_post->getSlug());
+    }
+
     $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC)

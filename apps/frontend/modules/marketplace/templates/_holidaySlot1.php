@@ -8,31 +8,11 @@
   <div class="navbar-inner">
     <div class="centering">
       <ul class="nav">
-        <li class="active">
-          <a href="#">
-            <span><strong>statue</strong>-esque</span>
-          </a>
+        <?php foreach ($menu as $i => $item): ?>
+        <li <?= ($i === 0) ? 'class="active"' : null; ?>>
+          <a href="#"><?= $item['name']; ?></a>
         </li>
-        <li>
-          <a href="#">
-            up in <br><strong>smoke</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <strong>Signs</strong><br> of the times
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            from the <br><strong>kitchen</strong>
-          </a>
-        </li>
-        <li class="active">
-          <a href="#">
-            retro <br><strong>style</strong>
-          </a>
-        </li>
+         <?php endforeach; ?>
       </ul>
     </div>
 
@@ -70,4 +50,3 @@
   </div>
   <p class="inform spacer-bottom">More items in this theme</p>
 </div>
-
