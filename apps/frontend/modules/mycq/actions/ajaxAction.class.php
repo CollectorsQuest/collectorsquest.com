@@ -746,149 +746,22 @@ class ajaxAction extends cqAjaxAction
    * page: activate
    * params: id
    */
-  public function executeCollectibleActivate(sfWebRequest $request)
+  public function executeCollectibleActivate(sfWebRequest $request, $template)
   {
-    /** @var $collectible Collectible */
-    $collectible = CollectibleQuery::create()
-     ->findOneById($request->getParameter('id'));
+    // @todo add checks if this item can be activated
 
-    /** @var $collection Collection */
-    $collection = $collectible->getCollection();
+    /* @var $collectible CollectibleForSale */
+    $collectible_for_sale = CollectibleForSaleQuery::create()
+      ->findOneByCollectibleId($request->getParameter('id'));
 
-    $form = new CollectibleEditForm($collectible);
-    $form->setDefault('return_to', $request->getParameter('return_to'));
+    $collectible_for_sale->setIsReady(true);
+    $collectible_for_sale->save();
 
-    if ($request->getParameter('suggest_tags') && !count($collectible->getTags()))
-    {
-      $form->setDefault('tags', $collection->getTags());
-    }
+    // @todo -1 credit taken away from collector
 
-    $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
-      $collectible,
-      'US',
-      $request->getParameter('shipping_rates_us')
-    );
-    $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
-      $collectible,
-      $request->getParameter('shipping_rates_zz')
-    );
+    $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
 
-    if ($request->isMethod('post'))
-    {
-      $taintedValues = $request->getParameter('collectible');
-      if (isset($taintedValues['collection_collectible_list']))
-      {
-        $taintedValues['collection_collectible_list'] = array_filter(
-          $taintedValues['collection_collectible_list']
-        );
-        $taintedValues['collection_collectible_list'] = array_values(
-          $taintedValues['collection_collectible_list']
-        );
-      }
-
-      $form->bind($taintedValues, $request->getFiles('collectible'));
-      $for_sale = $form->getValue('for_sale');
-
-      if (
-        (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
-        && IceGateKeeper::open('collectible_shipping')
-      ) {
-        $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
-        $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
-      }
-
-      if (
-        ($form_shipping_us->isBound() && $form_shipping_zz->isBound()) &&
-        !($form_shipping_us->isValid() && $form_shipping_zz->isValid()) &&
-        $form->isValid()
-      ) {
-        $this->getUser()->setFlash('error', 'There is a problem with your shipping information.');
-      }
-
-      if (
-        $form->isValid() &&
-        (!$form_shipping_us->isBound() || $form_shipping_us->isValid()) &&
-        (!$form_shipping_zz->isBound() || $form_shipping_zz->isValid())
-      )
-      {
-        if ($form_shipping_us->isValid())
-        {
-          $form_shipping_us->save();
-        }
-        if ($form_shipping_zz->isValid())
-        {
-          $form_shipping_zz->save();
-        }
-
-        if (
-          null !== $for_sale &&
-          $for_sale['is_ready'] !== $collectible->getCollectibleForSale()->getIsReady() &&
-          $for_sale['is_ready'] === true
-        ) {
-          $message = sprintf(
-            'Your item item "<a href="%s">%%s</a>" has been posted to the Market!',
-            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible))
-          );
-        }
-        else
-        {
-          $message = sprintf(
-            'Changes to your item "<a href="%s">%%s</a>" were saved!',
-            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible))
-          );
-        }
-
-        try
-        {
-          $form->save();
-          $this->getUser()->setFlash('success', sprintf($message, $form->getValue('name')), true);
-
-          // auto-set collection thumbnail if none set yet
-          $values = $form->getValues();
-          if (isset($values['thumbnail']))
-          {
-            if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
-            {
-              $collection->setPrimaryImage($values['thumbnail']);
-              $collection->save();
-            }
-          }
-
-          // Did the Collector use the "Save and Add Items" button?
-          if ($request->getParameter('save_and_go'))
-          {
-            // If we save the form successfully, the request has to be redirected
-            switch ($form->getValue('return_to'))
-            {
-              case 'market':
-                $this->redirect('mycq_marketplace');
-                break;
-              case 'collection':
-              default:
-                $this->redirect('mycq_collection_by_slug', $collection);
-                break;
-            }
-          }
-        }
-        catch (PropelException $e)
-        {
-          $this->getUser()->setFlash(
-            'error', 'There was a problem saving your information'
-          );
-        }
-      }
-      else
-      {
-        $this->defaults = $taintedValues;
-      }
-    }
-
-    $this->form = $form;
-    $this->form_for_sale = isset($form['for_sale']) ? $form['for_sale'] : null;
-    $this->form_shipping_us = $form_shipping_us;
-    $this->form_shipping_zz = $form_shipping_zz;
-
-    return sfView::NONE;
+    return $template;
   }
 
   /**
@@ -898,7 +771,7 @@ class ajaxAction extends cqAjaxAction
    */
   public function executeCollectibleDeactivate(sfWebRequest $request, $template)
   {
-    /** @var $collectible CollectibleForSale */
+    /* @var $collectible CollectibleForSale */
     $collectible_for_sale = CollectibleForSaleQuery::create()
      ->findOneByCollectibleId($request->getParameter('id'));
 
@@ -917,9 +790,16 @@ class ajaxAction extends cqAjaxAction
    */
   public function executeCollectibleRelist(sfWebRequest $request, $template)
   {
-    /** @var $collectible CollectibleForSale */
+    /* @var $collectible CollectibleForSale */
     $collectible_for_sale = CollectibleForSaleQuery::create()
-     ->findOneByCollectibleId($request->getParameter('id'));
+      ->findOneByCollectibleId($request->getParameter('id'));
+
+    $collectible_for_sale->setIsReady(true);
+    $collectible_for_sale->save();
+
+    // @todo -1 credit taken away from collector
+
+    $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
 
     return $template;
   }

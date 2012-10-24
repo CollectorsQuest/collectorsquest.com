@@ -1,33 +1,30 @@
 <?php
-/**
- * @var $collectible Collectible
- *
- * @var $form CollectibleEditForm
- * @var $form_for_sale CollectibleForSaleEditForm
- */
-
-  if ($form->hasErrors())
-  {
-    echo $form->renderAllErrors();
-  }
-  else if ($collectible->getIsPublic() === false)
-  {
-    // you should not be able to make this item for sale
-    echo '<div class="alert"><strong>NOTE:</strong>',
-    ' Your item will not be discoverable until you fill in all the required information!',
-    ' (marked with a <span style="color: #cc0000;">*</span> in the form below)',
-    '</div>';
-  }
-
-  if ($form_for_sale)
-  {
-    include_partial(
-      'mycq/collectible_form_for_sale', array(
-      'collectible' => $collectible,
-      'form' => $form_for_sale,
-      'form_shipping_us' => $form_shipping_us,
-      'form_shipping_zz' => $form_shipping_zz,
-    ));
-  }
-
+  /* @var $collectible_id integer */
 ?>
+
+<a data-id="<?= $collectible_id; ?>"
+   class="deactivate btn btn-mini" onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
+  <i class="icon-minus-sign"></i>&nbsp;Deactivate
+</a>
+
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    $('a.deactivate').click(function(e)
+    {
+      e.preventDefault();
+      $(this).parent().parent().showLoading();
+
+      $(this).parent().load(
+        '<?php echo url_for('@ajax_mycq?section=collectible&page=deactivate&id=') ?>' + $(this).data('id'),
+        function() {
+          $(this).parent().parent().hideLoading();
+          $(this).parent().find('td.status').html('Inactive');
+        }
+      );
+
+      return false;
+    });
+
+  });
+</script>

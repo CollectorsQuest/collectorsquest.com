@@ -324,19 +324,20 @@ class mycqComponents extends cqFrontendComponents
 
     $this->filter_by = $this->getRequestParameter('filter_by');
 
-    /** @var $q CollectibleForSaleQuery */
+    /* @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->_if('active' == $this->filter_by)
-        ->filterByIsReady(true)
+        ->isForSale()
         ->hasActiveCredit()
       ->_elseif('sold' == $this->filter_by)
         ->filterByIsSold(true)
       ->_elseif('inactive' == $this->filter_by)
         ->filterByIsReady(false)
+        ->hasActiveCredit()
       ->_elseif('expired' == $this->filter_by)
-        ->hasActiveCredit(false)
-        ->filterByIsReady(true)
+        ->isForSale()
+        ->hasNoActiveCredit()
       ->_endif();
 
     switch ($this->getRequestParameter('s', 'most-recent'))

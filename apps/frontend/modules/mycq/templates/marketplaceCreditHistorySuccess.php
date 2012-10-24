@@ -107,13 +107,13 @@
 
     $form.submit(function()
     {
-      $('#items-for-sale').parent().showLoading();
+      $('#items-for-sale').showLoading();
       var filter_by = $('.btn-filter.active').attr('id').replace('filter-items-', '');
 
       $('#items-for-sale').load(
         $url + '?p=1&filter_by=' + filter_by, $form.serialize(),
         function(data) {
-          $('#items-for-sale').parent().hideLoading();
+          $('#items-for-sale').hideLoading();
         }
       );
 

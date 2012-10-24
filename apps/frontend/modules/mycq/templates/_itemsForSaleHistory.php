@@ -32,14 +32,20 @@
                         array('width' => 75, 'height' => 75)
                       ),
                       'mycq_collectible_by_slug',
-                      array('sf_subject' => $collectible_for_sale->getCollectible(), 'return_to' => 'market')
+                      array('sf_subject' => $collectible_for_sale->getCollectible(), 'return_to' => 'market'),
+                      array('target' => '_blank')
                     );
                   ?>
                 </a>
               </div>
               <div class="span10">
                 <span class="title">
-                   <?= link_to_collectible($collectible_for_sale->getCollectible()); ?>
+                  <?php
+                    echo link_to_collectible(
+                      $collectible_for_sale->getCollectible(), $type = 'text',
+                      array('link_to' => array ('target' => '_blank'))
+                    );
+                  ?>
                 </span>
                 <span class="description">
                   <?= $collectible_for_sale->getCollectible()->getDescription('stripped') ?>
@@ -54,32 +60,30 @@
             <?= $collectible_for_sale->getExpiryDate($format = 'F j, Y'); ?>
           </td>
           <td class="status">
-            <?php // @todo should think of another way to approach this ?>
-            <?php if ($collectible_for_sale->getIsSold()): ?>
-            Sold
-            <?php elseif ($collectible_for_sale->getExpiryDate() > date('Y-m-d H:i:s')): ?>
-            Active
-            <?php elseif($collectible_for_sale->getExpiryDate() == null): ?>
-            Inactive
-            <?php else: ?>
-            Expired
+            <?php if ($collectible_for_sale->getIsSold()) : ?>
+              Sold
+            <?php elseif ($collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()) : ?>
+              Active
+            <?php elseif(!$collectible_for_sale->hasActiveCredit() && $collectible_for_sale->isForSale()) : ?>
+              Expired
+            <?php else : ?>
+              Inactive
             <?php endif; ?>
           </td>
           <td>
-            <?php if ($collectible_for_sale->getIsSold()): ?>
-            -
-            <?php elseif ($collectible_for_sale->getExpiryDate() > date('Y-m-d H:i:s')): ?>
+            <?php if ($collectible_for_sale->getIsSold()) : ?>
+              -
+            <?php elseif ($collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()) : ?>
               <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
                  class="deactivate btn btn-mini" onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
                 <i class="icon-minus-sign"></i>&nbsp;Deactivate
               </a>
-            <?php elseif($collectible_for_sale->getExpiryDate() == null): ?>
-              <?php // @todo this one should open a modal instead ?>
+            <?php elseif(!$collectible_for_sale->hasActiveCredit() && $collectible_for_sale->getIsReady()) : ?>
               <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
                  class="activate btn btn-mini" onclick="return confirm('Are you sure you sure you want to activate this item?')">
                 <i class="icon-ok"></i>&nbsp;Activate
               </a>
-            <?php else: ?>
+            <?php elseif ($collectible_for_sale->hasActiveCredit() && $collectible_for_sale->getIsReady()): ?>
               <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
                  class="relist btn btn-mini" onclick="return confirm('Are you sure you sure you want to re-list this item?')">
                 <i class="icon-undo"></i>&nbsp;Re-list
@@ -87,7 +91,6 @@
             <?php endif; ?>
           </td>
         </tr>
-      <?php // @todo add cases for filters */ ?>
       <?php endforeach; elseif ('' == $search): ?>
       <tr>
         <td colspan="5">
@@ -160,6 +163,22 @@
         function() {
           $(this).parent().parent().hideLoading();
           $(this).parent().find('td.status').html('Inactive');
+        }
+      );
+
+      return false;
+    });
+
+    $('a.activate').click(function(e)
+    {
+      e.preventDefault();
+      $(this).parent().parent().showLoading();
+
+      $(this).parent().load(
+        '<?php echo url_for('@ajax_mycq?section=collectible&page=activate&id=') ?>' + $(this).data('id'),
+        function() {
+          $(this).parent().parent().hideLoading();
+          $(this).parent().find('td.status').html('Active');
         }
       );
 
