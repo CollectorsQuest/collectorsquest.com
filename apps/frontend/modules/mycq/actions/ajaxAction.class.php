@@ -742,34 +742,11 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
-   * section: collectible
-   * page: activate
-   * params: id
-   */
-  public function executeCollectibleActivate(sfWebRequest $request, $template)
-  {
-    // @todo add checks if this item can be activated
-
-    /* @var $collectible CollectibleForSale */
-    $collectible_for_sale = CollectibleForSaleQuery::create()
-      ->findOneByCollectibleId($request->getParameter('id'));
-
-    $collectible_for_sale->setIsReady(true);
-    $collectible_for_sale->save();
-
-    // @todo -1 credit taken away from collector
-
-    $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
-
-    return $template;
-  }
-
-  /**
-   * section: collectible
+   * section: collectibleForSale
    * page: deactivate
    * params: id
    */
-  public function executeCollectibleDeactivate(sfWebRequest $request, $template)
+  public function executeCollectibleForSaleDeactivate(sfWebRequest $request, $template)
   {
     /* @var $collectible CollectibleForSale */
     $collectible_for_sale = CollectibleForSaleQuery::create()
@@ -784,11 +761,11 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
-   * section: collectible
+   * section: collectibleForSale
    * page: relist
    * params: id
    */
-  public function executeCollectibleRelist(sfWebRequest $request, $template)
+  public function executeCollectibleForSaleRelist(sfWebRequest $request, $template)
   {
     /* @var $collectible CollectibleForSale */
     $collectible_for_sale = CollectibleForSaleQuery::create()

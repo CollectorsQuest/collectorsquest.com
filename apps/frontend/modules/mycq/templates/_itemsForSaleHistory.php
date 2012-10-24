@@ -1,8 +1,9 @@
 <?php
 /**
- * @var $search  string
- * @var $filter_by  string
- * @var $pager   PropelModelPager
+ * @var $search        string
+ * @var $filter_by     string
+ * @var $pager         PropelModelPager
+ * @var $has_credits   boolean
  */
 ?>
 
@@ -78,15 +79,14 @@
                  class="deactivate btn btn-mini" onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
                 <i class="icon-minus-sign"></i>&nbsp;Deactivate
               </a>
-            <?php elseif(!$collectible_for_sale->hasActiveCredit() && $collectible_for_sale->getIsReady()) : ?>
-              <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
-                 class="activate btn btn-mini" onclick="return confirm('Are you sure you sure you want to activate this item?')">
-                <i class="icon-ok"></i>&nbsp;Activate
-              </a>
-            <?php elseif ($collectible_for_sale->hasActiveCredit() && $collectible_for_sale->getIsReady()): ?>
+            <?php elseif(!$collectible_for_sale->hasActiveCredit() && $collectible_for_sale->getIsReady() && $has_credits) : ?>
               <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
                  class="relist btn btn-mini" onclick="return confirm('Are you sure you sure you want to re-list this item?')">
                 <i class="icon-undo"></i>&nbsp;Re-list
+              </a>
+            <?php else : ?>
+              <a href="<?php echo url_for('@seller_packages'); ?>" class="btn btn-mini">
+                <i class="icon-plus-sign"></i>&nbsp;Buy credits
               </a>
             <?php endif; ?>
           </td>
@@ -126,7 +126,7 @@
   </div>
 </div> <!-- #items-for-sale -->
 
-<script type="text/javascript">
+<script>
   $(document).ready(function()
   {
     var $url = '<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory', true) ?>';
@@ -159,26 +159,10 @@
       $(this).parent().parent().showLoading();
 
       $(this).parent().load(
-        '<?php echo url_for('@ajax_mycq?section=collectible&page=deactivate&id=') ?>' + $(this).data('id'),
+        '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=deactivate&id=') ?>' + $(this).data('id'),
         function() {
           $(this).parent().parent().hideLoading();
           $(this).parent().find('td.status').html('Inactive');
-        }
-      );
-
-      return false;
-    });
-
-    $('a.activate').click(function(e)
-    {
-      e.preventDefault();
-      $(this).parent().parent().showLoading();
-
-      $(this).parent().load(
-        '<?php echo url_for('@ajax_mycq?section=collectible&page=activate&id=') ?>' + $(this).data('id'),
-        function() {
-          $(this).parent().parent().hideLoading();
-          $(this).parent().find('td.status').html('Active');
         }
       );
 
@@ -191,7 +175,7 @@
       $(this).parent().parent().showLoading();
 
       $(this).parent().load(
-        '<?php echo url_for('@ajax_mycq?section=collectible&page=relist&id=') ?>' + $(this).data('id'),
+        '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=relist&id=') ?>' + $(this).data('id'),
         function() {
           $(this).parent().parent().hideLoading();
           $(this).parent().find('td.status').html('Active');

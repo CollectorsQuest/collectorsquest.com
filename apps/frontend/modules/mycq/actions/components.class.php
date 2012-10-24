@@ -319,9 +319,6 @@ class mycqComponents extends cqFrontendComponents
     // Get the Collector
     $collector = $this->getCollector(true);
 
-    // Make the collector available to the template
-    $this->collector = $collector;
-
     $this->filter_by = $this->getRequestParameter('filter_by');
 
     /* @var $q CollectibleForSaleQuery */
@@ -368,6 +365,18 @@ class mycqComponents extends cqFrontendComponents
     $pager->init();
 
     $this->pager = $pager;
+
+    /* @var $seller Seller */
+    $seller = $collector->getSeller();
+
+    $this->has_credits = true;
+    if (!$seller->hasPackageCredits())
+    {
+      $this->has_credits = false;
+    }
+
+    // Make the collector available to the template
+    $this->collector = $collector;
 
     return sfView::SUCCESS;
   }
