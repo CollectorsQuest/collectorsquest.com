@@ -9,6 +9,7 @@ indexSuccess:
 
 holidaySuccess:
   javascripts:
+    - jquery/autoajax.js
     - jquery/infinitescroll.js
     - jquery/masonry.js
   components:

@@ -166,7 +166,13 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    /** @var $q wpPostQuery */
+  }
+
+  public function executeHolidayThemes()
+  {
+    $t = $offset = $this->getRequestParameter('t', 0);
+
+    /* @var $q wpPostQuery */
     $q = wpPostQuery::create()
       ->filterByPostType('market_theme')
       ->filterByPostParent(0)
@@ -177,26 +183,63 @@ class marketplaceComponents extends cqFrontendComponents
       $q->filterByPostStatus('publish');
     }
 
-    /** @var $wp_posts wpPost[] */
-    $wp_posts = $q->limit(4)->find();
+    /* @var $total integer */
+    $total = $q->count();
 
-    $this->menu = array(
-      0 => array('id' => -1, 'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks')
-    );
-    foreach ($wp_posts as $wp_post)
+    /**
+     * The active theme cannot be beyond the total number of themes
+     */
+    if ($t > $total)
+    {
+      $t = $total;
+    }
+
+    $offset = ($total - $offset < 5) ? $total - 5 : $offset;
+    $q->offset($offset-1);
+
+    /* @var $wp_posts wpPost[] */
+    $wp_posts = $q->limit(5)->find();
+
+    if ($t > 0)
+    {
+      $this->menu = array();
+    }
+    else
+    {
+      $this->menu = array(
+        0 => array(
+          'id' => -1, 'active' => true,
+          'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks')
+      );
+    }
+
+    foreach ($wp_posts as $i => $wp_post)
     {
       $meta = $wp_post->getPostMetaValue('_market_theme');
       $name = !empty($meta['cq_menu_name']) ? $meta['cq_menu_name'] : $wp_post->getPostTitle();
 
-      $this->menu[] = array('id' => $wp_post->getId(), 'name' => $name, 'slug' => $wp_post->getSlug());
+      $this->menu[] = array(
+        'id' => $wp_post->getId(), 'active' => ($i === $t - $offset) && $t > 0,
+        'name' => $name, 'slug' => $wp_post->getSlug()
+      );
     }
+
+    // Make sure we only have 5 in the end
+    $this->menu = array_splice($this->menu, 0, 5);
 
     $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale()
-      ->orderByUpdatedAt(Criteria::DESC)
-      ->limit(6);
+      ->orderByUpdatedAt(Criteria::DESC);
 
-    $this->collectibles_for_sale = $q->find();
+    $pager = new PropelModelPager($q);
+    $pager->setPage($this->getRequestParameter('p', 1));
+    $pager->setMaxPerPage(6);
+    $pager->init();
+
+    $this->pager = $pager;
+    $this->total = $total;
+    $this->offset = $offset;
+    $this->t = $t;
 
     return sfView::SUCCESS;
   }
