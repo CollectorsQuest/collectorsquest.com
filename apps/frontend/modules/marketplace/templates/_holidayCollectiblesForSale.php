@@ -12,14 +12,13 @@
         'id' => $collectible->getId()
       )
     );
-    $link_parameters = 'class="target zoom-zone" onclick="return false;"';
 
     include_partial(
       'marketplace/collectible_for_sale_masonry_view_big',
       array(
         'collectible_for_sale' => $collectible->getCollectibleForSale(),
         'url' => $url,
-        'link_parameters' => $link_parameters
+        'link_parameters' => array('class' => 'target zoom-zone', 'onclick' => 'return false;')
       )
     );
   }
@@ -65,7 +64,7 @@
       });
     });
 
-    $('a.zoom-zone').click(function(e)
+    $('a.zoom-zone').live('click', function(e)
     {
       e.preventDefault();
 
@@ -115,9 +114,6 @@
           $container.masonry('appended', $bricks, true);
         });
       });
-
-      // force infinite scroll load
-      $container.infinitescroll('retrieve');
     <?php endif; ?>
 
   });
