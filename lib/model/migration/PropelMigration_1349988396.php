@@ -48,8 +48,8 @@ class PropelMigration_1349988396
           `id` INTEGER NOT NULL AUTO_INCREMENT,
           `shopping_order_id` INTEGER NOT NULL,
           `collectible_id` INTEGER NOT NULL,
-          `seller_id` INTEGER NOT NULL,
-          `buyer_id` INTEGER,
+          `to_collector_id` INTEGER NOT NULL,
+          `from_collector_id` INTEGER,
           `rating` TINYINT NOT NULL,
           `rating_for` TINYINT NOT NULL,
           `comment` TEXT,
@@ -59,8 +59,8 @@ class PropelMigration_1349988396
           PRIMARY KEY (`id`),
           INDEX `shopping_order_feedback_FI_1` (`shopping_order_id`),
           INDEX `shopping_order_feedback_FI_2` (`collectible_id`),
-          INDEX `shopping_order_feedback_FI_3` (`seller_id`),
-          INDEX `shopping_order_feedback_FI_4` (`buyer_id`),
+          INDEX `shopping_order_feedback_FI_3` (`to_collector_id`),
+          INDEX `shopping_order_feedback_FI_4` (`from_collector_id`),
           CONSTRAINT `shopping_order_feedback_FK_1`
             FOREIGN KEY (`shopping_order_id`)
             REFERENCES `shopping_order` (`id`)
@@ -70,11 +70,11 @@ class PropelMigration_1349988396
             REFERENCES `collectible` (`id`)
             ON DELETE CASCADE,
           CONSTRAINT `shopping_order_feedback_FK_3`
-            FOREIGN KEY (`seller_id`)
+            FOREIGN KEY (`to_collector_id`)
             REFERENCES `collector` (`id`)
             ON DELETE CASCADE,
           CONSTRAINT `shopping_order_feedback_FK_4`
-            FOREIGN KEY (`buyer_id`)
+            FOREIGN KEY (`from_collector_id`)
             REFERENCES `collector` (`id`)
             ON DELETE SET NULL
         ) ENGINE=InnoDB;

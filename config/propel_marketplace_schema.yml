@@ -126,8 +126,8 @@ classes:
       id:  ~
       shopping_order_id:  { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: cascade }
       collectible_id:     { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-      seller_id:          { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      buyer_id:           { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: setnull }
+      to_collector_id:    { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      from_collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: setnull }
       rating:             { type: enum, valueSet: "positive, neutral, negative", required: true }
       rating_for:         { type: enum, valueSet: "seller, buyer", required: true }
       comment:            { type: longvarchar }

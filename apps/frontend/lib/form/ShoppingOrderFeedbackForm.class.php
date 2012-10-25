@@ -1,13 +1,13 @@
 <?php
 
 /**
- * ShoppingOrderFeedack form.
+ * ShoppingOrderFeedback form.
  *
  * @package    CollectorsQuest
  * @subpackage form
  * @author     Collectors Quest, Inc.
  */
-class ShoppingOrderFeedackForm extends BaseShoppingOrderFeedbackForm
+class ShoppingOrderFeedbackForm extends BaseShoppingOrderFeedbackForm
 {
   public function configure()
   {
@@ -30,7 +30,8 @@ class ShoppingOrderFeedackForm extends BaseShoppingOrderFeedbackForm
       $label = strip_tags($input['label']);
       $rows[] = $widget->renderContentTag('label', $input['input'] . ucfirst($label).'&nbsp',
         array(
-          'class' => 'radio inline rate_label' . ($label != 'Leave later' ? ' label rate_'.strtolower($label) : '')
+          'class' => 'radio inline rating_label'
+            . ($label != 'Leave later' ? ' label rating_'.strtolower($label) : '')
         ));
     }
 

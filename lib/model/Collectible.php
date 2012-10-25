@@ -696,10 +696,10 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    * @param bool $rated
    * @return ShoppingOrderFeedback
    */
-  public function getShoppingOrderFeedbackFromBuyer(Collector $collector, $rated = true)
+  public function getShoppingOrderFeedbackFromCollector(Collector $collector, $rated = true)
   {
     $criteria = new Criteria();
-    $criteria->add(ShoppingOrderFeedbackPeer::BUYER_ID, $collector->getId());
+    $criteria->add(ShoppingOrderFeedbackPeer::FROM_COLLECTOR_ID, $collector->getId());
     $criteria->add(ShoppingOrderFeedbackPeer::IS_RATED, $rated);
 
     return $this->getShoppingOrderFeedbacks($criteria)->getFirst();

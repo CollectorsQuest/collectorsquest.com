@@ -40,13 +40,13 @@
       </div>
     </div>
     <div class="span6 pull-right" style="padding-top: 2px;">
-      <span class="label label rate_negative pull-right spacer-left">
+      <span class="label label rating_negative pull-right spacer-left">
         <?= $collector->getFeedbackCount(ShoppingOrderFeedbackPeer::RATING_NEGATIVE) ?> negative
       </span>
-      <span class="label label rate_neutral pull-right spacer-left">
+      <span class="label label rating_neutral pull-right spacer-left">
         <?= $collector->getFeedbackCount(ShoppingOrderFeedbackPeer::RATING_NEUTRAL) ?> neutral
       </span>
-      <span class="label rate_positive pull-right">
+      <span class="label rating_positive pull-right">
         <?= $collector->getFeedbackCount(ShoppingOrderFeedbackPeer::RATING_POSITIVE) ?> positive
       </span>
     </div>
@@ -58,7 +58,7 @@
     <?php if (!$pager->isEmpty()): foreach ($pager->getResults() as $shopping_order_feedback): ?>
     <tr>
         <td>
-          <span class="label rate_<?= strtolower($shopping_order_feedback->getRating()) ?>">
+          <span class="label rating_<?= strtolower($shopping_order_feedback->getRating()) ?>">
             <?= $shopping_order_feedback->getRating() ?>
           </span>
         </td>

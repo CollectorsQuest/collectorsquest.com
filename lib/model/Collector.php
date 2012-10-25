@@ -1529,7 +1529,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $q->filterByRating($rating);
     }
 
-    return $this->countShoppingOrderFeedbacksRelatedByBuyerId($q);
+    return $this->countShoppingOrderFeedbacksRelatedByToCollectorId($q);
   }
 
   /**
@@ -1540,10 +1540,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   {
     $criteria = new Criteria();
     $criteria->add(ShoppingOrderFeedbackPeer::IS_RATED, true);
-    $total = $this->countShoppingOrderFeedbacksRelatedByBuyerId($criteria);
+    $total = $this->countShoppingOrderFeedbacksRelatedByToCollectorId($criteria);
 
     $criteria->add(ShoppingOrderFeedbackPeer::RATING, ShoppingOrderFeedbackPeer::RATING_POSITIVE);
-    $positive = $this->countShoppingOrderFeedbacksRelatedByBuyerId($criteria);
+    $positive = $this->countShoppingOrderFeedbacksRelatedByToCollectorId($criteria);
 
     return round(($positive / $total) * 100);
   }

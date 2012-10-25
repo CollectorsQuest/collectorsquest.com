@@ -155,6 +155,10 @@ mycq_shopping_order:
   options: { model: ShoppingOrder, type: object }
   param: { module: mycq, action: shoppingOrder }
 
+mycq_collectible_feedback_leave:
+  url:    /mycq/feedback/leave/:id
+  param:  { module: mycq, action: leaveFeedback }
+
 mycq_feedback_leave:
   url:    /mycq/feedback/leave
   param:  { module: mycq, action: leaveFeedback }

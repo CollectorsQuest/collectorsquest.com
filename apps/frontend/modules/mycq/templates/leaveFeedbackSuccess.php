@@ -37,10 +37,10 @@
                       array('width' => 130, 'height' => 130)
                     ), 'mycq_collectible_by_slug', $collectible);
                     ?>
-                    <?php if ($form->getObject()->getRateFor() == 'buyer'): ?>
+                    <?php if ($form->getObject()->getRatingFor() == 'buyer'): ?>
                       <span class="sold">SOLD</span>
                     <?php endif ?>
-                    <?php if ($form->getObject()->getRateFor() == 'seller'): ?>
+                    <?php if ($form->getObject()->getRatingFor() == 'seller'): ?>
                       <span class="purchased">PURCHASED</span>
                     <?php endif ?>
                     <p>
