@@ -630,8 +630,8 @@ class shoppingActions extends cqFrontendActions
         $seller_feeback
           ->setShoppingOrderId($shopping_order->getId())
           ->setCollectibleId($shopping_order->getCollectibleId())
-          ->setBuyerId($shopping_order->getCollectorId())
-          ->setSellerId($shopping_order->getSellerId())
+          ->setFromCollectorId($shopping_order->getCollectorId())
+          ->setToCollectorId($shopping_order->getSellerId())
           ->setRatingFor(ShoppingOrderFeedbackPeer::RATING_FOR_SELLER)
           ->save();
 
@@ -639,8 +639,8 @@ class shoppingActions extends cqFrontendActions
         $buyer_feedback
           ->setShoppingOrderId($shopping_order->getId())
           ->setCollectibleId($shopping_order->getCollectibleId())
-          ->setBuyerId($shopping_order->getCollectorId())
-          ->setSellerId($shopping_order->getSellerId())
+          ->setFromCollectorId($shopping_order->getSellerId())
+          ->setToCollectorId($shopping_order->getCollectorId())
           ->setRatingFor(ShoppingOrderFeedbackPeer::RATING_FOR_BUYER)
           ->save();
 

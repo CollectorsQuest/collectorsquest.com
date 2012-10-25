@@ -460,10 +460,10 @@ class collectorActions extends cqFrontendActions
     switch ($this->filter_by)
     {
       case 'others':
-        $q->filterByCollectorRelatedBySellerId($collector);
+        $q->filterByCollectorRelatedByFromCollectorId($collector);
       break;
       default:
-        $q->filterByCollectorRelatedByBuyerId($collector);
+        $q->filterByCollectorRelatedByToCollectorId($collector);
       break;
     }
 

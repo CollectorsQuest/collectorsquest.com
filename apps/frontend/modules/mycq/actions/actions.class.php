@@ -1036,7 +1036,7 @@ class mycqActions extends cqFrontendActions
 
     /* @var $q ShoppingOrderFeedbackQuery */
     $q = ShoppingOrderFeedbackQuery::create()
-      ->filterByCollectorRelatedBySellerId($this->getUser()->getCollector())
+      ->filterByCollectorRelatedByFromCollectorId($this->getUser()->getCollector())
       ->filterByIsRated(false);
 
     if ($request->getParameter('id'))
