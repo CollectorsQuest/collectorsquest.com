@@ -251,14 +251,15 @@
     cursor: zoom-in;
   }
 
-  .text-box {
+  .collectible-info {
+    overflow: hidden;
     position: absolute;
     bottom: 0;
     display: block;
     width: 100%;
-    opacity: 0;
+    max-height: 0;
     background-color: rgba(0,0,0,0.6);
-    .transition(all 0.5s linear);
+    .transition(all 0.5s ease-in-out);
 
     > a {
       display: block;
@@ -280,9 +281,9 @@
     }
   }
 
-  &:hover .text-box {
-    opacity: 1;
-    .transition(all 0s linear);
+  &:hover .collectible-info {
+    .transition(max-height 0.5s ease-in-out);
+    max-height: 140px;
   }
 }
 

@@ -2,7 +2,7 @@
   <?php cq_section_title('Discover More Items for Sale', null, array('class' => 'row-fluid section-title blue')); ?>
 
 
-  <div class="row-fluid spacer-bottom-30 cf">
+  <div class="row-fluid sort-container">
     <div class="span6 sort-actions">
       <button type="button" class="btn thin">View all</button>
 

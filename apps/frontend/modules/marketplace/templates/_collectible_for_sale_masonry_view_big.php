@@ -16,7 +16,7 @@
     <?php echo ice_image_tag_flickholdr('220x'. ($collectible_for_sale->getCollectibleId() % 500)); ?>
   </a>
 
-  <div class="text-box">
+  <div class="collectible-info">
     <a href="<?= $url ?: $default_url ?>" <?= $link_parameters ?: 'class="target"' ?>>
       <?= $collectible_for_sale->getCollectible()->getName(); ?><br/>
       <span class="price">
