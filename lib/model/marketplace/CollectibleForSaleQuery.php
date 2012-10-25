@@ -15,7 +15,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->filterByIsReady(true)
       ->filterByPriceAmount(1, Criteria::GREATER_EQUAL)
       ->filterByQuantity(1, Criteria::GREATER_EQUAL)
-      // ->hasActiveCredit()
+      ->hasActiveCredit()
       ;
   }
 

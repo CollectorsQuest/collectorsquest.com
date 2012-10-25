@@ -318,15 +318,13 @@ class mycqComponents extends cqFrontendComponents
       ->filterByCollector($collector)
       ->_if('active' == $this->filter_by)
         ->isForSale()
-        ->hasActiveCredit()
       ->_elseif('sold' == $this->filter_by)
         ->filterByIsSold(true)
       ->_elseif('inactive' == $this->filter_by)
         ->filterByIsReady(false)
-        ->hasActiveCredit()
       ->_elseif('expired' == $this->filter_by)
-        ->isForSale()
-        ->hasActiveCredit($active_credit = false)
+        ->filterByIsReady(true)
+        ->hasActiveCredit(false)
       ->_endif()
       ->orderByCreatedAt(Criteria::DESC);
 

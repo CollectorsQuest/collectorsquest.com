@@ -168,6 +168,9 @@ class CollectibleForSale extends BaseCollectibleForSale
     else if ($this->getPriceAmount() === 0) {
       return false;
     }
+    else if (!$this->hasActiveCredit()) {
+      return false;
+    }
 
     return true;
   }
