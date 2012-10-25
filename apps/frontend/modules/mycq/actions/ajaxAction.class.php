@@ -774,9 +774,16 @@ class ajaxAction extends cqAjaxAction
     $collectible_for_sale->setIsReady(true);
     $collectible_for_sale->save();
 
-    // @todo -1 credit taken away from collector
-
     $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
+
+    // @todo take 1 credit from collector - check if implementation is ok
+    try {
+      // try to create a transaction credit for this collectible
+      PackageTransactionCreditPeer::findActiveOrCreateForCollectible($collectible_for_sale->getCollectible());
+    } catch (CollectorHasNoCreditsAvailableException $e) {
+      // and if for some reason there were no available credits
+      return false;
+    }
 
     return $template;
   }

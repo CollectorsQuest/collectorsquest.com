@@ -281,9 +281,6 @@ class mycqComponents extends cqFrontendComponents
     // Get the Collector
     $collector = $this->getCollector(true);
 
-    // Make the collector available to the template
-    $this->collector = $collector;
-
     // retrieve the package transactions
     $this->package_transactions = PackageTransactionQuery::create()
       ->filterByCollector($collector)
@@ -292,24 +289,18 @@ class mycqComponents extends cqFrontendComponents
       ->_endif()
       ->find();
 
-    // check if the seller has valid credits left
-    $this->has_credits = false;
-    foreach ($this->package_transactions as $package)
+    /* @var $seller Seller */
+    $seller = $collector->getSeller();
+
+    // determine if the seller has package credits left
+    $this->has_credits = true;
+    if (!$seller->hasPackageCredits())
     {
-      /* @var $package PackageTransaction */
-      if (
-        $package->getCredits() - $package->getCreditsUsed() > 0 &&
-        $package->getExpiryDate('YmdHis') > date('YmdHis')
-      )
-      {
-        $this->has_credits = true;
-      }
+      $this->has_credits = false;
     }
 
-    /**
-     * @todo have $has_credits variable in itemsForSaleHistory partial so
-     * we can not show activate and re-list actions
-     */
+    // Make the collector available to the template
+    $this->collector = $collector;
 
     return sfView::SUCCESS;
   }
@@ -321,6 +312,7 @@ class mycqComponents extends cqFrontendComponents
 
     $this->filter_by = $this->getRequestParameter('filter_by');
 
+    // @todo deterime if this queries are correct for the cases provided
     /* @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
@@ -335,24 +327,8 @@ class mycqComponents extends cqFrontendComponents
       ->_elseif('expired' == $this->filter_by)
         ->isForSale()
         ->hasNoActiveCredit()
-      ->_endif();
-
-    switch ($this->getRequestParameter('s', 'most-recent'))
-    {
-      case 'most-popular':
-        $q
-          ->joinCollectible()
-          ->useCollectibleQuery()
-          ->orderByNumViews(Criteria::DESC)
-          ->endUse();
-        break;
-
-      case 'most-recent':
-      default:
-        $q
-          ->orderByCreatedAt(Criteria::DESC);
-        break;
-    }
+      ->_endif()
+      ->orderByCreatedAt(Criteria::DESC);
 
     $this->search = '';
     if ($this->search = $this->getRequestParameter('q'))
@@ -369,6 +345,7 @@ class mycqComponents extends cqFrontendComponents
     /* @var $seller Seller */
     $seller = $collector->getSeller();
 
+    // determine if the seller has package credits left
     $this->has_credits = true;
     if (!$seller->hasPackageCredits())
     {

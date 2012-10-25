@@ -72,6 +72,7 @@
             <?php endif; ?>
           </td>
           <td>
+            <?php // @todo determine if these cases are correct ?>
             <?php if ($collectible_for_sale->getIsSold()) : ?>
               -
             <?php elseif ($collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()) : ?>
@@ -79,15 +80,15 @@
                  class="deactivate btn btn-mini" onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
                 <i class="icon-minus-sign"></i>&nbsp;Deactivate
               </a>
-            <?php elseif(!$collectible_for_sale->hasActiveCredit() && $collectible_for_sale->getIsReady() && $has_credits) : ?>
-              <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
-                 class="relist btn btn-mini" onclick="return confirm('Are you sure you sure you want to re-list this item?')">
-                <i class="icon-undo"></i>&nbsp;Re-list
-              </a>
-            <?php else : ?>
+            <?php elseif (!$has_credits): ?>
               <a href="<?php echo url_for('@seller_packages'); ?>" class="btn btn-mini">
                 <i class="icon-plus-sign"></i>&nbsp;Buy credits
               </a>
+            <?php else : ?>
+            <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
+               class="relist btn btn-mini" onclick="return confirm('Are you sure you sure you want to re-list this item?')">
+              <i class="icon-undo"></i>&nbsp;Re-list
+            </a>
             <?php endif; ?>
           </td>
         </tr>

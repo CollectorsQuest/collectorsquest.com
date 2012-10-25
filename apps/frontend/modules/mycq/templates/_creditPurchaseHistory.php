@@ -45,6 +45,7 @@
   <tr>
     <th>Package</th>
     <th>Credits Purchased</th>
+    <th>Credits Used</th>
     <th>Purchased On</th>
     <th>Expires On</th>
     <?php if ('dev' == sfConfig::get('sf_environment')): ?>
@@ -69,13 +70,17 @@
         $class = 'processing';
         break;
       default:
-        // what are the other cases here?
+        /*
+         * @todo do we have other cases here ?
+         * Maybe compensation or employees packages ?
+         */
         break;
     }
     ?>
   <tr class=" <?= $class ?>">
     <td><?= $package_transaction->getPackage()->getPackageName(); ?></td>
     <td><?= $package_transaction->getCredits(); ?></td>
+    <td><?= $package_transaction->getCreditsUsed(); ?></td>
     <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
     <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
     <?php if ('dev' == sfConfig::get('sf_environment')): ?>
