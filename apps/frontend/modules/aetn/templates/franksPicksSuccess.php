@@ -52,13 +52,6 @@ cq_page_title("Frank's Picks");
     ?>
   </div>
 
-  <?php if ($pager->haveToPaginate()): ?>
-  <div class="see-more-under-image-set" style="padding: 0;">
-    <button class="btn btn-small see-more-full" id="seemore-explore-collectibles">
-      See more
-    </button>
-  </div>
-  <?php endif; ?>
 </div>
 
 <script>
@@ -69,8 +62,7 @@ cq_page_title("Frank's Picks");
     $container.imagesLoaded(function() {
       $container.masonry({
         itemSelector : '.brick',
-        columnWidth : 220, gutterWidth: 18,
-        isAnimated: !Modernizr.csstransitions
+        columnWidth : 220, gutterWidth: 18
       });
     });
 
@@ -91,18 +83,14 @@ cq_page_title("Frank's Picks");
       return false;
     });
 
-    $('#seemore-explore-collectibles').click(function()
-    {
-      var $button = $(this);
-      $button.hide();
-
+    <?php if ($pager->haveToPaginate()): ?>
       $container.infinitescroll(
         {
           navSelector:'#collectibles-pagination',
           nextSelector:'#collectibles-pagination li.next a',
           itemSelector:'#collectibles .span4',
           loading:{
-            msgText:'Loading more collectibles...',
+            msgText:'',
             finishedMsg:'No more pages to load.',
             img:'<?= image_path('frontend/progress.gif'); ?>'
           },
@@ -126,7 +114,6 @@ cq_page_title("Frank's Picks");
 
       // force infinite scroll load
       $container.infinitescroll('retrieve');
-    });
-
+    <?php endif; ?>
   });
 </script>
