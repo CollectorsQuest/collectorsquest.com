@@ -70,7 +70,9 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->_or()
       ->filterByPriceAmount(1, Criteria::LESS_THAN)
       ->_or()
-      ->filterByQuantity(1, Criteria::LESS_THAN);
+      ->filterByQuantity(1, Criteria::LESS_THAN)
+      ->_or()
+      ->hasActiveCredit(false);
 
     return $this;
   }
