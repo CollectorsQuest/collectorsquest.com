@@ -1,9 +1,5 @@
 <?php
 
-
-require 'lib/model/plugins/iceMultimediaPlugin/om/BaseiceModelMultimediaQuery.php';
-
-
 /**
  * Skeleton subclass for performing query and update operations on the 'multimedia' table.
  *
