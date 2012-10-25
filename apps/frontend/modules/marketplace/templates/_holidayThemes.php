@@ -54,10 +54,10 @@
       foreach ($pager->getResults() as $collectible_for_sale)
       {
         include_partial(
-          'collection/collectible_grid_view_square_big',
+          'marketplace/collectible_for_sale_grid_view_square_big',
           array(
-            'collectible' => $collectible_for_sale->getCollectible(),
-            'i' => $collectible_for_sale->getCollectibleId()
+            'collectible_for_sale' => $collectible_for_sale,
+            'lazy_image' => false, 'i' => $collectible_for_sale->getCollectibleId()
           )
         );
       }
@@ -82,8 +82,13 @@
   $(document).ready(function()
   {
     $('a.ajax').autoajax({
-      onstart: function() { $('#holiday-market-body').showLoading(); },
-      oncomplete: function() { $('#holiday-market-body').hideLoading(); }
+      onstart: function() {
+        $('#holiday-market-body').showLoading();
+      },
+      oncomplete: function() {
+        $('.fade-white').mosaic();
+        $('#holiday-market-body').hideLoading();
+      }
     });
   });
 </script>

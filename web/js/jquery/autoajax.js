@@ -10,46 +10,55 @@
 //
 // create closure
 //
-(function($){
+(function ($) {
+  "use strict";
+
   //
   // plugin definition
   //
-  $.fn.autoajax = function(options){
+  $.fn.autoajax = function (options) {
 
     // build main options before element iteration
     var opts = $.extend({}, $.fn.autoajax.defaults, options);
 
     // iterate and add the click handler to each matched element
-    return this.each(function(){
-      $this = $(this);
-      jQuery(this).click( function() {
-        loc  = this.href
-        frag = loc.indexOf( '#' )
-        if ( frag > 0 )
-        {
+    return this.each(function ()
+    {
+      $(this).click(function ()
+      {
+        if (opts.onstart) {
+          opts.onstart();
+        }
+
+        var loc = this.href;
+        var frag = loc.indexOf('#');
+        if (frag > 0) {
           // The URL we're loading
-          url = loc.substring(0,frag);
+          var url = loc.substring(0, frag);
 
           // The div we're to load into, prefixed by "#".
-          div = loc.substring(frag);
+          var div = loc.substring(frag);
 
           // The URL we're requesting.
-          opts["url"] = url
+          opts.url = url;
 
           //
           // On success we write the data to the div, unless
           // the user over-rode that.
           //
-          if ( ! opts["success"] )
-          {
-            opts["success"] = function(data) { $( div ).html( data );
-              if ( opts["oncomplete"] ) { opts["oncomplete"](); }
-            }
+          if (!opts.success) {
+            opts.success = function (data) {
+              $(div).html(data);
+              if (opts.oncomplete) {
+                opts.oncomplete();
+              }
+            };
           }
-          $.ajax( opts );
+          $.ajax(opts);
         }
+
         return false;
-      })
+      });
     });
   };
 
