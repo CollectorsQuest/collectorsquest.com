@@ -39,31 +39,31 @@
               <div class="control-group">
                 <div class="btn-filter-all btn-group">
                   <?php
-                    echo link_to('All', '@mycq_marketplace_credit_history?filter=all',
+                    echo link_to('All', '@mycq_marketplace_credit_history?filter_by=all',
                       array(
                         'id' => 'filter-items-all',
                         'class' => 'btn btn-mini btn-filter '.('all' == $filter_by ? 'active' : '')
                       )
                     );
-                    echo link_to('Active', '@mycq_marketplace_credit_history?filter=active',
+                    echo link_to('Active', '@mycq_marketplace_credit_history?filter_by=active',
                       array(
                         'id' => 'filter-items-active',
                         'class' => 'btn btn-mini btn-filter '.('active' == $filter_by ? 'active' : '')
                       )
                     );
-                    echo link_to('Inactive', '@mycq_marketplace_credit_history?filter=inactive',
+                    echo link_to('Inactive', '@mycq_marketplace_credit_history?filter_by=inactive',
                       array(
                         'id' => 'filter-items-inactive',
                         'class' => 'btn btn-mini btn-filter '.('inactive' == $filter_by ? 'active' : '')
                       )
                     );
-                    echo link_to('Sold', '@mycq_marketplace_credit_history?filter=sold',
+                    echo link_to('Sold', '@mycq_marketplace_credit_history?filter_by=sold',
                       array(
                         'id' => 'filter-items-sold',
                         'class' => 'btn btn-mini btn-filter '.('sold' == $filter_by ? 'active' : '')
                       )
                     );
-                    echo link_to('Expired', '@mycq_marketplace_credit_history?filter=expired',
+                    echo link_to('Expired', '@mycq_marketplace_credit_history?filter_by=expired',
                       array(
                         'id' => 'filter-items-expired',
                         'class' => 'btn btn-mini btn-filter '.('expired' == $filter_by ? 'active' : '')
@@ -83,7 +83,7 @@
                   <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
                   <!-- keep INPUT and BUTTON elements in same line, if you break to two lines, you will see the "gap" between the text box and button -->
                   <input type="hidden" value="most-recent" id="sortByValue" name="s">
-                  <input type="hidden" name="filter" id="filter-hidden" value="<?= $filter_by; ?>">
+                  <input type="hidden" name="filter_by" id="filter-hidden" value="<?= $filter_by; ?>">
                 </form>
               </div>
             </div>
@@ -126,7 +126,7 @@
     {
       $('.btn-filter-all .active').removeClass('active');
       $(this).addClass('active');
-      $('#filter-hidden').val($(this).attr('id').replace('filter-', ''));
+      $('#filter-hidden').val($(this).attr('id').replace('filter-items-', ''));
       loadingTable();
 
       return false;

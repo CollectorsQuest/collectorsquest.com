@@ -775,7 +775,7 @@ class mycqActions extends cqFrontendActions
   {
     $this->redirectUnless(IceGateKeeper::open('mycq_marketplace_credit_history'), '@mycq');
 
-    $this->filter_by = $request->getParameter('filter', 'all');
+    $this->filter_by = $request->getParameter('filter_by', 'all');
 
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 

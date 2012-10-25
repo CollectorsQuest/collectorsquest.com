@@ -310,7 +310,7 @@ class mycqComponents extends cqFrontendComponents
     // Get the Collector
     $collector = $this->getCollector(true);
 
-    $this->filter_by = $this->getRequestParameter('filter_by');
+    $this->filter_by = $this->getRequestParameter('filter_by', 'all');
 
     // @todo deterime if this queries are correct for the cases provided
     /* @var $q CollectibleForSaleQuery */

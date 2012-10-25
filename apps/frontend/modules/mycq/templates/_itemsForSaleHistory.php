@@ -8,7 +8,6 @@
 ?>
 
 <div id="items-for-sale">
-
     <table class="table table-striped table-items-for-sale-history">
       <thead>
         <tr>
