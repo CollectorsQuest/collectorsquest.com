@@ -63,8 +63,7 @@
 
     a {
       display: block;
-      width: 120px;
-      height: 120px;
+      .square(120px);
     }
   }
 }
@@ -76,13 +75,11 @@
   position: relative;
 
   .mosaic-backdrop {
-    width: 295px;
-    height: 295px;
+    .square(295px);
   }
 
   .mosaic-overlay {
-    width: 295px;
-    height: 295px;
+    .square(295px);
   }
 
   .mosaic-overlay .details {
@@ -91,26 +88,23 @@
 
     a {
       display: block;
-      width: 275px;
-      height: 275px;
+      .square(275px);
     }
   }
 }
 
 .collectible_grid_view_wide {
+  position: relative;
+  overflow: hidden;
   height: 140px;
   margin-bottom: 16px;
-  overflow: hidden;
-  position: relative;
 
   .mosaic-backdrop {
-    width: 295px;
-    height: 140px;
+    .size(140px, 295px);
   }
 
   .mosaic-overlay {
-    width: 295px;
-    height: 140px;
+    .size(140px, 295px);
   }
 
   .mosaic-overlay .details {
@@ -119,8 +113,7 @@
 
     a {
       display: block;
-      width: 275px;
-      height: 120px;
+      .size(120px, 275px);
     }
   }
 }
@@ -132,13 +125,11 @@
   position: relative;
 
   .mosaic-backdrop {
-    width: 140px;
-    height: 295px;
+    .size(140px, 295px);
   }
 
   .mosaic-overlay {
-    width: 140px;
-    height: 295px;
+    .size(140px, 295px);
   }
 
   .mosaic-overlay .details {
@@ -147,8 +138,7 @@
 
     a {
       display: block;
-      width: 120px;
-      height: 275px;
+      .size(120px, 275px);
     }
   }
 }
