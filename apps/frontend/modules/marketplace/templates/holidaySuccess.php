@@ -1,5 +1,5 @@
 <div class="slot2-inner">
-  <?php cq_section_title('Discover More Items for Sale', null, array('class' => 'row-fluid section-title blue')); ?>
+  <?php cq_section_title('More from the Market', null, array('class' => 'row-fluid section-title blue')); ?>
 
 
   <div class="row-fluid sort-container">
