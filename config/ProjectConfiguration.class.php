@@ -58,8 +58,11 @@ class ProjectConfiguration extends sfProjectConfiguration
      * For including WordPress functionality, we need to specify
      * both ABSPATH and WPINC
      */
-    define('ABSPATH', __DIR__ .'/../web/blog/');
-    define('WPINC', 'wp-includes');
+    if (!defined('ABSPATH'))
+    {
+      define('ABSPATH', __DIR__ .'/../web/blog/');
+      define('WPINC', 'wp-includes');
+    }
   }
 
 }
