@@ -18,7 +18,7 @@ $lazy_image = $lazy_image && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_p
      data-id="<?= $collectible_for_sale->getCollectibleId(); ?>"
      class="span6 collectible_for_sale_grid_view_square_big fade-white link">
 
-  <div class="text-box">
+  <div class="collectible-info">
     <a href="<?= url_for_collectible($collectible_for_sale->getCollectible()); ?>" class="target">
       <?= $collectible_for_sale->getCollectible()->getName(); ?><br/>
       <span class="price">

@@ -263,9 +263,8 @@
 
     > a {
       display: block;
-      width: 90%;
+      .size(100%, 90%);
       padding: 10px 5%;
-      height: 100%;
     }
 
     .target.zoom-zone {
@@ -277,7 +276,7 @@
       display: block;
       margin-top: 3px;
       font-size: 13px;
-      color: #f1f1f1;
+      color: #fff;
     }
   }
 
@@ -290,11 +289,11 @@
 .lt-ie9 .collectible_for_sale_grid_view_masonry_big,
 .lt-ie9 .collectible_for_sale_grid_view_square_big,
 {
-  .text-box {
+  .collectible-info {
     display: none;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#80000000', endColorstr = '#80000000', GradientType = 0);
   }
-  &:hover .text-box {
+  &:hover .collectible-info {
     display: block;
   }
 }
@@ -453,13 +452,11 @@
   position: relative;
 
   .mosaic-backdrop {
-    width: 295px;
-    height: 295px;
+    .square(295px);
   }
 
   .mosaic-overlay {
-    width: 295px;
-    height: 295px;
+    .square(295px);
   }
 
   .mosaic-overlay .details {
@@ -468,41 +465,51 @@
 
     a {
       display: block;
-      width: 275px;
-      height: 275px;
+      .square(275px);
     }
   }
 
-  .text-box {
+  .collectible-info {
+    overflow: hidden;
     position: absolute;
     bottom: 0;
+    z-index: 10;
     display: block;
-    width: 100%;
-    opacity: 0;
+    width: 295px;
+    max-height: 0;
     background-color: rgba(0,0,0,0.6);
-    .transition(all 0.5s linear);
+    .transition(all 0.5s ease-in-out);
 
     > a {
       display: block;
-      width: 90%;
-      padding: 10px 5%;
-      height: 100%;
-    }
-
-    .target.zoom-zone {
-      font-size: 16px;
+      .size(100%, 90%);
+      padding: 10px;
+      font-size: 15px;
+      font-weight: bold;
       color: #fff;
     }
     span.price {
       display: block;
-      margin-top: 5px;
-      font-size: 14px;
-      color: #f1f1f1;
+      margin-top: 3px;
+      font-size: 13px;
+      color: #fff;
     }
   }
 
-  &:hover .text-box {
-    opacity: 1;
-    .transition(all 0s linear);
+  &:hover .collectible-info {
+    .transition(max-height 0.5s ease-in-out);
+    max-height: 140px;
+  }
+}
+
+.lt-ie9 .collectible_for_sale_grid_view_masonry_big,
+.lt-ie9 .collectible_for_sale_grid_view_square_big,
+{
+  .collectible-info {
+    display: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#80000000', endColorstr = '#80000000', GradientType = 0);
+  }
+  &:hover .collectible-info {
+    display: block;
   }
 }
