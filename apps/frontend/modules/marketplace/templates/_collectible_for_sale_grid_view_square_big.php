@@ -19,7 +19,7 @@ $lazy_image = $lazy_image && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_p
      class="span6 collectible_for_sale_grid_view_square_big fade-white link">
 
   <div class="text-box">
-    <a href="<?= $url ?: $default_url ?>" <?= $link_parameters ?: 'class="target"' ?>>
+    <a href="<?= url_for_collectible($collectible_for_sale->getCollectible()); ?>" class="target">
       <?= $collectible_for_sale->getCollectible()->getName(); ?><br/>
       <span class="price">
         <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
