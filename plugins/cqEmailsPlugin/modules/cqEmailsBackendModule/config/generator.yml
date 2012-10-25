@@ -1,0 +1,49 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           EmailsLog
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              EmailsLog
+    plural:                EmailsLogs
+    route_prefix:          emails_log
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: Emails Log
+        fields:
+          created_at: { label: Date }
+          list_sender: { label: Sender, is_sortable: true, sort_method: orderBySenderEmail }
+          list_receiver: { label: Receiver, is_sortable: true, sort_method: orderByReceiverEmail }
+        display: [_list_sender, _list_receiver, subject, result, created_at]
+        actions: []
+        batch_actions: {}
+        object_actions:
+           showHtml:
+             label: "Show Html",
+             params:
+               popup:
+                 '0': 'showhtml'
+                 '1': 'location,width=720,height=480,top=0,scrollbars=yes'
+           showPlain:
+             label: "Show Plain",
+             params:
+               popup:
+                 '0': 'showplain'
+                 '1': 'location,width=720,height=480,top=0,scrollbars=yes'
+           showHeaders:
+             label: "Show Headers",
+             params:
+               popup:
+                 '0': 'showheaders'
+                 '1': 'location,width=600,height=240,top=0,scrollbars=yes'
+      filter:
+        display: [sender_email, receiver_email, subject, result, created_at]
+      form:    ~
+      edit:    ~
+      new:     ~

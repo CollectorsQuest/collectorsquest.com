@@ -1,0 +1,8 @@
+emails_log:
+  class: icePropelRouteCollection
+  options:
+    model:                EmailsLog
+    module:               cqEmailsBackendModule
+    prefix_path:          /cqEmailsBackendModule
+    column:               id
+    with_wildcard_routes: true
