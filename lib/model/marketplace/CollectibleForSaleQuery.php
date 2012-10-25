@@ -20,17 +20,21 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
   /**
-   * Filter on collectibles that have an active (not yet expired) transaction credit,
-   * ie are paid to be shown as for sale
+   * Filter on collectibles that have an active (inactive) transaction credit,
+   * ie are paid (not paid/expired) to be shown as for sale
    *
    * @return    CollectibleForSaleQuery
    */
-  public function hasActiveCredit()
+  public function hasActiveCredit($active_credit = true)
   {
     return $this
       ->useCollectibleQuery('collectible_check_credit_alias')
         ->usePackageTransactionCreditQuery()
-          ->notExpired()
+          ->_if($active_credit)
+            ->notExpired()
+          ->_else()
+            ->isExpired()
+          ->_endif()
         ->endUse()
       ->endUse();
   }
@@ -41,16 +45,6 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
    *
    * @return    CollectibleForSaleQuery
    */
-
-  public function hasNoActiveCredit()
-  {
-    return $this
-      ->useCollectibleQuery('collectible_check_credit_alias')
-        ->usePackageTransactionCreditQuery()
-          ->isExpired()
-        ->endUse()
-      ->endUse();
-  }
 
   /**
    * @return CollectibleForSaleQuery

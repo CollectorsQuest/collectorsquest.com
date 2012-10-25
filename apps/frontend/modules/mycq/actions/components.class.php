@@ -326,7 +326,7 @@ class mycqComponents extends cqFrontendComponents
         ->hasActiveCredit()
       ->_elseif('expired' == $this->filter_by)
         ->isForSale()
-        ->hasNoActiveCredit()
+        ->hasActiveCredit($active_credit = false)
       ->_endif()
       ->orderByCreatedAt(Criteria::DESC);
 
