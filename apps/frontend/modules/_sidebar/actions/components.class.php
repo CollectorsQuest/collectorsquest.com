@@ -564,12 +564,13 @@ class _sidebarComponents extends cqFrontendComponents
     $this->title = $this->getVar('title') ?: 'From the Market';
 
     // Set the limit of Collectibles For Sale to show
-    $this->limit = (int) $this->getVar('limit') ?: 3;
+    $this->limit = (int) $this->getVar('limit') ?: 4;
 
     /** @var $height stdClass */
     if ($height = $this->getVar('height'))
     {
-      $this->limit = min(floor(($height->value - 63) / 85), $this->limit);
+      // one row is 142px in height, fits 2 collectibles
+      $this->limit = min(floor(($height->value - 63) / 142 * round($this->limit / 2)), $this->limit);
     }
 
     // We want to stop right here if we are not going to show anything (0 items)
