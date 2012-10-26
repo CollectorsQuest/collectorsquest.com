@@ -41,7 +41,7 @@
 
 <?php include_component('_sidebar', 'widgetBlogPosts', array('limit' => 4)); ?>
 
-<?php include_component('_sidebar', 'widgetCollectiblesForSale', array('limit' => 3, 'fallback' => 'random')); ?>
+<?php include_component('_sidebar', 'widgetCollectiblesForSale', array('limit' => 4, 'fallback' => 'random')); ?>
 
 <?php include_component('_sidebar', 'widgetCollections', array('limit' => 5, 'fallback' => 'random')); ?>
 

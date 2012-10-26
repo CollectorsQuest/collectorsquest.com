@@ -22,41 +22,23 @@ $_height = 0;
 ?>
 
 <div id="items-for-sale-sidebar">
-<?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
-  <div class="row-fluid">
-    <div class="inner-border link">
-      <div class="span3">
-        <?php
-          echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
-            'image_tag' => array('width' => 75, 'height' => 75, 'max_width' => 60),
-            'link_to' => array('class' => 'target')
-          ));
-        ?>
-      </div>
-      <div class="span9 fix-height-text-block">
-        <div class="content-container">
-          <?php
-            echo link_to_collectible(
-              $collectible_for_sale->getCollectible(), 'text', array('class' => 'target')
-            );
-          ?>
-          <p>
-            <?= $collectible_for_sale->getCollectible()->getDescription('stripped'); ?>
-          </p>
-          <span class="price">
-            <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
-          </span>
-        </div>
-       </div>
-    </div>
+  <div class="row thumbnails">
+    <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
+      <?php
+          include_partial(
+            'marketplace/collectible_for_sale_grid_view_square_small',
+            array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
+          );
+      ?>
+    <?php endforeach; ?>
   </div>
-  <?php $_height -= 85; ?>
-<?php endforeach; ?>
 </div>
 
 <?php
   if (isset($height) && property_exists($height, 'value'))
   {
+    // one row is 142px in height, fits 2 collectibles
+    $_height -= 142 * round($limit / 2);
     $height->value -= abs($_height);
   }
 ?>
