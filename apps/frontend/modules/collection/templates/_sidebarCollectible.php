@@ -96,7 +96,7 @@
       include_component(
         '_sidebar', 'widgetCollectiblesForSale',
         array(
-          'collectible' => $collectible, 'limit' => 3,
+          'collectible' => $collectible, 'limit' => 4,
           'fallback' => 'random', 'height' => &$height
         )
       );
@@ -138,7 +138,7 @@
       include_component(
         '_sidebar', 'widgetCollectiblesForSale',
         array(
-          'collectible' => $collectible, 'limit' => 3,
+          'collectible' => $collectible, 'limit' => 4,
           'fallback' => 'random', 'height' => &$height
         )
       );
