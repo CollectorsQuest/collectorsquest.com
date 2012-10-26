@@ -6,21 +6,26 @@
 class PropelMigration_1351238578
 {
 
-  public function preUp($manager)
+  public function preUp()
   {
-    $sf_guard_user_id = 3;
+    // add the pre-migration code here
+  }
+
+  public function postUp()
+  {
+    $sf_guard_user_id = 8;
     $collections = array(
       1442 => array(
-        'machineTags' => array('Market:theme=cookie'), 'rating' => array('content' => 3, 'images' => 3)
+        'machineTags' => array('market:theme=cookie'), 'rating' => array('content' => 3, 'images' => 3)
       ),
       3948 => array(
-        'machineTags' => array('Market:theme=smoke'), 'rating' => array('content' => 3, 'images' => 3)
+        'machineTags' => array('market:theme=smoke'), 'rating' => array('content' => 3, 'images' => 3)
       ),
       4280 => array(
-        'machineTags' => array('Market:theme=holiday'), 'rating' => array('content' => 3, 'images' => 3)
+        'machineTags' => array('market:theme=holiday'), 'rating' => array('content' => 3, 'images' => 3)
       ),
       4282 => array(
-        'machineTags' => array('Market:theme=kitchen'), 'rating' => array('content' => 3, 'images' => 3)
+        'machineTags' => array('market:theme=kitchen'), 'rating' => array('content' => 3, 'images' => 3)
       ),
     );
 
@@ -69,23 +74,20 @@ class PropelMigration_1351238578
         }
         */
 
-        /* @var $collectibles Collectible[] */
+        /* @var $collectibles PropelObjectCollection|Collectible[] */
         $collectibles = $collection->getCollectibles();
 
         $count = count($collectibles);
 
         foreach ($collectibles as $k => $collectible)
         {
-          //adding machine tags
+          // Adding machine tags
           if (isset($params['machineTags']) && count($params['machineTags']))
           {
-            foreach ($params['machineTags'] as $tag)
-            {
-              $collectible->addTag($tag, true);
-            }
+            $collectible->addTag($params['machineTags'], true);
           }
 
-          //set rating
+          // set rating
           if (isset($params['rating']) && count($params['rating']))
           {
             foreach ($params['rating'] as $dimantion => $ratingVal)
@@ -97,7 +99,7 @@ class PropelMigration_1351238578
                 {
                   $rating = new CollectibleRating();
                   $rating
-                    ->setCollectible($collectible)
+                    ->setCollectibleId($collectible->getId())
                     ->setRating($ratingVal)
                     ->setDimension($dimantion)
                     ->setSfGuardUserId($sf_guard_user_id)
@@ -108,19 +110,13 @@ class PropelMigration_1351238578
             }
           }
 
-
-          $collectible->save();
           echo sprintf("\r Completed: %.2f%%", round($k/$count, 4) * 100);
         }
+
+        $collectibles->save();
         echo "\r Completed: 100%  \n";
       }
     }
-
-  }
-
-  public function postUp($manager)
-  {
-    // add the post-migration code here
   }
 
   public function preDown($manager)
@@ -142,10 +138,14 @@ class PropelMigration_1351238578
   public function getUpSQL()
   {
     return array(
-      'propel' => '
+      'propel' => "
         SET FOREIGN_KEY_CHECKS = 0;
+
+        UPDATE tag SET `name` = REPLACE(`name`, 'Market:theme=', 'market:theme=') WHERE triple_namespace = 'market';
+        UPDATE tag SET triple_namespace = 'market' WHERE triple_namespace = 'Market';
+
         SET FOREIGN_KEY_CHECKS = 1;
-      ',
+      ",
       'blog' => '
         SET FOREIGN_KEY_CHECKS = 0;
         SET FOREIGN_KEY_CHECKS = 1;
