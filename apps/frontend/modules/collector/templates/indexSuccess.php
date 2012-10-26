@@ -29,11 +29,23 @@
         </div>
         <div class="span8 spacer-inner-top" itemprop="jobTitle">
           <?php
-            echo sprintf(
-              'I am %s <strong>%s</strong> collector',
-              in_array(strtolower(substr($profile->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
-              $profile->getCollectorType()
-            );
+            if ($collector->getIsSeller())
+            {
+              if (!empty($i_collect_tags))
+              {
+                $collector_type = 'collector and seller';
+              }
+              else
+              {
+                $collector_type ='seller';
+              }
+            }
+            else
+            {
+              $collector_type = 'collector';
+            }
+
+            echo sprintf('I am a %s', $collector_type);
 
             if ($profile->getCountryIso3166())
             {
@@ -53,9 +65,28 @@
               foreach ($i_collect_tags as $tag)
               {
                 echo link_to($tag, '@search?q=' . $tag, array(
-                       'title' => sprintf('Search for %s in Collectors Quest website!', $tag)
+                       'title' => sprintf('Search for %s in Collectors Quest website!', $tag),
+                       'target' => '_blank'
                      ));
                 if ($i < count($i_collect_tags)) echo ', ';
+                $i++;
+              }
+            ?>
+          </p>
+          <?php endif; ?>
+
+          <?php if (!empty($i_sell_tags)): ?>
+          <p class="spacer-top">
+            <strong>I sell:</strong>
+            <?php
+              $i = 1;
+              foreach ($i_sell_tags as $tag)
+              {
+                echo link_to($tag, '@search_collectibles_for_sale?q=' . $tag, array(
+                       'title' => sprintf('Search for %s Collectibles for Sale in Collectors Quest website!', $tag),
+                       'target' => '_blank'
+                     ));
+                if ($i < count($i_sell_tags)) echo ', ';
                 $i++;
               }
             ?>
