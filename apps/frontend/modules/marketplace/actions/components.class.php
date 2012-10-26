@@ -176,6 +176,7 @@ class marketplaceComponents extends cqFrontendComponents
     $q = wpPostQuery::create()
       ->filterByPostType('market_theme')
       ->filterByPostParent(0)
+      ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
       ->orderByPostDate(Criteria::DESC);
 
     if (sfConfig::get('sf_environment') === 'prod')
