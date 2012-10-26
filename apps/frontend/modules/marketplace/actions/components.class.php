@@ -209,7 +209,9 @@ class marketplaceComponents extends cqFrontendComponents
       $this->menu = array(
         0 => array(
           'id' => -1, 'active' => true,
-          'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks')
+          'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks',
+          'tags' => array()
+        )
       );
     }
 
@@ -220,16 +222,23 @@ class marketplaceComponents extends cqFrontendComponents
 
       $this->menu[] = array(
         'id' => $wp_post->getId(), 'active' => ($i === $t - $offset) && $t > 0,
-        'name' => $name, 'slug' => $wp_post->getSlug()
+        'name' => $name, 'slug' => $wp_post->getSlug(),
+        'tags' => $wp_post->getTags('array')
       );
     }
 
     // Make sure we only have 5 in the end
     $this->menu = array_splice($this->menu, 0, 5);
 
+    /* @var $q FrontendCollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
+
+    if (!empty($this->menu[$t-$offset]['tags']))
+    {
+      $q->filterByMachineTags($this->menu[$t-$offset]['tags'], 'market', 'theme');
+    }
 
     $pager = new PropelModelPager($q);
     $pager->setPage($this->getRequestParameter('p', 1));

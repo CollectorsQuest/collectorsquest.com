@@ -66,6 +66,7 @@
   </div>
   <div id="pages" class="spacer-bottom-15">
     <?php
+      if ($pager->haveToPaginate())
       for ($i = 1; $i <= ($pager->getLastPage() <= 4 ? $pager->getLastPage() : 4); $i++)
       {
         echo link_to(
@@ -88,6 +89,12 @@
       oncomplete: function() {
         $('.fade-white').mosaic();
         $('#holiday-market-body').hideLoading();
+
+        // TODO: how to check if the pagination link is clicked and not the nav one?
+        if ($(this).hasClass('bullet'))
+        {
+          $.scrollTo('#holiday-market-body');
+        }
       }
     });
   });
