@@ -64,7 +64,7 @@
       });
     });
 
-    $('a.zoom-zone').live('click', function(e)
+    $('a.zoom-zone').on('click', function(e)
     {
       e.preventDefault();
 
