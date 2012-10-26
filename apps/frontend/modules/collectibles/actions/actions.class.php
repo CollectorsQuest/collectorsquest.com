@@ -49,7 +49,7 @@ class collectiblesActions extends cqFrontendActions
       $this->addBreadcrumb('Items for Sale');
 
       // Set Canonical Url meta tag
-      $this->getResponse()->setCanonicalUrl($this->generateUrl('collectibles_for_sale_by_collector', $collector));
+      $this->getResponse()->setCanonicalUrl($this->generateUrl('collector_shop', $collector));
     }
     else
     {

@@ -28,7 +28,7 @@
       'for_sale' => array(
           'name' => 'Items for Sale',
           'uri' => array(
-              'sf_route' => 'collectibles_for_sale_by_collector',
+              'sf_route' => 'collector_shop',
               'sf_subject' => $collector
           ),
       ),
@@ -37,7 +37,16 @@
 </div>
 */ ?>
 
-<?php include_component('_sidebar', 'widgetMagnifyVideos', array('limit' => 4)); ?>
+<?php
+  include_partial(
+    'collector/store_policy',
+    array(
+      'store_shipping' => $store_shipping, 'store_refunds' => $store_refunds,
+      'store_return_policy' => $store_return_policy,
+      'store_additional_policies' => $store_additional_policies
+    )
+  )
+?>
 
 <?php include_component('_sidebar', 'widgetBlogPosts', array('limit' => 4)); ?>
 
