@@ -46,7 +46,7 @@ end
 # On startup compiling
 # --------------------------------------------------
 watchr1()
-watchr2()
+#watchr2()
 watchr3()
 watchr4()
 
@@ -56,7 +56,7 @@ watchr4()
 
 watch ("web/less/frontend/.*\.less$") {
   watchr1
-  watchr2
+# watchr2
   watchr3
   watchr4
 }

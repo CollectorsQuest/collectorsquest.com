@@ -244,8 +244,25 @@ ul.alert-error {
 }
 
 //Sort
+#fixed-filter-bar {
+  position: static;
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    .size(55px, 940px);
+    margin-left: -1px;
+    background-color: #fff;
+
+    .sort-container {
+      border-bottom: none;
+    }
+  }
+}
 
 .sort-container {
+  margin-top: 10px;
   margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 1px solid #cbc4c5;
