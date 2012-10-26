@@ -406,6 +406,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
+   * Get the slug of Collector shop to use in route 'collector_shop'
+   *
+   * @return boolean
+   */
+  public function getShopSlug()
+  {
+    return Utf8::slugify($this->getSeller()->getSellerSettingsStoreName(), '-', true);
+  }
+
+  /**
    * @param  BaseObject $something
    * @return boolean
    */

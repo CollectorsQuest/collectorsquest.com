@@ -1,6 +1,8 @@
 <?php
 /**
- * @var $collector Collector
+ * @var $collector      Collector
+ * @var $collections    CollectorCollection[]
+ * @var $collection_id  integer
  */
 ?>
 
@@ -28,7 +30,7 @@
       'for_sale' => array(
           'name' => 'Items for Sale',
           'uri' => array(
-              'sf_route' => 'collectibles_for_sale_by_collector',
+              'sf_route' => 'collector_shop',
               'sf_subject' => $collector
           ),
       ),
@@ -37,7 +39,34 @@
 </div>
 */ ?>
 
-<?php include_component('_sidebar', 'widgetMagnifyVideos', array('limit' => 4)); ?>
+<div class="well spacer-inner-8">
+  <ul class="nav nav-list">
+
+    <li class="nav-header">Collections:</li>
+    <?php foreach ($collections as $collection): ?>
+      <li class="<?= $collection->getId() != $collection_id ?: 'active' ?>">
+        <?php
+          echo link_to (
+            $collection, 'collector_shop',
+            array('sf_subject' => $collector, 'collection_id' => $collection->getId()
+            )
+          );
+        ?>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+</div>
+
+<?php
+  include_partial(
+    'collector/store_policy',
+    array(
+      'store_shipping' => $store_shipping, 'store_refunds' => $store_refunds,
+      'store_return_policy' => $store_return_policy,
+      'store_additional_policies' => $store_additional_policies
+    )
+  )
+?>
 
 <?php include_component('_sidebar', 'widgetBlogPosts', array('limit' => 4)); ?>
 
