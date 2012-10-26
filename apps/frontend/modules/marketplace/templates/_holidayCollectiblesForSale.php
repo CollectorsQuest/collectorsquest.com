@@ -64,9 +64,9 @@
       });
     });
 
-    $('a.zoom-zone').on('click', function(e)
+    var zoom_zone = function(event)
     {
-      e.preventDefault();
+      event.preventDefault();
 
       var $a = $(this);
       var $div = $('<div></div>');
@@ -79,7 +79,11 @@
       });
 
       return false;
-    });
+    };
+
+    <?php /* The click() does not work for new elements, on() does not work for current?!? */ ?>
+    $('a.zoom-zone').click(zoom_zone);
+    $('#items-for-sale').on('click', 'a.zoom-zone', zoom_zone);
 
     <?php if ($pager->haveToPaginate()): ?>
       $container.infinitescroll(
