@@ -43,16 +43,47 @@
   <ul class="nav nav-list">
 
     <li class="nav-header">Collections:</li>
-    <?php foreach ($collections as $collection): ?>
-      <li class="<?= $collection->getId() != $collection_id ?: 'active' ?>">
+    <?php if (isset($collection_id)) : ?>
+      <li>
         <?php
           echo link_to (
-            $collection, 'collector_shop',
-            array('sf_subject' => $collector, 'collection_id' => $collection->getId()
-            )
+            'View All', 'collector_shop',
+            array('sf_subject' => $collector)
           );
         ?>
       </li>
+    <?php else : ?>
+      <li class="active">
+        <?php
+        echo link_to (
+          '<i class="icon-ok"></i> View All', 'collector_shop',
+          array('sf_subject' => $collector)
+        );
+        ?>
+      </li>
+    <?php endif; ?>
+    <?php foreach ($collections as $collection) : ?>
+      <?php if ($collection->getId() != $collection_id) : ?>
+        <li>
+          <?php
+            echo link_to (
+              $collection, 'collector_shop',
+              array('sf_subject' => $collector, 'collection_id' => $collection->getId()
+              )
+            );
+          ?>
+        </li>
+      <?php else : ?>
+        <li class="active">
+          <?php
+          echo link_to (
+            '<i class="icon-ok"></i> ' . $collection, 'collector_shop',
+            array('sf_subject' => $collector, 'collection_id' => $collection->getId()
+            )
+          );
+          ?>
+        </li>
+      <?php endif; ?>
     <?php endforeach; ?>
   </ul>
 </div>
