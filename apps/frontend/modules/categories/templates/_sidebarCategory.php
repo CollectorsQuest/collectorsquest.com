@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $category ContentCategory
+ * @var $sf_user  cqFrontendUser
  */
 
 if (IceGateKeeper::open('expose_collection_categories'))
@@ -23,7 +24,7 @@ if (IceGateKeeper::open('expose_collection_categories'))
 
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('category' => $category,'limit' => 5)
+    array('category' => $category,'limit' => 4)
   );
 }
 else
@@ -32,7 +33,7 @@ else
 
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('category' => $category,'limit' => 5)
+    array('category' => $category,'limit' => 4)
   );
 
   include_component(
