@@ -247,13 +247,14 @@ class marketplaceComponents extends cqFrontendComponents
   public function executeHolidayCollectiblesForSale()
   {
     $q = $this->getRequestParameter('q');
-    $s = $this->getRequestParameter('s', 'most-recent');
     $p = $this->getRequestParameter('p', 1);
+    $s1 = $this->getRequestParameter('s1');
+    $s2 = $this->getRequestParameter('s2');
 
     // Initialize the $pager
     $pager = null;
 
-    if (!empty($q) || $s != 'most-recent')
+    if (!empty($q) || !empty($s1) || !empty($s2))
     {
       $query = array(
         'q' => $q,
@@ -267,7 +268,12 @@ class marketplaceComponents extends cqFrontendComponents
       $query['sortby'] = 'date';
       $query['order'] = 'desc';
 
-      switch ($s)
+      if (!empty($s1))
+      {
+        $query['filters']['uint3'] = (integer) $s1;
+      }
+
+      switch ($s2)
       {
         case 'under-100':
           $query['sortby'] = 'uint2';
@@ -284,54 +290,19 @@ class marketplaceComponents extends cqFrontendComponents
           $query['order'] = 'asc';
           $query['filters']['uint2'] = array('min' => 25000);
           break;
-        case 'most-recent':
         default:
           $query['sortby'] = 'date';
           $query['order'] = 'desc';
           break;
       }
 
-      $pager = new cqSphinxPager($query, array('collectibles'), 12);
-    }
-    else if (false)
-    {
-      /** @var $query wpPostQuery */
-      $query = wpPostQuery::create()
-        ->filterByPostType('marketplace_explore')
-        ->filterByPostParent(0)
-        ->orderByPostDate(Criteria::DESC);
-
-      if (sfConfig::get('sf_environment') === 'prod')
-      {
-        $query->filterByPostStatus('publish');
-      }
-
-      /** @var $wp_post wpPost */
-      if ($wp_post = $query->findOne())
-      {
-        $values = $wp_post->getPostMetaValue('_market_explore_items');
-
-        if (isset($values['cq_collectible_ids']))
-        {
-          $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
-
-          /** @var $query FrontendCollectibleQuery */
-          $query = FrontendCollectibleQuery::create()
-            ->filterById($collectible_ids)
-            ->hasThumbnail()
-            ->isForSale()
-            ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
-
-          $pager = new PropelModelPager($query, 12);
-        }
-
-        $this->wp_post = $wp_post;
-      }
+      $pager = new cqSphinxPager($query, array('collectibles'), 16);
     }
     else
     {
       /** @var $query FrontendCollectibleQuery */
-      $query = FrontendCollectibleQuery::create();
+      $query = FrontendCollectibleQuery::create()
+        ->orderByUpdatedAt(Criteria::DESC);
 
       $query
         ->useCollectionCollectibleQuery()
@@ -352,18 +323,26 @@ class marketplaceComponents extends cqFrontendComponents
         ->clearGroupByColumns()
         ->groupBy('CollectorId');
 
-      $pager = new PropelModelPager($query, 12);
+      $pager = new cqPropelModelPager($query, 16);
     }
 
     if ($pager)
     {
+      $pager->setStrictMode(true);
       $pager->setPage($p);
       $pager->init();
 
+      // if we are trying to get an out of bounds page
+      if ($p > $pager->getLastPage())
+      {
+        // return empty response
+        return sfView::NONE;
+      }
+
       $this->pager = $pager;
       $this->url = sprintf(
-        '@search_collectibles_for_sale?q=%s&s=%s&page=%d',
-        $q, $s, $pager->getNextPage()
+        '@search_collectibles_for_sale?q=%s&s1=%s&s2&page=%d',
+        $q, $s1, $s2, $pager->getNextPage()
       );
 
       return sfView::SUCCESS;

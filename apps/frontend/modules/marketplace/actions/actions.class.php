@@ -74,7 +74,10 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeHoliday()
   {
-
+    $this->categories = ContentCategoryQuery::create()
+      ->hasCollectiblesForSale()
+      ->filterByLevel(1)
+      ->find();
 
     return sfView::SUCCESS;
   }

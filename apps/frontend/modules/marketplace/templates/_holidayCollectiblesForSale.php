@@ -44,9 +44,9 @@
 
 <?php if ($pager->getNbResults() === 0): ?>
 <div style="margin: 15px 20px;">
-  <i class="icon-exclamation-sign" style="float: left; font-size: 46px; margin-right: 10px; color: #DF912F;"></i>
+  <i class="icon-exclamation-sign" style="float: left; font-size: 46px; margin-right: 10px; color: #DF912F; margin-top: 6px;">&nbsp;</i>
   Sorry! We can't find anything that matches your search.
-  Try a broader search, or browse around for other neat stuff.
+  Try a broader search, or browse around for other neat stuff.<br/>
   (Or you can <?= link_to('sell something of your own', '@mycq_collections'); ?> on the site!)
 </div>
 <?php endif; ?>
@@ -55,7 +55,7 @@
   $(document).ready(function()
   {
     var $container = $('#collectibles');
-    var $form = $('#form-discover-collectibles');
+    var $form = $('#form-holiday-collectibles');
 
     $container.imagesLoaded(function() {
       $container.masonry({
@@ -63,27 +63,6 @@
         columnWidth : 220, gutterWidth: 18
       });
     });
-
-    var zoom_zone = function(event)
-    {
-      event.preventDefault();
-
-      var $a = $(this);
-      var $div = $('<div></div>');
-
-      $a.closest('.collectible_for_sale_grid_view_masonry_big').showLoading();
-      $div.appendTo('body').load($(this).attr('href'), function()
-      {
-        $a.closest('.collectible_for_sale_grid_view_masonry_big').hideLoading();
-        $('.modal', $div).modal('show');
-      });
-
-      return false;
-    };
-
-    <?php /* The click() does not work for new elements, on() does not work for current?!? */ ?>
-    $('a.zoom-zone').click(zoom_zone);
-    $('#items-for-sale').on('click', 'a.zoom-zone', zoom_zone);
 
     <?php if ($pager->haveToPaginate()): ?>
       $container.infinitescroll(
@@ -102,7 +81,8 @@
         pathParse: function(path, page) {
           // add the search params from the form
           path = path + '&' + $form.serialize();
-          return path = path.match(/^(.*?)2(.*?$)/).slice(1);
+
+          return path.match(/^(.*?)2(.*?$)/).slice(1);
         },
         bufferPx:150
       },
