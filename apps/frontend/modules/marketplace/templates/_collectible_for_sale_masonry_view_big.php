@@ -13,7 +13,7 @@
   <?php $default_url = url_for_collectible($collectible_for_sale->getCollectible()); ?>
 
   <a href="<?= $url ?: $default_url ?>" <?= _tag_options($link_parameters ?: array('class' => 'target')); ?>>
-    <?php echo ice_image_tag_flickholdr('220x'. ($collectible_for_sale->getCollectibleId() % 500)); ?>
+    <?= image_tag_collectible($collectible_for_sale->getCollectible(), '220x0'); ?>
   </a>
 
   <div class="collectible-info">
