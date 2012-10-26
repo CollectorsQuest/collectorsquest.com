@@ -14,6 +14,7 @@ class collectiblesActions extends cqFrontendActions
   */
   public function executeCollectorList(sfWebRequest $request)
   {
+    /* @var $collector Collector */
     $collector = $this->getRoute()->getObject();
 
     if ($request->getParameter('legacy'))
@@ -56,8 +57,9 @@ class collectiblesActions extends cqFrontendActions
     if ($request->getParameter('onlyForSale'))
     {
       SmartMenu::setSelected('collectibles_for_collector_list', 'for_sale');
-      $this->title = 'Items for sale by '. $collector;
-      $this->addBreadcrumb('Items for Sale');
+      $store_name = $collector->getSeller()->getSellerSettingsStoreName();
+      $this->title = $store_name;
+      $this->addBreadcrumb($store_name);
 
       // Set Canonical Url meta tag
       $this->getResponse()->setCanonicalUrl($this->generateUrl('collector_shop', $collector));

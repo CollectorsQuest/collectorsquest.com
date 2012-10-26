@@ -3,6 +3,12 @@
   cq_page_title($title, $link, array());
 ?>
 
+<?php echo ice_image_tag_placeholder('620x67'); ?>
+
+<p class="spacer-top-15">
+  <?= $collector->getSeller()->getSellerSettingsStoreDescription(); ?>
+</p>
+
 <div class="row spacer-top-20" style="margin-left: -13px;">
   <div id="collectibles" class="row-content">
   <?php

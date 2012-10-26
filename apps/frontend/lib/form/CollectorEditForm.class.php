@@ -14,6 +14,7 @@ class CollectorEditForm extends CollectorForm
     $this->setupPasswordFields();
     $this->setupProfileGenderField();
     $this->setupProfileCollectorType();
+    $this->setupSellerSettingStoreHeaderFiled();
 
     $this->widgetSchema->setHelp(
       'birthday',
@@ -421,7 +422,7 @@ class CollectorEditForm extends CollectorForm
   public function setupSellerSettingsStoreTitleField()
   {
     $this->widgetSchema['seller_settings_store_title'] = new sfWidgetFormInputText(
-      array('label' => 'Store Title'),
+      array('label' => 'Store Slogan'),
       array('required' => 'required')
     );
 
@@ -520,6 +521,15 @@ class CollectorEditForm extends CollectorForm
     }
 
     return $values;
+  }
+
+  public function setupSellerSettingStoreHeaderFiled()
+  {
+    $this->widgetSchema['seller_settings_store_heading']    = new sfWidgetFormInputFile();
+    $this->validatorSchema['seller_settings_store_heading'] = new cqValidatorFile(array(
+      'mime_types' => 'cq_supported_images',
+      'required' => false
+    ));
   }
 
 }

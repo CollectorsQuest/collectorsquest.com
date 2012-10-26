@@ -134,6 +134,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_NUMBER);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_EXTENSION);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_NAME);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_HEADING);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_TITLE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_DESCRIPTION);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_RETURN_POLICY);
@@ -413,6 +414,17 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function getShopSlug()
   {
     return Utf8::slugify($this->getSeller()->getSellerSettingsStoreName(), '-', true);
+  }
+
+  /**
+   * Get the Collector shop title
+   *
+   * @return boolean
+   */
+
+  public function getShopTitle()
+  {
+    return $this->getSeller()->getSellerSettingsStoreName();
   }
 
   /**

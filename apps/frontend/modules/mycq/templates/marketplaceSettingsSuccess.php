@@ -20,7 +20,7 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
-        <?= form_tag('@mycq_marketplace_settings', array('class' => 'form-horizontal')); ?>
+        <?= form_tag('@mycq_marketplace_settings', array('class' => 'form-horizontal', 'multipart' => true)); ?>
         <?= $form->renderHiddenFields(); ?>
 
         <?php if ($form->hasGlobalErrors()): ?>
@@ -59,6 +59,7 @@
 
         <fieldset class="form-container-center spacer-top-20">
           <?= $form['seller_settings_store_name']->renderRow() ?>
+          <?= $form['seller_settings_store_heading']->renderRow() ?>
           <?= $form['seller_settings_store_title']->renderRow() ?>
           <?= $form['seller_settings_refunds']->renderRow() ?>
           <?= $form['seller_settings_shipping']->renderRow() ?>
