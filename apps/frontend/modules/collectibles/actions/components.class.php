@@ -16,6 +16,15 @@ class collectiblesComponents extends cqFrontendComponents
     $this->store_refunds = $this->collector->getSellerSettingsRefunds();
     $this->store_return_policy = $this->collector->getSellerSettingsReturnPolicy();
     $this->store_additional_policies = $this->collector->getSellerSettingsAdditionalPolicies();
+
+    /* @var $q FrontendCollectorCollectionQuery */
+    $q = FrontendCollectorCollectionQuery::create()
+      ->filterByCollector($this->collector)
+      ->hasCollectiblesForSale();
+
+    $this->collections = $q->find();
+
+    $this->collection_id = $this->getVar('collection_id') ?: null;
   }
 
 }

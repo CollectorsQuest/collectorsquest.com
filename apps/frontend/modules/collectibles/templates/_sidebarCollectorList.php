@@ -1,6 +1,8 @@
 <?php
 /**
- * @var $collector Collector
+ * @var $collector      Collector
+ * @var $collections    CollectorCollection[]
+ * @var $collection_id  integer
  */
 ?>
 
@@ -36,6 +38,24 @@
   </ul>
 </div>
 */ ?>
+
+<div class="well spacer-inner-8">
+  <ul class="nav nav-list">
+
+    <li class="nav-header">Collections:</li>
+    <?php foreach ($collections as $collection): ?>
+      <li class="<?= $collection->getId() != $collection_id ?: 'active' ?>">
+        <?php
+          echo link_to (
+            $collection, 'collector_shop',
+            array('sf_subject' => $collector, 'collection_id' => $collection->getId()
+            )
+          );
+        ?>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+</div>
 
 <?php
   include_partial(

@@ -27,6 +27,7 @@ class collectiblesActions extends cqFrontendActions
       ->select('CollectibleId')
       ->find()->getArrayCopy();
 
+    /* @var $q FrontendCollectionCollectibleQuery */
     $q = FrontendCollectionCollectibleQuery::create()
       ->groupBy('CollectionCollectible.CollectibleId')
       ->joinWith('CollectionCollectible.Collectible')
@@ -37,6 +38,16 @@ class collectiblesActions extends cqFrontendActions
       ->_else()
         ->filterByCollectibleId($for_sale_ids, Criteria::NOT_IN)
       ->_endif();
+
+    if ($collection_id = $request->getParameter('collection_id'))
+    {
+      $q
+        ->filterByCollectionId($collection_id);
+      $this->collection_id = $collection_id;
+
+      // Make the collection_id available to the sidebar
+      $this->setComponentVar('collection_id', $collection_id, 'sidebarCollectorList');
+    }
 
     $pager = new PropelModelPager($q, 36);
     $pager->setPage($request->getParameter('page', 1));
