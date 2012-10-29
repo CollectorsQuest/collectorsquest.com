@@ -6,8 +6,8 @@
       <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-holiday-collectibles">
       <div class="span8 sort-actions">
 
-        <button type="button" class="btn-primary thin" style="float: left;">View All</button>
-        <div style="float: left; margin-top: 5px;">&nbsp;&nbsp;&nbsp;- or -</div>
+        <button type="button" class="btn-primary view-all-button">View All</button>
+        <div class="pull-left spacer-top-5">&nbsp;&nbsp;&nbsp;- or -</div>
 
         <div class="sort-search-box">
           <div class="input-append">
