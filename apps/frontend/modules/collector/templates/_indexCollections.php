@@ -70,6 +70,9 @@
           $("<div>").load($url +'&p=2 #user-collections', function()
           {
             $('#user-collections').append($(this).find('#user-collections').html());
+            $('.fade-white').mosaic();
+            $('a.target').bigTarget({hoverClass: 'over', clickZone: '.link'});
+
             $button.hide();
           });
         });
