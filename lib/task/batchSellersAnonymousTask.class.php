@@ -38,12 +38,11 @@ EOF;
     $collectibles = CollectibleQuery::create()
       ->filterByUpdatedAt(strtotime('-1 day'), Criteria::GREATER_EQUAL)
       ->useCollectibleForSaleQuery(null, Criteria::LEFT_JOIN)
-      ->filterByCollectibleId(null, Criteria::ISNULL)
+        ->filterByCollectibleId(null, Criteria::ISNULL)
       ->endUse()
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    $this->log(sprintf('Processing %d collectibles', $collectibles->count()));
     /* @var $collectibles Collectible[] */
     foreach ($collectibles as $collectible)
     {
@@ -52,11 +51,13 @@ EOF;
         $string = $collectible->{'get' . ucfirst($field)}();
         if (preg_match($pattern, $string))
         {
-          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject'=>$collectible)));
+          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject' => $collectible)));
           $suspicious['collectibles'][] = $collectible->getId();
           if ($options['debug'])
           {
-            $this->logSection('collectible', sprintf('%d: %s', $collectible->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)));
+            $this->logSection('collectible', sprintf(
+              '%d: %s', $collectible->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
+            ));
           }
         }
       }
@@ -68,7 +69,6 @@ EOF;
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    $this->log(sprintf('Processing %d collections', $collections->count()));
     /* @var $collections Collection[] */
     foreach ($collections as $collection)
     {
@@ -77,11 +77,13 @@ EOF;
         $string = $collection->{'get' . ucfirst($field)}();
         if (preg_match($pattern, $string))
         {
-          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject'=>$collection)));
+          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject' => $collection)));
           $suspicious['collections'][] = $collection->getId();
           if ($options['debug'])
           {
-            $this->logSection('collection', sprintf('%d: %s', $collection->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)));
+            $this->logSection('collection', sprintf(
+              '%d: %s', $collection->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
+            ));
           }
         }
       }
@@ -93,7 +95,6 @@ EOF;
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    $this->log(sprintf('Processing %d collectors', $collectors->count()));
     /* @var $collectors Collector[] */
     foreach ($collectors as $collector)
     {
@@ -102,28 +103,28 @@ EOF;
         $string = $collector->{'get' . ucfirst($field)}();
         if (preg_match($pattern, $string))
         {
-          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject'=>$collector)));
+          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject' => $collector)));
           $suspicious['collectors'][] = $collector->getId();
           if ($options['debug'])
           {
-            $this->logSection('collector', sprintf('%d: %s', $collector->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)));
+            $this->logSection('collector', sprintf(
+              '%d: %s', $collector->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
+            ));
           }
         }
       }
     }
 
-    $mailer = $this->getMailer();
-    $message = $mailer->compose('no-reply@collectorsquest.com',
-      'ysimeonoff@collectorsquest.com', 'Suspicious hidden sellers notification',
-      $body);
-
     try
     {
-//      var_dump($body);
-      $mailer->send($message);
-    } catch (Swift_SwiftException $e)
+      $mailer = $this->getMailer();
+      $mailer->composeAndSend(
+        'no-reply@collectorsquest.com', 'info@collectorsquest.com', '[AUTOMATED] Sellers Anonymous', $body
+      );
+    }
+    catch (Swift_SwiftException $e)
     {
-      //
+      die('There was an error sending the email to info@collectorsquest.com');
     }
   }
 }
