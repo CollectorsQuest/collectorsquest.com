@@ -24,6 +24,16 @@ class ShoppingOrder extends BaseShoppingOrder
     }
   }
 
+  public function preDelete(PropelPDO $con = null)
+  {
+    //Archive related ShoppingPayment objects
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $this->getShoppingPayment();
+    $shopping_payment->archive($con);
+
+    return parent::preDelete($con);
+  }
+
   public function getSeller()
   {
     return CollectorQuery::create()

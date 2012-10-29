@@ -688,6 +688,18 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       $collectible_for_sale->delete($con);
     }
 
+    //Archive related ShoppingOrders objects
+    /* @var $shopping_orders ShoppingOrder[] */
+    $shopping_orders = $this->getShoppingOrders();
+    foreach ($shopping_orders as $shopping_order)
+    {
+      $shopping_order->archive($con);
+      //Archive related ShoppingPayment objects
+      /** @var $shopping_payment ShoppingPayment */
+      $shopping_payment = $shopping_order->getShoppingPayment();
+      $shopping_payment->archive($con);
+    }
+
     return parent::preDelete($con);
   }
 
