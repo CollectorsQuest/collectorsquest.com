@@ -354,7 +354,7 @@ class marketplaceComponents extends cqFrontendComponents
       $pager->init();
 
       // if we are trying to get an out of bounds page
-      if ($p > $pager->getLastPage())
+      if ($p > 1 && $p > $pager->getLastPage())
       {
         // return empty response
         return sfView::NONE;
