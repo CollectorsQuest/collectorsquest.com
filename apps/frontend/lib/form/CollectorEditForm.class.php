@@ -14,7 +14,6 @@ class CollectorEditForm extends CollectorForm
     $this->setupPasswordFields();
     $this->setupProfileGenderField();
     $this->setupProfileCollectorType();
-    $this->setupSellerSettingStoreHeaderFiled();
 
     $this->widgetSchema->setHelp(
       'birthday',
@@ -107,6 +106,7 @@ class CollectorEditForm extends CollectorForm
     $this->setupSellerSettingsReturnPolicyField();
     $this->setupSellerSettingsWelcomeField($required);
     $this->setupSellerSettingsShippingField($required);
+    $this->setupSellerSettingStoreHeadingFiled();
     $this->setupSellerSettingsAdditionalPoliciesField($required);
 
     $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(
@@ -523,9 +523,12 @@ class CollectorEditForm extends CollectorForm
     return $values;
   }
 
-  public function setupSellerSettingStoreHeaderFiled()
+  public function setupSellerSettingStoreHeadingFiled()
   {
-    $this->widgetSchema['seller_settings_store_heading']    = new sfWidgetFormInputFile();
+    $this->widgetSchema['seller_settings_store_heading']    = new sfWidgetFormInputFile(
+      array('label' => 'Store Heading Image'),
+      array('required' => false)
+    );
     $this->validatorSchema['seller_settings_store_heading'] = new cqValidatorFile(array(
       'mime_types' => 'cq_supported_images',
       'required' => false
