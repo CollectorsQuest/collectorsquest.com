@@ -38,7 +38,7 @@ class PropelMigration_1351238578
 
       if ($collection)
       {
-        echo sprintf("Processing collection Id: %s name: %s \n", $collection->getId(), $collection->getName());
+
 
         /*
         //adding machine tags for collection
@@ -78,7 +78,7 @@ class PropelMigration_1351238578
         $collectibles = $collection->getCollectibles();
 
         $count = count($collectibles);
-
+        echo sprintf("Processing collection Id: %s name: %s count: %s \n", $collection->getId(), $collection->getName(), $count);
         foreach ($collectibles as $k => $collectible)
         {
           // Adding machine tags
@@ -110,10 +110,10 @@ class PropelMigration_1351238578
             }
           }
 
+          $collectible->save();
           echo sprintf("\r Completed: %.2f%%", round($k/$count, 4) * 100);
         }
 
-        $collectibles->save();
         echo "\r Completed: 100%  \n";
       }
     }
@@ -141,8 +141,8 @@ class PropelMigration_1351238578
       'propel' => "
         SET FOREIGN_KEY_CHECKS = 0;
 
-        UPDATE tag SET `name` = REPLACE(`name`, 'Market:theme=', 'market:theme=') WHERE triple_namespace = 'market';
-        UPDATE tag SET triple_namespace = 'market' WHERE triple_namespace = 'Market';
+        #UPDATE tag SET `name` = REPLACE(`name`, 'Market:theme=', 'market:theme=') WHERE triple_namespace = 'market';
+        #UPDATE tag SET triple_namespace = 'market' WHERE triple_namespace = 'Market';
 
         SET FOREIGN_KEY_CHECKS = 1;
       ",
