@@ -141,8 +141,8 @@ class PropelMigration_1351238578
       'propel' => "
         SET FOREIGN_KEY_CHECKS = 0;
 
-        #UPDATE tag SET `name` = REPLACE(`name`, 'Market:theme=', 'market:theme=') WHERE triple_namespace = 'market';
-        #UPDATE tag SET triple_namespace = 'market' WHERE triple_namespace = 'Market';
+        UPDATE tag SET `name` = REPLACE(`name`, 'Market:theme=', 'market:theme=') WHERE triple_namespace = 'market';
+        UPDATE tag SET triple_namespace = 'market' WHERE triple_namespace = 'Market';
 
         SET FOREIGN_KEY_CHECKS = 1;
       ",
