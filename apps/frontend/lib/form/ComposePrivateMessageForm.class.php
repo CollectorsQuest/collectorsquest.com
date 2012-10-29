@@ -427,6 +427,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     unset ($this['is_forwarded']);
     unset ($this['is_marked']);
     unset ($this['is_deleted']);
+    unset ($this['is_spam']);
     unset ($this['created_at']);
   }
 
