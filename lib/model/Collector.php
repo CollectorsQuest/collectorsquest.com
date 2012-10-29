@@ -42,6 +42,9 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSellerSettingsStoreTitle(string $v)
  * @method     string    getSellerSettingsStoreTitle()
  *
+ * @method     Collector setSellerSettingsStoreHeading(string $v)
+ * @method     string    getSellerSettingsStoreHeading()
+ *
  * @method     Collector setSellerSettingsStoreDescription(string $v)
  * @method     string    getSellerSettingsStoreDescription()
  *

@@ -263,6 +263,16 @@ class CollectorEditForm extends CollectorForm
         strip_tags($values['seller_settings_additional_policies'])
       );
     }
+    if (isset($values['seller_settings_store_heading']))
+    {
+      $heading = iceModelMultimediaPeer::createMultimediaFromFile(
+        $this->getObject(), $values['seller_settings_store_heading']
+      );
+
+      $heading->makeCustomThumb(620, 67, $heading);
+
+      $this->getObject()->setSellerSettingsStoreHeading($heading);
+    }
   }
 
   /**
@@ -383,6 +393,7 @@ class CollectorEditForm extends CollectorForm
       array('required' => true)
     );
 
+/*    @todo remove comment out
     $this->validatorSchema->setPostValidator(
       new sfValidatorCallback(
         array('callback' => array($this, 'validateSellerSettingsPayPal')),
@@ -390,7 +401,7 @@ class CollectorEditForm extends CollectorForm
                             Please check the information you\'ve entered and make
                             sure that it matches your PayPal account.')
       )
-    );
+    );*/
   }
 
   public function setupSellerSettingsPhoneNumberField($required = false)

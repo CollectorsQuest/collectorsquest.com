@@ -810,7 +810,7 @@ class mycqActions extends cqFrontendActions
 
     if (sfRequest::POST == $request->getMethod())
     {
-      if ($form->bindAndSave($request->getParameter($form->getName(), $request->getFiles($form->getName()))))
+      if ($form->bindAndSave($request->getParameter($form->getName()), $request->getFiles($form->getName())))
       {
         $this->getUser()->setFlash(
           'success', 'You have successfully updated your store settings.'

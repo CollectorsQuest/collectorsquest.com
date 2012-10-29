@@ -1,4 +1,5 @@
 <?php
+  /* @var $collector Collector */
   /* @var $form CollectorEditForm */
   foreach ($form->getWidgetSchema()->getFields() as $form_field)
   {
@@ -44,7 +45,6 @@
           </div>
         <?php endif; ?>
 
-
         <?php cq_sidebar_title('PayPal Account'); ?>
 
         <fieldset class="form-container-center spacer-top-20">
@@ -60,6 +60,8 @@
         <fieldset class="form-container-center spacer-top-20">
           <?= $form['seller_settings_store_name']->renderRow() ?>
           <?= $form['seller_settings_store_heading']->renderRow() ?>
+          <?php // @todo display image if available ?>
+          <?= $collector->getSellerSettingsStoreHeading() ?>
           <?= $form['seller_settings_store_title']->renderRow() ?>
           <?= $form['seller_settings_refunds']->renderRow() ?>
           <?= $form['seller_settings_shipping']->renderRow() ?>
