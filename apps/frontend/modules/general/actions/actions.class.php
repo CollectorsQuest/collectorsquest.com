@@ -377,32 +377,4 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCategoryTest()
-  {
-    /* @var $q ContentCategoryQuery */
-    $q = ContentCategoryQuery::create()
-      ->notRoot();
-
-    $categories = $q->find();
-
-    foreach ($categories as $category)
-    {
-      /* @var $category ContentCategory */
-      $level = $category->getLevel();
-
-      /* @var $parent ContentCategory */
-      $parent = $category->getParent();
-      $parent_level = $parent->getLevel();
-
-      if (($level - 1) != $parent_level)
-      {
-        echo $category . ' ID: ' .$category->getId().  ' level: ' . $level .
-          '<br>parent: '. $parent . ' parent level: ' . $parent_level .
-          '<br><br>';
-      }
-    }
-
-    die('<br><br>success');
-  }
-
 }

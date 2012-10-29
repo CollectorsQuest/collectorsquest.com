@@ -197,8 +197,4 @@ startpage:
   url: /startpage
   param: { module: general, action: startPage }
 
-category_test:
-  url: /category_test
-  param: { module: general, action: categoryTest }
-
 
