@@ -1,7 +1,4 @@
-<?php
-  /* @var $collectible_id  integer */
-  /* @var $no_credits_left boolean */
-?>
+<?php /* @var $collectible_id  integer */ ?>
 
 <a data-id="<?= $collectible_id; ?>"
    class="deactivate btn btn-mini" onclick="return confirm('Are you sure you sure you want to deactivate this item?')">

@@ -1,12 +1,12 @@
 <?php
  /**
-  * @var $has_credits           boolean
   * @var $class                 string
   * @var $package_transactions  PackageTransaction[]
+  * @var $seller                Seller
   */
 ?>
 
-<?php if(!$has_credits): ?>
+<?php if(!$seller->hasPackageCredits()): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
   <p class="spacer-top">
@@ -23,7 +23,8 @@
   <div class="span8">
     <h3 class="Chivo webfont">Credit History</h3>
   </div>
-  <!-- are we going to use those??
+  <?php /*
+  are we going to use those??
   <div class="span4 text-right">
     <span class="show-all-text">
       Show: &nbsp;
@@ -37,7 +38,7 @@
       </div>
     </div>
   </div>
-  //-->
+  */ ?>
 </div><!-- /.sidebar-title -->
 
 <table class="table table-credit-history">
@@ -48,34 +49,25 @@
     <th>Credits Used</th>
     <th>Purchased On</th>
     <th>Expires On</th>
-    <?php if ('dev' == sfConfig::get('sf_environment')): ?>
     <th>Status</th>
-    <?php endif; ?>
   </tr>
   </thead>
   <tbody>
-  <?php if (count($package_transactions)): foreach ($package_transactions as $package_transaction): ?>
+  <?php if (count($package_transactions)) : foreach ($package_transactions as $package_transaction) : ?>
     <?php
-    // @todo what is the proper way to determine status?
-    switch ($package_transaction->getPaymentStatus())
-    {
-      case PackageTransactionPeer::PAYMENT_STATUS_PAID:
-        $class = '';
-        if ($package_transaction->getCredits() - $package_transaction->getCreditsUsed() <= 5)
-          $class = 'alert';
-        if ($package_transaction->getExpiryDate('YmdHis') < date('YmdHis'))
-          $class = 'expired';
-        break;
-      case PackageTransactionPeer::PAYMENT_STATUS_PROCESSING:
-        $class = 'processing';
-        break;
-      default:
-        /*
-         * @todo do we have other cases here ?
-         * Maybe compensation or employees packages ?
-         */
-        break;
-    }
+      switch ($package_transaction->getPaymentStatus())
+      {
+        case PackageTransactionPeer::PAYMENT_STATUS_PAID :
+          $class = '';
+          if ($package_transaction->getCredits() - $package_transaction->getCreditsUsed() <= 5)
+            $class = 'alert';
+          if ($package_transaction->getExpiryDate('YmdHis') < date('YmdHis'))
+            $class = 'expired';
+          break;
+        case PackageTransactionPeer::PAYMENT_STATUS_PROCESSING :
+          $class = 'processing';
+          break;
+      }
     ?>
   <tr class=" <?= $class ?>">
     <td><?= $package_transaction->getPackage()->getPackageName(); ?></td>
@@ -83,30 +75,28 @@
     <td><?= $package_transaction->getCreditsUsed(); ?></td>
     <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
     <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
-    <?php if ('dev' == sfConfig::get('sf_environment')): ?>
     <td>
       <?php
       switch ($class) {
-        case '':
+        case '' :
           echo 'paid';
           break;
-        case 'processing':
+        case 'processing' :
           echo '<span class="red">processing<br>payment</span>';
           break;
-        case 'alert':
+        case 'alert' :
           echo 'expiring<br>soon';
           break;
-        case 'expired':
+        case 'expired' :
           echo 'expired';
           break;
       }
       ?>
     </td>
-    <?php endif; ?>
   </tr>
-    <?php endforeach; else: ?>
+    <?php endforeach; else : ?>
   <tr>
-    <td colspan="<?= 'dev' == sfConfig::get('sf_environment') ? 6 : 5 ?>">
+    <td colspan="6">
       You have not purchased any packages yet.
     </td>
   </tr>

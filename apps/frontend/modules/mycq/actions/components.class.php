@@ -289,18 +289,8 @@ class mycqComponents extends cqFrontendComponents
       ->_endif()
       ->find();
 
-    /* @var $seller Seller */
-    $seller = $collector->getSeller();
-
-    // determine if the seller has package credits left
-    $this->has_credits = true;
-    if (!$seller->hasPackageCredits())
-    {
-      $this->has_credits = false;
-    }
-
-    // Make the collector available to the template
-    $this->collector = $collector;
+    // Make the seller available to the template
+    $this->seller = $collector->getSeller();
 
     return sfView::SUCCESS;
   }
@@ -312,7 +302,6 @@ class mycqComponents extends cqFrontendComponents
 
     $this->filter_by = $this->getRequestParameter('filter_by', 'all');
 
-    // @todo deterime if this queries are correct for the cases provided
     /* @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
@@ -340,18 +329,8 @@ class mycqComponents extends cqFrontendComponents
 
     $this->pager = $pager;
 
-    /* @var $seller Seller */
-    $seller = $collector->getSeller();
-
-    // determine if the seller has package credits left
-    $this->has_credits = true;
-    if (!$seller->hasPackageCredits())
-    {
-      $this->has_credits = false;
-    }
-
-    // Make the collector available to the template
-    $this->collector = $collector;
+    // Make the seller available to the template
+    $this->seller = $collector->getSeller();
 
     return sfView::SUCCESS;
   }

@@ -3,7 +3,7 @@
  * @var $search        string
  * @var $filter_by     string
  * @var $pager         PropelModelPager
- * @var $has_credits   boolean
+ * @var $seller        Seller
  */
 ?>
 
@@ -19,7 +19,7 @@
       </thead>
       <tbody>
       <?php if ($pager->getNbResults() > 0): foreach ($pager->getResults() as $i => $collectible_for_sale): ?>
-        <?php /** @var $collectible_for_sale CollectibleForSale */ ?>
+        <?php /* @var $collectible_for_sale CollectibleForSale */ ?>
         <tr>
           <td>
             <div class="row-fluid items">
@@ -71,7 +71,6 @@
             <?php endif; ?>
           </td>
           <td>
-            <?php // @todo determine if these cases are correct ?>
             <?php if ($collectible_for_sale->getIsSold()) : ?>
               -
             <?php elseif ($collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()) : ?>
@@ -79,7 +78,7 @@
                  class="deactivate btn btn-mini" onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
                 <i class="icon-minus-sign"></i>&nbsp;Deactivate
               </a>
-            <?php elseif (!$has_credits): ?>
+            <?php elseif (!$seller->hasPackageCredits()) : ?>
               <a href="<?php echo url_for('@seller_packages'); ?>" class="btn btn-mini">
                 <i class="icon-plus-sign"></i>&nbsp;Buy credits
               </a>
@@ -91,19 +90,19 @@
             <?php endif; ?>
           </td>
         </tr>
-      <?php endforeach; elseif ('' == $search): ?>
+      <?php endforeach; elseif ('' == $search) : ?>
       <tr>
         <td colspan="5">
-          <?php if($filter_by != 'all'): ?>
-            You have no <strong><?= $filter_by ?></strong> items for sale yet.
-          <?php else: ?>
-            You have no items for sale yet.
-          <?php endif; ?>
+            You have no <?= $filter_by == 'all' ? '' : '<strong>' . $filter_by. '</strong>' ?>
+            items for sale yet.
         </td>
       </tr>
-        <?php else: ?>
+        <?php else : ?>
       <tr>
-        <td colspan="5">No items for sale matched your search term "<?= $search?>".</td>
+        <td colspan="5">
+            No <?= $filter_by == 'all' ? '' : '<strong>' . $filter_by. '</strong>' ?>
+            items for sale matched your search term "<?= $search?>".
+        </td>
       </tr>
       <?php endif; ?>
     </tbody>
