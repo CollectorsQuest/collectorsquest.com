@@ -17,5 +17,14 @@ class cqEmailsPluginConfiguration extends sfPluginConfiguration
    */
   public function initialize()
   {
+      // Connect listeners
+      $this->configuration->getEventDispatcher()
+          ->connect('mailer.configure', array($this, 'listenToMailConfigureEvent'));
+  }
+
+  public function listenToMailConfigureEvent(sfEvent $event)
+  {
+        $mailer = $event->getSubject();
+        $mailer->registerPlugin(new cqEmailLog());
   }
 }

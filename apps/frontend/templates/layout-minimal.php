@@ -54,8 +54,8 @@
     // Include the global javascripts
     include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
 
-    // Include analytics code only in production
-    if (sfConfig::get('sf_environment') === 'prod')
+    // Include analytics code only in production (and exclude the NY office IP address)
+    if (sfConfig::get('sf_environment') === 'prod' && cqStatic::getUserIpAddress() != '207.237.37.24')
     {
       include_partial('global/js/analytics');
     }

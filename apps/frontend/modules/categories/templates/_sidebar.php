@@ -1,10 +1,11 @@
 <?php cq_dart_slot('300x250', 'collections', null, 'sidebar') ?>
 
-<?php include_component('_sidebar', 'widgetCollectiblesForSale', array('limit' => 3, 'fallback' => 'random')); ?>
+<?php include_component('_sidebar', 'widgetCollectiblesForSale', array('limit' => 4, 'fallback' => 'random')); ?>
 
 <?php include_component('_sidebar', 'widgetCollections', array('limit' => 4, 'fallback' => 'random')); ?>
 
 <?php
+  /* @var $sf_user cqFrontendUser */
   if (!$sf_user->isAuthenticated())
   {
     echo link_to(

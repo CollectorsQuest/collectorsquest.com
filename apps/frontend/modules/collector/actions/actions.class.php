@@ -34,6 +34,7 @@ class collectorActions extends cqFrontendActions
     $this->collectiblesCount = $q->count();
 
     $this->i_collect_tags = $collector->getICollectTags();
+    $this->i_sell_tags = $collector->getISellTags();
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collector);

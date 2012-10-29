@@ -19,7 +19,7 @@ if ($data['is_single'])
 
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('wp_post' => $wp_post, 'limit' => 3)
+    array('wp_post' => $wp_post, 'limit' => 4)
   );
 
   echo '<!-- Blog Sidebar Widget2 //-->';
@@ -62,7 +62,7 @@ else if ($data['is_author'])
 
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('wp_user' => $wp_user, 'limit' => 3)
+    array('wp_user' => $wp_user, 'limit' => 4)
   );
 
   if (!$sf_user->isAuthenticated())
