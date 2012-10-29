@@ -1,3 +1,4 @@
+<a name="discover"></a>
 <div class="slot2-inner">
   <?php cq_section_title('More from the Market', null, array('class' => 'row-fluid section-title blue')); ?>
 
@@ -6,7 +7,10 @@
       <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-holiday-collectibles">
       <div class="span8 sort-actions">
 
-        <button type="button" class="btn-primary view-all-button">View All</button>
+        <a href="<?= url_for('@marketplace?x='. rand(1, 99), true); ?>#discover"
+           class="btn-primary view-all-button" style="padding: 2px 5px; margin-top: -1px;">
+          View All
+        </a>
         <div class="pull-left spacer-top-5">&nbsp;&nbsp;&nbsp;- or -</div>
 
         <div class="sort-search-box">
@@ -81,24 +85,19 @@
 
     $form.submit(function()
     {
-      $('#collectibles-holder').fadeOut();
+      $('#main').showLoading();
 
       $.post($url +'?p=1', $form.serialize(), function(data)
       {
-        $('#collectibles-holder').html(data).fadeIn();
+        $('#collectibles-holder').html(data);
+        $('#main').hideLoading();
 
         // Scroll to #main so that we can see the first row of results
         $.scrollTo('#main');
-
       },'html');
 
       return false;
     });
-
-    if ($form.find('input').val() !== '')
-    {
-      $form.submit();
-    }
 
     var zoom_zone = function(event)
     {
@@ -121,16 +120,16 @@
     $('a.zoom-zone').click(zoom_zone);
     $('#items-for-sale').on('click', 'a.zoom-zone', zoom_zone);
 
-
-
-
     var fixadent = $("#fixed-filter-bar"), pos = fixadent.offset();
-    $(window).scroll(function() {
-      if($(this).scrollTop() > (pos.top + 10) &&
-        fixadent.css('position') == 'static') { fixadent.addClass('fixed'); }
-      else if($(this).scrollTop() <= pos.top &&
-        fixadent.hasClass('fixed')){ fixadent.removeClass('fixed'); }
-    })
+    $(window).scroll(function()
+    {
+      if ($(this).scrollTop() > (pos.top + 10) && fixadent.css('position') == 'static') {
+        fixadent.addClass('fixed');
+      }
+      else if ($(this).scrollTop() <= pos.top && fixadent.hasClass('fixed')) {
+        fixadent.removeClass('fixed');
+      }
+    });
 
   });
 </script>
