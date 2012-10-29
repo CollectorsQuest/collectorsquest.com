@@ -211,3 +211,51 @@ classes:
 
       created_at:      { type: timestamp }
       archived_at:     { type: timestamp }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  ShoppingOrderArchive:
+    columns:
+      id:                   { type: integer, primaryKey: true, autoIncrement: false }
+      uuid:                 { type: varchar, size: 8 }
+      seller_id:            { type: integer, index: true }
+      collector_id:         { type: integer, index: true }
+      shopping_cart_id:     { type: integer, index: true }
+      collectible_id:       { type: integer, index: true }
+      shopping_payment_id:  { type: integer, index: true }
+      buyer_email:          { type: varchar, size: 128, index: true }
+      shipping_address_id:       { type: integer, index: true }
+      shipping_full_name:        { type: varchar(255), required: true  }
+      shipping_phone:            { type: varchar(50),  required: false }
+      shipping_address_line_1:   { type: varchar(255), required: true  }
+      shipping_address_line_2:   { type: varchar(255), required: false }
+      shipping_city:             { type: varchar(100), required: true  }
+      shipping_state_region:     { type: varchar(100), required: false }
+      shipping_zip_postcode:     { type: varchar(50),  required: true }
+      shipping_country_iso3166:  { type: char, size: 2, required: false }
+      shipping_carrier:          { type: enum, required: false, valueSet: "FedEx, UPS, USPS, DHL" }
+      shipping_tracking_number:  { type: varchar(64), required: false }
+      note_to_seller:       { type: varchar, size: 255 }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+
+  ShoppingPaymentArchive:
+    columns:
+      id:                   { type: integer, primaryKey: true, autoIncrement: false }
+      shopping_order_id:   { type: integer, index: true }
+      cookie_uuid:         { type: varchar, size: 32, required: false }
+      processor:           { type: enum, valueSet: "PayPal, Google, Amazon", default: PayPal, required: true }
+      status:              { type: enum, valueSet: "initialized, inprogress, confirmed, cancelled, failed, completed", default: initialized, required: true }
+      currency:            { type: char, size: 3, default: USD }
+      amount_total:        { type: integer, required: true, default: 0 }
+      amount_collectibles: { type: integer, required: true, default: 0 }
+      amount_shipping_fee: { type: integer, required: true, default: 0 }
+      amount_tax:          { type: integer, required: true, default: 0 }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
