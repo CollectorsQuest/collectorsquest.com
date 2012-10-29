@@ -278,9 +278,20 @@ class marketplaceComponents extends cqFrontendComponents
       $query['sortby'] = 'date';
       $query['order'] = 'desc';
 
-      if (!empty($s1))
+      if (!empty($s1) && $content_category = ContentCategoryQuery::create()->findOneById((integer) $s1))
       {
-        $query['filters']['uint3'] = (integer) $s1;
+        $query['filters']['uint3'] = array();
+
+        // Add the descendant categories
+        if ($descendants = $content_category->getDescendants())
+        {
+          $query['filters']['uint3'] = array_values(
+            $descendants->toKeyValue('Id', 'Id')
+          );
+        }
+
+        // Add the level 1 category also
+        $query['filters']['uint3'][] = $content_category->getId();
       }
 
       switch ($s2)
