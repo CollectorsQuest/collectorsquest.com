@@ -114,8 +114,9 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getCountryCode($default = false)
   {
-    if ( $this->isAuthenticated() && !$this->getCollector()->isNew()
-      && $country_code = $this->getCollector()->getProfile()->getCountryIso3166() )
+    if ($this->isAuthenticated() && !$this->getCollector()->isNew()
+      && $country_code = $this->getCollector()->getProfile()->getCountryIso3166()
+    )
     {
       return $country_code;
     }
@@ -123,7 +124,7 @@ class cqFrontendUser extends cqBaseUser
     // Get the IP address of the request
     $ip_address = cqContext::getInstance()->getRequest()->getRemoteAddress();
 
-    return cqStatic::getGeoIpCountryCode($ip_address, true) ?: $default;
+    return cqStatic::getGeoIpCountryCode($ip_address, true) ? : $default;
   }
 
   /**
@@ -144,7 +145,7 @@ class cqFrontendUser extends cqBaseUser
     return GeoCountryQuery::create()
       ->filterByIso3166($country_code)
       ->select('Name')
-      ->findOne() ?: false;
+      ->findOne() ? : false;
   }
 
   /**
@@ -269,11 +270,11 @@ class cqFrontendUser extends cqBaseUser
      */
     if ($this->hasFlash('cq_mycq_dropbox_open', 'cookies'))
     {
-      return (boolean) $this->getFlashAndDelete('cq_mycq_dropbox_open', false, 'cookies');
+      return (boolean)$this->getFlashAndDelete('cq_mycq_dropbox_open', false, 'cookies');
     }
     else
     {
-      return (boolean) cqContext::getInstance()->getRequest()->getCookie(
+      return (boolean)cqContext::getInstance()->getRequest()->getCookie(
         self::DROPBOX_OPEN_STATE_COOKIE_NAME, true
       );
     }
@@ -389,7 +390,7 @@ class cqFrontendUser extends cqBaseUser
   public function postCreateHook($collector = null, $send_email = true)
   {
     /** @var $collector Collector */
-    $collector = $collector ?: $this->getCollector();
+    $collector = $collector ? : $this->getCollector();
 
     // We cannot do anything without a Collector
     if (!($collector instanceof Collector) || $collector->isNew())
@@ -441,9 +442,18 @@ class cqFrontendUser extends cqBaseUser
       {
         $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
         $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
-          'to' => $collector->getEmail(),
+          'to'     => $collector->getEmail(),
           'params' => array(
-            'collector' => $collector,
+            'collector'       => $collector,
+            'collector_email' => $collector_email,
+          )
+        ));
+
+        $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
+        $cqEmail->send($collector->getUserType() . '/social_password', array(
+          'to'     => $collector->getEmail(),
+          'params' => array(
+            'collector'       => $collector,
             'collector_email' => $collector_email,
           )
         ));
@@ -451,7 +461,7 @@ class cqFrontendUser extends cqBaseUser
     }
 
     // Defensio request
-    $collector->sendToDefensio('UPDATE');
+//    $collector->sendToDefensio('UPDATE');
 
     return true;
   }
@@ -494,7 +504,7 @@ class cqFrontendUser extends cqBaseUser
   {
     $ids = $this->getObjectIdsOwned($name);
 
-    return call_user_func(array(sfInflector::classify($name).'Peer', 'retrieveByPks'), $ids);
+    return call_user_func(array(sfInflector::classify($name) . 'Peer', 'retrieveByPks'), $ids);
   }
 
   public function getObjectIdsOwned($name)
@@ -514,8 +524,8 @@ class cqFrontendUser extends cqBaseUser
   {
     return $this->getCookieUuid()
       ? CollectorQuery::create()
-          ->filterByCookieUuid($this->getCookieUuid())
-          ->findOne()
+        ->filterByCookieUuid($this->getCookieUuid())
+        ->findOne()
       : null;
   }
 
@@ -533,7 +543,7 @@ class cqFrontendUser extends cqBaseUser
     {
       // if the user is authenticated or we can get it from the UUID cookie
       $collector = $this->getCollector($strict = true)
-        ?: $this->getCollectorByUuid();
+        ? : $this->getCollectorByUuid();
       if ($collector)
       {
         // populate the array from ExtraProperties behavior data for the collector
@@ -567,7 +577,7 @@ class cqFrontendUser extends cqBaseUser
 
     // if the user is authenticated or we can get it from the UUID cookie
     $collector = $this->getCollector($strict = true)
-      ?: $this->getCollectorByUuid();
+      ? : $this->getCollectorByUuid();
 
     if ($collector)
     {
@@ -736,7 +746,7 @@ class cqFrontendUser extends cqBaseUser
     if (!isset($this->sent_count_incemented[$key]))
     {
       $this->resetSentCount($key, $this->getSentCount($key) + 1);
-      $this->sent_count_incemented[$key] =  true;
+      $this->sent_count_incemented[$key] = true;
     }
 
     return $this;
@@ -769,8 +779,7 @@ class cqFrontendUser extends cqBaseUser
       $collector = $this->getCollector(true);
       $this->Authenticate(false);
       $collector->delete();
-    }
-    catch (Exception $e)
+    } catch (Exception $e)
     {
       return false;
     }
@@ -795,7 +804,7 @@ class cqFrontendUser extends cqBaseUser
     {
       @list($id, $hmac) = explode(':', $cookie);
 
-      if ((string) $hmac === hash_hmac('sha1', $id .':'. $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
+      if ((string)$hmac === hash_hmac('sha1', $id . ':' . $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
       {
         $this->_sf_guard_user_id = $id;
 
