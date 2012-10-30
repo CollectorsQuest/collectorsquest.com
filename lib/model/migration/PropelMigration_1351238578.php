@@ -26,48 +26,14 @@ class PropelMigration_1351238578
 
     echo "Set rating & machine tags  \n";
 
-    foreach ($collections as $collectionId => $params)
+    foreach ($collections as $id => $params)
     {
       /* @var $collection CollectorCollection */
-      $collection = CollectorCollectionPeer::retrieveByPK($collectionId);
+      $collection = CollectorCollectionQuery::create()->findOneById($id);
 
       if ($collection)
       {
         echo sprintf("Processing collection Id: %s name: %s \n", $collection->getId(), $collection->getName());
-
-        /*
-        //adding machine tags for collection
-        if (isset($params['machineTags']) && count($params['machineTags']))
-        {
-          foreach ($params['machineTags'] as $tag)
-          {
-            $collection->addTag($tag, true);
-          }
-        }
-
-        //set rating for collection
-        if (isset($params['rating']) && count($params['rating']))
-        {
-          foreach ($params['rating'] as $dimantion => $ratingVal)
-          {
-            if (in_array($dimantion, array_keys(CollectorCollectionRatingPeer::getDimensions())))
-            {
-              $method = sprintf('getAverage%sRating', ucfirst($dimantion));
-              if (!$collection->$method())
-              {
-                $rating = new CollectorCollectionRating();
-                $rating
-                  ->setCollectorCollection($collection)
-                  ->setRating($ratingVal)
-                  ->setDimension($dimantion)
-                  ->setSfGuardUserId($sf_guard_user_id)
-                  ->save();
-              }
-            }
-
-          }
-        }
-        */
 
         /* @var $collectibles Collectible[] */
         $collectibles = $collection->getCollectibles();
@@ -76,7 +42,7 @@ class PropelMigration_1351238578
 
         foreach ($collectibles as $k => $collectible)
         {
-          //adding machine tags
+          // adding machine tags
           if (isset($params['machineTags']) && count($params['machineTags']))
           {
             foreach ($params['machineTags'] as $tag)
