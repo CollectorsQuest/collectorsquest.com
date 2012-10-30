@@ -1034,11 +1034,14 @@ class mycqActions extends cqFrontendActions
    *
    * @return string
    *
-   * @todo restrict only for rpx accounts
    */
   public function executeCreatePassword(sfWebRequest $request)
   {
     SmartMenu::setSelected('mycq_menu', 'profile');
+
+    $collector = $this->getCollector();
+
+    $this->redirectUnless($collector->getGraphId() && substr($collector->getUsername(), 0, 3) == 'rpx', 'mycq_profile_account_info');
 
     $collector_form = new CollectorCreatePasswordForm($this->getCollector());
 
@@ -1062,7 +1065,7 @@ class mycqActions extends cqFrontendActions
       }
     }
 
-    $this->collector = $this->getCollector();
+    $this->collector = $collector;
     $this->collector_form = $collector_form;
 
     return sfView::SUCCESS;
