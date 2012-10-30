@@ -25,7 +25,7 @@ dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     logging_enabled:        true
-    cache:                  false
+    cache:                  true
     etag:                   false
     web_debug:              true
     web_debug_web_dir:      "/sf/sf_web_debug"

@@ -12,8 +12,8 @@ _ad_slots:
   lifetime:    3600
 
 _header:
-  enabled:     false
-  contextual:  true
+  enabled:     true
+  contextual:  false
   with_layout: false
   lifetime:    300
 

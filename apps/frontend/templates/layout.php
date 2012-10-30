@@ -66,11 +66,11 @@
     include_component_slot('header', array(
       'q' => $sf_params->get('q'),
       'k' => $k,
-      'sf_cache_key' => implode('-', array(
-        $sf_cache_key,
-        md5(serialize(array($sf_params->get('q'), $k))),
-        SmartMenu::getCacheKey('header'),
-      ))
+//      'sf_cache_key' => implode('-', array(
+//        $sf_cache_key,
+//        md5(serialize(array($sf_params->get('q'), $k))),
+//        SmartMenu::getCacheKey('header'),
+//      ))
     ));
   ?>
   <div class="shadow">
