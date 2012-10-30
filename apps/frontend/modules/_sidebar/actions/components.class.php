@@ -672,14 +672,8 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $wp_post->getTags('array');
       $q->filterByTags($tags, Criteria::IN);
 
-      $matching_tags = array();
-      foreach ($tags as $tag)
-      {
-        $matching_tags[] = 'matching:market=' . $tag;
-      }
-      /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
-      $matching_query->filterByTags($matching_tags, Criteria::IN);
+      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
     }
     /** @var $wp_user wpUser */
     else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
