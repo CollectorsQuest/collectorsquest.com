@@ -52,6 +52,10 @@ class PropelMigration_1351527620
           REFERENCES `shopping_order` (`id`)
           ON DELETE CASCADE;
 
+        SET FOREIGN_KEY_CHECKS = 1;
+      ',
+      'archive' => "
+        SET FOREIGN_KEY_CHECKS = 0;
 
         CREATE TABLE `shopping_order_archive`
         (
@@ -95,7 +99,7 @@ class PropelMigration_1351527620
           `cookie_uuid` VARCHAR(32),
           `processor` TINYINT DEFAULT 0 NOT NULL,
           `status` TINYINT DEFAULT 0 NOT NULL,
-          `currency` CHAR(3) DEFAULT \'USD\',
+          `currency` CHAR(3) DEFAULT 'USD',
           `amount_total` INTEGER DEFAULT 0 NOT NULL,
           `amount_collectibles` INTEGER DEFAULT 0 NOT NULL,
           `amount_shipping_fee` INTEGER DEFAULT 0 NOT NULL,
@@ -108,7 +112,7 @@ class PropelMigration_1351527620
         ) ENGINE=InnoDB;
 
         SET FOREIGN_KEY_CHECKS = 1;
-      ',
+      ",
       'blog' => '
         SET FOREIGN_KEY_CHECKS = 0;
         SET FOREIGN_KEY_CHECKS = 1;
@@ -140,6 +144,11 @@ class PropelMigration_1351527620
         ALTER TABLE `shopping_payment` ADD CONSTRAINT `shopping_payment_FK_1`
           FOREIGN KEY (`shopping_order_id`)
           REFERENCES `shopping_order` (`id`);
+
+        SET FOREIGN_KEY_CHECKS = 1;
+      ',
+      'archive' => '
+        SET FOREIGN_KEY_CHECKS = 0;
 
         DROP TABLE IF EXISTS `shopping_order_archive`;
         DROP TABLE IF EXISTS `shopping_payment_archive`;
