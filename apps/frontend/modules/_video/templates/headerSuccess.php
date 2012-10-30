@@ -24,11 +24,7 @@
 </head>
 <body id="body-_video-header" data-controller="_video" data-action="header">
   <?php
-    include_component_slot('header', array(
-      'q' => $sf_params->get('q'),
-      'k' => $sf_user->getShoppingCartCollectiblesCount(),
-      '_sf_cache_key' => $sf_cache_key
-    ));
+    include_component_slot('header', array('video' => true));
   ?>
   <div id="slot1" style="height: 50px; box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none;">&nbsp;</div>
 
