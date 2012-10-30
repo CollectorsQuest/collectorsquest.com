@@ -36,6 +36,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   CollectorProfileArchive:
     columns:
       collector_id:    { type: integer, primaryKey: true}
@@ -54,6 +58,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   CollectorIdentifierArchive:
     columns:
       id:            { type: integer, primaryKey: true, autoIncrement: false }
@@ -61,6 +69,10 @@ classes:
       identifier:    { type: varchar, size: 255, index: true }
       created_at:    { type: timestamp }
       archived_at:   { type: timestamp }
+
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
+
 
   CollectorGeocacheArchive:
     columns:
@@ -75,6 +87,10 @@ classes:
       latitude:         { type: float, sqlType: "DECIMAL(8,5)" }
       longitude:        { type: float, sqlType: "DECIMAL(8,5)" }
       timezone:         { type: varchar, size: 128 }
+
+    propel_behaviors:
+      symfony:          { form: false, filter: false }
+
 
   CollectionArchive:
     columns:
@@ -105,6 +121,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   ContentCategoryArchive:
     columns:
       id:                      { type: integer, primaryKey: true, autoIncrement: false }
@@ -115,8 +135,10 @@ classes:
       tree_left:    { type: integer }
       tree_right:   { type: integer }
       tree_level:   { type: integer }
+
     propel_behaviors:
-      symfony: { form: false, filter: false }
+      symfony:      { form: false, filter: false }
+
 
   CollectorCollectionArchive:
     columns:
@@ -147,6 +169,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   CollectibleArchive:
     columns:
       id:                { type: integer, primaryKey: true, autoIncrement: false }
@@ -172,6 +198,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   CollectibleForSaleArchive:
     columns:
       collectible_id:       { type: integer, index: true, primaryKey: true, autoIncrement: false }
@@ -188,6 +218,10 @@ classes:
       updated_at:   { type: timestamp }
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
 
   CommentArchive:
     columns:
@@ -211,6 +245,10 @@ classes:
 
       created_at:      { type: timestamp }
       archived_at:     { type: timestamp }
+
+    propel_behaviors:
+      symfony:         { form: false, filter: false }
+
 
   ShoppingOrderArchive:
     columns:
@@ -239,6 +277,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   ShoppingPaymentArchive:
     columns:
       id:                   { type: integer, primaryKey: true, autoIncrement: false }
@@ -255,3 +297,6 @@ classes:
       updated_at:   { type: timestamp }
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }

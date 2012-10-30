@@ -63,7 +63,7 @@ classes:
       seller_id:            { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
       collector_id:         { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
       shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
-      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
       shopping_payment_id:  { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
 
       buyer_email:          { type: varchar, size: 128, index: true }
@@ -107,7 +107,7 @@ classes:
   ShoppingPayment:
     columns:
       id:  ~
-      shopping_order_id:   { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: cascade }
+      shopping_order_id:   { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: restrict }
       cookie_uuid:         { type: varchar, size: 32, required: false }
       processor:           { type: enum, valueSet: "PayPal, Google, Amazon", default: PayPal, required: true }
       status:              { type: enum, valueSet: "initialized, inprogress, confirmed, cancelled, failed, completed", default: initialized, required: true }
