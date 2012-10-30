@@ -25,11 +25,18 @@ classes:
       description:            { type: longvarchar,  required: false }
       access:                 { type: enum,         required: true, valueSet: "open, moderated, private", default: moderated }
       referral_code:          { type: varchar(50),  required: false, index: unique }
+
+      eblob: { type: longvarchar, default: null }
+
     propel_behaviors:
       timestampable:          ~
       sluggable:
         pattern:              "{Name}"
         permanent:            false
+    behaviors:
+      PropelActAsEblobBehavior:
+        column:               eblob
+      IceMultimediaBehavior:  []
 
     # Initially Antique Malls, Flea Markets, Trade Shows and Collector Clubs. May be expanded
   OrganizationType:

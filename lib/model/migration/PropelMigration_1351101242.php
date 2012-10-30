@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Update multimedia table with "role" field
+ * A singular migration to introduce all changes related to the organizations module
  */
 class PropelMigration_1351101242
 {
@@ -13,7 +13,15 @@ class PropelMigration_1351101242
 
 	public function postUp($manager)
 	{
-		// add the post-migration code here
+    // create the OrganizationType records
+    foreach (OrganizationTypePeer::$organization_types as $type => $name)
+    {
+      $organization_type = new OrganizationType();
+      $organization_type
+        ->setType($type)
+        ->setName($name)
+        ->save();
+    }
 	}
 
 	public function preDown($manager)
@@ -40,9 +48,107 @@ class PropelMigration_1351101242
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
 
-        ALTER TABLE `multimedia` ADD `role` VARCHAR(50) DEFAULT \'main\' NOT NULL AFTER `slug`;
+        -- ---------------------------------------------------------------------
+        -- organization
+        -- ---------------------------------------------------------------------
 
-        ALTER TABLE `multimedia_archive` ADD `role` VARCHAR(50) AFTER `slug`;
+        DROP TABLE IF EXISTS `organization`;
+
+        CREATE TABLE `organization`
+        (
+          `id` INTEGER NOT NULL AUTO_INCREMENT,
+          `founder_id` INTEGER NOT NULL,
+          `name` VARCHAR(255) NOT NULL,
+          `slug` VARCHAR(255),
+          `url` VARCHAR(255),
+          `phone` VARCHAR(255),
+          `description` TEXT,
+          `type` TINYINT,
+          `type_other` VARCHAR(255),
+          `referral_code` VARCHAR(50),
+          `access` TINYINT DEFAULT 1 NOT NULL,
+          `eblob` TEXT,
+          `created_at` DATETIME,
+          `updated_at` DATETIME,
+          PRIMARY KEY (`id`),
+          UNIQUE INDEX `organization_U_1` (`referral_code`),
+          UNIQUE INDEX `organization_slug` (`slug`(255)),
+          INDEX `organization_FI_1` (`founder_id`),
+          INDEX `organization_FI_2` (`type`),
+          CONSTRAINT `organization_FK_1`
+            FOREIGN KEY (`founder_id`)
+            REFERENCES `collector` (`id`),
+          CONSTRAINT `organization_FK_2`
+            FOREIGN KEY (`type`)
+            REFERENCES `organization_type` (`type`)
+        ) ENGINE=InnoDB;
+
+        -- ---------------------------------------------------------------------
+        -- organization_type
+        -- ---------------------------------------------------------------------
+
+        DROP TABLE IF EXISTS `organization_type`;
+
+        CREATE TABLE `organization_type`
+        (
+          `type` TINYINT NOT NULL,
+          `name` VARCHAR(255) NOT NULL,
+          `description` TEXT,
+          PRIMARY KEY (`type`)
+        ) ENGINE=InnoDB;
+
+        -- ---------------------------------------------------------------------
+        -- organization_membership
+        -- ---------------------------------------------------------------------
+
+        DROP TABLE IF EXISTS `organization_membership`;
+
+        CREATE TABLE `organization_membership`
+        (
+          `organization_id` INTEGER NOT NULL,
+          `collector_id` INTEGER NOT NULL,
+          `type` TINYINT NOT NULL,
+          `joined_at` DATETIME,
+          `updated_at` DATETIME,
+          PRIMARY KEY (`organization_id`,`collector_id`),
+          INDEX `organization_membership_FI_2` (`collector_id`),
+          CONSTRAINT `organization_membership_FK_1`
+            FOREIGN KEY (`organization_id`)
+            REFERENCES `organization` (`id`)
+            ON DELETE CASCADE,
+          CONSTRAINT `organization_membership_FK_2`
+            FOREIGN KEY (`collector_id`)
+            REFERENCES `collector` (`id`)
+            ON DELETE CASCADE
+        ) ENGINE=InnoDB;
+
+        -- ---------------------------------------------------------------------
+        -- organization_membership_request
+        -- ---------------------------------------------------------------------
+
+        DROP TABLE IF EXISTS `organization_membership_request`;
+
+        CREATE TABLE `organization_membership_request`
+        (
+          `id` INTEGER NOT NULL AUTO_INCREMENT,
+          `organization_id` INTEGER NOT NULL,
+          `collector_id` INTEGER NOT NULL,
+          `is_invitation` TINYINT(1) DEFAULT 0 NOT NULL,
+          `status` TINYINT NOT NULL,
+          `created_at` DATETIME,
+          `updated_at` DATETIME,
+          PRIMARY KEY (`id`),
+          INDEX `organization_membership_request_FI_1` (`organization_id`),
+          INDEX `organization_membership_request_FI_2` (`collector_id`),
+          CONSTRAINT `organization_membership_request_FK_1`
+            FOREIGN KEY (`organization_id`)
+            REFERENCES `organization` (`id`)
+            ON DELETE CASCADE,
+          CONSTRAINT `organization_membership_request_FK_2`
+            FOREIGN KEY (`collector_id`)
+            REFERENCES `collector` (`id`)
+            ON DELETE CASCADE
+        ) ENGINE=InnoDB;
 
         # This restores the fkey checks, after having unset them earlier
         SET FOREIGN_KEY_CHECKS = 1;
@@ -68,9 +174,13 @@ class PropelMigration_1351101242
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
 
-        ALTER TABLE `multimedia` DROP `role`;
+        DROP TABLE IF EXISTS `org_organization`;
 
-        ALTER TABLE `multimedia_archive` DROP `role`;
+        DROP TABLE IF EXISTS `org_organization_type`;
+
+        DROP TABLE IF EXISTS `org_organization_membership`;
+
+        DROP TABLE IF EXISTS `org_organization_membership_request`;
 
         # This restores the fkey checks, after having unset them earlier
         SET FOREIGN_KEY_CHECKS = 1;
