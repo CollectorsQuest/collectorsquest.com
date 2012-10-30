@@ -5077,7 +5077,7 @@ ContentCategory:
     tree_left: '1441'
     tree_right: '1442'
     tree_level: '4'
-    num_collectibles_for_sale: '0'
+    num_collectibles_for_sale: '1'
   ContentCategory_734:
     name: 'Watch Fobs'
     slug: watch-fobs

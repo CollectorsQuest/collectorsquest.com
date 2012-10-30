@@ -1,17 +1,4 @@
 CollectorProfile:
-  CollectorProfile_52:
-    collector_id: Collector_52
-    collector_type: '2'
-    birthday: '1979-05-20'
-    gender: m
-    zip_postal: '66046'
-    country_iso3166: GeoCountry_US
-    website: ''
-    num_views: '6066'
-    is_featured: '0'
-    is_image_auto: '0'
-    created_at: '2007-06-19 01:15:50'
-    updated_at: '2012-10-30 16:29:50'
   CollectorProfile_59:
     collector_id: Collector_59
     collector_type: '4'
@@ -20,11 +7,11 @@ CollectorProfile:
     zip_postal: '58102'
     country_iso3166: GeoCountry_US
     website: inherited-values.com
-    num_views: '1615'
+    num_views: '1616'
     is_featured: '0'
     is_image_auto: '1'
     created_at: '2007-06-24 01:24:56'
-    updated_at: '2012-10-29 10:31:56'
+    updated_at: '2012-10-30 17:36:07'
   CollectorProfile_163:
     collector_id: Collector_163
     collector_type: '0'
@@ -37,29 +24,6 @@ CollectorProfile:
     is_image_auto: '0'
     created_at: '2007-09-15 22:27:59'
     updated_at: '2012-10-15 19:33:32'
-  CollectorProfile_235:
-    collector_id: Collector_235
-    collector_type: '2'
-    birthday: '1974-06-22'
-    gender: m
-    country_iso3166: GeoCountry_SE
-    website: ''
-    num_views: '187'
-    is_image_auto: '0'
-    created_at: '2008-01-02 18:42:45'
-    updated_at: '2012-10-29 02:56:03'
-  CollectorProfile_531:
-    collector_id: Collector_531
-    collector_type: '4'
-    birthday: '1962-03-14'
-    gender: m
-    zip_postal: '77429'
-    country_iso3166: GeoCountry_US
-    website: www.blackgemrecords.com
-    num_views: '399'
-    is_image_auto: '0'
-    created_at: '2008-04-06 11:43:49'
-    updated_at: '2012-10-28 15:08:00'
   CollectorProfile_644:
     collector_id: Collector_644
     collector_type: '3'
@@ -73,18 +37,6 @@ CollectorProfile:
     is_image_auto: '0'
     created_at: '2008-06-24 17:03:11'
     updated_at: '2012-10-29 16:37:18'
-  CollectorProfile_714:
-    collector_id: Collector_714
-    collector_type: '2'
-    birthday: '1963-06-18'
-    gender: m
-    country_iso3166: GeoCountry_NL
-    website: ''
-    num_views: '195'
-    is_featured: '0'
-    is_image_auto: '0'
-    created_at: '2008-08-23 09:25:20'
-    updated_at: '2012-10-28 09:37:28'
   CollectorProfile_846:
     collector_id: Collector_846
     collector_type: '2'
@@ -92,24 +44,11 @@ CollectorProfile:
     gender: f
     country_iso3166: GeoCountry_IT
     website: ''
-    num_views: '360'
+    num_views: '361'
     is_featured: '0'
     is_image_auto: '0'
     created_at: '2008-12-12 12:58:56'
-    updated_at: '2012-10-27 13:52:07'
-  CollectorProfile_870:
-    collector_id: Collector_870
-    collector_type: '4'
-    birthday: '1987-05-29'
-    gender: f
-    zip_postal: '92040'
-    country_iso3166: GeoCountry_US
-    website: dinotropolis2.blogspot.com/
-    num_views: '818'
-    is_featured: '0'
-    is_image_auto: '0'
-    created_at: '2008-12-27 23:20:15'
-    updated_at: '2012-10-30 10:33:49'
+    updated_at: '2012-10-30 17:28:56'
   CollectorProfile_963:
     collector_id: Collector_963
     collector_type: '4'
@@ -123,19 +62,6 @@ CollectorProfile:
     is_image_auto: '0'
     created_at: '2009-02-04 21:13:11'
     updated_at: '2012-10-30 15:19:56'
-  CollectorProfile_1082:
-    collector_id: Collector_1082
-    collector_type: '3'
-    birthday: '1965-09-27'
-    gender: f
-    zip_postal: '28115'
-    country_iso3166: GeoCountry_US
-    website: ''
-    num_views: '134'
-    is_featured: '0'
-    is_image_auto: '0'
-    created_at: '2009-03-12 22:00:40'
-    updated_at: '2012-10-26 19:58:50'
   CollectorProfile_1212:
     collector_id: Collector_1212
     collector_type: '2'
@@ -149,41 +75,6 @@ CollectorProfile:
     is_image_auto: '0'
     created_at: '2009-05-03 18:58:54'
     updated_at: '2012-10-30 15:08:29'
-  CollectorProfile_1317:
-    collector_id: Collector_1317
-    collector_type: '3'
-    birthday: '1996-11-25'
-    gender: m
-    zip_postal: ''
-    country_iso3166: GeoCountry_RO
-    website: theboundariesofcollecting.blogspot.com/
-    num_views: '3188'
-    is_featured: '0'
-    is_image_auto: '0'
-    created_at: '2009-06-15 15:10:13'
-    updated_at: '2012-10-29 16:45:01'
-  CollectorProfile_1374:
-    collector_id: Collector_1374
-    collector_type: '2'
-    birthday: '1982-02-10'
-    gender: f
-    country_iso3166: GeoCountry_ES
-    website: 'http://elcazarrecompensas.blogspot.com'
-    num_views: '79'
-    is_featured: '0'
-    is_image_auto: '0'
-    created_at: '2009-07-15 07:21:07'
-    updated_at: '2012-10-25 19:07:45'
-  CollectorProfile_3632:
-    collector_id: Collector_3632
-    collector_type: '0'
-    birthday: '1979-06-15'
-    gender: f
-    country_iso3166: GeoCountry_US
-    num_views: '103'
-    is_image_auto: '0'
-    created_at: '2010-06-27 10:19:23'
-    updated_at: '2012-10-29 23:44:28'
   CollectorProfile_4208:
     collector_id: Collector_4208
     collector_type: '0'
@@ -200,18 +91,6 @@ CollectorProfile:
     is_image_auto: '0'
     created_at: '2010-09-28 20:51:11'
     updated_at: '2012-10-21 07:27:39'
-  CollectorProfile_6610:
-    collector_id: Collector_6610
-    collector_type: '4'
-    gender: f
-    zip_postal: '03451'
-    country_iso3166: GeoCountry_US
-    website: ''
-    num_views: '270'
-    is_seller: '0'
-    is_image_auto: '0'
-    created_at: '2011-06-09 17:51:10'
-    updated_at: '2012-10-25 21:23:40'
   CollectorProfile_6700:
     collector_id: Collector_6700
     collector_type: '2'

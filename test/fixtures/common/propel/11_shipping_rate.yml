@@ -5188,3 +5188,6 @@ ShippingRate:
   ShippingRate_2159:
     shipping_reference_id: ShippingReference_3176
     is_free_shipping: '1'
+  ShippingRate_2160:
+    shipping_reference_id: ShippingReference_3178
+    is_free_shipping: '1'

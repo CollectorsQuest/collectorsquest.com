@@ -1751,14 +1751,6 @@ iceModelTagging:
     tag_id: iceModelTag_84
     taggable_model: CollectorCollection
     taggable_id: '45'
-  iceModelTagging_2269:
-    tag_id: iceModelTag_186
-    taggable_model: Collectible
-    taggable_id: '1342'
-  iceModelTagging_2270:
-    tag_id: iceModelTag_624
-    taggable_model: Collectible
-    taggable_id: '1342'
   iceModelTagging_4615:
     tag_id: iceModelTag_123
     taggable_model: CollectorCollection
@@ -1771,14 +1763,6 @@ iceModelTagging:
     tag_id: iceModelTag_495
     taggable_model: CollectorCollection
     taggable_id: '263'
-  iceModelTagging_4622:
-    tag_id: iceModelTag_36
-    taggable_model: Collectible
-    taggable_id: '3999'
-  iceModelTagging_4623:
-    tag_id: iceModelTag_644
-    taggable_model: Collectible
-    taggable_id: '3999'
   iceModelTagging_4802:
     tag_id: iceModelTag_77
     taggable_model: CollectorCollection
@@ -6235,14 +6219,6 @@ iceModelTagging:
     tag_id: iceModelTag_4728
     taggable_model: CollectorCollection
     taggable_id: '621'
-  iceModelTagging_23019:
-    tag_id: iceModelTag_4734
-    taggable_model: Collectible
-    taggable_id: '9484'
-  iceModelTagging_23020:
-    tag_id: iceModelTag_1939
-    taggable_model: Collectible
-    taggable_id: '9484'
   iceModelTagging_23048:
     tag_id: iceModelTag_4752
     taggable_model: CollectorCollection
@@ -8963,30 +8939,6 @@ iceModelTagging:
     tag_id: iceModelTag_5705
     taggable_model: CollectorCollection
     taggable_id: '803'
-  iceModelTagging_30074:
-    tag_id: iceModelTag_5988
-    taggable_model: Collectible
-    taggable_id: '11189'
-  iceModelTagging_30075:
-    tag_id: iceModelTag_4332
-    taggable_model: Collectible
-    taggable_id: '11189'
-  iceModelTagging_30076:
-    tag_id: iceModelTag_6266
-    taggable_model: Collectible
-    taggable_id: '11189'
-  iceModelTagging_30077:
-    tag_id: iceModelTag_6267
-    taggable_model: Collectible
-    taggable_id: '11189'
-  iceModelTagging_30078:
-    tag_id: iceModelTag_5705
-    taggable_model: Collectible
-    taggable_id: '11189'
-  iceModelTagging_30079:
-    tag_id: iceModelTag_644
-    taggable_model: Collectible
-    taggable_id: '11189'
   iceModelTagging_30262:
     tag_id: iceModelTag_3669
     taggable_model: CollectorCollection
@@ -12443,10 +12395,6 @@ iceModelTagging:
     tag_id: iceModelTag_2189
     taggable_model: CollectionCategory
     taggable_id: '757'
-  iceModelTagging_46923:
-    tag_id: iceModelTag_8757
-    taggable_model: Collectible
-    taggable_id: '17079'
   iceModelTagging_46952:
     tag_id: iceModelTag_8813
     taggable_model: CollectorCollection
@@ -15587,18 +15535,6 @@ iceModelTagging:
     tag_id: iceModelTag_9885
     taggable_model: CollectorCollection
     taggable_id: '1334'
-  iceModelTagging_61128:
-    tag_id: iceModelTag_77
-    taggable_model: Collectible
-    taggable_id: '21403'
-  iceModelTagging_61129:
-    tag_id: iceModelTag_102
-    taggable_model: Collectible
-    taggable_id: '21403'
-  iceModelTagging_61130:
-    tag_id: iceModelTag_84
-    taggable_model: Collectible
-    taggable_id: '21403'
   iceModelTagging_61131:
     tag_id: iceModelTag_166
     taggable_model: CollectorCollection
@@ -22383,10 +22319,6 @@ iceModelTagging:
     tag_id: iceModelTag_115
     taggable_model: CollectorCollection
     taggable_id: '1865'
-  iceModelTagging_130993:
-    tag_id: iceModelTag_115
-    taggable_model: Collectible
-    taggable_id: '32551'
   iceModelTagging_130995:
     tag_id: iceModelTag_115
     taggable_model: CollectorCollection
@@ -23859,10 +23791,6 @@ iceModelTagging:
     tag_id: iceModelTag_12007
     taggable_model: CollectorCollection
     taggable_id: '2022'
-  iceModelTagging_139053:
-    tag_id: iceModelTag_11477
-    taggable_model: Collectible
-    taggable_id: '35276'
   iceModelTagging_139095:
     tag_id: iceModelTag_4630
     taggable_model: CollectorCollection
@@ -23943,10 +23871,6 @@ iceModelTagging:
     tag_id: iceModelTag_115
     taggable_model: CollectorCollection
     taggable_id: '2041'
-  iceModelTagging_140295:
-    tag_id: iceModelTag_115
-    taggable_model: Collectible
-    taggable_id: '35591'
   iceModelTagging_140308:
     tag_id: iceModelTag_11477
     taggable_model: CollectorCollection
@@ -34027,38 +33951,6 @@ iceModelTagging:
     tag_id: iceModelTag_16082
     taggable_model: CollectorCollection
     taggable_id: '3319'
-  iceModelTagging_181204:
-    tag_id: iceModelTag_16112
-    taggable_model: Collector
-    taggable_id: '52'
-  iceModelTagging_181205:
-    tag_id: iceModelTag_16113
-    taggable_model: Collector
-    taggable_id: '52'
-  iceModelTagging_181257:
-    tag_id: iceModelTag_16162
-    taggable_model: Collector
-    taggable_id: '235'
-  iceModelTagging_181258:
-    tag_id: iceModelTag_16163
-    taggable_model: Collector
-    taggable_id: '235'
-  iceModelTagging_181259:
-    tag_id: iceModelTag_16106
-    taggable_model: Collector
-    taggable_id: '235'
-  iceModelTagging_181260:
-    tag_id: iceModelTag_16164
-    taggable_model: Collector
-    taggable_id: '235'
-  iceModelTagging_181261:
-    tag_id: iceModelTag_16165
-    taggable_model: Collector
-    taggable_id: '235'
-  iceModelTagging_181273:
-    tag_id: iceModelTag_16173
-    taggable_model: Collector
-    taggable_id: '531'
   iceModelTagging_181360:
     tag_id: iceModelTag_16238
     taggable_model: Collector
@@ -34067,86 +33959,14 @@ iceModelTagging:
     tag_id: iceModelTag_16239
     taggable_model: Collector
     taggable_id: '644'
-  iceModelTagging_181421:
-    tag_id: iceModelTag_16284
-    taggable_model: Collector
-    taggable_id: '714'
   iceModelTagging_181565:
     tag_id: iceModelTag_16361
     taggable_model: Collector
     taggable_id: '846'
-  iceModelTagging_181590:
-    tag_id: iceModelTag_16303
-    taggable_model: Collector
-    taggable_id: '870'
   iceModelTagging_181702:
     tag_id: iceModelTag_16492
     taggable_model: Collector
     taggable_id: '963'
-  iceModelTagging_181864:
-    tag_id: iceModelTag_16570
-    taggable_model: Collector
-    taggable_id: '1082'
-  iceModelTagging_182221:
-    tag_id: iceModelTag_16838
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182222:
-    tag_id: iceModelTag_16839
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182223:
-    tag_id: iceModelTag_16840
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182224:
-    tag_id: iceModelTag_16646
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182225:
-    tag_id: iceModelTag_16106
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182226:
-    tag_id: iceModelTag_16164
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182227:
-    tag_id: iceModelTag_16841
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182228:
-    tag_id: iceModelTag_16206
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182229:
-    tag_id: iceModelTag_16842
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182230:
-    tag_id: iceModelTag_16843
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182231:
-    tag_id: iceModelTag_16228
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182232:
-    tag_id: iceModelTag_16844
-    taggable_model: Collector
-    taggable_id: '1317'
-  iceModelTagging_182283:
-    tag_id: iceModelTag_16881
-    taggable_model: Collector
-    taggable_id: '1374'
-  iceModelTagging_182284:
-    tag_id: iceModelTag_16882
-    taggable_model: Collector
-    taggable_id: '1374'
-  iceModelTagging_183025:
-    tag_id: iceModelTag_17348
-    taggable_model: Collector
-    taggable_id: '6610'
   iceModelTagging_183117:
     tag_id: iceModelTag_16675
     taggable_model: Collector
@@ -46475,3 +46295,7 @@ iceModelTagging:
     tag_id: iceModelTag_15730
     taggable_model: CollectorCollection
     taggable_id: '4370'
+  iceModelTagging_229409:
+    tag_id: iceModelTag_28756
+    taggable_model: CollectorCollection
+    taggable_id: '4371'
