@@ -1,22 +1,4 @@
 CollectorProfileExtraProperty:
-  CollectorProfileExtraProperty_50:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_51:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_52:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_53:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_54:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_182:
     property_name: ABOUT.PURCHASES_PER_YEAR
     property_value: '0'
@@ -293,26 +275,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: 'Shabby Chic Picker Chick Antiques & Collectibles'
     collector_profile_collector_id: CollectorProfile_6700
-  CollectorProfileExtraProperty_38735:
-    property_name: ABOUT.ME
-    property_value: 'Writer and Content & Community Manager for Collectors Quest. NES over-enthusiast, sushi devourer, former library slave, former teacher. Professional illustrator and designer.'
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38736:
-    property_name: ABOUT.COLLECTIONS
-    property_value: 'A little bit of everything: superheroes, history, music, nature.'
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38737:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38738:
-    property_name: ABOUT.INTERESTS
-    property_value: 'Infinite and delicious.'
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38739:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: everything.
-    collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_38832:
     property_name: ABOUT.ME
     property_value: 'I am a graduate student working on my PhD in geology/paleontology.'
@@ -755,17 +717,13 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.MOST_EXPENSIVE_ITEM
     property_value: '500'
     collector_profile_collector_id: CollectorProfile_6700
-  CollectorProfileExtraProperty_72973:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_72995:
     property_name: COMPLETED
     property_value: '100'
     collector_profile_collector_id: CollectorProfile_52
   CollectorProfileExtraProperty_73002:
     property_name: COMPLETED
-    property_value: '25'
+    property_value: '75'
     collector_profile_collector_id: CollectorProfile_59
   CollectorProfileExtraProperty_73102:
     property_name: COMPLETED

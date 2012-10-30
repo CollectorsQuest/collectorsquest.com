@@ -1,0 +1,21 @@
+CollectorRating:
+  CollectorRating_1:
+    dimension: content
+    rating: '5'
+    collector_id: Collector_822
+    sf_guard_user_id: sfGuardUser_3
+  CollectorRating_2:
+    dimension: images
+    rating: '5'
+    collector_id: Collector_822
+    sf_guard_user_id: sfGuardUser_3
+  CollectorRating_3:
+    dimension: content
+    rating: '5'
+    collector_id: Collector_1073
+    sf_guard_user_id: sfGuardUser_3
+  CollectorRating_4:
+    dimension: images
+    rating: '4'
+    collector_id: Collector_1073
+    sf_guard_user_id: sfGuardUser_3

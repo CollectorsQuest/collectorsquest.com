@@ -17,17 +17,6 @@ PackageTransaction:
     package_price: '0'
     expiry_date: '2012-08-08 05:06:10'
     created_at: '2011-06-09 17:52:10'
-  PackageTransaction_132:
-    package_id: Package_6
-    collector_id: Collector_12
-    payment_status: '1'
-    credits: '9999'
-    credits_used: '39'
-    package_price: '0'
-    discount: '250'
-    promotion_transaction_id: PromotionTransaction_26
-    expiry_date: '2013-06-23 19:54:20'
-    created_at: '2012-06-23 19:54:20'
   PackageTransaction_134:
     package_id: Package_6
     collector_id: Collector_963
@@ -55,7 +44,7 @@ PackageTransaction:
     collector_id: Collector_59
     payment_status: '1'
     credits: '9999'
-    credits_used: '0'
+    credits_used: '3'
     package_price: '0'
     discount: '250'
     promotion_transaction_id: PromotionTransaction_36

@@ -1,29 +1,11 @@
 SfGuardUser:
-  SfGuardUser_1:
-    username: kangov
-    algorithm: sha1
-    salt: 88a650c045eefaa715ac60a4a739ef02
-    password: 25814f2a4ec78bee712d18d99098b2f37ffcc415
-    created_at: '2010-02-09 05:06:16'
-    last_login: '2011-11-08 12:04:00'
-    is_active: '1'
-    is_super_admin: '1'
-  SfGuardUser_2:
-    username: ekressel
-    algorithm: sha1
-    salt: 9e3ad250f0a313af8929d5cd71febbe1
-    password: 1ebc6ba1ef462f6be35cbdc8cc5f3f2a0456b87c
-    created_at: '2010-02-09 07:21:11'
-    last_login: '2011-11-08 12:07:59'
-    is_active: '1'
-    is_super_admin: '1'
   SfGuardUser_3:
     username: 'http://collectorsquest.com/openid?id=113242502488094107765'
     algorithm: sha1
     salt: b9092afa31afecabe82ff58f5e06a0e2
     password: d134b9e1dfea1cb41473ef38ddbbf9789eda898f
     created_at: '2011-11-09 04:41:21'
-    last_login: '2012-08-17 16:01:02'
+    last_login: '2012-10-29 13:54:32'
     is_active: '1'
     is_super_admin: '0'
   SfGuardUser_4:
@@ -32,7 +14,7 @@ SfGuardUser:
     salt: e5a2bf53d50b124b938583f91977bcda
     password: e01853347b947af31376427033eda2d8cf39cd9c
     created_at: '2011-11-09 06:49:06'
-    last_login: '2012-08-17 16:25:43'
+    last_login: '2012-10-28 20:12:36'
     is_active: '1'
     is_super_admin: '0'
   SfGuardUser_5:
@@ -41,7 +23,7 @@ SfGuardUser:
     salt: f10aa6f43983466abf6fbf567b4b75da
     password: 685a336e7fd7045837169425dbe01d63165a0058
     created_at: '2011-11-17 11:41:13'
-    last_login: '2012-08-19 19:14:35'
+    last_login: '2012-10-29 14:14:01'
     is_active: '1'
     is_super_admin: '0'
   SfGuardUser_6:
@@ -50,7 +32,7 @@ SfGuardUser:
     salt: 62e978b64789a12fa6729420213bb0f4
     password: 4b28479e177f8d8e64f0689b9131329d6e896745
     created_at: '2012-01-10 12:59:07'
-    last_login: '2012-06-28 23:27:46'
+    last_login: '2012-10-26 10:41:35'
     is_active: '1'
     is_super_admin: '0'
   SfGuardUser_7:
@@ -59,7 +41,7 @@ SfGuardUser:
     salt: 62e978b64789a12fa6729420213bb0f4
     password: 4b28479e177f8d8e64f0689b9131329d6e896745
     created_at: '2012-02-01 14:08:32'
-    last_login: '2012-08-07 14:41:48'
+    last_login: '2012-10-15 12:02:57'
     is_active: '1'
     is_super_admin: '1'
   SfGuardUser_8:
@@ -68,7 +50,7 @@ SfGuardUser:
     salt: 62e978b64789a12fa6729420213bb0f4
     password: 4b28479e177f8d8e64f0689b9131329d6e896745
     created_at: '2012-02-07 17:29:02'
-    last_login: '2012-07-27 10:04:52'
+    last_login: '2012-10-26 09:54:12'
     is_active: '1'
     is_super_admin: '0'
   SfGuardUser_9:
@@ -77,7 +59,7 @@ SfGuardUser:
     salt: 62e978b64789a12fa6729420213bb0f4
     password: 4b28479e177f8d8e64f0689b9131329d6e896745
     created_at: '2012-02-08 10:16:02'
-    last_login: '2012-08-08 07:18:02'
+    last_login: '2012-09-12 18:17:18'
     is_active: '1'
     is_super_admin: '0'
   SfGuardUser_10:
@@ -95,6 +77,14 @@ SfGuardUser:
     salt: 62e978b64789a12fa6729420213bb0f4
     password: 4b28479e177f8d8e64f0689b9131329d6e896745
     created_at: '2012-08-13 18:00:45'
-    last_login: '2012-08-13 14:01:28'
+    last_login: '2012-10-01 04:05:47'
+    is_active: '1'
+    is_super_admin: '0'
+  SfGuardUser_12:
+    username: 'http://collectorsquest.com/openid?id=110311156909900099009'
+    algorithm: sha1
+    salt: 62e978b64789a12fa6729420213bb0f4
+    password: 4b28479e177f8d8e64f0689b9131329d6e896745
+    created_at: '2012-08-30 17:37:10'
     is_active: '1'
     is_super_admin: '0'

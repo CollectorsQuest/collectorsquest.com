@@ -28,7 +28,7 @@ class testGenerateFixturesTask extends sfBaseTask
     $archive = $databaseManager->getDatabase('archive')->getConnection();
 
     $collector_ids = array(
-      531, 52, 1082, 3632, 6610, 1374, 12, 714, 235, 870, 1317,
+      531, 52, 1082, 3632, 6610, 1374, 714, 235, 870, 1317,
       163, 963, 644, 59, 4208, 6700, 1212, 4295, 846, 9367
     );
 

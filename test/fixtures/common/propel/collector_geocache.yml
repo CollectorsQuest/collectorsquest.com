@@ -139,14 +139,6 @@ CollectorGeocache:
     latitude: '40.64510'
     longitude: '-74.43498'
     timezone: America/New_York
-  CollectorGeocache_11443:
-    collector_id: Collector_12
-    country_iso3166: GeoCountry_US
-    state: NY
-    address: 'Putnam Valley, NY 10579, USA'
-    latitude: '41.39138'
-    longitude: '-73.83014'
-    timezone: America/New_York
   CollectorGeocache_11495:
     collector_id: Collector_870
     country_iso3166: GeoCountry_US

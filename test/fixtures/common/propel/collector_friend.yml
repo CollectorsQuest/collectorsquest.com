@@ -1,10 +1,4 @@
 CollectorFriend:
-  CollectorFriend_149:
-    collector_id: Collector_59
-    friend_id: Collector_12
-  CollectorFriend_292:
-    collector_id: Collector_52
-    friend_id: Collector_12
   CollectorFriend_705:
     collector_id: Collector_59
     friend_id: Collector_52
