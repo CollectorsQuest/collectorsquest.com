@@ -81,7 +81,10 @@ else if ($data['is_author'])
 }
 else
 {
-  echo '<!-- Blog Sidebar Widget1 //-->';
+  if (!isset($data['is_404']))
+  {
+    echo '<!-- Blog Sidebar Widget1 //-->';
+  }
 
   if (!$sf_user->isAuthenticated())
   {

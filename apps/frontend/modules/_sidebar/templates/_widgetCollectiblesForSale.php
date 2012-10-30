@@ -1,22 +1,33 @@
 <?php
 /**
- * @var  $title  string
+ * @var  $title                  string
  * @var  $collectibles_for_sale  CollectibleForSale[]
- * @var  $height  stdClass
- * @var  $limit  integer
+ * @var  $height                 stdClass
+ * @var  $limit                  integer
+ * @var  $collector              Collector
  */
 
 $_height = 0;
 ?>
 
 <?php
-  cq_sidebar_title(
-    $title, cq_link_to(
+  if (!isset($collector))
+  {
+    $link = cq_link_to(
       'Explore Market &raquo;',
       '@marketplace', array('class' => 'text-v-middle link-align')
-    ),
-    array('left' => 7, 'right' => 5)
-  );
+    );
+  }
+  else
+  {
+    $link = link_to(
+      'See all &raquo;',
+      'collectibles_for_sale_by_collector', $collector,
+      array('class' => 'text-v-middle link-align')
+    );
+  }
+
+  cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
 
   $_height -= 63;
 ?>
