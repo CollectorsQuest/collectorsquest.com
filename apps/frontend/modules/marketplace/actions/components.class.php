@@ -211,6 +211,7 @@ class marketplaceComponents extends cqFrontendComponents
         0 => array(
           'id' => -1, 'active' => true,
           'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks',
+          'content' => 'blah blah',
           'tags' => array()
         )
       );
@@ -224,6 +225,7 @@ class marketplaceComponents extends cqFrontendComponents
       $this->menu[] = array(
         'id' => $wp_post->getId(), 'active' => ($i === $t - $offset) && $t > 0,
         'name' => $name, 'slug' => $wp_post->getSlug(),
+        'content' => $wp_post->getPostContent(),
         'tags' => $wp_post->getTags('array')
       );
     }

@@ -50,18 +50,27 @@
 <div class="collectibles-for-sale-3x-big-wrapper">
   <div class="row">
     <div class="row-content" style="margin-left: 24px;">
-    <?php
-      foreach ($pager->getResults() as $collectible_for_sale)
-      {
-        include_partial(
-          'marketplace/collectible_for_sale_grid_view_square_big',
-          array(
-            'collectible_for_sale' => $collectible_for_sale,
-            'lazy_image' => false, 'i' => $collectible_for_sale->getCollectibleId()
-          )
-        );
-      }
-    ?>
+      <div id="collectible_for_sale_0_grid_view_square_big"
+           class="span6 collectible_for_sale_grid_view_square_big fade-white link"
+          style='background: url(<?= cq_image_src('frontend/misc/holiday-market/holiday-item-background.jpg') ?>);'>
+
+        <div style="color: #fff; padding: 20px;">
+          <?= $menu[($t-1 < 0 ? 0 : $t-1)]['content']; ?>
+        </div>
+      </div>
+
+      <?php
+        foreach ($pager->getResults() as $collectible_for_sale)
+        {
+          include_partial(
+            'marketplace/collectible_for_sale_grid_view_square_big',
+            array(
+              'collectible_for_sale' => $collectible_for_sale,
+              'lazy_image' => false, 'i' => $collectible_for_sale->getCollectibleId()
+            )
+          );
+        }
+      ?>
     </div>
   </div>
   <div id="pages" class="spacer-bottom-15">
