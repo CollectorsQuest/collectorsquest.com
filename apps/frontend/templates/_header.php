@@ -139,7 +139,7 @@
           );
         ?>
         <ul class="nav">
-          <?= SmartMenu::generate('header'); ?>
+          <?= SmartMenu::generate('header', array()); ?>
         </ul>
         <div class="menu-wrapper-social-icons">
           <span class="white">Follow us:</span>
