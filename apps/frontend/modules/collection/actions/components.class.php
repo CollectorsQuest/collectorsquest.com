@@ -13,6 +13,9 @@ class collectionComponents extends cqFrontendComponents
     $this->aetn_show = $this->getVar('aetn_show');
     $this->collectible = $this->getVar('collectible');
 
+    // is user coming from the marketplace page?
+    $this->ref_marketplace = $this->getVar('ref_marketplace', false);
+
     // We need a collectible for building the sidebar
     if (!$this->collectible)
     {
