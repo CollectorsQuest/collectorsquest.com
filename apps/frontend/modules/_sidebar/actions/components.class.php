@@ -594,19 +594,6 @@ class _sidebarComponents extends cqFrontendComponents
         );
     }
 
-    /** @var $wp_post wpPost */
-    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
-    {
-      $tags = $wp_post->getTags('array');
-      $q->filterByTags($tags, Criteria::IN);
-    }
-    /** @var $wp_user wpUser */
-    else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
-    {
-      $tags = $wp_user->getTags('array');
-      $q->filterByTags($tags, Criteria::IN);
-    }
-
     /** @var $category ContentCategory */
     if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
     {
@@ -679,8 +666,47 @@ class _sidebarComponents extends cqFrontendComponents
       }
     }
 
+    /** @var $wp_post wpPost */
+    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
+    {
+      $tags = $wp_post->getTags('array');
+      $q->filterByTags($tags, Criteria::IN);
+
+      $matching_tags = array();
+      foreach ($tags as $tag)
+      {
+        $matching_tags[] = 'matching:market=' . $tag;
+      }
+      /** @var $matching_query FrontendCollectibleForSaleQuery */
+      $matching_query = clone $q;
+      $matching_query->filterByTags($matching_tags, Criteria::IN);
+    }
+    /** @var $wp_user wpUser */
+    else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
+    {
+      $tags = $wp_user->getTags('array');
+      $q->filterByTags($tags, Criteria::IN);
+    }
+
     // Make the actual query and get the CollectiblesForSale
-    $this->collectibles_for_sale = $q->limit($this->limit)->find();
+    if (isset($matching_query))
+    {
+      $this->collectibles_for_sale = $matching_query->limit($this->limit)->find();
+      $count_collectibles = $matching_query->limit($this->limit)->count();
+      if ($count_collectibles < $this->limit)
+      {
+        $additional_collectibles = $q->limit($this->limit - $count_collectibles)->find();
+        // add collectibles that are not matching by machine tags but are matching by tags
+        $this->collectibles_for_sale->exchangeArray(
+          array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles->getArrayCopy())
+        );
+      }
+    }
+    else
+    {
+      $this->collectibles_for_sale = $q->limit($this->limit)->find();
+    }
+
 
     if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
     {
