@@ -1,13 +1,9 @@
 <?php
 
-
-require 'lib/model/organizations/om/BaseOrganizationPeer.php';
-
-
 /**
  * Skeleton subclass for performing query and update operations on the 'organization' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -15,6 +11,10 @@ require 'lib/model/organizations/om/BaseOrganizationPeer.php';
  *
  * @package    propel.generator.lib.model.organizations
  */
-class OrganizationPeer extends BaseOrganizationPeer {
+class OrganizationPeer extends BaseOrganizationPeer
+{
+
+  const MULTIMEDIA_ROLE_LOGO = 'logo';
+  const MULTIMEDIA_ROLE_PROFILE = 'profile';
 
 }

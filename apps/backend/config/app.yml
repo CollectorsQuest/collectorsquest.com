@@ -67,7 +67,7 @@ all:
       Organizations:
         icon: group
         items:
-          Organization:
+          Organizations:
             url: organization
             image: theme/icons/users.png
 

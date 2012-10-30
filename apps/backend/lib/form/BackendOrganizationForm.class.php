@@ -11,6 +11,9 @@ class BackendOrganizationForm extends OrganizationForm
 
     $this->setupFounderIdField();
     $this->setupUrlField();
+    $this->setupDescriptionField();
+    $this->setupLogoField();
+    $this->setupProfileImageField();
 
     $this->mergePostValidator(new BackendOrganizationValidatorSchema());
   }
@@ -23,11 +26,101 @@ class BackendOrganizationForm extends OrganizationForm
     ));
 
     $this->validatorSchema['founder_id'] = new cqValidatorCollectorByName();
+
+  }
+
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    if (!$this->isNew())
+    {
+      $this->setDefault(
+        'founder_id',
+        $this->getObject()->getFounder()->getDisplayName()
+      );
+    }
   }
 
   protected function setupUrlField()
   {
     $this->validatorSchema['url']->setOption('trim', true);
+  }
+
+  protected function setupDescriptionField()
+  {
+    $this->widgetSchema['description'] = new sfWidgetFormTextareaTinyMCE();
+  }
+
+  protected function setupLogoField()
+  {
+    $logo = $this->getObject()->getMultimediaByRole(OrganizationPeer::MULTIMEDIA_ROLE_LOGO);
+    $this->widgetSchema['logo'] = new sfWidgetFormInputFileEditable(array(
+        'file_src' => $logo
+                      ? $logo->getRelativePath()
+                      : '',
+        'is_image' => true,
+        'with_delete' => false,
+
+    ));
+    $this->validatorSchema['logo'] = new cqValidatorFile(array(
+        'mime_types' => 'cq_supported_images',
+        'required' => false,
+    ));
+  }
+
+  protected function setupProfileImageField()
+  {
+    $profile_image = $this->getObject()->getMultimediaByRole(OrganizationPeer::MULTIMEDIA_ROLE_PROFILE);
+    $this->widgetSchema['profile_image'] = new sfWidgetFormInputFileEditable(array(
+        'file_src' => $profile_image
+                      ? $profile_image->getRelativePath()
+                      : '',
+        'is_image' => true,
+        'with_delete' => false,
+
+    ));
+    $this->validatorSchema['profile_image'] = new cqValidatorFile(array(
+        'mime_types' => 'cq_supported_images',
+        'required' => false,
+    ));
+  }
+
+  protected function doSave($con = null)
+  {
+    parent::doSave($con);
+
+    // handle logo as custom multimedia
+    if ($logo = $this->getValue('logo'))
+    {
+      // if a logo was already set, delete it
+      $old_logo = $this->getObject()->getMultimediaByRole(OrganizationPeer::MULTIMEDIA_ROLE_LOGO);
+      if ($old_logo)
+      {
+        $old_logo->delete();
+      }
+
+      // add the new logo
+      $this->getObject()->addMultimedia($logo, array(
+          'role' => OrganizationPeer::MULTIMEDIA_ROLE_LOGO,
+      ));
+    }
+
+    // handle profile image as custom multimedia
+    if ($profile_image = $this->getValue('profile_image'))
+    {
+      // if a profile image was already set, delete it
+      $old_profile_image = $this->getObject()->getMultimediaByRole(OrganizationPeer::MULTIMEDIA_ROLE_PROFILE);
+      if ($old_profile_image)
+      {
+        $old_profile_image->delete();
+      }
+
+      // add the new profile image
+      $this->getObject()->addMultimedia($profile_image, array(
+          'role' => OrganizationPeer::MULTIMEDIA_ROLE_PROFILE,
+      ));
+    }
   }
 
   protected function unsetFields()

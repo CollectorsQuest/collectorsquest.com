@@ -24,7 +24,13 @@ class BackendOrganizationValidatorSchema extends sfValidatorSchema
 
     $this->addMessage(
       'type_required',
-      'You must either select one of the pre-defined types or enter a custom type for this organization'
+      'You must either select one of the pre-defined organization types
+       or enter a custom type for this organization.'
+    );
+    $this->addMessage(
+      'type_double',
+      'You must enter only one of the two possilbe types
+       (either a pre-defined or a custom one) and not both.'
     );
   }
 
@@ -43,6 +49,12 @@ class BackendOrganizationValidatorSchema extends sfValidatorSchema
     if (!$values['type']  && !$values['type_other'])
     {
       $local_error_schema->addError(new sfValidatorError($this, 'type_required'));
+    }
+
+    // either only one of predefined type or a custom type
+    if ($values['type']  && $values['type_other'])
+    {
+      $local_error_schema->addError(new sfValidatorError($this, 'type_double'));
     }
 
     // throw the error schema if we have added errors to it

@@ -1,7 +1,5 @@
 <?php
 
-require 'lib/model/om/BaseCollector.php';
-
 /**
  * @method     int getSingupNumCompletedSteps() Return the number of completed signup steps
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
