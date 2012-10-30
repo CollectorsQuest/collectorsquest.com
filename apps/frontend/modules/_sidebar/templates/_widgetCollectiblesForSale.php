@@ -15,8 +15,7 @@ $_height = 0;
   {
     $link = cq_link_to(
       'Explore Market &raquo;',
-      '@marketplace', array('class' => 'text-v-middle link-align'),
-      array('left' => 7, 'right' => 5)
+      '@marketplace', array('class' => 'text-v-middle link-align')
     );
   }
   else
@@ -28,7 +27,7 @@ $_height = 0;
     );
   }
 
-  cq_sidebar_title($title, $link);
+  cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
 
   $_height -= 63;
 ?>
