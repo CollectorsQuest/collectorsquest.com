@@ -37,21 +37,6 @@ class PropelMigration_1351527620
     return array(
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
-
-        ALTER TABLE `shopping_order` DROP FOREIGN KEY `shopping_order_FK_4`;
-
-        ALTER TABLE `shopping_order` ADD CONSTRAINT `shopping_order_FK_4`
-          FOREIGN KEY (`collectible_id`)
-          REFERENCES `collectible` (`id`)
-          ON DELETE CASCADE;
-
-        ALTER TABLE `shopping_payment` DROP FOREIGN KEY `shopping_payment_FK_1`;
-
-        ALTER TABLE `shopping_payment` ADD CONSTRAINT `shopping_payment_FK_1`
-          FOREIGN KEY (`shopping_order_id`)
-          REFERENCES `shopping_order` (`id`)
-          ON DELETE CASCADE;
-
         SET FOREIGN_KEY_CHECKS = 1;
       ',
       'archive' => "
@@ -131,20 +116,6 @@ class PropelMigration_1351527620
     return array(
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
-
-        ALTER TABLE `shopping_order` DROP FOREIGN KEY `shopping_order_FK_4`;
-
-        ALTER TABLE `shopping_order` ADD CONSTRAINT `shopping_order_FK_4`
-        FOREIGN KEY (`shopping_payment_id`)
-        REFERENCES `shopping_payment` (`id`)
-        ON DELETE SET NULL;
-
-        ALTER TABLE `shopping_payment` DROP FOREIGN KEY `shopping_payment_FK_1`;
-
-        ALTER TABLE `shopping_payment` ADD CONSTRAINT `shopping_payment_FK_1`
-          FOREIGN KEY (`shopping_order_id`)
-          REFERENCES `shopping_order` (`id`);
-
         SET FOREIGN_KEY_CHECKS = 1;
       ',
       'archive' => '
