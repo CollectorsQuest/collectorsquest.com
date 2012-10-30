@@ -1,3 +1,26 @@
+<script>
+  if (document.getElementById('shopping-cart-count') !== null)
+  {
+    <?php $k = $sf_user->getShoppingCartCollectiblesCount(); ?>
+    document.getElementById('shopping-cart-count').innerHTML = '<?= $k ?>';
+    <?php if ($k): ?>
+    document.getElementById('shopping-cart-count').className = '';
+    <?php endif; ?>
+    document.getElementById('shopping-cart-count-link').setAttribute(
+            'title', '<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>'
+    );
+
+  }
+  if (document.getElementById('header_menu_<?= SmartMenu::getSelected('header'); ?>') !== null)
+  {
+    document.getElementById('header_menu_<?= SmartMenu::getSelected('header'); ?>').className = 'active';
+  }
+  if (document.getElementById('q') !== null)
+  {
+    document.getElementById('q').value = '<?= $sf_params->get('q'); ?>';
+  }
+
+</script>
 <?php include_component_slot('jquery_footer'); ?>
 
 <?php if ($sf_params->get('gcf')): ?>
