@@ -14,7 +14,15 @@ class collectionComponents extends cqFrontendComponents
     $this->collectible = $this->getVar('collectible');
 
     // is user coming from the marketplace page?
-    $this->ref_marketplace = $this->getVar('ref_marketplace', false);
+    $this->ref_marketplace = $this->getRequestParameter('ref');
+    if ($this->ref_marketplace !== 'mp')
+    {
+      $this->ref_marketplace = false;
+    }
+    else
+    {
+      $this->ref_marketplace = true;
+    }
 
     // We need a collectible for building the sidebar
     if (!$this->collectible)

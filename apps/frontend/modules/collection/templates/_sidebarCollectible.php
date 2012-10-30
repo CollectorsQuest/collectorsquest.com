@@ -135,7 +135,7 @@
         '_sidebar', 'widgetCollectiblesForSale',
         array(
           'collector' => $collectible->getCollector(),
-          'collectible_exclude' => $collectible, 'limit' => 4,
+          'exclude_collectible_ids' => array($collectible->getId()), 'limit' => 4,
           'title' => 'Other Items from this Seller',
           'fallback' => 'random', 'height' => &$height
         )

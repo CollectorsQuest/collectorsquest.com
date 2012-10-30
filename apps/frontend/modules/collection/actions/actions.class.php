@@ -313,8 +313,6 @@ class collectionActions extends cqFrontendActions
     else
     {
       $this->ref_marketplace = true;
-      // let the sidebar know user comes from the marketplace page
-      $this->setComponentVar('ref_marketplace', $this->ref_marketplace, 'sidebarCollectible');
     }
 
 

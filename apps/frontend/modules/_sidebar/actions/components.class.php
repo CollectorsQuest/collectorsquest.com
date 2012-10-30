@@ -668,12 +668,12 @@ class _sidebarComponents extends cqFrontendComponents
 
     if ($collector = $this->getVar('collector'))
     {
-      $collectible_exclude = $this->getVar('collectible_exclude');
-      if ($collector instanceof Collector && $collectible_exclude instanceof Collectible)
+      $exclude_collectible_ids = $this->getVar('exclude_collectible_ids');
+      if ($collector instanceof Collector)
       {
         $q
           ->filterByCollector($collector)
-          ->filterByCollectibleId($collectible_exclude->getId(), Criteria::NOT_IN);
+          ->filterByCollectibleId($exclude_collectible_ids, Criteria::NOT_IN);
 
         $this->collector = $collector;
       }
