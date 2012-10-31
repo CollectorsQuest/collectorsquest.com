@@ -780,7 +780,8 @@ class cqFrontendUser extends cqBaseUser
       $collector = $this->getCollector(true);
       $this->Authenticate(false);
       $collector->delete();
-    } catch (Exception $e)
+    }
+    catch (Exception $e)
     {
       return false;
     }
