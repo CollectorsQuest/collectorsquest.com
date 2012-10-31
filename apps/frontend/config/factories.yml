@@ -23,6 +23,8 @@ test:
 
 
 dev:
+  view_cache_manager:
+    class: cqViewCacheManager
   logger:
     class: sfAggregateLogger
     param:
