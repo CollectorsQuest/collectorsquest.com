@@ -57,7 +57,7 @@ class BackendOrganizationForm extends OrganizationForm
     $logo = $this->getObject()->getMultimediaByRole(OrganizationPeer::MULTIMEDIA_ROLE_LOGO);
     $this->widgetSchema['logo'] = new sfWidgetFormInputFileEditable(array(
         'file_src' => $logo
-                      ? $logo->getRelativePath()
+                      ? $logo->getRelativePath('thumbnail')
                       : '',
         'is_image' => true,
         'with_delete' => false,
@@ -74,7 +74,7 @@ class BackendOrganizationForm extends OrganizationForm
     $profile_image = $this->getObject()->getMultimediaByRole(OrganizationPeer::MULTIMEDIA_ROLE_PROFILE);
     $this->widgetSchema['profile_image'] = new sfWidgetFormInputFileEditable(array(
         'file_src' => $profile_image
-                      ? $profile_image->getRelativePath()
+                      ? $profile_image->getRelativePath('thumbnail')
                       : '',
         'is_image' => true,
         'with_delete' => false,
@@ -101,9 +101,11 @@ class BackendOrganizationForm extends OrganizationForm
       }
 
       // add the new logo
-      $this->getObject()->addMultimedia($logo, array(
+      $m = $this->getObject()->addMultimedia($logo, array(
           'role' => OrganizationPeer::MULTIMEDIA_ROLE_LOGO,
       ));
+      // and create the logo thumbnail
+      $m->makeThumb(150, 150);
     }
 
     // handle profile image as custom multimedia
@@ -117,9 +119,11 @@ class BackendOrganizationForm extends OrganizationForm
       }
 
       // add the new profile image
-      $this->getObject()->addMultimedia($profile_image, array(
+      $m = $this->getObject()->addMultimedia($profile_image, array(
           'role' => OrganizationPeer::MULTIMEDIA_ROLE_PROFILE,
       ));
+      // and create the profile thumbnail
+      $m->makeThumb(150, 150);
     }
   }
 
