@@ -72,11 +72,34 @@
             );
           }
           else
-          {
-            include_partial(
-              'global/footer_authenticated',
-              array('collector' => $sf_user->getCollector())
-            );
+          { ?>
+            <div id="footer-user-info"></div>
+              <ul class="footer-profile-box cf">
+                <li class="footer-profile-box-h-list spacer-inner-top-reset">
+                  <ul class="row-fluid">
+                    <li class="span6 add-collectible-img link">
+                      <a href="<?= url_for('@mycq_collections?ref='. cq_link_ref('footer'), true) ?>" class="bold-links target">
+                        Upload<br> an item
+                      </a>
+                      </li>
+                      <li class="span6 organize-collection link">
+                        <a href="<?= url_for('@mycq_collections?ref='. cq_link_ref('footer'), true) ?>#my-collections" class="bold-links target">
+                          Organize your<br> collections
+                        </a>
+                      </li>
+                  </ul>
+                </li>
+              </ul>
+
+              <div class="row-fluid spacer-inner-top">
+                <div class="span12">
+                  <a href="<?= url_for('@mycq_profile?ref='. cq_link_ref('footer'), true); ?>" class="btn btn-primary">
+                    My Profile
+                  </a>
+                  <b><?= link_to('Log out', '@logout?ref='. cq_link_ref('footer'), array('class' => 'spacer-left logout-link')); ?></b>
+               </div>
+            </div>
+            <?php
           }
         ?>
       </div>

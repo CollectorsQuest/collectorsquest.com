@@ -2,7 +2,7 @@
   if (document.getElementById('shopping-cart-count') !== null)
   {
     <?php $k = $sf_user->getShoppingCartCollectiblesCount(); ?>
-    document.getElementById('shopping-cart-count').innerHTML = '<?= $k ?>';
+    document.getElementById('shopping-cart-count').innerHTML = '<?= (string) $k ?>';
     <?php if ($k): ?>
     document.getElementById('shopping-cart-count').className = '';
     <?php endif; ?>
@@ -11,13 +11,19 @@
     );
 
   }
-  if (document.getElementById('header_menu_<?= SmartMenu::getSelected('header'); ?>') !== null)
+  if (document.getElementById('header_menu_<?= (string) SmartMenu::getSelected('header'); ?>') !== null)
   {
-    document.getElementById('header_menu_<?= SmartMenu::getSelected('header'); ?>').className = 'active';
+    document.getElementById('header_menu_<?= (string) SmartMenu::getSelected('header'); ?>').className = 'active';
   }
   if (document.getElementById('q') !== null)
   {
-    document.getElementById('q').value = '<?= $sf_params->get('q'); ?>';
+    document.getElementById('q').value = '<?= (string) $sf_params->get('q'); ?>';
+  }
+  if (document.getElementById('footer-user-info') !== null)
+  {
+      document.getElementById('footer-user-info').innerHTML = '<?= preg_replace('/^\s+|\n|\r|\s+$/m', '',get_partial(
+        'global/footer_authenticated'
+      )); ?>';
   }
 
 </script>

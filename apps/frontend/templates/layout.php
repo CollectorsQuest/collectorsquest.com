@@ -147,7 +147,7 @@
   ?>
 
   <?php
-    include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
+    include_component_slot('footer');
     include_partial('global/footer_links');
 
     if (!$sf_user->isAuthenticated())
