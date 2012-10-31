@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 require_once(dirname(__FILE__).'/../../../lib/collectorsquest/cqBaseUser.class.php');
 
-$t = new lime_test(11, new lime_output_color());
+$t = new lime_test(11, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 $_SERVER['session_id'] = 'test';
 
