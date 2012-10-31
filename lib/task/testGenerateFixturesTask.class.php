@@ -87,6 +87,7 @@ class testGenerateFixturesTask extends sfBaseTask
       "DELETE FROM tagging WHERE `taggable_model` = 'Collector' AND `taggable_id` NOT IN (SELECT id FROM collector);",
       "DELETE FROM tagging WHERE `taggable_model` = 'Collection' AND `taggable_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",
       "DELETE FROM tagging WHERE `taggable_model` = 'Collectible' AND `taggable_id` NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 10) AS c WHERE collectible.id = c.id);",
+      "DELETE FROM tag WHERE `id` NOT IN (SELECT tagging.tag_id FROM tagging);",
 
       "DELETE FROM term_relationship WHERE `model` = 'Collector' AND `model_id` NOT IN (SELECT id FROM collector);",
       "DELETE FROM term_relationship WHERE `model` = 'Collection' AND `model_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",
