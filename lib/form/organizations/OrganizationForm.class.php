@@ -24,7 +24,9 @@ class OrganizationForm extends BaseOrganizationForm
       $type_value_set = OrganizationTypePeer::getValueSet(OrganizationTypePeer::TYPE);
       $this->setDefault(
         'type',
-        $type_value_set[$this->getObject()->getType()]
+        isset($type_value_set[$this->getObject()->getType()])
+          ? $type_value_set[$this->getObject()->getType()]
+          : null
       );
     }
   }
