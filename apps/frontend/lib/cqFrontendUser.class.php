@@ -450,7 +450,7 @@ class cqFrontendUser extends cqBaseUser
         ));
 
         $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
-        $cqEmail->send($collector->getUserType() . '/social_password', array(
+        $cqEmail->send('collector/social_password', array(
           'to'     => $collector->getEmail(),
           'params' => array(
             'collector'       => $collector,
