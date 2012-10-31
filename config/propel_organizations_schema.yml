@@ -33,6 +33,9 @@ classes:
       sluggable:
         pattern:              "{Name}"
         permanent:            false
+      aggregate_column:
+        name:                 nb_members
+        foreign_table:        organization_membership
     behaviors:
       PropelActAsEblobBehavior:
         column:               eblob
