@@ -3,7 +3,7 @@
 $custom_thumbs_mb = new WPAlchemy_MetaBox(array
 (
 	'id' => '_market_theme',
-	'title' => 'Custom IDs or other fileds',
+	'title' => 'Custom IDs or other fields',
 	'template' => get_stylesheet_directory() . '/lib/metaboxes/market-theme-meta.php',
   'types' => array('market_theme'),
   'context' => 'normal',

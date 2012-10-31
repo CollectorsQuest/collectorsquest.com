@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(9, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(8, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 // Reset all tables we will be working on
 cqTest::resetTables(array(
@@ -26,11 +26,6 @@ $t->diag('::createFromArray()');
   $t->is($collector->getDisplayName(), 'Kiril Angov', 'Checking the display name');
   $t->is($collector->getEmail(), 'kangov@collectorsquest.com', 'Checking the email');
 
-$t->diag('::retrieveByDistance()');
-
-  $pks = CollectorPeer::retrieveByDistance(11201, 100, false);
-  $t->is($pks, CollectorPeer::retrieveByPKs(array(1, 4, 13)));
-
 $t->diag('::retrieveByHashTimeLimited()');
 
   $time_of_generation = time();
@@ -38,13 +33,16 @@ $t->diag('::retrieveByHashTimeLimited()');
   $hash = $collector->getAutoLoginHash('v1', $time_of_generation);
   $id = $collector->getId();
 
-  $t->isa_ok($collector = CollectorPeer::retrieveByHashTimeLimited($hash, '+15 seconds', $current_time = strtotime('+10 seconds', $time_of_generation)), 'Collector',
-    'retrieveByHashTimeLimited returns the object when in the limit');
-  $t->is($collector->getId(), $id,
-    'retrieveByHashTimeLimited returns the right object');
+  $collector = CollectorPeer::retrieveByHashTimeLimited(
+    $hash, '+15 seconds', $current_time = strtotime('+10 seconds', $time_of_generation)
+  );
+  $t->isa_ok($collector, 'Collector', 'retrieveByHashTimeLimited returns the object when in the limit');
+  $t->is($collector->getId(), $id, 'retrieveByHashTimeLimited returns the right object');
 
-  $t->isa_ok($collector = CollectorPeer::retrieveByHashTimeLimited($hash, '+5 seconds', $current_time = strtotime('+10 seconds', $time_of_generation)), 'NULL',
-    'retrieveByHashTimeLimited returns null when the object has passed its time limit');
+  $collector = CollectorPeer::retrieveByHashTimeLimited(
+    $hash, '+5 seconds', $current_time = strtotime('+10 seconds', $time_of_generation)
+  );
+  $t->isa_ok($collector, 'NULL', 'retrieveByHashTimeLimited returns null when the object has passed its time limit');
 
 $t->diag('::retrieveByUsername()');
 

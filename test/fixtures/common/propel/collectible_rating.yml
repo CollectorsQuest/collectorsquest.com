@@ -1,0 +1,161 @@
+CollectibleRating:
+  CollectibleRating_13:
+    dimension: images
+    rating: '4'
+    collectible_id: Collectible_75366
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_14:
+    dimension: content
+    rating: '4'
+    collectible_id: Collectible_75366
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_23:
+    dimension: content
+    rating: '4'
+    collectible_id: Collectible_75611
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_24:
+    dimension: images
+    rating: '4'
+    collectible_id: Collectible_75611
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_25:
+    dimension: content
+    rating: '4'
+    collectible_id: Collectible_75360
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_26:
+    dimension: images
+    rating: '4'
+    collectible_id: Collectible_75360
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_28:
+    dimension: images
+    rating: '4'
+    collectible_id: Collectible_75363
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_29:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75363
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_32:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75365
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_33:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75365
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_40:
+    dimension: content
+    rating: '4'
+    collectible_id: Collectible_75359
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_41:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75359
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_46:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75364
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_47:
+    dimension: images
+    rating: '4'
+    collectible_id: Collectible_75364
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_569:
+    dimension: content
+    rating: '4'
+    collectible_id: Collectible_92646
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_570:
+    dimension: images
+    rating: '4'
+    collectible_id: Collectible_92646
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_831:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_87879
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_832:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_87879
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1369:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75613
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1370:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75613
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1371:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75612
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1372:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75612
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1373:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75610
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1374:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75610
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1377:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75368
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1378:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75368
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1379:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75362
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1380:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75362
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1381:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75361
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1382:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75361
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1383:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_75358
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_1384:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_75358
+    sf_guard_user_id: sfGuardUser_8

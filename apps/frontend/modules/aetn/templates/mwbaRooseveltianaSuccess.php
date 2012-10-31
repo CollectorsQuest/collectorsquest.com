@@ -66,8 +66,7 @@
       $container.masonry(
       {
         itemSelector : '.span3, .span6',
-        columnWidth : 140, gutterWidth: 15,
-        isAnimated: !Modernizr.csstransitions
+        columnWidth : 140, gutterWidth: 15
       });
     });
 

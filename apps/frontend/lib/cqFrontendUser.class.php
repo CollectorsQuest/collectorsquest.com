@@ -538,6 +538,7 @@ class cqFrontendUser extends cqBaseUser
       {
         // populate the array from ExtraProperties behavior data for the collector
         $this->visitor_info_array = array();
+
         foreach (CollectorPeer::$visitor_info_props as $prop_name)
         {
           $this->visitor_info_array[$prop_name] = $collector->getProperty($prop_name);
@@ -611,7 +612,7 @@ class cqFrontendUser extends cqBaseUser
   {
     $data = $this->getVisitorInfoArray();
 
-    if (!array_key_exists($prop_name, $data))
+    if (!array_key_exists($prop_name, (array) $data))
     {
       throw new RuntimeException(sprintf(
         '[cqFrontendUser] There is no visitor property named %s',
@@ -690,7 +691,7 @@ class cqFrontendUser extends cqBaseUser
       return $default_data;
     }
 
-    return json_decode(base64_decode($raw_data), true);
+    return (array) json_decode(base64_decode($raw_data), true);
   }
 
   /**

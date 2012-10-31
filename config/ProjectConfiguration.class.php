@@ -53,5 +53,16 @@ class ProjectConfiguration extends sfProjectConfiguration
       require_once __DIR__ . '/../lib/vendor/rocketshipit/Autoloader.php';
       RocketShipItAutoloader::register();
     }
+
+    /**
+     * For including WordPress functionality, we need to specify
+     * both ABSPATH and WPINC
+     */
+    if (!defined('ABSPATH'))
+    {
+      define('ABSPATH', __DIR__ .'/../web/blog/');
+      define('WPINC', 'wp-includes');
+    }
   }
+
 }

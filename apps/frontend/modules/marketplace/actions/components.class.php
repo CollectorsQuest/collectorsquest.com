@@ -94,7 +94,7 @@ class marketplaceComponents extends cqFrontendComponents
       /** @var $wp_post wpPost */
       if ($wp_post = $query->findOne())
       {
-        $values = unserialize($wp_post->getPostMetaValue('_market_explore_items'));
+        $values = $wp_post->getPostMetaValue('_market_explore_items');
 
         if (isset($values['cq_collectible_ids']))
         {
@@ -163,4 +163,215 @@ class marketplaceComponents extends cqFrontendComponents
 
     return sfView::NONE;
   }
+
+  public function executeHolidaySlot1()
+  {
+  }
+
+  public function executeHolidayThemes()
+  {
+    $t = $offset = $this->getRequestParameter('t', 0);
+
+    /* @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterByPostType('market_theme')
+      ->filterByPostParent(0)
+      ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
+      ->orderByPostDate(Criteria::DESC);
+
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
+
+    /* @var $total integer */
+    $total = $q->count();
+
+    /**
+     * The active theme cannot be beyond the total number of themes
+     */
+    if ($t > $total)
+    {
+      $t = $total;
+    }
+
+    $offset = ($total - $offset < 5) ? $total - 5 : $offset;
+    $q->offset($offset-1);
+
+    /* @var $wp_posts wpPost[] */
+    $wp_posts = $q->limit(5)->find();
+
+    if ($t > 0)
+    {
+      $this->menu = array();
+    }
+    else
+    {
+      $this->menu = array(
+        0 => array(
+          'id' => -1, 'active' => true,
+          'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks',
+          'content' => 'blah blah',
+          'tags' => array()
+        )
+      );
+    }
+
+    foreach ($wp_posts as $i => $wp_post)
+    {
+      $meta = $wp_post->getPostMetaValue('_market_theme');
+      $name = !empty($meta['cq_menu_name']) ? $meta['cq_menu_name'] : $wp_post->getPostTitle();
+
+      $this->menu[] = array(
+        'id' => $wp_post->getId(), 'active' => ($i === $t - $offset) && $t > 0,
+        'name' => $name, 'slug' => $wp_post->getSlug(),
+        'content' => $wp_post->getPostContent(),
+        'tags' => $wp_post->getTags('array')
+      );
+    }
+
+    // Make sure we only have 5 in the end
+    $this->menu = array_splice($this->menu, 0, 5);
+
+    /* @var $q FrontendCollectibleForSaleQuery */
+    $q = FrontendCollectibleForSaleQuery::create()
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
+
+    if (!empty($this->menu[$t-$offset]['tags']))
+    {
+      $q->filterByMachineTags($this->menu[$t-$offset]['tags'], 'market', 'theme');
+    }
+
+    $pager = new PropelModelPager($q);
+    $pager->setPage($this->getRequestParameter('p', 1));
+    $pager->setMaxPerPage(6);
+    $pager->init();
+
+    $this->pager = $pager;
+    $this->total = $total;
+    $this->offset = $offset;
+    $this->t = $t;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeHolidayCollectiblesForSale()
+  {
+    $q = $this->getRequestParameter('q');
+    $p = $this->getRequestParameter('p', 1);
+    $s1 = $this->getRequestParameter('s1');
+    $s2 = $this->getRequestParameter('s2');
+
+    // Initialize the $pager
+    $pager = null;
+
+    if (!empty($q) || !empty($s1) || !empty($s2))
+    {
+      $query = array(
+        'q' => $q,
+        'filters' => array(
+          'has_thumbnail' => true,
+          'is_public' => true,
+          'uint1' => 1
+        )
+      );
+
+      $query['sortby'] = 'date';
+      $query['order'] = 'desc';
+
+      if (!empty($s1) && $content_category = ContentCategoryQuery::create()->findOneById((integer) $s1))
+      {
+        $query['filters']['uint3'] = array();
+
+        // Add the descendant categories
+        if ($descendants = $content_category->getDescendants())
+        {
+          $query['filters']['uint3'] = array_values(
+            $descendants->toKeyValue('Id', 'Id')
+          );
+        }
+
+        // Add the level 1 category also
+        $query['filters']['uint3'][] = $content_category->getId();
+      }
+
+      switch ($s2)
+      {
+        case 'under-100':
+          $query['sortby'] = 'uint2';
+          $query['order'] = 'desc';
+          $query['filters']['uint2'] = array('max' => 10000);
+          break;
+        case '100-200':
+          $query['sortby'] = 'uint2';
+          $query['order'] = 'asc';
+          $query['filters']['uint2'] = array('min' => 10100, 'max' => 20000);
+          break;
+        case 'over-250':
+          $query['sortby'] = 'uint2';
+          $query['order'] = 'asc';
+          $query['filters']['uint2'] = array('min' => 25000);
+          break;
+        default:
+          $query['sortby'] = 'date';
+          $query['order'] = 'desc';
+          break;
+      }
+
+      $pager = new cqSphinxPager($query, array('collectibles'), 16);
+    }
+    else
+    {
+      /** @var $query FrontendCollectibleQuery */
+      $query = FrontendCollectibleQuery::create()
+        ->orderByUpdatedAt(Criteria::DESC);
+
+      $query
+        ->useCollectionCollectibleQuery()
+        ->groupByCollectionId()
+        ->endUse();
+
+      $query
+        ->useCollectibleForSaleQuery()
+        ->isForSale()
+        ->orderByMarkedForSaleAt(Criteria::DESC)
+        ->orderByCreatedAt(Criteria::DESC)
+        ->endUse();
+
+      $query
+        ->hasThumbnail()
+        ->filterById(null, Criteria::NOT_EQUAL)
+        ->orderByCreatedAt(Criteria::DESC)
+        ->clearGroupByColumns()
+        ->groupBy('CollectorId');
+
+      $pager = new cqPropelModelPager($query, 16);
+    }
+
+    if ($pager)
+    {
+      $pager->setStrictMode(true);
+      $pager->setPage($p);
+      $pager->init();
+
+      // if we are trying to get an out of bounds page
+      if ($p > 1 && $p > $pager->getLastPage())
+      {
+        // return empty response
+        return sfView::NONE;
+      }
+
+      $this->pager = $pager;
+      $this->url = sprintf(
+        '@search_collectibles_for_sale?q=%s&s1=%s&s2&page=%d',
+        $q, $s1, $s2, $pager->getNextPage()
+      );
+
+      return sfView::SUCCESS;
+    }
+
+    return sfView::NONE;
+  }
+
 }

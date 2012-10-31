@@ -1,5 +1,16 @@
 <p class="text-center">
   <?php
+    if (IceGateKeeper::open('holiday_marketplace', 'page'))
+    {
+      echo link_to(
+        cq_image_tag(
+          'headlines/20121018_160x345_final.jpg',
+          array('style' => 'margin-bottom: 15px;')
+        ),
+        'marketplace/holiday', array('ref' => cq_link_ref('sidebar'))
+      );
+    }
+
     if (!$sf_user->isAuthenticated())
     {
       echo link_to(

@@ -9,7 +9,8 @@
  * @var  $next         Collectible
  * @var  $first        Collectible
  * @var  $collectible_for_sale  CollectibleForSale
- * @var  $editable     boolean
+ * @var  $editable            boolean
+ * @var  $ref_marketplace     boolean
  *
  * @var  $additional_multimedia  iceModelMultimedia[]
  *
@@ -287,7 +288,7 @@
     );
   }
 
-  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale())
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && !$ref_marketplace)
   {
     include_component('collector', 'indexCollectiblesForSale',
       array(
