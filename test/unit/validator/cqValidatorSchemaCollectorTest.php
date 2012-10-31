@@ -8,7 +8,7 @@ cqTest::resetTables(array(
 ));
 cqTest::loadFixtures('01_test_collectors/');
 
-$t = new lime_test(6, new lime_output_color());
+$t = new lime_test(6, array('output' => new lime_output_color(), 'error_reporting' => true));
 $t->diag('Testing /lib/validator/cqValidatorSchemaCollector.class.php');
 
 $tests = array(

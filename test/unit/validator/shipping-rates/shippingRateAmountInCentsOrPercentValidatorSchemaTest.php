@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__).'/../../../bootstrap/unit.php');
 require_once(dirname(__FILE__).'/../../../../lib/validator/shipping-rates/shippingRateAmountInCentsOrPercentValidatorSchema.class.php');
 
-$t = new lime_test(7, new lime_output_color());
+$t = new lime_test(7, array('output' => new lime_output_color(), 'error_reporting' => true));
 $t->diag('Testing /lib/validator/shipping-rates/shippingRateAmountInCentsOrPercentValidatorSchema.class.php');
 
 $tests = array(

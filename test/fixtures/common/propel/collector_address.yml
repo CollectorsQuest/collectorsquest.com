@@ -1,15 +1,4 @@
 CollectorAddress:
-  CollectorAddress_2:
-    collector_id: Collector_12
-    full_name: 'Collin David'
-    address_line_1: '10 Quincy Road'
-    address_line_2: ''
-    city: 'Putnam Valley'
-    state_region: NY
-    zip_postcode: '10579'
-    country_iso3166: GeoCountry_US
-    phone: 914-980-4112
-    is_primary: '0'
   CollectorAddress_5:
     collector_id: Collector_59
     full_name: 'Deanna Dahlsad'

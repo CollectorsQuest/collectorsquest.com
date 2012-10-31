@@ -71,6 +71,10 @@ all:
     dlvrit: "123456789abcdefg"
     mailchimp: "42b5522d9b347e1fe999d5dd8825ca53-us5"
 
+    aws:
+      key: "abcdef123456789"
+      secret_key: "123456789abcdef"
+
     aviary:
       api_key: "3058e289b"
       api_secret: "694b2d643"
@@ -241,7 +245,7 @@ all:
 
     ups:
       # Your UPS Developer license
-      # your UPS XML Access Key TODO: Insert link to get one
+      # your UPS XML Access Key, we need to insert link to get one
       license: ''
 
       # your UPS Developer username
@@ -430,7 +434,7 @@ dev:
     domain: "cqcdns.dev"
 
   paypal:
-    ipn_domain: 'http://207.237.37.24'
+    ipn_domain: 'http://astoria.dyndns-home.com'
 
 test:
   domain_name: "example.com"

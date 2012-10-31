@@ -91,6 +91,13 @@ class collectionAction extends cqFrontendAction
 
     $form = new CollectorCollectionEditForm($collection);
 
+    $form->useFields(array(
+      'content_category_plain',
+      'name',
+      'description',
+      'tags'
+    ));
+
     if ($request->isMethod('post'))
     {
       $taintedValues = $request->getParameter($form->getName());

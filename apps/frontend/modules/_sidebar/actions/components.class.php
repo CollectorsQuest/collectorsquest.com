@@ -564,12 +564,13 @@ class _sidebarComponents extends cqFrontendComponents
     $this->title = $this->getVar('title') ?: 'From the Market';
 
     // Set the limit of Collectibles For Sale to show
-    $this->limit = (int) $this->getVar('limit') ?: 3;
+    $this->limit = (int) $this->getVar('limit') ?: 4;
 
     /** @var $height stdClass */
     if ($height = $this->getVar('height'))
     {
-      $this->limit = min(floor(($height->value - 63) / 85), $this->limit);
+      // one row is 142px in height, fits 2 collectibles
+      $this->limit = min(floor(($height->value - 63) / 142 * round($this->limit / 2)), $this->limit);
     }
 
     // We want to stop right here if we are not going to show anything (0 items)
@@ -591,19 +592,6 @@ class _sidebarComponents extends cqFrontendComponents
         ->addAscendingOrderByColumn(
           'FIELD(collectible_for_sale.collectible_id, ' . implode(',', $this->ids) . ')'
         );
-    }
-
-    /** @var $wp_post wpPost */
-    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
-    {
-      $tags = $wp_post->getTags('array');
-      $q->filterByTags($tags, Criteria::IN);
-    }
-    /** @var $wp_user wpUser */
-    else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
-    {
-      $tags = $wp_user->getTags('array');
-      $q->filterByTags($tags, Criteria::IN);
     }
 
     /** @var $category ContentCategory */
@@ -665,8 +653,54 @@ class _sidebarComponents extends cqFrontendComponents
         ->filterByTags($tags, Criteria::IN);
     }
 
+    if ($collector = $this->getVar('collector'))
+    {
+      $exclude_collectible_ids = $this->getVar('exclude_collectible_ids');
+      if ($collector instanceof Collector)
+      {
+        $q
+          ->filterByCollector($collector)
+          ->filterByCollectibleId($exclude_collectible_ids, Criteria::NOT_IN);
+
+        $this->collector = $collector;
+      }
+    }
+
+    /** @var $wp_post wpPost */
+    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
+    {
+      $tags = $wp_post->getTags('array');
+      $q->filterByTags($tags, Criteria::IN);
+
+      $matching_query = clone $q;
+      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+    }
+    /** @var $wp_user wpUser */
+    else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
+    {
+      $tags = $wp_user->getTags('array');
+      $q->filterByTags($tags, Criteria::IN);
+    }
+
     // Make the actual query and get the CollectiblesForSale
-    $this->collectibles_for_sale = $q->limit($this->limit)->find();
+    if (isset($matching_query))
+    {
+      $this->collectibles_for_sale = $matching_query->limit($this->limit)->find();
+      $count_collectibles = $matching_query->limit($this->limit)->count();
+      if ($count_collectibles < $this->limit)
+      {
+        $additional_collectibles = $q->limit($this->limit - $count_collectibles)->find();
+        // add collectibles that are not matching by machine tags but are matching by tags
+        $this->collectibles_for_sale->exchangeArray(
+          array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles->getArrayCopy())
+        );
+      }
+    }
+    else
+    {
+      $this->collectibles_for_sale = $q->limit($this->limit)->find();
+    }
+
 
     if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
     {

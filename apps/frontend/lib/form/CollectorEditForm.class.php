@@ -268,7 +268,7 @@ class CollectorEditForm extends CollectorForm
    * Update form defaults from object, adding fields that are kept in ExtraProperties
    * behavior
    */
-  protected function updateDefaultsFromObject()
+  public function updateDefaultsFromObject()
   {
     parent::updateDefaultsFromObject();
 

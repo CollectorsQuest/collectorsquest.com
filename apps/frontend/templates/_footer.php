@@ -90,7 +90,11 @@
               <h2 class="Chivo webfont">Show Off</h2>
               <p>
                 Show your collections to the world! Upload and organize your stuff here.<br />
-                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@misc_guide_to_collecting?ref='. cq_link_ref('footer')); ?>
+                <?php if (!$sf_user->isAuthenticated()) : ?>
+                  <?= link_to('Show&nbsp;Off&nbsp;Now!', '@misc_guide_to_collecting?ref='. cq_link_ref('footer')); ?>
+                <?php else : ?>
+                  <?= link_to('Show&nbsp;Off&nbsp;Now!', '@mycq_collections?ref='. cq_link_ref('footer')); ?>
+                <?php endif; ?>
               </p>
             </div>
           </li>

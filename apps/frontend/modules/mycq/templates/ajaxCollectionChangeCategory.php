@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $form CollectionCreateForm
+ * @var $categories ContentCategory[]
  * @var $collection CollectorCollection
  */
 ?>
@@ -26,14 +27,14 @@
 
 </form>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function()
 {
   $("#categories").columnview({
     multi: false, preview: false,
     onchange: function(element) {
       if (0 < $(element).data('object-id')) {
-        $("#collection_content_category_id").val($(element).data('object-id'));
+        $("input#collection_content_category_id").val($(element).data('object-id'));
       }
       $('#categories').scrollLeft(500);
       $('#categories .feature').hide();

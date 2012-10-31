@@ -39,7 +39,8 @@ use_javascript('jquery/autogrow-input.js');
                     <?php foreach ($sub_item as $item): ?>
                       <li>
                         <?= content_tag(
-                        'a', $item['label'] . (isset($item['info']) ? ' '.$item['info'] : ''), $item['attributes']
+                        'a', $item['label'] . (isset($item['info']) ? ' '.$item['info'] : ''),
+                          _convert_options_to_javascript($item['attributes'])
                           ) ?>
                       </li>
                     <?php endforeach; ?>

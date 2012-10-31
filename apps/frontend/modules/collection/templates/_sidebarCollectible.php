@@ -1,9 +1,10 @@
 <?php
 /**
- * @var  $collectible  Collectible
- * @var  $sf_user      cqFrontendUser
- * @var  $height       stdClass
- * @var  $aetn_show    array
+ * @var  $collectible      Collectible
+ * @var  $sf_user          cqFrontendUser
+ * @var  $height           stdClass
+ * @var  $aetn_show        array
+ * @var  $ref_marketplace  boolean
  */
 ?>
 
@@ -96,7 +97,7 @@
       include_component(
         '_sidebar', 'widgetCollectiblesForSale',
         array(
-          'collectible' => $collectible, 'limit' => 3,
+          'collectible' => $collectible, 'limit' => 4,
           'fallback' => 'random', 'height' => &$height
         )
       );
@@ -128,17 +129,32 @@
       )
     );
 
-    include_component(
-      '_sidebar', 'widgetCollectionCollectibles',
-      array('collectible' => $collectible, 'height' => &$height)
-    );
+    if ($ref_marketplace && $collectible->isForSale())
+    {
+      include_component(
+        '_sidebar', 'widgetCollectiblesForSale',
+        array(
+          'collector' => $collectible->getCollector(),
+          'exclude_collectible_ids' => array($collectible->getId()), 'limit' => 4,
+          'title' => 'Other Items from this Seller',
+          'fallback' => 'random', 'height' => &$height
+        )
+      );
+    }
+    else
+    {
+      include_component(
+        '_sidebar', 'widgetCollectionCollectibles',
+        array('collectible' => $collectible, 'height' => &$height)
+      );
+    }
 
     if (!$collectible->isForSale())
     {
       include_component(
         '_sidebar', 'widgetCollectiblesForSale',
         array(
-          'collectible' => $collectible, 'limit' => 3,
+          'collectible' => $collectible, 'limit' => 4,
           'fallback' => 'random', 'height' => &$height
         )
       );

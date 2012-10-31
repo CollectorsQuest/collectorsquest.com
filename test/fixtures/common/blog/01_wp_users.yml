@@ -121,7 +121,7 @@ wpUser:
     display_name: 'Kristin McGowan'
   wpUser_14:
     user_login: brian
-    user_pass: $P$B07v/.tnNC5rcgjs4bKdGy68KklX3a0
+    user_pass: $P$BnEtMTXKrdMdTpkb.s.NgpdCcEtTH//
     user_nicename: brian
     user_email: brian@collectorsquest.com
     user_url: ''
@@ -151,7 +151,7 @@ wpUser:
     display_name: 'Joe Szilvagyi'
   wpUser_18:
     user_login: 'Shawn Hennessy'
-    user_pass: $P$BMD1QZ/.lM6rZcSQnUTxR70gy2.uG70
+    user_pass: $P$BcbhylDl2ogSvQuhwjax7WbvD5XMVu.
     user_nicename: ms-hennessy
     user_email: shawn@collectorsquest.com
     user_url: ''
@@ -179,26 +179,6 @@ wpUser:
     user_activation_key: 0nd4a3j69bBuiWWYShKX
     user_status: '0'
     display_name: Craig
-  wpUser_21:
-    user_login: estein
-    user_pass: $P$Bpb0oPxisuySIEAnKUQI6vZ7O2sZQB1
-    user_nicename: estein
-    user_email: estein@collectorsquest.com
-    user_url: 'http://www.collectorsquest.com'
-    user_registered: '2012-04-16 12:10:58'
-    user_activation_key: ''
-    user_status: '0'
-    display_name: estein
-  wpUser_22:
-    user_login: erimille
-    user_pass: $P$BgZ0PhN4An6x7AuSrS96pNa4QAdUcJ0
-    user_nicename: erimille
-    user_email: erimille@adobe.com
-    user_url: 'http://adobe.com'
-    user_registered: '2012-05-26 20:26:29'
-    user_activation_key: ''
-    user_status: '0'
-    display_name: erimille
   wpUser_23:
     user_login: tod
     user_pass: $P$BwOfLHd/cT6vQBAv3JrC/3xLQ.CwCD.
@@ -221,11 +201,11 @@ wpUser:
     display_name: developers
   wpUser_24:
     user_login: angie
-    user_pass: $P$BW3iTzfAXC56FumekCbF6rJFo3F8QY.
+    user_pass: $P$B2LkV3xCM7cirPj4aJInPgBSLJ33cN0
     user_nicename: angie
     user_email: angie@collectorsquest.com
     user_url: 'http://www.collectorsquest.com/'
     user_registered: '2012-08-03 16:11:12'
     user_activation_key: ''
     user_status: '0'
-    display_name: angie
+    display_name: 'Angie O''Keefe'
