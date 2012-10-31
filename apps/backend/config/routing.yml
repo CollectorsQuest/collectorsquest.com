@@ -20,6 +20,20 @@ shopping_order_export:
   url: /ShoppingOrder/export
   param: { module: ShoppingOrder, action: export }
 
+### AJAX
+
+ajax_multimedia_reorder:
+  url:   /ajax/multimedia-reorder
+  param: { module: ajax, action: multimediaReorder }
+
+ajax_multimedia_delete:
+  url:   /ajax/multimedia-delete
+  param: { module: ajax, action: multimediaDelete }
+
+ajax_multimedia_upload:
+  url:   /ajax/multimedia-upload/:model/:model_id
+  param: { module: ajax, action: multimediaUpload }
+
 ajax_typeahead:
   url:   /ajax/typeahead/:section/:page
   param: { module: ajax, action: typeAhead }

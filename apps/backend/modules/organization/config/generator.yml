@@ -15,11 +15,15 @@ generator:
       actions: ~
       fields:
         founder_id: { label: "Founder Collector" }
-      list:    ~
+        display_type: { label: "Type" }
+        nb_members: { label: "Members count" }
+      list:
+        display: [=name, founder, display_type, access, nb_members, updated_at, created_at]
       filter:
         class:  BackendOrganizationFormFilter
         display: [type, founder_id, access, name, url, phone]
       form:
         class:  BackendOrganizationForm
-      edit:    ~
+      edit:
+        display: [founder_id, type, type_other, name, url, phone, description, access, referral_code, logo, profile_image, _form_images, _file_uploader]
       new:     ~
