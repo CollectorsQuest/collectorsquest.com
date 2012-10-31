@@ -124,7 +124,7 @@ class cqFrontendUser extends cqBaseUser
     // Get the IP address of the request
     $ip_address = cqContext::getInstance()->getRequest()->getRemoteAddress();
 
-    return cqStatic::getGeoIpCountryCode($ip_address, true) ? : $default;
+    return cqStatic::getGeoIpCountryCode($ip_address, true) ?: $default;
   }
 
   /**
@@ -524,7 +524,7 @@ class cqFrontendUser extends cqBaseUser
   {
     return $this->getCookieUuid()
       ? CollectorQuery::create()
-          ->filterByCookieUuid($this->getCookieUuid())
+        ->filterByCookieUuid($this->getCookieUuid())
         ->findOne()
       : null;
   }
