@@ -165,7 +165,13 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->enduse();
   }
 
-  public function filterByTags($tags, $comparison = null)
+  /**
+   * @param  array   $tags
+   * @param  string  $comparison
+   *
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByTags($tags, $comparison = Criteria::IN)
   {
     return $this
       ->joinCollectible()
@@ -187,7 +193,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
     return $this
       ->joinCollectible()
       ->useCollectibleQuery()
-      ->filterByMachineTags($tags, $namespace, $key, $comparison)
+        ->filterByMachineTags($tags, $namespace, $key, $comparison)
       ->endUse();
   }
 

@@ -3,7 +3,7 @@ include_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 include_once(dirname(__FILE__).'/../../../lib/vendor/rocketshipit/Autoloader.php');
 RocketShipItAutoloader::register();
 
-$t = new lime_test(null, new lime_output_color());
+$t = new lime_test(null, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 sfConfig::add(array(
     'app_rocketshipit_generic' => array(
@@ -23,8 +23,8 @@ $rate = new RocketShipRate('Fedex');
 $rate->setParameter('shipCountry', 'US');
 $rate->setParameter('shipCode', 10018);
 $rate->setParameter('toCountry', 'US');
-$rate->setParameter('toCode','90210');
-$rate->setParameter('weight','5');
+$rate->setParameter('toCode', '90210');
+$rate->setParameter('weight', '5');
 
 $response = $rate->getSimpleRates();
 

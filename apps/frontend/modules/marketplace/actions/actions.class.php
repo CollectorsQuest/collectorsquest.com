@@ -12,6 +12,11 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeIndex()
   {
+    $this->forwardIf(
+      IceGateKeeper::open('holiday_marketplace', 'page'),
+      'marketplace', 'holiday'
+    );
+
     /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
       ->filterByPostType('marketplace_featured')
@@ -29,18 +34,18 @@ class marketplaceActions extends cqFrontendActions
       $collectibles_for_sale = array();
       $collectibles_for_sale_text = array();
 
-      $values = unserialize($wp_post->getPostMetaValue('_market_featured_items'));
+      $values = $wp_post->getPostMetaValue('_market_featured_items');
 
       for ($i = 1; $i <= 6; $i++)
       {
         if (isset($values['cq_collectible_id_'. $i]))
         {
-          $collectible_for_sale = CollectibleForSaleQuery::create()
-            ->isForSale()
-            ->useCollectibleQuery()
-              ->filterByIsPublic(true)
-            ->endUse()
-            ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
+          /* @var $q CollectibleForSaleQuery */
+          $q = FrontendCollectibleForSaleQuery::create()
+             ->isForSale();
+
+          /* @var $collectible_for_sale CollectibleForSale */
+          $collectible_for_sale = $q->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
 
           if ($collectible_for_sale)
           {
@@ -67,16 +72,23 @@ class marketplaceActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeHoliday()
+  {
+    $this->categories = ContentCategoryQuery::create()
+      ->hasCollectiblesForSale()
+      ->filterByLevel(1)
+      ->find();
+
+    return sfView::SUCCESS;
+  }
+
   public function executeBrowse(sfWebRequest $request)
   {
     /** @var $content_category ContentCategory */
     $content_category = $this->getRoute()->getObject();
 
-    /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->useCollectibleQuery()
-        ->filterByIsPublic(true)
-      ->endUse();
+    /** @var $q FrontendCollectibleForSaleQuery */
+    $q = FrontendCollectibleForSaleQuery::create();
 
      $q->filterByContentCategoryWithDescendants($content_category)
        ->isForSale()

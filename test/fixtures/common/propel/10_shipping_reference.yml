@@ -14199,3 +14199,13 @@ ShippingReference:
     model_id: '95551'
     country_iso3166: GeoCountry_ZZ
     shipping_type: '0'
+  ShippingReference_3178:
+    model: Collectible
+    model_id: '95573'
+    country_iso3166: GeoCountry_US
+    shipping_type: '2'
+  ShippingReference_3179:
+    model: Collectible
+    model_id: '95573'
+    country_iso3166: GeoCountry_ZZ
+    shipping_type: '0'

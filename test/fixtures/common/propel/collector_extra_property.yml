@@ -1,20 +1,4 @@
 CollectorExtraProperty:
-  CollectorExtraProperty_257:
-    property_name: SPAM.SIGNATURE
-    property_value: b300a2224e6b41c561cd23
-    collector_id: Collector_1317
-  CollectorExtraProperty_258:
-    property_name: SPAM.CLASSIFICATION
-    property_value: legitimate
-    collector_id: Collector_1317
-  CollectorExtraProperty_259:
-    property_name: SPAM.PROFANITY-MATCH
-    property_value: '1'
-    collector_id: Collector_1317
-  CollectorExtraProperty_260:
-    property_name: SPAM.ALLOW
-    property_value: '1'
-    collector_id: Collector_1317
   CollectorExtraProperty_325:
     property_name: SPAM.SIGNATURE
     property_value: f04d3d4b91fd9e9f4c48ae
@@ -31,78 +15,6 @@ CollectorExtraProperty:
     property_name: SPAM.ALLOW
     property_value: '1'
     collector_id: Collector_963
-  CollectorExtraProperty_1645:
-    property_name: SPAM.SIGNATURE
-    property_value: 6e3c9fd38234b563e78f39
-    collector_id: Collector_870
-  CollectorExtraProperty_1646:
-    property_name: SPAM.CLASSIFICATION
-    property_value: legitimate
-    collector_id: Collector_870
-  CollectorExtraProperty_1647:
-    property_name: SPAM.PROFANITY-MATCH
-    property_value: '1'
-    collector_id: Collector_870
-  CollectorExtraProperty_1648:
-    property_name: SPAM.ALLOW
-    property_value: '1'
-    collector_id: Collector_870
-  CollectorExtraProperty_2607:
-    property_name: MAGNIFY.SSO_SIGNATURE
-    property_value: bd20c64dd9cec4e6bca9021e1543bedd
-    collector_id: Collector_52
-  CollectorExtraProperty_2608:
-    property_name: MAGNIFY.SSO_TIMESTAMP
-    property_value: '1338395384'
-    collector_id: Collector_52
-  CollectorExtraProperty_2738:
-    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_STATUS
-    property_value: VERIFIED
-    collector_id: Collector_52
-  CollectorExtraProperty_2739:
-    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_ID
-    property_value: 2QPZN4KLGPKKY
-    collector_id: Collector_52
-  CollectorExtraProperty_2740:
-    property_name: SELLER_SETTINGS_PAYPAL_BUSINESS_NAME
-    property_value: ''
-    collector_id: Collector_52
-  CollectorExtraProperty_2741:
-    property_name: SELLER_SETTINGS_PAYPAL_EMAIL
-    property_value: bfplatt@ku.edu
-    collector_id: Collector_52
-  CollectorExtraProperty_2742:
-    property_name: SELLER_SETTINGS_PAYPAL_FIRST_NAME
-    property_value: Brian
-    collector_id: Collector_52
-  CollectorExtraProperty_2743:
-    property_name: SELLER_SETTINGS_PAYPAL_LAST_NAME
-    property_value: Platt
-    collector_id: Collector_52
-  CollectorExtraProperty_2744:
-    property_name: SELLER_SETTINGS_PHONE_NUMBER
-    property_value: ''
-    collector_id: Collector_52
-  CollectorExtraProperty_2745:
-    property_name: SELLER_SETTINGS_RETURN_POLICY
-    property_value: ''
-    collector_id: Collector_52
-  CollectorExtraProperty_2746:
-    property_name: SELLER_SETTINGS_WELCOME
-    property_value: ''
-    collector_id: Collector_52
-  CollectorExtraProperty_2747:
-    property_name: SELLER_SETTINGS_SHIPPING
-    property_value: ''
-    collector_id: Collector_52
-  CollectorExtraProperty_2748:
-    property_name: SELLER_SETTINGS_REFUNDS
-    property_value: ''
-    collector_id: Collector_52
-  CollectorExtraProperty_2749:
-    property_name: SELLER_SETTINGS_ADDITIONAL_POLICIES
-    property_value: ''
-    collector_id: Collector_52
   CollectorExtraProperty_2845:
     property_name: VISITOR_INFO_FIRST_VISIT_AT
     property_value: '2012-10-01 04:06:09'
@@ -135,98 +47,6 @@ CollectorExtraProperty:
     property_name: VISITOR_INFO_NUM_PAGE_VIEWS
     property_value: '5205614065908'
     collector_id: Collector_59
-  CollectorExtraProperty_6700:
-    property_name: VISITOR_INFO_FIRST_VISIT_AT
-    property_value: '2012-08-09 13:32:20'
-    collector_id: Collector_6610
-  CollectorExtraProperty_6701:
-    property_name: VISITOR_INFO_NUM_VISITS
-    property_value: '3'
-    collector_id: Collector_6610
-  CollectorExtraProperty_6702:
-    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
-    property_value: '49'
-    collector_id: Collector_6610
-  CollectorExtraProperty_6703:
-    property_name: VISITOR_INFO_LAST_VISIT_AT
-    property_value: '2012-08-10 16:41:27'
-    collector_id: Collector_6610
-  CollectorExtraProperty_6704:
-    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_STATUS
-    property_value: VERIFIED
-    collector_id: Collector_6610
-  CollectorExtraProperty_6705:
-    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_ID
-    property_value: ME74PV5WW4WHY
-    collector_id: Collector_6610
-  CollectorExtraProperty_6706:
-    property_name: SELLER_SETTINGS_PAYPAL_BUSINESS_NAME
-    property_value: ''
-    collector_id: Collector_6610
-  CollectorExtraProperty_6707:
-    property_name: SELLER_SETTINGS_PAYPAL_EMAIL
-    property_value: stardust466@juno.com
-    collector_id: Collector_6610
-  CollectorExtraProperty_6708:
-    property_name: SELLER_SETTINGS_PAYPAL_FIRST_NAME
-    property_value: Donna
-    collector_id: Collector_6610
-  CollectorExtraProperty_6709:
-    property_name: SELLER_SETTINGS_PAYPAL_LAST_NAME
-    property_value: McArthur
-    collector_id: Collector_6610
-  CollectorExtraProperty_6710:
-    property_name: SELLER_SETTINGS_PHONE_NUMBER
-    property_value: ''
-    collector_id: Collector_6610
-  CollectorExtraProperty_6711:
-    property_name: SELLER_SETTINGS_RETURN_POLICY
-    property_value: 'Refunds are acceptable for items that are significantly not as described within 7 days of delivery. No refunds or exchanges for buyers who simply changed their mind about their purchase.'
-    collector_id: Collector_6610
-  CollectorExtraProperty_6712:
-    property_name: SELLER_SETTINGS_WELCOME
-    property_value: ''
-    collector_id: Collector_6610
-  CollectorExtraProperty_6713:
-    property_name: SELLER_SETTINGS_SHIPPING
-    property_value: 'We ship most often USPS Priority mail with Delivery Confirmation tracking. '
-    collector_id: Collector_6610
-  CollectorExtraProperty_6714:
-    property_name: SELLER_SETTINGS_REFUNDS
-    property_value: 'Refunds are acceptable for items that are significantly not as described within 7 days of delivery. No refunds or exchanges for buyers who simply changed their mind about their purchase. We make no guarantee that classic, used photographic equipment, or any other antique/collectible is performing at it''s original factory specifications. '
-    collector_id: Collector_6610
-  CollectorExtraProperty_6715:
-    property_name: SELLER_SETTINGS_ADDITIONAL_POLICIES
-    property_value: ''
-    collector_id: Collector_6610
-  CollectorExtraProperty_18232:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: '1'
-    collector_id: Collector_52
-  CollectorExtraProperty_18233:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_52
-  CollectorExtraProperty_18234:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_52
-  CollectorExtraProperty_18235:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_52
-  CollectorExtraProperty_18236:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_52
-  CollectorExtraProperty_18237:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_52
-  CollectorExtraProperty_18238:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_52
   CollectorExtraProperty_18281:
     property_name: PREFERENCES_SHOW_AGE
     property_value: ''
@@ -283,62 +103,6 @@ CollectorExtraProperty:
     property_name: NOTIFICATIONS_MESSAGE
     property_value: '1'
     collector_id: Collector_163
-  CollectorExtraProperty_19408:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: '1'
-    collector_id: Collector_235
-  CollectorExtraProperty_19409:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_235
-  CollectorExtraProperty_19410:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_235
-  CollectorExtraProperty_19411:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_235
-  CollectorExtraProperty_19412:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_235
-  CollectorExtraProperty_19413:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_235
-  CollectorExtraProperty_19414:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_235
-  CollectorExtraProperty_21368:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: '1'
-    collector_id: Collector_531
-  CollectorExtraProperty_21369:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_531
-  CollectorExtraProperty_21370:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_531
-  CollectorExtraProperty_21371:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_531
-  CollectorExtraProperty_21372:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_531
-  CollectorExtraProperty_21373:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_531
-  CollectorExtraProperty_21374:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_531
   CollectorExtraProperty_22061:
     property_name: PREFERENCES_SHOW_AGE
     property_value: '1'
@@ -367,34 +131,6 @@ CollectorExtraProperty:
     property_name: NOTIFICATIONS_MESSAGE
     property_value: '1'
     collector_id: Collector_644
-  CollectorExtraProperty_22537:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: '1'
-    collector_id: Collector_714
-  CollectorExtraProperty_22538:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_714
-  CollectorExtraProperty_22539:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_714
-  CollectorExtraProperty_22540:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_714
-  CollectorExtraProperty_22541:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_714
-  CollectorExtraProperty_22542:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_714
-  CollectorExtraProperty_22543:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_714
   CollectorExtraProperty_23342:
     property_name: PREFERENCES_SHOW_AGE
     property_value: '1'
@@ -423,34 +159,6 @@ CollectorExtraProperty:
     property_name: NOTIFICATIONS_MESSAGE
     property_value: '1'
     collector_id: Collector_846
-  CollectorExtraProperty_23503:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: '1'
-    collector_id: Collector_870
-  CollectorExtraProperty_23504:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_870
-  CollectorExtraProperty_23505:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_870
-  CollectorExtraProperty_23506:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_870
-  CollectorExtraProperty_23507:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_870
-  CollectorExtraProperty_23508:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_870
-  CollectorExtraProperty_23509:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_870
   CollectorExtraProperty_24077:
     property_name: PREFERENCES_SHOW_AGE
     property_value: '1'
@@ -479,34 +187,6 @@ CollectorExtraProperty:
     property_name: NOTIFICATIONS_MESSAGE
     property_value: '1'
     collector_id: Collector_963
-  CollectorExtraProperty_24847:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: '1'
-    collector_id: Collector_1082
-  CollectorExtraProperty_24848:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_1082
-  CollectorExtraProperty_24849:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_1082
-  CollectorExtraProperty_24850:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_1082
-  CollectorExtraProperty_24851:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_1082
-  CollectorExtraProperty_24852:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_1082
-  CollectorExtraProperty_24853:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_1082
   CollectorExtraProperty_25694:
     property_name: PREFERENCES_SHOW_AGE
     property_value: '1'
@@ -535,90 +215,6 @@ CollectorExtraProperty:
     property_name: NOTIFICATIONS_MESSAGE
     property_value: '1'
     collector_id: Collector_1212
-  CollectorExtraProperty_26366:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: '1'
-    collector_id: Collector_1317
-  CollectorExtraProperty_26367:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_1317
-  CollectorExtraProperty_26368:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_1317
-  CollectorExtraProperty_26369:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_1317
-  CollectorExtraProperty_26370:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_1317
-  CollectorExtraProperty_26371:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_1317
-  CollectorExtraProperty_26372:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_1317
-  CollectorExtraProperty_26730:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: '1'
-    collector_id: Collector_1374
-  CollectorExtraProperty_26731:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_1374
-  CollectorExtraProperty_26732:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_1374
-  CollectorExtraProperty_26733:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: ''
-    collector_id: Collector_1374
-  CollectorExtraProperty_26734:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_1374
-  CollectorExtraProperty_26735:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_1374
-  CollectorExtraProperty_26736:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_1374
-  CollectorExtraProperty_38126:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: ''
-    collector_id: Collector_3632
-  CollectorExtraProperty_38127:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_3632
-  CollectorExtraProperty_38128:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_3632
-  CollectorExtraProperty_38129:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_3632
-  CollectorExtraProperty_38130:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_3632
-  CollectorExtraProperty_38131:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_3632
-  CollectorExtraProperty_38132:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_3632
   CollectorExtraProperty_41381:
     property_name: PREFERENCES_SHOW_AGE
     property_value: ''
@@ -675,34 +271,6 @@ CollectorExtraProperty:
     property_name: NOTIFICATIONS_MESSAGE
     property_value: '1'
     collector_id: Collector_4295
-  CollectorExtraProperty_51293:
-    property_name: PREFERENCES_SHOW_AGE
-    property_value: ''
-    collector_id: Collector_6610
-  CollectorExtraProperty_51294:
-    property_name: PREFERENCES_MSG_ON
-    property_value: '1'
-    collector_id: Collector_6610
-  CollectorExtraProperty_51295:
-    property_name: PREFERENCES_INVITE_ONLY
-    property_value: ''
-    collector_id: Collector_6610
-  CollectorExtraProperty_51296:
-    property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
-    collector_id: Collector_6610
-  CollectorExtraProperty_51297:
-    property_name: NOTIFICATIONS_COMMENT
-    property_value: '1'
-    collector_id: Collector_6610
-  CollectorExtraProperty_51298:
-    property_name: NOTIFICATIONS_BUDDY
-    property_value: '1'
-    collector_id: Collector_6610
-  CollectorExtraProperty_51299:
-    property_name: NOTIFICATIONS_MESSAGE
-    property_value: '1'
-    collector_id: Collector_6610
   CollectorExtraProperty_51671:
     property_name: PREFERENCES_SHOW_AGE
     property_value: ''
@@ -775,42 +343,6 @@ CollectorExtraProperty:
     property_name: SELLER_SETTINGS_REFUNDS
     property_value: 'We have decades of experience selling online, at flea markets, and antique shops. All items sold ''as is'' and as described and photographed. If you need more information, additional images, just ask! As such, you can buy with the confidence that no returns are necessary.'
     collector_id: Collector_59
-  CollectorExtraProperty_90464:
-    property_name: VISITOR_INFO_FIRST_VISIT_AT
-    property_value: '2012-09-10 23:11:21'
-    collector_id: Collector_52
-  CollectorExtraProperty_90465:
-    property_name: VISITOR_INFO_NUM_VISITS
-    property_value: '65'
-    collector_id: Collector_52
-  CollectorExtraProperty_90466:
-    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
-    property_value: '630'
-    collector_id: Collector_52
-  CollectorExtraProperty_90467:
-    property_name: VISITOR_INFO_LAST_VISIT_AT
-    property_value: '2012-10-21 15:43:46'
-    collector_id: Collector_52
-  CollectorExtraProperty_93472:
-    property_name: VISITOR_INFO_FIRST_VISIT_AT
-    property_value: '2012-09-19 04:52:51'
-    collector_id: Collector_1317
-  CollectorExtraProperty_93473:
-    property_name: VISITOR_INFO_NUM_VISITS
-    property_value: '2'
-    collector_id: Collector_1317
-  CollectorExtraProperty_93474:
-    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
-    property_value: '7'
-    collector_id: Collector_1317
-  CollectorExtraProperty_93475:
-    property_name: VISITOR_INFO_LAST_VISIT_AT
-    property_value: '2012-09-19 04:53:37'
-    collector_id: Collector_1317
-  CollectorExtraProperty_93898:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_52
   CollectorExtraProperty_93905:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
@@ -819,54 +351,22 @@ CollectorExtraProperty:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
     collector_id: Collector_163
-  CollectorExtraProperty_94066:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_235
-  CollectorExtraProperty_94346:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_531
   CollectorExtraProperty_94445:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
     collector_id: Collector_644
-  CollectorExtraProperty_94513:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_714
   CollectorExtraProperty_94628:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
     collector_id: Collector_846
-  CollectorExtraProperty_94651:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_870
   CollectorExtraProperty_94733:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
     collector_id: Collector_963
-  CollectorExtraProperty_94843:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_1082
   CollectorExtraProperty_94964:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
     collector_id: Collector_1212
-  CollectorExtraProperty_95060:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_1317
-  CollectorExtraProperty_95112:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: '1'
-    collector_id: Collector_1374
-  CollectorExtraProperty_96726:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_3632
   CollectorExtraProperty_97190:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
@@ -875,30 +375,10 @@ CollectorExtraProperty:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
     collector_id: Collector_4295
-  CollectorExtraProperty_98605:
-    property_name: PREFERENCES_NEWSLETTER_OPT_OUT
-    property_value: ''
-    collector_id: Collector_6610
   CollectorExtraProperty_98657:
     property_name: PREFERENCES_NEWSLETTER_OPT_OUT
     property_value: ''
     collector_id: Collector_6700
-  CollectorExtraProperty_105115:
-    property_name: VISITOR_INFO_FIRST_VISIT_AT
-    property_value: '2012-09-20 18:28:12'
-    collector_id: Collector_1374
-  CollectorExtraProperty_105116:
-    property_name: VISITOR_INFO_NUM_VISITS
-    property_value: '2'
-    collector_id: Collector_1374
-  CollectorExtraProperty_105117:
-    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
-    property_value: '7'
-    collector_id: Collector_1374
-  CollectorExtraProperty_105118:
-    property_name: VISITOR_INFO_LAST_VISIT_AT
-    property_value: '2012-09-20 18:28:54'
-    collector_id: Collector_1374
   CollectorExtraProperty_111574:
     property_name: VISITOR_INFO_FIRST_VISIT_AT
     property_value: '2012-10-12 10:40:31'

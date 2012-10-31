@@ -109,9 +109,20 @@ class RatableBehavior extends Behavior
         'name' => 'dimensions',
         'value' => $this->getDimensions()
       ));
+      $foreignColumns = array();
+      foreach ($table->getPrimaryKey() as $key => $column)
+      {
+        $ref_column = $column->getAttributes();
+        $foreignColumns[] = sprintf('%s_%s', $table->getName(), $ref_column['name']);
+      }
       $ratingTableBehavior->addParameter(array(
         'name' => 'ratable_class_name',
         'value' => $this->getTable()->getPhpName()
+      ));
+
+      $ratingTableBehavior->addParameter(array(
+        'name' => 'foreign_columns',
+        'value' => $foreignColumns
       ));
       $ratingTable->addBehavior($ratingTableBehavior);
 

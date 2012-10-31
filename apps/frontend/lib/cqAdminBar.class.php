@@ -111,7 +111,7 @@ class cqAdminBar
       $this->objects_menu['Rating'][] = array(
         'label' => $label,
         'url' => $url,
-        'info' => sprintf('(%s)', $object->getAverageRating() ?: 'n/a'),
+        'info' => sprintf('(%s)', number_format($object->getAverageRating(), 1) ?: 'n/a'),
         'attributes' => array(
           'onclick' => 'return false;', 'href' => $url,
           'class' => 'open-dialog', 'title' => 'Rating for ' . $object

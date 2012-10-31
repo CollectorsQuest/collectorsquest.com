@@ -47,6 +47,7 @@ class CollectibleQuery extends BaseCollectibleQuery
   public function filterByMachineTags($tags, $namespace, $key = 'all', $comparison = Criteria::IN)
   {
     $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
+    $tags = array_map('addslashes', $tags);
 
     $where = sprintf("
         Collectible.Id IN (

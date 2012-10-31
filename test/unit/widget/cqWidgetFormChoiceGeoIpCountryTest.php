@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__).'/../../bootstrap/model.php');
 require_once(dirname(__FILE__).'/../../../lib/widget/cqWidgetFormChoiceGeoIpCountry.class.php');
 
-$t = new lime_test(7, new lime_output_color());
+$t = new lime_test(7, array('output' => new lime_output_color(), 'error_reporting' => true));
 $t->diag('Testing /lib/widget/cqWidgetFormChoiceGeoIpCountry.class.php');
 
 $w = new cqWidgetFormChoiceGeoIpCountry(array(
@@ -18,9 +18,7 @@ $t->cmp_ok($w->getChoices(), '===', array(
     'US' => 'United States',
     ''   => '-',
     'BG' => 'Bulgaria',
-    'RO' => 'Romania',
-    'FR' => 'France',
-    'US' => 'United States',
+    'RO' => 'Romania'
 ), 'Keep common countries in list');
 
 $w->setOption('keep_common_in_full_list', false);

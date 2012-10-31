@@ -15,6 +15,9 @@
   ?>
   <div class="mosaic-overlay">
     <p><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text'); ?></p>
+    <span class="price">
+      <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+    </span>
   </div>
 </div>
 
