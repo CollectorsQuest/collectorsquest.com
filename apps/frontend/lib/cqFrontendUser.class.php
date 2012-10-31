@@ -70,7 +70,7 @@ class cqFrontendUser extends cqBaseUser
         $this->Authenticate(false);
       }
 
-      return $this->collector = ($strict === true) ? null : new Collector();
+      return $this->collector = ($strict === true) ? null: new Collector();
     }
 
     if (!($this->collector instanceof Collector))
@@ -270,11 +270,11 @@ class cqFrontendUser extends cqBaseUser
      */
     if ($this->hasFlash('cq_mycq_dropbox_open', 'cookies'))
     {
-      return (boolean)$this->getFlashAndDelete('cq_mycq_dropbox_open', false, 'cookies');
+      return (boolean) $this->getFlashAndDelete('cq_mycq_dropbox_open', false, 'cookies');
     }
     else
     {
-      return (boolean)cqContext::getInstance()->getRequest()->getCookie(
+      return (boolean) cqContext::getInstance()->getRequest()->getCookie(
         self::DROPBOX_OPEN_STATE_COOKIE_NAME, true
       );
     }
@@ -461,7 +461,7 @@ class cqFrontendUser extends cqBaseUser
     }
 
     // Defensio request
-//    $collector->sendToDefensio('UPDATE');
+    $collector->sendToDefensio('UPDATE');
 
     return true;
   }
@@ -524,7 +524,7 @@ class cqFrontendUser extends cqBaseUser
   {
     return $this->getCookieUuid()
       ? CollectorQuery::create()
-        ->filterByCookieUuid($this->getCookieUuid())
+          ->filterByCookieUuid($this->getCookieUuid())
         ->findOne()
       : null;
   }
@@ -805,7 +805,7 @@ class cqFrontendUser extends cqBaseUser
     {
       @list($id, $hmac) = explode(':', $cookie);
 
-      if ((string)$hmac === hash_hmac('sha1', $id . ':' . $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
+      if ((string) $hmac === hash_hmac('sha1', $id . ':' . $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
       {
         $this->_sf_guard_user_id = $id;
 
@@ -818,7 +818,7 @@ class cqFrontendUser extends cqBaseUser
 
   public function getBackendUserId()
   {
-    return $this->isAdmin() ? $this->_sf_guard_user_id : null;
+    return $this->isAdmin() ? $this->_sf_guard_user_id: null;
   }
 
 }
