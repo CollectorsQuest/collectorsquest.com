@@ -26,10 +26,11 @@ class ShoppingOrder extends BaseShoppingOrder
 
   public function preDelete(PropelPDO $con = null)
   {
-    //Archive related ShoppingPayment objects
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $this->getShoppingPayment();
-    $shopping_payment->archive($con);
+
+    // Archive and delete related ShoppingPayment objects
+    $shopping_payment->delete($con);
 
     return parent::preDelete($con);
   }
