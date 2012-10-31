@@ -9,20 +9,37 @@ $configuration->loadHelpers(array('JavascriptBase'));
  *
  * @param  string   $image     the path to image being displayed, it should be inside /web/images/ folder
  * @param  string   $link_to   where does the image lead to
+ * @param  array    $options   set additional options for image_tag and link_to
  *
  * @return string
  */
-function cq_ad_slot($image, $link_to)
+function cq_ad_slot($image, $link_to, $options = array('link_to' => array(), 'image_tag' => array()))
 {
+  $defaults = array(
+    'image_tag' => array(
+      'width'  => 150,
+      'height' => 150,
+      'alt'    => 'CollectorsQuest - Quest Your Best'
+    )
+  );
+  $options = _cq_parse_options($options, $defaults);
+
   // set the routing name as the ref parameter
   $ref = sfContext::getInstance()->getRouting()->getCurrentInternalUri(true);
   $ref = str_replace('@', '', $ref);
 
   // add the ref parameter to the link
-  $link_to .= '?ref=' . $ref;
+  $query = parse_url($link_to, PHP_URL_QUERY);
+  if( $query )
+    $link_to .= '&';
+  else
+    $link_to .= '?';
+  $link_to .= 'ref=' . $ref;
 
-  echo link_to(image_tag($image), $link_to);
-
+  echo link_to(
+    cq_image_tag($image, $options['image_tag']),
+    $link_to, $options['link_to']
+  );
 
   /*if (SF_ENV != 'prod')
   {
