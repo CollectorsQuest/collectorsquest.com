@@ -260,7 +260,7 @@ class miscActions extends cqFrontendActions
     /** @var $post_id integer */
     $post_id = $request->getParameter('id');
 
-    $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
+    $values = $wp_post->getPostMetaValue('_featured_items');
 
     // Initialize the arrays
     $collection_ids = $collectible_ids = $category_ids = $tags = $homepage_collectible_ids = array();

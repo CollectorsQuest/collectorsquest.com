@@ -92,7 +92,7 @@ ul.alert-error {
   margin-bottom: 0;
   padding: 2px 0 2px 15px;
 
-  &.full-lenght-blue {
+  &.full-length-blue {
     margin-bottom: 15px;
     padding: 15px 15px 13px 15px;
     background-color: #daecf6;
@@ -240,7 +240,54 @@ ul.alert-error {
   }
 }
 .mini-input-append-search input:focus ~ button {
-  border-color: @blue @blue @blue #BFBABA !important;
+  border-color: @blue @blue @blue #bfbaba !important;
+}
+
+//Sort
+#fixed-filter-bar {
+  position: static;
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    .size(55px, 940px);
+    margin-left: -1px;
+    background-color: #fff;
+
+    .sort-container {
+      border-bottom: none;
+    }
+  }
+}
+
+.sort-container {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #cbc4c5;
+  .clearfix();
+}
+
+.sort-actions .sort-search-box {
+  float: left;
+  padding-top: 0;
+
+  .btn-group > .dropdown-toggle {
+    border-radius: 0 6px 6px 0;
+    background-position: inherit;
+  }
+}
+
+button.btn.thin {
+  float: left;
+  padding: 3px 14px;
+  font-size: 12px;
+  border: #b5b7bd;
+  border-width: 1px !important;
+  border-style: solid;
+  .border-radius(6px);
+  text-shadow: none;
 }
 
 // Email suggestion for .form-horizonSee all videotal

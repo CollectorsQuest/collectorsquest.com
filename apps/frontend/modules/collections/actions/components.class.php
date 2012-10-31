@@ -47,7 +47,7 @@ class collectionsComponents extends cqFrontendComponents
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())
     {
-      $values = unserialize($wp_post->getPostMetaValue('_featured_week_collectibles'));
+      $values = $wp_post->getPostMetaValue('_featured_week_collectibles');
 
       if (isset($values['cq_collectible_ids']))
       {
@@ -75,7 +75,7 @@ class collectionsComponents extends cqFrontendComponents
 
     if ($wp_post instanceof wpPost)
     {
-      $values = unserialize($wp_post->getPostMetaValue('_featured_week_collectibles'));
+      $values = $wp_post->getPostMetaValue('_featured_week_collectibles');
 
       if (isset($values['cq_collectible_ids']))
       {
@@ -150,7 +150,7 @@ class collectionsComponents extends cqFrontendComponents
       /** @var $wp_post wpPost */
       if ($wp_post = $query->findOne())
       {
-        $values = unserialize($wp_post->getPostMetaValue('_collections_explore_items'));
+        $values = $wp_post->getPostMetaValue('_collections_explore_items');
 
         if (isset($values['cq_collection_ids']))
         {

@@ -19,6 +19,11 @@ pickedOffSuccess:
   components:
     sidebar_300: [aetn, sidebarPickedOff]
 
+franksPicksSuccess:
+  javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
+  components:
+    footer: []
+
 mwbaSuccess:
   components:
     breadcrumbs: []
