@@ -7,6 +7,16 @@ indexSuccess:
     sidebar_300: [marketplace, sidebarIndex]
     slot2: [marketplace, indexSlot2]
 
+holidaySuccess:
+  javascripts:
+    - jquery/autoajax.js
+    - jquery/infinitescroll.js
+    - jquery/masonry.js
+  components:
+    slot1: [marketplace, holidaySlot1]
+    breadcrumbs: []
+    footer: []
+
 browseSuccess:
   components:
     sidebar_300: [marketplace, sidebarBrowse]

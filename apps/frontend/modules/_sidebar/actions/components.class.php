@@ -538,7 +538,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())
     {
-      $values = unserialize($wp_post->getPostMetaValue('_seller_spotlight'));
+      $values = $wp_post->getPostMetaValue('_seller_spotlight');
 
       if (isset($values['cq_collector_ids']))
       {

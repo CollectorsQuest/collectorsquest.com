@@ -1,3 +1,4 @@
+
 ### A&E
 
 aetn_landing:
@@ -15,6 +16,11 @@ aetn_american_restoration:
   param: { module: aetn, action: americanRestoration }
   requirements: { sf_method: [GET] }
 
+aetn_franks_picks:
+  url: /history/franks-picks
+  param: { module: aetn, action: franksPicks }
+  requirements: { sf_method: [GET] }
+
 aetn_pawn_stars:
   url: /history/pawn-stars
   param: { module: aetn, action: pawnStars }
@@ -23,6 +29,11 @@ aetn_pawn_stars:
 aetn_picked_off:
   url: /history/picked-off
   param: { module: aetn, action: pickedOff }
+  requirements: { sf_method: [GET] }
+
+aetn_storage_wars:
+  url: /history/storage-wars
+  param: { module: aetn, action: storageWars }
   requirements: { sf_method: [GET] }
 
 aetn_mwba:
@@ -43,11 +54,6 @@ aetn_mwba_rooseveltiana:
 aetn_mwba_railroadiana:
   url: /history/mwba/cornelius-vanderbilt-railroadiana
   param: { module: aetn, action: mwbaRailroadiana }
-  requirements: { sf_method: [GET] }
-
-aetn_storage_wars:
-  url: /history/storage-wars
-  param: { module: aetn, action: storageWars }
   requirements: { sf_method: [GET] }
 
 aetn_collectible_by_slug:
