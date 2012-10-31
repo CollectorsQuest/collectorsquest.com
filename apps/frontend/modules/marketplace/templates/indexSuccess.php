@@ -49,7 +49,8 @@ $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
   <?php
   if (!$sf_user->isAuthenticated())
   {
-    echo link_to(image_tag('headlines/show_and_sell_red_635x111.png'), '@seller_signup');
+    cq_ad_slot($image = 'headlines/show_and_sell_red_635x111.png', $link_to = '@seller_signup');
+    //echo link_to(image_tag('headlines/show_and_sell_red_635x111.png'), '@seller_signup');
   }
   elseif ($sf_user->getSeller() && !$sf_user->getSeller()->hasPackageCredits())
   {
