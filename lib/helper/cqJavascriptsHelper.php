@@ -30,7 +30,7 @@ function cq_ad_slot($image, $link_to, $options = array('link_to' => array(), 'im
 
   // add the ref parameter to the link
   $query = parse_url($link_to, PHP_URL_QUERY);
-  if( $query )
+  if ($query)
     $link_to .= '&';
   else
     $link_to .= '?';
