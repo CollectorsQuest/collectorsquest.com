@@ -19,12 +19,14 @@
   {
     document.getElementById('q').value = '<?= (string) $sf_params->get('q'); ?>';
   }
+<?php if ($sf_user->isAuthenticated()): ?>
   if (document.getElementById('footer-user-info') !== null)
   {
-      document.getElementById('footer-user-info').innerHTML = '<?= preg_replace('/^\s+|\n|\r|\s+$/m', '',get_partial(
-        'global/footer_authenticated'
-      )); ?>';
+    document.getElementById('footer-user-info').innerHTML = '<?= preg_replace('/^\s+|\n|\r|\s+$/m', '',get_partial(
+      'global/footer_authenticated'
+    )); ?>';
   }
+<?php endif; ?>
 
 </script>
 <?php include_component_slot('jquery_footer'); ?>
