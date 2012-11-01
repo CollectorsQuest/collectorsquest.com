@@ -53,22 +53,17 @@
 
       <div class="span4">
         <?php
+          /* @var $sf_user cqFrontendUser */
           if (!$sf_user->isAuthenticated())
           {
-//            include_partial(
-//              'global/footer_login_signup',
-//              array('login_form' => $login_form, 'signup_form' => $signup_form)
-//            );
-
-            echo link_to(
-              cq_image_tag(
-                'headlines/2012-06-24_CQGuide_300x250_footer.png',
+            cq_ad_slot(
+              cq_image_tag('headlines/2012-06-24_CQGuide_300x250_footer.png',
                 array(
                   'size' => '300x250',
                   'alt_title' => 'Unlock your free guide to collecting—sign up today'
                 )
               ),
-              'misc_guide_to_collecting', array('ref' => cq_link_ref('footer'))
+              '@misc_guide_to_collecting'
             );
           }
           else

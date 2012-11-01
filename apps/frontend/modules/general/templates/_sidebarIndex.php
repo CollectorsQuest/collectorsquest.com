@@ -2,20 +2,28 @@
   <?php
     if (IceGateKeeper::open('holiday_marketplace', 'page'))
     {
-      echo link_to(
-        cq_image_tag(
-          'headlines/20121018_160x345_final.jpg',
-          array('style' => 'margin-bottom: 15px;')
+      cq_ad_slot(
+        cq_image_tag('headlines/20121018_160x345_final.jpg',
+          array(
+            'width' => '160', 'height' => '600', 'style' => 'margin-bottom: 15px;',
+            'alt' => 'Shop now - Visit our Holiday Marketplace!'
+          )
         ),
-        'marketplace/holiday', array('ref' => cq_link_ref('sidebar'))
+        url_for('marketplace/holiday')
       );
     }
 
+    /* @var $sf_user cqFrontendUser */
     if (!$sf_user->isAuthenticated())
     {
-      echo link_to(
-        cq_image_tag('headlines/2012-06-24_CQGuidePromo_160x600.png'),
-        'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+      cq_ad_slot(
+        cq_image_tag('headlines/2012-06-24_CQGuidePromo_160x600.png',
+          array(
+            'width' => '160', 'height' => '600',
+            'alt' => 'Quest Your Best: The Essential Guide to Collecting'
+          )
+        ),
+        '@misc_guide_to_collecting'
       );
     }
     else

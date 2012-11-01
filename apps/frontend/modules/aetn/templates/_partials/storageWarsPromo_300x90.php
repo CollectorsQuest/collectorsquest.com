@@ -6,7 +6,7 @@
           'width' => '300', 'height' => '90',
           'alt' => 'Check out items seen on Storage Wars'
         )
-      ),
+      ) . '<span>Check out items seen on Storage Wars</span>',
       '@aetn_storage_wars'
     );
   ?>

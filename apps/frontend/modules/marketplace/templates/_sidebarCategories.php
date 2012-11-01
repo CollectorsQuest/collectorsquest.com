@@ -9,9 +9,14 @@
 <?php
   if (($seller = $sf_user->getSeller(true)) && !$seller->hasBoughtCredits())
   {
-    echo cq_link_to(
-      cq_image_tag('headlines/040412_CQ_Market_blue.gif', array('class' => 'spacer-top-25')),
-      'blog_page', array('slug' => 'cq-faqs/guide-selling', '_decode' => 1)
+    cq_ad_slot(
+      cq_image_tag('headlines/040412_CQ_Market_blue.gif',
+        array(
+          'width' => '300', 'height' => '250', 'class' => 'spacer-top-25',
+          'alt' => 'How can I sell my items?'
+        )
+      ),
+      url_for('blog_page', array('slug' => 'cq-faqs/guide-selling', '_decode' => 1))
     );
   }
   else
