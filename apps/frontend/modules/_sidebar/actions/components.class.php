@@ -615,23 +615,23 @@ class _sidebarComponents extends cqFrontendComponents
         $q->filterByContentCategoryWithDescendants($category);
       }
 
-      $q
-        ->filterByCollection($collection, Criteria::NOT_EQUAL)
-        ->filterByTags($tags, Criteria::IN);
+      $q->filterByCollection($collection, Criteria::NOT_EQUAL);
 
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+
+      $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
     {
       $tags = $collectible->getTags();
-      $q
-        ->filterByCollectible($collectible, Criteria::NOT_EQUAL)
-        ->filterByTags($tags, Criteria::IN);
+      $q->filterByCollectible($collectible, Criteria::NOT_EQUAL);
 
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+
+      $q ->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible CollectionCollectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
@@ -654,12 +654,12 @@ class _sidebarComponents extends cqFrontendComponents
         $q->filterByContentCategoryWithDescendants($category);
       }
 
-      $q
-        ->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL)
-        ->filterByTags($tags, Criteria::IN);
+      $q->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL);
 
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+
+      $q->filterByTags($tags, Criteria::IN);
     }
 
     if ($collector = $this->getVar('collector'))
@@ -679,19 +679,21 @@ class _sidebarComponents extends cqFrontendComponents
     if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
     {
       $tags = $wp_post->getTags('array');
-      $q->filterByTags($tags, Criteria::IN);
 
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+
+      $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $wp_user wpUser */
     else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
     {
       $tags = $wp_user->getTags('array');
-      $q->filterByTags($tags, Criteria::IN);
 
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+
+      $q->filterByTags($tags, Criteria::IN);
     }
 
     // Make the actual query and get the CollectiblesForSale
