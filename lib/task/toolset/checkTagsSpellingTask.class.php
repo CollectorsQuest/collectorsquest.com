@@ -56,7 +56,6 @@ class checkTagsSpellingTask extends sfBaseTask
 
       foreach ($words as $key => $word)
       {
-
         if (!pspell_check($pspell, $word) && $suggestions = pspell_suggest($pspell, $word))
         {
           //check only words
@@ -95,9 +94,6 @@ class checkTagsSpellingTask extends sfBaseTask
    //     }
       }
 
-
-
-
       echo sprintf("\r Completed: %.2f%%", round($a/$count, 4) * 100);
 
     }
@@ -105,12 +101,6 @@ class checkTagsSpellingTask extends sfBaseTask
 
 
     $this->log('You can find report here ' . sfConfig::get('sf_cache_dir') . '/tags_spelling.csv');
-  }
-
-  private function addCollectorRow($stream, Collector $collector, $delimeter, $enclosure)
-  {
-    fputcsv($stream, array($collector->getId(), $collector->getUsername(),
-      $collector->getDisplayName(), $collector->getEmail()), $delimeter, $enclosure);
   }
 
 }
