@@ -17,14 +17,13 @@ _header:
   with_layout: false
   lifetime:    300
 
+# We want to make sure we never cache the global/javascripts partial
 _javascripts:
   enabled:     false
-  contextual:  true
-  with_layout: false
-  lifetime:    3600
 
 _footer:
   enabled:     true
+  with_layout: false
 
 _footer_links:
   enabled:     true

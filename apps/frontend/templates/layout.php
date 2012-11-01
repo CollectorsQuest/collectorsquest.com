@@ -1,13 +1,7 @@
 <?php
-  /**
-   * @var  $sf_user     cqFrontendUser
-   * @var  $sf_params   sfParameterHolder
-   * @var  $sf_context  sfContext
-   */
-
-  /** @var $sf_cache_key string */
-  $sf_cache_key  = (int) $sf_user->getId() .'_';
-  $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+/* @var  $sf_user     cqFrontendUser */
+/* @var  $sf_params   sfParameterHolder */
+/* @var  $sf_context  sfContext */
 ?>
 <!doctype html>
 <!--[if IE 8 ]>
@@ -75,7 +69,7 @@
     if (has_component_slot('slot1'))
     {
       echo '<div class="slots-container"><div id="slot1">';
-        include_component_slot('slot1', array('sf_cache_key' => $sf_cache_key));
+        include_component_slot('slot1');
       echo '</div></div>';
     }
 
@@ -128,10 +122,7 @@
       }
 
       echo '<div id="sidebar">';
-      include_component_slot($sidebar, array(
-        'sf_cache_key' => $sf_cache_key,
-        'height' => $height
-      ));
+      include_component_slot($sidebar, array('height' => $height));
       echo '</div>';
     }
     echo '</div>';
@@ -141,7 +132,7 @@
     if (has_component_slot('slot2'))
     {
       echo '<div class="slots-container"><div id="slot2">';
-      include_component_slot('slot2', array('sf_cache_key' => $sf_cache_key));
+      include_component_slot('slot2');
       echo '</div></div>';
     }
   ?>
@@ -159,7 +150,7 @@
     include_partial('global/modal_confirm');
 
     // Include the global javascripts
-    include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
+    include_partial('global/javascripts');
 
     // Include analytics code only in production and exclude the NY office IP address
     if (sfConfig::get('sf_environment') === 'prod' && cqStatic::getUserIpAddress() != '207.237.37.24')
