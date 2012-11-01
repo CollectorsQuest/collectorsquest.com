@@ -280,6 +280,7 @@ class CollectorPeer extends BaseCollectorPeer
 
     $collector_identifier = $q->findOneOrCreate();
     $collector_identifier->setCollector($collector);
+    $collector_identifier->setProvider($collector_identifier->getProviderFromIdentifier());
     $collector_identifier->save();
 
     return $collector;
