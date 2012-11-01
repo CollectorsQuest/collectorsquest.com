@@ -220,6 +220,14 @@ class _sidebarComponents extends cqFrontendComponents
         $q->filterByContentCategoryWithDescendants($category);
       }
 
+      /** @var $matching_query FrontendCollectorCollectionQuery */
+      $matching_query = clone $q;
+      $matching_query->filterByMachineTags($tags, 'matching', 'collections', Criteria::IN)
+        ->_or()
+        ->filterByContentCategoryId($content_category_id)
+        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
+        ->orderByUpdatedAt(Criteria::DESC);
+
       $q->filterByTags($tags)
         ->_or()
         ->filterByContentCategoryId($content_category_id)
@@ -252,8 +260,13 @@ class _sidebarComponents extends cqFrontendComponents
 
       $q
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
-        ->filterByTags($tags)
         ->orderByUpdatedAt(Criteria::DESC);
+
+      /** @var $matching_query FrontendCollectorCollectionQuery */
+      $matching_query = clone $q;
+      $matching_query->filterByMachineTags($tags, 'matching', 'collections', Criteria::IN);
+
+      $q->filterByTags($tags);
     }
     else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
     {
@@ -270,7 +283,23 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     // Make the actual query and get the Collections
-    $this->collections = $q->limit($this->limit)->find();
+    if (isset($matching_query))
+    {
+      $this->collections = $matching_query->limit($this->limit)->find();
+      $count_collections = $matching_query->limit($this->limit)->count();
+      if ($count_collections < $this->limit)
+      {
+        $additional_collections = $q->limit($this->limit - $count_collections)->find();
+        // add collections that are not matching by machine tags but are matching by tags
+        $this->collections->exchangeArray(
+          array_merge($this->collections->getArrayCopy(), $additional_collections->getArrayCopy())
+        );
+      }
+    }
+    else
+    {
+      $this->collections = $q->limit($this->limit)->find();
+    }
 
     if (count($this->collections) === 0 && $this->getVar('fallback') === 'random')
     {
@@ -617,6 +646,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       $q->filterByCollection($collection, Criteria::NOT_EQUAL);
 
+      /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
 
@@ -628,6 +658,7 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $collectible->getTags();
       $q->filterByCollectible($collectible, Criteria::NOT_EQUAL);
 
+      /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
 
@@ -656,6 +687,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       $q->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL);
 
+      /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
 
@@ -680,6 +712,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $tags = $wp_post->getTags('array');
 
+      /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
 
@@ -690,6 +723,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $tags = $wp_user->getTags('array');
 
+      /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
       $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
 
@@ -700,13 +734,13 @@ class _sidebarComponents extends cqFrontendComponents
     if (isset($matching_query))
     {
       $this->collectibles_for_sale = $matching_query->limit($this->limit)->find();
-      $count_collectibles = $matching_query->limit($this->limit)->count();
-      if ($count_collectibles < $this->limit)
+      $count_collectibles_for_sale = $matching_query->limit($this->limit)->count();
+      if ($count_collectibles_for_sale < $this->limit)
       {
-        $additional_collectibles = $q->limit($this->limit - $count_collectibles)->find();
-        // add collectibles that are not matching by machine tags but are matching by tags
+        $additional_collectibles_for_sale = $q->limit($this->limit - $count_collectibles_for_sale)->find();
+        // add collectibles_for_sale that are not matching by machine tags but are matching by tags
         $this->collectibles_for_sale->exchangeArray(
-          array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles->getArrayCopy())
+          array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles_for_sale->getArrayCopy())
         );
       }
     }
