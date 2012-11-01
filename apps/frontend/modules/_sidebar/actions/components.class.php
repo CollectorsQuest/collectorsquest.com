@@ -286,7 +286,7 @@ class _sidebarComponents extends cqFrontendComponents
     if (isset($matching_query))
     {
       $this->collections = $matching_query->limit($this->limit)->find();
-      $count_collections = $matching_query->limit($this->limit)->count();
+      $count_collections = $this->collections->count();
       if ($count_collections < $this->limit)
       {
         $additional_collections = $q->limit($this->limit - $count_collections)->find();
@@ -734,7 +734,7 @@ class _sidebarComponents extends cqFrontendComponents
     if (isset($matching_query))
     {
       $this->collectibles_for_sale = $matching_query->limit($this->limit)->find();
-      $count_collectibles_for_sale = $matching_query->limit($this->limit)->count();
+      $count_collectibles_for_sale = $this->collectibles_for_sale->count();
       if ($count_collectibles_for_sale < $this->limit)
       {
         $additional_collectibles_for_sale = $q->limit($this->limit - $count_collectibles_for_sale)->find();
