@@ -1,7 +1,8 @@
 <?php
 /* @var $pager PropelModelPager */
+/* @var $menu array */
+/* @var $total integer */
 ?>
-
 
 <div class="holiday-market-menu-wrapper">
   <div class="navbar-inner">
@@ -50,14 +51,17 @@
 <div class="collectibles-for-sale-3x-big-wrapper">
   <div class="row">
     <div class="row-content" style="margin-left: 24px;">
+
+      <?php if ($pager->getPage() === 1): ?>
       <div id="collectible_for_sale_0_grid_view_square_big"
            class="span6 collectible_for_sale_grid_view_square_big fade-white link"
-          style='background: url(<?= cq_image_src('frontend/misc/holiday-market/holiday-item-background.jpg') ?>);'>
+          style='background: url(<?= cq_image_src('frontend/misc/holiday-market/holiday-item-background.jpg') ?>) no-repeat;'>
 
         <div style="color: #fff; padding: 20px;">
-          <?= $menu[($t-1 < 0 ? 0 : $t-1)]['content']; ?>
+          <?= $menu[($t-$offset < 0 ? 0 : $t-$offset)]['content']; ?>
         </div>
       </div>
+      <?php endif; ?>
 
       <?php
         foreach ($pager->getResults() as $collectible_for_sale)
@@ -71,6 +75,7 @@
           );
         }
       ?>
+
     </div>
   </div>
   <div id="pages" class="spacer-bottom-15">

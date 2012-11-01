@@ -166,6 +166,7 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
+    return sfView::SUCCESS;
   }
 
   public function executeHolidayThemes()
@@ -201,7 +202,7 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $wp_posts wpPost[] */
     $wp_posts = $q->limit(5)->find();
 
-    if ($t > 0)
+    if (true)
     {
       $this->menu = array();
     }
@@ -223,7 +224,7 @@ class marketplaceComponents extends cqFrontendComponents
       $name = !empty($meta['cq_menu_name']) ? $meta['cq_menu_name'] : $wp_post->getPostTitle();
 
       $this->menu[] = array(
-        'id' => $wp_post->getId(), 'active' => ($i === $t - $offset) && $t > 0,
+        'id' => $wp_post->getId(), 'active' => ($i === $t - $offset),
         'name' => $name, 'slug' => $wp_post->getSlug(),
         'content' => $wp_post->getPostContent(),
         'tags' => $wp_post->getTags('array')
@@ -236,6 +237,7 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $q FrontendCollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale()
+      ->orderByAverageRating(Criteria::DESC)
       ->orderByUpdatedAt(Criteria::DESC);
 
     if (!empty($this->menu[$t-$offset]['tags']))
@@ -243,9 +245,12 @@ class marketplaceComponents extends cqFrontendComponents
       $q->filterByMachineTags($this->menu[$t-$offset]['tags'], 'market', 'theme');
     }
 
+    /* @var $page integer */
+    $page = (integer) $this->getRequestParameter('p', 1);
+
     $pager = new PropelModelPager($q);
-    $pager->setPage($this->getRequestParameter('p', 1));
-    $pager->setMaxPerPage(6);
+    $pager->setPage($page);
+    $pager->setMaxPerPage(($page === 1) ? 5 : 6);
     $pager->init();
 
     $this->pager = $pager;
@@ -325,11 +330,12 @@ class marketplaceComponents extends cqFrontendComponents
     {
       /** @var $query FrontendCollectibleQuery */
       $query = FrontendCollectibleQuery::create()
+        ->orderByAverageRating(Criteria::DESC)
         ->orderByUpdatedAt(Criteria::DESC);
 
       $query
         ->useCollectionCollectibleQuery()
-        ->groupByCollectionId()
+          ->groupByCollectionId()
         ->endUse();
 
       $query
@@ -342,9 +348,7 @@ class marketplaceComponents extends cqFrontendComponents
       $query
         ->hasThumbnail()
         ->filterById(null, Criteria::NOT_EQUAL)
-        ->orderByCreatedAt(Criteria::DESC)
-        ->clearGroupByColumns()
-        ->groupBy('CollectorId');
+        ->orderByCreatedAt(Criteria::DESC);
 
       $pager = new cqPropelModelPager($query, 16);
     }

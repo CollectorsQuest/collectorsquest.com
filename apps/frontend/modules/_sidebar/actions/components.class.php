@@ -702,7 +702,7 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
 
-    if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
+    if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random' && !isset($collector))
     {
       /* @var $q CollectibleForSaleQuery */
       $q = FrontendCollectibleForSaleQuery::create()

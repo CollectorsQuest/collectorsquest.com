@@ -82,8 +82,7 @@
         array(
           'collector' => $collectible->getCollector(),
           'exclude_collectible_ids' => array($collectible->getId()), 'limit' => 4,
-          'title' => 'Other Items from this Seller',
-          'fallback' => 'random', 'height' => &$height
+          'title' => 'More from this Seller', 'height' => &$height
         )
       );
     }
