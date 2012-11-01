@@ -30,6 +30,10 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
+        <?php cq_sidebar_title('Social accounts') ?>
+
+        <?php include_component('misc', 'guide_social_login', array('action'=>'sign up')); ?>
+
         <?php cq_sidebar_title('Change Your Email Address'); ?>
         <form action="<?= url_for('@mycq_profile_account_info'); ?>"
               class="form-horizontal" method="post">

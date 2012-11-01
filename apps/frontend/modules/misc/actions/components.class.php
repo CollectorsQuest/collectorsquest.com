@@ -44,4 +44,21 @@ class miscComponents extends cqFrontendComponents
     return $this->wp_post ? sfView::SUCCESS : sfView::NONE;
   }
 
+    /**
+     * Action GuideSocialLogin
+     *
+     * @param sfWebRequest $request
+     *
+     * @return string
+     */
+    public function executeGuide_social_login(sfWebRequest $request)
+    {
+        $providers = CollectorIdentifierQuery::create()
+            ->filterByCollector($this->getCollector())
+            ->find()
+            ->toKeyValue('Id', 'Provider');
+
+        $this->setVar('excludeProviders', $providers);
+    }
+
 }
