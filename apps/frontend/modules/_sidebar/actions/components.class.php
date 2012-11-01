@@ -701,8 +701,8 @@ class _sidebarComponents extends cqFrontendComponents
       $this->collectibles_for_sale = $q->limit($this->limit)->find();
     }
 
-
-    if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random' && !isset($collector))
+    // Should be "fallback" if there are no collectibles for sale?
+    if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
     {
       /* @var $q CollectibleForSaleQuery */
       $q = FrontendCollectibleForSaleQuery::create()
