@@ -23,6 +23,8 @@ test:
 
 
 dev:
+  view_cache_manager:
+    class: cqViewCacheManager
   logger:
     class: sfAggregateLogger
     param:
@@ -115,7 +117,7 @@ prod:
     class: cqMemcacheCache
 
   view_cache_manager:
-    class: IceViewCacheManager
+    class: cqViewCacheManager
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    false
@@ -125,7 +127,7 @@ prod_debug:
     class: cqMemcacheCache
 
   view_cache_manager:
-    class: IceViewCacheManager
+    class: cqViewCacheManager
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    false
