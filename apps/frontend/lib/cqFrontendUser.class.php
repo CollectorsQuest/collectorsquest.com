@@ -145,7 +145,7 @@ class cqFrontendUser extends cqBaseUser
     return GeoCountryQuery::create()
       ->filterByIso3166($country_code)
       ->select('Name')
-      ->findOne() ? : false;
+      ->findOne() ?: false;
   }
 
   /**
@@ -390,7 +390,7 @@ class cqFrontendUser extends cqBaseUser
   public function postCreateHook($collector = null, $send_email = true)
   {
     /** @var $collector Collector */
-    $collector = $collector ? : $this->getCollector();
+    $collector = $collector ?: $this->getCollector();
 
     // We cannot do anything without a Collector
     if (!($collector instanceof Collector) || $collector->isNew())
@@ -442,15 +442,6 @@ class cqFrontendUser extends cqBaseUser
       {
         $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
         $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
-          'to'     => $collector->getEmail(),
-          'params' => array(
-            'collector'       => $collector,
-            'collector_email' => $collector_email,
-          )
-        ));
-
-        $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
-        $cqEmail->send('collector/social_password', array(
           'to'     => $collector->getEmail(),
           'params' => array(
             'collector'       => $collector,
@@ -542,8 +533,8 @@ class cqFrontendUser extends cqBaseUser
     if (null === $this->visitor_info_array || $force)
     {
       // if the user is authenticated or we can get it from the UUID cookie
-      $collector = $this->getCollector($strict = true)
-        ? : $this->getCollectorByUuid();
+      $collector = $this->getCollector($strict = true) ?: $this->getCollectorByUuid();
+
       if ($collector)
       {
         // populate the array from ExtraProperties behavior data for the collector
@@ -577,8 +568,7 @@ class cqFrontendUser extends cqBaseUser
     $this->visitor_info_array = $data;
 
     // if the user is authenticated or we can get it from the UUID cookie
-    $collector = $this->getCollector($strict = true)
-      ? : $this->getCollectorByUuid();
+    $collector = $this->getCollector($strict = true) ?: $this->getCollectorByUuid();
 
     if ($collector)
     {

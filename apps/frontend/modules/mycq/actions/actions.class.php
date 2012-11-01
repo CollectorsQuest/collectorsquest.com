@@ -452,7 +452,7 @@ class mycqActions extends cqFrontendActions
         if ($this->getCollector()->isOwnerOf($collectible))
         {
           $this->pm_form = new ComposeAbridgedPrivateMessageForm(
-            $this->seller, $this->buyer ? : $this->shopping_order->getBuyerEmail(),
+            $this->seller, $this->buyer ?: $this->shopping_order->getBuyerEmail(),
             $subject, array('attach' => array($collectible))
           );
 
