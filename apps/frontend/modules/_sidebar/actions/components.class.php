@@ -618,6 +618,9 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterByCollection($collection, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
+
+      $matching_query = clone $q;
+      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
@@ -626,6 +629,9 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterByCollectible($collectible, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
+
+      $matching_query = clone $q;
+      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
     }
     /** @var $collectible CollectionCollectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
@@ -651,6 +657,9 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
+
+      $matching_query = clone $q;
+      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
     }
 
     if ($collector = $this->getVar('collector'))
@@ -680,6 +689,9 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $tags = $wp_user->getTags('array');
       $q->filterByTags($tags, Criteria::IN);
+
+      $matching_query = clone $q;
+      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
     }
 
     // Make the actual query and get the CollectiblesForSale
