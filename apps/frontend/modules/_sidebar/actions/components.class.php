@@ -222,7 +222,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       /** @var $matching_query FrontendCollectorCollectionQuery */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', 'collections', Criteria::IN)
+      $matching_query->filterByMachineTags($tags, 'matching', array('collections', 'all'), Criteria::IN)
         ->_or()
         ->filterByContentCategoryId($content_category_id)
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
@@ -264,7 +264,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       /** @var $matching_query FrontendCollectorCollectionQuery */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', 'collections', Criteria::IN);
+      $matching_query->filterByMachineTags($tags, 'matching', array('collections', 'all'), Criteria::IN);
 
       $q->filterByTags($tags);
     }
@@ -648,7 +648,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $q->filterByTags($tags, Criteria::IN);
     }
@@ -660,7 +660,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $q ->filterByTags($tags, Criteria::IN);
     }
@@ -689,7 +689,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $q->filterByTags($tags, Criteria::IN);
     }
@@ -714,7 +714,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $q->filterByTags($tags, Criteria::IN);
     }
@@ -725,7 +725,7 @@ class _sidebarComponents extends cqFrontendComponents
 
       /** @var $matching_query FrontendCollectibleForSaleQuery */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', 'market', Criteria::IN);
+      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $q->filterByTags($tags, Criteria::IN);
     }
@@ -735,6 +735,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $this->collectibles_for_sale = $matching_query->limit($this->limit)->find();
       $count_collectibles_for_sale = $this->collectibles_for_sale->count();
+
       if ($count_collectibles_for_sale < $this->limit)
       {
         $additional_collectibles_for_sale = $q->limit($this->limit - $count_collectibles_for_sale)->find();
