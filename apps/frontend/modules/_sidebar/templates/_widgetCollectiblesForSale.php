@@ -17,6 +17,7 @@ $_height = 0;
       'Explore Market &raquo;',
       '@marketplace', array('class' => 'text-v-middle link-align')
     );
+    cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
   }
   else
   {
@@ -25,9 +26,8 @@ $_height = 0;
       'collectibles_for_sale_by_collector', $collector,
       array('class' => 'text-v-middle link-align')
     );
+    cq_sidebar_title($title, $link, array('left' => 9, 'right' => 3));
   }
-
-  cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
 
   $_height -= 63;
 ?>
