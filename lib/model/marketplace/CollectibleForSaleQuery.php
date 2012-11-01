@@ -211,4 +211,16 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->endUse();
   }
 
+  /**
+   * @param     string  $order
+   * @return    CollectionCollectibleQuery
+   */
+  public function orderByAverageRating($order = Criteria::DESC)
+  {
+    return $this
+      ->useCollectibleQuery()
+        ->orderByAverageRating($order)
+      ->endUse();
+  }
+
 }
