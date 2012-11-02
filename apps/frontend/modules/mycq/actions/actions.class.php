@@ -170,6 +170,8 @@ class mycqActions extends cqFrontendActions
    */
   public function executeProfileEmailPreferences(cqWebRequest $request)
   {
+    SmartMenu::setSelected('mycq_menu', 'profile');
+
     /* @var $collector Collector */
     $collector = $this->getCollector();
 
