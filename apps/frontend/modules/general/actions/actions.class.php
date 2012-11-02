@@ -103,10 +103,7 @@ class generalActions extends cqFrontendActions
       }
       if ($collectible_ids)
       {
-        if (IceGateKeeper::locked('independence_day'))
-        {
-          shuffle($collectible_ids);
-        }
+        shuffle($collectible_ids);
 
         /**
          * Get the Collectibles
@@ -117,15 +114,11 @@ class generalActions extends cqFrontendActions
            ->filterById($collectible_ids, Criteria::IN)
            ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
-        IceGateKeeper::open('independence_day') ?
-          $q->limit(47) : $q->limit(22);
-
-        $this->collectibles = $q->find();
+        $this->collectibles = $q->limit(22)->find();
       }
     }
 
-    return IceGateKeeper::open('independence_day') ?
-      'IndependenceDay' : sfView::SUCCESS;
+    return sfView::SUCCESS;
   }
 
   public function executeDefault()
