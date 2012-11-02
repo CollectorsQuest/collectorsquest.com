@@ -538,7 +538,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())
     {
-      $values = unserialize($wp_post->getPostMetaValue('_seller_spotlight'));
+      $values = $wp_post->getPostMetaValue('_seller_spotlight');
 
       if (isset($values['cq_collector_ids']))
       {
@@ -702,6 +702,7 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
 
+    // Should be "fallback" if there are no collectibles for sale?
     if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
     {
       /* @var $q CollectibleForSaleQuery */
@@ -723,7 +724,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->collectibles_for_sale = $q->limit($this->limit)->find();
     }
 
-    return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
+    return $this->_sidebar_if($this->collectibles_for_sale->count() > 1);
   }
 
   public function executeWidgetBlogPosts()

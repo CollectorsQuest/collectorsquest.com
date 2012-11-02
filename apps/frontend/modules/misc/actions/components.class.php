@@ -10,7 +10,7 @@ class miscComponents extends cqFrontendComponents
     }
 
     /** @var $values array */
-    $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
+    $values = $wp_post->getPostMetaValue('_featured_items');
 
     // Initialize the arrays
     $collectibles_for_sale_ids = $wp_post_ids = array();

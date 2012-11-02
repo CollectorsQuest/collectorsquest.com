@@ -13,6 +13,10 @@ mycq_profile_account_info:
   url:   /mycq/profile/account-information
   param: { module: mycq, action: profileAccountInfo }
 
+mycq_profile_create_password:
+  url:   /mycq/profile/create-password
+  param: { module: mycq, action: createPassword }
+
 mycq_profile_email_preferences:
   url:   /mycq/profile/email-preferences
   param: { module: mycq, action: profileEmailPreferences }

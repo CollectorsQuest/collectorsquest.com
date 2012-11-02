@@ -65,7 +65,7 @@ class generalActions extends cqFrontendActions
 
     foreach ($themes as $theme)
     {
-      $values = unserialize($theme->getPostMetaValue('_homepage_showcase_items'));
+      $values = $theme->getPostMetaValue('_homepage_showcase_items');
 
       // Initialize the arrays
       $collector_ids = $collection_ids = $collectible_ids = $video_ids = array();
@@ -233,6 +233,19 @@ class generalActions extends cqFrontendActions
 
         // Run the post create hook
         $this->getUser()->postCreateHook($collector);
+
+        // Send an email to urge user to set their own username/password
+        if ($collector->getEmail())
+        {
+          $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
+          $cqEmail->send('Collector/social_password', array(
+            'to'     => $collector->getEmail(),
+            'params' => array(
+              'collector'       => $collector,
+              'collector_email' => $collector->getEmail(),
+            )
+          ));
+        }
 
         $new_collector = true;
       }

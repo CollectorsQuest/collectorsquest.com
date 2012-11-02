@@ -17,6 +17,7 @@ $_height = 0;
       'Explore Market &raquo;',
       '@marketplace', array('class' => 'text-v-middle link-align')
     );
+    cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
   }
   else
   {
@@ -25,23 +26,23 @@ $_height = 0;
       'collectibles_for_sale_by_collector', $collector,
       array('class' => 'text-v-middle link-align')
     );
+    cq_sidebar_title($title, $link, array('left' => 9, 'right' => 3));
   }
-
-  cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
 
   $_height -= 63;
 ?>
 
 <div id="items-for-sale-sidebar">
   <div class="row thumbnails">
-    <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
-      <?php
-          include_partial(
-            'marketplace/collectible_for_sale_grid_view_square_small',
-            array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
-          );
-      ?>
-    <?php endforeach; ?>
+    <?php
+      for ($i = 0; $i < intval($collectibles_for_sale->count() / 2) * 2; $i++)
+      {
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square_small',
+          array('collectible_for_sale' => $collectibles_for_sale[$i], 'i' => $i)
+        );
+      }
+    ?>
   </div>
 </div>
 

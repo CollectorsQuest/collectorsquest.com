@@ -104,7 +104,7 @@ class SmartMenu
    */
   public static function getSelected($menu_name)
   {
-    return self::$selected[$menu_name];
+    return isset(self::$selected[$menu_name]) ? self::$selected[$menu_name] : false;
   }
 
   /**
