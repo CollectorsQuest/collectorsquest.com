@@ -220,15 +220,33 @@ class _sidebarComponents extends cqFrontendComponents
         $q->filterByContentCategoryWithDescendants($category);
       }
 
-      /** @var $matching_query FrontendCollectorCollectionQuery */
-      $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', array('collections', 'all'), Criteria::IN)
+      /**
+       * match machine tags against machine tags
+       * @var $machine_query FrontendCollectorCollectionQuery
+       */
+      $machine_query = clone $q;
+      /**
+       * match machine tags against regular tags
+       * @var $tag_query FrontendCollectorCollectionQuery
+       */
+      $tag_query = clone $q;
+
+      $machine_tags = $collection->getTags(array('is_triple' => true));
+      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+
+      $machine_query->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'), Criteria::IN)
         ->_or()
         ->filterByContentCategoryId($content_category_id)
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
         ->orderByUpdatedAt(Criteria::DESC);
 
-      $q->filterByTags($tags)
+      $tag_query->filterByTags($machine_tags, Criteria::IN)
+        ->_or()
+        ->filterByContentCategoryId($content_category_id)
+        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
+        ->orderByUpdatedAt(Criteria::DESC);
+
+      $q->filterByTags($tags, Criteria::IN)
         ->_or()
         ->filterByContentCategoryId($content_category_id)
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
@@ -262,11 +280,23 @@ class _sidebarComponents extends cqFrontendComponents
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
         ->orderByUpdatedAt(Criteria::DESC);
 
-      /** @var $matching_query FrontendCollectorCollectionQuery */
-      $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', array('collections', 'all'), Criteria::IN);
+      /**
+       * match machine tags against machine tags
+       * @var $machine_query FrontendCollectorCollectionQuery
+       */
+      $machine_query = clone $q;
+      /**
+       * match machine tags against regular tags
+       * @var $tag_query FrontendCollectorCollectionQuery
+       */
+      $tag_query = clone $q;
 
-      $q->filterByTags($tags);
+      $machine_tags = $collectible->getTags(array('is_triple' => true));
+      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+
+      $machine_query->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'), Criteria::IN);
+      $tag_query->filterByTags($machine_tags, Criteria::IN);
+      $q->filterByTags($tags, Criteria::IN);
     }
     else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
     {
@@ -283,14 +313,27 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     // Make the actual query and get the Collections
-    if (isset($matching_query))
+    if (isset($machine_query))
     {
-      $this->collections = $matching_query->limit($this->limit)->find();
-      $count_collections = $matching_query->limit($this->limit)->count();
+      $this->collections = $machine_query->limit($this->limit)->find();
+      $count_collections = $machine_query->limit($this->limit)->count();
+
+      if (isset($tag_query) && $count_collections < $this->limit)
+      {
+        $additional_collections = $tag_query->limit($this->limit - $count_collections)->find();
+        // add collections that are matching by machine tags
+        $this->collections->exchangeArray(
+          array_merge($this->collections->getArrayCopy(), $additional_collections->getArrayCopy())
+        );
+
+        // update the number of collections we already have so we can compare with limit
+        $count_collections += $tag_query->limit($this->limit - $count_collections)->count();
+      }
+
       if ($count_collections < $this->limit)
       {
         $additional_collections = $q->limit($this->limit - $count_collections)->find();
-        // add collections that are not matching by machine tags but are matching by tags
+        // add collections that are not matching by machine tags but are matching by regular tags
         $this->collections->exchangeArray(
           array_merge($this->collections->getArrayCopy(), $additional_collections->getArrayCopy())
         );
@@ -648,20 +691,20 @@ class _sidebarComponents extends cqFrontendComponents
 
       /**
        * match machine tags against machine tags
-       * @var $matching_query FrontendCollectibleForSaleQuery
+       * @var $machine_query FrontendCollectibleForSaleQuery
        */
-      $matching_query = clone $q;
+      $machine_query = clone $q;
       /**
        * match machine tags against regular tags
-       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       * @var $tag_query FrontendCollectibleForSaleQuery
        */
-      $all_tags_query = clone $q;
+      $tag_query = clone $q;
 
       $machine_tags = $collection->getTags(array('is_triple' => true));
       $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
-      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+      $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
-      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
+      $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible Collectible */
@@ -672,20 +715,20 @@ class _sidebarComponents extends cqFrontendComponents
 
       /**
        * match machine tags against machine tags
-       * @var $matching_query FrontendCollectibleForSaleQuery
+       * @var $machine_query FrontendCollectibleForSaleQuery
        */
-      $matching_query = clone $q;
+      $machine_query = clone $q;
       /**
        * match machine tags against regular tags
-       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       * @var $tag_query FrontendCollectibleForSaleQuery
        */
-      $all_tags_query = clone $q;
+      $tag_query = clone $q;
 
       $machine_tags = $collectible->getTags(array('is_triple' => true));
       $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
-      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+      $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
-      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
+      $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible CollectionCollectible */
@@ -713,20 +756,20 @@ class _sidebarComponents extends cqFrontendComponents
 
       /**
        * match machine tags against machine tags
-       * @var $matching_query FrontendCollectibleForSaleQuery
+       * @var $machine_query FrontendCollectibleForSaleQuery
        */
-      $matching_query = clone $q;
+      $machine_query = clone $q;
       /**
        * match machine tags against regular tags
-       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       * @var $tag_query FrontendCollectibleForSaleQuery
        */
-      $all_tags_query = clone $q;
+      $tag_query = clone $q;
 
       $machine_tags = $collectible->getTags(array('is_triple' => true));
       $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
-      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+      $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
-      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
+      $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
 
@@ -750,20 +793,20 @@ class _sidebarComponents extends cqFrontendComponents
 
       /**
        * match machine tags against machine tags
-       * @var $matching_query FrontendCollectibleForSaleQuery
+       * @var $machine_query FrontendCollectibleForSaleQuery
        */
-      $matching_query = clone $q;
+      $machine_query = clone $q;
       /**
        * match machine tags against regular tags
-       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       * @var $tag_query FrontendCollectibleForSaleQuery
        */
-      $all_tags_query = clone $q;
+      $tag_query = clone $q;
 
       $machine_tags = $wp_post->getTags(array('is_triple' => true));
       $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
-      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+      $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
-      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
+      $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $wp_user wpUser */
@@ -773,39 +816,39 @@ class _sidebarComponents extends cqFrontendComponents
 
       /**
        * match machine tags against machine tags
-       * @var $matching_query FrontendCollectibleForSaleQuery
+       * @var $machine_query FrontendCollectibleForSaleQuery
        */
-      $matching_query = clone $q;
+      $machine_query = clone $q;
       /**
        * match machine tags against regular tags
-       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       * @var $tag_query FrontendCollectibleForSaleQuery
        */
-      $all_tags_query = clone $q;
+      $tag_query = clone $q;
 
       $machine_tags = $wp_user->getTags(array('is_triple' => true));
       $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
-      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+      $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
-      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
+      $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
 
     // Make the actual query and get the CollectiblesForSale
-    if (isset($matching_query))
+    if (isset($machine_query))
     {
-      $this->collectibles_for_sale = $matching_query->limit($this->limit)->find();
-      $count_collectibles_for_sale = $matching_query->limit($this->limit)->count();
+      $this->collectibles_for_sale = $machine_query->limit($this->limit)->find();
+      $count_collectibles_for_sale = $machine_query->limit($this->limit)->count();
 
-      if (isset($all_tags_query) && $count_collectibles_for_sale < $this->limit)
+      if (isset($tag_query) && $count_collectibles_for_sale < $this->limit)
       {
-        $additional_collectibles_for_sale = $all_tags_query->limit($this->limit - $count_collectibles_for_sale)->find();
+        $additional_collectibles_for_sale = $tag_query->limit($this->limit - $count_collectibles_for_sale)->find();
         // add collectibles_for_sale that are matching by machine tags
         $this->collectibles_for_sale->exchangeArray(
           array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles_for_sale->getArrayCopy())
         );
 
-        // update the number of collectibles_for_sale we already have so we can match against limit
-        $count_collectibles_for_sale += $all_tags_query->limit($this->limit - $count_collectibles_for_sale)->count();
+        // update the number of collectibles_for_sale we already have so we can compare with limit
+        $count_collectibles_for_sale += $tag_query->limit($this->limit - $count_collectibles_for_sale)->count();
       }
 
       if ($count_collectibles_for_sale < $this->limit)
