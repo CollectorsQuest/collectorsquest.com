@@ -66,11 +66,21 @@
       <?php
         foreach ($pager->getResults() as $collectible_for_sale)
         {
+          // set the link to open modal dialog
+          $url = url_for('ajax_marketplace',
+            array(
+              'section' => 'collectible',
+              'page' => 'forSale',
+              'id' => $collectible_for_sale->getCollectibleId()
+            )
+          );
+
           include_partial(
             'marketplace/collectible_for_sale_grid_view_square_big',
             array(
               'collectible_for_sale' => $collectible_for_sale,
-              'lazy_image' => false, 'i' => $collectible_for_sale->getCollectibleId()
+              'url' => $url,'i' => $collectible_for_sale->getCollectibleId(),
+              'lazy_image' => false
             )
           );
         }

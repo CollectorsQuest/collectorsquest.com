@@ -42,7 +42,7 @@
 
             <?php
               echo link_to('View Item',
-                url_for_collectible($collectible_for_sale->getCollectible()),
+                url_for_collectible($collectible_for_sale->getCollectible()).'?ref=mp',
                 array('class' => 'btn pull-left', 'style' => 'margin-left: 10px; margin-top: 5px;')
               );
             ?>
