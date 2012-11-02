@@ -646,10 +646,22 @@ class _sidebarComponents extends cqFrontendComponents
 
       $q->filterByCollection($collection, Criteria::NOT_EQUAL);
 
-      /** @var $matching_query FrontendCollectibleForSaleQuery */
+      /**
+       * match machine tags against machine tags
+       * @var $matching_query FrontendCollectibleForSaleQuery
+       */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
+      /**
+       * match machine tags against regular tags
+       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       */
+      $all_tags_query = clone $q;
 
+      $machine_tags = $collection->getTags(array('is_triple' => true));
+      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+
+      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible Collectible */
@@ -699,10 +711,22 @@ class _sidebarComponents extends cqFrontendComponents
 
       $q->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL);
 
-      /** @var $matching_query FrontendCollectibleForSaleQuery */
+      /**
+       * match machine tags against machine tags
+       * @var $matching_query FrontendCollectibleForSaleQuery
+       */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
+      /**
+       * match machine tags against regular tags
+       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       */
+      $all_tags_query = clone $q;
 
+      $machine_tags = $collectible->getTags(array('is_triple' => true));
+      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+
+      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
 
@@ -724,10 +748,22 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $tags = $wp_post->getTags('array');
 
-      /** @var $matching_query FrontendCollectibleForSaleQuery */
+      /**
+       * match machine tags against machine tags
+       * @var $matching_query FrontendCollectibleForSaleQuery
+       */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
+      /**
+       * match machine tags against regular tags
+       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       */
+      $all_tags_query = clone $q;
 
+      $machine_tags = $wp_post->getTags(array('is_triple' => true));
+      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+
+      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $wp_user wpUser */
@@ -735,10 +771,22 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $tags = $wp_user->getTags('array');
 
-      /** @var $matching_query FrontendCollectibleForSaleQuery */
+      /**
+       * match machine tags against machine tags
+       * @var $matching_query FrontendCollectibleForSaleQuery
+       */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
+      /**
+       * match machine tags against regular tags
+       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       */
+      $all_tags_query = clone $q;
 
+      $machine_tags = $wp_user->getTags(array('is_triple' => true));
+      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+
+      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
 
