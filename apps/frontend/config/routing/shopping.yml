@@ -1,6 +1,10 @@
 
 ### MARKETPLACE
 
+marketplace_holiday:
+  url: /marketplace/holiday
+  param: { module: marketplace, action: holiday }
+
 marketplace_categories:
   url: /marketplace/categories
   param: { module: marketplace, action: categories }
