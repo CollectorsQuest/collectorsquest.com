@@ -664,17 +664,6 @@ class _sidebarComponents extends cqFrontendComponents
 
         $this->collector = $collector;
       }
-
-      // special check to make sure we are showing only full rows of Items
-      $number_collectibles_for_sale = $q->limit($this->limit)->count();
-      if (($number_collectibles_for_sale - 1) % 2 == 0)
-      {
-        $this->limit = $number_collectibles_for_sale - 1;
-      }
-      if ($this->limit == 0)
-      {
-        return sfView::NONE;
-      }
     }
 
     /** @var $wp_post wpPost */
@@ -735,7 +724,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->collectibles_for_sale = $q->limit($this->limit)->find();
     }
 
-    return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
+    return $this->_sidebar_if($this->collectibles_for_sale->count() > 1);
   }
 
   public function executeWidgetBlogPosts()
