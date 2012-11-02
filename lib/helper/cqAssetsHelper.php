@@ -354,25 +354,3 @@ function _cq_parse_options($options, $defaults = array())
 
   return $options;
 }
-
-/**
- * Returns array with only tag 'values', input array should be in format namespace:key=value
- *
- * @param $machine_tags  array   array of tags in format namespace:key=value
- * @param $namespace     string
- * @param $key           string
- */
-
-function _cq_parse_machine_tags($machine_tags, $namespace, $key)
-{
-  $machine_tags_value_only = array();
-  foreach ($machine_tags as $machine_tag)
-  {
-    if ($machine_tag['1'] == $namespace && ($machine_tag['2'] == $key || $machine_tag['2'] == 'all'))
-    {
-      $machine_tags_value_only[] = $machine_tag['3'];
-    }
-  }
-
-  return $machine_tags_value_only;
-}

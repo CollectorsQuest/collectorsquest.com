@@ -231,9 +231,14 @@ class _sidebarComponents extends cqFrontendComponents
        */
       $tag_query = clone $q;
 
-      $machine_tags = $collection->getTags(array('is_triple' => true));
-      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
-
+      $machine_tags = $collection->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'keys' => array('collections', 'all'),
+          'return' => 'value'
+        )
+      );
       $machine_query->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'), Criteria::IN)
         ->_or()
         ->filterByContentCategoryId($content_category_id)
@@ -291,8 +296,14 @@ class _sidebarComponents extends cqFrontendComponents
        */
       $tag_query = clone $q;
 
-      $machine_tags = $collectible->getTags(array('is_triple' => true));
-      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $machine_tags = $collectible->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'keys' => array('collections', 'all'),
+          'return' => 'value'
+        )
+      );
 
       $machine_query->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'), Criteria::IN);
       $tag_query->filterByTags($machine_tags, Criteria::IN);
@@ -700,8 +711,14 @@ class _sidebarComponents extends cqFrontendComponents
        */
       $tag_query = clone $q;
 
-      $machine_tags = $collection->getTags(array('is_triple' => true));
-      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $machine_tags = $collection->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'keys' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
       $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $tag_query->filterByTags($machine_tags, Criteria::IN);
@@ -724,8 +741,14 @@ class _sidebarComponents extends cqFrontendComponents
        */
       $tag_query = clone $q;
 
-      $machine_tags = $collectible->getTags(array('is_triple' => true));
-      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $machine_tags = $collectible->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'keys' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
       $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $tag_query->filterByTags($machine_tags, Criteria::IN);
@@ -765,8 +788,14 @@ class _sidebarComponents extends cqFrontendComponents
        */
       $tag_query = clone $q;
 
-      $machine_tags = $collectible->getTags(array('is_triple' => true));
-      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $machine_tags = $collectible->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'keys' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
       $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $tag_query->filterByTags($machine_tags, Criteria::IN);
@@ -802,8 +831,14 @@ class _sidebarComponents extends cqFrontendComponents
        */
       $tag_query = clone $q;
 
-      $machine_tags = $wp_post->getTags(array('is_triple' => true));
-      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $machine_tags = $wp_post->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'keys' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
       $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $tag_query->filterByTags($machine_tags, Criteria::IN);
@@ -825,8 +860,14 @@ class _sidebarComponents extends cqFrontendComponents
        */
       $tag_query = clone $q;
 
-      $machine_tags = $wp_user->getTags(array('is_triple' => true));
-      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $machine_tags = $wp_user->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'keys' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
       $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
       $tag_query->filterByTags($machine_tags, Criteria::IN);
