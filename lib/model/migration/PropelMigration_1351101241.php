@@ -3,7 +3,7 @@
 /**
  * Update multimedia table with "role" field
  */
-class PropelMigration_1351101242
+class PropelMigration_1351101241
 {
 
 	public function preUp($manager)

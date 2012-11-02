@@ -26,7 +26,7 @@ classes:
       is_primary:  { type: boolean, sqlType: "BOOL", default: false }
       position:    { type: smallint, sqlType: "SMALLINT UNSIGNED", default: 65535 }
     propel_behaviors:
-      archivable: { archive_class: MultimediaArchive, archived_at_column: archived_at }
+      archivable: { archive_class: iceModelMultimediaArchive, archived_at_column: archived_at }
       timestampable:  ~
 
 
