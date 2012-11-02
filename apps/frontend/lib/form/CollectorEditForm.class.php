@@ -106,7 +106,7 @@ class CollectorEditForm extends CollectorForm
     $this->setupSellerSettingsReturnPolicyField();
     $this->setupSellerSettingsWelcomeField($required);
     $this->setupSellerSettingsShippingField($required);
-    $this->setupSellerSettingStoreHeadingFiled();
+    $this->setupSellerSettingStoreHeaderImageField();
     $this->setupSellerSettingsAdditionalPoliciesField($required);
 
     $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(
@@ -263,15 +263,47 @@ class CollectorEditForm extends CollectorForm
         strip_tags($values['seller_settings_additional_policies'])
       );
     }
-    if (isset($values['seller_settings_store_heading']))
+
+    // if user selected the delete widget remove the old header image
+    if (isset($values['seller_settings_store_header_image_delete']) &&
+        $values['seller_settings_store_header_image_delete'])
     {
-      $heading = iceModelMultimediaPeer::createMultimediaFromFile(
-        $this->getObject(), $values['seller_settings_store_heading']
+      $old_header_image = $this->getObject()->getMultimediaByRole(
+        CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE
+      );
+      if ($old_header_image)
+      {
+        $old_header_image->delete();
+      }
+    }
+
+    // handle store header image persistance
+    if (isset($values['seller_settings_store_header_image']) &&
+        $values['seller_settings_store_header_image'])
+    {
+      // if we have a previous image set, remove it.
+      $old_header_image = $this->getObject()->getMultimediaByRole(
+        CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE
+      );
+      if ($old_header_image)
+      {
+        $old_header_image->delete();
+      }
+
+      // add the new store header image
+      $multimedia = $this->getObject()->addMultimedia(
+        $values['seller_settings_store_header_image'],
+        array('role' => CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE)
       );
 
-      $heading->makeCustomThumb(620, 67, $heading);
-
-      $this->getObject()->setSellerSettingsStoreHeading($heading);
+      // and resize it to the expected dimensions
+      $storefront_settings = sfConfig::get('app_marketplace_storefront_settings');
+      $multimedia->makeCustomThumb(
+        $storefront_settings['header_image_size'][0],
+        $storefront_settings['header_image_size'][1],
+        $storefront_settings['header_image_name'],
+        $method = 'center'
+      );
     }
   }
 
@@ -534,15 +566,27 @@ class CollectorEditForm extends CollectorForm
     return $values;
   }
 
-  public function setupSellerSettingStoreHeadingFiled()
+  public function setupSellerSettingStoreHeaderImageField()
   {
-    $this->widgetSchema['seller_settings_store_heading']    = new sfWidgetFormInputFile(
-      array('label' => 'Store Heading Image'),
-      array('required' => false)
-    );
-    $this->validatorSchema['seller_settings_store_heading'] = new cqValidatorFile(array(
+    $storefront_settings = sfConfig::get('app_marketplace_storefront_settings');
+    $header_image = $this->getObject()->getMultimediaByRole(CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE);
+
+    $this->widgetSchema['seller_settings_store_header_image'] = new sfWidgetFormInputFileEditable(array(
+        'label' => 'Store Header Image',
+        'is_image' => true,
+        'file_src' => $header_image
+            ? $header_image->getRelativePath($storefront_settings['header_image_name'])
+            : false,
+        'with_delete' => $header_image ? true : false,
+        'delete_label' => 'Remove the current header image',
+    ));
+
+    $this->validatorSchema['seller_settings_store_header_image'] = new cqValidatorFile(array(
       'mime_types' => 'cq_supported_images',
       'required' => false
+    ));
+    $this->validatorSchema['seller_settings_store_header_image_delete'] = new sfValidatorBoolean(array(
+        'required' => false,
     ));
   }
 

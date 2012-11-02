@@ -805,7 +805,7 @@ class mycqActions extends cqFrontendActions
       'seller_settings_store_title',
       'seller_settings_refunds',
       'seller_settings_shipping',
-      'seller_settings_store_heading'
+      'seller_settings_store_header_image',
     ));
 
     if (sfRequest::POST == $request->getMethod())

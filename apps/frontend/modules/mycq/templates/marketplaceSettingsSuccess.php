@@ -59,9 +59,7 @@
 
         <fieldset class="form-container-center spacer-top-20">
           <?= $form['seller_settings_store_name']->renderRow() ?>
-          <?= $form['seller_settings_store_heading']->renderRow() ?>
-          <?php // @todo display image if available ?>
-          <?= $collector->getSellerSettingsStoreHeading() ?>
+          <?= $form['seller_settings_store_header_image']->renderRow(array(), null, 'A image to be used as store header that will be resized to 620x67 pixels') ?>
           <?= $form['seller_settings_store_title']->renderRow() ?>
           <?= $form['seller_settings_refunds']->renderRow() ?>
           <?= $form['seller_settings_shipping']->renderRow() ?>
