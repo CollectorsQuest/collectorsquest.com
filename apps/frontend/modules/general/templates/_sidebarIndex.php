@@ -1,13 +1,18 @@
+<?php
+/* @var $sf_user cqFrontendUser */
+/* @var $cms_slot1 wpPost */
+?>
+
 <p class="text-center">
   <?php
     if (cqGateKeeper::open('holiday_marketplace', 'page'))
     {
-      echo link_to(
+      echo cq_ad_slot(
         cq_image_tag(
           'headlines/20121018_160x345_final.jpg',
           array('style' => 'margin-bottom: 15px;')
         ),
-        'marketplace/holiday', array('ref' => cq_link_ref('sidebar'))
+        '@marketplace?ref='. cq_link_ref('sidebar')
       );
     }
 
