@@ -106,10 +106,8 @@
       var $a = $(this);
       var $div = $('<div></div>');
 
-      $a.closest('.collectible_for_sale_grid_view_masonry_big').showLoading();
       $div.appendTo('body').load($(this).attr('href'), function()
       {
-        $a.closest('.collectible_for_sale_grid_view_masonry_big').hideLoading();
         $('.modal', $div).modal('show');
       });
 
@@ -119,6 +117,7 @@
     <?php /* The click() does not work for new elements, on() does not work for current?!? */ ?>
     $('a.zoom-zone').click(zoom_zone);
     $('#items-for-sale').on('click', 'a.zoom-zone', zoom_zone);
+    $('#holiday-market-body').on('click', 'a.zoom-zone', zoom_zone);
 
     var fixadent = $("#fixed-filter-bar"), pos = fixadent.offset();
     $(window).scroll(function()
