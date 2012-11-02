@@ -128,6 +128,23 @@ class CollectionCollectible extends BaseCollectionCollectible
     return $this->getCollectible()->getTags();
   }
 
+  public function getMachineTags()
+  {
+    return $this->getCollectible()->getTags(array('is_triple' => true, 'return' => 'tag'));
+  }
+
+  public function getMachineTagsPlain()
+  {
+    $machine_tags = $this->getCollectible()->getTags(array('is_triple' => true, 'return' => 'tag'));
+    $machine_tags_tag_only = array();
+    foreach ($machine_tags as $machine_tag)
+    {
+      $machine_tags_tag_only[] = $machine_tag['3'];
+    }
+
+    return $machine_tags_tag_only;
+  }
+
   public function __call($m, $a)
   {
     $collectible = $this->getCollectible();

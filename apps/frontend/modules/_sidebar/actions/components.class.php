@@ -286,7 +286,7 @@ class _sidebarComponents extends cqFrontendComponents
     if (isset($matching_query))
     {
       $this->collections = $matching_query->limit($this->limit)->find();
-      $count_collections = $this->collections->count();
+      $count_collections = $matching_query->limit($this->limit)->count();
       if ($count_collections < $this->limit)
       {
         $additional_collections = $q->limit($this->limit - $count_collections)->find();
@@ -658,11 +658,29 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $collectible->getTags();
       $q->filterByCollectible($collectible, Criteria::NOT_EQUAL);
 
-      /** @var $matching_query FrontendCollectibleForSaleQuery */
+      /**
+       * match machine tags against machine tags
+       * @var $matching_query FrontendCollectibleForSaleQuery
+       */
       $matching_query = clone $q;
-      $matching_query->filterByMachineTags($tags, 'matching', array('market', 'all'), Criteria::IN);
+      /**
+       * match machine tags against regular tags
+       * @var $all_tags_query FrontendCollectibleForSaleQuery
+       */
+      $all_tags_query = clone $q;
 
-      $q ->filterByTags($tags, Criteria::IN);
+      $machine_tags = $collectible->getTags(array('is_triple' => true));
+
+      // we want just the actual tags without namespace:key
+      $machine_tags_tag_only = array();
+      foreach ($machine_tags as $machine_tag)
+      {
+        $machine_tags_tag_only[] = $machine_tag['3'];
+      }
+      $matching_query->filterByMachineTags($machine_tags_tag_only, 'matching', array('market', 'all'), Criteria::IN);
+
+      $all_tags_query->filterByTags($machine_tags_tag_only, Criteria::IN);
+      $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible CollectionCollectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
@@ -734,12 +752,24 @@ class _sidebarComponents extends cqFrontendComponents
     if (isset($matching_query))
     {
       $this->collectibles_for_sale = $matching_query->limit($this->limit)->find();
-      $count_collectibles_for_sale = $this->collectibles_for_sale->count();
+      $count_collectibles_for_sale = $matching_query->limit($this->limit)->count();
+
+      if (isset($all_tags_query) && $count_collectibles_for_sale < $this->limit)
+      {
+        $additional_collectibles_for_sale = $all_tags_query->limit($this->limit - $count_collectibles_for_sale)->find();
+        // add collectibles_for_sale that are matching by machine tags
+        $this->collectibles_for_sale->exchangeArray(
+          array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles_for_sale->getArrayCopy())
+        );
+
+        // update the number of collectibles_for_sale we already have so we can match against limit
+        $count_collectibles_for_sale += $all_tags_query->limit($this->limit - $count_collectibles_for_sale)->count();
+      }
 
       if ($count_collectibles_for_sale < $this->limit)
       {
         $additional_collectibles_for_sale = $q->limit($this->limit - $count_collectibles_for_sale)->find();
-        // add collectibles_for_sale that are not matching by machine tags but are matching by tags
+        // add collectibles_for_sale that are not matching by machine tags but are matching by regular tags
         $this->collectibles_for_sale->exchangeArray(
           array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles_for_sale->getArrayCopy())
         );

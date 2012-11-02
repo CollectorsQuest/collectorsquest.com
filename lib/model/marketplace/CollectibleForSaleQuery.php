@@ -177,7 +177,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->joinCollectible()
       ->useCollectibleQuery()
         ->filterByTags($tags, $comparison)
-        ->orderByTags($tags, $comparison)
+        //->orderByTags($tags, $comparison)
       ->endUse();
   }
 
