@@ -235,7 +235,7 @@ class _sidebarComponents extends cqFrontendComponents
         array(
           'is_triple' => true,
           'namespace' => 'matching',
-          'keys' => array('collections', 'all'),
+          'key' => array('collections', 'all'),
           'return' => 'value'
         )
       );
@@ -300,7 +300,7 @@ class _sidebarComponents extends cqFrontendComponents
         array(
           'is_triple' => true,
           'namespace' => 'matching',
-          'keys' => array('collections', 'all'),
+          'key' => array('collections', 'all'),
           'return' => 'value'
         )
       );
@@ -715,7 +715,7 @@ class _sidebarComponents extends cqFrontendComponents
         array(
           'is_triple' => true,
           'namespace' => 'matching',
-          'keys' => array('market', 'all'),
+          'key' => array('market', 'all'),
           'return' => 'value'
         )
       );
@@ -745,7 +745,7 @@ class _sidebarComponents extends cqFrontendComponents
         array(
           'is_triple' => true,
           'namespace' => 'matching',
-          'keys' => array('market', 'all'),
+          'key' => array('market', 'all'),
           'return' => 'value'
         )
       );
@@ -792,7 +792,7 @@ class _sidebarComponents extends cqFrontendComponents
         array(
           'is_triple' => true,
           'namespace' => 'matching',
-          'keys' => array('market', 'all'),
+          'key' => array('market', 'all'),
           'return' => 'value'
         )
       );
@@ -835,7 +835,7 @@ class _sidebarComponents extends cqFrontendComponents
         array(
           'is_triple' => true,
           'namespace' => 'matching',
-          'keys' => array('market', 'all'),
+          'key' => array('market', 'all'),
           'return' => 'value'
         )
       );
@@ -864,7 +864,7 @@ class _sidebarComponents extends cqFrontendComponents
         array(
           'is_triple' => true,
           'namespace' => 'matching',
-          'keys' => array('market', 'all'),
+          'key' => array('market', 'all'),
           'return' => 'value'
         )
       );
