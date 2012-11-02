@@ -44,14 +44,14 @@ class PropelMigration_1351806590
   public function getUpSQL()
   {
     return array(
-      'propel' => "
+      'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
 
         ALTER TABLE collector_identifier
-            ADD `provider` VARCHAR(20);
+          ADD `provider` VARCHAR(20) AFTER `identifier`;
 
         SET FOREIGN_KEY_CHECKS = 1;
-      ",
+      ',
       'blog' => '
         SET FOREIGN_KEY_CHECKS = 0;
         SET FOREIGN_KEY_CHECKS = 1;
@@ -72,7 +72,7 @@ class PropelMigration_1351806590
         SET FOREIGN_KEY_CHECKS = 0;
 
         ALTER TABLE `collector_identifier`
-            DROP `provider`;
+          DROP `provider`;
 
         SET FOREIGN_KEY_CHECKS = 1;
       ',
