@@ -50,7 +50,7 @@ dev:
     aetn_american_restoration: true
     aetn_franks_picks: true
     aetn_mwba: true
-    holiday_marketplace: true
+    holiday_marketplace: false
     marketplace_categories: true
     mycq_incomplete: true
 

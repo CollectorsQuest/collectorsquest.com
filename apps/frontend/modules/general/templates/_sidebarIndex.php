@@ -1,6 +1,6 @@
 <p class="text-center">
   <?php
-    if (IceGateKeeper::open('holiday_marketplace', 'page'))
+    if (cqGateKeeper::open('holiday_marketplace', 'page'))
     {
       echo link_to(
         cq_image_tag(

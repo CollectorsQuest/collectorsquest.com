@@ -13,7 +13,7 @@ class marketplaceActions extends cqFrontendActions
   public function executeIndex()
   {
     $this->forwardIf(
-      IceGateKeeper::open('holiday_marketplace', 'page'),
+      cqGateKeeper::open('holiday_marketplace', 'page'),
       'marketplace', 'holiday'
     );
 
