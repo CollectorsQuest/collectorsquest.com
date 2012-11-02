@@ -670,16 +670,10 @@ class _sidebarComponents extends cqFrontendComponents
       $all_tags_query = clone $q;
 
       $machine_tags = $collectible->getTags(array('is_triple' => true));
+      $machine_tags = _cq_parse_machine_tags($machine_tags, 'matching', 'market');
+      $matching_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
 
-      // we want just the actual tags without namespace:key
-      $machine_tags_tag_only = array();
-      foreach ($machine_tags as $machine_tag)
-      {
-        $machine_tags_tag_only[] = $machine_tag['3'];
-      }
-      $matching_query->filterByMachineTags($machine_tags_tag_only, 'matching', array('market', 'all'), Criteria::IN);
-
-      $all_tags_query->filterByTags($machine_tags_tag_only, Criteria::IN);
+      $all_tags_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible CollectionCollectible */
