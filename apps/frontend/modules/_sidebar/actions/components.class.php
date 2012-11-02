@@ -667,7 +667,10 @@ class _sidebarComponents extends cqFrontendComponents
 
       // special check to make sure we are showing only full rows of Items
       $number_collectibles_for_sale = $q->limit($this->limit)->count();
-      ($number_collectibles_for_sale - 1) % 2 != 0 ?: $this->limit = $number_collectibles_for_sale - 1;
+      if (($number_collectibles_for_sale - 1) % 2 == 0)
+      {
+        $this->limit = $number_collectibles_for_sale - 1;
+      }
       if ($this->limit == 0)
       {
         return sfView::NONE;
