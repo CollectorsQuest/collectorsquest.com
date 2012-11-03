@@ -57,7 +57,7 @@
            class="span6 collectible_for_sale_grid_view_square_big fade-white link"
           style='background: url(<?= cq_image_src('frontend/misc/holiday-market/holiday-item-background.jpg') ?>) no-repeat;'>
 
-        <div style="color: #fff; padding: 20px;">
+        <div style="color: #fff; padding: 20px; font-size: 14px;">
           <?= $menu[($t-$offset < 0 ? 0 : $t-$offset)]['content']; ?>
         </div>
       </div>
