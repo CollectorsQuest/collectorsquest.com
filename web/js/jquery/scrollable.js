@@ -1,13 +1,371 @@
-/*!
- * jQuery Tools dev - The missing UI library for the Web
- * 
- * scrollable/scrollable.js
- * scrollable/scrollable.navigator.js
- * 
+/**
+ * @license
+ * jQuery Tools @VERSION Scrollable - New wave UI design
+ *
  * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
- * 
- * http://flowplayer.org/tools/
- * 
+ *
+ * http://flowplayer.org/tools/scrollable.html
+ *
+ * Since: March 2008
+ * Date: @DATE
  */
-(function(a){a.tools=a.tools||{version:"dev"},a.tools.scrollable={conf:{activeClass:"active",circular:!1,clonedClass:"cloned",disabledClass:"disabled",easing:"swing",initialIndex:0,item:"> *",items:".items",keyboard:!0,mousewheel:!1,next:".next",prev:".prev",size:1,speed:400,vertical:!1,touch:!0,wheelSpeed:0}};function b(a,b){var c=parseInt(a.css(b),10);if(c)return c;var d=a[0].currentStyle;return d&&d.width&&parseInt(d.width,10)}function c(b,c){var d=a(c);return d.length<2?d:b.parent().find(c)}var d;function e(b,e){var f=this,g=b.add(f),h=b.children(),i=0,j=e.vertical;d||(d=f),h.length>1&&(h=a(e.items,b)),e.size>1&&(e.circular=!1),a.extend(f,{getConf:function(){return e},getIndex:function(){return i},getSize:function(){return f.getItems().size()},getNaviButtons:function(){return n.add(o)},getRoot:function(){return b},getItemWrap:function(){return h},getItems:function(){return h.find(e.item).not("."+e.clonedClass)},move:function(a,b){return f.seekTo(i+a,b)},next:function(a){return f.move(e.size,a)},prev:function(a){return f.move(-e.size,a)},begin:function(a){return f.seekTo(0,a)},end:function(a){return f.seekTo(f.getSize()-1,a)},focus:function(){d=f;return f},addItem:function(b){b=a(b),e.circular?(h.children().last().before(b),h.children().first().replaceWith(b.clone().addClass(e.clonedClass))):(h.append(b),o.removeClass("disabled")),g.trigger("onAddItem",[b]);return f},seekTo:function(b,c,k){b.jquery||(b*=1);if(e.circular&&b===0&&i==-1&&c!==0)return f;if(!e.circular&&b<0||b>f.getSize()||b<-1)return f;var l=b;b.jquery?b=f.getItems().index(b):l=f.getItems().eq(b);var m=a.Event("onBeforeSeek");if(!k){g.trigger(m,[b,c]);if(m.isDefaultPrevented()||!l.length)return f}var n=j?{top:-l.position().top}:{left:-l.position().left};i=b,d=f,c===undefined&&(c=e.speed),h.animate(n,c,e.easing,k||function(){g.trigger("onSeek",[b])});return f}}),a.each(["onBeforeSeek","onSeek","onAddItem"],function(b,c){a.isFunction(e[c])&&a(f).on(c,e[c]),f[c]=function(b){b&&a(f).on(c,b);return f}});if(e.circular){var k=f.getItems().slice(-1).clone().prependTo(h),l=f.getItems().eq(1).clone().appendTo(h);k.add(l).addClass(e.clonedClass),f.onBeforeSeek(function(a,b,c){if(!a.isDefaultPrevented()){if(b==-1){f.seekTo(k,c,function(){f.end(0)});return a.preventDefault()}b==f.getSize()&&f.seekTo(l,c,function(){f.begin(0)})}});var m=b.parents().add(b).filter(function(){if(a(this).css("display")==="none")return!0});m.length?(m.show(),f.seekTo(0,0,function(){}),m.hide()):f.seekTo(0,0,function(){})}var n=c(b,e.prev).click(function(a){a.stopPropagation(),f.prev()}),o=c(b,e.next).click(function(a){a.stopPropagation(),f.next()});e.circular||(f.onBeforeSeek(function(a,b){setTimeout(function(){a.isDefaultPrevented()||(n.toggleClass(e.disabledClass,b<=0),o.toggleClass(e.disabledClass,b>=f.getSize()-1))},1)}),e.initialIndex||n.addClass(e.disabledClass)),f.getSize()<2&&n.add(o).addClass(e.disabledClass),e.mousewheel&&a.fn.mousewheel&&b.mousewheel(function(a,b){if(e.mousewheel){f.move(b<0?1:-1,e.wheelSpeed||50);return!1}});if(e.touch){var p={};h[0].ontouchstart=function(a){var b=a.touches[0];p.x=b.clientX,p.y=b.clientY},h[0].ontouchmove=function(a){if(a.touches.length==1&&!h.is(":animated")){var b=a.touches[0],c=p.x-b.clientX,d=p.y-b.clientY;f[j&&d>0||!j&&c>0?"next":"prev"](),a.preventDefault()}}}e.keyboard&&a(document).on("keydown.scrollable",function(b){if(!(!e.keyboard||b.altKey||b.ctrlKey||b.metaKey||a(b.target).is(":input"))){if(e.keyboard!="static"&&d!=f)return;var c=b.keyCode;if(j&&(c==38||c==40)){f.move(c==38?-1:1);return b.preventDefault()}if(!j&&(c==37||c==39)){f.move(c==37?-1:1);return b.preventDefault()}}}),e.initialIndex&&f.seekTo(e.initialIndex,0,function(){})}a.fn.scrollable=function(b){var c=this.data("scrollable");if(c)return c;b=a.extend({},a.tools.scrollable.conf,b),this.each(function(){c=new e(a(this),b),a(this).data("scrollable",c)});return b.api?c:this}})(jQuery);
-(function(a){var b=a.tools.scrollable;b.navigator={conf:{navi:".navi",naviItem:null,activeClass:"active",indexed:!1,idPrefix:null,history:!1}};function c(b,c){var d=a(c);return d.length<2?d:b.parent().find(c)}a.fn.navigator=function(d){typeof d=="string"&&(d={navi:d}),d=a.extend({},b.navigator.conf,d);var e;this.each(function(){var b=a(this).data("scrollable"),f=d.navi.jquery?d.navi:c(b.getRoot(),d.navi),g=b.getNaviButtons(),h=d.activeClass,i=d.history&&history.pushState,j=b.getConf().size;b&&(e=b),b.getNaviButtons=function(){return g.add(f)},i&&(history.pushState({i:0},""),a(window).on("popstate",function(a){var c=a.originalEvent.state;c&&b.seekTo(c.i)}));function k(a,c,d){b.seekTo(c),d.preventDefault(),i&&history.pushState({i:c},"")}function l(){return f.find(d.naviItem||"> *")}function m(b){var c=a("<"+(d.naviItem||"a")+"/>").click(function(c){k(a(this),b,c)});b===0&&c.addClass(h),d.indexed&&c.text(b+1),d.idPrefix&&c.attr("id",d.idPrefix+b);return c.appendTo(f)}l().length?l().each(function(b){a(this).click(function(c){k(a(this),b,c)})}):a.each(b.getItems(),function(a){a%j==0&&m(a)}),b.onBeforeSeek(function(a,b){setTimeout(function(){if(!a.isDefaultPrevented()){var c=b/j,d=l().eq(c);d.length&&l().removeClass(h).eq(c).addClass(h)}},1)}),b.onAddItem(function(a,c){var d=b.getItems().index(c);d%j==0&&m(d)})});return d.api?e:this}})(jQuery);
+(function($) {
+
+  // static constructs
+  $.tools = $.tools || {version: '@VERSION'};
+
+  $.tools.scrollable = {
+
+    conf: {
+      activeClass: 'active',
+      circular: false,
+      clonedClass: 'cloned',
+      disabledClass: 'disabled',
+      easing: 'swing',
+      initialIndex: 0,
+      item: '> *',
+      items: '.items',
+      keyboard: true,
+      mousewheel: false,
+      next: '.next',
+      prev: '.prev',
+      itemsPerFrame: 1,
+      size: 1,
+      speed: 400,
+      vertical: false,
+      touch: true,
+      wheelSpeed: 0
+    }
+  };
+
+  // get hidden element's width or height even though it's hidden
+  function dim(el, key) {
+    var v = parseInt(el.css(key), 10);
+    if (v) { return v; }
+    var s = el[0].currentStyle;
+    return s && s.width && parseInt(s.width, 10);
+  }
+
+  function find(root, query) {
+    var el = $(query);
+    return el.length < 2 ? el : root.parent().find(query);
+  }
+
+  var current;
+
+  // constructor
+  function Scrollable(root, conf) {
+
+    // current instance
+    var self = this,
+      fire = root.add(self),
+      itemWrap = root.children(),
+      index = 0,
+      vertical = conf.vertical;
+
+    if (!current) { current = self; }
+    if (itemWrap.length > 1) { itemWrap = $(conf.items, root); }
+
+
+    // in this version circular not supported when size > 1
+    if (conf.size > 1) { conf.circular = false; }
+
+    // methods
+    $.extend(self, {
+
+      getConf: function() {
+        return conf;
+      },
+
+      getIndex: function() {
+        return index;
+      },
+
+      getSize: function() {
+        return self.getItems().size();
+      },
+
+      getNaviButtons: function() {
+        return prev.add(next);
+      },
+
+      getRoot: function() {
+        return root;
+      },
+
+      getItemWrap: function() {
+        return itemWrap;
+      },
+
+      getItems: function() {
+        return itemWrap.find(conf.item).not("." + conf.clonedClass);
+      },
+
+      move: function(offset, time) {
+        return self.seekTo(index + offset, time);
+      },
+
+      next: function(time) {
+        return self.move(conf.size, time);
+      },
+
+      prev: function(time) {
+        return self.move(-conf.size, time);
+      },
+
+      begin: function(time) {
+        return self.seekTo(0, time);
+      },
+
+      end: function(time) {
+        return self.seekTo(self.getSize() -1, time);
+      },
+
+      focus: function() {
+        current = self;
+        return self;
+      },
+
+      addItem: function(item) {
+        item = $(item);
+
+        if (!conf.circular)  {
+          itemWrap.append(item);
+          next.removeClass("disabled");
+
+        } else {
+          itemWrap.children().last().before(item);
+          itemWrap.children().first().replaceWith(item.clone().addClass(conf.clonedClass));
+        }
+
+        fire.trigger("onAddItem", [item]);
+        return self;
+      },
+
+
+      /* all seeking functions depend on this */
+      seekTo: function(i, time, fn) {
+        // ensure numeric index
+        if (!i.jquery) { i *= 1; }
+
+        // avoid seeking from end clone to the beginning
+        if (conf.circular && i === 0 && index == -1 && time !== 0) { return self; }
+
+        // check that index is sane
+        if (!conf.circular && i < 0 || i > self.getSize() || i < -1) { return self; }
+
+        var item = i;
+
+        if (i.jquery) {
+          i = self.getItems().index(i);
+
+        } else {
+          item = self.getItems().eq(i);
+        }
+
+        // onBeforeSeek
+        var e = $.Event("onBeforeSeek");
+        if (!fn) {
+          fire.trigger(e, [i, time]);
+          if (e.isDefaultPrevented() || !item.length) { return self; }
+        }
+
+        var props = vertical ? {top: -item.position().top} : {left: -item.position().left};
+
+        index = i;
+        current = self;
+        if (time === undefined) { time = conf.speed; }
+
+        itemWrap.animate(props, time, conf.easing, fn || function() {
+          fire.trigger("onSeek", [i]);
+        });
+
+        return self;
+      }
+
+    });
+
+    // callbacks
+    $.each(['onBeforeSeek', 'onSeek', 'onAddItem'], function(i, name) {
+
+      // configuration
+      if ($.isFunction(conf[name])) {
+        $(self).bind(name, conf[name]);
+      }
+
+      self[name] = function(fn) {
+        if (fn) { $(self).bind(name, fn); }
+        return self;
+      };
+    });
+
+    // circular loop
+    if (conf.circular) {
+
+      var cloned1 = self.getItems().eq(-1).clone().prependTo(itemWrap),
+        cloned2 = self.getItems().eq(1).clone().appendTo(itemWrap);
+
+      self.getItems().slice(2, conf.itemsPerFrame + 1).clone().appendTo(itemWrap).addClass(conf.clonedClass);
+
+
+      cloned1.add(cloned2).addClass(conf.clonedClass);
+
+      self.onBeforeSeek(function(e, i, time) {
+
+        if (e.isDefaultPrevented()) { return; }
+
+        /*
+         1. animate to the clone without event triggering
+         2. seek to correct position with 0 speed
+         */
+        if (i == -1) {
+          self.seekTo(cloned1, time, function()  {
+            self.end(0);
+          });
+          return e.preventDefault();
+
+        } else if (i == self.getSize()) {
+          self.seekTo(cloned2, time, function()  {
+            self.begin(0);
+          });
+        }
+
+      });
+
+      // seek over the cloned item
+
+      // if the scrollable is hidden the calculations for seekTo position
+      // will be incorrect (eg, if the scrollable is inside an overlay).
+      // ensure the elements are shown, calculate the correct position,
+      // then re-hide the elements. This must be done synchronously to
+      // prevent the hidden elements being shown to the user.
+
+      // See: https://github.com/jquerytools/jquerytools/issues#issue/87
+
+      var hidden_parents = root.parents().add(root).filter(function () {
+        if ($(this).css('display') === 'none') {
+          return true;
+        }
+      });
+      if (hidden_parents.length) {
+        hidden_parents.show();
+        self.seekTo(0, 0, function() {});
+        hidden_parents.hide();
+      }
+      else {
+        self.seekTo(0, 0, function() {});
+      }
+
+    }
+
+    // next/prev buttons
+    var prev = find(root, conf.prev).click(function(e) { e.stopPropagation(); self.prev(); }),
+      next = find(root, conf.next).click(function(e) { e.stopPropagation(); self.next(); });
+
+    if (!conf.circular) {
+      self.onBeforeSeek(function(e, i) {
+        setTimeout(function() {
+          if (!e.isDefaultPrevented()) {
+            prev.toggleClass(conf.disabledClass, i <= 0);
+            next.toggleClass(conf.disabledClass, i >= self.getSize() -1);
+          }
+        }, 1);
+      });
+
+      if (!conf.initialIndex) {
+        prev.addClass(conf.disabledClass);
+      }
+    }
+
+    if (self.getSize() < 2) {
+      prev.add(next).addClass(conf.disabledClass);
+    }
+
+    // mousewheel support
+    if (conf.mousewheel && $.fn.mousewheel) {
+      root.mousewheel(function(e, delta)  {
+        if (conf.mousewheel) {
+          self.move(delta < 0 ? 1 : -1, conf.wheelSpeed || 50);
+          return false;
+        }
+      });
+    }
+
+    // touch event
+    if (conf.touch) {
+      var touch = {};
+
+      itemWrap[0].ontouchstart = function(e) {
+        var t = e.touches[0];
+        touch.x = t.clientX;
+        touch.y = t.clientY;
+      };
+
+      itemWrap[0].ontouchmove = function(e) {
+
+        // only deal with one finger
+        if (e.touches.length == 1 && !itemWrap.is(":animated")) {
+          var t = e.touches[0],
+            deltaX = touch.x - t.clientX,
+            deltaY = touch.y - t.clientY;
+
+          self[vertical && deltaY > 0 || !vertical && deltaX > 0 ? 'next' : 'prev']();
+          e.preventDefault();
+        }
+      };
+    }
+
+    if (conf.keyboard)  {
+
+      $(document).bind("keydown.scrollable", function(evt) {
+
+        // skip certain conditions
+        if (!conf.keyboard || evt.altKey || evt.ctrlKey || evt.metaKey || $(evt.target).is(":input")) {
+          return;
+        }
+
+        // does this instance have focus?
+        if (conf.keyboard != 'static' && current != self) { return; }
+
+        var key = evt.keyCode;
+
+        if (vertical && (key == 38 || key == 40)) {
+          self.move(key == 38 ? -1 : 1);
+          return evt.preventDefault();
+        }
+
+        if (!vertical && (key == 37 || key == 39)) {
+          self.move(key == 37 ? -1 : 1);
+          return evt.preventDefault();
+        }
+
+      });
+    }
+
+    // initial index
+    if (conf.initialIndex) {
+      self.seekTo(conf.initialIndex, 0, function() {});
+    }
+  }
+
+
+  // jQuery plugin implementation
+  $.fn.scrollable = function(conf) {
+
+    // already constructed --> return API
+    var el = this.data("scrollable");
+    if (el) { return el; }
+
+    conf = $.extend({}, $.tools.scrollable.conf, conf);
+
+    this.each(function() {
+      el = new Scrollable($(this), conf);
+      $(this).data("scrollable", el);
+    });
+
+    return conf.api ? el: this;
+
+  };
+
+
+})(jQuery);
