@@ -12,6 +12,8 @@ holidaySuccess:
     - jquery/autoajax.js
     - jquery/infinitescroll.js
     - jquery/masonry.js
+    - jquery/scrollable.js
+#    - jquery/rcarousel.js
   components:
     slot1: [marketplace, holidaySlot1]
     breadcrumbs: []
