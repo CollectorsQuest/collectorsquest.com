@@ -65,6 +65,13 @@
     });
 
     <?php if ($pager->haveToPaginate()): ?>
+
+      if ($container.data('infinitescroll'))
+      {
+        $container.infinitescroll('destroy');
+        $container.data('infinitescroll', null);
+      }
+
       $container.infinitescroll(
       {
         navSelector:'#collectibles-pagination',
