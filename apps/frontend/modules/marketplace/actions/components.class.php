@@ -306,17 +306,17 @@ class marketplaceComponents extends cqFrontendComponents
         case 'under-50':
           $query['sortby'] = 'uint2';
           $query['order'] = 'desc';
-          $query['filters']['uint2'] = array('max' => 5000);
+          $query['filters']['uint2'] = array('max' => 4900);
           break;
         case '50-200':
           $query['sortby'] = 'uint2';
           $query['order'] = 'asc';
-          $query['filters']['uint2'] = array('min' => 5100, 'max' => 20000);
+          $query['filters']['uint2'] = array('min' => 5000, 'max' => 20000);
           break;
         case '200-500':
           $query['sortby'] = 'uint2';
           $query['order'] = 'asc';
-          $query['filters']['uint2'] = array('min' => 20100, 'max' => 50000);
+          $query['filters']['uint2'] = array('min' => 20000, 'max' => 50000);
           break;
         case 'over-500':
           $query['sortby'] = 'uint2';
