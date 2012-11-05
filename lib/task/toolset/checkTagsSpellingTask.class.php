@@ -37,12 +37,13 @@ class checkTagsSpellingTask extends sfBaseTask
 
     $stream = fopen(sfConfig::get('sf_cache_dir') . '/tags_spelling.csv', 'w+');
 
-    fputcsv($stream, array('ID', 'Is triple', 'Wrong', 'Correct', 'Update'));
+    fputcsv($stream, array('ID', 'Is triple', 'Objects count', 'Wrong', 'Correct', 'Update'));
 
     $count = iceModelTagQuery::create()->count();
 
     $i = $a= 0;
-    $stmt = $propel->prepare('SELECT id, name, is_triple, triple_value FROM tag;');
+    $stmt = $propel->prepare('SELECT t.id, name, t.is_triple, t.triple_value,
+    (SELECT COUNT(*) FROM tagging AS tg WHERE tg.tag_id = t.id) AS obj_count FROM tag AS t;');
 
     $pspell = pspell_new('en');
 
@@ -90,7 +91,8 @@ class checkTagsSpellingTask extends sfBaseTask
 //        if (strtolower($table['name']) != strtolower(trim($corrected)))
 //        {
           $i++;
-          fputcsv($stream, array($table['id'], $table['is_triple'], $table['name'], trim($corrected)));
+          fputcsv($stream, array($table['id'], $table['is_triple'],
+            $table['obj_count'], $table['name'], trim($corrected)));
    //     }
       }
 
