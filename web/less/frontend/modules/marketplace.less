@@ -64,9 +64,11 @@
       }
     }
     .spotlight-text {
-      padding: 10px 5px 0 5px;
-      height: 110px;
+
       overflow: hidden;
+      height: 110px;
+      padding: 10px 5px 0 5px;
+
       p {
         margin-bottom: 0;
         font-size:12px;
@@ -113,12 +115,12 @@
 
     a {
     .box-shadow(none);
+
     &:hover {
       padding: 3px;
       background-color: white;
       border: 1px solid @blue;
       .border-radius(0);
-
     }
     }
   }
@@ -233,8 +235,7 @@ div.onecolumn {
 
   .navbar-inner {
     position: relative;
-    height: 50px;
-    width: 100%;
+    .size(50px, 100%);
     clear: both;
     padding: 0;
     #gradient > .vertical(#114F0B, #204A24);
@@ -243,9 +244,9 @@ div.onecolumn {
     .border-radius(0);
 
     .centering {
-      .size(70px, 800px);
       overflow: hidden;
       display: block;
+      .size(70px, 800px);
       margin: 0 auto;
     }
     .arrow-previous, .arrow-next {
@@ -271,8 +272,7 @@ div.onecolumn {
     > li {
       position: relative;
       float: left;
-      height: 50px;
-      width: 160px;
+      .size(50px,160px);
 
       > a {
         height: 38px;
