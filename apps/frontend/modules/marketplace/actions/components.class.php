@@ -303,20 +303,25 @@ class marketplaceComponents extends cqFrontendComponents
 
       switch ($s2)
       {
-        case 'under-100':
+        case 'under-50':
           $query['sortby'] = 'uint2';
           $query['order'] = 'desc';
-          $query['filters']['uint2'] = array('max' => 10000);
+          $query['filters']['uint2'] = array('max' => 5000);
           break;
-        case '100-200':
+        case '50-200':
           $query['sortby'] = 'uint2';
           $query['order'] = 'asc';
-          $query['filters']['uint2'] = array('min' => 10100, 'max' => 20000);
+          $query['filters']['uint2'] = array('min' => 5100, 'max' => 20000);
           break;
-        case 'over-250':
+        case '200-500':
           $query['sortby'] = 'uint2';
           $query['order'] = 'asc';
-          $query['filters']['uint2'] = array('min' => 25000);
+          $query['filters']['uint2'] = array('min' => 20100, 'max' => 50000);
+          break;
+        case 'over-500':
+          $query['sortby'] = 'uint2';
+          $query['order'] = 'asc';
+          $query['filters']['uint2'] = array('min' => 50100);
           break;
         default:
           $query['sortby'] = 'date';

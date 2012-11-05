@@ -23,7 +23,8 @@
               <ul class="dropdown-menu" id="dropDownMenu1">
                 <li><a href="javascript:" class="sortBy" data-i="1" data-name="Category" data-sort="">Refine by Category</a></li>
                 <?php foreach ($categories as $category): ?>
-                <li><a href="javascript:" class="sortBy" data-i="1" data-name="<?= addcslashes($category->getName(), '"'); ?>" data-sort="<?= $category->getId(); ?>"><?= $category->getName(); ?></a></li>
+                <?php $name = $category->getId() == 1755 ? 'Kitchen Items' : $category->getName(); ?>
+                <li><a href="javascript:" class="sortBy" data-i="1" data-name="<?= addcslashes($name, '"'); ?>" data-sort="<?= $category->getId(); ?>"><?= $name; ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </div>
@@ -40,9 +41,10 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="javascript:" class="sortBy" data-i="2" data-name="Price" data-sort="">Refine by Price</a></li>
-                <li><a href="javascript:" class="sortBy" data-i="2" data-name="Under $100" data-sort="under-100">Refine by <strong>Under $100</strong></a></li>
-                <li><a href="javascript:" class="sortBy" data-i="2" data-name="$100 - $250" data-sort="100-200">Refine by <strong>$100 - $250</strong></a></li>
-                <li><a href="javascript:" class="sortBy" data-i="2" data-name="Over $250" data-sort="over-250">Refine by <strong>Over $250</strong></a></li>
+                <li><a href="javascript:" class="sortBy" data-i="2" data-name="Under $50" data-sort="under-50">Refine by <strong>Under $50</strong></a></li>
+                <li><a href="javascript:" class="sortBy" data-i="2" data-name="$50 - $200" data-sort="50-200">Refine by <strong>$50 - $200</strong></a></li>
+                <li><a href="javascript:" class="sortBy" data-i="2" data-name="$200 - $500" data-sort="200-500">Refine by <strong>$200 - $500</strong></a></li>
+                <li><a href="javascript:" class="sortBy" data-i="2" data-name="Over $500" data-sort="over-500">Refine by <strong>Over $500</strong></a></li>
               </ul>
             </div>
             <input type="hidden" name="s2" id="sortByValue2">
