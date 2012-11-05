@@ -15,8 +15,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->filterByIsReady(true)
       ->filterByPriceAmount(1, Criteria::GREATER_EQUAL)
       ->filterByQuantity(1, Criteria::GREATER_EQUAL)
-      // ->hasActiveCredit()
-      ;
+      ->hasActiveCredit();
   }
 
   /**
@@ -165,12 +164,35 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->enduse();
   }
 
-  public function filterByTags($tags, $comparison = null)
+  /**
+   * @param  array   $tags
+   * @param  string  $comparison
+   *
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByTags($tags, $comparison = Criteria::IN)
   {
     return $this
       ->joinCollectible()
       ->useCollectibleQuery()
         ->filterByTags($tags, $comparison)
+      ->endUse();
+  }
+
+  /**
+   * @param  array   $tags
+   * @param  string  $namespace
+   * @param  string  $key
+   * @param  string  $comparison
+   *
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByMachineTags($tags, $namespace, $key = 'all', $comparison = Criteria::IN)
+  {
+    return $this
+      ->joinCollectible()
+      ->useCollectibleQuery()
+        ->filterByMachineTags($tags, $namespace, $key, $comparison)
       ->endUse();
   }
 
@@ -185,6 +207,18 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
     return $this
       ->useCollectibleQuery()
         ->search($v)
+      ->endUse();
+  }
+
+  /**
+   * @param     string  $order
+   * @return    CollectionCollectibleQuery
+   */
+  public function orderByAverageRating($order = Criteria::DESC)
+  {
+    return $this
+      ->useCollectibleQuery()
+        ->orderByAverageRating($order)
       ->endUse();
   }
 

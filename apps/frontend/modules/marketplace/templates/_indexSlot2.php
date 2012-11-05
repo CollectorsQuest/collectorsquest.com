@@ -1,7 +1,7 @@
 <div class="slot2-inner">
   <?php cq_section_title('Discover More Items for Sale', null, array('class' => 'row-fluid section-title')); ?>
 
-  <div class="sort-search-box full-lenght-blue">
+  <div class="sort-search-box full-length-blue">
     <div class="input-append">
       <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
         <div class="btn-group">
@@ -51,6 +51,14 @@
 
       $.post($url +'?p=1', $form.serialize(), function(data)
       {
+        var $container = $('#collectibles');
+
+        if ($container.data('infinitescroll'))
+        {
+          $container.infinitescroll('destroy');
+          $container.data('infinitescroll', null);
+        }
+
         $('#collectibles-holder').html(data).fadeIn();
       },'html');
 

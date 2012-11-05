@@ -438,6 +438,7 @@ $lastclass = 0;
   <?php else :
 
   $page = get_page_by_title( '404' );
+  $data['is_404'] = true;
 
   if($page) :
     echo $page->post_content;

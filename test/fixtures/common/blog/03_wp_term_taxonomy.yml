@@ -4,25 +4,25 @@ wpTermTaxonomy:
     taxonomy: category
     description: ''
     parent: '0'
-    count: '134'
+    count: '111'
   wpTermTaxonomy_5:
     term_id: wpTerm_5
     taxonomy: category
     description: ''
     parent: '0'
-    count: '267'
+    count: '262'
   wpTermTaxonomy_6:
     term_id: wpTerm_6
     taxonomy: category
     description: ''
     parent: '0'
-    count: '1324'
+    count: '1295'
   wpTermTaxonomy_7:
     term_id: wpTerm_7
     taxonomy: category
     description: ''
     parent: '0'
-    count: '348'
+    count: '333'
   wpTermTaxonomy_22:
     term_id: wpTerm_22
     taxonomy: post_tag
@@ -34,13 +34,13 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '119'
+    count: '121'
   wpTermTaxonomy_32:
     term_id: wpTerm_32
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '153'
+    count: '154'
   wpTermTaxonomy_59:
     term_id: wpTerm_59
     taxonomy: post_tag
@@ -52,31 +52,31 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '30'
+    count: '33'
   wpTermTaxonomy_146:
     term_id: wpTerm_146
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '36'
+    count: '38'
   wpTermTaxonomy_213:
     term_id: wpTerm_213
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '98'
+    count: '99'
   wpTermTaxonomy_276:
     term_id: wpTerm_276
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '68'
+    count: '71'
   wpTermTaxonomy_436:
     term_id: wpTerm_436
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '18'
+    count: '17'
   wpTermTaxonomy_563:
     term_id: wpTerm_563
     taxonomy: post_tag
@@ -94,13 +94,13 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '29'
+    count: '38'
   wpTermTaxonomy_672:
     term_id: wpTerm_672
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '10'
+    count: '12'
   wpTermTaxonomy_691:
     term_id: wpTerm_691
     taxonomy: post_tag
@@ -118,19 +118,19 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '6'
+    count: '10'
   wpTermTaxonomy_1344:
     term_id: wpTerm_1343
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '67'
+    count: '68'
   wpTermTaxonomy_1448:
     term_id: wpTerm_1447
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '18'
+    count: '19'
   wpTermTaxonomy_1528:
     term_id: wpTerm_1527
     taxonomy: post_tag
@@ -154,7 +154,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '112'
+    count: '114'
   wpTermTaxonomy_1831:
     term_id: wpTerm_1830
     taxonomy: post_tag
@@ -238,7 +238,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '17'
+    count: '18'
   wpTermTaxonomy_3922:
     term_id: wpTerm_3918
     taxonomy: post_tag
@@ -256,7 +256,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '2'
+    count: '3'
   wpTermTaxonomy_4377:
     term_id: wpTerm_4372
     taxonomy: post_tag
@@ -274,7 +274,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '9'
+    count: '10'
   wpTermTaxonomy_4658:
     term_id: wpTerm_4653
     taxonomy: post_tag
@@ -286,7 +286,7 @@ wpTermTaxonomy:
     taxonomy: category
     description: ''
     parent: '0'
-    count: '118'
+    count: '119'
   wpTermTaxonomy_4910:
     term_id: wpTerm_4905
     taxonomy: post_tag
@@ -304,7 +304,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '3'
+    count: '4'
   wpTermTaxonomy_5161:
     term_id: wpTerm_5156
     taxonomy: post_tag
@@ -322,7 +322,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '6'
+    count: '7'
   wpTermTaxonomy_5164:
     term_id: wpTerm_5159
     taxonomy: post_tag
@@ -340,13 +340,13 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '15'
+    count: '23'
   wpTermTaxonomy_5167:
     term_id: wpTerm_5162
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '3'
+    count: '4'
   wpTermTaxonomy_5168:
     term_id: wpTerm_5163
     taxonomy: post_tag
@@ -364,7 +364,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '10'
+    count: '11'
   wpTermTaxonomy_5171:
     term_id: wpTerm_5166
     taxonomy: post_tag
@@ -382,7 +382,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '4'
+    count: '7'
   wpTermTaxonomy_5174:
     term_id: wpTerm_5169
     taxonomy: post_tag
@@ -394,19 +394,19 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '1'
+    count: '2'
   wpTermTaxonomy_5176:
     term_id: wpTerm_5171
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '19'
+    count: '23'
   wpTermTaxonomy_5177:
     term_id: wpTerm_5172
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '14'
+    count: '16'
   wpTermTaxonomy_5178:
     term_id: wpTerm_5173
     taxonomy: post_tag
@@ -424,7 +424,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '21'
+    count: '24'
   wpTermTaxonomy_5181:
     term_id: wpTerm_5176
     taxonomy: post_tag
@@ -448,7 +448,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '1'
+    count: '2'
   wpTermTaxonomy_5185:
     term_id: wpTerm_5180
     taxonomy: post_tag
@@ -478,7 +478,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '3'
+    count: '4'
   wpTermTaxonomy_5190:
     term_id: wpTerm_5185
     taxonomy: post_tag
@@ -496,7 +496,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '1'
+    count: '2'
   wpTermTaxonomy_5193:
     term_id: wpTerm_5188
     taxonomy: post_tag
@@ -562,7 +562,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '4'
+    count: '5'
   wpTermTaxonomy_5204:
     term_id: wpTerm_5199
     taxonomy: post_tag
@@ -574,7 +574,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '3'
+    count: '4'
   wpTermTaxonomy_5206:
     term_id: wpTerm_5201
     taxonomy: post_tag
@@ -598,7 +598,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '5'
+    count: '6'
   wpTermTaxonomy_5210:
     term_id: wpTerm_5205
     taxonomy: post_tag

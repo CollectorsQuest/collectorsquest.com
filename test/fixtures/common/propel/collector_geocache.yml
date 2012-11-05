@@ -1,15 +1,4 @@
 CollectorGeocache:
-  CollectorGeocache_32:
-    collector_id: Collector_52
-    country_iso3166: GeoCountry_US
-    state: KS
-    county: Douglas
-    city: Lawrence
-    zip_postal: '66046'
-    address: 'Lawrence, KS 66046, USA'
-    latitude: '38.90271'
-    longitude: '-95.21623'
-    timezone: America/Chicago
   CollectorGeocache_124:
     collector_id: Collector_163
     country_iso3166: GeoCountry_US
@@ -20,12 +9,6 @@ CollectorGeocache:
     latitude: '40.69457'
     longitude: '-73.99182'
     timezone: America/New_York
-  CollectorGeocache_158:
-    collector_id: Collector_235
-    country_iso3166: GeoCountry_SE
-    address: Sweden
-    latitude: '60.12816'
-    longitude: '18.64350'
   CollectorGeocache_239:
     collector_id: Collector_644
     country_iso3166: GeoCountry_US
@@ -37,63 +20,12 @@ CollectorGeocache:
     latitude: '42.46434'
     longitude: '-83.40564'
     timezone: America/New_York
-  CollectorGeocache_485:
-    collector_id: Collector_1374
-    country_iso3166: GeoCountry_ES
-    address: Spain
-    latitude: '40.46367'
-    longitude: '-3.74922'
-  CollectorGeocache_1410:
-    collector_id: Collector_531
-    country_iso3166: GeoCountry_US
-    state: TX
-    county: Harris
-    city: Cypress
-    zip_postal: '77429'
-    address: 'Cypress, TX 77429, USA'
-    latitude: '30.01411'
-    longitude: '-95.66683'
-    timezone: America/Chicago
   CollectorGeocache_1490:
     collector_id: Collector_846
     country_iso3166: GeoCountry_IT
     address: Italy
     latitude: '41.87194'
     longitude: '12.56738'
-  CollectorGeocache_1491:
-    collector_id: Collector_1082
-    country_iso3166: GeoCountry_US
-    state: NC
-    county: Iredell
-    city: Mooresville
-    zip_postal: '28115'
-    address: 'Mooresville, NC 28115, USA'
-    latitude: '35.58429'
-    longitude: '-80.78794'
-    timezone: America/New_York
-  CollectorGeocache_1586:
-    collector_id: Collector_714
-    country_iso3166: GeoCountry_NL
-    address: 'The Netherlands'
-    latitude: '52.13263'
-    longitude: '5.29127'
-  CollectorGeocache_2918:
-    collector_id: Collector_3632
-    country_iso3166: GeoCountry_US
-    address: 'United States'
-    latitude: '37.09024'
-    longitude: '-95.71289'
-    timezone: America/New_York
-  CollectorGeocache_7140:
-    collector_id: Collector_6610
-    country_iso3166: GeoCountry_US
-    state: NH
-    city: Hinsdale
-    zip_postal: '03451'
-    address: 'Hinsdale, NH 03451, USA'
-    latitude: '42.80834'
-    longitude: '-72.50865'
-    timezone: America/New_York
   CollectorGeocache_8724:
     collector_id: Collector_6700
     country_iso3166: GeoCountry_US
@@ -104,12 +36,6 @@ CollectorGeocache:
     latitude: '41.20735'
     longitude: '-96.05204'
     timezone: America/New_York
-  CollectorGeocache_11031:
-    collector_id: Collector_1317
-    country_iso3166: GeoCountry_RO
-    address: Romania
-    latitude: '45.94316'
-    longitude: '24.96676'
   CollectorGeocache_11313:
     collector_id: Collector_963
     country_iso3166: GeoCountry_US
@@ -139,21 +65,3 @@ CollectorGeocache:
     latitude: '40.64510'
     longitude: '-74.43498'
     timezone: America/New_York
-  CollectorGeocache_11443:
-    collector_id: Collector_12
-    country_iso3166: GeoCountry_US
-    state: NY
-    address: 'Putnam Valley, NY 10579, USA'
-    latitude: '41.39138'
-    longitude: '-73.83014'
-    timezone: America/New_York
-  CollectorGeocache_11495:
-    collector_id: Collector_870
-    country_iso3166: GeoCountry_US
-    state: CA
-    city: Lakeside
-    zip_postal: '92040'
-    address: 'Lakeside, CA 92040, USA'
-    latitude: '32.87653'
-    longitude: '-116.91459'
-    timezone: America/Los_Angeles

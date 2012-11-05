@@ -1,13 +1,7 @@
 <?php
-  /**
-   * @var  $sf_user     cqFrontendUser
-   * @var  $sf_params   sfParameterHolder
-   * @var  $sf_context  sfContext
-   */
-
-  /** @var $sf_cache_key string */
-  $sf_cache_key  = (int) $sf_user->getId() .'_';
-  $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+/* @var  $sf_user     cqFrontendUser */
+/* @var  $sf_params   sfParameterHolder */
+/* @var  $sf_context  sfContext */
 ?>
 <!doctype html>
 <!--[if IE 8 ]>
@@ -61,17 +55,7 @@
  */ ?>
 
   <?php
-    $k = $sf_user->getShoppingCartCollectiblesCount();
-
-    include_component_slot('header', array(
-      'q' => $sf_params->get('q'),
-      'k' => $k,
-      'sf_cache_key' => implode('-', array(
-        $sf_cache_key,
-        md5(serialize(array($sf_params->get('q'), $k))),
-        SmartMenu::getCacheKey('header'),
-      ))
-    ));
+    include_component_slot('header');
   ?>
   <div class="shadow">
   <?php
@@ -85,7 +69,7 @@
     if (has_component_slot('slot1'))
     {
       echo '<div class="slots-container"><div id="slot1">';
-        include_component_slot('slot1', array('sf_cache_key' => $sf_cache_key));
+        include_component_slot('slot1');
       echo '</div></div>';
     }
 
@@ -138,10 +122,7 @@
       }
 
       echo '<div id="sidebar">';
-      include_component_slot($sidebar, array(
-        'sf_cache_key' => $sf_cache_key,
-        'height' => $height
-      ));
+      include_component_slot($sidebar, array('height' => $height));
       echo '</div>';
     }
     echo '</div>';
@@ -151,13 +132,13 @@
     if (has_component_slot('slot2'))
     {
       echo '<div class="slots-container"><div id="slot2">';
-      include_component_slot('slot2', array('sf_cache_key' => $sf_cache_key));
+      include_component_slot('slot2');
       echo '</div></div>';
     }
   ?>
 
   <?php
-    include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
+    include_component_slot('footer');
     include_partial('global/footer_links');
 
     if (!$sf_user->isAuthenticated())
@@ -169,10 +150,10 @@
     include_partial('global/modal_confirm');
 
     // Include the global javascripts
-    include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
+    include_partial('global/javascripts');
 
-    // Include analytics code only in production
-    if (sfConfig::get('sf_environment') === 'prod')
+    // Include analytics code only in production and exclude the NY office IP address
+    if (sfConfig::get('sf_environment') === 'prod' && cqStatic::getUserIpAddress() != '207.237.37.24')
     {
       include_partial('global/js/analytics');
     }

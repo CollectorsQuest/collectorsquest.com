@@ -269,13 +269,13 @@ function image_tag_multimedia($multimedia, $which, $options = array())
   unset($options['max_width'], $options['max_height'], $options['slug']);
 
   // if we are adding images asynchronously
-  if (strstr($options['class'], 'lazy') !== false)
+  if (isset($options['class']) && strstr($options['class'], 'lazy') !== false)
   {
     // add data-src option in order for JAIL to work properly
     $options['data-src'] = $src;
+
     // return image tag with transparent 1x1 image and fallback if user has no js support
-    return image_tag('default_1x1.png', $options) .
-           '<noscript>' . image_tag($src, $options) . '</noscript>';
+    return image_tag('default_1x1.png', $options) . '<noscript>' . image_tag($src, $options) . '</noscript>';
   }
 
   return image_tag($src, $options);

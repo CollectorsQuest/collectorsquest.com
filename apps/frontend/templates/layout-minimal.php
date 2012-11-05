@@ -1,9 +1,7 @@
 <?php
-/**
- * @var  $sf_user     cqFrontendUser
- * @var  $sf_params   sfParameterHolder
- * @var  $sf_context  sfContext
- */
+/* @var  $sf_user     cqFrontendUser */
+/* @var  $sf_params   sfParameterHolder */
+/* @var  $sf_context  sfContext */
 ?>
 <!doctype html>
 <!--[if IE 8 ]>
@@ -48,14 +46,11 @@
   </div>
 
   <?php
-    $sf_cache_key  = (int) $sf_user->getId() .'_';
-    $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
-
     // Include the global javascripts
-    include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
+    include_partial('global/javascripts');
 
-    // Include analytics code only in production
-    if (sfConfig::get('sf_environment') === 'prod')
+    // Include analytics code only in production (and exclude the NY office IP address)
+    if (sfConfig::get('sf_environment') === 'prod' && cqStatic::getUserIpAddress() != '207.237.37.24')
     {
       include_partial('global/js/analytics');
     }

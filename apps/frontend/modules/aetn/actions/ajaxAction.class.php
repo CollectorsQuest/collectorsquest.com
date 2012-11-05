@@ -16,6 +16,14 @@ class ajaxAction extends cqAjaxAction
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('id'));
 
+    // Show 404 if there is no such collectible
+    $this->forward404Unless($collectible instanceof Collectible);
+
+    if (!$request->isXmlHttpRequest())
+    {
+      return $this->redirect('collectible_by_slug', array('sf_subject' => $collectible));
+    }
+
     /** @var $collection Collection */
     $collection = $collectible->getCollection();
 

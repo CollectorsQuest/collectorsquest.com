@@ -17,6 +17,8 @@ history:
   class: iceRequestHistoryFilter
 visitorInfo:
   class: cqVisitorInfoFilter
+admin_cache:
+  class: cqConditionalCacheFilter
 
-cache:     ~
+cache: ~
 execution: ~
