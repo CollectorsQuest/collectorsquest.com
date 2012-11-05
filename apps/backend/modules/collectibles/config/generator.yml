@@ -33,5 +33,6 @@ generator:
 
       form:    ~
       edit:
+        title: Edit Collectible "%%name%%"
         display: [name, description, tags]
       new:     ~
