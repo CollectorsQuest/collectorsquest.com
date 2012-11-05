@@ -1,3 +1,7 @@
+<?php
+/* @var $pager cqPropelModelPager */
+?>
+
 <div id="collectibles" class="row thumbnails" style="margin-left: 0;">
 <?php
   /* @var $collectible Collectible */
@@ -25,23 +29,6 @@
 ?>
 </div>
 
-<div class="row-fluid text-center hidden">
-<?php
-  include_component(
-    'global', 'pagination',
-    array(
-      'pager' => $pager,
-      'options' => array(
-        'id' => 'collectibles-pagination',
-        'url' => url_for('@ajax_marketplace?section=component&page=holidayCollectiblesForSale'),
-        'show_all' => true,
-        'page_param' => 'p',
-      )
-    )
-  );
-?>
-</div>
-
 <?php if ($pager->getNbResults() === 0): ?>
 <div style="margin: 15px 20px;">
   <i class="icon-exclamation-sign" style="float: left; font-size: 46px; margin-right: 10px; color: #DF912F; margin-top: 6px;">&nbsp;</i>
@@ -51,54 +38,78 @@
 </div>
 <?php endif; ?>
 
-<script>
-  $(document).ready(function()
-  {
-    var $container = $('#collectibles');
-    var $form = $('#form-holiday-collectibles');
+<?php if ($pager->getPage() === 1): ?>
 
-    $container.imagesLoaded(function() {
-      $container.masonry({
-        itemSelector : '.brick',
-        columnWidth : 220, gutterWidth: 18
-      });
-    });
+  <div class="row-fluid text-center hidden">
+  <?php
+    include_component(
+      'global', 'pagination',
+      array(
+        'pager' => $pager,
+        'options' => array(
+          'id' => 'collectibles-pagination',
+          'url' => url_for('@ajax_marketplace?section=component&page=holidayCollectiblesForSale'),
+          'show_all' => true,
+          'page_param' => 'p',
+        )
+      )
+    );
+  ?>
+  </div>
 
-    <?php if ($pager->haveToPaginate()): ?>
-      $container.infinitescroll(
-      {
-        navSelector:'#collectibles-pagination',
-        nextSelector:'#collectibles-pagination li.next a',
-        itemSelector:'#collectibles .span4',
-        loading:{
-          msgText:'',
-          finishedMsg:'No more pages to load.',
-          img:'<?= image_path('frontend/progress.gif'); ?>'
-        },
-        state: {
-          curPage: 2
-        },
-        pathParse: function(path, page) {
-          // add the search params from the form
-          path = path + '&' + $form.serialize();
+  <script>
+    $(document).ready(function()
+    {
+      var $container = $('#collectibles');
 
-          return path.match(/^(.*?)2(.*?$)/).slice(1);
-        },
-        bufferPx:150
-      },
-      // trigger Masonry as a callback
-      function(selector) {
-        // hide new bricks while they are loading
-        var $bricks = $(selector).css({opacity: 0});
-
-        // ensure that images load before adding to masonry layout
-        $bricks.imagesLoaded(function() {
-          // show bricks now that they're ready
-          $bricks.animate({opacity: 1});
-          $container.masonry('appended', $bricks, true);
+      $container.imagesLoaded(function() {
+        $container.masonry({
+          itemSelector : '.brick',
+          columnWidth : 220, gutterWidth: 18
         });
       });
-    <?php endif; ?>
 
-  });
-</script>
+      <?php if ($pager->haveToPaginate()): ?>
+
+        var $form = $('#form-holiday-collectibles');
+
+        $container.infinitescroll(
+        {
+          navSelector:'#collectibles-pagination',
+          nextSelector:'#collectibles-pagination li.next a',
+          itemSelector:'#collectibles .span4',
+          loading:{
+            msgText:'',
+            finishedMsg:'No more pages to load.',
+            img:'<?= image_path('frontend/progress.gif'); ?>'
+          },
+          state: {
+            curPage: 2
+          },
+          pathParse: function(path, page) {
+            // add the search params from the form
+            path = path + '&' + $form.serialize();
+
+            return path.match(/^(.*?)2(.*?$)/).slice(1);
+          },
+          bufferPx:150
+        },
+        // trigger Masonry as a callback
+        function(selector) {
+          console.log('populating masonry');
+          // hide new bricks while they are loading
+          var $bricks = $(selector).css({opacity: 0});
+
+          // ensure that images load before adding to masonry layout
+          $bricks.imagesLoaded(function() {
+            // show bricks now that they're ready
+            $bricks.animate({opacity: 1});
+            $('#collectibles').masonry('appended', $bricks, true);
+          });
+        });
+
+      <?php endif; ?>
+
+    });
+  </script>
+<?php endif; ?>

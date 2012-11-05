@@ -14,7 +14,6 @@ all:
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
-    independence_day: false
     expose_collection_categories: true
     expose_market_categories: true
 
@@ -34,7 +33,6 @@ next:
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
-    independence_day: false
     expose_collection_categories: true
     expose_market_categories: true
 
@@ -54,6 +52,5 @@ dev:
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
-    independence_day: false
     expose_collection_categories: true
     expose_market_categories: true

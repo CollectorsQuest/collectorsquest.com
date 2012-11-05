@@ -482,14 +482,10 @@
     background-color: rgba(0,0,0,0.6);
     .transition(max-height 0.55s ease-out);
 
-    > a {
-      display: block;
-      .size(100%, 90%);
-      padding: 10px;
-      font-size: 15px;
-      font-weight: bold;
-      color: #fff;
-    }
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+
     span.price {
       display: block;
       margin-top: 3px;
@@ -497,6 +493,18 @@
       font-weight: normal;
       color: #fff;
     }
+  }
+
+  > a {
+    display: block;
+    color: #afafaf;
+    text-decoration: none;
+  }
+
+  img {
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
   }
 
   &:hover .collectible-info {

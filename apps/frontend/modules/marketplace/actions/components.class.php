@@ -166,42 +166,6 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    return sfView::SUCCESS;
-  }
-
-  public function executeHolidayThemes()
-  {
-    $t = $offset = $this->getRequestParameter('t', 0);
-
-    /* @var $q wpPostQuery */
-    $q = wpPostQuery::create()
-      ->filterByPostType('market_theme')
-      ->filterByPostParent(0)
-      ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
-      ->orderByPostDate(Criteria::DESC);
-
-    if (sfConfig::get('sf_environment') === 'prod')
-    {
-      $q->filterByPostStatus('publish');
-    }
-
-    /* @var $total integer */
-    $total = $q->count();
-
-    /**
-     * The active theme cannot be beyond the total number of themes
-     */
-    if ($t > $total)
-    {
-      $t = $total;
-    }
-
-    $offset = ($total - $offset < 5) ? $total - 5 : $offset;
-    $q->offset($offset-1);
-
-    /* @var $wp_posts wpPost[] */
-    $wp_posts = $q->limit(5)->find();
-
     if (true)
     {
       $this->menu = array();
@@ -218,47 +182,83 @@ class marketplaceComponents extends cqFrontendComponents
       );
     }
 
-    foreach ($wp_posts as $i => $wp_post)
+    /* @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterByPostType('market_theme')
+      ->filterByPostParent(0)
+      ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
+      ->orderByPostDate(Criteria::DESC);
+
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
+
+    /* @var $wp_posts wpPost[] */
+    $wp_posts = $q->find();
+
+    foreach ($wp_posts as $wp_post)
     {
       $meta = $wp_post->getPostMetaValue('_market_theme');
       $name = !empty($meta['cq_menu_name']) ? $meta['cq_menu_name'] : $wp_post->getPostTitle();
 
       $this->menu[] = array(
-        'id' => $wp_post->getId(), 'active' => ($i === $t - $offset),
+        'id' => $wp_post->getId(),
         'name' => $name, 'slug' => $wp_post->getSlug(),
         'content' => $wp_post->getPostContent(),
         'tags' => $wp_post->getTags('array')
       );
     }
 
-    // Make sure we only have 5 in the end
-    $this->menu = array_splice($this->menu, 0, 5);
+    return sfView::SUCCESS;
+  }
 
-    /* @var $q FrontendCollectibleForSaleQuery */
-    $q = FrontendCollectibleForSaleQuery::create()
-      ->isForSale()
-      ->orderByAverageRating(Criteria::DESC)
-      ->orderByUpdatedAt(Criteria::DESC);
-
-    if (!empty($this->menu[$t-$offset]['tags']))
-    {
-      $q->filterByMachineTags($this->menu[$t-$offset]['tags'], 'market', 'theme');
-    }
+  public function executeHolidayTheme()
+  {
+    /* @var $t integer */
+    $t = (integer) $this->getRequestParameter('t', 0);
 
     /* @var $page integer */
     $page = (integer) $this->getRequestParameter('p', 1);
 
-    $pager = new PropelModelPager($q);
-    $pager->setPage($page);
-    $pager->setMaxPerPage(($page === 1) ? 5 : 6);
-    $pager->init();
+    /* @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterByPostType('market_theme')
+      ->filterByPostParent(0)
+      ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
+      ->orderByPostDate(Criteria::DESC)
+      ->offset($t);
 
-    $this->pager = $pager;
-    $this->total = $total;
-    $this->offset = $offset;
-    $this->t = $t;
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
 
-    return sfView::SUCCESS;
+    /* @var $wp_post wpPost */
+    $wp_post = $q->findOne();
+
+    if ($wp_post && ($tags = $wp_post->getTags('array')))
+    {
+      /* @var $q FrontendCollectibleForSaleQuery */
+      $q = FrontendCollectibleForSaleQuery::create()
+        ->isForSale()
+        ->filterByMachineTags($tags, 'market', 'theme')
+        ->orderByAverageRating(Criteria::DESC)
+        ->orderByUpdatedAt(Criteria::DESC);
+
+      $pager = new PropelModelPager($q);
+      $pager->setPage($page);
+      $pager->setMaxPerPage(($page === 1) ? 5 : 6);
+      $pager->init();
+
+      $this->pager = $pager;
+      $this->wp_post = $wp_post;
+      $this->t = $t;
+
+      return sfView::SUCCESS;
+    }
+
+    return sfView::NONE;
   }
 
   public function executeHolidayCollectiblesForSale()

@@ -15,7 +15,7 @@ class CollectibleCreateForm extends CollectibleForm
       'content_category_id' => new sfWidgetFormInputHidden(array(
         'label' => 'Category',
       ), array(
-        'required' => 'required'
+        'required' => false
       )),
       'description' => new sfWidgetFormTextarea(
         array(),
@@ -42,7 +42,7 @@ class CollectibleCreateForm extends CollectibleForm
         array('invalid' => 'You need to use more descriptive name for your item
                             (is it the camera auto generated name?)')),
       'content_category_id' => new sfValidatorPropelChoice(array(
-        'required' => true,
+        'required' => false,
         'model' => 'ContentCategory',
         'column' => 'id',
       )),

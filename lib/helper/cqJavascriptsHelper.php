@@ -18,9 +18,22 @@ function cq_ad_slot($image, $link_to)
   $ref = sfContext::getInstance()->getRouting()->getCurrentInternalUri(true);
   $ref = str_replace('@', '', $ref);
 
-  // add the ref parameter to the link
-  $query = parse_url($link_to, PHP_URL_QUERY);
-  $link_to .= ($query) ? '&ref=' . $ref : '?ref=' . $ref;
+  if ($query = parse_url($link_to, PHP_URL_QUERY))
+  {
+    $params = array();
+    parse_str($query, $params);
+
+    if (!isset($params['ref']))
+    {
+      // add the ref parameter to the link
+      $link_to .= '&ref=' . $ref;
+    }
+  }
+  else
+  {
+    // add the ref parameter to the link
+    $link_to .= '?ref=' . $ref;
+  }
 
   echo link_to($image, $link_to);
 }

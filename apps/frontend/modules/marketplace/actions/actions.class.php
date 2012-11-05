@@ -12,9 +12,9 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeIndex()
   {
-    $this->forwardIf(
-      IceGateKeeper::open('holiday_marketplace', 'page'),
-      'marketplace', 'holiday'
+    $this->redirectIf(
+      cqGateKeeper::open('holiday_marketplace', 'page'),
+      '@marketplace_holiday'
     );
 
     /** @var $q wpPostQuery */
@@ -74,6 +74,11 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeHoliday()
   {
+    $this->redirectUnless(
+      cqGateKeeper::open('holiday_marketplace', 'page'),
+      '@marketplace'
+    );
+
     $this->categories = ContentCategoryQuery::create()
       ->hasCollectiblesForSale()
       ->filterByLevel(1)

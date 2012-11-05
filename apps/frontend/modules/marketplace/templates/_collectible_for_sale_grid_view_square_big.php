@@ -10,27 +10,32 @@
  *  2) an Ajax request
  */
 $lazy_image = !isset($lazy_image) || $lazy_image;
-$lazy_image = $lazy_image && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_params->get('show')
+$lazy_image = $lazy_image && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_params->get('show');
+
+/* @var $url string */
+$url = !empty($url) ? $url : url_for_collectible($collectible_for_sale->getCollectible());
 
 ?>
 
 <div id="collectible_for_sale_<?= $collectible_for_sale->getCollectibleId(); ?>_grid_view_square_big"
      data-id="<?= $collectible_for_sale->getCollectibleId(); ?>"
-     class="span6 collectible_for_sale_grid_view_square_big fade-white link">
+     class="span6 collectible_for_sale_grid_view_square_big">
 
-  <div class="collectible-info">
-    <a href="<?= url_for_collectible($collectible_for_sale->getCollectible()); ?>" class="target">
-      <?= $collectible_for_sale->getCollectible()->getName(); ?><br/>
-      <span class="price">
-        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
-      </span>
-    </a>
-  </div>
+  <a href="<?= $url; ?>" class="zoom-zone">
+    <div class="collectible-info">
+      <div style="padding: 10px;">
+        <?= $collectible_for_sale->getCollectible()->getName(); ?><br/>
+        <span class="price">
+          <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+        </span>
+      </div>
+    </div>
 
-  <?php
-    echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
-      'image_tag' => array('width' => 295, 'height' => 295, 'class' => $lazy_image ? 'lazy' : ''),
-      'link_to' => array('class' => 'mosaic-backdrop')
-    ));
-  ?>
+    <?php
+      echo image_tag_collectible(
+        $collectible_for_sale->getCollectible(), '295x295',
+        array('class' => $lazy_image ? 'lazy' : '')
+      );
+    ?>
+  </a>
 </div>
