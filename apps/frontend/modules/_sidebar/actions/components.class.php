@@ -340,6 +340,9 @@ class _sidebarComponents extends cqFrontendComponents
 
       if (isset($tag_query) && $count_collections < $this->limit)
       {
+        // make sure we are not repeating collectibles_for_sale
+        $tag_query->filterByCollection($this->collections, Criteria::NOT_IN);
+
         $additional_collections = $tag_query->limit($this->limit - $count_collections)->find();
         // add collections that are matching by machine tags
         $this->collections->exchangeArray(
@@ -352,6 +355,11 @@ class _sidebarComponents extends cqFrontendComponents
 
       if ($count_collections < $this->limit)
       {
+        if (isset($tag_query))
+        {
+          // make sure we are not repeating collectibles_for_sale
+          $q->filterByCollection($this->collections, Criteria::NOT_IN);
+        }
         $additional_collections = $q->limit($this->limit - $count_collections)->find();
         // add collections that are not matching by machine tags but are matching by regular tags
         $this->collections->exchangeArray(
@@ -897,6 +905,15 @@ class _sidebarComponents extends cqFrontendComponents
 
       if (isset($tag_query) && $count_collectibles_for_sale < $this->limit)
       {
+        // make sure we are not repeating collectibles_for_sale
+        $collectible_ids = array();
+        foreach ($this->collectibles_for_sale as $collectible_for_sale)
+        {
+          /** @var $collectible_for_sale CollectibleForSale */
+          $collectible_ids[] = $collectible_for_sale->getCollectible()->getId();
+        }
+        $tag_query->filterByCollectibleId($collectible_ids, Criteria::NOT_IN);
+
         $additional_collectibles_for_sale = $tag_query->limit($this->limit - $count_collectibles_for_sale)->find();
         // add collectibles_for_sale that are matching by machine tags
         $this->collectibles_for_sale->exchangeArray(
@@ -909,6 +926,15 @@ class _sidebarComponents extends cqFrontendComponents
 
       if ($count_collectibles_for_sale < $this->limit)
       {
+        // make sure we are not repeating collectibles_for_sale
+        $collectible_ids = array();
+        foreach ($this->collectibles_for_sale as $collectible_for_sale)
+        {
+          /** @var $collectible_for_sale CollectibleForSale */
+          $collectible_ids[] = $collectible_for_sale->getCollectible()->getId();
+        }
+        $q->filterByCollectibleId($collectible_ids, Criteria::NOT_IN);
+
         $additional_collectibles_for_sale = $q->limit($this->limit - $count_collectibles_for_sale)->find();
         // add collectibles_for_sale that are not matching by machine tags but are matching by regular tags
         $this->collectibles_for_sale->exchangeArray(
