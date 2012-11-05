@@ -12,20 +12,18 @@ _ad_slots:
   lifetime:    3600
 
 _header:
-  enabled:     false
-  contextual:  true
+  enabled:     true
+  contextual:  false
   with_layout: false
   lifetime:    300
 
+# We want to make sure we never cache the global/javascripts partial
 _javascripts:
   enabled:     false
-  contextual:  true
-  with_layout: false
-  lifetime:    3600
 
-# We cannot cache the footer because of the signup form and the _csrf_token
 _footer:
-  enabled:     false
+  enabled:     true
+  with_layout: false
 
 _footer_links:
   enabled:     true

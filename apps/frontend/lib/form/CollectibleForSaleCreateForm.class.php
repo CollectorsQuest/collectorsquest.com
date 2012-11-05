@@ -115,8 +115,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
 
     $fields = array_merge($fields, array(
       'name',
-      'tags',
-      'thumbnail',
+      'tags'
     ));
     $collectible->useFields($fields);
 

@@ -1,36 +1,48 @@
 <?php
 /**
- * @var  $title  string
+ * @var  $title                  string
  * @var  $collectibles_for_sale  CollectibleForSale[]
- * @var  $height  stdClass
- * @var  $limit  integer
+ * @var  $height                 stdClass
+ * @var  $limit                  integer
+ * @var  $collector              Collector
  */
 
 $_height = 0;
 ?>
 
 <?php
-  cq_sidebar_title(
-    $title, cq_link_to(
+  if (!isset($collector))
+  {
+    $link = cq_link_to(
       'Explore Market &raquo;',
       '@marketplace', array('class' => 'text-v-middle link-align')
-    ),
-    array('left' => 7, 'right' => 5)
-  );
+    );
+    cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
+  }
+  else
+  {
+    $link = link_to(
+      'See all &raquo;',
+      'collectibles_for_sale_by_collector', $collector,
+      array('class' => 'text-v-middle link-align')
+    );
+    cq_sidebar_title($title, $link, array('left' => 9, 'right' => 3));
+  }
 
   $_height -= 63;
 ?>
 
 <div id="items-for-sale-sidebar">
   <div class="row thumbnails">
-    <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
-      <?php
-          include_partial(
-            'marketplace/collectible_for_sale_grid_view_square_small',
-            array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
-          );
-      ?>
-    <?php endforeach; ?>
+    <?php
+      for ($i = 0; $i < intval($collectibles_for_sale->count() / 2) * 2; $i++)
+      {
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square_small',
+          array('collectible_for_sale' => $collectibles_for_sale[$i], 'i' => $i)
+        );
+      }
+    ?>
   </div>
 </div>
 

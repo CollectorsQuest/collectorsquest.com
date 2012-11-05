@@ -43,7 +43,7 @@ class cqContext extends sfContext
   {
     return
       $this->getModuleName() == 'marketplace' &&
-      $this->getActionName() == 'index';
+      in_array($this->getActionName(), array('index', 'holiday'));
   }
 
 }

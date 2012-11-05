@@ -64,9 +64,11 @@
       }
     }
     .spotlight-text {
-      padding: 10px 5px 0 5px;
-      height: 110px;
+
       overflow: hidden;
+      height: 110px;
+      padding: 10px 5px 0 5px;
+
       p {
         margin-bottom: 0;
         font-size:12px;
@@ -113,12 +115,12 @@
 
     a {
     .box-shadow(none);
+
     &:hover {
       padding: 3px;
       background-color: white;
       border: 1px solid @blue;
       .border-radius(0);
-
     }
     }
   }
@@ -186,4 +188,151 @@ div.onecolumn {
 
 #body-marketplace-index #collectibles .span3 {
   margin-right: 1px;
+}
+
+
+//HOLIDAY MARKET
+
+//Reset main styles
+#body-marketplace-holiday {
+  .slots-container {
+    border: none;
+  }
+  header, footer, nav, #breadcrumbs, .slots-container, #slot1, #slot2, #footer-links {
+    width: 980px;
+  }
+}
+
+
+#HolidayMarketHeader {
+  .size(248px, 980px);
+  background: url("@{baseUrl}/misc/holiday-market/keep-it-classic-hm-header-bg.jpg") no-repeat 0 0;
+  border-top: 1px solid #eaede6;
+  .clearfix();
+
+  h1 {
+    margin: 40px 0 0 40px;
+    font-size: 70px;
+    line-height: 70px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  h2 {
+    margin: 0 0 0 40px;
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: bold;
+    color: #fff;
+  }
+}
+
+.holiday-market-menu-wrapper {
+  .size(68px,100%);
+  padding-bottom: 10px;
+  background-color: #ecebec;
+  .clearfix();
+
+  .navbar-inner {
+    position: relative;
+    .size(50px, 100%);
+    clear: both;
+    padding: 0;
+    #gradient > .vertical(#114F0B, #204A24);
+    .box-shadow(inset 0px 2px 6px 0px rgba(0, 0, 0, 0.15));
+    border: none;
+    .border-radius(0);
+
+    .centering {
+      overflow: hidden;
+      display: block;
+      .size(70px, 800px);
+      margin: 0 auto;
+    }
+    .arrow-previous, .arrow-next {
+      display: block;
+      position: absolute;
+      top: 10px;
+
+    }
+    .arrow-previous {
+      left: 45px;
+    }
+    .arrow-next {
+      right: 45px;
+    }
+  }
+
+  ul.nav {
+    position: relative;
+    display: block;
+    margin-bottom: 0;
+    width: 7000px;
+
+    > li {
+      position: relative;
+      float: left;
+      .size(50px,160px);
+
+      > a {
+        height: 38px;
+        padding: 6px 40px;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        color: #dde4d4;
+        &:hover {
+          background-color: #448828;
+        }
+
+        strong {
+          font-size: 18px;
+          line-height: 18px;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+        //Special hack - Vertical alignment in menu list
+        > span {
+          line-height: 45px;
+        }
+      }
+
+      &.active > a {
+        //#gradient > .vertical-three-colors(#4f9033, #5da93c, 10%, #5eac3d);
+        background-color: #5eac3d;
+        .box-shadow(inset 0 2px 6px 0 rgba(0, 0, 0, 0.15));
+
+        &:hover {
+          background-color: #5eac3d;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 40%;
+          border-top: 16px solid #5eac3d;
+          border-top-color: #5eac3d;
+          border-left: 16px solid transparent;
+          border-right: 16px solid transparent;
+        }
+      }
+    }
+  }
+}
+
+/* hide infinite-scroll loading box */
+#infscr-loading {
+  visibility: hidden;
+}
+
+#body-marketplace-holiday {
+  .section-title.blue {
+    margin-bottom: 0;
+  }
+
+  .view-all-button {
+    float: left;
+    margin-top: 2px;
+  }
 }

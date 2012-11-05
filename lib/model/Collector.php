@@ -340,8 +340,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function hasPayPalDetails()
   {
-    return $this->getSellerSettingsPaypalEmail() &&
-           $this->getSellerSettingsPaypalAccountStatus();
+    return $this->getSellerSettingsPaypalEmail();
   }
 
   /**

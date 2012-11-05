@@ -177,7 +177,7 @@ wpOption:
   wpOption_39_active_plugins:
     option_id: '39'
     option_name: active_plugins
-    option_value: 'a:23:{i:0;s:19:"akismet/akismet.php";i:1;s:43:"breadcrumb-navxt/breadcrumb_navxt_admin.php";i:2;s:36:"contact-form-7/wp-contact-form-7.php";i:3;s:28:"editorial-calendar/edcal.php";i:4;s:35:"gallery-metabox/gallery-metabox.php";i:5;s:36:"google-sitemap-generator/sitemap.php";i:6;s:29:"html-sitemap/html-sitemap.php";i:7;s:19:"jetpack/jetpack.php";i:8;s:25:"mail-queues/pbci-mail.php";i:9;s:19:"members/members.php";i:10;s:41:"multiple-galleries/multiple-galleries.php";i:11;s:50:"multiple-post-thumbnails/multi-post-thumbnails.php";i:12;s:25:"multiple_domain_names.php";i:13;s:47:"post-thumbnail-editor/post-thumbnail-editor.php";i:14;s:47:"regenerate-thumbnails/regenerate-thumbnails.php";i:15;s:29:"shadowbox-js/shadowbox-js.php";i:16;s:37:"shadowbox-js/shadowbox-title-push.php";i:17;s:13:"si-widont.php";i:18;s:45:"simple-local-avatars/simple-local-avatars.php";i:19;s:30:"smart-youtube/smartyoutube.php";i:20;s:41:"wordpress-importer/wordpress-importer.php";i:21;s:24:"wordpress-seo/wp-seo.php";i:22;s:17:"wp-faq/wp-faq.php";}'
+    option_value: 'a:23:{i:0;s:19:"akismet/akismet.php";i:1;s:43:"breadcrumb-navxt/breadcrumb_navxt_admin.php";i:2;s:28:"editorial-calendar/edcal.php";i:3;s:35:"gallery-metabox/gallery-metabox.php";i:4;s:36:"google-sitemap-generator/sitemap.php";i:5;s:29:"html-sitemap/html-sitemap.php";i:6;s:19:"jetpack/jetpack.php";i:7;s:25:"mail-queues/pbci-mail.php";i:8;s:19:"members/members.php";i:9;s:41:"multiple-galleries/multiple-galleries.php";i:10;s:50:"multiple-post-thumbnails/multi-post-thumbnails.php";i:11;s:25:"multiple_domain_names.php";i:12;s:47:"post-thumbnail-editor/post-thumbnail-editor.php";i:13;s:47:"regenerate-thumbnails/regenerate-thumbnails.php";i:14;s:29:"shadowbox-js/shadowbox-js.php";i:15;s:37:"shadowbox-js/shadowbox-title-push.php";i:16;s:13:"si-widont.php";i:17;s:45:"simple-local-avatars/simple-local-avatars.php";i:18;s:42:"slidedeck-lite-for-wordpress/slidedeck.php";i:19;s:41:"wordpress-importer/wordpress-importer.php";i:20;s:24:"wordpress-seo/wp-seo.php";i:21;s:39:"wp-external-links/wp-external-links.php";i:22;s:17:"wp-faq/wp-faq.php";}'
     autoload: yes
   wpOption_40_home:
     option_id: '40'
@@ -217,7 +217,7 @@ wpOption:
   wpOption_47_recently_edited:
     option_id: '47'
     option_name: recently_edited
-    option_value: 'a:3:{i:0;s:145:"/www/vhosts/collectorsquest.com/releases/201202272300/web/blog/wp-content/plugins/feedburner_feedsmith_plugin_2.3/FeedBurner_FeedSmith_Plugin.php";i:1;s:123:"/www/vhosts/collectorsquest.com/releases/201202152130/web/blog/wp-content/plugins/multiple-galleries/multiple-galleries.php";i:2;b:0;}'
+    option_value: 'a:5:{i:0;s:109:"/www/vhosts/collectorsquest.com/releases/201210091431/web/blog/wp-content/plugins/wp-nofollow-post/readme.txt";i:1;s:119:"/www/vhosts/collectorsquest.com/releases/201210091431/web/blog/wp-content/plugins/wp-nofollow-post/wp-nofollow-post.php";i:2;s:129:"/www/vhosts/collectorsquest.com/releases/201208180517/web/blog/wp-content/plugins/post-thumbnail-editor/post-thumbnail-editor.php";i:3;s:145:"/www/vhosts/collectorsquest.com/releases/201202272300/web/blog/wp-content/plugins/feedburner_feedsmith_plugin_2.3/FeedBurner_FeedSmith_Plugin.php";i:4;s:123:"/www/vhosts/collectorsquest.com/releases/201202152130/web/blog/wp-content/plugins/multiple-galleries/multiple-galleries.php";}'
     autoload: yes
   wpOption_49_template:
     option_id: '49'

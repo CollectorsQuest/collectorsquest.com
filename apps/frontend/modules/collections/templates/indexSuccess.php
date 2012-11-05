@@ -3,7 +3,7 @@
 <?php include_component('collections', 'featuredWeek'); ?>
 
 <?php cq_section_title('Explore Collections') ?>
-<div class="sort-search-box full-lenght-blue">
+<div class="sort-search-box full-length-blue">
   <div class="input-append">
     <form action="<?= url_for('@search_collections', true); ?>" method="post" id="form-explore-collections">
     <div class="btn-group">

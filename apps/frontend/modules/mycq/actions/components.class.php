@@ -31,7 +31,7 @@ class mycqComponents extends cqFrontendComponents
 
   public function executeCollections()
   {
-    $this->collector = $this->getVar('collector') ? : $this->getUser()->getCollector();
+    $this->collector = $this->getVar('collector') ?: $this->getUser()->getCollector();
     $sort = $this->getRequestParameter('s', 'most-recent');
 
     $q = CollectorCollectionQuery::create()
