@@ -840,6 +840,14 @@ class _sidebarComponents extends cqFrontendComponents
       $this->collectibles = $pager->getResults();
     }
 
+    if (count($this->collectibles) == 1 && $pager->haveToPaginate())
+    {
+      $position = $this->collectibles->getFirst()->getPosition();
+      $this->collectibles = $a
+        ->filterByPosition(array($position - 2, $position - 1, $position), Criteria::IN)
+        ->find();
+    }
+
     $this->pager = $pager;
     $this->collection = $collection;
     $this->collectible = $collectible;
