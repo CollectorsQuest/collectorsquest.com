@@ -61,7 +61,6 @@
     $(document).ready(function()
     {
       var $container = $('#collectibles');
-      var $form = $('#form-holiday-collectibles');
 
       $container.imagesLoaded(function() {
         $container.masonry({
@@ -71,11 +70,8 @@
       });
 
       <?php if ($pager->haveToPaginate()): ?>
-        if ($container.data('infinitescroll'))
-        {
-          $container.infinitescroll('destroy');
-          $container.data('infinitescroll', null);
-        }
+
+        var $form = $('#form-holiday-collectibles');
 
         $container.infinitescroll(
         {
@@ -100,6 +96,7 @@
         },
         // trigger Masonry as a callback
         function(selector) {
+          console.log('populating masonry');
           // hide new bricks while they are loading
           var $bricks = $(selector).css({opacity: 0});
 
@@ -107,9 +104,10 @@
           $bricks.imagesLoaded(function() {
             // show bricks now that they're ready
             $bricks.animate({opacity: 1});
-            $container.masonry('appended', $bricks, true);
+            $('#collectibles').masonry('appended', $bricks, true);
           });
         });
+
       <?php endif; ?>
 
     });

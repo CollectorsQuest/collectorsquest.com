@@ -89,6 +89,15 @@
 
       $.post($url +'?p=1', $form.serialize(), function(data)
       {
+        var $container = $('#collectibles');
+
+        if ($container.data('infinitescroll'))
+        {
+          $container.infinitescroll('destroy');
+          $container.data('infinitescroll', null);
+          $container.masonry('destroy');
+        }
+
         $('#collectibles-holder').html(data);
         $('#main').hideLoading();
 

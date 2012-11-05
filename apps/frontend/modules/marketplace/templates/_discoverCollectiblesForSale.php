@@ -52,6 +52,7 @@
   <script>
   $(document).ready(function()
   {
+    var $container = $('#collectibles');
     var $form = $('#form-discover-collectibles');
 
     $('#seemore-explore-collectibles').click(function()
@@ -59,7 +60,7 @@
       var $button = $(this);
       $button.hide();
 
-      $('#collectibles').infinitescroll(
+      $container.infinitescroll(
       {
         navSelector:'#collectibles-pagination',
         nextSelector:'#collectibles-pagination li.next a',
@@ -75,7 +76,7 @@
         pathParse: function(path, page) {
           // add the search params from the form
           path = path + '&' + $form.serialize();
-          return path = path.match(/^(.*?)2(.*?$)/).slice(1);
+          return path.match(/^(.*?)2(.*?$)/).slice(1);
         },
         bufferPx:150
       },
@@ -83,10 +84,15 @@
         $('.collectible_grid_view').mosaic({
           animation:'slide'
         });
+
+        $("a.target").bigTarget({
+          hoverClass: 'over',
+          clickZone : 'div.link'
+        });
       });
 
       // force infinite scroll load
-      $('#collectibles').infinitescroll('retrieve');
+      $container.infinitescroll('retrieve');
     });
 
     $("a.target").bigTarget({
