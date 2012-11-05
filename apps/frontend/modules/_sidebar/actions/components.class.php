@@ -211,21 +211,6 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $content_category_id integer */
       $content_category_id = $collection->getContentCategoryId();
 
-      /** @var $category ContentCategory */
-      if ($category = $collection->getContentCategory())
-      {
-        // We need broader limit by category so let's get the parent at level 1
-        $category = $category->getAncestorAtLevel(1) ?: $category;
-
-        // make sure we are showing something tag related even if not from the same category tree
-        $category_query = clone $q;
-        $category_query->filterByContentCategoryWithDescendants($category);
-        if ($category_query->count() > 0)
-        {
-          $q = clone $category_query;
-        }
-      }
-
       /**
        * match machine tags against machine tags
        * @var $machine_query FrontendCollectorCollectionQuery
@@ -256,6 +241,15 @@ class _sidebarComponents extends cqFrontendComponents
         ->filterByContentCategoryId($content_category_id)
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
         ->orderByUpdatedAt(Criteria::DESC);
+
+      /** @var $category ContentCategory */
+      if ($category = $collection->getContentCategory())
+      {
+        // We need broader limit by category so let's get the parent at level 1
+        $category = $category->getAncestorAtLevel(1) ?: $category;
+
+        $q->filterByContentCategoryWithDescendants($category);
+      }
     }
     /** @var $collectible Collectible */
     else if (
@@ -271,21 +265,6 @@ class _sidebarComponents extends cqFrontendComponents
 
       // See if we can get common tags between the collectible and the collection and use those
       $tags = array_intersect($collectible_tags, $collection_tags) ?: $collectible_tags;
-
-      /** @var $category ContentCategory */
-      if ($category = $collection->getContentCategory())
-      {
-        // We need broader limit by category so let's get the parent at level 1
-        $category = $category->getAncestorAtLevel(1) ?: $category;
-
-        // make sure we are showing something tag related even if not from the same category tree
-        $category_query = clone $q;
-        $category_query->filterByContentCategoryWithDescendants($category);
-        if ($category_query->count() > 0)
-        {
-          $q = clone $category_query;
-        }
-      }
 
       $q
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
@@ -317,6 +296,15 @@ class _sidebarComponents extends cqFrontendComponents
 
       $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
+
+      /** @var $category ContentCategory */
+      if ($category = $collection->getContentCategory())
+      {
+        // We need broader limit by category so let's get the parent at level 1
+        $category = $category->getAncestorAtLevel(1) ?: $category;
+
+        $q->filterByContentCategoryWithDescendants($category);
+      }
     }
     else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
     {
@@ -708,21 +696,6 @@ class _sidebarComponents extends cqFrontendComponents
 
       $q->filterByCollection($collection, Criteria::NOT_EQUAL);
 
-      /** @var $category ContentCategory */
-      if ($category = $collection->getContentCategory())
-      {
-        // We need broader limit by category so let's get the parent at level 1
-        $category = $category->getAncestorAtLevel(1) ?: $category;
-
-        // make sure we are showing something tag related even if not from the same category tree
-        $category_query = clone $q;
-        $category_query->filterByContentCategoryWithDescendants($category);
-        if ($category_query->count() > 1)
-        {
-          $q = clone $category_query;
-        }
-      }
-
       /**
        * match machine tags against machine tags
        * @var $machine_query FrontendCollectibleForSaleQuery
@@ -746,6 +719,15 @@ class _sidebarComponents extends cqFrontendComponents
 
       $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
+
+      /** @var $category ContentCategory */
+      if ($category = $collection->getContentCategory())
+      {
+        // We need broader limit by category so let's get the parent at level 1
+        $category = $category->getAncestorAtLevel(1) ?: $category;
+
+        $q->filterByContentCategoryWithDescendants($category);
+      }
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
@@ -789,15 +771,6 @@ class _sidebarComponents extends cqFrontendComponents
       // See if we can get common tags between the collectible and the collection and use those
       $tags = array_intersect($collectible_tags, $collection_tags) ?: $collectible_tags;
 
-      /** @var $category ContentCategory */
-      if ($category = $collection->getContentCategory())
-      {
-        // We need broader limit by category so let's get the parent at level 1
-        $category = $category->getAncestorAtLevel(1) ?: $category;
-
-        $q->filterByContentCategoryWithDescendants($category);
-      }
-
       $q->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL);
 
       /**
@@ -823,6 +796,15 @@ class _sidebarComponents extends cqFrontendComponents
 
       $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
+
+      /** @var $category ContentCategory */
+      if ($category = $collection->getContentCategory())
+      {
+        // We need broader limit by category so let's get the parent at level 1
+        $category = $category->getAncestorAtLevel(1) ?: $category;
+
+        $q->filterByContentCategoryWithDescendants($category);
+      }
     }
 
     if ($collector = $this->getVar('collector'))
@@ -906,12 +888,7 @@ class _sidebarComponents extends cqFrontendComponents
       if (isset($tag_query) && $count_collectibles_for_sale < $this->limit)
       {
         // make sure we are not repeating collectibles_for_sale
-        $collectible_ids = array();
-        foreach ($this->collectibles_for_sale as $collectible_for_sale)
-        {
-          /** @var $collectible_for_sale CollectibleForSale */
-          $collectible_ids[] = $collectible_for_sale->getCollectible()->getId();
-        }
+        $collectible_ids = $this->collectibles_for_sale->toKeyValue('CollectibleId', 'CollectibleId');
         $tag_query->filterByCollectibleId($collectible_ids, Criteria::NOT_IN);
 
         $additional_collectibles_for_sale = $tag_query->limit($this->limit - $count_collectibles_for_sale)->find();
@@ -927,12 +904,7 @@ class _sidebarComponents extends cqFrontendComponents
       if ($count_collectibles_for_sale < $this->limit)
       {
         // make sure we are not repeating collectibles_for_sale
-        $collectible_ids = array();
-        foreach ($this->collectibles_for_sale as $collectible_for_sale)
-        {
-          /** @var $collectible_for_sale CollectibleForSale */
-          $collectible_ids[] = $collectible_for_sale->getCollectible()->getId();
-        }
+        $collectible_ids = $this->collectibles_for_sale->toKeyValue('CollectibleId', 'CollectibleId');
         $q->filterByCollectibleId($collectible_ids, Criteria::NOT_IN);
 
         $additional_collectibles_for_sale = $q->limit($this->limit - $count_collectibles_for_sale)->find();
