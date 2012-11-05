@@ -217,7 +217,13 @@ class _sidebarComponents extends cqFrontendComponents
         // We need broader limit by category so let's get the parent at level 1
         $category = $category->getAncestorAtLevel(1) ?: $category;
 
-        $q->filterByContentCategoryWithDescendants($category);
+        // make sure we are showing something tag related even if not from the same category tree
+        $category_query = clone $q;
+        $category_query->filterByContentCategoryWithDescendants($category);
+        if ($category_query->count() > 0)
+        {
+          $q = clone $category_query;
+        }
       }
 
       /**
@@ -239,17 +245,11 @@ class _sidebarComponents extends cqFrontendComponents
           'return' => 'value'
         )
       );
-      $machine_query->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'), Criteria::IN)
-        ->_or()
-        ->filterByContentCategoryId($content_category_id)
-        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
-        ->orderByUpdatedAt(Criteria::DESC);
+      $machine_query
+        ->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'))
+        ->orderByMachineTags ($machine_tags, 'matching', array('collections', 'all'));
 
-      $tag_query->filterByTags($machine_tags, Criteria::IN)
-        ->_or()
-        ->filterByContentCategoryId($content_category_id)
-        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
-        ->orderByUpdatedAt(Criteria::DESC);
+      $tag_query->filterByTags($machine_tags, Criteria::IN);
 
       $q->filterByTags($tags, Criteria::IN)
         ->_or()
@@ -278,7 +278,13 @@ class _sidebarComponents extends cqFrontendComponents
         // We need broader limit by category so let's get the parent at level 1
         $category = $category->getAncestorAtLevel(1) ?: $category;
 
-        $q->filterByContentCategoryWithDescendants($category);
+        // make sure we are showing something tag related even if not from the same category tree
+        $category_query = clone $q;
+        $category_query->filterByContentCategoryWithDescendants($category);
+        if ($category_query->count() > 0)
+        {
+          $q = clone $category_query;
+        }
       }
 
       $q
@@ -305,7 +311,10 @@ class _sidebarComponents extends cqFrontendComponents
         )
       );
 
-      $machine_query->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'), Criteria::IN);
+      $machine_query
+        ->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'))
+        ->orderByMachineTags ($machine_tags, 'matching', array('collections', 'all'));
+
       $tag_query->filterByTags($machine_tags, Criteria::IN);
       $q->filterByTags($tags, Criteria::IN);
     }
@@ -689,16 +698,22 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $tags array */
       $tags = $collection->getTags();
 
+      $q->filterByCollection($collection, Criteria::NOT_EQUAL);
+
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
         // We need broader limit by category so let's get the parent at level 1
         $category = $category->getAncestorAtLevel(1) ?: $category;
 
-        $q->filterByContentCategoryWithDescendants($category);
+        // make sure we are showing something tag related even if not from the same category tree
+        $category_query = clone $q;
+        $category_query->filterByContentCategoryWithDescendants($category);
+        if ($category_query->count() > 1)
+        {
+          $q = clone $category_query;
+        }
       }
-
-      $q->filterByCollection($collection, Criteria::NOT_EQUAL);
 
       /**
        * match machine tags against machine tags
