@@ -1,9 +1,12 @@
 <?php
+  use_helper('iceMultimedia');
   $link = link_to('Back to Collector Profile >>', 'collector_by_slug', $collector);
   cq_page_title($title, $link, array());
 ?>
 
-<?php echo ice_image_tag_placeholder('620x67'); ?>
+<?php if (( $header_image = $collector->getMultimediaByRole(CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE) )): ?>
+  <?php echo ice_image_tag_multimedia($header_image, '620x67'); ?>
+<?php endif; ?>
 
 <p class="spacer-top-15">
   <?= $collector->getSeller()->getSellerSettingsStoreDescription(); ?>
