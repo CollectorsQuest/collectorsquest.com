@@ -346,16 +346,12 @@ class CollectorPeer extends BaseCollectorPeer
         $collectorEmail->save();
       }
 
+      // if we are have a referral code to an organization, make the collector
+      // a member of that organization
       if (!empty($data['referral']) && $organization = OrganizationQuery::create()->findOneByReferralCode($data['referral']))
       {
-        //FIXME: Replace with OrganizationAccess::addMember();
-        $organization_member = new OrganizationMembership();
-        $organization_member->setOrganization($organization);
-        $organization_member->setCollector($collector);
-        $organization_member->setType(OrganizationMembershipPeer::TYPE_MEMBER);
-        $organization_member->save();
+        OrganizationAccess::addMember($organization, $collector);
       }
-
     }
     catch (PropelException $e)
     {
