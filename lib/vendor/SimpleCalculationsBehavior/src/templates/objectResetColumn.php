@@ -2,7 +2,7 @@
 /**
  * Reset the value of the <?php echo $column->getFullyQualifiedName() ?> column
  *
- * @param boolean $andSave Should a save() be performed after the increment
+ * @param boolean $andSave Should a save() be performed after the reset
  * @param PropelPDO $con A connection object
  *
  * @return <?php echo $objectClass ?> The object instance for a fluid interface

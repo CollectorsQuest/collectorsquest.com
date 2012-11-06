@@ -37,7 +37,10 @@ classes:
         name:                 nb_members
         foreign_table:        organization_membership
         expression:           COUNT(*)
-      num_views:              ~
+      simple_calculations:
+        columns:
+           - num_views
+
     behaviors:
       PropelActAsEblobBehavior:
         column:               eblob
