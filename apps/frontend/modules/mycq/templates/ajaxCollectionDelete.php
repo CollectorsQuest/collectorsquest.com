@@ -14,11 +14,14 @@
   <h1>Are you sure?</h1>
 
   <p>
-
-    Deleting collection "<?= $collection->getName() ?>" also delete associated collectibles.<br/><br/>
+    You are trying to delete the whole collection <strong>"<?= $collection->getName() ?>"</strong>.
     <?php if ($collection->getCountCollectibles()): ?>
-      Will be deleted <strong><?= $collection->getCountCollectibles() ?></strong> collectible(s) as well.
+      <br/>
+      This collection has a total of <strong><?= $collection->getCountCollectibles() ?></strong> collectible(s).
     <?php endif; ?>
+    <br/><br/>
+
+    Is that what you want to do? <strong>(can't be undone)</strong>
   </p>
 
   <br/>
