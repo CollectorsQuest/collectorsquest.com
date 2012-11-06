@@ -107,8 +107,13 @@ else
         }
         else
         {
-          echo link_to(
-            cq_image_tag('headlines/want-to-sell-this-item.png', array('align' => 'right')),
+          cq_ad_slot(
+            cq_image_tag('headlines/want-to-sell-this-item.png',
+              array(
+                'width' => '530', 'height' => '71', 'align' => 'right',
+                'alt' => 'Want to sell this item?'
+              )
+            ),
             '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
           );
         }
