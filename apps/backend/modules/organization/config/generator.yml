@@ -19,6 +19,10 @@ generator:
         nb_members: { label: "Members count" }
       list:
         display: [=name, founder, display_type, access, nb_members, updated_at, created_at]
+        object_actions:
+          _edit: ~
+          _delete: ~
+          goToFrontendPage: { label: "Go to frontend page", params: { target: "_blank" } }
       filter:
         class:  BackendOrganizationFormFilter
         display: [type, founder_id, access, name, url, phone]
@@ -26,4 +30,5 @@ generator:
         class:  BackendOrganizationForm
       edit:
         display: [founder_id, type, type_other, name, url, phone, description, access, referral_code, logo, profile_image, _form_images, _file_uploader]
-      new:     ~
+      new:
+        display: [founder_id, type, type_other, name, url, phone, description, access, referral_code, logo, profile_image]

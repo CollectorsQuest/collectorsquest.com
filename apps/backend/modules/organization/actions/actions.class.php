@@ -13,4 +13,16 @@ require_once dirname(__FILE__).'/../lib/organizationGeneratorHelper.class.php';
  */
 class organizationActions extends autoOrganizationActions
 {
+  public function executeListGoToFrontendPage()
+  {
+    /* @var $organization Organization */
+    $organization = $this->getRoute()->getObject();
+
+    $url = sfProjectConfiguration::getActive()->generateFrontendUrl(
+      'organization_by_slug',
+      $organization
+    );
+
+    $this->redirect($url);
+  }
 }
