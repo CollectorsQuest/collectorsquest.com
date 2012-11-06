@@ -1,5 +1,16 @@
 ## ORGANIZATIONS
 
+organization_join:
+  url:  /organization/:id/join
+  class:  cqPropelORMRoute
+  options:
+    model:  Organization
+    type:   object
+    statsd: false
+    column: id
+  param: { module: organization, action: join }
+  requirements: { id: '\d+', sf_method: 'post' }
+
 organization_by_slug:
   url:    /organization/:id/:slug
   class:  cqPropelORMRoute
