@@ -14,6 +14,11 @@
 class Organization extends BaseOrganization
 {
 
+  /**
+   * Return the type of the organization for display purposes
+   *
+   * @return    string
+   */
   public function getDisplayType()
   {
     if ($this->getOrganizationType())
@@ -24,6 +29,24 @@ class Organization extends BaseOrganization
     {
       return $this->getTypeOther();
     }
+  }
+
+  /**
+   * @param     Collector|integer $collector
+   * @param     PropelPDO $con
+   *
+   * @return    boolean
+   */
+  public function isMember($collector, PropelPDO $con = null)
+  {
+    return !!OrganizationMembershipQuery::create()
+      ->filterByOrganization($this)
+      ->_if($collector instanceof Collector)
+        ->filterByCollector($collector)
+      ->_else()
+        ->filterByCollecotrId($collector)
+      ->_endif()
+      ->count($con);
   }
 
 }
