@@ -36,6 +36,7 @@ classes:
       aggregate_column:
         name:                 nb_members
         foreign_table:        organization_membership
+      num_views:              ~
     behaviors:
       PropelActAsEblobBehavior:
         column:               eblob

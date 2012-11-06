@@ -132,6 +132,8 @@ class BackendOrganizationForm extends OrganizationForm
     parent::unsetFields();
 
     unset($this['slug']);
+    unset($this['nb_members']);
+    unset($this['num_views']);
     unset($this['updated_at']);
     unset($this['created_at']);
     unset($this['organization_membership_list']);

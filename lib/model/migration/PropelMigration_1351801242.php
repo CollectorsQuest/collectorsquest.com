@@ -68,6 +68,7 @@ class PropelMigration_1351801242
           `referral_code` VARCHAR(50),
           `access` TINYINT DEFAULT 1 NOT NULL,
           `nb_members` INTEGER,
+          `num_views` INTEGER,
           `eblob` TEXT,
           `created_at` DATETIME,
           `updated_at` DATETIME,
