@@ -74,11 +74,6 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeHoliday()
   {
-    $this->redirectUnless(
-      cqGateKeeper::open('holiday_marketplace', 'page'),
-      '@marketplace'
-    );
-
     $this->categories = ContentCategoryQuery::create()
       ->filterById(array(2, 402, 674, 1767, 1367, 1425, 1677, 1755, 1604, 3043))
       ->hasCollectiblesForSale()
