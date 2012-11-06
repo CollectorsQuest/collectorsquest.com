@@ -43,7 +43,7 @@ var APP = window.APP = {
   }, // common
 
   organization: {
-    edit: function() {
+    init: function() {
       var $organization_type = $('#organization_type'),
           $organization_type_other = $('#organization_type_other');
 
