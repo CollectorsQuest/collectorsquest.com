@@ -31,6 +31,8 @@ class CollectorGuideSignupForm extends CollectorSignupStep1Form
     parent::configure();
     $this->offsetUnset('display_name');
 
+    $this->setupReferralField();
+
     $this->widgetSchema->setFormFormatterName('BootstrapWithRowFluid');
   }
 
@@ -50,5 +52,13 @@ class CollectorGuideSignupForm extends CollectorSignupStep1Form
     }
 
     return md5($secret.session_id().'CollectorSignupStep1Form');
+  }
+
+  public function setupReferralField()
+  {
+    $this->widgetSchema['referral'] = new sfWidgetFormInputText();
+    $this->validatorSchema['referral'] = new sfValidatorPropelChoice(array(
+      'model' => 'Organization', 'column' => 'referral_code', 'required' => false
+    ));
   }
 }

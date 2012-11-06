@@ -345,6 +345,17 @@ class CollectorPeer extends BaseCollectorPeer
         $collectorEmail->setIsVerified(false);
         $collectorEmail->save();
       }
+
+      if (!empty($data['referral']) && $organization = OrganizationQuery::create()->findOneByReferralCode($data['referral']))
+      {
+        //FIXME: Replace with OrganizationAccess::addMember();
+        $organization_member = new OrganizationMembership();
+        $organization_member->setOrganization($organization);
+        $organization_member->setCollector($collector);
+        $organization_member->setType(OrganizationMembershipPeer::TYPE_MEMBER);
+        $organization_member->save();
+      }
+
     }
     catch (PropelException $e)
     {
