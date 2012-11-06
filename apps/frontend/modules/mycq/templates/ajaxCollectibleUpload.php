@@ -7,8 +7,8 @@
 ?>
 
 <form action="<?= url_for('@ajax_mycq?section=collectible&page=upload'); ?>"
-      method="post" id="fileupload" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
-
+      method="post" id="fileupload-c" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
+<div id="fileupload-input-box">
   <h1><?= $model == 'collectible' ? 'Add a New Item' : 'Create Collection'?> - Step 1</h1>
   <?= $form['thumbnail']->renderRow(); ?>
 
@@ -16,21 +16,20 @@
   <?php if ($collection_id) : ?>
   <input type="hidden" name="collection_id" value="<?= $collection_id ?>">
   <?php endif; ?>
-  <!--
+
   <div id="dropzone-wrapper" class="dropzone-container">
-    <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
+    <div id="dropzone1" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
       <span class="info-no-items-to-sort" style="text-align: center">
         &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop
       </span>
     </div>
   </div>
-  -->
+</div>
 
-  <div id="fileupload-modal" class="modal hide">
-    <div class="modal-header">
+  <div id="fileupload-box" class="hide">
+
       <h3>Uploading file, please wait...</h3>
-    </div>
-    <div class="modal-body">
+
 
       <!-- The table listing the files available for upload/download -->
       <table class="table table-striped" style="width: 515px;">
@@ -44,22 +43,7 @@
         <tbody class="files"></tbody>
       </table>
     </div>
-    <div class="modal-footer">
-      <div class="span3 fileupload-progress">
-        <!-- The global progress bar -->
-        <div class="progress progress-info progress-striped active">
-          <div class="bar" style="width:0;"></div>
-        </div>
-      </div>
-      <!-- The extended global progress information -->
-      <div class="span5 progress-extended">&nbsp;</div>
-      <div class="span4">
-        <a href="<?= url_for('@mycq_upload_cancel?batch='. $batch); ?>" id="button-fileupload"
-           class="btn btn-danger" data-loading-text="Cancelling...">
-          Cancel Upload
-        </a>
-      </div>
-    </div>
+
   </div>
 
   <div class="form-actions">
@@ -141,14 +125,17 @@
     'use strict';
 
     // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload();
-    $('#fileupload').fileupload('option', 'autoUpload', true);
-    $('#fileupload').fileupload('option', 'dropZone', $('#dropzone'));
-    $('#fileupload').fileupload('option', 'limitConcurrentUploads', 3);
+    $('#fileupload-c').fileupload();
+    $('#fileupload-c').fileupload('option', 'autoUpload', true);
+    $('#fileupload-c').fileupload('option', 'dropZone', $('#dropzone1'));
+    $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);
 
-    $('#fileupload')
+    $('#fileupload-c')
       .bind('fileuploadstart', function(e, data) {
-        $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
+                $('#fileupload-input-box').addClass('hide');
+                $('#fileupload-box').removeClass('hide');
+                $('.modal-footer').hide();
+       // $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
       })
       .bind('fileuploadstop', function(e, data)
       {
@@ -162,25 +149,25 @@
         }
         else
         {
-          window.location.href = finish;
+        //  window.location.href = finish;
         }
       });
 
     // Enable iframe cross-domain access via redirect option:
-    $('#fileupload').fileupload(
+    $('#fileupload-c').fileupload(
       'option', 'redirect',
       window.location.href.replace(
         /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
       )
     );
 
-    $('#fileupload').fileupload('option', {
+    $('#fileupload-c').fileupload('option', {
       maxFileSize: 10000000,
       acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
     });
 
     // Load existing files:
-    $('#fileupload').each(function () {
+    $('#fileupload-c').each(function () {
       var that = this;
       $.getJSON(this.action, function (result) {
         if (result && result.length) {
