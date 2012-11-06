@@ -21,16 +21,35 @@ $collector = CollectorQuery::create()
 $t->diag('Test ::addMember()');
 
   OrganizationAccess::addMember($organization, $collector);
-
   $t->is($organization->getNbMembers(), 1,
     'addMember works as expected');
   $t->ok($organization->isMember($collector),
     'addMember works as expected');
-
 
   OrganizationAccess::addMember($organization, $collector);
-
   $t->is($organization->getNbMembers(), 1,
     'trying to add the same collector twice doesn\'t work');
   $t->ok($organization->isMember($collector),
     'trying to add the same collector twice doesn\'t work');
+
+
+$t->diag('Test ::createMembershipRequest()');
+
+  try {
+    OrganizationAccess::createMembershipRequest($organization, $collector);
+    $t->fail('::createMembershipRequest() throws an exception when collector is already member of the organization');
+  }  catch (OrganizationAccessMembershipRequestAlreadyMemberException $e) {
+    $t->pass('::createMembershipRequest() throws an exception when collector is already member of the organization');
+  }
+
+  $collector_2 = CollectorQuery::create()
+    ->findOneByUsername('ivan.ivanov');
+  $t->ok(OrganizationAccess::createMembershipRequest($organization, $collector_2),
+    'createMembershipRequest successfully creates a new request');
+
+  try {
+    OrganizationAccess::createMembershipRequest($organization, $collector_2);
+    $t->fail('::createMembershipRequest() throws an exception when collector is already member of the organization');
+  }  catch (OrganizationAccessMembershipRequestAlreadyPendingException $e) {
+    $t->pass('::createMembershipRequest() throws an exception when collector is already member of the organization');
+  }

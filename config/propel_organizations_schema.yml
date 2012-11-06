@@ -72,7 +72,7 @@ classes:
       organization_id:        { type: integer,      required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
       collector_id:           { type: integer,      required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
       is_invitation:          { type: boolean,      required: true, default: false }
-      status:                 { type: enum,         required: true, valueSet: "pending, approved, denied" }
+      status:                 { type: enum,         required: true, valueSet: "pending, approved, denied", default: pending }
     propel_behaviors:
       symfony:                { form: false, filter: false }
       timestampable:          ~
