@@ -1,0 +1,13 @@
+## ORGANIZATIONS
+
+organization_by_slug:
+  url:    /organization/:id/:slug
+  class:  cqPropelORMRoute
+  options:
+    model:  Organization
+    type:   object
+    statsd: true
+    column: id
+  param:  { module: organization, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
