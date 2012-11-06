@@ -1,6 +1,6 @@
 <?php
   use_helper('iceMultimedia');
-  $link = link_to('Back to Collector Profile >>', 'collector_by_slug', $collector);
+  $link = link_to('Back to Seller Profile >>', 'collector_by_slug', $collector);
   cq_page_title($title, $link, array());
 ?>
 

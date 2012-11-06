@@ -9,7 +9,7 @@
 
 <?php
   $link = $sf_user->isOwnerOf($collector) ? link_to('Edit Market', '@mycq_marketplace', array('class' => 'text-v-middle link-align')) .'&nbsp; | &nbsp;' : null ;
-  $link = link_to('See all &raquo;', 'collector_shop', $collector, array('class' => 'text-v-middle link-align'));
+  $link = link_to('See all &raquo;', 'seller_shop', $collector, array('class' => 'text-v-middle link-align'));
 
   cq_section_title($title, $link);
 ?>
@@ -36,7 +36,7 @@
           'Want to see more? Click here for all items for sale from %s!',
           $collector->getDisplayName()
         ),
-        'collector_shop', $collector
+        'seller_shop', $collector
       );
     ?>
   </div>
