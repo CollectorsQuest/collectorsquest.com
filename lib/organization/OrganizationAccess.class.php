@@ -39,6 +39,24 @@ class OrganizationAccess
     return true;
   }
 
+  /**
+   * Create a membership request for a particular organization.
+   *
+   * If the requesting collector is already a member, or a membership request already
+   * exists for this organization an exception with the specific error is thrown
+   *
+   * @param     Organization $organization
+   * @param     Collector $collector
+   * @param     boolean $is_invitation
+   * @param     PropelPDO $con
+   *
+   * @return    boolean
+   * @throws    OrganizationAccessMembershipRequestAlreadyMemberException
+   * @throws    OrganizationAccessMembershipRequestAlreadyPendingException
+   * @throws    OrganizationAccessMembershipRequestAlreadyApprovedException
+   * @throws    OrganizationAccessMembershipRequestAlreadyDeniedException
+   * @throws    OrganizationAccessException
+   */
   public static function createMembershipRequest(
     Organization $organization,
     Collector $collector,
