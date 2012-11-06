@@ -109,7 +109,7 @@ class OrganizationAccess
           throw new OrganizationAccessMembershipRequestAlreadyDeniedException();
 
         default:
-          throw new OrganizationAccessException();
+          throw new OrganizationAccessMembershipRequestAlreadyExistsException();
       }
     }
   }

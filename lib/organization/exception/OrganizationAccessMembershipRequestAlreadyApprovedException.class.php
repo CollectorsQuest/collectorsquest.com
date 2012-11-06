@@ -1,6 +1,7 @@
 <?php
 
-class OrganizationAccessMembershipRequestAlreadyApprovedException extends Exception
+class OrganizationAccessMembershipRequestAlreadyApprovedException
+extends OrganizationAccessMembershipRequestAlreadyExistsException
 {
 
 }

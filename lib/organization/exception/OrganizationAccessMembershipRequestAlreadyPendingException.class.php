@@ -1,6 +1,7 @@
 <?php
 
-class OrganizationAccessMembershipRequestAlreadyPendingException extends Exception
+class OrganizationAccessMembershipRequestAlreadyPendingException
+extends OrganizationAccessMembershipRequestAlreadyExistsException
 {
 
 }
