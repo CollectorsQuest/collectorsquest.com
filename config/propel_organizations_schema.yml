@@ -71,6 +71,7 @@ classes:
       id:                     ~
       organization_id:        { type: integer,      required: true, foreignClass: Organization, foreignReference: id, onDelete: cascade }
       collector_id:           { type: integer,      required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      organization_admin_id:  { type: integer,      required: false, foreignClass: Collector, foreignReference: id, fkPhpName: OrganizationAdmin, fkRefPhpName: HandledOrganizationMembershipRequest  }
       is_invitation:          { type: boolean,      required: true, default: false }
       status:                 { type: enum,         required: true, valueSet: "pending, approved, denied", default: pending }
     propel_behaviors:

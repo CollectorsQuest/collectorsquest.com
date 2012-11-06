@@ -135,13 +135,15 @@ class PropelMigration_1351801242
           `id` INTEGER NOT NULL AUTO_INCREMENT,
           `organization_id` INTEGER NOT NULL,
           `collector_id` INTEGER NOT NULL,
+          `organization_admin_id` INTEGER,
           `is_invitation` TINYINT(1) DEFAULT 0 NOT NULL,
-          `status` TINYINT NOT NULL,
+          `status` TINYINT DEFAULT 0 NOT NULL,
           `created_at` DATETIME,
           `updated_at` DATETIME,
           PRIMARY KEY (`id`),
           INDEX `organization_membership_request_FI_1` (`organization_id`),
           INDEX `organization_membership_request_FI_2` (`collector_id`),
+          INDEX `organization_membership_request_FI_3` (`organization_admin_id`),
           CONSTRAINT `organization_membership_request_FK_1`
             FOREIGN KEY (`organization_id`)
             REFERENCES `organization` (`id`)
@@ -149,7 +151,10 @@ class PropelMigration_1351801242
           CONSTRAINT `organization_membership_request_FK_2`
             FOREIGN KEY (`collector_id`)
             REFERENCES `collector` (`id`)
-            ON DELETE CASCADE
+            ON DELETE CASCADE,
+          CONSTRAINT `organization_membership_request_FK_3`
+            FOREIGN KEY (`organization_admin_id`)
+            REFERENCES `collector` (`id`)
         ) ENGINE=InnoDB;
 
         # This restores the fkey checks, after having unset them earlier
