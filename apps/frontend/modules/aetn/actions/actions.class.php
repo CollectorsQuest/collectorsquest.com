@@ -62,9 +62,6 @@ class aetnActions extends cqFrontendActions
 
   public function executeAmericanRestoration(sfWebRequest $request)
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_american_restoration', 'page'));
-
     /** @var $aetn_shows array */
     $aetn_shows = sfConfig::get('app_aetn_shows');
 
@@ -139,9 +136,6 @@ class aetnActions extends cqFrontendActions
 
   public function executePickedOff(sfWebRequest $request)
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_picked_off', 'page'));
-
     $picked_off = sfConfig::get('app_aetn_picked_off');
 
     $collection = CollectorCollectionQuery::create()->findOneById($picked_off['collection']);
@@ -218,17 +212,11 @@ class aetnActions extends cqFrontendActions
 
   public function executeMwba()
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
-
     return sfView::SUCCESS;
   }
 
   public function executeMwbaPetroliana()
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
-
     $collectible_ids = array(
         461, 86332, 88537, 82253,
       78137, 76082, 28180, 84250,
@@ -253,9 +241,6 @@ class aetnActions extends cqFrontendActions
 
   public function executeMwbaRooseveltiana()
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
-
     $collectible_ids = array(
       16967, 56670, 56218, 16610,
       16604, 16608, 87811, 16601,
@@ -282,9 +267,6 @@ class aetnActions extends cqFrontendActions
 
   public function executeMwbaRailroadiana()
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
-
     $collectible_ids = array(
       87910, 89843, 89893,  5420,
       89864, 56685, 12738, 93008,

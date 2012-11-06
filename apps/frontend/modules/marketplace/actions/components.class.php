@@ -279,14 +279,15 @@ class marketplaceComponents extends cqFrontendComponents
           'has_thumbnail' => true,
           'is_public' => true,
           'uint1' => 1
-        )
+        ),
+        'sortby' => 'date',
+        'order' => 'desc'
       );
-
-      $query['sortby'] = 'date';
-      $query['order'] = 'desc';
 
       if (!empty($s1) && $content_category = ContentCategoryQuery::create()->findOneById((integer) $s1))
       {
+        $query['sortby'] = 'uint4';
+        $query['order']  = 'desc';
         $query['filters']['uint3'] = array();
 
         // Add the descendant categories
@@ -303,24 +304,25 @@ class marketplaceComponents extends cqFrontendComponents
 
       switch ($s2)
       {
-        case 'under-100':
+        case 'under-50':
           $query['sortby'] = 'uint2';
-          $query['order'] = 'desc';
-          $query['filters']['uint2'] = array('max' => 10000);
+          $query['order']  = 'desc';
+          $query['filters']['uint2'] = array('max' => 4900);
           break;
-        case '100-200':
+        case '50-200':
           $query['sortby'] = 'uint2';
-          $query['order'] = 'asc';
-          $query['filters']['uint2'] = array('min' => 10100, 'max' => 20000);
+          $query['order']  = 'asc';
+          $query['filters']['uint2'] = array('min' => 5000, 'max' => 20000);
           break;
-        case 'over-250':
+        case '200-500':
           $query['sortby'] = 'uint2';
-          $query['order'] = 'asc';
-          $query['filters']['uint2'] = array('min' => 25000);
+          $query['order']  = 'asc';
+          $query['filters']['uint2'] = array('min' => 20000, 'max' => 50000);
           break;
-        default:
-          $query['sortby'] = 'date';
-          $query['order'] = 'desc';
+        case 'over-500':
+          $query['sortby'] = 'uint2';
+          $query['order']  = 'asc';
+          $query['filters']['uint2'] = array('min' => 50100);
           break;
       }
 

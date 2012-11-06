@@ -1,10 +1,7 @@
 all:
   pages:
-    aetn_picked_off: true
-    aetn_american_restoration: true
     aetn_franks_picks: false
-    aetn_mwba: true
-    holiday_marketplace: false
+    holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
 
@@ -22,10 +19,7 @@ all:
 
 next:
   pages:
-    aetn_picked_off: true
-    aetn_american_restoration: true
     aetn_franks_picks: true
-    aetn_mwba: true
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
@@ -44,10 +38,7 @@ next:
 
 dev:
   pages:
-    aetn_picked_off: true
-    aetn_american_restoration: true
     aetn_franks_picks: true
-    aetn_mwba: true
     holiday_marketplace: true
     marketplace_categories: true
     mycq_incomplete: true
