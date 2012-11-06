@@ -15,8 +15,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->filterByIsReady(true)
       ->filterByPriceAmount(1, Criteria::GREATER_EQUAL)
       ->filterByQuantity(1, Criteria::GREATER_EQUAL)
-      // ->hasActiveCredit()
-      ;
+      ->hasActiveCredit();
   }
 
   /**
@@ -177,23 +176,61 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->joinCollectible()
       ->useCollectibleQuery()
         ->filterByTags($tags, $comparison)
+        //->orderByTags($tags, $comparison)
       ->endUse();
   }
 
   /**
    * @param  array   $tags
-   * @param  string  $namespace
-   * @param  string  $key
    * @param  string  $comparison
    *
    * @return CollectibleForSaleQuery
    */
-  public function filterByMachineTags($tags, $namespace, $key = 'all', $comparison = Criteria::IN)
+  public function orderByTags($tags, $comparison = Criteria::IN)
   {
     return $this
       ->joinCollectible()
       ->useCollectibleQuery()
-        ->filterByMachineTags($tags, $namespace, $key, $comparison)
+        ->orderByTags($tags, $comparison)
+      ->endUse();
+  }
+
+  /**
+   * @see Collectile::filterByMachineTags()
+   *
+   * @param  array   $tags
+   * @param  string  $namespace
+   * @param  array   $keys
+   * @param  string  $comparison
+   *
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByMachineTags($tags, $namespace, $keys = array('all'), $comparison = Criteria::IN)
+  {
+    return $this
+      ->joinCollectible()
+      ->useCollectibleQuery()
+        ->filterByMachineTags($tags, $namespace, $keys, $comparison)
+        ->orderByMachineTags($tags, $namespace, $keys, $comparison)
+      ->endUse();
+  }
+
+  /**
+   * @see Collectile::orderByMachineTags()
+   *
+   * @param  array   $tags
+   * @param  string  $namespace
+   * @param  array   $keys
+   * @param  string  $comparison
+   *
+   * @return CollectibleForSaleQuery
+   */
+  public function orderByMachineTags($tags, $namespace, $keys = array('all'), $comparison = Criteria::IN)
+  {
+    return $this
+      ->joinCollectible()
+      ->useCollectibleQuery()
+        ->orderByMachineTags($tags, $namespace, $keys, $comparison)
       ->endUse();
   }
 

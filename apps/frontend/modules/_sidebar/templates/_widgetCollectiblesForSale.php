@@ -34,14 +34,15 @@ $_height = 0;
 
 <div id="items-for-sale-sidebar">
   <div class="row thumbnails">
-    <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
-      <?php
-          include_partial(
-            'marketplace/collectible_for_sale_grid_view_square_small',
-            array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
-          );
-      ?>
-    <?php endforeach; ?>
+    <?php
+      for ($i = 0; $i < intval($collectibles_for_sale->count() / 2) * 2; $i++)
+      {
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square_small',
+          array('collectible_for_sale' => $collectibles_for_sale[$i], 'i' => $i)
+        );
+      }
+    ?>
   </div>
 </div>
 

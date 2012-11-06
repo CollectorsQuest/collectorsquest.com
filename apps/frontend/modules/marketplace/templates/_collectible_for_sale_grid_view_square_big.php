@@ -23,10 +23,12 @@ $url = !empty($url) ? $url : url_for_collectible($collectible_for_sale->getColle
 
   <a href="<?= $url; ?>" class="zoom-zone">
     <div class="collectible-info">
-      <?= $collectible_for_sale->getCollectible()->getName(); ?><br/>
-      <span class="price">
-        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
-      </span>
+      <div style="padding: 10px;">
+        <?= $collectible_for_sale->getCollectible()->getName(); ?><br/>
+        <span class="price">
+          <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+        </span>
+      </div>
     </div>
 
     <?php

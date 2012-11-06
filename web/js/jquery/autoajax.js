@@ -27,7 +27,7 @@
       $(this).click(function ()
       {
         if (opts.onstart) {
-          opts.onstart();
+          opts.onstart($(this));
         }
 
         var loc = this.href;
@@ -50,7 +50,7 @@
             opts.success = function (data) {
               $(div).html(data);
               if (opts.oncomplete) {
-                opts.oncomplete();
+                opts.oncomplete($(this));
               }
             };
           }
