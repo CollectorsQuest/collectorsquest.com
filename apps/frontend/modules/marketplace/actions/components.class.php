@@ -350,7 +350,9 @@ class marketplaceComponents extends cqFrontendComponents
       $query
         ->hasThumbnail()
         ->filterById(null, Criteria::NOT_EQUAL)
-        ->orderByCreatedAt(Criteria::DESC);
+        ->orderByCreatedAt(Criteria::DESC)
+        ->clearGroupByColumns()
+        ->groupBy('Id');
 
       $pager = new cqPropelModelPager($query, 16);
     }
