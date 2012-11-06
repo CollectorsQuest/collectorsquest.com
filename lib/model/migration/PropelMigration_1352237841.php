@@ -3,7 +3,7 @@
 /**
  * Migration to automatic set rating & machine tags for collectibles from predefined collections
  */
-class PropelMigration_1351806590
+class PropelMigration_1352237841
 {
 
   public function preUp()
@@ -13,16 +13,16 @@ class PropelMigration_1351806590
 
   public function postUp()
   {
-      $collectorIdentifiers = CollectorIdentifierQuery::create()
-          ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
-          ->find();
+    $collectorIdentifiers = CollectorIdentifierQuery::create()
+      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
+      ->find();
 
-      /* @var $collectorIdentifiers CollectorIdentifier[] */
-      foreach ($collectorIdentifiers as $identifier)
-      {
-          $identifier->setProvider($identifier->getProviderFromIdentifier());
-          $identifier->save();
-      }
+    /* @var $collectorIdentifiers CollectorIdentifier[] */
+    foreach ($collectorIdentifiers as $identifier)
+    {
+      $identifier->setProvider($identifier->getProviderFromIdentifier());
+      $identifier->save();
+    }
   }
 
   public function preDown($manager)
