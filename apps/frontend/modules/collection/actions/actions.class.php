@@ -63,17 +63,11 @@ class collectionActions extends cqFrontendActions
       }
       else if ($collection->getId() == $american_restoration['collection'])
       {
-       $this->redirectIf(
-          IceGateKeeper::open('aetn_american_restoration', 'page'),
-          '@aetn_american_restoration', 301
-        );
+        $this->redirect('@aetn_american_restoration', 301);
       }
       else if ($collection->getId() == $picked_off['collection'])
       {
-        $this->redirectIf(
-          IceGateKeeper::open('aetn_picked_off', 'page'),
-          '@aetn_picked_off', 301
-        );
+        $this->redirect('@aetn_picked_off', 301);
       }
     }
 

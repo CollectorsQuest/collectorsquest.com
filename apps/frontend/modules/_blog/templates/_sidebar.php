@@ -2,7 +2,8 @@
 /**
  * @var $wp_post wpPost
  * @var $wp_user wpUser
- * @var $data array
+ * @var $data    array
+ * @var $sf_user cqFrontendUser
  */
 
 if ($data['is_single'])
