@@ -14,7 +14,7 @@
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
-    <?= image_tag_multimedia($image, '75x75', array('style'=> 'position: absolute; top: -10px; right: 10px;')); ?>
+    <?= image_tag_collectible($collectible, '75x75', array('style'=> 'position: absolute; top: -10px; right: 10px;')); ?>
 
     <?= $form['name']->renderRow(); ?>
     <?= $form['description']->renderRow(); ?>

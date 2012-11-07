@@ -1,19 +1,19 @@
 <?php
 /**
- * @var $form               CollectibleCreateForm
- * @var $collectible        Collectible
- * @var $collectible_public Collectible
- * @var $image              iceModelMultimedia
+ * @var $form         CollectibleCreateForm
+ * @var $collectible  Collectible
+ * @var $donor        Collectible
+ * @var $image        iceModelMultimedia
  */
 ?>
 
 <?php
-  if (isset($collectible_public) && !$collectible_public->isNew())
+  if (isset($collectible) && !$collectible->isNew())
   {
     include_partial(
       'global/loading',
       array('url' => url_for(
-        'mycq_collectible_by_slug', array('sf_subject' => $collectible_public, 'return_to' => 'collection')
+        'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection')
       ))
     );
 
@@ -21,14 +21,14 @@
   }
 ?>
 
-<form action="<?= url_for('@ajax_mycq?section=collectible&page=create&collectible_id=' . $collectible->getId()); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collectible&page=create&collectible_id=' . $donor->getId()); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
   <h1>Describe Your Item - Step 2</h1>
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
-    <?= image_tag_multimedia($image, '75x75', array('style'=> 'position: absolute; top: 0px; right: 10px;')); ?>
+    <?= image_tag_collectible($donor, '75x75', array('style'=> 'position: absolute; top: 0px; right: 10px;')); ?>
 
     <?= $form['name']->renderRow(); ?>
     <?= $form['description']->renderRow(); ?>
@@ -90,7 +90,7 @@
     <?php endif; ?>
 
     <?php
-      if (isset($collectible_public) && !$collectible_public->isNew())
+      if (isset($collectible) && !$collectible->isNew())
       {
         echo '$("#form-create-collectible").showLoading();';
       }

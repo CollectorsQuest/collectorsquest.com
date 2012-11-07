@@ -565,13 +565,6 @@ class ajaxAction extends cqAjaxAction
         );
 
         return $this->renderText(json_encode($output));
-
-//        return $this->redirect('ajax_mycq', array(
-//            'section' => $model,
-//            'page' => 'create',
-//            'collectible_id' => $collectible->getId(),
-//            'collection_id' => $this->collection_id
-//        ));
       }
     }
 
@@ -666,7 +659,6 @@ class ajaxAction extends cqAjaxAction
 
     $this->form = $form;
     $this->collectible = $collectible;
-    $this->image = $collectible->getPrimaryImage();
 
     return $template;
   }
@@ -779,16 +771,15 @@ class ajaxAction extends cqAjaxAction
         $collectible->addCollection($collection);
         $collectible->save();
 
-        /*
+        /**
          * after we have set all values collectible should be public
          * used in template after form is submitted with proper values
          */
-        $this->collectible_public = $collectible;
+        $this->collectible = $collectible;
       }
     }
 
-    $this->image = $collectible->getPrimaryImage();
-    $this->collectible = $collectible;
+    $this->donor = $collectible;
     $this->form = $form;
 
     return $template;
@@ -821,6 +812,7 @@ class ajaxAction extends cqAjaxAction
         }
 
         $form->setDefault('collectible', $default);
+        $this->donor = $collectible;
       }
     }
     elseif ($request->isMethod(sfRequest::GET))
