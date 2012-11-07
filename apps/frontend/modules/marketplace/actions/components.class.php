@@ -197,6 +197,9 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $wp_posts wpPost[] */
     $wp_posts = $q->find();
 
+    // used to determine if ajax request should be send
+    $this->wp_post_slugs = array();
+
     foreach ($wp_posts as $wp_post)
     {
       $meta = $wp_post->getPostMetaValue('_market_theme');
@@ -208,6 +211,7 @@ class marketplaceComponents extends cqFrontendComponents
         'content' => $wp_post->getPostContent(),
         'tags' => $wp_post->getTags('array')
       );
+      $this->wp_post_slugs[] =  $wp_post->getSlug();
     }
 
     return sfView::SUCCESS;
@@ -221,13 +225,28 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $page integer */
     $page = (integer) $this->getRequestParameter('p', 1);
 
+    /* @var $hash string */
+    $hash = $this->getRequestParameter('hash', null);
+
     /* @var $q wpPostQuery */
-    $q = wpPostQuery::create()
-      ->filterByPostType('market_theme')
-      ->filterByPostParent(0)
-      ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
-      ->orderByPostDate(Criteria::DESC)
-      ->offset($t);
+    if ($hash)
+    {
+      $q = wpPostQuery::create()
+        ->filterByPostName($hash)
+        ->filterByPostType('market_theme')
+        ->filterByPostParent(0)
+        ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
+        ->orderByPostDate(Criteria::DESC);
+    }
+    else
+    {
+      $q = wpPostQuery::create()
+        ->filterByPostType('market_theme')
+        ->filterByPostParent(0)
+        ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
+        ->orderByPostDate(Criteria::DESC)
+        ->offset($t);
+    }
 
     if (sfConfig::get('sf_environment') === 'prod')
     {

@@ -1,5 +1,6 @@
 <?php
-/* @var $menu array */
+/* @var $menu          array */
+/* @var $wp_post_slugs array */
 ?>
 
 <div id="HolidayMarketHeader">
@@ -21,7 +22,10 @@
               echo link_to(
                 $item['name'], 'ajax_marketplace',
                 array('section' => 'component', 'page' => 'holidayTheme', 't' => $i, 'p' => 1),
-                array('anchor' => 'holiday-market-theme', 'class' => 'ajax', 'data-index' => $i)
+                array(
+                  'anchor' => 'holiday-market-theme', 'class' => 'ajax', 'data-index' => $i,
+                  'data-slug' =>  $item['slug']
+                )
               );
             ?>
           </li>
@@ -30,10 +34,10 @@
       </div>
 
       <span class="arrow-previous">
-        <a href="#slot1" class="arrow-white-previous">&nbsp;</a>
+        <a class="arrow-white-previous">&nbsp;</a>
       </span>
       <span class="arrow-next">
-        <a href="#slot1" class="arrow-white-next">&nbsp;</a>
+        <a class="arrow-white-next">&nbsp;</a>
       </span>
     </div>
   </div>
@@ -100,6 +104,31 @@
 
         $('li.cloned', '#scrollable').addClass('ajaxified');
       }
+    });
+
+    $(function() {
+      // if there is hash set - load page with proper content
+      var hash = window.location.hash;
+      hash = hash.replace('#','');
+
+      // check if the hash is in the list of available caches
+      if ($.inArray(hash, <?php echo json_encode($wp_post_slugs); ?>) != -1) {
+        $('#holiday-market-theme').load('/ajax/marketplace/component/holidayTheme?hash=' + hash, function() {
+          var new_scrollable_index = $('a[data-slug=' + hash + ']').data('index');
+          $('#scrollable').data('scrollable').seekTo(new_scrollable_index);
+        });
+      }
+
+      // use this function to make the back button work
+      window.onhashchange = function () {
+
+      }
+
+      // change the hash when users press arrows or theme names
+      $('a.ajax').click(function(e) {
+        e.preventDefault();
+        window.location.hash = $(this).data('slug');
+      });
     });
   });
 </script>
