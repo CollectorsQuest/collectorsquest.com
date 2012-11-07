@@ -542,7 +542,7 @@ var COMMON = window.COMMON = (function(){
               {
                 return this;
               }
-            }
+            };
           }());
         }
       }
