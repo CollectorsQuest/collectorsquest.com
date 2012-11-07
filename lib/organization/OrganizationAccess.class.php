@@ -71,7 +71,7 @@ class OrganizationAccess
 
     $existing_request = OrganizationMembershipRequestQuery::create()
       ->filterByOrganization($organization)
-      ->filterByCollector($collector)
+      ->filterByCollectorRelatedByCollectorId($collector)
       ->orderById(Criteria::DESC) // alternative to an "order by created at" cond
       ->findOne($con);
 

@@ -45,7 +45,7 @@ $t->diag('Test ::createMembershipRequest()');
   $collector_2 = CollectorQuery::create()
     ->findOneByUsername('ivan.ivanov');
   $t->ok(OrganizationAccess::createMembershipRequest($organization, $collector_2),
-    'createMembershipRequest successfully creates a new request');
+    '::createMembershipRequest() successfully creates a new request');
 
   try {
     OrganizationAccess::createMembershipRequest($organization, $collector_2);
