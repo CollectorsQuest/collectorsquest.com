@@ -18,9 +18,9 @@
   <?php endif; ?>
 
   <div id="dropzone-wrapper" class="dropzone-container">
-    <div id="dropzone1" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
+    <div id="dropzone-c" class="dropzone collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
       <span class="info-no-items-to-sort" style="text-align: center">
-        &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop
+        &nbsp;&nbsp;<strong>Drag and drop</strong> a single photo from your computer
       </span>
     </div>
   </div>
@@ -28,13 +28,12 @@
 
   <div id="fileupload-box" class="hide">
 
-      <h3>Uploading file, please wait...</h3>
-
+      <h3  class="progress-header hide">Uploading file, please wait...</h3>
 
       <!-- The table listing the files available for upload/download -->
-      <table class="table table-striped" style="width: 515px;">
+      <table class="table table-striped" style="width: 530px;">
         <thead>
-        <tr>
+        <tr class="progress-header hide">
           <td>Preview</td>
           <td colspan="3">Name</td>
           <td>Status</td>
@@ -60,19 +59,16 @@
 </form>
 
 <!-- The template to display files available for upload -->
-<script id="template-upload" type="text/x-tmpl">
+<script id="template-upload-c" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-upload">
-    <td class="preview"><span class="fade"></span></td>
-    <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
     {% if (file.error) { %}
-    <td class="error" colspan="2">
-      {%=locale.fileupload.errors[file.error] || file.error%}
-    </td>
-    <td>
-      <span class="label label-important">{%=locale.fileupload.error%}</span>
+    <td class="error" colspan="5">
+      {%=localeC.fileupload.errors[file.error] || file.error%}
     </td>
     {% } else if (o.files.valid && !i) { %}
+      <td class="preview"><span class="fade"></span></td>
+      <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     <td>
       <div class="progress progress-info progress-striped active">
@@ -92,17 +88,12 @@
 </script>
 
 <!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
+<script id="template-download-c" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-download">
     {% if (file.error) { %}
-    <td>-</td>
-    <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
-    <td class="error" colspan="2">
-      {%=locale.fileupload.errors[file.error] || file.error%}
-    </td>
-    <td>
-      <span class="label label-important">{%=locale.fileupload.error%}</span>
+    <td class="error" colspan="5">
+      {%=localeC.fileupload.errors[file.error] || file.error%}
     </td>
     {% } else { %}
     <td class="preview">
@@ -120,9 +111,46 @@
 </script>
 
 <script type="text/javascript">
+    window.localeC = {
+        "fileupload": {
+            "errors": {
+                "maxFileSize": "File is too big",
+                "minFileSize": "File is too small",
+                "acceptFileTypes": "Your photo's may be in the wrong format. Please make sure your photo are in 'JPG'/'JPEG' and try again",
+                "maxNumberOfFiles": "Sorry, you can upload only one image",
+                "uploadedBytes": "Uploaded bytes exceed file size",
+                "emptyResult": "Empty file upload result"
+            },
+            "error": "Error",
+            "start": "Start",
+            "cancel": "Cancel",
+            "destroy": "Delete"
+        }
+    };
+
   $(document).ready(function()
   {
     'use strict';
+
+      $(document).bind('dragover', function (e)
+      {
+          var dropZone = $('#dropzone-c'),
+                  timeout = window.dropZoneCTimeoutC;
+          if (!timeout) {
+              dropZone.addClass('in');
+          } else {
+              clearTimeout(timeout);
+          }
+          if (e.target === dropZone[0]) {
+              dropZone.addClass('hover');
+          } else {
+              dropZone.removeClass('hover');
+          }
+          window.dropZoneCTimeout = setTimeout(function () {
+              window.dropCZoneTimeout = null;
+              dropZone.removeClass('in hover');
+          }, 100);
+      });
 
     // Dialog should be closed only with cancel upload button
     $('.modal-body.opened').dialog2('options', {'closeOnOverlayClick': false, 'closeOnEscape': false});
@@ -131,17 +159,25 @@
     // Initialize the jQuery File Upload widget:
     $('#fileupload-c').fileupload({stop:function(){}});
     $('#fileupload-c').fileupload('option', 'autoUpload', true);
-    $('#fileupload-c').fileupload('option', 'dropZone', $('#dropzone1'));
+    $('#fileupload-c').fileupload('option', 'dropZone', $('#dropzone-c'));
     $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);
+    $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1);
+    $('#fileupload-c').fileupload('option', 'uploadTemplateId', 'template-upload-c');
+    $('#fileupload-c').fileupload('option', 'downloadTemplateId', 'template-download-c');
 
     $('#fileupload-c')
       .bind('fileuploadadd', function (e, data) {
         // Remove already added items and show upload box
-        $('.template-upload').remove();
+        $('.template-upload td.error').each(function(){
+          $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1); //update files count
+          $(this).closest('.template-upload').remove();
+        });
+       // $('.template-upload').remove();
         $('#fileupload-box').removeClass('hide');
       })
       .bind('fileuploadstart', function(e, data) {
         // Hide drop zone and file input
+        $('.progress-header').removeClass('hide');
         $('#fileupload-input-box').addClass('hide');
         $('.modal-footer').hide();
       })

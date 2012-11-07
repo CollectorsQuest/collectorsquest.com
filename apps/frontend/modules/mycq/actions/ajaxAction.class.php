@@ -563,7 +563,7 @@ class ajaxAction extends cqAjaxAction
             'collection_id' => $this->collection_id
           ))
         );
-        
+
         return $this->renderText(json_encode($output));
 
 //        return $this->redirect('ajax_mycq', array(
@@ -640,7 +640,7 @@ class ajaxAction extends cqAjaxAction
             $collection->setThumbnail($thumbnail->getAbsolutePath('original'));
             $collection->save();
 
-            // @todo delete donor collectible here
+            $collectible->delete();
           }
 
         }
