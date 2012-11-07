@@ -218,6 +218,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileAddresses()
   {
+    SmartMenu::setSelected('mycq_menu', 'profile');
+
     $this->collector_addresses = $this->getCollector()->getCollectorAddresses();
 
     return sfView::SUCCESS;
