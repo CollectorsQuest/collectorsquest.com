@@ -24,11 +24,11 @@
     return;
   }
 ?>
+
 <form action="<?= url_for('@ajax_mycq?section=collectibleForSale&page=create'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Add a New Item for Sale</h1>
-
+  <h1>Describe Your Item for Sale - Step 2</h1>
   <?= $form->renderAllErrors(); ?>
 
   <?php
@@ -56,7 +56,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Next Step
+      Finish
     </button>
     <button type="reset" class="btn" onClick="$(this).parents('.modal-body.opened').dialog2('close'); return false;">
       Cancel

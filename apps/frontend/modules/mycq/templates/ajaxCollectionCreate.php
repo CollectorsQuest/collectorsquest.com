@@ -7,11 +7,10 @@
  */
 ?>
 
-<h1>Create Collection - Step 2</h1>
-
 <form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'create', 'collectible_id' => $collectible->getId())); ?>"
       method="post" class="ajax form-horizontal form-modal">
 
+  <h1>Describe Your Collection - Step 2</h1>
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
@@ -37,7 +36,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Create Collection
+      Finish
     </button>
     <button type="reset" class="btn" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
       Cancel

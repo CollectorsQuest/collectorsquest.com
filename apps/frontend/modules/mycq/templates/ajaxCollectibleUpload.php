@@ -8,46 +8,35 @@
 
 <form action="<?= url_for('@ajax_mycq?section=collectible&page=upload'); ?>"
       method="post" id="fileupload-c" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
-<div id="fileupload-input-box">
-  <h1><?= $model == 'collectible' ? 'Add a New Item' : 'Create Collection'?> - Step 1</h1>
-  <?= $form['thumbnail']->renderRow(); ?>
 
-  <input type="hidden" name="model" value="<?= $model ?>">
-  <?php if ($collection_id) : ?>
-  <input type="hidden" name="collection_id" value="<?= $collection_id ?>">
-  <?php endif; ?>
+  <div id="fileupload-input-box">
+    <h1>Upload Photo - Step 1</h1>
 
-  <div id="dropzone-wrapper" class="dropzone-container">
-    <div id="dropzone-c" class="dropzone collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
-      <span class="info-no-items-to-sort" style="text-align: center">
-        &nbsp;&nbsp;<strong>Drag and drop</strong> a single photo from your computer
-      </span>
+    <?= $form['thumbnail']->renderRow(); ?>
+    <input type="hidden" name="model" value="<?= $model ?>">
+
+    <?php if (isset($collection_id)): ?>
+    <input type="hidden" name="collection_id" value="<?= $collection_id ?>">
+    <?php endif; ?>
+
+    <div id="dropzone-wrapper" class="dropzone-container">
+      <div id="dropzone-c" class="dropzone collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
+        <span class="info-no-items-to-sort" style="text-align: center;">
+          <strong>Drag and drop</strong> a single photo from your computer
+        </span>
+      </div>
     </div>
   </div>
-</div>
 
   <div id="fileupload-box" class="hide">
-
-      <h3  class="progress-header hide">Uploading file, please wait...</h3>
-
-      <!-- The table listing the files available for upload/download -->
-      <table class="table table-striped" style="width: 530px;">
-        <thead>
-        <tr class="progress-header hide">
-          <td>Preview</td>
-          <td colspan="3">Name</td>
-          <td>Status</td>
-        </tr>
-        </thead>
-        <tbody class="files"></tbody>
-      </table>
-    </div>
-
+    <!-- The table listing the files available for upload/download -->
+    <table class="table table-striped" style="width: 530px;">
+      <tbody class="files"></tbody>
+    </table>
   </div>
-
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Next
+      Next Step
     </button>
     <button type="reset" class="btn"
             onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
@@ -116,7 +105,8 @@
             "errors": {
                 "maxFileSize": "File is too big",
                 "minFileSize": "File is too small",
-                "acceptFileTypes": "Your photo's may be in the wrong format. Please make sure your photo are in 'JPG'/'JPEG' and try again",
+                "acceptFileTypes": "The file seems to be in the wrong format. " +
+                                   "Please make sure your photo is 'GIF', 'JPEG' or 'PNG' file and try again!",
                 "maxNumberOfFiles": "Sorry, you can upload only one image",
                 "uploadedBytes": "Uploaded bytes exceed file size",
                 "emptyResult": "Empty file upload result"

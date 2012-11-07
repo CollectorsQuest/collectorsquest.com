@@ -24,8 +24,7 @@
 <form action="<?= url_for('@ajax_mycq?section=collectible&page=create&collectible_id=' . $collectible->getId()); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Add a New Item - Step 2</h1>
-
+  <h1>Describe Your Item - Step 2</h1>
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
@@ -48,7 +47,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Add Item
+      Finish
     </button>
     <button type="reset" class="btn" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
       Cancel
@@ -84,7 +83,7 @@
       }
     });
 
-    <?php if($form->hasErrors()): ?>
+    <?php if ($form->hasErrors()): ?>
       $('#description_help').hide();
     <?php else: ?>
       $('textarea#collectible_description').parent().parent().append($('#description_help'));
