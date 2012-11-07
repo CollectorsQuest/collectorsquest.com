@@ -204,7 +204,8 @@ class marketplaceComponents extends cqFrontendComponents
 
       $this->menu[] = array(
         'id' => $wp_post->getId(),
-        'name' => $name, 'slug' => $wp_post->getSlug(),
+        'name' => $name,
+        'slug' => $wp_post->getSlug(),
         'content' => $wp_post->getPostContent(),
         'tags' => $wp_post->getTags('array')
       );
