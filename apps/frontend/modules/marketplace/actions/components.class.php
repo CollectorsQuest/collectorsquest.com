@@ -244,6 +244,7 @@ class marketplaceComponents extends cqFrontendComponents
       $q = FrontendCollectibleForSaleQuery::create()
         ->isForSale()
         ->filterByMachineTags($tags, 'market', 'theme')
+        ->clearOrderByColumns()
         ->orderByAverageRating(Criteria::DESC)
         ->orderByUpdatedAt(Criteria::DESC);
 
