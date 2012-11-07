@@ -57,13 +57,20 @@
           $('#scrollable').data('scrollable').seekTo($element.data('index'));
         }
       },
-      oncomplete: function($element) {
+      oncomplete: function() {
         $('.fade-white').mosaic();
         $('#holiday-market-theme').hideLoading();
+
+        var $element = $('li.active a.ajax', '#scrollable');
+        if ($element)
+        {
+          // Change the hash when users press arrows or theme names
+          window.location.hash = $element.data('slug');
+        }
       }
     });
 
-    // initialize scrollable
+    // Initialize the scrollable
     $("#scrollable").scrollable({
       next: '.arrow-next',
       prev: '.arrow-previous',
@@ -106,29 +113,22 @@
       }
     });
 
-    $(function() {
-      // if there is hash set - load page with proper content
-      var hash = window.location.hash;
-      hash = hash.replace('#','');
+    // If there is hash set - load page with proper content
+    var hash = window.location.hash;
+    hash = hash.replace('#','');
 
-      // check if the hash is in the list of available caches
-      if ($.inArray(hash, <?php echo json_encode($wp_post_slugs); ?>) != -1) {
-        $('#holiday-market-theme').load('/ajax/marketplace/component/holidayTheme?hash=' + hash, function() {
-          var new_scrollable_index = $('a[data-slug=' + hash + ']').data('index');
-          $('#scrollable').data('scrollable').seekTo(new_scrollable_index);
-        });
-      }
-
-      // use this function to make the back button work
-      window.onhashchange = function () {
-
-      }
-
-      // change the hash when users press arrows or theme names
-      $('a.ajax').click(function(e) {
-        e.preventDefault();
-        window.location.hash = $(this).data('slug');
+    // Check if the hash is in the list of available caches
+    if ($.inArray(hash, <?php echo json_encode($wp_post_slugs); ?>) != -1)
+    {
+      $('#holiday-market-theme').load('/ajax/marketplace/component/holidayTheme?hash=' + hash, function() {
+        var index = $('a[data-slug=' + hash + ']').data('index');
+        $('#scrollable').data('scrollable').seekTo(index);
       });
-    });
+    }
+
+    // use this function to make the back button work
+    window.onhashchange = function () {
+
+    };
   });
 </script>
