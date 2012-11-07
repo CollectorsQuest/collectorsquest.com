@@ -12,7 +12,7 @@ errorSteps:[],labelNext:"Next",labelPrevious:"Previous",labelFinish:"Finish",onL
 $(document).ready(function()
 {
   // opening and closing of FAQ question
-  $('#wizard .wpfaqtoggle').click(function () {
+  $('.wpfaqtoggle', '#wizard').click(function () {
     var question = $(this).parent().find('div.wpfaqcontent');
     if (question.is(':hidden')) {
       question.slideDown();
@@ -23,23 +23,25 @@ $(document).ready(function()
   });
 
   // style contact form submit button
-  $('#wizard .contact-form input:submit').addClass('btn btn-primary').val('Submit');
+  $('.contact-form input:submit', '#wizard').addClass('btn btn-primary').val('Submit');
 
   // init Smart Wizard
-  $('#wizard').smartWizard();
+  $('#wizard')
+    .smartWizard()
+    .removeClass('fouc');
 
   // no buttons on step 4
-  $('#wizard a[href *= "step-"]').click(function () {
+  $('a[href *= "step-"]', '#wizard').click(function () {
     $('.actionBar').show();
   });
 
-  $('#wizard a[href *= "step-4"]').click(function () {
+  $('a[href *= "step-4"]', '#wizard').click(function () {
     if ($(this).hasClass('done') || $(this).hasClass('selected'))
     {
       $('.actionBar').hide();
     }
   });
-  $('#wizard a.buttonNext').click(function () {
+  $('a.buttonNext', '#wizard').click(function () {
     if (!$('#step-3').is(':hidden')) {
       $('.actionBar').hide();
     }
@@ -48,14 +50,14 @@ $(document).ready(function()
   // fix required to display contact form errors/success messages
   if (window.location.hash.indexOf("contact-form") != -1 )
   {
-    $('#wizard a[href *= "step-4"]').removeClass('disabled').addClass('selected').attr('isdone', '1');
-    $('#wizard a[href *= "step-3"]').removeClass('disabled').addClass('done').attr('isdone', '1');
-    $('#wizard a[href *= "step-2"]').removeClass('disabled').addClass('done').attr('isdone', '1');
-    $('#wizard a[href *= "step-1"]').removeClass('current').addClass('done').attr('isdone', '1');
+    $('a[href *= "step-4"]', '#wizard').removeClass('disabled').addClass('selected').attr('isdone', '1');
+    $('a[href *= "step-3"]', '#wizard').removeClass('disabled').addClass('done').attr('isdone', '1');
+    $('a[href *= "step-2"]', '#wizard').removeClass('disabled').addClass('done').attr('isdone', '1');
+    $('a[href *= "step-1"]', '#wizard').removeClass('current').addClass('done').attr('isdone', '1');
 
     $('div#step-1', 'div#step-2', 'div#step-3').css({'display':'none'});
     $('div#step-4').css({'display':'block'});
 
-    $('#wizard a[href *= "step-4"]').click();
+    $('a[href *= "step-4"]', '#wizard').click();
   }
 });
