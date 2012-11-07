@@ -806,6 +806,13 @@ class ajaxAction extends cqAjaxAction
         $form->setDefault('collectible', $default);
       }
     }
+    elseif ($request->isMethod(sfRequest::GET))
+    {
+      // We redirect to Step 1 if we do not have a Collectible to work with
+      $this->redirect(
+        '@ajax_mycq?section=collectible&page=upload&model=CollectibleForSale'
+      );
+    }
 
     if ($request->isMethod('post'))
     {
@@ -857,24 +864,28 @@ class ajaxAction extends cqAjaxAction
         $collectible->setTags($values['collectible']['tags']);
         $collectible->save();
 
-        if ($values['collectible_id']['thumbnail'])
+        if ($values['collectible_id'])
         {
-          $image = iceModelMultimediaQuery::create()
-            ->findOneById((integer) $values['collectible']['thumbnail']);
-
-          if ($collector->isOwnerOf($image))
+          /* @var $donor Collectible */
+          $donor = CollectibleQuery::create()->filterById((integer) $values['collectible_id'])->findOne();
+          if ($donor)
           {
-            /** @var $donor Collectible */
-            $donor = $image->getModelObject();
+            /* @var $image iceModelMultimedia */
+            $image = $donor->getPrimaryImage();
+            if ($image)
+            {
+              if ($collector->isOwnerOf($image))
+              {
+                $image->setNew(false);
+                $image->setIsPrimary(true);
+                $image->setModelId($collectible->getId());
+                $image->setSource($donor->getId());
+                $image->save();
 
-            $image->setIsPrimary(true);
-            $image->setModelId($collectible->getId());
-            $image->setSource($donor->getId());
-            // $image->setCreatedAt(time());
-            $image->save();
-
-            // Archive the $donor, not needed anymore
-            $donor->delete();
+                // Archive the $donor, not needed anymore
+                $donor->delete();
+              }
+            }
           }
         }
 
