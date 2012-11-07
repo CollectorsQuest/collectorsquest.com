@@ -17,10 +17,10 @@ all:
   components:
     slot1: [mycq, navigation]
 
-shopSuccess:
+storeSuccess:
   components:
     slot1: []
-    sidebar_300:  [seller, sidebarShop]
+    sidebar_300:  [seller, sidebarStore]
 
 signupSuccess:
   components:

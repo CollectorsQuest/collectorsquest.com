@@ -23,7 +23,7 @@ $_height = 0;
   {
     $link = link_to(
       'See all &raquo;',
-      'seller_shop', $collector,
+      'seller_store', $collector,
       array('class' => 'text-v-middle link-align')
     );
     cq_sidebar_title($title, $link, array('left' => 9, 'right' => 3));

@@ -46,9 +46,9 @@ class collectorComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    $this->title = $this->getVar('title') ?: $collector->getDisplayName() . "'s Shop";
+    $this->title = $this->getVar('title') ?: $collector->getDisplayName() . "'s Store";
 
-    /** @var $q CollectibleForSaleQuery */
+    /* @var $q CollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale()

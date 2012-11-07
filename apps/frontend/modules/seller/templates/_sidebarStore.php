@@ -14,7 +14,7 @@
       <li>
         <?php
           echo link_to (
-            'View All', 'seller_shop',
+            'View All', 'seller_store',
             array('sf_subject' => $collector)
           );
         ?>
@@ -23,7 +23,7 @@
       <li class="active">
         <?php
         echo link_to (
-          '<i class="icon-ok"></i> View All', 'seller_shop',
+          '<i class="icon-ok"></i> View All', 'seller_store',
           array('sf_subject' => $collector)
         );
         ?>
@@ -34,7 +34,7 @@
         <li>
           <?php
             echo link_to (
-              $collection, 'seller_shop',
+              $collection, 'seller_store',
               array('sf_subject' => $collector, 'collection_id' => $collection->getId()
               )
             );
@@ -44,7 +44,7 @@
         <li class="active">
           <?php
           echo link_to (
-            '<i class="icon-ok"></i> ' . $collection, 'seller_shop',
+            '<i class="icon-ok"></i> ' . $collection, 'seller_store',
             array('sf_subject' => $collector, 'collection_id' => $collection->getId()
             )
           );

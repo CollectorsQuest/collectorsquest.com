@@ -7,7 +7,7 @@ class sellerComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeSidebarShop(sfWebRequest $request)
+  public function executeSidebarStore(sfWebRequest $request)
   {
     /* @var $collector Collector */
     $collector = $request->getAttribute('sf_route')->getObject();

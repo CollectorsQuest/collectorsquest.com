@@ -22,7 +22,7 @@ class sellerActions extends cqFrontendActions
     return $this->redirect('@mycq_marketplace');
   }
 
-  public function executeShop(sfWebRequest $request)
+  public function executeStore(sfWebRequest $request)
   {
     /* @var $collector Collector */
     $collector = $this->getRoute()->getObject();
@@ -65,7 +65,7 @@ class sellerActions extends cqFrontendActions
     $this->addBreadcrumb($store_name);
 
     // Set Canonical Url meta tag
-    $this->getResponse()->setCanonicalUrl($this->generateUrl('seller_shop', $collector));
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('seller_store', $collector));
 
     $this->collector = $collector;
     $this->pager = $pager;

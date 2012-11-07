@@ -409,7 +409,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    *
    * @return boolean
    */
-  public function getShopSlug()
+  public function getStoreSlug()
   {
     return Utf8::slugify($this->getSeller()->getSellerSettingsStoreName(), '-', true);
   }
@@ -420,7 +420,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    * @return boolean
    */
 
-  public function getShopTitle()
+  public function getStoreTitle()
   {
     return $this->getSeller()->getSellerSettingsStoreName();
   }
