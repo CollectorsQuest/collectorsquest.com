@@ -45,8 +45,17 @@ $(document).ready(function()
     }
   });
 
-  // fix FOUC problem
-  $(window).load(function() {
-    $ ('#wizard').show();
-  });
+  // fix required to display contact form errors/success messages
+  if (window.location.hash.indexOf("contact-form") != -1 )
+  {
+    $('#wizard a[href *= "step-4"]').removeClass('disabled').addClass('selected').attr('isdone', '1');
+    $('#wizard a[href *= "step-3"]').removeClass('disabled').addClass('done').attr('isdone', '1');
+    $('#wizard a[href *= "step-2"]').removeClass('disabled').addClass('done').attr('isdone', '1');
+    $('#wizard a[href *= "step-1"]').removeClass('current').addClass('done').attr('isdone', '1');
+
+    $('div#step-1', 'div#step-2', 'div#step-3').css({'display':'none'});
+    $('div#step-4').css({'display':'block'});
+
+    $('#wizard a[href *= "step-4"]').click();
+  }
 });

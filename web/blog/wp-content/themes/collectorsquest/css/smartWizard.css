@@ -106,8 +106,9 @@ div#wizard .contact-form textarea { height: 120px; }
   width:143px;
   text-decoration: none;
   outline-style:none;
-  -moz-border-radius  : 5px;
   -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
   z-index:99;
 }
 .swMain ul.anchor li a .stepNumber{
@@ -185,8 +186,9 @@ div#wizard .contact-form textarea { height: 120px; }
   color:#FFF;
   outline-style:none;
   background-color: #0F7CB6;
-  -moz-border-radius  : 6px;
   -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
   font-weight: bold;
 }
 .swMain .buttonDisabled {
@@ -207,8 +209,9 @@ div#wizard .contact-form textarea { height: 120px; }
   color:#FFF;
   outline-style:none;
   background-color: #0F7CB6;
-  -moz-border-radius  : 6px;
   -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
 }
 
 .swMain .buttonPrevious:hover, .swMain .buttonNext:hover {
