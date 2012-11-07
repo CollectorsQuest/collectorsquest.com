@@ -6,6 +6,12 @@
     ->findTree();
 ?>
 
+<style>
+  .modal .modal-body .chzn-choices {
+    width: 220px;
+  }
+</style>
+
 <?php
   if (isset($collectible) && !$collectible->isNew())
   {
@@ -24,39 +30,51 @@
     return;
   }
 ?>
+
 <form action="<?= url_for('@ajax_mycq?section=collectibleForSale&page=create'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Add a New Item for Sale</h1>
-
+  <h1>Describe Your Item for Sale - Step 2</h1>
   <?= $form->renderAllErrors(); ?>
 
-  <?php
-    if (isset($form['collectible']['collection_id']))
-    {
-      echo $form['collectible']['collection_id'];
-    }
-    if (isset($form['collectible']['collection_collectible_list']))
-    {
-      echo $form['collectible']['collection_collectible_list']->renderRow();
-    }
-  ?>
-  <?= $form['collectible']['name']->renderRow() ?>
-  <?= $form['collectible']['tags']->renderRow() ?>
+  <div style="position: relative;">
+    <?php
+      if (isset($donor))
+      {
+        echo image_tag_collectible(
+          $donor, '100x100',
+          array('style'=> 'position: absolute; top: 0px; right: 10px;')
+        );
+      }
+    ?>
 
-  <div class="control-group spacer-bottom-reset">
-    <?= $form['collectible']['content_category_id']->renderLabel('Category') ?>
-    <div class="controls">
-      <div class="with-required-token">
-        <span class="required-token">*</span>
-        <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
+    <?php
+      if (isset($form['collectible']['collection_id']))
+      {
+        echo $form['collectible']['collection_id'];
+      }
+      else if (isset($form['collectible']['collection_collectible_list']))
+      {
+        echo $form['collectible']['collection_collectible_list']->renderRow();
+      }
+    ?>
+    <?= $form['collectible']['name']->renderRow() ?>
+    <?= $form['collectible']['tags']->renderRow() ?>
+
+    <div class="control-group spacer-bottom-reset">
+      <?= $form['collectible']['content_category_id']->renderLabel('Category') ?>
+      <div class="controls">
+        <div class="with-required-token">
+          <span class="required-token">*</span>
+          <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Next Step
+      Finish
     </button>
     <button type="reset" class="btn" onClick="$(this).parents('.modal-body.opened').dialog2('close'); return false;">
       Cancel

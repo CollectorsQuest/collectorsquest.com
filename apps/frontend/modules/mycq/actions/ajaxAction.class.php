@@ -548,13 +548,23 @@ class ajaxAction extends cqAjaxAction
         // change the dropbox open status depending on whether we have stuff
         // left in it
         $this->getUser()->setMycqDropboxOpenState(true);
+        $this->loadHelpers('cqImages');
 
-        return $this->redirect('ajax_mycq', array(
+        $output = array();
+        $output[] = array(
+          'name' => $multimedia->getName(),
+          'size' => $multimedia->getFileSize(),
+          'type' => 'image/jpeg',
+          'thumbnail' => src_tag_multimedia($multimedia, '19:15x60'),
+          'redirect' => $this->generateUrl('ajax_mycq', array(
             'section' => $model,
             'page' => 'create',
             'collectible_id' => $collectible->getId(),
             'collection_id' => $this->collection_id
-        ));
+          ))
+        );
+
+        return $this->renderText(json_encode($output));
       }
     }
 
@@ -623,7 +633,7 @@ class ajaxAction extends cqAjaxAction
             $collection->setThumbnail($thumbnail->getAbsolutePath('original'));
             $collection->save();
 
-            // @todo delete donor collectible here
+            $collectible->delete();
           }
 
         }
@@ -649,7 +659,6 @@ class ajaxAction extends cqAjaxAction
 
     $this->form = $form;
     $this->collectible = $collectible;
-    $this->image = $collectible->getPrimaryImage();
 
     return $template;
   }
@@ -762,16 +771,15 @@ class ajaxAction extends cqAjaxAction
         $collectible->addCollection($collection);
         $collectible->save();
 
-        /*
+        /**
          * after we have set all values collectible should be public
          * used in template after form is submitted with proper values
          */
-        $this->collectible_public = $collectible;
+        $this->collectible = $collectible;
       }
     }
 
-    $this->image = $collectible->getPrimaryImage();
-    $this->collectible = $collectible;
+    $this->donor = $collectible;
     $this->form = $form;
 
     return $template;
@@ -804,7 +812,15 @@ class ajaxAction extends cqAjaxAction
         }
 
         $form->setDefault('collectible', $default);
+        $this->donor = $collectible;
       }
+    }
+    elseif ($request->isMethod(sfRequest::GET))
+    {
+      // We redirect to Step 1 if we do not have a Collectible to work with
+      $this->redirect(
+        '@ajax_mycq?section=collectible&page=upload&model=CollectibleForSale'
+      );
     }
 
     if ($request->isMethod('post'))
@@ -857,24 +873,28 @@ class ajaxAction extends cqAjaxAction
         $collectible->setTags($values['collectible']['tags']);
         $collectible->save();
 
-        if ($values['collectible_id']['thumbnail'])
+        if ($values['collectible_id'])
         {
-          $image = iceModelMultimediaQuery::create()
-            ->findOneById((integer) $values['collectible']['thumbnail']);
-
-          if ($collector->isOwnerOf($image))
+          /* @var $donor Collectible */
+          $donor = CollectibleQuery::create()->filterById((integer) $values['collectible_id'])->findOne();
+          if ($donor)
           {
-            /** @var $donor Collectible */
-            $donor = $image->getModelObject();
+            /* @var $image iceModelMultimedia */
+            $image = $donor->getPrimaryImage();
+            if ($image)
+            {
+              if ($collector->isOwnerOf($image))
+              {
+                $image->setNew(false);
+                $image->setIsPrimary(true);
+                $image->setModelId($collectible->getId());
+                $image->setSource($donor->getId());
+                $image->save();
 
-            $image->setIsPrimary(true);
-            $image->setModelId($collectible->getId());
-            $image->setSource($donor->getId());
-            // $image->setCreatedAt(time());
-            $image->save();
-
-            // Archive the $donor, not needed anymore
-            $donor->delete();
+                // Archive the $donor, not needed anymore
+                $donor->delete();
+              }
+            }
           }
         }
 
