@@ -296,14 +296,18 @@ class CollectorEditForm extends CollectorForm
         array('role' => CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE)
       );
 
-      // and resize it to the expected dimensions
-      $storefront_settings = sfConfig::get('app_marketplace_storefront_settings');
-      $multimedia->makeCustomThumb(
-        $storefront_settings['header_image_size'][0],
-        $storefront_settings['header_image_size'][1],
-        $storefront_settings['header_image_name'],
-        $method = 'center'
-      );
+      if ($multimedia)
+      {
+        // and resize it to the expected dimensions
+        $storefront_settings = sfConfig::get('app_marketplace_storefront_settings');
+
+        $multimedia->makeCustomThumb(
+          $storefront_settings['header_image_size'][0],
+          $storefront_settings['header_image_size'][1],
+          $storefront_settings['header_image_name'],
+          $method = 'center'
+        );
+      }
     }
   }
 
