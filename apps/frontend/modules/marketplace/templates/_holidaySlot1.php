@@ -1,6 +1,5 @@
 <?php
-/* @var $menu          array */
-/* @var $wp_post_slugs array */
+/* @var  $menu  array */
 ?>
 
 <div id="HolidayMarketHeader">
@@ -118,7 +117,7 @@
     hash = hash.replace('#','');
 
     // Check if the hash is in the list of available caches
-    if ($.inArray(hash, <?php echo json_encode($wp_post_slugs); ?>) != -1)
+    if ($.inArray(hash, <?= json_encode(array_map(function($item) { return $item['slug']; }, $menu)); ?>) != -1)
     {
       $('#holiday-market-theme').load('/ajax/marketplace/component/holidayTheme?hash=' + hash, function() {
         var index = $('a[data-slug=' + hash + ']').data('index');
