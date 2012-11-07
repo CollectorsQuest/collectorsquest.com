@@ -548,13 +548,30 @@ class ajaxAction extends cqAjaxAction
         // change the dropbox open status depending on whether we have stuff
         // left in it
         $this->getUser()->setMycqDropboxOpenState(true);
+        $this->loadHelpers('cqImages');
 
-        return $this->redirect('ajax_mycq', array(
+        $output = array();
+        $output[] = array(
+          'name' => $multimedia->getName(),
+          'size' => $multimedia->getFileSize(),
+          'type' => 'image/jpeg',
+          'thumbnail' => src_tag_multimedia($multimedia, '19:15x60'),
+          'redirect' => $this->generateUrl('ajax_mycq', array(
             'section' => $model,
             'page' => 'create',
             'collectible_id' => $collectible->getId(),
             'collection_id' => $this->collection_id
-        ));
+          ))
+        );
+        
+        return $this->renderText(json_encode($output));
+
+//        return $this->redirect('ajax_mycq', array(
+//            'section' => $model,
+//            'page' => 'create',
+//            'collectible_id' => $collectible->getId(),
+//            'collection_id' => $this->collection_id
+//        ));
       }
     }
 

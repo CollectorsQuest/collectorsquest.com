@@ -124,18 +124,26 @@
   {
     'use strict';
 
+    // Dialog should be closed only with cancel upload button
+    $('.modal-body.opened').dialog2('options', {'closeOnOverlayClick': false, 'closeOnEscape': false});
+    $('.modal-body.opened').parent('.modal').find('.modal-header a.close').hide();
+
     // Initialize the jQuery File Upload widget:
-    $('#fileupload-c').fileupload();
+    $('#fileupload-c').fileupload({stop:function(){}});
     $('#fileupload-c').fileupload('option', 'autoUpload', true);
     $('#fileupload-c').fileupload('option', 'dropZone', $('#dropzone1'));
     $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);
 
     $('#fileupload-c')
+      .bind('fileuploadadd', function (e, data) {
+        // Remove already added items and show upload box
+        $('.template-upload').remove();
+        $('#fileupload-box').removeClass('hide');
+      })
       .bind('fileuploadstart', function(e, data) {
-                $('#fileupload-input-box').addClass('hide');
-                $('#fileupload-box').removeClass('hide');
-                $('.modal-footer').hide();
-       // $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
+        // Hide drop zone and file input
+        $('#fileupload-input-box').addClass('hide');
+        $('.modal-footer').hide();
       })
       .bind('fileuploadstop', function(e, data)
       {
@@ -149,9 +157,21 @@
         }
         else
         {
-        //  window.location.href = finish;
+          window.location.href = finish;
         }
-      });
+      })
+      .bind('fileuploadcompleted', function (e, data)
+        {
+          // Destroy file upload and show dialog with next step
+          var options = {
+            modal: true
+          };
+          options.content = data.result[0].redirect;
+          $('#fileupload-c').stop();
+          $('#fileupload-c').fileupload('destroy');
+          $('.modal-body.opened').dialog2('close');
+          $("<div></div>").dialog2(options);
+        });
 
     // Enable iframe cross-domain access via redirect option:
     $('#fileupload-c').fileupload(
