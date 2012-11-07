@@ -76,6 +76,7 @@ classes:
       collector_id:           { type: integer,      required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
       organization_admin_id:  { type: integer,      required: false, foreignClass: Collector, foreignReference: id, fkPhpName: OrganizationAdmin, fkRefPhpName: HandledOrganizationMembershipRequest  }
       is_invitation:          { type: boolean,      required: true, default: false }
+      note:                   { type: longvarchar,  required: false }
       status:                 { type: enum,         required: true, valueSet: "pending, approved, denied", default: pending }
     propel_behaviors:
       symfony:                { form: false, filter: false }
