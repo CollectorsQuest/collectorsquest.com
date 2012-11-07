@@ -43,3 +43,8 @@ foreach ($scripts as $name => $version)
     wp_enqueue_script($name);
   }
 }
+
+wp_enqueue_script(
+  'cq-smartWizard', '/wp-content/themes/collectorsquest/js/cq-smartWizard.js',
+  array('jquery'), '2.0', true
+);

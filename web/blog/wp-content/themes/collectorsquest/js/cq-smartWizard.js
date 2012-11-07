@@ -8,3 +8,45 @@ function r(d,e){a(d,b).removeClass("selected");a(d,b).addClass("done");a(e,b).re
 a(e)))return!1}function x(){var a=h+1;if(f.length<=a){if(!c.cycleSteps)return!1;a=0}q(a)}function y(){var a=h-1;if(0>a){if(!c.cycleSteps)return!1;a=f.length-1}q(a)}function B(b){a(".content",j).html(b);j.show()}function v(d,c){c?a(f.eq(d-1),b).addClass("error"):a(f.eq(d-1),b).removeClass("error")}var b=a(this),h=c.selected,f=a("ul > li > a",b),w=0,l,j,i,m,n,o,p;i=a(".actionBar",b);i.length==0&&(i=a("<div></div>").addClass("actionBar"));j=a(".msgBox",b);j.length==0&&(j=a('<div class="msgBox"><div class="content"></div><a href="#" class="close">X</a></div>'),
 i.append(j));a(".close",j).click(function(){j.fadeOut("normal");return!1});if(!k||k==="init"||typeof k==="object")z();else if(k==="showMessage"){var s=Array.prototype.slice.call(u,1);B(s[0]);return!0}else if(k==="setError")return s=Array.prototype.slice.call(u,1),v(s[0].stepnum,s[0].iserror),!0;else a.error("Method "+k+" does not exist")})};a.fn.smartWizard.defaults={selected:0,keyNavigation:!0,enableAllSteps:!1,transitionEffect:"fade",contentURL:null,contentCache:!0,cycleSteps:!1,enableFinishButton:!1,
 errorSteps:[],labelNext:"Next",labelPrevious:"Previous",labelFinish:"Finish",onLeaveStep:null,onShowStep:null,onFinish:null}})(jQuery);
+
+$(document).ready(function()
+{
+  // opening and closing of FAQ question
+  $('#wizard .wpfaqtoggle').click(function () {
+    var question = $(this).parent().find('div.wpfaqcontent');
+    if (question.is(':hidden')) {
+      question.slideDown();
+    }
+    else {
+      question.slideUp();
+    }
+  });
+
+  // style contact form submit button
+  $('#wizard .contact-form input:submit').addClass('btn btn-primary').val('Submit');
+
+  // init Smart Wizard
+  $('#wizard').smartWizard();
+
+  // no buttons on step 4
+  $('#wizard a[href *= "step-"]').click(function () {
+    $('.actionBar').show();
+  });
+
+  $('#wizard a[href *= "step-4"]').click(function () {
+    if ($(this).hasClass('done') || $(this).hasClass('selected'))
+    {
+      $('.actionBar').hide();
+    }
+  });
+  $('#wizard a.buttonNext').click(function () {
+    if (!$('#step-3').is(':hidden')) {
+      $('.actionBar').hide();
+    }
+  });
+
+  // fix FOUC problem
+  $(window).load(function() {
+    $ ('#wizard').show();
+  });
+});

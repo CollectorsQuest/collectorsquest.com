@@ -77,6 +77,8 @@
   wp_register_script('jquery', '/wp-content/themes/collectorsquest/js/empty.js', array(), '1.7.2', 1);
   wp_enqueue_script('jquery');
 
+  wp_enqueue_style('cq-styles', '/wp-content/themes/collectorsquest/css/smartWizard.css', array(), '1.0', 'all');
+
   ob_start();
   wp_head();
   $head = ob_get_clean();
