@@ -118,4 +118,17 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
     return $this;
   }
 
+  /**
+   * Filter on only collections that have collectibles for sale
+   *
+   * @return    ContentCategoryQuery
+   */
+  public function hasCollectiblesForSale()
+  {
+    return $this
+       ->useCollectionCollectibleQuery()
+        ->isForSale()
+      ->endUse();
+  }
+
 }

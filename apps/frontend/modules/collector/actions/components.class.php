@@ -2,6 +2,7 @@
 
 class collectorComponents extends cqFrontendComponents
 {
+
   public function executeSidebarIndex()
   {
     if (!$this->collector = CollectorPeer::retrieveByPk($this->getRequestParameter('id')))
@@ -94,4 +95,5 @@ class collectorComponents extends cqFrontendComponents
 
     return $pager->getNbResults() == 0 ? sfView::NONE : sfView::SUCCESS;
   }
+
 }

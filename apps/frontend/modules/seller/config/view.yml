@@ -17,6 +17,11 @@ all:
   components:
     slot1: [mycq, navigation]
 
+shopSuccess:
+  components:
+    slot1: []
+    sidebar_300:  [seller, sidebarShop]
+
 signupSuccess:
   components:
     slot1: []
