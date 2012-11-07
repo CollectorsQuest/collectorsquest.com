@@ -1,5 +1,6 @@
 all:
   stylesheets: [frontend/modules/blog.css]
+  javascripts: [jquery/jquery.smartWizard-2.0.min.js, jquery/jquery.smartWizard-faq-page.js]
   components:
     breadcrumbs: [_blog, breadcrumbs]
     sidebar_300: [_blog, sidebar]

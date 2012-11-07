@@ -89,7 +89,7 @@
 
 ?>
 
-<div class="row-fluid header-bar">
+<div class="row-fluid header-bar <?= get_the_ID() == '33316' ? 'js-hide' : null ; ?> ">
   <?php if (is_page() && !is_child(23509) && !is_child(23511)) { ?>
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>
