@@ -1435,12 +1435,32 @@ textarea.input-xlarge {
     padding: 5px;
   }
 
-  &.in, &.hover {
+  .info-drop-here {
+    color: @red;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-size: 28px;
+    text-align: center;
+    display: none;
+    line-height: 50px;
+    text-shadow: 0px 0px 1px gray;
+  }
+  &.collectibles-to-sort.in {
     border: 2px dashed @red;
+    margin: 0 -5px;
+    padding: 8px 3px 0;
+  }
+  &.in, &.hover {
     padding: 5px;
     color: @red;
-
+    min-height: 50px;
     .thumbnails {
+      padding-top: 0;
+    }
+    .info-drop-here {
+      display: block;
+    }
+    .info-no-items-to-sort, .info-message {
       display: none;
     }
   }
