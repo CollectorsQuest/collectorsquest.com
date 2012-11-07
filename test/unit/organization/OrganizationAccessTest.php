@@ -35,17 +35,21 @@ $t->diag('Test ::addMember()');
 
 $t->diag('Test ::createMembershipRequest()');
 
+  $t->ok(!$organization->isMembershipRequested($collector));
   try {
     OrganizationAccess::createMembershipRequest($organization, $collector);
     $t->fail('::createMembershipRequest() throws an exception when collector is already member of the organization');
   }  catch (OrganizationAccessMembershipRequestAlreadyMemberException $e) {
     $t->pass('::createMembershipRequest() throws an exception when collector is already member of the organization');
   }
+  $t->ok(!$organization->isMembershipRequested($collector));
 
   $collector_2 = CollectorQuery::create()
     ->findOneByUsername('ivan.ivanov');
+  $t->ok(!$organization->isMembershipRequested($collector_2));
   $t->ok(OrganizationAccess::createMembershipRequest($organization, $collector_2),
     '::createMembershipRequest() successfully creates a new request');
+  $t->ok($organization->isMembershipRequested($collector_2));
 
   try {
     OrganizationAccess::createMembershipRequest($organization, $collector_2);

@@ -49,4 +49,23 @@ class Organization extends BaseOrganization
       ->count($con);
   }
 
+  /**
+   * @param     Collector $collector
+   * @param     PropelPDO $con
+   *
+   * @return    OrganizationMembershipRequest|boolean
+   */
+  public function isMembershipRequested($collector, PropelPDO $con = null)
+  {
+    return OrganizationMembershipRequestQuery::create()
+      ->filterByOrganization($this)
+      ->_if($collector instanceof Collector)
+        ->filterByCollectorRelatedByCollectorId($collector)
+      ->_else()
+        ->filterByCollecotrId($collector)
+      ->_endif()
+      ->orderById(Criteria::DESC) // alternative to an "order by created at" cond
+      ->findOne($con) ?: false;
+  }
+
 }

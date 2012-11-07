@@ -69,11 +69,7 @@ class OrganizationAccess
       throw new OrganizationAccessMembershipRequestAlreadyMemberException();
     }
 
-    $existing_request = OrganizationMembershipRequestQuery::create()
-      ->filterByOrganization($organization)
-      ->filterByCollectorRelatedByCollectorId($collector)
-      ->orderById(Criteria::DESC) // alternative to an "order by created at" cond
-      ->findOne($con);
+    $existing_request = $organization->isMembershipRequested($collector, $con);
 
     // there is no existing request, so we will create a new one
     if (!$existing_request)

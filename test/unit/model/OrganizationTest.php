@@ -17,6 +17,12 @@ $organization = OrganizationQuery::create()
 $collector = CollectorQuery::create()
   ->findOneByUsername('ivan.tanev');
 
-OrganizationAccess::addMember($organization, $collector);
 
+$t->ok(!$organization->isMembershipRequested($collector));
+OrganizationAccess::createMembershipRequest($organization, $collector);
+$t->ok($organization->isMembershipRequested($collector));
+
+
+$t->ok(!$organization->isMember($collector));
+OrganizationAccess::addMember($organization, $collector);
 $t->ok($organization->isMember($collector));
