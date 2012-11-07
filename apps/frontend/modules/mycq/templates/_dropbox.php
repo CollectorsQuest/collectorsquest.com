@@ -55,6 +55,9 @@
       use the <strong>Upload Photos</strong> button
       <?= cq_image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
     </span>
+    <div class="info-drop-here">
+      Drop files here
+    </div>
   </div>
   <?php endif; ?>
 </div>
