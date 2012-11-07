@@ -61,7 +61,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
         ),
         array(
           'data-placeholder' => 'Please, choose at least one Collection',
-          'class' => 'input-xlarge chzn-select js-hide',
+          'class' => 'input-large chzn-select js-hide',
           'required' => 'required'
         )
       );
