@@ -23,6 +23,22 @@
   ?>
 
   <div id="fileupload-input-box">
+
+    <div id="dropzone-wrapper" class="dropzone-container">
+      <div id="dropzone-c" class="dropzone collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
+        <span class="info-no-items-to-sort" style="text-align: center;">
+          Please <strong>drag & drop</strong> a single photo from your <br/>
+          computer in this area in order to upload it
+        </span>
+      </div>
+    </div>
+
+    <br/><hr/>
+    <div style="background: #fff; margin: auto; margin-top: -29px; width: 50px; text-align: center; font-size: 150%;">
+      OR
+    </div>
+    <br/>
+
     <?= $form['thumbnail']->renderRow(); ?>
     <input type="hidden" name="model" value="<?= $model ?>">
 
@@ -30,13 +46,7 @@
     <input type="hidden" name="collection_id" value="<?= $collection_id ?>">
     <?php endif; ?>
 
-    <div id="dropzone-wrapper" class="dropzone-container">
-      <div id="dropzone-c" class="dropzone collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
-        <span class="info-no-items-to-sort" style="text-align: center;">
-          <strong>Drag and drop</strong> a single photo from your computer
-        </span>
-      </div>
-    </div>
+
   </div>
 
   <div id="fileupload-box" class="hide">
