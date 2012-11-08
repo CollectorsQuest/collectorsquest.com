@@ -52,6 +52,7 @@ class miscActions extends cqFrontendActions
       $loginForm->setDefault('goto', $this->generateUrl('misc_guide_download'));
     }
 
+    $signupForm->setDefault('referral_code', $request->getParameter('referral_code'));
     $display = 'signup';
 
     if (sfRequest::POST == $request->getMethod())

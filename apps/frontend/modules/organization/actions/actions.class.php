@@ -80,12 +80,17 @@ class organizationActions extends cqFrontendActions
     }
     else
     {
+      $this->getUser()->setFlash('info', sprintf(
+        'You need to register an account with us before you can join the %s organization.',
+        $organization->getName()
+      ));
+
       // for non-authenticated users, forward to the signup page with the referral
       // code pre-populated if the organization has open access
       if (OrganizationPeer::ACCESS_OPEN == $organization->getAccess())
       {
         return $this->redirect('misc_guide_to_collecting', array(
-            'referral' => $organization->getReferralCode(),
+            'referral_code' => $organization->getReferralCode(),
         ));
       }
       elseif (OrganizationPeer::ACCESS_MODERATED == $organization->getAccess())

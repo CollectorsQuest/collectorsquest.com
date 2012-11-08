@@ -348,7 +348,7 @@ class CollectorPeer extends BaseCollectorPeer
 
       // if we are have a referral code to an organization, make the collector
       // a member of that organization
-      if (!empty($data['referral']) && $organization = OrganizationQuery::create()->findOneByReferralCode($data['referral']))
+      if (!empty($data['referral_code']) && $organization = OrganizationQuery::create()->findOneByReferralCode($data['referral_code']))
       {
         OrganizationAccess::addMember($organization, $collector);
       }
