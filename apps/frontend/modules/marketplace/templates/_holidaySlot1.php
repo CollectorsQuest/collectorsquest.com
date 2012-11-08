@@ -1,5 +1,5 @@
 <?php
-/* @var $menu array */
+/* @var  $menu  array */
 ?>
 
 <div id="HolidayMarketHeader">
@@ -21,7 +21,10 @@
               echo link_to(
                 $item['name'], 'ajax_marketplace',
                 array('section' => 'component', 'page' => 'holidayTheme', 't' => $i, 'p' => 1),
-                array('anchor' => 'holiday-market-theme', 'class' => 'ajax', 'data-index' => $i)
+                array(
+                  'anchor' => 'holiday-market-theme', 'class' => 'ajax', 'data-index' => $i,
+                  'data-slug' =>  $item['slug']
+                )
               );
             ?>
           </li>
@@ -30,10 +33,10 @@
       </div>
 
       <span class="arrow-previous">
-        <a href="#slot1" class="arrow-white-previous">&nbsp;</a>
+        <a class="arrow-white-previous">&nbsp;</a>
       </span>
       <span class="arrow-next">
-        <a href="#slot1" class="arrow-white-next">&nbsp;</a>
+        <a class="arrow-white-next">&nbsp;</a>
       </span>
     </div>
   </div>
@@ -53,13 +56,20 @@
           $('#scrollable').data('scrollable').seekTo($element.data('index'));
         }
       },
-      oncomplete: function($element) {
+      oncomplete: function() {
         $('.fade-white').mosaic();
         $('#holiday-market-theme').hideLoading();
+
+        var $element = $('li.active a.ajax', '#scrollable');
+        if ($element)
+        {
+          // Change the hash when users press arrows or theme names
+          window.location.hash = $element.data('slug');
+        }
       }
     });
 
-    // initialize scrollable
+    // Initialize the scrollable
     $("#scrollable").scrollable({
       next: '.arrow-next',
       prev: '.arrow-previous',
@@ -101,5 +111,23 @@
         $('li.cloned', '#scrollable').addClass('ajaxified');
       }
     });
+
+    // If there is hash set - load page with proper content
+    var hash = window.location.hash;
+    hash = hash.replace('#','');
+
+    // Check if the hash is in the list of available caches
+    if ($.inArray(hash, <?= json_encode(array_map(function($item) { return $item['slug']; }, $menu)); ?>) != -1)
+    {
+      $('#holiday-market-theme').load('/ajax/marketplace/component/holidayTheme?hash=' + hash, function() {
+        var index = $('a[data-slug=' + hash + ']').data('index');
+        $('#scrollable').data('scrollable').seekTo(index);
+      });
+    }
+
+    // use this function to make the back button work
+    window.onhashchange = function () {
+
+    };
   });
 </script>

@@ -96,7 +96,6 @@
         },
         // trigger Masonry as a callback
         function(selector) {
-          console.log('populating masonry');
           // hide new bricks while they are loading
           var $bricks = $(selector).css({opacity: 0});
 

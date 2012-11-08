@@ -44,17 +44,3 @@ collectible_by_slug:
   options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collection, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
-
-collectibles_by_collector:
-  url:  /collectibles/by/:id/:slug
-  class: cqPropelRoute
-  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
-  param: { module: collectibles, action: collectorList, legacy: true }
-  requirements: { id: '\d+', slug: '[\-\w\.]+' }
-
-collectibles_for_sale_by_collector:
-  url:  /collectibles-for-sale/by/:id/:slug
-  class: cqPropelRoute
-  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
-  param: { module: collectibles, action: collectorList, onlyForSale: true }
-  requirements: { id: '\d+', slug: '[\-\w\.]+' }

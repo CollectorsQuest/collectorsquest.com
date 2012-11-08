@@ -15,7 +15,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright 2011-2012 Marcin Pietrzak (marcin@iworks.pl)
 
 this program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as 
+it under the terms of the GNU General Public License, version 2, as
 published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful,
@@ -413,7 +413,7 @@ function iworks_upprev_box()
             if ( current_theme_supports('post-thumbnails') && $show_thumb && has_post_thumbnail( get_the_ID() ) ) {
                 $item_class .= ' upprev_thumbnail';
                 $image = sprintf(
-                    '<a href="%s" title="%s" class="upprev_thumbnail"%s rel="%s">%s</a>',
+                    '<a href="%s?ref=bp_flybox" title="%s" class="upprev_thumbnail"%s rel="%s">%s</a>',
                     $permalink,
                     wptexturize(get_the_title()),
                     $ga_click_track,
@@ -439,7 +439,7 @@ function iworks_upprev_box()
             }
             $item .= sprintf( '<div class="%s">%s', $item_class, $image );
             $item .= sprintf(
-                '<h5><a href="%s"%s rel="%s">%s</a></h5>',
+                '<h5><a href="%s?ref=bp_flybox"%s rel="%s">%s</a></h5>',
                 $permalink,
                 $ga_click_track,
                 $current_post_title,
