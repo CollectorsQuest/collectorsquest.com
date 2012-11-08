@@ -1,0 +1,20 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+   Dear {{ buyer_name }},
+</p>
+
+<p>
+  Your PayPal payment in the amount of ${{ oShoppingOrder.getCollectiblesAmount('float') | number_format(2, '.', ',') }}
+  for transaction {{ transaction_id }} ({{ link_to_collectible(oCollectible, 'text', {absolute: true}) }})
+  has been refunded by {{ link_to_collector(oCollectible, 'text', {absolute: true}) }}
+  and your transaction has been cancelled.
+</p>
+
+<p>
+  Please contact the seller if you have questions about this transaction.
+</p>
+
+{% endblock %}

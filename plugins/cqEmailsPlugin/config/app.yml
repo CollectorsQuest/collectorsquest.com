@@ -70,6 +70,12 @@ all:
       seller_order_notification:
         subject: "Congratulations! You’ve sold on Collectors Quest!"
         required_params: [ oSeller, oShoppingOrder, oCollectible ]
+      buyer_order_failed:
+        subject: "Your PayPal transaction could not be processed on Collectors Quest"
+        required_params: [ oShoppingOrder, oCollectible]
+      buyer_order_refunded:
+        subject: "Your PayPal payment has been refunded on Collectors Quest"
+        required_params: [ oSeller, oShoppingOrder, oCollectible]
 
     internal:
       spam_notification_comment:
