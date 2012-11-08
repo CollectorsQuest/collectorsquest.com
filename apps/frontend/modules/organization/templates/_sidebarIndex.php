@@ -1,5 +1,7 @@
 <?php
+  /* @var $organization Organization */
 ?>
+
 <div class="blue-actions-panel spacer-bottom">
   <div class="row-fluid">
     <div class="pull-left">
@@ -22,4 +24,11 @@
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
     </div>
   </div>
+</div>
+<div class="">
+  <?php if (!$organization->isMember($sf_user->getCollector()) && OrganizationPeer::ACCESS_PRIVATE != $organization->getAccess()): ?>
+  <?= form_tag('@organization_join?id='.$organization->getId(), array('class' => 'form-horizontal')) ?>
+    <button type="submit" class="btn">Join</button>
+  </form>
+  <?php endif; ?>
 </div>
