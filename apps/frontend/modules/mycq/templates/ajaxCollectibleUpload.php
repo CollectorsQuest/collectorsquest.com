@@ -7,64 +7,47 @@
 ?>
 
 <form action="<?= url_for('@ajax_mycq?section=collectible&page=upload'); ?>"
-      method="post" id="fileupload" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
+      method="post" id="fileupload-c" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
 
-  <h1><?= $model == 'collectible' ? 'Add a New Item' : 'Create Collection'?> - Step 1</h1>
-  <?= $form['thumbnail']->renderRow(); ?>
+  <?php
+    switch (strtolower($model))
+    {
+      case 'collectible':
+      case 'collectibleforsale':
+        echo '<h1>Step 1: Upload Item Photo</h1>';
+        break;
+      case 'collection':
+        echo '<h1>Step 1: Upload Collection Photo</h1>';
+        break;
+    }
+  ?>
 
-  <input type="hidden" name="model" value="<?= $model ?>">
-  <?php if ($collection_id) : ?>
-  <input type="hidden" name="collection_id" value="<?= $collection_id ?>">
-  <?php endif; ?>
-  <!--
-  <div id="dropzone-wrapper" class="dropzone-container">
-    <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
-      <span class="info-no-items-to-sort" style="text-align: center">
-        &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop
-      </span>
-    </div>
-  </div>
-  -->
+  <div id="fileupload-input-box">
+    <?= $form['thumbnail']->renderRow(); ?>
+    <input type="hidden" name="model" value="<?= $model ?>">
 
-  <div id="fileupload-modal" class="modal hide">
-    <div class="modal-header">
-      <h3>Uploading file, please wait...</h3>
-    </div>
-    <div class="modal-body">
+    <?php if (isset($collection_id)): ?>
+    <input type="hidden" name="collection_id" value="<?= $collection_id ?>">
+    <?php endif; ?>
 
-      <!-- The table listing the files available for upload/download -->
-      <table class="table table-striped" style="width: 515px;">
-        <thead>
-        <tr>
-          <td>Preview</td>
-          <td colspan="3">Name</td>
-          <td>Status</td>
-        </tr>
-        </thead>
-        <tbody class="files"></tbody>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <div class="span3 fileupload-progress">
-        <!-- The global progress bar -->
-        <div class="progress progress-info progress-striped active">
-          <div class="bar" style="width:0;"></div>
-        </div>
-      </div>
-      <!-- The extended global progress information -->
-      <div class="span5 progress-extended">&nbsp;</div>
-      <div class="span4">
-        <a href="<?= url_for('@mycq_upload_cancel?batch='. $batch); ?>" id="button-fileupload"
-           class="btn btn-danger" data-loading-text="Cancelling...">
-          Cancel Upload
-        </a>
+    <div id="dropzone-wrapper" class="dropzone-container">
+      <div id="dropzone-c" class="dropzone collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
+        <span class="info-no-items-to-sort" style="text-align: center;">
+          <strong>Drag and drop</strong> a single photo from your computer
+        </span>
       </div>
     </div>
   </div>
 
+  <div id="fileupload-box" class="hide">
+    <!-- The table listing the files available for upload/download -->
+    <table class="table table-striped" style="width: 530px;">
+      <tbody class="files"></tbody>
+    </table>
+  </div>
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Next
+      Next Step
     </button>
     <button type="reset" class="btn"
             onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
@@ -76,19 +59,16 @@
 </form>
 
 <!-- The template to display files available for upload -->
-<script id="template-upload" type="text/x-tmpl">
+<script id="template-upload-c" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-upload">
-    <td class="preview"><span class="fade"></span></td>
-    <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
     {% if (file.error) { %}
-    <td class="error" colspan="2">
-      {%=locale.fileupload.errors[file.error] || file.error%}
-    </td>
-    <td>
-      <span class="label label-important">{%=locale.fileupload.error%}</span>
+    <td class="error" colspan="5">
+      {%=localeC.fileupload.errors[file.error] || file.error%}
     </td>
     {% } else if (o.files.valid && !i) { %}
+      <td class="preview"><span class="fade"></span></td>
+      <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     <td>
       <div class="progress progress-info progress-striped active">
@@ -108,17 +88,12 @@
 </script>
 
 <!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
+<script id="template-download-c" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-download">
     {% if (file.error) { %}
-    <td>-</td>
-    <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
-    <td class="error" colspan="2">
-      {%=locale.fileupload.errors[file.error] || file.error%}
-    </td>
-    <td>
-      <span class="label label-important">{%=locale.fileupload.error%}</span>
+    <td class="error" colspan="5">
+      {%=localeC.fileupload.errors[file.error] || file.error%}
     </td>
     {% } else { %}
     <td class="preview">
@@ -136,19 +111,76 @@
 </script>
 
 <script type="text/javascript">
+    window.localeC = {
+        "fileupload": {
+            "errors": {
+                "maxFileSize": "File is too big",
+                "minFileSize": "File is too small",
+                "acceptFileTypes": "The file seems to be in the wrong format. " +
+                                   "Please make sure your photo is 'GIF', 'JPEG' or 'PNG' file and try again!",
+                "maxNumberOfFiles": "Sorry, you can upload only one image",
+                "uploadedBytes": "Uploaded bytes exceed file size",
+                "emptyResult": "Empty file upload result"
+            },
+            "error": "Error",
+            "start": "Start",
+            "cancel": "Cancel",
+            "destroy": "Delete"
+        }
+    };
+
   $(document).ready(function()
   {
     'use strict';
 
-    // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload();
-    $('#fileupload').fileupload('option', 'autoUpload', true);
-    $('#fileupload').fileupload('option', 'dropZone', $('#dropzone'));
-    $('#fileupload').fileupload('option', 'limitConcurrentUploads', 3);
+      $(document).bind('dragover', function (e)
+      {
+          var dropZone = $('#dropzone-c'),
+                  timeout = window.dropZoneCTimeoutC;
+          if (!timeout) {
+              dropZone.addClass('in');
+          } else {
+              clearTimeout(timeout);
+          }
+          if (e.target === dropZone[0]) {
+              dropZone.addClass('hover');
+          } else {
+              dropZone.removeClass('hover');
+          }
+          window.dropZoneCTimeout = setTimeout(function () {
+              window.dropCZoneTimeout = null;
+              dropZone.removeClass('in hover');
+          }, 100);
+      });
 
-    $('#fileupload')
+    // Dialog should be closed only with cancel upload button
+    $('.modal-body.opened').dialog2('options', {'closeOnOverlayClick': false, 'closeOnEscape': false});
+    $('.modal-body.opened').parent('.modal').find('.modal-header a.close').hide();
+
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload-c').fileupload({stop:function(){}});
+    $('#fileupload-c').fileupload('option', 'autoUpload', true);
+    $('#fileupload-c').fileupload('option', 'dropZone', $('#dropzone-c'));
+    $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);
+    $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1);
+    $('#fileupload-c').fileupload('option', 'uploadTemplateId', 'template-upload-c');
+    $('#fileupload-c').fileupload('option', 'downloadTemplateId', 'template-download-c');
+
+    $('#fileupload-c')
+      .bind('fileuploadadd', function (e, data) {
+        // Remove already added items and show upload box
+        $('.template-upload td.error').each(function(){
+          $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1); //update files count
+          $(this).closest('.template-upload').remove();
+        });
+       // $('.template-upload').remove();
+        $('#fileupload-box').removeClass('hide');
+      })
       .bind('fileuploadstart', function(e, data) {
-        $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
+        // Hide drop zone and file input
+        $('.progress-header').removeClass('hide');
+        $('#fileupload-input-box').addClass('hide');
+        $('.modal-footer').hide();
       })
       .bind('fileuploadstop', function(e, data)
       {
@@ -164,23 +196,35 @@
         {
           window.location.href = finish;
         }
-      });
+      })
+      .bind('fileuploadcompleted', function (e, data)
+        {
+          // Destroy file upload and show dialog with next step
+          var options = {
+            modal: true
+          };
+          options.content = data.result[0].redirect;
+          $('#fileupload-c').stop();
+          $('#fileupload-c').fileupload('destroy');
+          $('.modal-body.opened').dialog2('close');
+          $("<div></div>").dialog2(options);
+        });
 
     // Enable iframe cross-domain access via redirect option:
-    $('#fileupload').fileupload(
+    $('#fileupload-c').fileupload(
       'option', 'redirect',
       window.location.href.replace(
         /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
       )
     );
 
-    $('#fileupload').fileupload('option', {
+    $('#fileupload-c').fileupload('option', {
       maxFileSize: 10000000,
       acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
     });
 
     // Load existing files:
-    $('#fileupload').each(function () {
+    $('#fileupload-c').each(function () {
       var that = this;
       $.getJSON(this.action, function (result) {
         if (result && result.length) {

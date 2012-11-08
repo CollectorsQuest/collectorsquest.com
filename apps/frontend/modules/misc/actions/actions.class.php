@@ -260,7 +260,7 @@ class miscActions extends cqFrontendActions
     /** @var $post_id integer */
     $post_id = $request->getParameter('id');
 
-    $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
+    $values = $wp_post->getPostMetaValue('_featured_items');
 
     // Initialize the arrays
     $collection_ids = $collectible_ids = $category_ids = $tags = $homepage_collectible_ids = array();
@@ -445,7 +445,7 @@ class miscActions extends cqFrontendActions
       if (!empty($homepage_collectible_ids))
       {
         $q->addDescendingOrderByColumn(
-          'FIELD(collectible_id, ' . implode(',', array_reverse($homepage_collectible_ids)) . ')'
+          'FIELD(collection_collectible.collectible_id, ' . implode(',', array_reverse($homepage_collectible_ids)) . ')'
         );
       }
 
@@ -462,7 +462,7 @@ class miscActions extends cqFrontendActions
     $q = FrontendCollectibleQuery::create()
       ->filterById($_collectible_ids)
       ->addAscendingOrderByColumn(
-        'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
+        'FIELD(collectible.id, ' . implode(',', $_collectible_ids) . ')'
       );
 
     $pager = new PropelModelPager($q, 20);

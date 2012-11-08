@@ -59,37 +59,37 @@ $collector = cqTest::getModelObject('Collector', false);
 // Simple call
 $t->is(
   link_to_collector($collector),
-  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon">Robotbacon</a>'
+  '<a title="Poptart" href="http://www.example.org/collector/1/poptart">Poptart</a>'
 );
 
 // Simple call
 $t->is(
   link_to_collector($collector, 'text'),
-  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon">Robotbacon</a>'
+  '<a title="Poptart" href="http://www.example.org/collector/1/poptart">Poptart</a>'
 );
 
 // Simple image call
 $t->is(
   link_to_collector($collector, 'image'),
-  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon"><img alt="Robotbacon" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="Poptart" href="http://www.example.org/collector/1/poptart"><img alt="Poptart" slug="poptart" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 // Call with absolute=false
 $t->is(
   link_to_collector($collector, 'text', array('absolute'=> false)),
-  '<a title="Robotbacon" href="/collector/1/robotbacon">Robotbacon</a>'
+  '<a title="Poptart" href="/collector/1/poptart">Poptart</a>'
 );
 
 // Call with alt on $options - alt goes to image
 $t->is(
   link_to_collector($collector, 'image', array('image_tag' => array('alt'=> 'test'))),
-  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon"><img alt="test" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="Poptart" href="http://www.example.org/collector/1/poptart"><img alt="test" slug="poptart" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 // When image title should be only on <a>
 $t->is(
   link_to_collector($collector, 'image', array('link_to' => array('title'=> 'test'))),
-  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="Robotbacon" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="test" href="http://www.example.org/collector/1/poptart"><img alt="Poptart" slug="poptart" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 // When image used title is only on <a>, alt goes to <img>
@@ -98,7 +98,7 @@ $t->is(
     'link_to' => array('title' => 'test_title'),
     'image_tag' => array('alt' => 'test_alt')
   )),
-  '<a title="test_title" href="http://www.example.org/collector/1/robotbacon"><img alt="test_alt" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="test_title" href="http://www.example.org/collector/1/poptart"><img alt="test_alt" slug="poptart" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 $t->is(
@@ -106,7 +106,7 @@ $t->is(
     'link_to' => array('title' => 'test'),
     'image_tag' => array('alt' => 'test')
   )),
-  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="test" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="test" href="http://www.example.org/collector/1/poptart"><img alt="test" slug="poptart" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 // Alt in $image_options overwrites this from $options
@@ -115,7 +115,7 @@ $t->is(
     'link_to' => array('title' => 'test', 'alt' => 'test_options'),
     'image_tag' => array('alt' => 'test_image')
   )),
-  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="test_image" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="test" href="http://www.example.org/collector/1/poptart"><img alt="test_image" slug="poptart" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 $t->diag('link_to_collectible()');
@@ -392,5 +392,5 @@ $collector = cqTest::getModelObject('Collector', false);
 // Simple call with no additional parameters
 $t->is(
   link_to_collector($collector),
-  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon">Robotbacon</a>'
+  '<a title="Poptart" href="http://www.example.org/collector/1/poptart">Poptart</a>'
 );

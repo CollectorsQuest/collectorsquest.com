@@ -1943,15 +1943,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-01-16 10:31:01'
-  Multimedia_5180:
-    model: Collector
-    model_id: '1374'
-    type: image
-    slug: ''
-    md5: eb430a0da097cabf12658229c50d3a3d
-    is_primary: '1'
-    position: '65535'
-    created_at: '2009-07-15 07:21:05'
   Multimedia_5181:
     model: CollectorCollection
     model_id: '1570'
@@ -2366,15 +2357,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2009-07-14 14:31:51'
-  Multimedia_5919:
-    model: Collectible
-    model_id: '23787'
-    type: image
-    slug: ''
-    md5: 7d3cc24e1c72636d826b29fc31f24ed9
-    is_primary: '1'
-    position: '65535'
-    created_at: '2009-06-15 16:53:27'
   Multimedia_5920:
     model: CollectorCollection
     model_id: '1458'
@@ -2447,15 +2429,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-01-18 13:28:42'
-  Multimedia_6002:
-    model: Collectible
-    model_id: '29195'
-    type: image
-    slug: ''
-    md5: f898054d24e961537705ff916c94a45e
-    is_primary: '1'
-    position: '65535'
-    created_at: '2009-08-31 10:01:18'
   Multimedia_6010:
     model: CollectorCollection
     model_id: '1720'
@@ -2591,15 +2564,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-02-03 13:27:20'
-  Multimedia_6227:
-    model: Collectible
-    model_id: '35582'
-    type: image
-    slug: ''
-    md5: 5a606e3ce2dd6b317eed0ec79bb62f8e
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-03 13:25:19'
   Multimedia_6231:
     model: CollectorCollection
     model_id: '1809'
@@ -2699,15 +2663,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2009-12-14 14:57:10'
-  Multimedia_6352:
-    model: Collectible
-    model_id: '32390'
-    type: image
-    slug: ''
-    md5: 83c118283916ae77d3e8f59c0dfcc15f
-    is_primary: '1'
-    position: '65535'
-    created_at: '2009-11-26 12:13:28'
   Multimedia_6359:
     model: CollectorCollection
     model_id: '1867'
@@ -2816,15 +2771,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-02-13 13:39:26'
-  Multimedia_6505:
-    model: Collectible
-    model_id: '35117'
-    type: image
-    slug: ''
-    md5: 548524729b9a9fce444150a900ac38fa
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-01-28 13:36:24'
   Multimedia_6530:
     model: CollectorCollection
     model_id: '1941'
@@ -4121,15 +4067,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2009-05-29 00:08:26'
-  Multimedia_10827:
-    model: Collectible
-    model_id: '22215'
-    type: image
-    slug: ''
-    md5: 8a10704293614a321b7bbf121a4b5751
-    is_primary: '1'
-    position: '65535'
-    created_at: '2009-05-29 00:08:26'
   Multimedia_10828:
     model: CollectorCollection
     model_id: '1395'
@@ -4238,15 +4175,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2009-11-28 20:42:09'
-  Multimedia_10903:
-    model: Collectible
-    model_id: '32825'
-    type: image
-    slug: ''
-    md5: 6fe5a2fde7360c4b8dad01ff545ba357
-    is_primary: '1'
-    position: '65535'
-    created_at: '2009-12-07 20:44:42'
   Multimedia_10911:
     model: CollectorCollection
     model_id: '1323'
@@ -5192,15 +5120,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2009-03-13 16:57:02'
-  Multimedia_13015:
-    model: Collector
-    model_id: '1082'
-    type: image
-    slug: ''
-    md5: dd966937a68795ea31fabfa1833c4c1b
-    is_primary: '1'
-    position: '65535'
-    created_at: '2009-03-12 22:00:40'
   Multimedia_13016:
     model: CollectorCollection
     model_id: '1131'
@@ -8200,15 +8119,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2008-08-25 09:10:52'
-  Multimedia_20909:
-    model: Collector
-    model_id: '714'
-    type: image
-    slug: ''
-    md5: 0cec7b8c58b479f3526f7beed6be37ef
-    is_primary: '1'
-    position: '65535'
-    created_at: '2008-08-23 09:25:20'
   Multimedia_20910:
     model: CollectorCollection
     model_id: '709'
@@ -8218,15 +8128,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2008-08-23 09:43:39'
-  Multimedia_20944:
-    model: Collectible
-    model_id: '12371'
-    type: image
-    slug: ''
-    md5: c0a60a114eb78ce3b29ad8d3555f0831
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-18 14:47:30'
   Multimedia_20968:
     model: CollectorCollection
     model_id: '706'
@@ -8596,15 +8497,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2008-06-25 16:15:32'
-  Multimedia_21852:
-    model: Collectible
-    model_id: '9375'
-    type: image
-    slug: ''
-    md5: c8702fe3d5f53eda2c861f3a2588814e
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-01-26 04:10:09'
   Multimedia_21876:
     model: CollectorCollection
     model_id: '619'
@@ -9586,15 +9478,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2008-04-06 23:42:10'
-  Multimedia_24715:
-    model: Collector
-    model_id: '531'
-    type: image
-    slug: ''
-    md5: 8ebb630ec40575231f856856a467324e
-    is_primary: '1'
-    position: '65535'
-    created_at: '2008-04-06 11:43:49'
   Multimedia_24716:
     model: CollectorCollection
     model_id: '495'
@@ -10360,15 +10243,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2008-01-04 21:14:32'
-  Multimedia_25897:
-    model: Collector
-    model_id: '235'
-    type: image
-    slug: ''
-    md5: 32c38066d8a4202448968cb969f21f43
-    is_primary: '1'
-    position: '65535'
-    created_at: '2008-01-02 18:42:45'
   Multimedia_25898:
     model: CollectorCollection
     model_id: '311'
@@ -12169,15 +12043,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2007-06-19 22:03:29'
-  Multimedia_29969:
-    model: Collector
-    model_id: '52'
-    type: image
-    slug: ''
-    md5: 9e5cf7a4c84aacc9d4487e00b1de9a3b
-    is_primary: '1'
-    position: '65535'
-    created_at: '2007-06-19 01:15:50'
   Multimedia_29970:
     model: CollectorCollection
     model_id: '45'
@@ -12187,42 +12052,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-01-11 22:16:19'
-  Multimedia_30000:
-    model: Collectible
-    model_id: '479'
-    type: image
-    slug: ''
-    md5: 9e63815ac63f997faf52a492254044f6
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-20 21:09:22'
-  Multimedia_30101:
-    model: Collectible
-    model_id: '12421'
-    type: image
-    slug: ''
-    md5: 24bfc7ff3332c74bb26f6192c77f541b
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-20 06:03:42'
-  Multimedia_30107:
-    model: Collectible
-    model_id: '12709'
-    type: image
-    slug: ''
-    md5: dca9324625e0a46603a1b2e95ba6aa6e
-    is_primary: '1'
-    position: '65535'
-    created_at: '2008-10-26 23:18:13'
-  Multimedia_30118:
-    model: Collectible
-    model_id: '15334'
-    type: image
-    slug: ''
-    md5: 90113d6882b60233a147e2dcb59f2510
-    is_primary: '1'
-    position: '65535'
-    created_at: '2009-01-14 08:58:36'
   Multimedia_30134:
     model: CollectorCollection
     model_id: '46'
@@ -12250,15 +12079,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2007-06-19 12:14:31'
-  Multimedia_30156:
-    model: Collectible
-    model_id: '435'
-    type: image
-    slug: ''
-    md5: 7e1e217aaf5648cfd8aaeb07f48523b7
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-19 07:42:53'
   Multimedia_30160:
     model: CollectorCollection
     model_id: '50'
@@ -12313,24 +12133,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-01-25 14:15:17'
-  Multimedia_30331:
-    model: Collectible
-    model_id: '591'
-    type: image
-    slug: ''
-    md5: 56c86af7f64daebe01a875e13bf56919
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-21 04:30:16'
-  Multimedia_30366:
-    model: Collectible
-    model_id: '6732'
-    type: image
-    slug: ''
-    md5: 799c31fed024a5450eb9b189804a1674
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-18 11:44:51'
   Multimedia_30379:
     model: CollectorCollection
     model_id: '56'
@@ -12412,15 +12214,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2007-09-26 15:02:34'
-  Multimedia_30567:
-    model: Collectible
-    model_id: '3904'
-    type: image
-    slug: ''
-    md5: be2b892f5c3e7198bc5a118937608d89
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-14 06:38:03'
   Multimedia_30579:
     model: CollectorCollection
     model_id: '265'
@@ -12484,15 +12277,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2008-07-10 13:00:56'
-  Multimedia_30688:
-    model: Collectible
-    model_id: '9910'
-    type: image
-    slug: ''
-    md5: 704d5c49f883e24a1f29340b86a4c0de
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-21 03:35:05'
   Multimedia_30689:
     model: CollectorCollection
     model_id: '748'
@@ -12502,15 +12286,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2008-09-07 10:29:28'
-  Multimedia_30738:
-    model: Collectible
-    model_id: '11721'
-    type: image
-    slug: ''
-    md5: b982f193b16d839c8765706ee5a4800e
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-02-01 23:48:46'
   Multimedia_30742:
     model: CollectorCollection
     model_id: '787'
@@ -12538,15 +12313,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2008-12-03 11:44:46'
-  Multimedia_30762:
-    model: Collectible
-    model_id: '13801'
-    type: image
-    slug: ''
-    md5: e27d2118513e8b8736f3fb4890572928
-    is_primary: '1'
-    position: '65535'
-    created_at: '2008-12-03 11:51:51'
   Multimedia_30774:
     model: CollectorCollection
     model_id: '1486'
@@ -14853,16 +14619,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-03-31 02:02:47'
-  Multimedia_38326:
-    model: Collectible
-    model_id: '37697'
-    type: image
-    name: DSC02234
-    slug: ''
-    md5: 31d690e56d0db7c83d3a22c7377d9192
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-04-01 14:54:35'
   Multimedia_38332:
     model: CollectorCollection
     model_id: '2156'
@@ -15558,16 +15314,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-05-21 06:09:26'
-  Multimedia_40407:
-    model: Collectible
-    model_id: '39654'
-    type: image
-    name: '008'
-    slug: ''
-    md5: e24d79a178a8a88f7b186aec2d859b1e
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-05-21 13:06:44'
   Multimedia_40410:
     model: CollectorCollection
     model_id: '2211'
@@ -16243,15 +15989,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-06-27 11:13:25'
-  Multimedia_41767:
-    model: Collector
-    model_id: '3632'
-    type: image
-    slug: ''
-    md5: 6af175e5c1bd818d5b270bcc246e8ae9
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-06-27 11:13:29'
   Multimedia_41768:
     model: CollectorCollection
     model_id: '2273'
@@ -17118,16 +16855,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-08-14 12:34:17'
-  Multimedia_46802:
-    model: Collectible
-    model_id: '43035'
-    type: image
-    name: DSC03021
-    slug: ''
-    md5: 0f172cd41fc343a6b73f6c57c355f857
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-08-14 13:28:54'
   Multimedia_46807:
     model: wpPost
     model_id: '11756'
@@ -17164,16 +16891,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-08-22 11:39:26'
-  Multimedia_46941:
-    model: Collectible
-    model_id: '43157'
-    type: image
-    name: DSC00485
-    slug: ''
-    md5: 110aa97d44b35def085ef973572be9da
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-08-22 11:45:37'
   Multimedia_46958:
     model: CollectorCollection
     model_id: '1955'
@@ -17865,16 +17582,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-09-28 21:01:24'
-  Multimedia_48639:
-    model: Collectible
-    model_id: '44565'
-    type: image
-    name: 'Photo on 2010-09-28 at 20.14 #2'
-    slug: ''
-    md5: a6cce1f5147ab8f4dd6ebc048868dbd3
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-09-28 21:18:28'
   Multimedia_48649:
     model: wpPost
     model_id: '11868'
@@ -18958,15 +18665,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2010-11-06 13:10:26'
-  Multimedia_50991:
-    model: Collector
-    model_id: '870'
-    type: image
-    slug: ''
-    md5: c897c5de30a292016a0ce7c223c68a19
-    is_primary: '1'
-    position: '65535'
-    created_at: '2010-11-07 15:13:55'
   Multimedia_51017:
     model: CollectorCollection
     model_id: '2464'
@@ -22759,15 +22457,6 @@ Multimedia:
   Multimedia_63790:
     model: CollectorCollection
     model_id: '2812'
-    type: image
-    slug: ''
-    md5: d0bfba914c2d94e9defd97decc17bfea
-    is_primary: '1'
-    position: '65535'
-    created_at: '2011-06-09 19:26:48'
-  Multimedia_63791:
-    model: Collector
-    model_id: '6610'
     type: image
     slug: ''
     md5: d0bfba914c2d94e9defd97decc17bfea
@@ -27165,16 +26854,6 @@ Multimedia:
     is_primary: '1'
     position: '65535'
     created_at: '2012-02-22 15:09:30'
-  Multimedia_77554:
-    model: Collector
-    model_id: '1317'
-    type: image
-    name: 8985013bfa1246e44a9cf4294f1a07a2
-    slug: 8985013bfa1246e44a9cf4294f1a07a2
-    md5: cce3a0020183fc9cf486720f4626c1cf
-    is_primary: '1'
-    position: '65535'
-    created_at: '2012-02-23 03:18:44'
   Multimedia_77556:
     model: wpPost
     model_id: '16378'
@@ -44300,3 +43979,13 @@ Multimedia:
     is_primary: '1'
     position: '0'
     created_at: '2012-10-30 16:58:00'
+  Multimedia_113397:
+    model: CollectorCollection
+    model_id: '4372'
+    type: image
+    name: 069b611e72f10084fdef44cc615b259e.original.jpg
+    slug: 069b611e72f10084fdef44cc615b259eoriginaljpg
+    md5: 069b611e72f10084fdef44cc615b259e
+    is_primary: '1'
+    position: '0'
+    created_at: '2012-10-30 18:40:42'

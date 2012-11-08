@@ -28,7 +28,6 @@ class testGenerateFixturesTask extends sfBaseTask
     $archive = $databaseManager->getDatabase('archive')->getConnection();
 
     $collector_ids = array(
-      531, 52, 1082, 3632, 6610, 1374, 714, 235, 870, 1317,
       163, 963, 644, 59, 4208, 6700, 1212, 4295, 846, 9367
     );
 
@@ -46,11 +45,15 @@ class testGenerateFixturesTask extends sfBaseTask
       'TRUNCATE TABLE `shopping_cart`;',
 
       'DELETE FROM collectible WHERE collector_id NOT IN ('.  implode(',', $collector_ids) .');',
+      'DELETE FROM collectible_rating WHERE collectible_id NOT IN (SELECT id FROM collectible);',
       'DELETE FROM collection_collectible WHERE collectible_id NOT IN (SELECT id FROM collectible)',
       'DELETE FROM collector_collection WHERE collector_id NOT IN ('.  implode(',', $collector_ids) .');',
+      'DELETE FROM collector_collection_rating WHERE collector_collection_id NOT IN (SELECT id FROM collector_collection)',
       "DELETE FROM collection WHERE id NOT IN (SELECT id FROM collector_collection) AND descendant_class = 'CollectorCollection';",
+      'DELETE FROM collection_rating WHERE collection_id NOT IN (SELECT id FROM collection)',
       'DELETE FROM collector_email WHERE collector_id NOT IN ('.  implode(',', $collector_ids) .');',
       'DELETE FROM collector WHERE id NOT IN ('.  implode(',', $collector_ids) .');',
+      'DELETE FROM collector_rating WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM collector_profile WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM collector_profile_extra_property WHERE collector_profile_collector_id NOT IN (SELECT collector_id FROM collector_profile);',
       'DELETE FROM collector_extra_property WHERE collector_id NOT IN (SELECT id FROM collector);',
@@ -84,6 +87,7 @@ class testGenerateFixturesTask extends sfBaseTask
       "DELETE FROM tagging WHERE `taggable_model` = 'Collector' AND `taggable_id` NOT IN (SELECT id FROM collector);",
       "DELETE FROM tagging WHERE `taggable_model` = 'Collection' AND `taggable_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",
       "DELETE FROM tagging WHERE `taggable_model` = 'Collectible' AND `taggable_id` NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 10) AS c WHERE collectible.id = c.id);",
+      "DELETE FROM tag WHERE `id` NOT IN (SELECT tagging.tag_id FROM tagging);",
 
       "DELETE FROM term_relationship WHERE `model` = 'Collector' AND `model_id` NOT IN (SELECT id FROM collector);",
       "DELETE FROM term_relationship WHERE `model` = 'Collection' AND `model_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",

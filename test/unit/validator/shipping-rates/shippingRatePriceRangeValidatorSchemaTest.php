@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__).'/../../../bootstrap/unit.php');
 require_once(dirname(__FILE__).'/../../../../lib/validator/shipping-rates/shippingRatePriceRangeValidatorSchema.class.php');
 
-$t = new lime_test(6, new lime_output_color());
+$t = new lime_test(6, array('output' => new lime_output_color(), 'error_reporting' => true));
 $t->diag('Testing /lib/validator/shipping-rates/shippingRatePriceRangeValidatorSchema.class.php');
 
 $tests = array(

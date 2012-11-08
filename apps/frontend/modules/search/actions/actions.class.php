@@ -106,7 +106,7 @@ class searchActions extends cqFrontendActions
     {
       $pks = array_map(create_function('$v', 'return $v - 400000000;'), $pks);
 
-      $this->collectibles_for_sale = CollectibleForSaleQuery::create()
+      $this->collectibles_for_sale = FrontendCollectibleForSaleQuery::create()
         ->filterByCollectibleId($pks, Criteria::IN)
         ->limit(4)
         ->find();

@@ -87,7 +87,7 @@ $linkPrev = $linkNext = false;
     <li class="disabled"><a href="javascript:void(0);"> &rarr; </a></li>
     <?php endif; ?>
 
-    <?php if (@$options['show_all'] ? : false): ?>
+    <?php if (@$options['show_all'] ?: false): ?>
     <li class="spacer-left">
       <?= link_to(__('show all'), $url . $mark . $options['page_param'] . '=1&show=all'); ?>
     </li>

@@ -39,7 +39,7 @@
     <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
   <p>
-    <b>All of the following fileds are for EXCLUDING the relevant models</b>
+    <b>All of the following fields are for EXCLUDING the relevant models</b>
   </p>
   <p>Enter comma separated ID numbers. (1,2,3)</p>
 

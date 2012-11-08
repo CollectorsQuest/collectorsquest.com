@@ -342,8 +342,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function hasPayPalDetails()
   {
-    return $this->getSellerSettingsPaypalEmail() &&
-           $this->getSellerSettingsPaypalAccountStatus();
+    return $this->getSellerSettingsPaypalEmail();
   }
 
   /**
@@ -403,6 +402,27 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function getCollectorSlug()
   {
     return $this->getSlug();
+  }
+
+  /**
+   * Get the slug of Collector shop to use in route 'collector_shop'
+   *
+   * @return boolean
+   */
+  public function getStoreSlug()
+  {
+    return Utf8::slugify($this->getSeller()->getSellerSettingsStoreName(), '-', true);
+  }
+
+  /**
+   * Get the Collector shop title
+   *
+   * @return boolean
+   */
+
+  public function getStoreTitle()
+  {
+    return $this->getSeller()->getSellerSettingsStoreName();
   }
 
   /**
@@ -1521,7 +1541,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * Returns the number of related FrontendCollectorCollection objects.
+   * Returns the number of related FrontendCollectionCollectibles objects.
    *
    * @return int
    */
@@ -1529,6 +1549,19 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   {
     return FrontendCollectionCollectibleQuery::create()
       ->filterByCollector($this)
+      ->count();
+  }
+
+  /**
+   * Returns the number of related FrontendCollectionCollectiblesForSale objects.
+   *
+   * @return int
+   */
+  public function countFrontendCollectionCollectiblesForSale()
+  {
+    return FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($this)
+      ->isForSale()
       ->count();
   }
 

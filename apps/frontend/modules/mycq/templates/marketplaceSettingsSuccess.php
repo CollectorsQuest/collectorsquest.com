@@ -1,4 +1,5 @@
 <?php
+  /* @var $collector Collector */
   /* @var $form CollectorEditForm */
   foreach ($form->getWidgetSchema()->getFields() as $form_field)
   {
@@ -20,7 +21,7 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
-        <?= form_tag('@mycq_marketplace_settings', array('class' => 'form-horizontal')); ?>
+        <?= form_tag('@mycq_marketplace_settings', array('class' => 'form-horizontal', 'multipart' => true)); ?>
         <?= $form->renderHiddenFields(); ?>
 
         <?php if ($form->hasGlobalErrors()): ?>
@@ -44,7 +45,6 @@
           </div>
         <?php endif; ?>
 
-
         <?php cq_sidebar_title('PayPal Account'); ?>
 
         <fieldset class="form-container-center spacer-top-20">
@@ -59,6 +59,7 @@
 
         <fieldset class="form-container-center spacer-top-20">
           <?= $form['seller_settings_store_name']->renderRow() ?>
+          <?= $form['seller_settings_store_header_image']->renderRow(array(), null, 'A image to be used as store header that will be resized to 620x67 pixels') ?>
           <?= $form['seller_settings_store_title']->renderRow() ?>
           <?= $form['seller_settings_refunds']->renderRow() ?>
           <?= $form['seller_settings_shipping']->renderRow() ?>
