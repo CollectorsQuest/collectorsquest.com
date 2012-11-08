@@ -18,7 +18,7 @@ generator:
         display_type: { label: "Type" }
         nb_members: { label: "Members count" }
       list:
-        display: [=name, founder, display_type, access, nb_members, updated_at, created_at]
+        display: [=name, founder, display_type, access, nb_members, referral_code, created_at]
         object_actions:
           _edit: ~
           _delete: ~
