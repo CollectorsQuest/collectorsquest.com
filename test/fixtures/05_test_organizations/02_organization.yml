@@ -3,3 +3,16 @@ Organization:
     founder_id: ivan
     name: Test
     type: collector_club
+    access: moderated
+
+  private:
+    founder_id: ivan
+    name: Private
+    type: collector_club
+    access: private
+
+  open:
+    founder_id: ivan
+    name: Open
+    type: collector_club
+    access: open

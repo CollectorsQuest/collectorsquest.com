@@ -44,7 +44,7 @@ class Organization extends BaseOrganization
       ->_if($collector instanceof Collector)
         ->filterByCollector($collector)
       ->_else()
-        ->filterByCollecotrId($collector)
+        ->filterByCollectorId($collector)
       ->_endif()
       ->count($con);
   }
@@ -62,7 +62,7 @@ class Organization extends BaseOrganization
       ->_if($collector instanceof Collector)
         ->filterByCollectorRelatedByCollectorId($collector)
       ->_else()
-        ->filterByCollecotrId($collector)
+        ->filterByCollectorId($collector)
       ->_endif()
       ->orderById(Criteria::DESC) // alternative to an "order by created at" cond
       ->findOne($con) ?: false;

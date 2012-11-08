@@ -17,7 +17,7 @@ class OrganizationAccess
    * @param     OrganizationMembershipPeer::TYPE $type
    * @param     PropelPDO $con
    *
-   * @return    boolean
+   * @return    boolean True if a member was added, or false if he was already a member
    */
   public static function addMember(
     Organization $organization,
@@ -32,11 +32,14 @@ class OrganizationAccess
       $membership->setCollectorId($collector->getId());
       $membership->setType($type);
       $membership->save($con);
+      // TODO: Send welcome to organization email
+
+      return true;
     }
-
-    // TODO: Send welcome to organization email
-
-    return true;
+    else
+    {
+      return false;
+    }
   }
 
   /**
@@ -55,14 +58,30 @@ class OrganizationAccess
    * @throws    OrganizationAccessMembershipRequestAlreadyPendingException
    * @throws    OrganizationAccessMembershipRequestAlreadyApprovedException
    * @throws    OrganizationAccessMembershipRequestAlreadyDeniedException
-   * @throws    OrganizationAccessException
+   * @throws    OrganizationAccessMembershipRequestDeniedForPrivateOrganization
    */
   public static function createMembershipRequest(
     Organization $organization,
     Collector $collector,
     $is_invitation = false,
+    $note = '',
     PropelPDO $con = null
   ) {
+
+    if (OrganizationPeer::ACCESS_OPEN == $organization->getAccess() && !$is_invitation)
+    {
+      return self::addMember(
+        $organization,
+        $collector,
+        OrganizationMembershipPeer::TYPE_MEMBER,
+        $con
+      );
+    }
+
+    if (OrganizationPeer::ACCESS_PRIVATE == $organization->getAccess() && !$is_invitation)
+    {
+      throw new OrganizationAccessMembershipRequestDeniedForPrivateOrganization();
+    }
 
     if ($organization->isMember($collector))
     {
@@ -78,6 +97,7 @@ class OrganizationAccess
       $request->setOrganizationId($organization->getId());
       $request->setCollectorId($collector->getId());
       $request->setIsInvitation($is_invitation);
+      $request->setRequestNote($note);
       $request->save($con);
 
       if ($is_invitation)
