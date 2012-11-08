@@ -36,18 +36,6 @@ class organizationActions extends cqFrontendActions
     /* @var $organization Organization */
     $organization = $this->getRoute()->getObject();
 
-    if (!$this->getUser()->isAuthenticated())
-    {
-      $redirectUrl = '@misc_guide_to_collecting?r='.$request->getUri();
-
-      if ($organization->getAccess() == OrganizationPeer::ACCESS_OPEN)
-      {
-        $redirectUrl .= '&organization=' . $organization->getId();
-      }
-
-      $this->redirect($redirectUrl);
-    }
-
     try
     {
       OrganizationAccess::createMembershipRequest($organization, $this->getCollector());
