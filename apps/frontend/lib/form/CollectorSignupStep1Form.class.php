@@ -37,13 +37,14 @@ class CollectorSignupStep1Form extends BaseForm
           2 => 'I collect and sell',
         ),
 
-        'formatter'   =>   function($widget, $inputs) {
+        'formatter'   => function($widget, $inputs) {
           $rows = array();
           foreach ($inputs as $input)
           {
             $rows[] = $widget->renderContentTag('label',
               $input['input'].$widget->getOption('label_separator').strip_tags($input['label']),
-              array('class'=>'radio'));
+              array('class'=>'radio')
+            );
           }
 
           return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
@@ -128,6 +129,14 @@ class CollectorSignupStep1Form extends BaseForm
 
     $this->widgetSchema->setNameFormat('signup_step1[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
+  }
+
+  public function setupReferralField()
+  {
+    $this->widgetSchema['referral_code'] = new sfWidgetFormInputText(array(
+      'label' => 'Referrer',
+    ));
+    $this->validatorSchema['referral_code'] = new sfValidatorString(array('required' => false));
   }
 
   public function getJavaScripts()

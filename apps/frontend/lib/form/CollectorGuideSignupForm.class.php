@@ -33,6 +33,18 @@ class CollectorGuideSignupForm extends CollectorSignupStep1Form
 
     $this->setupReferralField();
 
+    // This will give it the right order of the fields
+    $this->useFields(array(
+      'username',
+      'password',
+      'password_again',
+      'email',
+      'referral_code',
+      'seller',
+      'newsletter',
+      'goto'
+    ));
+
     $this->widgetSchema->setFormFormatterName('BootstrapWithRowFluid');
   }
 
@@ -57,10 +69,9 @@ class CollectorGuideSignupForm extends CollectorSignupStep1Form
   public function setupReferralField()
   {
     $this->widgetSchema['referral_code'] = new sfWidgetFormInputText(array(
-        'label' => 'Org. Referral',
+        'label' => 'Referrer',
     ));
-    $this->widgetSchema->setHelp('referral_code',
-      'Do you have a referral code for one of our organizations? <br /> Input it here!');
+    $this->widgetSchema->setHelp('referral_code', null);
     $this->validatorSchema['referral_code'] = new sfValidatorPropelChoice(array(
         'model' => 'Organization',
         'column' => 'referral_code',
