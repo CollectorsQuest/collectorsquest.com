@@ -25,6 +25,11 @@
     </div>
   </div>
 </div>
+
+<?php include_component('organization', 'widgetMembers', array(
+    'organization' => $organization,
+)); ?>
+
 <div class="">
   <?php if (!$organization->isMember($sf_user->getCollector()) && OrganizationPeer::ACCESS_PRIVATE != $organization->getAccess()): ?>
   <?= form_tag('@organization_join?id='.$organization->getId(), array('class' => 'form-horizontal')) ?>

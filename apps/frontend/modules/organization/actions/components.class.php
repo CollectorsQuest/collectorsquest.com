@@ -22,4 +22,9 @@ class organizationComponents extends cqFrontendComponents
     $this->organization = $organization;
   }
 
+  public function executeWidgetMembers()
+  {
+    $this->members = $this->organization->getCollectors();
+  }
+
 }
