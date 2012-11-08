@@ -11,6 +11,8 @@ class OrganizationForm extends BaseOrganizationForm
 {
   public function configure()
   {
+    $this->setupReferralCodeField();
+
     $this->validatorSchema->setPostValidator(
       new sfValidatorAnd(array(
         new sfValidatorPropelUnique(array(
@@ -24,6 +26,24 @@ class OrganizationForm extends BaseOrganizationForm
         )),
       ))
     );
+  }
+
+  protected function setupReferralCodeField()
+  {
+    // because we want to allow null uniques for referral_code, we need to
+    // manually make sure the return value for the field is NULL when an empty
+    // string is inputted
+    $original_validator = $this->validatorSchema['referral_code'];
+    $this->validatorSchema['referral_code'] = new sfValidatorCallback(array(
+        'callback' => function(sfValidatorCallback $v, $value) use ($original_validator)
+        {
+          // return an empty string as NULL
+          return '' == $original_validator->clean($value)
+            ? null
+            : $value;
+        },
+    ));
+
   }
 
   public function updateDefaultsFromObject()
