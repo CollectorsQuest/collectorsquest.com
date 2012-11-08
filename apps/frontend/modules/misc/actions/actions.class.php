@@ -30,13 +30,28 @@ class miscActions extends cqFrontendActions
    */
   public function executeGuideToCollecting(sfWebRequest $request)
   {
+    // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect('@misc_guide_download');
+      return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     $signupForm = new CollectorGuideSignupForm();
     $loginForm = new CollectorGuideLoginForm();
+
+    if (( $r = $request->getParameter('r')) )
+    {
+      // if a specific redirect is called for, add it to the form defaults
+      $signupForm->setDefault('goto', $r);
+      $loginForm->setDefault('goto', $r);
+    }
+    else
+    {
+      // otherwize use the default redirects
+      $signupForm->setDefault('goto', $this->generateUrl('mycq'));
+      $loginForm->setDefault('goto', $this->generateUrl('misc_guide_download'));
+    }
+
     $display = 'signup';
 
     if (sfRequest::POST == $request->getMethod())
@@ -87,7 +102,8 @@ class miscActions extends cqFrontendActions
              Please explore some of the sections below.'
           );
 
-          $this->redirect('@mycq');
+          $goto = $signupForm->getValue('goto', '@mycq');
+          return $this->redirect($goto);
         }
       }
       else if ($request->getParameter($loginForm->getName()))
@@ -101,7 +117,8 @@ class miscActions extends cqFrontendActions
           $collector = $loginForm->getValue('collector');
           $this->getUser()->Authenticate(true, $collector, $loginForm->getValue('remember'));
 
-          $this->redirect('@misc_guide_download');
+          $goto = $loginForm->getValue('goto', '@misc_guide_download');
+          return $this->redirect($goto);
         }
       }
     }
