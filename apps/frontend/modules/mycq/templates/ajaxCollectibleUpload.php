@@ -10,7 +10,7 @@
       method="post" id="fileupload-c" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
 
   <div id="fileupload-input-box">
-    <h1>Upload Photo - Step 1</h1>
+    <h1>Step 1: Upload Photo</h1>
 
     <?= $form['thumbnail']->renderRow(); ?>
     <input type="hidden" name="model" value="<?= $model ?>">

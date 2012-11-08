@@ -480,19 +480,19 @@ class ajaxAction extends cqAjaxAction
    */
   protected function executeCollectibleUpload(sfWebRequest $request, $template)
   {
-    $model = $request->getParameter('model') ?: 'collectible';
+    $model = (string) $request->getParameter('model') ?: 'collectible';
+    $this->collection_id = (integer) $request->getParameter('collection_id');
 
     $form = new CollectibleUploadForm();
+    $form->getWidgetSchema()->setLabel('thumbnail', 'Item Photo');
+
     if ($model == 'collection')
     {
+      $form->getWidgetSchema()->setLabel('thumbnail', 'Collection Photo');
       $form->getWidgetSchema()->setHelp(
         'thumbnail', 'Choose a photo which represents your entire collection.'
       );
       $this->collection_id = null;
-    }
-    else
-    {
-      $this->collection_id = $request->getParameter('collection_id');
     }
 
     /** @var $collector Collector */

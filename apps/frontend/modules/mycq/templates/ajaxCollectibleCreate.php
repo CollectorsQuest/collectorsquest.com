@@ -24,7 +24,7 @@
 <form action="<?= url_for('@ajax_mycq?section=collectible&page=create&collectible_id=' . $donor->getId()); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Describe Your Item - Step 2</h1>
+  <h1>Step 2: Describe Your Item</h1>
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
