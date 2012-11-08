@@ -13,6 +13,7 @@ class CollectibleForm extends BaseCollectibleForm
   public function configure()
   {
     $this->setupTagsField();
+    $this->setupContentCategoryField();
   }
 
   protected function setupTagsField()
@@ -44,6 +45,11 @@ class CollectibleForm extends BaseCollectibleForm
     else {
       return $values;
     }
+  }
+
+  protected function setupContentCategoryField()
+  {
+    $this->widgetSchema['content_category_id']->setOption('renderer_class', 'sfWidgetFormChosenChoice');
   }
 
   public function updateDescriptionColumn($value)
