@@ -39,6 +39,15 @@ class miscActions extends cqFrontendActions
     $loginForm = new CollectorGuideLoginForm();
     $display = 'signup';
 
+    if ($request->hasParameter('organization'))
+    {
+      $organization = OrganizationPeer::retrieveByPK($request->getParameter('organization'));
+      if ($organization && $organization->getAccess() == OrganizationPeer::ACCESS_OPEN)
+      {
+        $signupForm->setDefault('referral', $organization->getReferralCode());
+      }
+    }
+
     if (sfRequest::POST == $request->getMethod())
     {
       if ($request->getParameter($signupForm->getName()))
@@ -90,18 +99,20 @@ class miscActions extends cqFrontendActions
           $this->redirect('@mycq');
         }
       }
-      else if ($request->getParameter($loginForm->getName()))
-      {
-        $display = 'login';
-        $loginForm->bind($request->getParameter($loginForm->getName()));
-
-        if ($loginForm->isValid())
+      else {
+        if ($request->getParameter($loginForm->getName()))
         {
-          /* @var $collector Collector */
-          $collector = $loginForm->getValue('collector');
-          $this->getUser()->Authenticate(true, $collector, $loginForm->getValue('remember'));
+          $display = 'login';
+          $loginForm->bind($request->getParameter($loginForm->getName()));
 
-          $this->redirect('@misc_guide_download');
+          if ($loginForm->isValid())
+          {
+            /* @var $collector Collector */
+            $collector = $loginForm->getValue('collector');
+            $this->getUser()->Authenticate(true, $collector, $loginForm->getValue('remember'));
+
+            $this->redirect('@misc_guide_download');
+          }
         }
       }
     }
@@ -127,8 +138,8 @@ class miscActions extends cqFrontendActions
     $collector = $this->getUser()->getCollector();
 
     $email = CollectorEmailQuery::create()
-        ->filterByCollector($collector)
-        ->findOneByEmail($collector->getEmail());
+      ->filterByCollector($collector)
+      ->findOneByEmail($collector->getEmail());
 
     if (!$email || !$email->getIsVerified())
     {
@@ -143,10 +154,10 @@ class miscActions extends cqFrontendActions
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('misc/validate_email_to_download', array(
-            'to'      => $collector->getEmail(),
+            'to' => $collector->getEmail(),
             'subject' => 'Quest Your Best: The Essential Guide to Collecting',
-            'params'  => array(
-              'collector'       => $collector,
+            'params' => array(
+              'collector' => $collector,
               'collector_email' => $email,
             )
           ));
@@ -173,14 +184,14 @@ class miscActions extends cqFrontendActions
       $format = $this->getRequestParameter('sf_format');
       $filename = sprintf('Essential Guide to Collecting - CollectorsQuest.%s', $format);
       $mimeType = 'pdf' == $format ? 'application/pdf' : 'application/zip';
-      $sourceFile = sfConfig::get('sf_data_dir') . '/download/essential-guide.' . $format;
+      $sourceFile = sfConfig::get('sf_data_dir').'/download/essential-guide.'.$format;
 
       header('Expires: 0');
       header('Cache-control: private');
       header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
       header('Content-Description: File Transfer');
       header(sprintf('Content-Type: %s, charset=UTF-8; encoding=UTF-8', $mimeType));
-      header('Content-disposition: attachment; filename="' . $filename .'"');
+      header('Content-disposition: attachment; filename="'.$filename.'"');
 
       readfile($sourceFile);
       exit(0);
@@ -239,7 +250,7 @@ class miscActions extends cqFrontendActions
 
     // Finally, send the welcome email
     $cqEmail = new cqEmail($this->getMailer());
-    $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
+    $cqEmail->send($collector->getUserType().'/welcome_to_cq', array(
       'to' => $collector->getEmail(),
     ));
 
@@ -307,7 +318,7 @@ class miscActions extends cqFrontendActions
     }
 
     $status = $wp_post->getPostStatus();
-    $_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache');
+    $_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_'.$post_id, null, 'cache');
 
     if (!$_collectible_ids || $status !== 'publish')
     {
@@ -414,7 +425,7 @@ class miscActions extends cqFrontendActions
           ->filterByCollectionId($collection_ids, Criteria::IN)
           ->select('CollectibleId');
 
-        $_collectible_ids_collection= $q->find()->toArray();
+        $_collectible_ids_collection = $q->find()->toArray();
 
         $collectible_ids = array_merge($collectible_ids, $_collectible_ids_collection);
         $collectible_ids = array_unique($collectible_ids);
@@ -445,7 +456,7 @@ class miscActions extends cqFrontendActions
       if (!empty($homepage_collectible_ids))
       {
         $q->addDescendingOrderByColumn(
-          'FIELD(collectible_id, ' . implode(',', array_reverse($homepage_collectible_ids)) . ')'
+          'FIELD(collectible_id, '.implode(',', array_reverse($homepage_collectible_ids)).')'
         );
       }
 
@@ -453,7 +464,7 @@ class miscActions extends cqFrontendActions
       $_collectible_ids = $q->find()->toArray();
 
       // Cache the result for the life of the session
-      $this->getUser()->setAttribute('featured_items_collectible_ids_' . $post_id, $_collectible_ids, 'cache');
+      $this->getUser()->setAttribute('featured_items_collectible_ids_'.$post_id, $_collectible_ids, 'cache');
     }
 
     // We cannot show a custom page without custom Collectible IDs
@@ -462,8 +473,8 @@ class miscActions extends cqFrontendActions
     $q = FrontendCollectibleQuery::create()
       ->filterById($_collectible_ids)
       ->addAscendingOrderByColumn(
-        'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
-      );
+      'FIELD(collectible_id, '.implode(',', $_collectible_ids).')'
+    );
 
     $pager = new PropelModelPager($q, 20);
     $pager->setPage($request->getParameter('page', 1));
@@ -474,8 +485,8 @@ class miscActions extends cqFrontendActions
 
     $this->addBreadcrumb($wp_post->getPostTitle(), null);
 
-    $title = $wp_post->getPostMetaValue('_yoast_wpseo_title') ?:
-             $wp_post->getPostTitle();
+    $title = $wp_post->getPostMetaValue('_yoast_wpseo_title') ? :
+      $wp_post->getPostTitle();
     $this->getResponse()->setTitle($title);
     $this->getResponse()->addOpenGraphMetaFor($wp_post);
 
