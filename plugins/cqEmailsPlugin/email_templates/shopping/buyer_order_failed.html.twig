@@ -1,0 +1,15 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+   Dear {{ buyer_name }},
+</p>
+
+<p>
+  Your PayPal payment in the amount of ${{ oShoppingOrder.getCollectiblesAmount('float') | number_format(2, '.', ',') }}
+  for transaction {{ transaction_id }}:{{ link_to_collectible(oCollectible, 'text', {absolute: true}) }}
+  has not gone through. Please check with PayPal or your financial institution to resolve this issue.
+</p>
+
+{% endblock %}
