@@ -9,9 +9,20 @@
 <form action="<?= url_for('@ajax_mycq?section=collectible&page=upload'); ?>"
       method="post" id="fileupload-c" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
 
-  <div id="fileupload-input-box">
-    <h1>Step 1: Upload Photo</h1>
+  <?php
+    switch (strtolower($model))
+    {
+      case 'collectible':
+      case 'collectibleforsale':
+        echo '<h1>Step 1: Upload Item Photo</h1>';
+        break;
+      case 'collection':
+        echo '<h1>Step 1: Upload Collection Photo</h1>';
+        break;
+    }
+  ?>
 
+  <div id="fileupload-input-box">
     <?= $form['thumbnail']->renderRow(); ?>
     <input type="hidden" name="model" value="<?= $model ?>">
 
