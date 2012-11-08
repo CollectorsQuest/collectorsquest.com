@@ -47,6 +47,13 @@ collector_by_slug:
 
 ### SELLERS
 
+seller_store:
+  url:  /store/:id/:store_slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: seller, action: store }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
 seller_signup:
   url:   /seller/signup/:step
   param: { module: seller, action: signup, step: 1 }

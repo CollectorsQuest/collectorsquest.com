@@ -463,7 +463,7 @@ class miscActions extends cqFrontendActions
       if (!empty($homepage_collectible_ids))
       {
         $q->addDescendingOrderByColumn(
-          'FIELD(collectible_id, ' . implode(',', array_reverse($homepage_collectible_ids)) . ')'
+          'FIELD(collection_collectible.collectible_id, ' . implode(',', array_reverse($homepage_collectible_ids)) . ')'
         );
       }
 
@@ -480,7 +480,7 @@ class miscActions extends cqFrontendActions
     $q = FrontendCollectibleQuery::create()
       ->filterById($_collectible_ids)
       ->addAscendingOrderByColumn(
-        'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
+        'FIELD(collectible.id, ' . implode(',', $_collectible_ids) . ')'
       );
 
     $pager = new PropelModelPager($q, 20);

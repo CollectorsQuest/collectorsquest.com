@@ -77,6 +77,8 @@
   wp_register_script('jquery', '/wp-content/themes/collectorsquest/js/empty.js', array(), '1.7.2', 1);
   wp_enqueue_script('jquery');
 
+  wp_enqueue_style('cq-styles', '/wp-content/themes/collectorsquest/css/smartWizard.css', array(), '1.0', 'all');
+
   ob_start();
   wp_head();
   $head = ob_get_clean();
@@ -89,7 +91,7 @@
 
 ?>
 
-<div class="row-fluid header-bar">
+<div class="row-fluid header-bar <?= get_the_ID() == '33316' ? 'js-hide' : null ; ?> ">
   <?php if (is_page() && !is_child(23509) && !is_child(23511)) { ?>
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>

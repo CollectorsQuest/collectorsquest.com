@@ -75,7 +75,8 @@
       )
     );
 
-    if ($ref_marketplace && $collectible->isForSale())
+    if ($ref_marketplace && $collectible->isForSale() &&
+      $collectible->getCollector()->countFrontendCollectionCollectiblesForSale() > 1)
     {
       include_component(
         '_sidebar', 'widgetCollectiblesForSale',

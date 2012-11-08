@@ -83,6 +83,8 @@ class CollectorPeer extends BaseCollectorPeer
 
   const PAYPAL_ACCOUNT_STATUS_VERIFIED = 'VERIFIED';
 
+  const MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE = 'storefront_header_image';
+
   /**
    * @param     string $username
    * @param     PropelPDO $con

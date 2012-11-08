@@ -1,7 +1,16 @@
 <?php
-  $link = link_to('Back to Collector Profile >>', 'collector_by_slug', $collector);
+  use_helper('iceMultimedia');
+  $link = link_to('Back to Seller Profile >>', 'collector_by_slug', $collector);
   cq_page_title($title, $link, array());
 ?>
+
+<?php if (( $header_image = $collector->getMultimediaByRole(CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE) )): ?>
+  <?php echo ice_image_tag_multimedia($header_image, '620x67'); ?>
+<?php endif; ?>
+
+<p class="spacer-top-15">
+  <?= $collector->getSeller()->getSellerSettingsStoreDescription(); ?>
+</p>
 
 <div class="row spacer-top-20" style="margin-left: -13px;">
   <div id="collectibles" class="row-content">

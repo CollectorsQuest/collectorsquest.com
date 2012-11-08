@@ -15,13 +15,10 @@ $_height -= 63;
   <?php echo cq_image_tag('headlines/cps_more_history_promo.jpg', array('alt'=>'Cajun Pawn Stars'));?>
 </a>
 
-<?php if (IceGateKeeper::locked('aetn_american_restoration', 'page')): ?>
-  <a class="block spacer-bottom" href="http://www.history.com/shows/american-restoration"
-     title="American Restoration" target="_blank">
-    <?php echo cq_image_tag('headlines/ar_more_history_promo.jpg', array('alt'=>'American Restoration'));?>
-  </a>
-  <?php $_height -= 55; ?>
-<?php endif; ?>
+<a class="block spacer-bottom" href="http://www.history.com/shows/american-restoration"
+   title="American Restoration" target="_blank">
+  <?php echo cq_image_tag('headlines/ar_more_history_promo.jpg', array('alt'=>'American Restoration'));?>
+</a>
 
 <a class="block spacer-bottom" href="http://www.history.com/shows/counting-cars"
    title="Counting Cars" target="_blank">
@@ -29,7 +26,7 @@ $_height -= 63;
 </a>
 
 <?php
-  $_height -= 110;
+  $_height -= 165;
 
   if (isset($height) && property_exists($height, 'value'))
   {

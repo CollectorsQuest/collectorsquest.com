@@ -20,7 +20,7 @@ marketplace_category_by_slug:
 
 marketplace:
   url: /marketplace
-  param: { module: marketplace, action: index }
+  param: { module: marketplace, action: holiday }
 
 ### SHOPPING
 

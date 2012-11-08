@@ -1,19 +1,19 @@
 <?php
 /**
- * @var $form               CollectibleCreateForm
- * @var $collectible        Collectible
- * @var $collectible_public Collectible
- * @var $image              iceModelMultimedia
+ * @var $form         CollectibleCreateForm
+ * @var $collectible  Collectible
+ * @var $donor        Collectible
+ * @var $image        iceModelMultimedia
  */
 ?>
 
 <?php
-  if (isset($collectible_public) && !$collectible_public->isNew())
+  if (isset($collectible) && !$collectible->isNew())
   {
     include_partial(
       'global/loading',
       array('url' => url_for(
-        'mycq_collectible_by_slug', array('sf_subject' => $collectible_public, 'return_to' => 'collection')
+        'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection')
       ))
     );
 
@@ -21,15 +21,14 @@
   }
 ?>
 
-<form action="<?= url_for('@ajax_mycq?section=collectible&page=create&collectible_id=' . $collectible->getId()); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collectible&page=create&collectible_id=' . $donor->getId()); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Add a New Item - Step 2</h1>
-
+  <h1>Step 2: Describe Your Item</h1>
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
-    <?= image_tag_multimedia($image, '75x75', array('style'=> 'position: absolute; top: 0px; right: 10px;')); ?>
+    <?= image_tag_collectible($donor, '75x75', array('style'=> 'position: absolute; top: 0px; right: 10px;')); ?>
 
     <?= $form['name']->renderRow(); ?>
     <?= $form['description']->renderRow(); ?>
@@ -48,7 +47,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Add Item
+      Finish
     </button>
     <button type="reset" class="btn" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
       Cancel
@@ -84,14 +83,14 @@
       }
     });
 
-    <?php if($form->hasErrors()): ?>
+    <?php if ($form->hasErrors()): ?>
       $('#description_help').hide();
     <?php else: ?>
       $('textarea#collectible_description').parent().parent().append($('#description_help'));
     <?php endif; ?>
 
     <?php
-      if (isset($collectible_public) && !$collectible_public->isNew())
+      if (isset($collectible) && !$collectible->isNew())
       {
         echo '$("#form-create-collectible").showLoading();';
       }

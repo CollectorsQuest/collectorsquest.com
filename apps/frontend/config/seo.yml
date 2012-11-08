@@ -175,7 +175,10 @@ seo:
   collectibles:
     collectorList:
       model: true
-      title: Collectibles by %DisplayName% | Collectors Quest
+      title:
+       - %ShopTitle%
+       - %ShopTitle% | Collectors Quest
+       - %ShopTitle% by %DisplayName% | Collectors Quest
 
   misc:
     guideToCollecting:

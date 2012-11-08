@@ -30,4 +30,4 @@
   ?>
 </p>
 
-<?= ($cms_slot1 instanceof wpPost) ? $cms_slot1->getPostContent() : null; ?>
+<?php // ($cms_slot1 instanceof wpPost) ? $cms_slot1->getPostContent() : null; ?>
