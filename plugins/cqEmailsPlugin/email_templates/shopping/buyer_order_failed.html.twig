@@ -8,7 +8,7 @@
 
 <p>
   Your PayPal payment in the amount of ${{ oShoppingOrder.getCollectiblesAmount('float') | number_format(2, '.', ',') }}
-  for transaction {{ transaction_id }}:{{ link_to_collectible(oCollectible, 'text', {absolute: true}) }}
+  for transaction {{ transaction_id }} ({{ link_to_collectible(oCollectible, 'text', {absolute: true}) }})
   has not gone through. Please check with PayPal or your financial institution to resolve this issue.
 </p>
 
