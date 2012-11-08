@@ -1,0 +1,26 @@
+connection:           propel
+package:              plugins.cqBadgesBehaviorPlugin.lib.model
+
+classes:
+  cqBadge:
+    tableName:          badge
+    columns:
+      id:               ~
+      name:             { type: varchar(255), required: true, primaryString: true }
+      slug:             { type: varchar(255), required: true }
+      tier:             { type: enum,         valueSet: "custom, bronze, silver, gold" }
+      parent_model:     { type: varchar(50),  required: false }
+      parent_model_id:  { type: integer,      required: false }
+    indexes:
+      badge_parent:     [ parent_model, parent_model_id ]
+
+  cqBadgeReference:
+    tableName:          badge_reference
+    columns:
+      model:            { type: varchar(50), primaryKey: true }
+      model_id:         { type: integer,     primaryKey: true }
+      badge_id:         { type: integer,     primaryKey: true, foreignClass: badge, foreignReference: id }
+    indexes:
+      object_reference: [ model, model_id ]
+    propel_behaviors:
+      symfony:          { form: false, filter: false }

@@ -40,7 +40,7 @@ class ProjectConfiguration extends sfProjectConfiguration
       'iceTaggablePlugin', 'iceJobQueuePlugin', 'iceCrontabPlugin',
       'iceSpamControlPlugin', 'iceGeoLocationPlugin', 'iceMultimediaPlugin',
       'cqEmailsPlugin', 'cqMagnifyPlugin', 'iceSEOPlugin', 'cqErrorNotifierPlugin',
-      'cqRatablePlugin'
+      'cqRatablePlugin', 'cqBadgesBehaviorPlugin',
     ));
 
     sfConfig::add(array(
