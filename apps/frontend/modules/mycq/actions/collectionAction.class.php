@@ -23,37 +23,55 @@ class collectionAction extends cqFrontendAction
       switch ($request->getParameter('cmd'))
       {
         case 'delete':
-          $name = $this->collection->getName();
-          $url = '@mycq_collections';
-          try
-          {
-            $this->collection->delete();
+          $url = $this->generateUrl('mycq_collections');
 
-            $this->getUser()->setFlash(
-              'success', sprintf('Your collection "%s" was deleted!', $name)
-            );
-          }
-          catch (PropelException $e)
+          $form = new ConfirmDestructiveActionForm();
+          $form->getWidget('input')
+            ->setLabel('TYPE "DELETE" TO CONFIRM THE DELETION OF YOUR COLLECTION');
+          $this->setTemplate('ajaxCollection');
+          if ($request->isMethod(sfRequest::POST))
           {
-            if (stripos($e->getMessage(), 'a foreign key constraint fails'))
+            $form->bind($request->getParameter('confirm'), array());
+            if ($form->isValid())
             {
-              $this->getUser()->setFlash(
-                'error', sprintf(
-                  'Collection "%s" cannot be deleted.
-                   Please, try to archive it instead.', $name)
-              );
 
-              $url = $this->generateUrl(
-                'mycq_collection_by_section', array(
-                  'id' => $this->collection->getId(), 'section' => 'details'
-                )
-              );
+              $name = $this->collection->getName();
+
+              try
+              {
+                $this->collection->delete();
+
+                $this->getUser()->setFlash(
+                  'success', sprintf('Your collection "%s" was deleted!', $name)
+                );
+
+              }
+              catch (PropelException $e)
+              {
+                if (stripos($e->getMessage(), 'a foreign key constraint fails'))
+                {
+                  $this->getUser()->setFlash(
+                    'error', sprintf(
+                      'Collection "%s" cannot be deleted.
+                   Please, try to archive it instead.', $name)
+                  );
+
+                  $url = $this->generateUrl(
+                    'mycq_collection_by_section', array(
+                      'id' => $this->collection->getId(), 'section' => 'details'
+                    )
+                  );
+                }
+              }
+
+              return $this->renderPartial('global/loading', array(
+                'url' => $url,
+              ));
             }
           }
+          $this->form = $form;
 
-          // Redirect appropriately to avoid refreshes to trigger the same action
-          return $this->redirect($url);
-
+          return 'Delete';
           break;
       }
     }
@@ -90,6 +108,13 @@ class collectionAction extends cqFrontendAction
     $collection = $this->collection;
 
     $form = new CollectorCollectionEditForm($collection);
+
+    $form->useFields(array(
+      'content_category_plain',
+      'name',
+      'description',
+      'tags'
+    ));
 
     if ($request->isMethod('post'))
     {

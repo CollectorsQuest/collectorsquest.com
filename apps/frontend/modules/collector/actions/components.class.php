@@ -2,6 +2,7 @@
 
 class collectorComponents extends cqFrontendComponents
 {
+
   public function executeSidebarIndex()
   {
     if (!$this->collector = CollectorPeer::retrieveByPk($this->getRequestParameter('id')))
@@ -45,9 +46,9 @@ class collectorComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    $this->title = $this->getVar('title') ?: $collector->getDisplayName() . "'s Items for Sale";
+    $this->title = $this->getVar('title') ?: $collector->getDisplayName() . "'s Store";
 
-    /** @var $q CollectibleForSaleQuery */
+    /* @var $q CollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale()
@@ -94,4 +95,5 @@ class collectorComponents extends cqFrontendComponents
 
     return $pager->getNbResults() == 0 ? sfView::NONE : sfView::SUCCESS;
   }
+
 }

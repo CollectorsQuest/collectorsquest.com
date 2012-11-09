@@ -99,7 +99,7 @@ class ajaxAction extends cqAjaxAction
           }
           else
           {
-            // We do not want to have a Collectibles without Mutlimedia
+            // We do not want to have Collectibles without Multimedia
             $collectible->delete();
           }
         }
@@ -475,122 +475,168 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
-   * section: collection
-   * page: createStep1
+   * section: collectible
+   * page: upload
    */
-  protected function executeCollectionCreateStep1(sfWebRequest $request, $template)
+  protected function executeCollectibleUpload(sfWebRequest $request, $template)
   {
-    $form = new CollectionCreateForm();
+    $model = (string) $request->getParameter('model') ?: 'collectible';
+    $this->collection_id = (integer) $request->getParameter('collection_id');
+
+    $form = new CollectibleUploadForm();
+    $form->getWidgetSchema()->setHelp('thumbnail', null);
+    $form->getWidgetSchema()->setLabel('thumbnail', 'Item Photo');
+
+    if ($model == 'collection')
+    {
+      $form->getWidgetSchema()->setLabel('thumbnail', 'Collection Photo');
+      $this->collection_id = null;
+    }
+
+    /** @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
     $form->setDefault('collectible_id', $request->getParameter('collectible_id'));
 
     if (sfRequest::POST == $request->getMethod())
     {
-      $form->bind($request->getParameter('collection'));
+      $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
       if ($form->isValid())
       {
         $values = $form->getValues();
-        $values['collector_id'] = $this->getUser()->getCollector()->getId();
+        $file = $values['thumbnail'];
 
-        /** @var $collection CollectorCollection */
-        $collection = $form->updateObject($values);
-        $collection->setTags($values['tags']);
-        $collection->save();
-
-        if (isset($values['collectible_id']))
+        try
         {
-          $q = CollectibleQuery::create()
-            ->filterByCollector($this->getUser()->getCollector())
-            ->filterById($values['collectible_id']);
+          $collectible = new Collectible();
+          $collectible->setCollector($collector);
+          $collectible->setName($file, true);
+          $collectible->setBatchHash($request->getParameter('batch', null));
+          $collectible->setIsPublic(false);
+          $collectible->save();
 
-          if (($collectible = $q->findOne()) && $this->getUser()->isOwnerOf($collectible))
+          /**
+           * Add the image
+           *
+           * @var $multimedia iceModelMultimedia
+           */
+          if ($multimedia = $collectible->setThumbnail($file))
           {
-            // Let's create the CollectionCollectible
-            $q = CollectionCollectibleQuery::create()
-              ->filterByCollection($collection)
-              ->filterByCollectible($collectible);
-
-            $collection_collectible = $q->findOneOrCreate();
-            $collection_collectible->save();
-
-            /**
-             * If the Collectible has a thumnail (it should!),
-             * let's add it as the Collection thumbnail also
-             *
-             * @var $thumbnail iceModelMultimedia
-             */
-            if ($thumbnail = $collectible->getPrimaryImage())
-            {
-              $collection->setThumbnail($thumbnail->getAbsolutePath('original'));
-              $collection->save();
-            }
-
+            $multimedia->setName($file);
+            $multimedia->save();
+          }
+          else
+          {
+            // We do not want to have Collectibles without Multimedia
+            $collectible->delete();
           }
         }
+        catch (Exception $e)
+        {
+          if ($collectible && !$collectible->isNew())
+          {
+            $collectible->delete();
+          }
 
-        $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
+          return $this->error($e->getCode(), $e->getMessage(), false);
+        }
 
-        return $this->redirect('ajax_mycq', array(
-            'section' => 'collection',
-            'page' => 'createStep2',
-            'collection_id' => $collection->getId(),
-        ));
+        $collector->getProfile()->updateProfileProgress();
+
+        // change the dropbox open status depending on whether we have stuff
+        // left in it
+        $this->getUser()->setMycqDropboxOpenState(true);
+        $this->loadHelpers('cqImages');
+
+        $output = array();
+        $output[] = array(
+          'name' => $multimedia->getName(),
+          'size' => $multimedia->getFileSize(),
+          'type' => 'image/jpeg',
+          'thumbnail' => src_tag_multimedia($multimedia, '19:15x60'),
+          'redirect' => $this->generateUrl('ajax_mycq', array(
+            'section' => $model,
+            'page' => 'create',
+            'collectible_id' => $collectible->getId(),
+            'collection_id' => $this->collection_id
+          ))
+        );
+
+        return $this->renderText(json_encode($output));
       }
     }
 
-    $root = ContentCategoryQuery::create()->findRoot();
-    $this->categories = ContentCategoryQuery::create()
-        ->descendantsOf($root)
-        ->findTree();
-
     $this->form = $form;
+    $this->model = $model;
+
+    $this->batch = cqStatic::getUniqueId(32);
 
     return $template;
   }
 
   /**
    * section: collection
-   * page: createStep2
+   * page: create
    * params: collection_id
    */
-  public function executeCollectionCreateStep2(sfWebRequest $request, $template)
+  public function executeCollectionCreate(sfWebRequest $request, $template)
   {
-    $collection = CollectorCollectionPeer::retrieveByPK(
-      $request->getParameter('collection_id')
-    );
-    $this->forward404Unless($collection &&
-      $this->getUser()->getCollector()->isOwnerOf($collection));
+    /* @var $q CollectibleQuery */
+    $q = CollectibleQuery::create()
+      ->filterByCollector($this->getUser()->getCollector())
+      ->filterById($request->getParameter('collectible_id'));
 
-    $form = new CollectorCollectionEditForm($collection);
-    if ($collection->hasThumbnail())
-    {
-      $form->useFields(array(
-          'description',
-      ));
-    }
-    else
-    {
-      $form->useFields(array(
-          'thumbnail',
-          'description',
-      ));
-    }
+    /* @var $collectible Collectible */
+    $collectible = $q->findOne();
+
+    // We redirect to Step 1 if we do not have a Collectible to work with
+    $this->redirectUnless(
+      $collectible instanceof Collectible,
+      '@ajax_mycq?section=collectible&page=upload&model=collection'
+    );
+
+    $form = new CollectorCollectionEditForm();
+    $form->useFields(array(
+      'name',
+      'description',
+      'tags',
+      'content_category_id'
+    ));
 
     if (sfRequest::POST == $request->getMethod())
     {
-      $taintedValues = $request->getParameter($form->getName());
-      $form->bind($taintedValues, $request->getFiles($form->getName()));
+      $form->bind($request->getParameter($form->getName()));
 
       if ($form->isValid())
       {
         $values = $form->getValues();
-        $collection->setDescription($values['description'], 'html');
 
-        if (isset($values['thumbnail']))
+        /** @var $collection CollectorCollection */
+        $collection = $form->updateObject($values);
+        $collection->setTags($values['tags']);
+        $collection->setCollector($this->getUser()->getCollector());
+        $collection->setDescription($values['description'], 'html');
+        $collection->save();
+
+        if ($this->getUser()->isOwnerOf($collectible))
         {
-          $collection->setThumbnail($values['thumbnail']);
+          /**
+           * If the Collectible has a thumbnail (it should!),
+           * let's add it as the Collection thumbnail also
+           *
+           * @var $thumbnail iceModelMultimedia
+           */
+          if ($thumbnail = $collectible->getPrimaryImage())
+          {
+            $collection->setThumbnail($thumbnail->getAbsolutePath('original'));
+            $collection->save();
+
+            $collectible->delete();
+          }
+
         }
 
-        $collection->save();
+        $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
 
         // Tell the Dropbox to stay closed
         $this->getUser()->setFlash('cq_mycq_dropbox_open', false, true, 'cookies');
@@ -604,8 +650,13 @@ class ajaxAction extends cqAjaxAction
       }
     }
 
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+      ->descendantsOf($root)
+      ->findTree();
+
     $this->form = $form;
-    $this->collection = $collection;
+    $this->collectible = $collectible;
 
     return $template;
   }
@@ -622,17 +673,20 @@ class ajaxAction extends cqAjaxAction
     );
     $this->forward404Unless($this->getUser()->isOwnerOf($collection));
 
-    $form = new CollectionCreateForm($collection);
+    $form = new CollectorCollectionEditForm($collection);
     $form->useFields(array('content_category_id'));
 
     if (sfRequest::POST == $request->getMethod())
     {
       $taintedValues = $request->getParameter($form->getName());
-      $form->bind($taintedValues, $request->getFiles($form->getName()));
+      $form->bind($taintedValues);
 
       if ($form->isValid())
       {
-        $form->save();
+        $values = $form->getValues();
+
+        $collection->setContentCategoryId($values['content_category_id']);
+        $collection->save();
 
         return $this->renderPartial('global/loading', array(
             'url' => $this->generateUrl('mycq_collection_by_section', array(
@@ -661,10 +715,24 @@ class ajaxAction extends cqAjaxAction
    */
   public function executeCollectibleCreate(sfWebRequest $request, $template)
   {
-    /** @var $collector Collector */
+    /* @var $collector Collector */
     $collector = $this->getUser()->getCollector(true);
 
-    $form = new CollectibleCreateForm();
+    /* @var $q CollectibleQuery */
+    $q = CollectibleQuery::create()
+      ->filterByCollector($collector)
+      ->filterById($request->getParameter('collectible_id'));
+
+    /* @var $collectible Collectible */
+    $collectible = $q->findOne();
+
+    // We redirect to Step 1 if we do not have a Collectible to work with
+    $this->redirectUnless(
+      $collectible instanceof Collectible,
+      '@ajax_mycq?section=collectible&page=upload&collection_id='. $request->getParameter('collection_id')
+    );
+
+    $form = new CollectibleCreateForm($collectible);
 
     $q = CollectorCollectionQuery::create()
       ->filterById($request->getParameter('collection_id'));
@@ -674,22 +742,6 @@ class ajaxAction extends cqAjaxAction
       $form->setDefault('collection_id', $collection->getId());
       $form->setDefault('tags', $collection->getTags());
       $form->setDefault('content_category_id', $collection->getContentCategoryId());
-    }
-
-    if ($collectible_id = $request->getParameter('collectible_id'))
-    {
-      $q = CollectibleQuery::create()
-        ->filterByCollector($collector)
-        ->filterById($collectible_id);
-
-      /**
-       * @var $image iceModelMultimedia
-       * @var $collectible Collectible
-       */
-      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
-      {
-        $form->setDefault('thumbnail', $image->getId());
-      }
     }
 
     if ($request->isMethod('post'))
@@ -709,33 +761,23 @@ class ajaxAction extends cqAjaxAction
         }
 
         $values = $form->getValues();
-        $values['collector_id'] = $collector->getId();
 
-        /** @var $collectible Collectible */
-        $collectible = $form->updateObject($values);
+        $collectible->setName($values['name']);
         $collectible->setDescription($values['description'], 'html');
         $collectible->setTags($values['tags']);
-        $collectible->save();
-
+        $collectible->setContentCategoryId($collection->getContentCategoryId());
         $collectible->addCollection($collection);
         $collectible->save();
 
-        if (isset($values['thumbnail']))
-        {
-          $image = iceModelMultimediaQuery::create()
-            ->findOneById((integer) $values['thumbnail']);
-
-          if ($collector->isOwnerOf($image))
-          {
-            $collectible->setThumbnail($image->getAbsolutePath('original'));
-            $collectible->save();
-          }
-        }
-
+        /**
+         * after we have set all values collectible should be public
+         * used in template after form is submitted with proper values
+         */
         $this->collectible = $collectible;
       }
     }
 
+    $this->donor = $collectible;
     $this->form = $form;
 
     return $template;
@@ -814,7 +856,15 @@ class ajaxAction extends cqAjaxAction
         }
 
         $form->setDefault('collectible', $default);
+        $this->donor = $collectible;
       }
+    }
+    elseif ($request->isMethod(sfRequest::GET))
+    {
+      // We redirect to Step 1 if we do not have a Collectible to work with
+      $this->redirect(
+        '@ajax_mycq?section=collectible&page=upload&model=CollectibleForSale'
+      );
     }
 
     if ($request->isMethod('post'))
@@ -867,24 +917,28 @@ class ajaxAction extends cqAjaxAction
         $collectible->setTags($values['collectible']['tags']);
         $collectible->save();
 
-        if ($values['collectible_id']['thumbnail'])
+        if ($values['collectible_id'])
         {
-          $image = iceModelMultimediaQuery::create()
-            ->findOneById((integer) $values['collectible']['thumbnail']);
-
-          if ($collector->isOwnerOf($image))
+          /* @var $donor Collectible */
+          $donor = CollectibleQuery::create()->filterById((integer) $values['collectible_id'])->findOne();
+          if ($donor)
           {
-            /** @var $donor Collectible */
-            $donor = $image->getModelObject();
+            /* @var $image iceModelMultimedia */
+            $image = $donor->getPrimaryImage();
+            if ($image)
+            {
+              if ($collector->isOwnerOf($image))
+              {
+                $image->setNew(false);
+                $image->setIsPrimary(true);
+                $image->setModelId($collectible->getId());
+                $image->setSource($donor->getId());
+                $image->save();
 
-            $image->setIsPrimary(true);
-            $image->setModelId($collectible->getId());
-            $image->setSource($donor->getId());
-            // $image->setCreatedAt(time());
-            $image->save();
-
-            // Archive the $donor, not needed anymore
-            $donor->delete();
+                // Archive the $donor, not needed anymore
+                $donor->delete();
+              }
+            }
           }
         }
 

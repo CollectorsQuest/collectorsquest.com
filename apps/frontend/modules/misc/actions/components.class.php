@@ -10,7 +10,7 @@ class miscComponents extends cqFrontendComponents
     }
 
     /** @var $values array */
-    $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
+    $values = $wp_post->getPostMetaValue('_featured_items');
 
     // Initialize the arrays
     $collectibles_for_sale_ids = $wp_post_ids = array();
@@ -28,7 +28,7 @@ class miscComponents extends cqFrontendComponents
         ->filterByCollectibleId($collectibles_for_sale_ids, Criteria::IN)
         ->select('CollectibleId')
         ->addAscendingOrderByColumn(
-          'FIELD(collectible_id, ' . implode(',', $collectibles_for_sale_ids) . ')'
+          'FIELD(collectible_for_sale.collectible_id, ' . implode(',', $collectibles_for_sale_ids) . ')'
         );
       $collectibles_for_sale_ids = $q->find()->toArray();
     }

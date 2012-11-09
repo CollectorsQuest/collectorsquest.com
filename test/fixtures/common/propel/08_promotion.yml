@@ -25,10 +25,10 @@ Promotion:
     promotion_desc: 'Beta test program of the 2012 Marketplace'
     amount: '100'
     amount_type: Percentage
-    no_of_time_used: '87'
-    expiry_date: '2012-08-01 00:00:00'
+    no_of_time_used: '70'
+    expiry_date: '2013-01-01 00:00:00'
     created_at: '2012-06-13 10:34:01'
-    updated_at: '2012-07-27 08:16:41'
+    updated_at: '2012-10-26 15:41:03'
   Promotion_4:
     promotion_code: CQ2012-NL2012A
     promotion_name: 'Newsletter Promo 1'
@@ -38,4 +38,34 @@ Promotion:
     no_of_time_used: '1'
     expiry_date: '2012-08-25 00:00:00'
     created_at: '2012-07-17 14:46:14'
-    updated_at: '2012-08-13 09:34:27'
+    updated_at: '2012-10-17 15:40:15'
+  Promotion_5:
+    promotion_code: CQ2012-IMCR7IE0ZW
+    promotion_name: 'Free Subscription! (Backup)'
+    promotion_desc: 'Free as in beer!'
+    amount: '100'
+    amount_type: Percentage
+    no_of_time_used: '9'
+    expiry_date: '2012-10-01 00:00:00'
+    created_at: '2012-08-21 11:12:45'
+    updated_at: '2012-08-21 15:05:15'
+  Promotion_6:
+    promotion_code: CQ2012-EK3CAID3X0
+    promotion_name: '$20 Off'
+    promotion_desc: ''
+    amount: '20'
+    amount_type: Fix
+    no_of_time_used: '9'
+    expiry_date: '2013-10-31 00:00:00'
+    created_at: '2012-10-17 15:39:19'
+    updated_at: '2012-10-17 16:00:30'
+  Promotion_7:
+    promotion_code: CQ2012-HOLIDAYS
+    promotion_name: 'Holiday Market - 20% OFF'
+    promotion_desc: 'The promo code we will distribute with the special email we will send to sellers for promoting the Holiday Market.'
+    amount: '20'
+    amount_type: Percentage
+    no_of_time_used: '100'
+    expiry_date: '2012-11-15 00:00:00'
+    created_at: '2012-10-25 14:57:18'
+    updated_at: '2012-10-25 14:58:18'

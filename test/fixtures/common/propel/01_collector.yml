@@ -1,51 +1,10 @@
 Collector:
-  Collector_12:
-    graph_id: '13664'
-    facebook_id: '501327639'
-    username: resonantfish
-    display_name: Robotbacon
-    slug: robotbacon
-    sha1_password: 121ed869e697241b790565954eda8bc315c31e25
-    salt: 777b485dd5cfbc003525430040587aa0
-    email: collin@collectorsquest.com
-    user_type: Seller
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    session_id: tapdn7s6mt31cl8hbtvsp96263
-    cookie_uuid: 2c17f9289423ad3017d99d1065d7fc1c
-    last_seen_at: '2012-08-17 10:04:59'
-    last_visited_at: '2012-08-17 16:30:07'
-    created_at: '2007-05-31 14:21:52'
-    updated_at: '2012-08-17 10:04:59'
-  Collector_52:
-    graph_id: '18181'
-    username: dinocollector
-    display_name: Dinocollector
-    slug: dinocollector
-    sha1_password: 53ca290fc733df31b90a5fe3d6f0f4bf4ed674bf
-    salt: 93aba57b8ca0c64e9bb3a88f9a9353e1
-    email: bfplatt@ku.edu
-    user_type: Seller
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    session_id: j9h91cb5a1bi7p2m5olkm8dqv6
-    last_seen_at: '2012-06-25 21:40:29'
-    created_at: '2007-06-19 01:15:50'
-    updated_at: '2012-07-03 04:10:07'
   Collector_59:
     graph_id: '9372'
     username: poptart
     display_name: Poptart
     slug: poptart
-    sha1_password: 9edb9b68fe0c01c0dfc10e534ce64363f4323a3a
+    sha1_password: 6b2fbb208a7648a40beee46fc926957cc619a170
     salt: dcf45611bedf847e93193bdeb5dc89b4
     email: Deanna.Pop.Tart@gmail.com
     user_type: Seller
@@ -55,12 +14,12 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: ksl5c5lufehn9td5grf47cre54
+    session_id: 1c62e7irtmd3hvjnlcrtnss6c7
     cookie_uuid: 3d12a5e5f9e33a8103381b0426b4cb2b
-    last_seen_at: '2012-07-18 18:29:30'
-    last_visited_at: '2012-07-18 18:29:42'
+    last_seen_at: '2012-10-28 13:46:00'
+    last_visited_at: '2012-10-28 13:46:00'
     created_at: '2007-06-24 01:24:56'
-    updated_at: '2012-07-18 18:29:30'
+    updated_at: '2012-10-28 13:46:00'
   Collector_163:
     username: pmurph
     display_name: pmurph
@@ -78,42 +37,6 @@ Collector:
     last_seen_at: '2007-11-25 00:00:00'
     created_at: '2007-09-15 22:27:59'
     updated_at: '2012-07-03 04:10:08'
-  Collector_235:
-    graph_id: '31777'
-    username: collectio
-    display_name: Collectio
-    slug: collectio
-    sha1_password: 37076d6ddaee8c09f8b7e0f6bc425df3a80edd31
-    salt: 48bbd197c92ca1fec8e6a7cc34ed0051
-    email: collectio@mail.com
-    user_type: Collector
-    locale: en_US
-    score: '0'
-    spam_score: '40'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    last_seen_at: '2009-01-28 00:00:00'
-    created_at: '2008-01-02 18:42:45'
-    updated_at: '2012-07-19 19:51:59'
-  Collector_531:
-    graph_id: '25911'
-    username: blackgem
-    display_name: Blackgem
-    slug: blackgem
-    sha1_password: 9b01c3491791a71a5857d348888e5e54b12b30ad
-    salt: 0b3345adfdd3211ee6bd841f180c22ec
-    email: rselcoe@entouchonline.net
-    user_type: Collector
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    last_seen_at: '2009-01-01 00:00:00'
-    created_at: '2008-04-06 11:43:49'
-    updated_at: '2012-07-18 20:53:00'
   Collector_644:
     graph_id: '24029'
     username: barry2952
@@ -133,24 +56,6 @@ Collector:
     last_seen_at: '2010-10-06 00:00:00'
     created_at: '2008-06-24 17:03:10'
     updated_at: '2012-07-18 15:16:27'
-  Collector_714:
-    graph_id: '24270'
-    username: sleeves
-    display_name: Sleeves
-    slug: sleeves
-    sha1_password: 08a6f024a0629880139f3a1b0903692736a9530e
-    salt: f64acb350cfbc08294d2da3de51d2ff2
-    email: sleeves@home.nl
-    user_type: Collector
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    last_seen_at: '2009-01-22 00:00:00'
-    created_at: '2008-08-23 09:25:20'
-    updated_at: '2012-07-18 15:29:09'
   Collector_846:
     graph_id: '26506'
     username: francesca76
@@ -169,25 +74,6 @@ Collector:
     last_seen_at: '2008-12-21 00:00:00'
     created_at: '2008-12-12 12:58:56'
     updated_at: '2012-07-19 00:31:53'
-  Collector_870:
-    graph_id: '15604'
-    username: dinoobcessed
-    display_name: Dinoobcessed
-    slug: dinoobcessed
-    sha1_password: 1f55d8470f54addc19b4cfba31ceaddd3785882e
-    salt: 5e0f08508a2ab196dceec1fd7e8b110d
-    email: permian123@yahoo.com
-    user_type: Seller
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    session_id: tnaa6s0lars7eosjv1pq0o4825
-    last_seen_at: '2012-06-05 07:36:53'
-    created_at: '2008-12-27 23:20:15'
-    updated_at: '2012-07-03 04:10:17'
   Collector_963:
     graph_id: '11542'
     username: trbuttons
@@ -203,28 +89,10 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: 3l3nqm559vofhvopj36uc95mc4
-    cookie_uuid: 5f8b0121a63b351dc9c94e48eb18f2ec
-    last_seen_at: '2012-07-16 13:49:56'
+    last_seen_at: '2012-10-05 12:05:57'
+    last_visited_at: '2012-10-05 12:05:57'
     created_at: '2009-02-04 21:13:10'
-    updated_at: '2012-07-16 13:49:56'
-  Collector_1082:
-    username: googlecool97
-    display_name: Googlecool97
-    slug: googlecool97
-    sha1_password: 2cc36b8571d7f6707722531c7cfb73c7c02b6e9a
-    salt: 160fab3d1d5f98eed462d8ffd2ab8b77
-    email: brini123@gmail.com
-    user_type: Collector
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    last_seen_at: '2009-06-22 00:00:00'
-    created_at: '2009-03-12 22:00:40'
-    updated_at: '2012-07-03 04:10:20'
+    updated_at: '2012-10-05 12:05:57'
   Collector_1212:
     graph_id: '22315'
     username: tofunky
@@ -244,60 +112,6 @@ Collector:
     last_seen_at: '2012-07-06 10:07:23'
     created_at: '2009-05-03 18:58:54'
     updated_at: '2012-07-06 10:07:44'
-  Collector_1317:
-    graph_id: '9964'
-    username: wildheart
-    display_name: Wildheart
-    slug: wildheart
-    sha1_password: 7b7f6bcb4d34431384c129f33deac3bd257c298d
-    salt: 40a85e4bd1b6b51827d4d823657f9dcd
-    email: mih.nicolae@yahoo.com
-    user_type: Collector
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    session_id: 4kun66u4e6nvtarioh7q0eog20
-    last_seen_at: '2012-02-23 03:03:10'
-    created_at: '2009-06-15 15:10:12'
-    updated_at: '2012-07-13 11:40:38'
-  Collector_1374:
-    username: duckland
-    display_name: Duckland
-    slug: duckland
-    sha1_password: df33ab65ba95345cd45efe70803fc11bf50189f6
-    salt: fc7f8cae18c1770ea01a2fdbf639670f
-    email: iscully@hotmail.com
-    user_type: Collector
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    last_seen_at: '2009-07-21 00:00:00'
-    created_at: '2009-07-15 07:21:05'
-    updated_at: '2012-07-03 04:10:23'
-  Collector_3632:
-    username: 'Distinctive Styles'
-    display_name: 'Distinctive Styles'
-    slug: distinctive-styles
-    sha1_password: 2fa12fb5762e7b614d0bb0fabb8ba1d4a8080d37
-    salt: 01537b4417e5b0dd4ce511e2f18c75e9
-    email: distinctivestyles@yahoo.com
-    user_type: Collector
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    session_id: j3b4h3kf33j3lseo4lttbqhc75
-    last_seen_at: '2011-04-06 00:00:00'
-    created_at: '2010-06-27 10:19:23'
-    updated_at: '2012-07-03 04:10:52'
   Collector_4208:
     graph_id: '28545'
     username: freeburgh
@@ -313,10 +127,12 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '0'
-    session_id: 02k168r34n7fl3tpvflvasro73
-    last_seen_at: '2010-09-12 00:00:00'
+    session_id: 4mpdfj34sh948s8jvoaa0mfjd2
+    cookie_uuid: f0b3c5f1eed7e64d07a0a14f1fe62377
+    last_seen_at: '2012-10-12 10:40:31'
+    last_visited_at: '2012-10-12 14:20:59'
     created_at: '2010-09-12 12:04:44'
-    updated_at: '2012-07-19 08:55:42'
+    updated_at: '2012-10-12 10:40:31'
   Collector_4295:
     graph_id: '27799'
     username: kalexk13
@@ -336,26 +152,6 @@ Collector:
     last_seen_at: '2010-09-28 00:00:00'
     created_at: '2010-09-28 20:51:11'
     updated_at: '2012-07-19 04:11:27'
-  Collector_6610:
-    graph_id: '23386'
-    username: donnalee
-    display_name: stardust06242
-    slug: stardust06242
-    sha1_password: 29913d9ebfbf3a68a4cfe5e5736862e52958bb91
-    salt: f9a40fb7ef832dda6156ffed71430c4b
-    email: stardust466@juno.com
-    user_type: Seller
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '0'
-    cookie_uuid: 1f6fc529ee206050a0401068901f2d57
-    last_seen_at: '2012-08-09 13:46:14'
-    last_visited_at: '2012-08-09 13:46:14'
-    created_at: '2011-06-09 17:51:10'
-    updated_at: '2012-08-09 13:46:14'
   Collector_6700:
     username: ShabbyChicPickerChick
     display_name: ShabbyChicPickerChick

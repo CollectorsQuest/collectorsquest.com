@@ -22,6 +22,55 @@ class sellerActions extends cqFrontendActions
     return $this->redirect('@mycq_marketplace');
   }
 
+  public function executeStore(sfWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+
+    if ($request->getParameter('legacy'))
+    {
+      $this->redirect('collector_by_slug', $collector, 301);
+    }
+
+    $for_sale_ids = FrontendCollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->isForSale()
+      ->select('CollectibleId')
+      ->find()->getArrayCopy();
+
+    /* @var $q FrontendCollectionCollectibleQuery */
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->groupBy('CollectionCollectible.CollectibleId')
+      ->joinWith('CollectionCollectible.Collectible')
+      ->joinWith('Collectible.CollectibleForSale')
+      ->filterByCollector($collector)
+      ->filterByCollectibleId($for_sale_ids, Criteria::IN);
+
+    if ($collection_id = $request->getParameter('collection_id'))
+    {
+      $q->filterByCollectionId($collection_id);
+      $this->collection_id = $collection_id;
+
+      // Make the collection_id available to the sidebar
+      $this->setComponentVar('collection_id', $collection_id, 'sidebarCollectorList');
+    }
+
+    $pager = new PropelModelPager($q, 36);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+
+    SmartMenu::setSelected('collectibles_for_collector_list', 'for_sale');
+    $store_name = $collector->getSeller()->getSellerSettingsStoreName();
+    $this->title = $store_name;
+    $this->addBreadcrumb($store_name);
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('seller_store', $collector));
+
+    $this->collector = $collector;
+    $this->pager = $pager;
+  }
+
   public function executeSignup()
   {
     $this->redirectIf($this->getUser()->isAuthenticated(), '@seller_packages');

@@ -1,0 +1,18 @@
+propel:
+  _attributes:      { package: plugins.cqEmailsPlugin.lib.model }
+
+  emails_log:
+    id: ~
+    sender_name:            { type: varchar, size: 255}
+    sender_email:           { type: varchar, size: 128}
+    receiver_name:          { type: varchar, size: 255}
+    receiver_email:         { type: varchar, size: 128}
+    subject:                { type: varchar, size: 255}
+    body:                   { type: longvarchar }
+    text_plain:             { type: longvarchar }
+    text_html:              { type: longvarchar }
+    headers:                { type: longvarchar }
+    result:                 { type: varchar, size: 64}
+    date:                   { type: integer}
+    created_at: ~
+

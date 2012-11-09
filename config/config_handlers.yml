@@ -5,3 +5,6 @@ config/secure/app.yml:
 
 config/secure/databases.yml:
   class:    sfDatabaseConfigHandler
+
+config/gatekeeper.yml:
+  class: sfSimpleYamlConfigHandler

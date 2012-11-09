@@ -3,6 +3,7 @@
  * @var $total integer
  * @var $incomplete_collections boolean
  * @var $incomplete_collectibles boolean
+ * @var $collector Collector
  */
 ?>
 
@@ -47,7 +48,7 @@
     <div class="span6">
       <ul class="nav nav-pills spacer-bottom-reset">
         <li>
-          <a href="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
+          <a href="<?= url_for('@ajax_mycq?section=collectible&page=upload&model=collection'); ?>"
              class="open-dialog" onclick="return false;"
              title="Create a new collection by clicking here">
             <i class="icon-plus"></i>

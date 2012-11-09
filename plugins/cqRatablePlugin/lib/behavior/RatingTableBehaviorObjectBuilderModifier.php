@@ -17,92 +17,115 @@
  */
 class RatingTableBehaviorObjectBuilderModifier
 {
-	protected $behavior, $table, $builder, $objectClassname, $peerClassname;
+  protected $behavior, $table, $builder, $objectClassname, $peerClassname;
 
-	public function __construct($behavior)
-	{
-		$this->behavior = $behavior;
-		$this->table = $behavior->getTable();
-	}
+  public function __construct($behavior)
+  {
+    $this->behavior = $behavior;
+    $this->table = $behavior->getTable();
+  }
 
-	protected function getParameter($key)
-	{
-		return $this->behavior->getParameter($key);
-	}
+  protected function getParameter($key)
+  {
+    return $this->behavior->getParameter($key);
+  }
 
-	protected function getColumnAttribute($name)
-	{
-		return strtolower($this->behavior->getColumnForParameter($name)->getName());
-	}
+  protected function getColumnAttribute($name)
+  {
+    return strtolower($this->behavior->getColumnForParameter($name)->getName());
+  }
 
-	protected function getColumnPhpName($name)
-	{
-		return $this->behavior->getColumnForParameter($name)->getPhpName();
-	}
+  protected function getColumnPhpName($name)
+  {
+    return $this->behavior->getColumnForParameter($name)->getPhpName();
+  }
 
-	protected function setBuilder($builder)
-	{
-		$this->builder = $builder;
-		$this->objectClassname = $builder->getStubObjectBuilder()->getClassname();
-		$this->queryClassname = $builder->getStubQueryBuilder()->getClassname();
-		$this->peerClassname = $builder->getStubPeerBuilder()->getClassname();
-	}
+  protected function setBuilder($builder)
+  {
+    $this->builder = $builder;
+    $this->objectClassname = $builder->getStubObjectBuilder()->getClassname();
+    $this->queryClassname = $builder->getStubQueryBuilder()->getClassname();
+    $this->peerClassname = $builder->getStubPeerBuilder()->getClassname();
+  }
 
-	public function postSave($builder)
-	{
+  public function postSave($builder)
+  {
     $objectClassname = $builder->getStubObjectBuilder()->getClassname();
-		$peerClassname = $builder->getStubPeerBuilder()->getClassname();
-		$queryClassname = $builder->getStubQueryBuilder()->getClassname();
+    $peerClassname = $builder->getStubPeerBuilder()->getClassname();
+    $queryClassname = $builder->getStubQueryBuilder()->getClassname();
     $class = $this->getParameter('ratable_class_name');
+    $foreign_columns = $this->getParameter('foreign_columns');
 
-		$script = "
-    /* @var \$object $class */
-    \$object = \$this->get$class();
-    \$c = new Criteria();
-    \$c->add($peerClassname::DIMENSION, \$this->getDimension());
-
-    //Set average ratings for dimensions
-    \$r = 0;
-    /* @var \$ratings {$objectClassname}[] */
-    \$ratings = \$object->get{$objectClassname}s(\$c);
-    if (count(\$ratings))
+    $fk = '';
+    foreach ($foreign_columns as $column)
     {
-      foreach (\$ratings as \$rating)
-      {
-        \$r = \$r + \$rating->getRating();
-      }
-      \$object->setByName('average_' . \$this->getDimension() . '_rating', \$r / count(\$ratings), BasePeer::TYPE_FIELDNAME);
+      $fk .= sprintf("->add(%s::%s, \$object->getId())\n", $peerClassname, strtoupper($column));
     }
 
-    //Set average total ratings
-    \$r = 0;
-    foreach ($peerClassname::getDimensions() as \$dimension => \$label)
-    {
-      \$r = \$r + \$object->getByName('average_' . \$dimension . '_rating', BasePeer::TYPE_FIELDNAME);
-    }
-    \$object->setAverageRating(\$r / count($peerClassname::getDimensions()));
+    $script = "
+/* @var \$object $class */
+\$object = \$this->get$class();
+\$c = new Criteria();
+\$c
+  ->add($peerClassname::DIMENSION, \$this->getDimension())
+  ->clearSelectColumns()
+  $fk
+  ->addAsColumn('average_dimension_rating', sprintf('(SUM(%s) / COUNT(*))', $peerClassname::RATING))
+  ->setLimit(1);
+\$stmt = $peerClassname::doSelectStmt(\$c, \$con);
+\$average_dimension_rating = \$stmt->fetch(PDO::FETCH_COLUMN);
 
-    \$object->save();
-		";
+/* @var \$dimension_field_name string */
+\$dimension_field_name = sprintf('average_%s_rating', \$this->getDimension());
 
-		return $script;
-	}
+//Set average ratings for dimensions
+if (\$object->getByName(\$dimension_field_name, BasePeer::TYPE_FIELDNAME) != \$average_dimension_rating) {
+  \$object->setByName(\$dimension_field_name, \$average_dimension_rating, BasePeer::TYPE_FIELDNAME);
 
-	public function objectMethods($builder)
-	{
-		$this->setBuilder($builder);
-		$script = '';
+  //Set average total ratings
+  \$r = 0;
+  foreach ($peerClassname::getDimensions() as \$dimension => \$label) {
+    \$r = \$r + \$object->getByName(sprintf('average_%s_rating', \$dimension), BasePeer::TYPE_FIELDNAME);
+  }
+  \$average_rating = \$r / count($peerClassname::getDimensions());
+
+  \$object->setAverageRating(\$average_rating);
+
+  \$sql = sprintf(
+    'UPDATE %s SET %s = %f, %s = %f WHERE %s = %d',
+    {$class}Peer::TABLE_NAME,
+    {$class}Peer::translateFieldName(\$dimension_field_name, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_COLNAME),
+    \$average_dimension_rating,
+    {$class}Peer::AVERAGE_RATING,
+    \$average_rating,
+    {$class}Peer::ID,
+    \$object->getId()
+  );
+  \$object->resetModified(
+    {$class}Peer::translateFieldName(\$dimension_field_name, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_COLNAME)
+  );
+  \$object->resetModified({$class}Peer::AVERAGE_RATING);
+  \$con->exec(\$sql);
+}
+";
+    return $script;
+  }
+
+  public function objectMethods($builder)
+  {
+    $this->setBuilder($builder);
+    $script = '';
 
     $this->addGetDimensionLabel($script, $builder);
     $this->addGetAverageRating($script, $builder);
     $this->addGetTotalRatings($script, $builder);
 
 
-		return $script;
-	}
+    return $script;
+  }
 
-	protected function addGetDimensionLabel(&$script, $builder)
-	{
+  protected function addGetDimensionLabel(&$script, $builder)
+  {
     $peerClassname = $builder->getStubPeerBuilder()->getClassname();
 
     $script .= "
@@ -116,7 +139,7 @@ public function getDimensionLabel()
   return \$dimensions[\$this->getDimension()];
 }
 ";
-	}
+  }
 
   protected function addGetAverageRating(&$script, $builder)
   {

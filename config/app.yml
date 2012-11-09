@@ -13,7 +13,7 @@ all:
     domain: "d2y8496azcwpd6.cloudfront.net"
 
   ice_multimedia:
-    default_adapter: ImageMagick
+    default_adapter: GD
 
   aetn:
     shows:
@@ -59,6 +59,9 @@ all:
     picked_off:
       collector: 13389
       collection: 3751
+    franks_picks:
+      collector: 15716
+      collection: 4224
 
 
   credentials:
@@ -70,6 +73,10 @@ all:
     defensio: "bb85a65a8118c50aa3918cb254a34176"
     dlvrit: "123456789abcdefg"
     mailchimp: "42b5522d9b347e1fe999d5dd8825ca53-us5"
+
+    aws:
+      key: "abcdef123456789"
+      secret_key: "123456789abcdef"
 
     aviary:
       api_key: "3058e289b"

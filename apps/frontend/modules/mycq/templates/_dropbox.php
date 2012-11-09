@@ -51,10 +51,13 @@
   <?php else: ?>
   <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
     <span class="info-no-items-to-sort">
-      &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
+      &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your computer or
       use the <strong>Upload Photos</strong> button
       <?= cq_image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
     </span>
+    <div class="info-drop-here">
+      Drop files here
+    </div>
   </div>
   <?php endif; ?>
 </div>

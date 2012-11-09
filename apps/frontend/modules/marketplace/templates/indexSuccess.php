@@ -49,11 +49,27 @@ $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
   <?php
   if (!$sf_user->isAuthenticated())
   {
-    echo link_to(image_tag('headlines/show_and_sell_red_635x111.png'), '@seller_signup');
+    cq_ad_slot(
+      cq_image_tag('headlines/show_and_sell_red_635x111.png',
+        array(
+          'width' => '635', 'height' => '111',
+          'alt' => 'Become a member today to sell your items'
+        )
+      ),
+      '@seller_signup'
+    );
   }
   elseif ($sf_user->getSeller() && !$sf_user->getSeller()->hasPackageCredits())
   {
-    echo link_to(image_tag('headlines/show_and_sell_red_635x111_user.png'), '@seller_packages');
+    cq_ad_slot(
+      cq_image_tag('headlines/show_and_sell_red_635x111_user.png',
+        array(
+          'width' => '635', 'height' => '111',
+          'alt' => 'Start Selling - open up your storefront today!'
+        )
+      ),
+      '@seller_packages'
+    );
   }
   // avoid having too much blank space when no banner is displayed
   else

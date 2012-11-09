@@ -62,9 +62,6 @@ class aetnActions extends cqFrontendActions
 
   public function executeAmericanRestoration(sfWebRequest $request)
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_american_restoration', 'page'));
-
     /** @var $aetn_shows array */
     $aetn_shows = sfConfig::get('app_aetn_shows');
 
@@ -139,9 +136,6 @@ class aetnActions extends cqFrontendActions
 
   public function executePickedOff(sfWebRequest $request)
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_picked_off', 'page'));
-
     $picked_off = sfConfig::get('app_aetn_picked_off');
 
     $collection = CollectorCollectionQuery::create()->findOneById($picked_off['collection']);
@@ -177,19 +171,52 @@ class aetnActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeMwba()
+  public function executeFranksPicks(sfWebRequest $request)
   {
     // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
+    $this->forward404Unless(IceGateKeeper::open('aetn_franks_picks', 'page'));
 
+    /* @var $franks_picks array */
+    $franks_picks = sfConfig::get('app_aetn_franks_picks', array());
+
+    $collection = CollectorCollectionQuery::create()->findOneById($franks_picks['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollectionId($franks_picks['collection'])
+      ->isForSale()
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
+
+    $pager = new PropelModelPager($q, 12);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+    $this->pager = $pager;
+
+    $this->collection = $collection;
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMwba()
+  {
     return sfView::SUCCESS;
   }
 
   public function executeMwbaPetroliana()
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
-
     $collectible_ids = array(
         461, 86332, 88537, 82253,
       78137, 76082, 28180, 84250,
@@ -214,9 +241,6 @@ class aetnActions extends cqFrontendActions
 
   public function executeMwbaRooseveltiana()
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
-
     $collectible_ids = array(
       16967, 56670, 56218, 16610,
       16604, 16608, 87811, 16601,
@@ -243,9 +267,6 @@ class aetnActions extends cqFrontendActions
 
   public function executeMwbaRailroadiana()
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
-
     $collectible_ids = array(
       87910, 89843, 89893,  5420,
       89864, 56685, 12738, 93008,

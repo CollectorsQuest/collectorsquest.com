@@ -192,3 +192,7 @@ error_500:
 error_50x:
   url:   /errors/50x
   param: { module: general, action: error50x }
+
+startpage:
+  url: /startpage
+  param: { module: general, action: startPage }

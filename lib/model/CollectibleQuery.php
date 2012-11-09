@@ -25,7 +25,7 @@ class CollectibleQuery extends BaseCollectibleQuery
     $where = sprintf("
         Collectible.Id IN (
           SELECT tagging.taggable_id
-            FROM tagging RIGHT JOIN tag ON (tag.id = tagging.tag_id AND tag.slug %s ('%s'))
+            FROM tagging RIGHT JOIN tag ON (tag.id = tagging.tag_id AND tag.is_triple = 0 AND tag.slug %s ('%s'))
            WHERE taggable_model = 'Collectible'
         )
       ",
@@ -34,6 +34,119 @@ class CollectibleQuery extends BaseCollectibleQuery
     );
 
     return $this->where($where);
+  }
+
+  /**
+   * @param  array   $tags
+   * @param  string  $comparison
+   *
+   * @return CollectibleQuery
+   */
+  public function orderByTags($tags, $comparison = null)
+  {
+    $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
+    $tags = array_map(array('Utf8', 'slugify'), $tags);
+
+    $where = sprintf("
+        FIELD(
+          collectible.ID,
+          (
+            SELECT
+              GROUP_CONCAT(
+                DISTINCT tagging.taggable_id
+                ORDER BY tagging.id ASC
+                SEPARATOR ','
+              )
+              FROM tagging RIGHT JOIN tag ON (tag.id = tagging.tag_id AND tag.is_triple = 0 AND tag.slug %s ('%s'))
+              WHERE tagging.taggable_model = 'Collectible'
+              GROUP BY tagging.taggable_model
+          )
+        )
+      ",
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
+      implode("','", $tags)
+    );
+
+    return $this->where($where);
+  }
+
+  /**
+   * @param  array   $tags
+   * @param  string  $namespace
+   * @param  array   $keys
+   * @param  string  $comparison
+   *
+   * @return CollectibleQuery
+   */
+  public function filterByMachineTags($tags, $namespace, $keys = array('all'), $comparison = Criteria::IN)
+  {
+    $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
+    $tags = array_map('addslashes', $tags);
+
+    // Make sure $keys is array
+    $keys = (array) $keys;
+
+    $where = sprintf("
+        collectible.ID IN (
+          SELECT tagging.taggable_id
+            FROM tagging RIGHT JOIN tag ON (
+              tag.id = tagging.tag_id AND tag.is_triple = 1 AND
+              tag.triple_value %s ('%s') AND
+              tag.triple_namespace = '%s' AND
+              tag.triple_key IN ('%s')
+            )
+           WHERE taggable_model = 'Collectible'
+        )
+      ",
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
+      implode("','", $tags), $namespace, implode("','", $keys)
+    );
+
+    return $this->where($where);
+  }
+
+  /**
+   * @param  array   $tags
+   * @param  string  $namespace
+   * @param  array   $keys
+   * @param  string  $comparison
+   *
+   * @return CollectibleQuery
+   */
+  public function orderByMachineTags($tags, $namespace, $keys = array('all'), $comparison = Criteria::IN)
+  {
+    $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
+    $tags = array_map('addslashes', $tags);
+
+    // Make sure $keys is array
+    $keys = (array) $keys;
+
+    $order = sprintf("
+        FIELD(
+          collectible.ID,
+          (
+            SELECT
+              GROUP_CONCAT(
+                DISTINCT tagging.taggable_id
+                ORDER BY FIELD(tag.triple_key, '%s') ASC, tagging.id ASC
+                SEPARATOR ','
+              )
+              FROM tagging RIGHT JOIN tag ON (
+                tag.id = tagging.tag_id AND tag.is_triple = 1 AND
+                tag.triple_value %s ('%s') AND
+                tag.triple_namespace = '%s' AND
+                tag.triple_key IN ('%s')
+              )
+              WHERE tagging.taggable_model = 'Collectible'
+              GROUP BY tagging.taggable_model
+          )
+        )
+      ",
+      implode("','", $keys), $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
+      implode("','", $tags), $namespace, implode("','", $keys)
+    );
+
+    return $this->addDescendingOrderByColumn($order);
   }
 
   public function hasThumbnail()
@@ -59,8 +172,8 @@ class CollectibleQuery extends BaseCollectibleQuery
   public function isPartOfCollection()
   {
     return $this
-      ->join('CollectionCollectible', Criteria::RIGHT_JOIN)
-      ->groupBy('Collectible.Id');
+      ->rightJoinCollectionCollectible()
+      ->groupById();
   }
 
   /**

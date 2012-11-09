@@ -119,14 +119,17 @@
     <?php endif; // if collectible shipping allowed in gatekeeper ?>
 
   <?php elseif (!$sf_user->getSeller()->hasPackageCredits()): ?>
-    <center>
-      <?php
-        echo link_to(
-          cq_image_tag('headlines/want-to-sell-this-item.png'),
-          '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
-        );
-      ?>
-    </center>
+    <?php
+      cq_ad_slot(
+        cq_image_tag('headlines/want-to-sell-this-item.png',
+          array(
+            'width' => '530', 'height' => '71', 'style' => 'display: block; margin: auto',
+            'alt' => 'Want to sell this item?'
+          )
+        ),
+        '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
+      );
+    ?>
     <br/>
   <?php elseif (!$sf_user->getCollector()->hasPayPalDetails()): ?>
     <div class="alert alert-error all-errors">

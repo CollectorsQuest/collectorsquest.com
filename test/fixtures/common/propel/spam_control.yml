@@ -1,36 +1,4 @@
 iceModelSpamControl:
-  iceModelSpamControl_1:
-    field: '3'
-    value: unknown
-    credentials: '1'
-    is_banned: '0'
-    is_throttled: '0'
-    created_at: '2012-05-31 14:05:40'
-    updated_at: '2012-05-31 14:05:40'
-  iceModelSpamControl_3:
-    field: '3'
-    value: 10.33.0.70
-    credentials: '1'
-    is_banned: '0'
-    is_throttled: '0'
-    created_at: '2012-05-31 14:06:16'
-    updated_at: '2012-05-31 14:06:16'
-  iceModelSpamControl_4:
-    field: '3'
-    value: '10.137.19.162, '
-    credentials: '1'
-    is_banned: '0'
-    is_throttled: '0'
-    created_at: '2012-05-31 14:06:34'
-    updated_at: '2012-05-31 14:06:34'
-  iceModelSpamControl_6:
-    field: '3'
-    value: 127.0.0.1
-    credentials: '1'
-    is_banned: '0'
-    is_throttled: '0'
-    created_at: '2012-05-31 14:06:53'
-    updated_at: '2012-05-31 14:06:53'
   iceModelSpamControl_7:
     field: '3'
     value: 125.64.18.24
@@ -47,3 +15,187 @@ iceModelSpamControl:
     is_throttled: '0'
     created_at: '2012-05-31 14:07:46'
     updated_at: '2012-05-31 14:07:46'
+  iceModelSpamControl_16:
+    field: '2'
+    value: 14.139.125.162
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-08-27 08:18:34'
+    updated_at: '2012-08-27 08:18:34'
+  iceModelSpamControl_17:
+    field: '2'
+    value: 92.40.254.121
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-08-31 07:47:25'
+    updated_at: '2012-08-31 07:47:25'
+  iceModelSpamControl_19:
+    field: '2'
+    value: 92.40.254.208
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-08-31 07:48:18'
+    updated_at: '2012-08-31 07:48:18'
+  iceModelSpamControl_22:
+    field: '0'
+    value: JIGGLYBOTTOM@BOTTOM.COM
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-08-31 07:48:51'
+    updated_at: '2012-08-31 07:48:51'
+  iceModelSpamControl_23:
+    field: '2'
+    value: 92.40.254.136
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-08-31 07:58:10'
+    updated_at: '2012-08-31 07:58:10'
+  iceModelSpamControl_24:
+    field: '2'
+    value: 92.40.254.34
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-08-31 07:59:26'
+    updated_at: '2012-08-31 07:59:26'
+  iceModelSpamControl_25:
+    field: '2'
+    value: 91.237.249.37
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-09 08:58:51'
+    updated_at: '2012-09-09 08:58:51'
+  iceModelSpamControl_26:
+    field: '2'
+    value: 117.26.77.79
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-09 08:59:11'
+    updated_at: '2012-09-09 08:59:11'
+  iceModelSpamControl_27:
+    field: '2'
+    value: 80.191.80.110
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-09 08:59:27'
+    updated_at: '2012-09-09 08:59:27'
+  iceModelSpamControl_29:
+    field: '2'
+    value: 24.73.202.234
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-11 14:01:05'
+    updated_at: '2012-09-11 14:01:05'
+  iceModelSpamControl_30:
+    field: '2'
+    value: 65.49.70.72
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-13 14:02:33'
+    updated_at: '2012-09-13 14:02:33'
+  iceModelSpamControl_32:
+    field: '2'
+    value: 27.159.213.18
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-14 15:19:20'
+    updated_at: '2012-09-14 15:19:20'
+  iceModelSpamControl_33:
+    field: '2'
+    value: 124.89.36.178
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-20 16:44:11'
+    updated_at: '2012-09-20 16:44:11'
+  iceModelSpamControl_34:
+    field: '2'
+    value: 5.39.112.251
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-20 16:44:23'
+    updated_at: '2012-09-20 16:44:23'
+  iceModelSpamControl_36:
+    field: '2'
+    value: 211.167.112.18
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-23 18:37:08'
+    updated_at: '2012-09-23 18:37:08'
+  iceModelSpamControl_37:
+    field: '2'
+    value: 200.143.132.98
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-23 18:37:33'
+    updated_at: '2012-09-23 18:37:33'
+  iceModelSpamControl_38:
+    field: '2'
+    value: 121.205.241.249
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-25 09:21:25'
+    updated_at: '2012-09-25 09:21:25'
+  iceModelSpamControl_39:
+    field: '2'
+    value: 222.189.238.72
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-09-25 09:21:41'
+    updated_at: '2012-09-25 09:21:41'
+  iceModelSpamControl_40:
+    field: '2'
+    value: 221.175.217.191
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-10-15 08:54:35'
+    updated_at: '2012-10-15 08:54:35'
+  iceModelSpamControl_41:
+    field: '2'
+    value: 91.237.249.147
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-10-15 08:54:56'
+    updated_at: '2012-10-15 08:54:56'
+  iceModelSpamControl_42:
+    field: '2'
+    value: 94.153.10.74
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-10-15 09:00:08'
+    updated_at: '2012-10-15 09:00:08'
+  iceModelSpamControl_43:
+    field: '2'
+    value: 95.176.213.10
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-10-15 09:01:59'
+    updated_at: '2012-10-15 09:01:59'
+  iceModelSpamControl_44:
+    field: '2'
+    value: 94.45.175.154
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-10-19 15:28:37'
+    updated_at: '2012-10-19 15:28:37'

@@ -76,6 +76,13 @@ all:
           Meta Tags:
             url: ice_model_meta_tag
 
+      Emails:
+        icon: envelope
+        items:
+          Emails Log:
+            url: emails_log
+            image: theme/icons/messaging.png
+
 
 next:
   ice_assets:

@@ -63,17 +63,11 @@ class collectionActions extends cqFrontendActions
       }
       else if ($collection->getId() == $american_restoration['collection'])
       {
-       $this->redirectIf(
-          IceGateKeeper::open('aetn_american_restoration', 'page'),
-          '@aetn_american_restoration', 301
-        );
+        $this->redirect('@aetn_american_restoration', 301);
       }
       else if ($collection->getId() == $picked_off['collection'])
       {
-        $this->redirectIf(
-          IceGateKeeper::open('aetn_picked_off', 'page'),
-          '@aetn_picked_off', 301
-        );
+        $this->redirect('@aetn_picked_off', 301);
       }
     }
 
@@ -177,7 +171,7 @@ class collectionActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCollectible()
+  public function executeCollectible(sfWebRequest $request)
   {
     $this->forward404Unless($this->getRoute() instanceof sfPropelRoute);
 
@@ -303,6 +297,18 @@ class collectionActions extends cqFrontendActions
         'error', 'Your item will not be discoverable until you fill in all the required information!'
       );
     }
+
+    // check if the user comes from the marketplace page
+    $this->ref_marketplace = $request->getParameter('ref');
+    if ($this->ref_marketplace !== 'mp')
+    {
+      $this->ref_marketplace = false;
+    }
+    else
+    {
+      $this->ref_marketplace = true;
+    }
+
 
     return sfView::SUCCESS;
   }

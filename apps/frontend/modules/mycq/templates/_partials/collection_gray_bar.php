@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var $collection CollectorCollection
+ */
+?>
 <div class="gray-well cf">
   <div class="row-fluid">
     <div class="span8">
@@ -9,7 +14,7 @@
           </a>
         </li>
         <li>
-          <a href="<?= url_for('@ajax_mycq?section=collectible&page=create&collection_id='. $collection->getId()); ?>"
+          <a href="<?= url_for('@ajax_mycq?section=collectible&page=upload&collection_id='. $collection->getId()); ?>"
              class="open-dialog" onclick="return false;">
             <i class="icon icon-plus"></i>
             Add Item
@@ -35,7 +40,7 @@
             </li>
             <li>
               <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details', 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-                 class="btn-delete-simple" onclick="return confirm('Are you sure you want to delete this Collection?');">
+                 class="btn-delete-simple open-dialog" onclick="return false;">
                 <i class="icon icon-trash"></i>
                 Delete Collection
               </a>

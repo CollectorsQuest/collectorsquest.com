@@ -10,17 +10,27 @@
 <?php
   if (!$sf_user->isAuthenticated())
   {
-    echo link_to(
-      cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png'),
-      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+    cq_ad_slot(
+      cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png',
+        array(
+          'width' => '300', 'height' => '90',
+          'alt' => 'Quest Your Best: The Essential Guide to Collecting'
+        )
+      ),
+      '@misc_guide_to_collecting'
     );
     $height->value -= 110;
   }
   else if ((!$seller = $sf_user->getSeller(true)) || ($seller && !$seller->hasBoughtCredits()))
   {
-    echo cq_link_to(
-      cq_image_tag('headlines/040412_CQ_Market_blue.gif'),
-      'blog_page', array('slug' => 'cq-faqs/guide-selling', '_decode' => 1)
+    cq_ad_slot(
+      cq_image_tag('headlines/040412_CQ_Market_blue.gif',
+        array(
+          'width' => '300', 'height' => '250',
+          'alt' => 'How can I sell my items?'
+        )
+      ),
+      url_for('blog_page', array('slug' => 'cq-faqs/guide-selling', '_decode' => 1))
     );
   }
 

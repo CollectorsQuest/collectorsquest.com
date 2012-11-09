@@ -542,7 +542,7 @@ var COMMON = window.COMMON = (function(){
               {
                 return this;
               }
-            }
+            };
           }());
         }
       }
@@ -739,8 +739,7 @@ var SEARCH = window.SEARCH = (function(){
       $container.imagesLoaded(function() {
         $container.masonry({
           itemSelector : '.brick',
-          columnWidth : 196, gutterWidth: 15,
-          isAnimated: !Modernizr.csstransitions
+          columnWidth : 196, gutterWidth: 15
         });
       });
 

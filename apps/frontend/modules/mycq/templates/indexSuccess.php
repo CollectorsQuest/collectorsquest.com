@@ -8,8 +8,13 @@
 <div class="row-fluid spacer-top-20">
   <div class="span3">
     <?php
-      echo link_to(
-        cq_image_tag('headlines/2012-08-18_CQGuide_160x600.png'),
+      cq_ad_slot(
+        cq_image_tag('headlines/2012-08-18_CQGuide_160x600.png',
+          array(
+            'width' => '160', 'height' => '600',
+            'alt' => 'Quest Your Best: The Essential Guide to Collecting'
+          )
+        ),
         '@misc_guide_download'
       );
     ?>

@@ -4,10 +4,13 @@ MAILTO=cron@collectorsquest.com
 HOME=/www/vhosts/collectorsquest.com/current
 
 # WordPress wp-cron.php
- */5  *  *  *  *  apache  cronic php ./web/blog/wp-cron.php
+# */5  *  *  *  *  apache  cronic php ./web/blog/wp-cron.php
 
 # Sync with MailChimp.com
   30 03  *  *  *  apache  cronic ./symfony batch:mailchimp-sync --env=prod
+
+# Tasks
+ 01  05  *  *  *  apache  cronic ./symfony batch:sellers-anonymous --env=prod
 
 # Sphinx indexes
  */5  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod --delta=yes

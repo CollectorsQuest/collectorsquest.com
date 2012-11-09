@@ -44,7 +44,7 @@
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
     array(
-      'collection' => $collection, 'limit' => 3,
+      'collection' => $collection, 'limit' => 4,
       'fallback' => 'random',
       'height' => &$height
     )

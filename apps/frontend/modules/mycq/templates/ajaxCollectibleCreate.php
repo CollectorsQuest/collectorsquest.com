@@ -1,7 +1,9 @@
 <?php
 /**
- * @var $form CollectibleCreateForm
- * @var $collectible Collectible
+ * @var $form         CollectibleCreateForm
+ * @var $collectible  Collectible
+ * @var $donor        Collectible
+ * @var $image        iceModelMultimedia
  */
 ?>
 
@@ -19,12 +21,19 @@
   }
 ?>
 
-<form action="<?= url_for('@ajax_mycq?section=collectible&page=create'); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collectible&page=create&collectible_id=' . $donor->getId()); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Add a New Item</h1>
+  <h1>Step 2: Describe Your Item</h1>
+  <?= $form->renderAllErrors(); ?>
 
-  <?= $form ?>
+  <div style="position: relative;">
+    <?= image_tag_collectible($donor, '75x75', array('style'=> 'position: absolute; top: 0px; right: 10px;')); ?>
+
+    <?= $form['name']->renderRow(); ?>
+    <?= $form['description']->renderRow(); ?>
+    <?= $form['tags']->renderRow(); ?>
+  </div>
 
   <?php
   /**
@@ -38,7 +47,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Add Item
+      Finish
     </button>
     <button type="reset" class="btn" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
       Cancel
@@ -74,7 +83,7 @@
       }
     });
 
-    <?php if($form->hasErrors()): ?>
+    <?php if ($form->hasErrors()): ?>
       $('#description_help').hide();
     <?php else: ?>
       $('textarea#collectible_description').parent().parent().append($('#description_help'));

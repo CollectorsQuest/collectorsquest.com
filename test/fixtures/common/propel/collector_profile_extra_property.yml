@@ -1,39 +1,4 @@
 CollectorProfileExtraProperty:
-  CollectorProfileExtraProperty_50:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_51:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_52:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_53:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_54:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_182:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_52
-  CollectorProfileExtraProperty_183:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_52
-  CollectorProfileExtraProperty_184:
-    property_name: ABOUT.ANNUALLY_SPEND
-    collector_profile_collector_id: CollectorProfile_52
-  CollectorProfileExtraProperty_185:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    collector_profile_collector_id: CollectorProfile_52
-  CollectorProfileExtraProperty_186:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_52
   CollectorProfileExtraProperty_224:
     property_name: ABOUT.PURCHASES_PER_YEAR
     property_value: '0'
@@ -65,28 +30,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: ''
     collector_profile_collector_id: CollectorProfile_163
-  CollectorProfileExtraProperty_1226:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_1227:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_1230:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_2960:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_531
-  CollectorProfileExtraProperty_2961:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_531
-  CollectorProfileExtraProperty_2964:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_531
   CollectorProfileExtraProperty_3578:
     property_name: ABOUT.PURCHASES_PER_YEAR
     property_value: '0'
@@ -98,20 +41,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: ''
     collector_profile_collector_id: CollectorProfile_644
-  CollectorProfileExtraProperty_3992:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_714
-  CollectorProfileExtraProperty_3993:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_714
-  CollectorProfileExtraProperty_3994:
-    property_name: ABOUT.ANNUALLY_SPEND
-    collector_profile_collector_id: CollectorProfile_714
-  CollectorProfileExtraProperty_3996:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_714
   CollectorProfileExtraProperty_4718:
     property_name: ABOUT.PURCHASES_PER_YEAR
     property_value: '0'
@@ -123,17 +52,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: ''
     collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_4862:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_870
-  CollectorProfileExtraProperty_4863:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_870
-  CollectorProfileExtraProperty_4866:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_870
   CollectorProfileExtraProperty_5360:
     property_name: ABOUT.PURCHASES_PER_YEAR
     property_value: '0'
@@ -151,17 +69,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: ''
     collector_profile_collector_id: CollectorProfile_963
-  CollectorProfileExtraProperty_6050:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_1082
-  CollectorProfileExtraProperty_6051:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_1082
-  CollectorProfileExtraProperty_6054:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_1082
   CollectorProfileExtraProperty_6800:
     property_name: ABOUT.PURCHASES_PER_YEAR
     property_value: '0'
@@ -173,48 +80,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: ''
     collector_profile_collector_id: CollectorProfile_1212
-  CollectorProfileExtraProperty_7394:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_7395:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_7398:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_7718:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_7719:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_7722:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_18673:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    collector_profile_collector_id: CollectorProfile_3632
-  CollectorProfileExtraProperty_18674:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_3632
-  CollectorProfileExtraProperty_18675:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_3632
-  CollectorProfileExtraProperty_18676:
-    property_name: ABOUT.ANNUALLY_SPEND
-    collector_profile_collector_id: CollectorProfile_3632
-  CollectorProfileExtraProperty_18677:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    collector_profile_collector_id: CollectorProfile_3632
-  CollectorProfileExtraProperty_18678:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_3632
   CollectorProfileExtraProperty_21769:
     property_name: ABOUT.WHAT_YOU_COLLECT
     collector_profile_collector_id: CollectorProfile_4208
@@ -255,29 +120,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: ''
     collector_profile_collector_id: CollectorProfile_4295
-  CollectorProfileExtraProperty_30967:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_6610
-  CollectorProfileExtraProperty_30968:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    collector_profile_collector_id: CollectorProfile_6610
-  CollectorProfileExtraProperty_30969:
-    property_name: ABOUT.WHAT_YOU_SELL
-    property_value: 'photographica & antiques'
-    collector_profile_collector_id: CollectorProfile_6610
-  CollectorProfileExtraProperty_30970:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_6610
-  CollectorProfileExtraProperty_30971:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_6610
-  CollectorProfileExtraProperty_30972:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_31298:
     property_name: ABOUT.PURCHASES_PER_YEAR
     property_value: '0'
@@ -293,46 +135,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: 'Shabby Chic Picker Chick Antiques & Collectibles'
     collector_profile_collector_id: CollectorProfile_6700
-  CollectorProfileExtraProperty_38735:
-    property_name: ABOUT.ME
-    property_value: 'Writer and Content & Community Manager for Collectors Quest. NES over-enthusiast, sushi devourer, former library slave, former teacher. Professional illustrator and designer.'
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38736:
-    property_name: ABOUT.COLLECTIONS
-    property_value: 'A little bit of everything: superheroes, history, music, nature.'
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38737:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38738:
-    property_name: ABOUT.INTERESTS
-    property_value: 'Infinite and delicious.'
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38739:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: everything.
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_38832:
-    property_name: ABOUT.ME
-    property_value: 'I am a graduate student working on my PhD in geology/paleontology.'
-    collector_profile_collector_id: CollectorProfile_52
-  CollectorProfileExtraProperty_38833:
-    property_name: ABOUT.COLLECTIONS
-    property_value: 'I was obsessed with dinosaurs as a child and I guess I really never outgrew it.  Eventually I made the transition from playing with dinosaurs to collecting them.  When I discovered antique shops and eBay I started hunting older dinosaur toys.  Its really cool to look at how images of dinosaurs have changed as a result of new paleontological findings.  I don''t just collect dinosaur toys - I collect anything relating to dinosaurs or prehistoric life.  This overlaps with many other categories of collecting: ephemera, books, movies, posters, advertising, comic books, post cards, clothing.  Dinosaurs are everywhere!'
-    collector_profile_collector_id: CollectorProfile_52
-  CollectorProfileExtraProperty_38834:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_52
-  CollectorProfileExtraProperty_38835:
-    property_name: ABOUT.INTERESTS
-    property_value: 'Geology, paleontology, studying images of prehistory in American popular culture, theatre, playing board games.'
-    collector_profile_collector_id: CollectorProfile_52
-  CollectorProfileExtraProperty_38836:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: 'Dinosaur and prehistoric animal collectibles'
-    collector_profile_collector_id: CollectorProfile_52
   CollectorProfileExtraProperty_38864:
     property_name: ABOUT.ME
     property_value: "\"Hello, my name is Deanna Dahlsad, and I’m a hoarder.\"  (You say, \"Hello, Deanna,\" just like any other support group member. *wink*) \r\n\r\nSo I'm a hoarder, married to another hoarder, and together we also raise little hoarders.  I write at Inherited Values, Kitschy Kitschy Coo, Kitsch Slapped, Things Your Grandmother Knew, and here at Collectors Quest."
@@ -377,62 +179,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.INTERESTS
     property_value: ''
     collector_profile_collector_id: CollectorProfile_163
-  CollectorProfileExtraProperty_39563:
-    property_name: ABOUT.ME
-    property_value: 'I''m a 34 year old guy from southern Sweden. I''m married, with two children. '
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_39564:
-    property_name: ABOUT.COLLECTIONS
-    property_value: 'I collect Books, Natural History Objects (shells, plants, insects etc), Historical Memorabilia, Stamps and Coins. I tend to view different artefacts as being part of a long chain of history. I marvel when holding, for instance, a roman oil lamp... 2000 years of history just flashes before my eyes. It''s incredible when you consider the astonishing journey that object has made in time and space.'
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_39565:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: '2 times a week'
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_39566:
-    property_name: ABOUT.INTERESTS
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_39567:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: 'Everything from insects and sea shells to coins, stamps and historical memorabilia.'
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_39568:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: '200'
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_39569:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: '1500'
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_40736:
-    property_name: ABOUT.ME
-    property_value: 'I''ve been a full time record dealer for nearly a decade.  I specialize in the unusual, hard-to-find, private/indie/DIY presses of all genres.  I have over 20,000 LPs and lots of 45s, too.  My web site is called Black Gem Records and I run auctions on eBay under the name "Newjazz".  Here, I''m focusing on oddball record covers (as I do on mey web site: www.blackgemrecords.com), but I sell anything and everything vinyl!'
-    collector_profile_collector_id: CollectorProfile_531
-  CollectorProfileExtraProperty_40737:
-    property_name: ABOUT.COLLECTIONS
-    property_value: 'Personally, I collect jazz LPs. (I sell tons of ''em, too).  I have about 2000 in my personal collection (about 5000 jazz LPs available for sale).'
-    collector_profile_collector_id: CollectorProfile_531
-  CollectorProfileExtraProperty_40738:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: '5+ times a month'
-    collector_profile_collector_id: CollectorProfile_531
-  CollectorProfileExtraProperty_40739:
-    property_name: ABOUT.INTERESTS
-    property_value: 'Music, politics, philosophy.  I''m a part-time performing free-jazz musician (someone has to be, right)? '
-    collector_profile_collector_id: CollectorProfile_531
-  CollectorProfileExtraProperty_40740:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: RECORDS
-    collector_profile_collector_id: CollectorProfile_531
-  CollectorProfileExtraProperty_40741:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_531
-  CollectorProfileExtraProperty_40742:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: '5000'
-    collector_profile_collector_id: CollectorProfile_531
   CollectorProfileExtraProperty_41259:
     property_name: ABOUT.ME
     property_value: 'We collected art for 30 years and filled up two houses. We then collected outdoor art. The logical extension of that was collecting rolling sculpture.'
@@ -461,30 +207,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.ANNUALLY_SPEND
     property_value: '20000'
     collector_profile_collector_id: CollectorProfile_644
-  CollectorProfileExtraProperty_41630:
-    property_name: ABOUT.ME
-    property_value: 'I work for the Royal Netherlands Air Force. I have been crazy about cars for as long as I can remember. Ever since I can remember I have had lost of toy-cars. My father used to come home on friday, as he was stationed in Germany, and I would inspect his pockets successfully for a car. The passion has never gone away. '
-    collector_profile_collector_id: CollectorProfile_714
-  CollectorProfileExtraProperty_41631:
-    property_name: ABOUT.COLLECTIONS
-    property_value: 'I am now especially into moviecars in the big scale but I also have a large collection of 1:87 car models. These are mostly made of plastic and thus do not qualify as diecast.'
-    collector_profile_collector_id: CollectorProfile_714
-  CollectorProfileExtraProperty_41632:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: '4 times a month'
-    collector_profile_collector_id: CollectorProfile_714
-  CollectorProfileExtraProperty_41633:
-    property_name: ABOUT.INTERESTS
-    property_value: 'Next to the models I also like movies, which would explain the merging of both in my hobby. In general I am a Scifi fan.'
-    collector_profile_collector_id: CollectorProfile_714
-  CollectorProfileExtraProperty_41634:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: 'Diecast 1:18 Moviecars'
-    collector_profile_collector_id: CollectorProfile_714
-  CollectorProfileExtraProperty_41635:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: '150'
-    collector_profile_collector_id: CollectorProfile_714
   CollectorProfileExtraProperty_42311:
     property_name: ABOUT.ME
     property_value: "HI! I am Francesca, 32. I live in Prato, a cool town, close by Florence, in Tuscany [Italy]\r\nTo be honest with you, I have to say that I have an addiction...I love collecting snowglobes!!!!!\r\nAnd I know, I know, I am the worste nightmare of all my best friends: any time they  look at a snowglobe, immediately, and you must believe me, they think about me!!!"
@@ -513,34 +235,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.ANNUALLY_SPEND
     property_value: '100'
     collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_42448:
-    property_name: ABOUT.ME
-    property_value: 'Long time collector of dinosaurs and other animal items'
-    collector_profile_collector_id: CollectorProfile_870
-  CollectorProfileExtraProperty_42449:
-    property_name: ABOUT.COLLECTIONS
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_870
-  CollectorProfileExtraProperty_42450:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_870
-  CollectorProfileExtraProperty_42451:
-    property_name: ABOUT.INTERESTS
-    property_value: 'paleontology,paleoanthropology,paleoart'
-    collector_profile_collector_id: CollectorProfile_870
-  CollectorProfileExtraProperty_42452:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: 'Dinosaurs and prehistoric anything'
-    collector_profile_collector_id: CollectorProfile_870
-  CollectorProfileExtraProperty_42453:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: '2000'
-    collector_profile_collector_id: CollectorProfile_870
-  CollectorProfileExtraProperty_42454:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_870
   CollectorProfileExtraProperty_42913:
     property_name: ABOUT.ME
     property_value: 'I''m president of the Theodore Roosevelt Chapter of the American Political Items Collectors and a former member of the board of APIC. I also run the South Florida Political Collectibles Show the last Saturday of February each year in West Palm Beach, Florida. I''m an editor at The Palm Beach Post newspaper.'
@@ -561,34 +255,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.WHAT_YOU_COLLECT
     property_value: 'Theodore Roosevelt items'
     collector_profile_collector_id: CollectorProfile_963
-  CollectorProfileExtraProperty_43561:
-    property_name: ABOUT.ME
-    property_value: 'I love Living Dead Dolls, and I have a collection of 26.  I''m running out of coffin room!'
-    collector_profile_collector_id: CollectorProfile_1082
-  CollectorProfileExtraProperty_43562:
-    property_name: ABOUT.COLLECTIONS
-    property_value: 'I have 2 double packs, and 22 singles.  My ferret enjoys biting my LDD''s feet.  Especially DeeK''s...'
-    collector_profile_collector_id: CollectorProfile_1082
-  CollectorProfileExtraProperty_43563:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: '1 time a week'
-    collector_profile_collector_id: CollectorProfile_1082
-  CollectorProfileExtraProperty_43564:
-    property_name: ABOUT.INTERESTS
-    property_value: 'I love dead stuff. ( I know i''m weird)  And I love animals ( mostly ferrets), and I am a computer geek.  Oh, I also love music. :)'
-    collector_profile_collector_id: CollectorProfile_1082
-  CollectorProfileExtraProperty_43565:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: 'Living Dead Dolls'
-    collector_profile_collector_id: CollectorProfile_1082
-  CollectorProfileExtraProperty_43566:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: '110'
-    collector_profile_collector_id: CollectorProfile_1082
-  CollectorProfileExtraProperty_43567:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: '50'
-    collector_profile_collector_id: CollectorProfile_1082
   CollectorProfileExtraProperty_44261:
     property_name: ABOUT.ME
     property_value: "I am the Curator from an online museum called The Museum of UnCut Funk.\r\nwww.museumofuncutfunk.com"
@@ -617,76 +283,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.ANNUALLY_SPEND
     property_value: '1000'
     collector_profile_collector_id: CollectorProfile_1212
-  CollectorProfileExtraProperty_44821:
-    property_name: ABOUT.ME
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_44822:
-    property_name: ABOUT.COLLECTIONS
-    property_value: 'I have around 1500 animal collectibles displayed throughout 6 shelves/vitrines.'
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_44823:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_44824:
-    property_name: ABOUT.INTERESTS
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_44825:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: 'animal replicas, historical people, fantasy creatures, dinosaurs, coins, stamps, badges, fossils, gems, medals, keychains and napkins'
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_44826:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: '60'
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_44827:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: '1500'
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_45110:
-    property_name: ABOUT.ME
-    property_value: 'I''m a journalist from the south of Spain, a hard collector of the cult TV series The X Files and follower of the Superman and others DC heroes Statues. '
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_45111:
-    property_name: ABOUT.COLLECTIONS
-    property_value: "The X Files Collection starts on 1994 and it seems never end! \r\nThe Superman Statues is just the very cool items that I found, this just for hobby."
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_45112:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: '2 times a month'
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_45113:
-    property_name: ABOUT.INTERESTS
-    property_value: 'I think I can''t find any other memorabilia of the The X Files so... It''s time to show all "The X Museum"... '
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_45114:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: 'The X Files, Superman Statues'
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_45115:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: '695'
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_45116:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: '800'
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_53018:
-    property_name: ABOUT.ME
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_3632
-  CollectorProfileExtraProperty_53019:
-    property_name: ABOUT.COLLECTIONS
-    collector_profile_collector_id: CollectorProfile_3632
-  CollectorProfileExtraProperty_53020:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    collector_profile_collector_id: CollectorProfile_3632
-  CollectorProfileExtraProperty_53021:
-    property_name: ABOUT.INTERESTS
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_3632
   CollectorProfileExtraProperty_55085:
     property_name: ABOUT.ME
     property_value: ''
@@ -715,22 +311,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.INTERESTS
     property_value: ''
     collector_profile_collector_id: CollectorProfile_4295
-  CollectorProfileExtraProperty_61338:
-    property_name: ABOUT.ME
-    property_value: "Offering photographic collectibles including 19th & 20th century cameras, lenses, images, and related accessories. Over 25 years of experience dealing in vintage photographica. \r\n\r\nPayment Options: We accept money orders, personal checks (10 day clearance for checks), and Paypal."
-    collector_profile_collector_id: CollectorProfile_6610
-  CollectorProfileExtraProperty_61339:
-    property_name: ABOUT.COLLECTIONS
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_6610
-  CollectorProfileExtraProperty_61340:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_6610
-  CollectorProfileExtraProperty_61341:
-    property_name: ABOUT.INTERESTS
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_61616:
     property_name: ABOUT.ME
     property_value: 'Shabby Chic Picker Chick 4626 Dodge Street Omaha NE 68127 we specialize in Antiques, Collectibles, Repurpose, Estate Sales/Liquidation and Ebay Consignment...'
@@ -755,70 +335,30 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.MOST_EXPENSIVE_ITEM
     property_value: '500'
     collector_profile_collector_id: CollectorProfile_6700
-  CollectorProfileExtraProperty_72973:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_12
-  CollectorProfileExtraProperty_72995:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_52
   CollectorProfileExtraProperty_73002:
     property_name: COMPLETED
-    property_value: '25'
+    property_value: '75'
     collector_profile_collector_id: CollectorProfile_59
   CollectorProfileExtraProperty_73102:
     property_name: COMPLETED
     property_value: '75'
     collector_profile_collector_id: CollectorProfile_163
-  CollectorProfileExtraProperty_73165:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_235
-  CollectorProfileExtraProperty_73445:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_531
   CollectorProfileExtraProperty_73544:
     property_name: COMPLETED
     property_value: '100'
     collector_profile_collector_id: CollectorProfile_644
-  CollectorProfileExtraProperty_73612:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_714
   CollectorProfileExtraProperty_73727:
     property_name: COMPLETED
     property_value: '100'
     collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_73750:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_870
   CollectorProfileExtraProperty_73832:
     property_name: COMPLETED
     property_value: '100'
     collector_profile_collector_id: CollectorProfile_963
-  CollectorProfileExtraProperty_73942:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_1082
   CollectorProfileExtraProperty_74063:
     property_name: COMPLETED
     property_value: '75'
     collector_profile_collector_id: CollectorProfile_1212
-  CollectorProfileExtraProperty_74160:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_1317
-  CollectorProfileExtraProperty_74212:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_1374
-  CollectorProfileExtraProperty_76027:
-    property_name: COMPLETED
-    property_value: '75'
-    collector_profile_collector_id: CollectorProfile_3632
   CollectorProfileExtraProperty_76537:
     property_name: COMPLETED
     property_value: '75'
@@ -827,10 +367,6 @@ CollectorProfileExtraProperty:
     property_name: COMPLETED
     property_value: '75'
     collector_profile_collector_id: CollectorProfile_4295
-  CollectorProfileExtraProperty_78043:
-    property_name: COMPLETED
-    property_value: '75'
-    collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_78098:
     property_name: COMPLETED
     property_value: '100'

@@ -9,7 +9,8 @@
  * @var  $next         Collectible
  * @var  $first        Collectible
  * @var  $collectible_for_sale  CollectibleForSale
- * @var  $editable     boolean
+ * @var  $editable            boolean
+ * @var  $ref_marketplace     boolean
  *
  * @var  $additional_multimedia  iceModelMultimedia[]
  *
@@ -37,19 +38,51 @@
     <?php
       if ($aetn_show['id'] === 'american_pickers')
       {
-        echo link_to(image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
+        cq_ad_slot(
+          cq_image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items seen on American Pickers'
+            )
+          ),
+          '@aetn_american_pickers'
+        );
       }
       else if ($aetn_show['id'] === 'american_restoration')
       {
-        echo link_to(image_tag('headlines/2012-0777_AR_620x67.jpg'), '@aetn_american_restoration');
+        cq_ad_slot(
+          cq_image_tag('headlines/2012-0777_AR_620x67.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items seen on American Restoration'
+            )
+          ),
+          '@aetn_american_restoration'
+        );
       }
       else if ($aetn_show['id'] === 'pawn_stars')
       {
-        echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
+        cq_ad_slot(
+          cq_image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items seen on Pawn Stars'
+            )
+          ),
+          '@aetn_pawn_stars'
+        );
       }
       else if ($aetn_show['id'] === 'picked_off')
       {
-        echo link_to(image_tag('headlines/2012-0777_Picked_Off_620x67.jpg'), '@aetn_picked_off');
+        cq_ad_slot(
+          cq_image_tag('headlines/2012-0777_Picked_Off_620x67.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items seen on Picked Off'
+            )
+          ),
+          '@aetn_picked_off'
+        );
       }
       $height_main_div->value += 87;
     ?>
@@ -287,7 +320,7 @@
     );
   }
 
-  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale())
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && !$ref_marketplace)
   {
     include_component('collector', 'indexCollectiblesForSale',
       array(
