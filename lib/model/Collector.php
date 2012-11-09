@@ -1388,14 +1388,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       }
     }
 
-    /** @var $comments Comment[] */
-    if ($comments = $this->getComments())
-    {
-      foreach ($comments as $comment)
-      {
-        $comment->delete($con);
-      }
-    }
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
 
     // Deleting private messages
     $c = new Criteria();
