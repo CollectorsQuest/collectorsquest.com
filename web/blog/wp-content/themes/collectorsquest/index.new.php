@@ -8,6 +8,7 @@
   $data['title'] = wp_title('', false);
   $data['the_id'] = get_the_ID();
   $data['is_page'] = is_page();
+  $data['is_bbpress'] = is_bbpress();
   $data['is_single'] = is_single();
   $data['is_category'] = is_category();
   $data['is_tag'] = is_tag();
@@ -96,6 +97,13 @@
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>
   </div>
+  <?php } elseif (is_bbpress()) {  ?>
+    <div class="span7">
+      <h1 class="Chivo webfont" style="visibility: visible; ">Forum</h1>
+    </div>
+    <div class="back-nav span5">
+      <a href="/blog/forums/">Back to All Forum Topics &rarr;</a>
+    </div>
   <?php } elseif (is_single()) { ?>
     <div class="span7">
       <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
@@ -179,6 +187,11 @@ $lastclass = 0;
 
 
 <div id="blog-contents" class="<?php if (is_front_page()) : echo 'news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
+
+<?php // @todo figure out a better way to do this ?>
+<?php if(is_bbpress() && $_SERVER['REQUEST_URI'] == '/blog/forums/'): ?>
+  <?php echo do_shortcode( '[bbp-forum-index]' ) ?>
+<?php else : ?>
 
 <?php if (have_posts()) : ?>
 
@@ -468,7 +481,7 @@ $lastclass = 0;
 
 
   <?php endif; ?>
-
+<?php endif; //is_bbpress ?>
 </div><!-- end #blog-contents -->
 
 <?php $content = ob_get_clean(); ?>
