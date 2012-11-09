@@ -7,7 +7,7 @@ class cqBadgesBehavior
    */
   private function initBadges(BaseObject $object, $overrideExisting = true)
   {
-    if (isset($object->collBadges) && null !== $object->collBadges && !$overrideExisting)
+    if (isset($object->collBadges) && !$overrideExisting)
     {
       return;
     }
@@ -66,7 +66,7 @@ class cqBadgesBehavior
    */
   public function getBadges(BaseObject $object, $criteria = null, PropelPDO $con = null)
   {
-    if (isset($object->collBadges) && $object->collBadges !== null && null === $criteria)
+    if (isset($object->collBadges) && null === $criteria)
     {
       return $object->collBadges;
     }
@@ -106,8 +106,6 @@ class cqBadgesBehavior
     {
       $object->addBadge($badge);
     }
-
-    $this->collBadges = $badges;
   }
 
   /**
@@ -177,6 +175,6 @@ class cqBadgesBehavior
   public function preDelete(BaseObject $object)
   {
     $object->removeAllBadges();
-    $object->save();
+    $this->postSave($object);
   }
 }
