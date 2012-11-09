@@ -8,13 +8,16 @@ class CollectorCollectionPeer extends BaseCollectorCollectionPeer
   {
     $collection = null;
 
+    /* @var $q FrontendCollectorCollectionQuery */
+    $q = FrontendCollectorCollectionQuery::create();
+
     if (isset($parameters['collection_id']))
     {
-      $collection = self::retrieveByPk($parameters['collection_id']);
+      $collection = $q->findOneById($parameters['collection_id']);
     }
     else if (isset($parameters['id']))
     {
-      $collection = self::retrieveByPk($parameters['id']);
+      $collection = $q->findOneById($parameters['id']);
     }
 
     return $collection;
