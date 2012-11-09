@@ -15,7 +15,7 @@ class CollectionCollectiblePeer extends BaseCollectionCollectiblePeer
     $collectible = null;
     $parameters['id'] = str_replace(array('.html', '.htm'), '', $parameters['id']);
 
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectibleId($parameters['id'])
       ->orderByCollectibleId(Criteria::DESC);
 
