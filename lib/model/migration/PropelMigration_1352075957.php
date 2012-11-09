@@ -3,7 +3,7 @@
 /**
  * Create a content category "Art" and add back its orphants
  */
-class PropelMigration_1352484460
+class PropelMigration_1352075957
 {
 
   public function preUp($manager)
