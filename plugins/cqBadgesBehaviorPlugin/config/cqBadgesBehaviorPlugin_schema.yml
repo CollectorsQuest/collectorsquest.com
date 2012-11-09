@@ -13,6 +13,8 @@ classes:
       parent_model_id:  { type: integer,      required: false }
     indexes:
       badge_parent:     [ parent_model, parent_model_id ]
+    propel_behaviors:
+      sluggable:  { slug_pattern: "{Name}", permanent: false }
 
   cqBadgeReference:
     tableName:          badge_reference
