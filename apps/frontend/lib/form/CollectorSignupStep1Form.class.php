@@ -134,9 +134,16 @@ class CollectorSignupStep1Form extends BaseForm
   public function setupReferralField()
   {
     $this->widgetSchema['referral_code'] = new sfWidgetFormInputText(array(
-      'label' => 'Referrer',
+        'label' => 'Referrer',
+      ), array(
+        'rel'   => 'tooltip',
+        'title' => 'Do you have a referral code for one of our organizations? Input it here!',
+      ));
+    $this->validatorSchema['referral_code'] = new sfValidatorPropelChoice(array(
+        'model' => 'Organization',
+        'column' => 'referral_code',
+        'required' => false
     ));
-    $this->validatorSchema['referral_code'] = new sfValidatorString(array('required' => false));
   }
 
   public function getJavaScripts()
