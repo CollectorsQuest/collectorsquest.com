@@ -15,9 +15,17 @@
       case 'collectible':
       case 'collectibleforsale':
         echo '<h1>Step 1: Upload Item Photo</h1>';
+        echo "
+          Choose the photo you'd like to use as your main image for this individual item.<br/>
+          You wil lbe able to add alternate views later.<br/><br/>
+        ";
         break;
       case 'collection':
         echo '<h1>Step 1: Upload Collection Photo</h1>';
+        echo "
+            Choose the photo you'd like to use as your cover photo for this entire collection.<br/>
+            You will be able to add individual items later.<br/><br/>
+        ";
         break;
     }
   ?>
