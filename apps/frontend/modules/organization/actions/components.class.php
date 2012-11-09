@@ -24,7 +24,9 @@ class organizationComponents extends cqFrontendComponents
 
   public function executeWidgetMembers()
   {
-    $this->members = $this->organization->getCollectors();
+    $this->members = $this->organization->getCollectors(CollectorQuery::create()
+      ->limit(20)
+    );
   }
 
 }

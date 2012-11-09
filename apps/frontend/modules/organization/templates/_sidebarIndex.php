@@ -16,6 +16,13 @@
         </li>
       </ul>
     </div>
+    <div class="pull-left">
+      <?php if (!$organization->isMember($sf_user->getCollector()) && OrganizationPeer::ACCESS_PRIVATE != $organization->getAccess()): ?>
+      <?= form_tag('@organization_join?id='.$organization->getId(), array('class' => 'form-horizontal')) ?>
+        <button type="submit" class="btn btn-mini">Join</button>
+      </form>
+      <?php endif; ?>
+    </div>
     <div id="social-sharing" class="pull-right share">
       <?php // removing the addthis_button_email causes a JS error - no toolbar displayed ?>
       <a class="addthis_button_email" style="display: none;"></a>
@@ -26,14 +33,26 @@
   </div>
 </div>
 
+<div class="row-fluid spacer-top-20">
+  <?php cq_sidebar_title('More about ' . $organization->getName(), null); ?>
+  <div class="personal-info-sidebar" itemprop="description">
+    <?php if ($organization->getUrl()): ?>
+      <p><strong>Our website:</strong> <?= link_to($organization->getUrl(), $organization->getUrl()); ?></p>
+    <?php endif; ?>
+    <?php if ($organization->getPhone()): ?>
+      <p><strong>Our phone:</strong> <?= $organization->getPhone(); ?></p>
+    <?php endif; ?>
+    <?php if ($organization->getDescription()): ?>
+      <p><strong>About us:</strong></p>
+      <div class="organization-description">
+        <?= $organization->getDescription(); ?>
+      </div>
+    <?php endif; ?>
+  </div>
+</div>
+
 <?php include_component('organization', 'widgetMembers', array(
     'organization' => $organization,
 )); ?>
 
-<div class="">
-  <?php if (!$organization->isMember($sf_user->getCollector()) && OrganizationPeer::ACCESS_PRIVATE != $organization->getAccess()): ?>
-  <?= form_tag('@organization_join?id='.$organization->getId(), array('class' => 'form-horizontal')) ?>
-    <button type="submit" class="btn">Join</button>
-  </form>
-  <?php endif; ?>
-</div>
+
