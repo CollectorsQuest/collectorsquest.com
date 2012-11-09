@@ -234,23 +234,25 @@ class CollectorPeer extends BaseCollectorPeer
   {
     $collector = null;
 
+    $q = FrontendCollectorQuery::create();
+
     if (isset($parameters['collector_id']))
     {
-      $collector = self::retrieveByPk($parameters['collector_id']);
+      $collector = $q->findOneById($parameters['collector_id']);
     }
     else if (isset($parameters['id']))
     {
-      $collector = self::retrieveByPk($parameters['id']);
+      $collector = $q->findOneById($parameters['id']);
     }
     else if (isset($parameters['collector_slug']))
     {
       $parameters['slug'] = str_replace(array('.html', '.htm'), '', $parameters['collector_slug']);
-      $collector = self::retrieveBySlug($parameters['collector_slug']);
+      $collector = $q->findOneBySlug($parameters['collector_slug']);
     }
     else if (isset($parameters['slug']))
     {
       $parameters['slug'] = str_replace(array('.html', '.htm'), '', $parameters['slug']);
-      $collector = self::retrieveBySlug($parameters['slug']);
+      $collector = $q->findOneBySlug($parameters['slug']);
     }
 
     return $collector;

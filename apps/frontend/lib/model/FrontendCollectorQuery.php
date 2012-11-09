@@ -6,7 +6,9 @@ class FrontendCollectorQuery extends CollectorQuery
   {
     if ($criteria instanceof FrontendCollectorQuery)
     {
-      return $criteria->filterByIsPublic(true);
+      return $criteria
+        ->filterById(15716, Criteria::NOT_EQUAL) // Frank's Picks
+        ->filterByIsPublic(true);
     }
 
     $query = new FrontendCollectorQuery();
@@ -20,7 +22,9 @@ class FrontendCollectorQuery extends CollectorQuery
     }
 
     // By default we want to only show public Collections
-    $query->filterByIsPublic(true);
+    $query
+      ->filterById(15716, Criteria::NOT_EQUAL) // Frank's Picks
+      ->filterByIsPublic(true);
 
     return $query;
   }
