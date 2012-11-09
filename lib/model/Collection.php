@@ -249,12 +249,9 @@ class Collection extends BaseCollection
       $collectible->delete($con);
     }
 
-    /** @var $comments Comment[] */
-    if ($comments = $this->getComments())
-    foreach ($comments as $comment)
-    {
-      $comment->delete($con);
-    }
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
 
     return parent::preDelete($con);
   }
