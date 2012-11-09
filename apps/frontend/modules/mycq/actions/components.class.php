@@ -88,28 +88,25 @@ class mycqComponents extends cqFrontendComponents
     }
 
     $q = CollectionCollectibleQuery::create()
-        ->filterByCollection($collection);
+       ->filterByCollection($collection);
 
     switch ($this->getRequestParameter('s', 'position'))
     {
       case 'most-popular':
-        $q
-            ->joinCollection()
-            ->useCollectionQuery()
-            ->orderByNumViews(Criteria::DESC)
-            ->endUse();
+        $q->joinCollection()
+          ->useCollectionQuery()
+          ->orderByNumViews(Criteria::DESC)
+          ->endUse();
         break;
 
       case 'most-recent':
-        $q
-            ->orderByCreatedAt(Criteria::DESC);
+        $q->orderByCreatedAt(Criteria::DESC);
         break;
 
       case 'position':
       default:
-        $q
-            ->orderByPosition(Criteria::ASC)
-            ->orderByCreatedAt(Criteria::DESC);
+        $q->orderByPosition(Criteria::ASC)
+          ->orderByCreatedAt(Criteria::DESC);
         break;
     }
 
