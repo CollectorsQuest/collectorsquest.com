@@ -18,7 +18,7 @@ class CollectiblePeer extends BaseCollectiblePeer
 
     if (preg_match('/-c(\d+)$/i', $parameters['slug'], $m))
     {
-      $q = FrontendCollectionCollectibleQuery::create()
+      $q = CollectionCollectibleQuery::create()
          ->filterByCollectibleId($parameters['id'])
          ->filterByCollectionId((int) $m[1]);
 
