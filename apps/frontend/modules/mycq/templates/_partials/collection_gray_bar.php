@@ -49,7 +49,7 @@
         </li>
       </ul>
     </div>
-    <?php if ($collection->getNumViews() > 0): ?>
+    <?php if ($collection->countCollectionCollectibles() > 0): ?>
     <div class="span4">
       <div class="mini-input-append-search">
         <div class="input-append pull-right">
