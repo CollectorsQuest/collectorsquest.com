@@ -66,7 +66,8 @@ class FrontendCommentForm extends BaseCommentForm
         'fields' => array(
             'author_email' => 'email',
             $this->getIpAddressFieldName() => 'ip',
-        )
+        ),
+        'force_skip_check' => array($this, 'forceSkipSpamCheck'),
       ), array(
         'spam' => 'We are sorry we could not add your comment. Please try again later.',
     )));
@@ -77,7 +78,27 @@ class FrontendCommentForm extends BaseCommentForm
         'timeout_duration' => sfConfig::get('app_comments_timeout_duration', '30 minutes'),
         'timeout_check_period' => sfConfig::get('app_comments_timeout_check_period', '60 minutes'),
         'timeout_check_period_increase_for_unsigned' => sfConfig::get('app_comments_timeout_check_period_increase_for_unsigned', '0 minutes'),
+        'force_skip_check' => array($this, 'forceSkipSpamCheck'),
     )));
+  }
+
+  /**
+   * Callback used to skip spam and timeout checks for specific users
+   *
+   * @return boolean
+   */
+  public function forceSkipSpamCheck()
+  {
+    if ( $collector = $this->sf_user->getCollector($strict = true) )
+    {
+      // skip if current user is one of the predefined skip spam users
+      if (in_array($collector->getUsername(), sfConfig::get('app_skip_spam_check_by_username', array())))
+      {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   protected function setupBodyField()
