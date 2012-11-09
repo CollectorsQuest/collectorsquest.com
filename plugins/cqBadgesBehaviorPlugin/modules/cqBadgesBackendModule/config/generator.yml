@@ -1,0 +1,28 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           cqBadge
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              cqBadge
+    plural:                cqBadges
+    route_prefix:          cq_badge
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        parent_model_id: { label: Parent model ID }
+        list_tier: { label: Tier, is_sortable: true, sort_method: orderByTier }
+      list:
+        title: Badges List
+        display: [id, name, slug, _list_tier]
+      filter:
+        display: [name, tier]
+      form:    ~
+      edit:
+        title: Edit Badge "%%name%%"
+      new:
+        title: New Badge

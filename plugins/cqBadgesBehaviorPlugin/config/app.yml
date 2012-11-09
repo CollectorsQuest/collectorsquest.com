@@ -1,0 +1,5 @@
+all:
+  badges:
+    parent_models:
+      Collectible: Collectible
+      Collector: Collector

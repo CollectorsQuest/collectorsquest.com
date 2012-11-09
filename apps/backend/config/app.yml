@@ -83,6 +83,13 @@ all:
             url: emails_log
             image: theme/icons/messaging.png
 
+      Badges:
+        icon: tags
+        items:
+          Badges:
+            url: cq_badge
+            image: theme/icons/module.png
+
 
 next:
   ice_assets:

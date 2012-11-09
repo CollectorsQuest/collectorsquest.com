@@ -1,0 +1,8 @@
+cq_badge:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                cqBadge
+    module:               cqBadgesBackendModule
+    prefix_path:          /cqBadgesBackendModule
+    column:               id
+    with_wildcard_routes: true
