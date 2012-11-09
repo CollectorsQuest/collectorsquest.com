@@ -68,4 +68,43 @@ class Organization extends BaseOrganization
       ->findOne($con) ?: false;
   }
 
+  /**
+   * Gets a collection of Collector objects related by a many-to-many relationship
+   * to the current object by way of the organization_membership cross-reference table.
+   *
+   * If the $criteria is not null, it is used to always fetch the results from the database.
+   * Otherwise the results are fetched from the database the first time, then cached.
+   * Next time the same method is called without $criteria, the cached collection is returned.
+   * If this Organization is new, it will return
+   * an empty collection or the current collection; the criteria is ignored on a new object.
+   *
+   * Will automatically order the collectors by joined at date
+   *
+   * @param      Criteria $criteria Optional query object to filter the query
+   * @param      PropelPDO $con Optional connection object
+   *
+   * @return     PropelCollection|array Collector[] List of Collector objects
+   */
+  public function getCollectors($criteria = null, PropelPDO $con = null)
+  {
+    if(null === $this->collCollectors || null !== $criteria) {
+      if ($this->isNew() && null === $this->collCollectors) {
+        // return empty collection
+        $this->initCollectors();
+      } else {
+        $collCollectors = CollectorQuery::create(null, $criteria)
+          ->filterByOrganization($this)
+          ->useOrganizationMembershipQuery()
+            ->orderByJoinedAt(Criteria::DESC)
+          ->endUse()
+          ->find($con);
+        if (null !== $criteria) {
+          return $collCollectors;
+        }
+        $this->collCollectors = $collCollectors;
+      }
+    }
+    return $this->collCollectors;
+  }
+
 }
