@@ -15,7 +15,6 @@
 #bbpress-forums {
 	background: transparent;
 	clear: both;
-	margin-bottom: 20px;
 	overflow: hidden;
 	font-size: 12px;
 }
@@ -249,6 +248,10 @@ span.bbp-author-ip {
 div.bbp-breadcrumb {
 	display: none;
   float: left;
+}
+
+div.bbp-topic-tags {
+  display: none;
 }
 
 div.bbp-breadcrumb,
@@ -844,4 +847,9 @@ body.my-account #bbp-author-topics-started {
 
 #bbpress-forums li:hover > div.row-actions {
 	visibility: visible;
+}
+
+#bbpress-forums div.bbp-template-notice img.avatar {
+  margin-bottom: 0px;
+  margin-top: -4px;
 }

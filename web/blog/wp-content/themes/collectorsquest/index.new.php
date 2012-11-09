@@ -99,10 +99,10 @@
   </div>
   <?php } elseif (is_bbpress()) {  ?>
     <div class="span7">
-      <h1 class="Chivo webfont" style="visibility: visible; ">Forum</h1>
+      <h1 class="Chivo webfont" style="visibility: visible; ">Discussions</h1>
     </div>
     <div class="back-nav span5">
-      <a href="/blog/forums/">Back to All Forum Topics &rarr;</a>
+      <a href="/blog/discussions/">Back to All Discussions &rarr;</a>
     </div>
   <?php } elseif (is_single()) { ?>
     <div class="span7">
@@ -189,7 +189,7 @@ $lastclass = 0;
 <div id="blog-contents" class="<?php if (is_front_page()) : echo 'news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
 
 <?php // @todo figure out a better way to do this ?>
-<?php if(is_bbpress() && $_SERVER['REQUEST_URI'] == '/blog/forums/'): ?>
+<?php if(is_bbpress() && $_SERVER['REQUEST_URI'] == '/blog/discussions/'): ?>
   <?php echo do_shortcode( '[bbp-forum-index]' ) ?>
 <?php else : ?>
 

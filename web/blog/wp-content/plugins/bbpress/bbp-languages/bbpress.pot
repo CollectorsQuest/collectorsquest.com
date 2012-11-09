@@ -2712,7 +2712,7 @@ msgid ""
 msgstr ""
 
 #: bbp-includes/bbp-forum-template.php:1860
-msgid "This forum contains %1$s and %2$s, and was last updated by %3$s %4$s."
+msgid "This discussion contains %1$s and %2$s, and was last updated by %3$s %4$s."
 msgstr ""
 
 #: bbp-includes/bbp-forum-template.php:1866
@@ -2720,7 +2720,7 @@ msgid "This category contains %1$s, and was last updated by %2$s %3$s."
 msgstr ""
 
 #: bbp-includes/bbp-forum-template.php:1868
-msgid "This forum contains %1$s, and was last updated by %2$s %3$s."
+msgid "This discussion contains %1$s, and was last updated by %2$s %3$s."
 msgstr ""
 
 #: bbp-includes/bbp-forum-template.php:1878
@@ -2728,7 +2728,7 @@ msgid "This category contains %1$s and %2$s."
 msgstr ""
 
 #: bbp-includes/bbp-forum-template.php:1880
-msgid "This forum contains %1$s and %2$s."
+msgid "This discussion contains %1$s and %2$s."
 msgstr ""
 
 #: bbp-includes/bbp-forum-template.php:1888
@@ -2736,7 +2736,7 @@ msgid "This category contains %1$s."
 msgstr ""
 
 #: bbp-includes/bbp-forum-template.php:1890
-msgid "This forum contains %1$s."
+msgid "This discussion contains %1$s."
 msgstr ""
 
 #: bbp-includes/bbp-forum-template.php:1894
