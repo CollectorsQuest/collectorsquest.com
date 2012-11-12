@@ -34,11 +34,14 @@
   <div id="fileupload-input-box">
 
     <div id="dropzone-wrapper" class="dropzone-container">
-      <div id="dropzone-c" class="dropzone collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
+      <div id="dropzone-c" class="dropzone single-file no-items-to-sort-box Chivo webfont spacer-inner">
         <span class="info-no-items-to-sort" style="text-align: center;">
           <strong>Drag</strong> a photo from your computer<br/>
           and <strong>drop it here</strong> to upload.
         </span>
+        <div class="info-drop-here" style="line-height: 60px;">
+          Drop file here
+        </div>
       </div>
     </div>
 
@@ -155,7 +158,7 @@
       $(document).bind('dragover', function (e)
       {
           var dropZone = $('#dropzone-c'),
-                  timeout = window.dropZoneCTimeoutC;
+                  timeout = window.dropZoneCTimeout;
           if (!timeout) {
               dropZone.addClass('in');
           } else {
@@ -166,8 +169,13 @@
           } else {
               dropZone.removeClass('hover');
           }
+          if ($('#dropzone-c').length != 0)
+          {
+              $('#dropzone').removeClass('in hover');
+              window.dropZoneTimeout = null;
+          }
           window.dropZoneCTimeout = setTimeout(function () {
-              window.dropCZoneTimeout = null;
+              window.dropZoneCTimeout = null;
               dropZone.removeClass('in hover');
           }, 100);
       });
