@@ -50,20 +50,12 @@ class CollectorEditForm extends BaseFormPropel
   {
     return 'Collector';
   }
-  public function save($con = null)
+
+  public function updateBadgesColumn($value)
   {
-    /* @var $object Collector */
-    $object = parent::save($con);
+    $this->getObject()->setBadges(cqBadgeQuery::create()->filterById($value)->find());
 
-    /* @var $values array */
-    $values = $this->getValues();
-
-    $object->setBadges(cqBadgeQuery::create()->filterById($values['badges'])->find());
-
-    $object->save();
-
-
-    return $object;
+    return $value;
   }
 
 }

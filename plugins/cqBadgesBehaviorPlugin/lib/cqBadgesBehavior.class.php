@@ -129,15 +129,11 @@ class cqBadgesBehavior
   {
     if (isset($object->badgesForDeletion) && count($object->badgesForDeletion))
     {
-      foreach ($object->badgesForDeletion as $toDeletion)
-      {
-        /* @var $toDeletion cqBadge*/
-        cqBadgeReferenceQuery::create()
-          ->filterByModelId($object->getPrimaryKey())
-          ->filterByModel(get_class($object))
-          ->filterByBadgeId($toDeletion->getId())
-          ->delete();
-      }
+      cqBadgeReferenceQuery::create()
+        ->filterByModelId($object->getPrimaryKey())
+        ->filterByModel(get_class($object))
+        ->filterByBadgeId($object->badgesForDeletion->getPrimaryKeys())
+        ->delete();
     }
     unset($object->badgesForDeletion);
 
