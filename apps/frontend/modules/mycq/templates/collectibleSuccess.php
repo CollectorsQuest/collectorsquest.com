@@ -108,7 +108,7 @@ else
         else
         {
       ?>
-          <div id="collectible_for_sale_is_ready" class="control-group">
+          <div id="collectible_is_for_sale" class="control-group">
             <label class="control-label">Available for Sale?</label>
             <div class="controls switch">
               <label class="cb-enable"><span>Yes</span></label>
@@ -116,6 +116,24 @@ else
             </div>
             <br style="clear: both;"/>
           </div>
+
+          <script>
+            $(document).ready(function()
+            {
+              $('#collectible_is_for_sale').click(function()
+              {
+                if ($('.cb-enable').hasClass('selected')) {
+                  $('.cb-enable').removeClass('selected');
+                  $('.cb-disable').addClass('selected');
+                  $('#want-to-sell-banner').hide();
+                } else {
+                  $('.cb-enable').addClass('selected');
+                  $('.cb-disable').removeClass('selected');
+                  $('#want-to-sell-banner').show();
+                }
+              });
+            });
+          </script>
       <?php
           cq_ad_slot(
             cq_image_tag('headlines/want-to-sell-this-item.png',
@@ -192,19 +210,6 @@ $(document).ready(function()
       "focus": function() {
         $(editor.composer.iframe).autoResize();
       }
-    }
-  });
-
-  $('#collectible_for_sale_is_ready').click(function()
-  {
-    if ($('.cb-enable').hasClass('selected')) {
-      $('.cb-enable').removeClass('selected');
-      $('.cb-disable').addClass('selected');
-      $('#want-to-sell-banner').hide();
-    } else {
-      $('.cb-enable').addClass('selected');
-      $('.cb-disable').removeClass('selected');
-      $('#want-to-sell-banner').show();
     }
   });
 });
