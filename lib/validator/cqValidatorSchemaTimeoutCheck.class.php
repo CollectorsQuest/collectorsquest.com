@@ -55,6 +55,7 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
    *  - ip_field: Used by the comments check for non logged in users
    *  - timeout_check_period_increase_for_unsigned: How much longer the check period
    *                                                should be for unsigned users
+   *  - force_skip_check:  boolean/callable - force timeout check to be skipped
    *
    * Messages:
    *  - private_message_timeout
@@ -71,6 +72,7 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
     $this->addRequiredOption('timeout_check_period');
     $this->addOption('ip_field', 'ip_address');
     $this->addOption('timeout_check_period_increase_for_unsigned', '0 minutes');
+    $this->addOption('force_skip_check', false);
 
     $this->addMessage('private_message_timeout', 'You cannot send any more PMs right now. Try again later.');
     $this->addMessage('comment_timeout', 'You cannot post any more comments right now. Try again later.');
@@ -85,6 +87,15 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
    */
   protected function doClean($values)
   {
+    // check for forcible skip timeout check, eitehr directly or by callable
+    $skip_check = $this->getOption('force_skip_check');
+    if (true === $skip_check ||
+        (is_callable($skip_check) && true === call_user_func($skip_check, $values))
+    ) {
+      // we are forced to skip the check by the form, just return the values
+      return $values;
+    }
+
     if (self::TIMEOUT_TYPE_PRIVATE_MESSAGES == $this->getOption('type'))
     {
       $this->executePrivateMessagesCheck($values);

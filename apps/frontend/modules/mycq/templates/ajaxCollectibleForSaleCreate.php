@@ -34,7 +34,7 @@
 <form action="<?= url_for('@ajax_mycq?section=collectibleForSale&page=create'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Describe Your Item for Sale - Step 2</h1>
+  <h1>Step 2: Describe Your Item for Sale</h1>
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">
