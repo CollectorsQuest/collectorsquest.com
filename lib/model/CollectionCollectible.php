@@ -142,4 +142,17 @@ class CollectionCollectible extends BaseCollectionCollectible
     }
   }
 
+  /**
+   * @param PropelPDO $con
+   * @return type
+   */
+  public function preDelete(PropelPDO $con = null)
+  {
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
+
+    return parent::preDelete($con);
+  }
+
 }

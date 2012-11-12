@@ -51,7 +51,7 @@
   <?php else: ?>
   <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
     <span class="info-no-items-to-sort">
-      &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
+      &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your computer or
       use the <strong>Upload Photos</strong> button
       <?= cq_image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
     </span>
@@ -119,7 +119,7 @@
       }, true));
 
     // Use outerHeight() instead of height() if have padding
-    var aboveHeight = $('#slot1').outerHeight();
+    var aboveHeight = $('#slot1').outerHeight() + ($('#admin-bar').length != 0 ? $('#admin-bar').outerHeight()+18 : 0);
 
     var $div = $('<div></div>')
       .addClass('hide')

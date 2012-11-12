@@ -405,6 +405,27 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
+   * Get the slug of Collector shop to use in route 'collector_shop'
+   *
+   * @return boolean
+   */
+  public function getStoreSlug()
+  {
+    return Utf8::slugify($this->getSeller()->getSellerSettingsStoreName(), '-', true);
+  }
+
+  /**
+   * Get the Collector shop title
+   *
+   * @return boolean
+   */
+
+  public function getStoreTitle()
+  {
+    return $this->getSeller()->getSellerSettingsStoreName();
+  }
+
+  /**
    * @param  BaseObject $something
    * @return boolean
    */
@@ -1369,14 +1390,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       }
     }
 
-    /** @var $comments Comment[] */
-    if ($comments = $this->getComments())
-    {
-      foreach ($comments as $comment)
-      {
-        $comment->delete($con);
-      }
-    }
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
 
     // Deleting private messages
     $c = new Criteria();

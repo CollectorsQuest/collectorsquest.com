@@ -810,12 +810,13 @@ class mycqActions extends cqFrontendActions
       'seller_settings_store_name',
       'seller_settings_store_title',
       'seller_settings_refunds',
-      'seller_settings_shipping'
+      'seller_settings_shipping',
+      'seller_settings_store_header_image',
     ));
 
     if (sfRequest::POST == $request->getMethod())
     {
-      if ($form->bindAndSave($request->getParameter($form->getName())))
+      if ($form->bindAndSave($request->getParameter($form->getName()), $request->getFiles($form->getName())))
       {
         $this->getUser()->setFlash(
           'success', 'You have successfully updated your store settings.'

@@ -1428,7 +1428,7 @@ textarea.input-xlarge {
   margin: 14px 10px 0 0;
 }
 
-#dropzone {
+#dropzone, .dropzone {
 
   &.no-items-to-sort-box {
     border: 2px dashed @blue;
@@ -1449,6 +1449,9 @@ textarea.input-xlarge {
     border: 2px dashed @red;
     margin: 0 -5px;
     padding: 8px 3px 0;
+  }
+  &.single-file.in {
+    border: 2px dashed @red;
   }
   &.in, &.hover {
     padding: 5px;
@@ -2241,4 +2244,11 @@ div.wpfaqask {
   height: 20px;
   line-height: 20px;
   background-color: @blue;
+}
+
+#body-mycq-marketplaceSettings {
+  #collector_seller_settings_store_header_image_delete {
+    float: left;
+    margin-right: 5px;
+  }
 }
