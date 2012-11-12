@@ -410,7 +410,7 @@ function iworks_upprev_box()
                 get_permalink(),
                 $url_sufix
             );
-            if ( current_theme_supports('post-thumbnails') && $show_thumb && has_post_thumbnail( get_the_ID() ) ) {
+            if (true || current_theme_supports('post-thumbnails') && $show_thumb && has_post_thumbnail( get_the_ID() ) ) {
                 $item_class .= ' upprev_thumbnail';
                 $image = sprintf(
                     '<a href="%s?ref=bp_flybox" title="%s" class="upprev_thumbnail"%s rel="%s">%s</a>',
@@ -418,7 +418,8 @@ function iworks_upprev_box()
                     wptexturize(get_the_title()),
                     $ga_click_track,
                     $current_post_title,
-                    apply_filters(
+                    '<img src=' . get_post_image_url('thumbnail') . ' alt="' . get_the_title() . '" width="80" height="80">'
+                    /*apply_filters(
                         'iworks_upprev_get_the_post_thumbnail', get_the_post_thumbnail(
                             get_the_ID(),
                             array(
@@ -430,7 +431,7 @@ function iworks_upprev_box()
                                 'class'=>'iworks_upprev_thumb'
                             )
                         )
-                    )
+                    )*/
                 );
             } else {
                 ob_start();
