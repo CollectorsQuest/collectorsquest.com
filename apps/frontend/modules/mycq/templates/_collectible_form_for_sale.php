@@ -119,17 +119,18 @@
     <?php endif; // if collectible shipping allowed in gatekeeper ?>
 
   <?php elseif (!$sf_user->getSeller()->hasPackageCredits()): ?>
-    <script>
-      $(document).ready(function() {
-        $('div.switch label').click(function () {
-          $('div#main').showLoading();
-          window.location.replace(
-            "/seller/packages?ref=mycq_collectible_by_slug&return_to=" +
-            "<?php echo urlencode(url_for('mycq_collectible_by_slug', $collectible)); ?>"
-          );
-        });
-      });
-    </script>
+    <?php
+      cq_ad_slot(
+        cq_image_tag('headlines/want-to-sell-this-item.png',
+          array(
+            'width' => '530', 'height' => '71', 'style' => 'display: block; margin: auto',
+            'alt' => 'Want to sell this item?'
+            )
+          ),
+        '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
+      );
+    ?>
+    <br/>
   <?php elseif (!$sf_user->getCollector()->hasPayPalDetails()): ?>
     <div class="alert alert-error all-errors">
       You must <?= link_to('setup your store settings', '@mycq_marketplace_settings') ?>

@@ -107,11 +107,22 @@ else
         }
         else
         {
+      ?>
+          <div id="collectible_for_sale_is_ready" class="control-group">
+            <label class="control-label">Available for Sale?</label>
+            <div class="controls switch">
+              <label class="cb-enable"><span>Yes</span></label>
+              <label class="cb-disable selected"><span>No</span></label>
+            </div>
+            <br style="clear: both;"/>
+          </div>
+      <?php
           cq_ad_slot(
             cq_image_tag('headlines/want-to-sell-this-item.png',
               array(
                 'width' => '530', 'height' => '71', 'align' => 'right',
-                'alt' => 'Want to sell this item?'
+                'alt' => 'Want to sell this item?', 'id' => 'want-to-sell-banner',
+                'class' => 'hide'
               )
             ),
             '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
@@ -181,6 +192,19 @@ $(document).ready(function()
       "focus": function() {
         $(editor.composer.iframe).autoResize();
       }
+    }
+  });
+
+  $('#collectible_for_sale_is_ready').click(function()
+  {
+    if ($('.cb-enable').hasClass('selected')) {
+      $('.cb-enable').removeClass('selected');
+      $('.cb-disable').addClass('selected');
+      $('#want-to-sell-banner').hide();
+    } else {
+      $('.cb-enable').addClass('selected');
+      $('.cb-disable').removeClass('selected');
+      $('#want-to-sell-banner').show();
     }
   });
 });
