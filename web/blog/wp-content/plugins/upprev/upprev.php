@@ -381,7 +381,7 @@ function iworks_upprev_box()
                 $value .= sprintf ( '%s ', __('More in', 'upprev' ) );
                 $a = array();
                 foreach ( $siblings as $url => $name ) {
-                    $a[] = sprintf( '<a href="%s" rel="%s">%s</a>', $url, $current_post_title, $name );
+                    $a[] = sprintf( '<a href="%s?ref=bp_flybox" rel="%s">%s</a>', $url, $current_post_title, $name );
                 }
                 $value .= implode( ', ', $a);
             } else if ( $compare == 'random' ) {
