@@ -119,7 +119,7 @@
       }, true));
 
     // Use outerHeight() instead of height() if have padding
-    var aboveHeight = $('#slot1').outerHeight();
+    var aboveHeight = $('#slot1').outerHeight() + ($('#admin-bar').length != 0 ? $('#admin-bar').outerHeight()+18 : 0);
 
     var $div = $('<div></div>')
       .addClass('hide')
