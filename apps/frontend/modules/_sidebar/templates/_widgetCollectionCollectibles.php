@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $collectibles Collectible[]
- * @var $pager        PropelModelPager
+ * @var $pager        cqCollectionCollectiblesPager
  */
 
 $_height = 0;
@@ -23,14 +23,14 @@ $_height = 0;
     <?php endif; ?>
     <div id="carousel" class="thumbnails">
       <?php
-        foreach ($collectibles as $c)
+        foreach ($pager->getResults() as $c)
         {
           if (isset($collectible) && $c->getId() === $collectible->getId())
           {
             slot('lastItem');
             echo link_to(
               '<span>'.$pager->getNbResults().'</span>'.'Items',
-              'collection_by_slug', $collection, array('class' => 'moreItems')
+              'collection_by_slug', $pager->getCollection(), array('class' => 'moreItems')
             );
             end_slot();
           }
@@ -63,7 +63,8 @@ $_height = 0;
   {
     window.cq.settings = $.extend(true, {}, window.cq.settings, {
       collectionColletiblesWidget: {
-        collection_id: '<?= $collection->getId(); ?>'
+        collection_id: '<?= $pager->getCollection()->getId(); ?>',
+        collectible_id: '<?= $pager->getCollectibleId() ?>'
       }
     });
   });
