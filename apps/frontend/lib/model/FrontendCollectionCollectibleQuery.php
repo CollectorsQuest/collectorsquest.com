@@ -6,7 +6,9 @@ class FrontendCollectionCollectibleQuery extends CollectionCollectibleQuery
   {
     if ($criteria instanceof FrontendCollectionCollectibleQuery)
     {
-      return $criteria->filterByIsPublic(true);
+      return $criteria
+        ->filterByCollectionId(4224, Criteria::NOT_EQUAL) // Frank's Picks
+        ->filterByIsPublic(true);
     }
 
     $query = new FrontendCollectionCollectibleQuery();
@@ -20,7 +22,9 @@ class FrontendCollectionCollectibleQuery extends CollectionCollectibleQuery
     }
 
     // By default we want to only show public Collections
-    $query->filterByIsPublic(true);
+    $query
+      ->filterByCollectionId(4224, Criteria::NOT_EQUAL) // Frank's Picks
+      ->filterByIsPublic(true);
 
     return $query;
   }

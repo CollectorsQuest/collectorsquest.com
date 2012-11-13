@@ -10,7 +10,7 @@
 <form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'create', 'collectible_id' => $collectible->getId())); ?>"
       method="post" class="ajax form-horizontal form-modal">
 
-  <h1>Describe Your Collection - Step 2</h1>
+  <h1>Step 2: Describe Your Collection</h1>
   <?= $form->renderAllErrors(); ?>
 
   <div style="position: relative;">

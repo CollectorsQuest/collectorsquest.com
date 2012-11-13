@@ -7,10 +7,49 @@
 ?>
 
 <form action="<?= url_for('@ajax_mycq?section=collectible&page=upload'); ?>"
-      method="post" id="fileupload-c" class="ajax form-horizontal form-modal" enctype="multipart/form-data">
+      method="post" id="fileupload-c" class="ajax form-horizontal form-modal" enctype="multipart/form-data"
+      xmlns="http://www.w3.org/1999/html">
+
+  <?php
+    switch (strtolower($model))
+    {
+      case 'collectible':
+      case 'collectibleforsale':
+        echo '<h1>Step 1: Upload Item Photo</h1>';
+        echo "
+          Choose the photo you'd like to use as your main image for this individual item.<br/>
+          You will be able to add alternate views later.<br/><br/>
+        ";
+        break;
+      case 'collection':
+        echo '<h1>Step 1: Upload Collection Photo</h1>';
+        echo "
+          Choose the photo you'd like to use as your cover photo for this entire collection.<br/>
+          You will be able to add individual items later.<br/><br/>
+        ";
+        break;
+    }
+  ?>
 
   <div id="fileupload-input-box">
-    <h1>Upload Photo - Step 1</h1>
+
+    <div id="dropzone-wrapper" class="dropzone-container">
+      <div id="dropzone-c" class="dropzone single-file no-items-to-sort-box Chivo webfont spacer-inner">
+        <span class="info-no-items-to-sort" style="text-align: center;">
+          <strong>Drag</strong> a photo from your computer<br/>
+          and <strong>drop it here</strong> to upload.
+        </span>
+        <div class="info-drop-here" style="line-height: 60px;">
+          Drop file here
+        </div>
+      </div>
+    </div>
+
+    <br/><hr/>
+    <div style="background: #fff; margin: auto; margin-top: -29px; width: 50px; text-align: center; font-size: 150%;">
+      OR
+    </div>
+    <br/>
 
     <?= $form['thumbnail']->renderRow(); ?>
     <input type="hidden" name="model" value="<?= $model ?>">
@@ -19,13 +58,7 @@
     <input type="hidden" name="collection_id" value="<?= $collection_id ?>">
     <?php endif; ?>
 
-    <div id="dropzone-wrapper" class="dropzone-container">
-      <div id="dropzone-c" class="dropzone collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
-        <span class="info-no-items-to-sort" style="text-align: center;">
-          <strong>Drag and drop</strong> a single photo from your computer
-        </span>
-      </div>
-    </div>
+
   </div>
 
   <div id="fileupload-box" class="hide">
@@ -125,7 +158,7 @@
       $(document).bind('dragover', function (e)
       {
           var dropZone = $('#dropzone-c'),
-                  timeout = window.dropZoneCTimeoutC;
+                  timeout = window.dropZoneCTimeout;
           if (!timeout) {
               dropZone.addClass('in');
           } else {
@@ -136,8 +169,13 @@
           } else {
               dropZone.removeClass('hover');
           }
+          if ($('#dropzone-c').length != 0)
+          {
+              $('#dropzone').removeClass('in hover');
+              window.dropZoneTimeout = null;
+          }
           window.dropZoneCTimeout = setTimeout(function () {
-              window.dropCZoneTimeout = null;
+              window.dropZoneCTimeout = null;
               dropZone.removeClass('in hover');
           }, 100);
       });

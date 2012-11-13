@@ -695,6 +695,10 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       $shopping_order->delete($con);
     }
 
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
+
     return parent::preDelete($con);
   }
 

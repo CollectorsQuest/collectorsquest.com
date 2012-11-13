@@ -812,16 +812,16 @@ class shoppingActions extends cqFrontendActions
     $shopping_order->getCollectibleForSale()->setIsSold(false);
     $shopping_order->getCollectibleForSale()->save();
 
-//    $cqEmail = new cqEmail($this->getMailer());
-//    $cqEmail->send('Shopping/buyer_order_failed', array(
-//      'to' => $shopping_order->getBuyerEmail(),
-//      'params' => array(
-//        'buyer_name'  => $shopping_order->getShippingFullName(),
-//        'oSeller' => $shopping_order->getSeller(),
-//        'oCollectible' => $shopping_order->getCollectible(),
-//        'oShoppingOrder' => $shopping_order
-//      )
-//    ));
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send('Shopping/buyer_order_failed', array(
+      'to' => $shopping_order->getBuyerEmail(),
+      'params' => array(
+        'buyer_name' => $shopping_order->getShippingFullName(),
+        'transaction_id' => $transaction_id,
+        'oCollectible' => $shopping_order->getCollectible(),
+        'oShoppingOrder' => $shopping_order
+      )
+    ));
   }
 
   /**
@@ -844,15 +844,16 @@ class shoppingActions extends cqFrontendActions
     $shopping_order->getCollectibleForSale()->setIsSold(false);
     $shopping_order->getCollectibleForSale()->save();
 
-//    $cqEmail = new cqEmail($this->getMailer());
-//    $cqEmail->send('Shopping/buyer_order_refunded', array(
-//      'to' => $shopping_order->getBuyerEmail(),
-//      'params' => array(
-//        'buyer_name'  => $shopping_order->getShippingFullName(),
-//        'oSeller' => $shopping_order->getSeller(),
-//        'oCollectible' => $shopping_order->getCollectible(),
-//        'oShoppingOrder' => $shopping_order
-//      )
-//    ));
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send('Shopping/buyer_order_refunded', array(
+      'to' => $shopping_order->getBuyerEmail(),
+      'params' => array(
+        'buyer_name'  => $shopping_order->getShippingFullName(),
+        'transaction_id' => $transaction_id,
+        'oSeller' => $shopping_order->getSeller(),
+        'oCollectible' => $shopping_order->getCollectible(),
+        'oShoppingOrder' => $shopping_order
+      )
+    ));
   }
 }
