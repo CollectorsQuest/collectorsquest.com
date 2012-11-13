@@ -692,7 +692,7 @@ function bbp_list_forums( $args = '' ) {
 		'count_before'      => ' (',
 		'count_after'       => ')',
 		'count_sep'         => ', ',
-		'separator'         => ', ',
+		'separator'         => ' ',
 		'forum_id'          => '',
 		'show_topic_count'  => true,
 		'show_reply_count'  => true,
@@ -721,12 +721,24 @@ function bbp_list_forums( $args = '' ) {
 
 			// Show topic count
 			if ( !empty( $show_topic_count ) && !bbp_is_forum_category( $sub_forum->ID ) ) {
-				$count['topic'] = bbp_get_forum_topic_count( $sub_forum->ID );
+				$count['topic'] = bbp_get_forum_topic_count( $sub_forum->ID);
+        if ($count['topic'] == 1) {
+          $count['topic'] .= ' topic';
+        }
+        else {
+          $count['topic'] .= ' topics';
+        }
 			}
 
 			// Show reply count
 			if ( !empty( $show_reply_count ) && !bbp_is_forum_category( $sub_forum->ID ) ) {
 				$count['reply'] = bbp_get_forum_reply_count( $sub_forum->ID );
+        if ($count['reply'] == 1) {
+          $count['reply'] .= ' reply';
+        }
+        else {
+          $count['reply'] .= ' replys';
+        }
 			}
 
 			// Counts to show
@@ -1906,6 +1918,10 @@ function bbp_single_forum_description( $args = '' ) {
 		$retstr = $before . $retstr . $after;
 
 		// Return filtered result
+    /*
+     * edit by batruji - gets rid of forum stats
+     */
+    return null;
 		return apply_filters( 'bbp_get_single_forum_description', $retstr, $args );
 	}
 

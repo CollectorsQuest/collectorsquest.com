@@ -2869,6 +2869,10 @@ function bbp_single_topic_description( $args = '' ) {
 		$retstr = $before . $retstr . $after;
 
 		// Return filtered result
+    /*
+     * edit by batruji - gets rid of topic stats
+     */
+    return null;
 		return apply_filters( 'bbp_get_single_topic_description', $retstr, $args );
 	}
 

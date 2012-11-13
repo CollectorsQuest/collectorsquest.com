@@ -99,11 +99,31 @@
   </div>
   <?php } elseif (is_bbpress()) {  ?>
     <div class="span7">
-      <h1 class="Chivo webfont" style="visibility: visible; ">Discussions</h1>
+      <h1 class="Chivo webfont" style="visibility: visible; ">
+        <?php
+          $bbp_topic_title = bbp_get_topic_title();
+          $bbp_forum_title = bbp_get_forum_title();
+          if ($bbp_topic_title && $bbp_topic_title != 'Forums')
+          {
+            echo $bbp_topic_title;
+          }
+          else if ($bbp_forum_title && $bbp_forum_title != 'Forums')
+          {
+            echo $bbp_forum_title;
+          }
+          else {
+            echo 'Discussions';
+          }
+        ?>
+      </h1>
     </div>
     <div class="back-nav span5">
       <a href="/blog/discussions/">Back to All Discussions &rarr;</a>
     </div>
+    <?php // @todo figure out a better way to hide 'See more' ?>
+    <style>
+      #cq-load-posts { display: none; }
+    </style>
   <?php } elseif (is_single()) { ?>
     <div class="span7">
       <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
@@ -260,7 +280,7 @@ $lastclass = 0;
 
         ?> row-fluid" id="post-<?php the_ID(); ?>">
 
-        <?php if (is_single()) : ?>
+        <?php if (is_single() && !is_bbpress()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
 
           <h2 class="entry-title"><?php the_title() ?></h2>
@@ -315,6 +335,7 @@ $lastclass = 0;
           <h2 class="entry-title <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
+        <?php if (!is_bbpress()) : ?>
         <div class="entry-meta <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; else : echo "span12";  endif; ?>">
           <span class="meta-text">
             <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
@@ -359,7 +380,7 @@ $lastclass = 0;
           </div>
           <?php endif; ?>
         </div>
-
+        <?php endif; // if (!is_bbpress()) ?>
 
         <div class="entry-content <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo "span9"; else : echo "span12"; endif; ?>">
           <?php
@@ -428,7 +449,7 @@ $lastclass = 0;
 
   <?php if (!is_page()): ?>
 
-    <?php if (is_single()) : ?>
+    <?php if (is_single() && !is_bbpress()) : ?>
       <?php slidedeck(30032, array( 'width' => '620px', 'height' => '65px')); ?>
       <div id="comments">
        <?php comments_template(); ?>
