@@ -1,6 +1,6 @@
 <?php
 /**
- * Pager forCollection Collectibles Widget
+ * Pager for Collection Collectibles Carousel Widget
  */
 
 class cqCollectionCollectiblesPager extends sfPager
@@ -11,6 +11,7 @@ class cqCollectionCollectiblesPager extends sfPager
   /* @var null|PropelCollection */
   protected $results = null;
 
+  /* @var null|integer */
   protected $collectible_id = null;
 
   public function __construct(Collection $collection, $maxPerPage = 3)
@@ -38,6 +39,8 @@ class cqCollectionCollectiblesPager extends sfPager
       ->orderByPosition()
       ->addSelectColumn(CollectionCollectiblePeer::COLLECTIBLE_ID)
       ->find();
+
+    // Get all public collectibles IDs related to collection and sorted by position
     $collectible_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     $this->setNbResults(count($collectible_ids));
@@ -51,14 +54,17 @@ class cqCollectionCollectiblesPager extends sfPager
       $this->setLastPage((int) ceil($this->getNbResults() / $this->getMaxPerPage()));
     }
 
+    /* @var $ids array of collectibles Ids for current page*/
+    $ids = array();
+
     if (!$this->haveToPaginate())
     {
       $ids = $collectible_ids;
     }
     else
     {
-      $ids = array();
 
+      /* @var $pointer integer - point to first item on page */
       $pointer = (
         (
           $this->getPage() <= $this->getLastPage() ? $this->getPage() : $this->getLastPage()
@@ -70,7 +76,7 @@ class cqCollectionCollectiblesPager extends sfPager
       {
         $id_key = array_search($this->collectible_id, $collectible_ids);
 
-        // Rebuild collectible array to make current collectible id first element
+        // Rebuild collectibles IDs array to make current collectible id as first element
         $collectible_ids = array_merge(
           array_slice($collectible_ids, $id_key),
           array_slice($collectible_ids, 0, $id_key)
@@ -79,11 +85,13 @@ class cqCollectionCollectiblesPager extends sfPager
 
       for ($i = 0; $i < $this->getMaxPerPage(); $i++)
       {
+        // Get other page items
         if (isset($collectible_ids[$pointer + $i]))
         {
+          // If collectible_ids array was rebuilt, then for docking page sort order by position will be wrong
           if (isset($id_key) && ($this->getNbResults() - $pointer - $i - 1) == $id_key)
           {
-            // To keep order we should get items by one
+            // To fix it we should get items by one, it save array of Ids sort order
             $selectByOne = true;
           }
           $ids[] = $collectible_ids[$pointer + $i];
@@ -91,6 +99,8 @@ class cqCollectionCollectiblesPager extends sfPager
       }
 
     }
+
+    // Fetching result from Ids array
     if ($selectByOne)
     {
       $this->results = new PropelObjectCollection();
@@ -134,16 +144,33 @@ class cqCollectionCollectiblesPager extends sfPager
     return $this->results[$offset];
   }
 
+  /**
+   * Get Cellection
+   *
+   * @return Collection
+   */
   public function getCollection()
   {
     return $this->collection;
   }
 
+  /**
+   * Set current collectible id
+   *
+   * @param null $collectible_id
+   * @return cqCollectionCollectiblesPager
+   */
   public function setCollectibleId($collectible_id = null)
   {
-    $this->collectible_id = $collectible_id;
+    $this->collectible_id = (integer) $collectible_id;
+    return $this;
   }
 
+  /**
+   * Get current collectible id
+   *
+   * @return int|null
+   */
   public function getCollectibleId()
   {
     return $this->collectible_id;
