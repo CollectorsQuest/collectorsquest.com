@@ -1048,65 +1048,14 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    // We need to make sure $collectible is CollectionCollectible
-    if ($collectible instanceof Collectible)
-    {
-      /** @var $q CollectionCollectibleQuery */
-      $q = FrontendCollectionCollectibleQuery::create()
-        ->filterByCollectible($collectible->getCollectible());
-
-      if ($collection)
-      {
-        $q->filterByCollection($collection);
-      }
-
-      $collectible = $q->findOne();
-    }
-
-    /** @var $limit integer */
-    $limit = (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3);
-    $page = $collectible ? (integer) ceil($collectible->getPosition() / $limit) : $limit;
-    $page = $this->getRequest()->getParameter('p', $page);
-
-    $q = FrontendCollectionCollectibleQuery::create()
-       ->joinWith('Collectible')
-       ->orderBy('Position', Criteria::ASC);
-
-    // Filter by Collection if specified
-    if ($collection)
-    {
-      $q->filterByCollection($collection);
-    }
-
-    $a = clone $q;
-
-    $pager = new PropelModelPager($q, $limit);
-    $pager->setPage($page);
+    $pager = new cqCollectionCollectiblesPager(
+      $collection, (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3)
+    );
+    $pager->setPage($this->getRequest()->getParameter('p', 1));
+    $pager->setCollectibleId($collectible ? $collectible->getId() : $request->getParameter('collectible_id'));
     $pager->init();
 
-    // NOTE: Here we have to assume that we show 3 collectibles per "page"
-    if ($collectible && $collectible->getPosition() % 3 !== 2 && $pager->haveToPaginate())
-    {
-      $position = $collectible->getPosition();
-      $this->collectibles = $a
-        ->filterByPosition(array($position > 1 ? $position - 1 : 3, $position, $position + 1), Criteria::IN)
-        ->find();
-    }
-    else
-    {
-      $this->collectibles = $pager->getResults();
-    }
-
-    if (count($this->collectibles) == 1 && $pager->haveToPaginate())
-    {
-      $position = $this->collectibles->getFirst()->getPosition();
-      $this->collectibles = $a
-        ->filterByPosition(array($position - 2, $position - 1, $position), Criteria::IN)
-        ->find();
-    }
-
     $this->pager = $pager;
-    $this->collection = $collection;
     $this->collectible = $collectible;
 
     return $this->_sidebar_if($pager->getNbResults() > 1);
