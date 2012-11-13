@@ -1,8 +1,6 @@
 <?php
 
 /**
- * seller actions.
- *
  * @package    CollectorsQuest
  * @subpackage seller
  * @author     Collectors
@@ -12,8 +10,6 @@ class sellerActions extends cqFrontendActions
 
   public function preExecute()
   {
-    $this->redirectIf(IceGateKeeper::locked('mycq_marketplace'), '@mycq');
-
     SmartMenu::setSelected('mycq_menu', 'marketplace');
   }
 
@@ -40,11 +36,11 @@ class sellerActions extends cqFrontendActions
 
     /* @var $q FrontendCollectionCollectibleQuery */
     $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($collector)
+      ->filterByCollectibleId($for_sale_ids, Criteria::IN)
       ->groupBy('CollectionCollectible.CollectibleId')
       ->joinWith('CollectionCollectible.Collectible')
-      ->joinWith('Collectible.CollectibleForSale')
-      ->filterByCollector($collector)
-      ->filterByCollectibleId($for_sale_ids, Criteria::IN);
+      ->joinWith('Collectible.CollectibleForSale');
 
     if ($collection_id = $request->getParameter('collection_id'))
     {
@@ -61,11 +57,13 @@ class sellerActions extends cqFrontendActions
 
     SmartMenu::setSelected('collectibles_for_collector_list', 'for_sale');
     $store_name = $collector->getSeller()->getSellerSettingsStoreName();
-    $this->title = $store_name;
+    $this->title = $store_name ?: $collector->getDisplayName() ."'s Store";
     $this->addBreadcrumb($store_name);
 
     // Set Canonical Url meta tag
-    $this->getResponse()->setCanonicalUrl($this->generateUrl('seller_store', $collector));
+    $this->getResponse()->setCanonicalUrl(
+      $this->generateUrl('seller_store', array('sf_subject' => $collector))
+    );
 
     $this->collector = $collector;
     $this->pager = $pager;
