@@ -17,7 +17,6 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
        * which have Collectibles asssigned to them
        */
       return $criteria
-        ->filterByCollectorId(15716, Criteria::NOT_EQUAL) // Frank's Picks
         ->filterByIsPublic(true)
         ->hasCollectibles();
     }
@@ -37,7 +36,6 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
      * which have Collectibles asssigned to them
      */
     $query
-      ->filterByCollectorId(15716, Criteria::NOT_EQUAL) // Frank's Picks
       ->filterByIsPublic(true)
       ->hasCollectibles();
 

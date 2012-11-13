@@ -631,6 +631,13 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     // Update only if there is a change of the public status
     if ($is_public !== $this->getIsPublic())
     {
+      // A&E's Collectors
+      if ($is_public && in_array($this->getCollectorId(), array(6668, 6667, 13389, 14728)))
+      {
+        $is_public = false;
+      }
+
+      // Make the change in the local instance of the object
       $this->setIsPublic($is_public);
 
       $sql = sprintf(
