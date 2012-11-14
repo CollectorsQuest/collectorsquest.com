@@ -87,15 +87,32 @@ class FrontendCommentForm extends BaseCommentForm
    *
    * @return boolean
    */
-  public function forceSkipSpamCheck()
+  public function forceSkipSpamCheck($values)
   {
+
+    if ($this->sf_user->isAdmin())
+    {
+      // if the user is logged in the backend as admin, skip spam check
+      return true;
+    }
+
     if ( $collector = $this->sf_user->getCollector($strict = true) )
     {
-      // skip if current user is one of the predefined skip spam users
+      // skip if current user is one of the predefined skip spam users list
       if (in_array($collector->getUsername(), sfConfig::get('app_skip_spam_check_by_username', array())))
       {
         return true;
       }
+    }
+
+    // also skip if the user is commenting on his own item
+    $model_object = CommentPeer::retrieveFromCommentableToken(
+      $values['token'],
+      $this->sf_user
+    );
+    if ($this->sf_user->isOwnerOf($model_object))
+    {
+      return true;
     }
 
     return false;
