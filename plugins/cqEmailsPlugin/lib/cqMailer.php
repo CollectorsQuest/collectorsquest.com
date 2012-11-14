@@ -1,8 +1,5 @@
 <?php
 
-require_once dirname(__FILE__). '/../vendor/AWSInputByteStream.class.php';
-require_once dirname(__FILE__). '/../vendor/AWSTransport.class.php';
-
 class cqMailer extends Swift_Mailer
 {
   const
@@ -26,8 +23,10 @@ class cqMailer extends Swift_Mailer
   /**
    * Constructor.
    *
-   * @param sfEventDispatcher $dispatcher An event dispatcher instance
-   * @param array             $options    An array of options
+   * @param     sfEventDispatcher  $dispatcher  An event dispatcher instance
+   * @param     array  $options  An array of options
+   *
+   * @throws InvalidArgumentException
    */
   public function __construct(sfEventDispatcher $dispatcher, $options)
   {
@@ -53,33 +52,28 @@ class cqMailer extends Swift_Mailer
       ));
     }
 
-    // transport
-    if ($options['transport']['class'] == 'Swift_AWSTransport')
-    {
-      $transport = new Swift_AWSTransport('0Q4JCH5ZFJ3WBVP7N9R2', 'ltkYUWp3Mn43c6EywZngBrx++4jwyLolhz5bcUH3');
-    }
-    else
-    {
-      $class = $options['transport']['class'];
-      $transport = new $class();
+    /* @var $class string */
+    $class = $options['transport']['class'];
 
-      if (isset($options['transport']['param']))
+    /* @var $transport Swift_MailTransport */
+    $transport = new $class();
+
+    if (isset($options['transport']['param']))
+    {
+      foreach ($options['transport']['param'] as $key => $value)
       {
-        foreach ($options['transport']['param'] as $key => $value)
+        $method = 'set'.ucfirst($key);
+        if (method_exists($transport, $method))
         {
-          $method = 'set'.ucfirst($key);
-          if (method_exists($transport, $method))
+          $transport->$method($value);
+        }
+        elseif (method_exists($transport, 'getExtensionHandlers'))
+        {
+          foreach ($transport->getExtensionHandlers() as $handler)
           {
-            $transport->$method($value);
-          }
-          elseif (method_exists($transport, 'getExtensionHandlers'))
-          {
-            foreach ($transport->getExtensionHandlers() as $handler)
+            if (in_array(strtolower($method), array_map('strtolower', (array) $handler->exposeMixinMethods())))
             {
-              if (in_array(strtolower($method), array_map('strtolower', (array) $handler->exposeMixinMethods())))
-              {
-                $transport->$method($value);
-              }
+              $transport->$method($value);
             }
           }
         }
@@ -132,11 +126,9 @@ class cqMailer extends Swift_Mailer
     parent::__construct($transport);
 
     // logger
-    if ($options['logging'])
+    if (isset($options['logging']) && $options['logging'] === true)
     {
-      $this->logger = new sfMailerMessageLoggerPlugin($dispatcher);
-
-      $transport->registerPlugin($this->logger);
+      $transport->registerPlugin(new cqEmailLogger());
     }
 
     if (sfMailer::NONE == $this->strategy)
@@ -276,10 +268,10 @@ class cqMailer extends Swift_Mailer
   /**
    * Sends the given message.
    *
-   * @param Swift_Transport $transport         A transport instance
-   * @param string[]        &$failedRecipients An array of failures by-reference
+   * @param     Swift_Mime_Message  $message
+   * @param     string[]  &$failedRecipients An array of failures by-reference
    *
-   * @return int|false The number of sent emails
+   * @return    integer|boolean The number of sent emails
    */
   public function send(Swift_Mime_Message $message, &$failedRecipients = null)
   {

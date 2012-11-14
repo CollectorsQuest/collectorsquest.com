@@ -34,6 +34,8 @@ class cqEmail
    * @param     array  $options
    *
    * @throws    InvalidArgumentException
+   * @throws    Swift_TransportException
+   *
    * @return    integer number of actually sent emails (recepients + cc + bcc)
    */
   public function send($name, $options = array())

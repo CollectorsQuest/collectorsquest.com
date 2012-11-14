@@ -1,9 +1,9 @@
 <?php
 
 /**
- * cqEmailLog save sent emails to db
+ * cqEmailLogger save sent emails to db
  */
-class cqEmailLog implements Swift_Events_SendListener
+class cqEmailLogger implements Swift_Events_SendListener
 {
 
   public function sendPerformed(Swift_Events_SendEvent $e)

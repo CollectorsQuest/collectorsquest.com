@@ -431,7 +431,7 @@ dev:
     domain: "cqcdns.dev"
 
   paypal:
-    ipn_domain: 'http://astoria.dyndns-home.com'
+    ipn_domain: 'http://manhattan.dyndns-office.com'
 
 test:
   domain_name: "example.com"
