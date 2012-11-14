@@ -1,7 +1,5 @@
 <?php
 
-require 'lib/model/plugins/iceMultimediaPlugin/om/BaseiceModelMultimediaQuery.php';
-
 class iceModelMultimediaQuery extends PluginiceModelMultimediaQuery
 {
 
