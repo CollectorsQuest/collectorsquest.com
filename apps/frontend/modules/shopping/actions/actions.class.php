@@ -696,7 +696,7 @@ class shoppingActions extends cqFrontendActions
           if ($ipn->processIpn())
           {
             /* @var $status string */
-            $status = (string) $request->getParameter('payment_status', $request->getParameter('status'));
+            $status = (string) $request->getParameter('status', $request->getParameter('payment_status'));
             $status = strtoupper($status);
 
             /* @var $transaction_id string */
