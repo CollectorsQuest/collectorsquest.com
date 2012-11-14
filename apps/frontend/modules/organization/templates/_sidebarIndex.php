@@ -37,7 +37,10 @@
   <?php cq_sidebar_title('More about ' . $organization->getName(), null); ?>
   <div class="personal-info-sidebar" itemprop="description">
     <?php if ($organization->getUrl()): ?>
-      <p><strong>Our website:</strong> <?= link_to($organization->getUrl(), $organization->getUrl()); ?></p>
+      <p>
+        <strong>Our website:</strong>
+        <a href="<?= $organization->getUrl(); ?>"><?= $organization->getUrl(); ?></a>
+      </p>
     <?php endif; ?>
     <?php if ($organization->getPhone()): ?>
       <p><strong>Our phone:</strong> <?= $organization->getPhone(); ?></p>
