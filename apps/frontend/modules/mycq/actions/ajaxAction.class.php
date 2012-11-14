@@ -484,14 +484,12 @@ class ajaxAction extends cqAjaxAction
     $this->collection_id = (integer) $request->getParameter('collection_id');
 
     $form = new CollectibleUploadForm();
+    $form->getWidgetSchema()->setHelp('thumbnail', null);
     $form->getWidgetSchema()->setLabel('thumbnail', 'Item Photo');
 
     if ($model == 'collection')
     {
       $form->getWidgetSchema()->setLabel('thumbnail', 'Collection Photo');
-      $form->getWidgetSchema()->setHelp(
-        'thumbnail', 'Choose a photo which represents your entire collection.'
-      );
       $this->collection_id = null;
     }
 
