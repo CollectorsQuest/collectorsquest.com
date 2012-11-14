@@ -4,7 +4,7 @@
  * @var $sf_user  cqFrontendUser
  */
 
-if (IceGateKeeper::open('expose_collection_categories'))
+if (cqGateKeeper::open('expose_collection_categories'))
 {
   if (!$sf_user->isAuthenticated())
   {

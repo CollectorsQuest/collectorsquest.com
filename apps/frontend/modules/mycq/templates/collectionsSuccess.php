@@ -7,7 +7,7 @@
  */
 ?>
 
-<?php if ($incomplete_collections && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+<?php if ($incomplete_collections && cqGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">
     Some <?= $incomplete_collectibles ? 'items' : 'collections' ?> need your attention!

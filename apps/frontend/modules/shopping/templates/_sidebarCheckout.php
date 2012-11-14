@@ -44,7 +44,7 @@
 </div>
 <?php endif; ?>
 
-<?php if (IceGateKeeper::open('shopping_checkout_help')): ?>
+<?php if (cqGateKeeper::open('shopping_checkout_help')): ?>
 
   <?php cq_sidebar_title('Checkout Help', null, array('style' => 'margin-top: 0;')); ?>
   <div style="padding: 10px;">

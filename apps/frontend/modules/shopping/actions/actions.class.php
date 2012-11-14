@@ -4,7 +4,7 @@ class shoppingActions extends cqFrontendActions
 {
   public function preExecute()
   {
-    $this->forward404If(IceGateKeeper::locked('shopping_cart'));
+    $this->forward404If(cqGateKeeper::locked('shopping_cart'));
     SmartMenu::setSelected('header', 'marketplace');
   }
 
@@ -601,6 +601,17 @@ class shoppingActions extends cqFrontendActions
           return 'Redirect';
         }
 
+        /* @var $status string */
+        $status = strtoupper($result['Status']);
+
+        /* @var $transaction_id string */
+        $transaction_id = (string) $result['PaymentInfo']['TransactionID'];
+
+        $shopping_payment->setProperty('paypal.transaction_id', $transaction_id);
+        $shopping_payment->setProperty('paypal.sender_email', $result['SenderEmail']);
+        $shopping_payment->setProperty('paypal.status', $status);
+        $shopping_payment->save();
+
         // Remove the CollectibleForSale from the shopping cart
         $q = ShoppingCartCollectibleQuery::create()
            ->filterByCollectible($shopping_order->getCollectible())
@@ -664,10 +675,10 @@ class shoppingActions extends cqFrontendActions
             $status = strtoupper($status);
 
             /* @var $transactions array */
-            $transactions = $request->getParameter('transactions');
+            $transaction = (array) $request->getParameter('transaction', array());
 
             /* @var $transaction_id string */
-            $transaction_id = isset($transactions[0]) ? $transactions[0]['id'] : null;
+            $transaction_id = $transaction[0]['id'] ?: $transaction['id'];
 
             $shopping_payment->setProperty('paypal.payment_details', serialize($_POST));
             $shopping_payment->setProperty('paypal.sender_email', $request->getParameter('sender_email'));

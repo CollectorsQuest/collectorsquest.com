@@ -6,7 +6,7 @@ class mycqActions extends cqFrontendActions
   public function executeIndex()
   {
     // Redirect to Collections if the homepage is not allowed
-    $this->redirectUnless(IceGateKeeper::open('mycq_homepage'), '@mycq_collections');
+    $this->redirectUnless(cqGateKeeper::open('mycq_homepage'), '@mycq_collections');
 
     // Set the "home" as the active mycq menu item
     SmartMenu::setSelected('mycq_menu', 'home');
@@ -339,7 +339,7 @@ class mycqActions extends cqFrontendActions
      */
     $this->incomplete_collectibles = false;
 
-    if (IceGateKeeper::open('mycq_incomplete', 'page'))
+    if (cqGateKeeper::open('mycq_incomplete', 'page'))
     {
       $q = CollectorCollectionQuery::create()
         ->filterByCollector($this->collector)
@@ -591,7 +591,7 @@ class mycqActions extends cqFrontendActions
 
       if (
         (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
-        && IceGateKeeper::open('collectible_shipping')
+        && cqGateKeeper::open('collectible_shipping')
       )
       {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
@@ -712,7 +712,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeMarketplace()
   {
-    $this->redirectUnless(IceGateKeeper::open('mycq_marketplace'), '@mycq');
+    $this->redirectUnless(cqGateKeeper::open('mycq_marketplace'), '@mycq');
 
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
@@ -741,7 +741,7 @@ class mycqActions extends cqFrontendActions
     // determine weather to show message for incomplete collectibles
     $this->incomplete_collections = false;
 
-    if (IceGateKeeper::open('mycq_incomplete', 'page'))
+    if (cqGateKeeper::open('mycq_incomplete', 'page'))
     {
       $q = CollectibleQuery::create()
         ->filterByCollector($collector)
@@ -981,7 +981,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncomplete()
   {
-    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+    $this->forward404Unless(cqGateKeeper::open('mycq_incomplete', 'page'));
 
     $q = CollectorCollectionQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
@@ -1010,7 +1010,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncompleteCollections()
   {
-    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+    $this->forward404Unless(cqGateKeeper::open('mycq_incomplete', 'page'));
 
     SmartMenu::setSelected('mycq_menu', 'collections');
 
@@ -1032,7 +1032,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncompleteCollectibles()
   {
-    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+    $this->forward404Unless(cqGateKeeper::open('mycq_incomplete', 'page'));
 
     SmartMenu::setSelected('mycq_menu', 'collections');
 
