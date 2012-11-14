@@ -185,24 +185,8 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-    if (!$this->getCollector()->isOwnerOf($collection))
-    {
-      $collection->setNumViews($collection->getNumViews() + 1);
-      $collection->save();
-    }
-
-    $q = FrontendCollectionCollectibleQuery::create()
-      ->filterByCollectionId($franks_picks['collection'])
-      ->isForSale()
-      ->orderByPosition(Criteria::ASC)
-      ->orderByUpdatedAt(Criteria::ASC);
-
-    $pager = new PropelModelPager($q, 12);
-    $pager->setPage($request->getParameter('page', 1));
-    $pager->init();
-    $this->pager = $pager;
-
-    $this->collection = $collection;
+    $collection->setNumViews($collection->getNumViews() + 1);
+    $collection->save();
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
