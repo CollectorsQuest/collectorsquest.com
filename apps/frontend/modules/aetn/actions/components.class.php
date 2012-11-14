@@ -54,16 +54,16 @@ class aetnComponents extends cqFrontendComponents
   public function executeFranksPicksCollectiblesForSale()
   {
     /* @var $franks_picks array */
-    $franks_picks = sfConfig::get('app_aetn_franks_picks', array());
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
 
-    $collection = CollectorCollectionQuery::create()->findOneById($franks_picks['collection']);
+    $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
 
     /*
      * Collectibles are not public right now, when the become public we should use FrontendQuery
      * $q = FrontendCollectionCollectibleQuery::create()
      */
     $q = CollectionCollectibleQuery::create()
-      ->filterByCollectionId($franks_picks['collection'])
+      ->filterByCollection($collection)
       //->isForSale()
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);

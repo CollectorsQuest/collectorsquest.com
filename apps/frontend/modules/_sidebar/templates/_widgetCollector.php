@@ -28,9 +28,9 @@ $_height = 0;
       <li>
         <?php
         echo sprintf(
-          '%s %s collector',
+          '%s %s %s',
           in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
-          '<strong>'. $collector->getCollectorType() .'</strong>'
+          '<strong>'. $collector->getCollectorType() .'</strong>', $collector->getSeller() ? 'seller' : 'collector'
         );
         ?>
       </li>

@@ -177,9 +177,9 @@ class aetnActions extends cqFrontendActions
     $this->forward404Unless(IceGateKeeper::open('aetn_franks_picks', 'page'));
 
     /* @var $franks_picks array */
-    $franks_picks = sfConfig::get('app_aetn_franks_picks', array());
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
 
-    $collection = CollectorCollectionQuery::create()->findOneById($franks_picks['collection']);
+    $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
     $this->forward404Unless($collection instanceof CollectorCollection);
 
     /**

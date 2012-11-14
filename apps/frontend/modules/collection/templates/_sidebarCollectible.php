@@ -24,6 +24,7 @@
         )
       );
   ?>
+      <div style="height: 20px;"></div>
   <?php else: ?>
     <div class="banner-sidebar-top">
       <?php cq_dart_slot('300x250', 'collections', str_replace('_', '', $aetn_show['id']), 'sidebar'); ?>
@@ -49,7 +50,7 @@
 
     elseif ($aetn_show['id'] === 'franks_picks'):
       include_partial('aetn/partials/pawnStarsPromo_300x90');
-      include_partial('aetn/partials/americanPickersPromo_300x90');
+      include_partial('aetn/partials/americanRestorationPromo_300x90');
     endif;
   ?>
 
