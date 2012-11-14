@@ -601,23 +601,11 @@ class shoppingActions extends cqFrontendActions
           return 'Redirect';
         }
 
-        $shopping_payment->setProperty('paypal.payment_details', serialize($result));
-        $shopping_payment->setProperty('paypal.sender_email', $result['SenderEmail']);
-        $shopping_payment->setProperty('paypal.status', $result['Status']);
-        $shopping_payment->save();
-
         // Remove the CollectibleForSale from the shopping cart
         $q = ShoppingCartCollectibleQuery::create()
            ->filterByCollectible($shopping_order->getCollectible())
            ->filterByShoppingCart($shopping_order->getShoppingCart());
         $q->delete();
-
-        // The Collectible has sold, so decrease the quantity (make zero)
-        $shopping_order->getCollectibleForSale()->setQuantity(0);
-
-        // The Collectible has sold, mark it as sold (legacy)
-        $shopping_order->getCollectibleForSale()->setIsSold(true);
-        $shopping_order->getCollectibleForSale()->save();
 
         // Add this order to the session if it's a guest checkout
         if (!$this->getUser()->isAuthenticated())
@@ -630,30 +618,6 @@ class shoppingActions extends cqFrontendActions
 
           // Set as the owner of this Shopping Order
           $this->getUser()->setOwnerOf($shopping_order);
-        }
-
-        /* @var $status string */
-        $status = strtoupper($result['Status']);
-
-        /* @var $transaction_id string */
-        $transaction_id = (string) $result['PaymentInfo']['TransactionID'];
-
-        if ('COMPLETED' === $status)
-        {
-          $this->orderComplete($shopping_order, $transaction_id);
-        }
-        else if (in_array($status, array('CANCELED', 'VOIDED', 'DENIED', 'FAILED', 'REFUSED')))
-        {
-          $this->orderFailed($shopping_order, $transaction_id);
-        }
-        else if (in_array($status, array('REFUNDED', 'REFUSED', 'REVERSED', 'UNCLAIMED', 'EXPIRED')))
-        {
-          $this->orderRefunded($shopping_order, $transaction_id);
-        }
-        else
-        {
-          $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CONFIRMED);
-          $shopping_payment->save();
         }
 
         /**
@@ -699,8 +663,16 @@ class shoppingActions extends cqFrontendActions
             $status = (string) $request->getParameter('status', $request->getParameter('payment_status'));
             $status = strtoupper($status);
 
+            /* @var $transactions array */
+            $transactions = $request->getParameter('transactions');
+
             /* @var $transaction_id string */
-            $transaction_id = (string) $request->getParameter('txn_id');
+            $transaction_id = isset($transactions[0]) ? $transactions[0]['id'] : null;
+
+            $shopping_payment->setProperty('paypal.payment_details', serialize($_POST));
+            $shopping_payment->setProperty('paypal.sender_email', $request->getParameter('sender_email'));
+            $shopping_payment->setProperty('paypal.status', $status);
+            $shopping_payment->save();
 
             if ('COMPLETED' === $status)
             {
