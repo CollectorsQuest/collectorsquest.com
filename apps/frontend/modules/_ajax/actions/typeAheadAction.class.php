@@ -12,20 +12,29 @@ class typeAheadAction extends cqAjaxAction
     $q = $request->getParameter('q');
     $limit = $request->getParameter('limit', 10);
 
-    $collectors = CollectorQuery::create()
-      ->filterByUsername("%$q%", Criteria::LIKE)
-      ->limit($limit)
-      ->select('Username')
-      ->find()->getArrayCopy();
-
-    if (empty($collectors))
+    if (strlen($q) >= 3)
     {
-      // try to find by display name instead
+      // require query to be more than three chars to query the DB
       $collectors = CollectorQuery::create()
-        ->filterByDisplayName("%$q%", Criteria::LIKE)
+        ->filterByUsername("%$q%", Criteria::LIKE)
         ->limit($limit)
-        ->select('DisplayName')
+        ->select('Username')
         ->find()->getArrayCopy();
+
+      if (empty($collectors))
+      {
+        // try to find by display name instead
+        $collectors = CollectorQuery::create()
+          ->filterByDisplayName("%$q%", Criteria::LIKE)
+          ->limit($limit)
+          ->select('DisplayName')
+          ->find()->getArrayCopy();
+      }
+    }
+    else
+    {
+      // if query is less than three chars, return an empty result set
+      $collectors = array();
     }
 
     return $this->output($collectors);
