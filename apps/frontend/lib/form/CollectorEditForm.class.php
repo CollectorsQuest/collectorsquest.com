@@ -587,7 +587,8 @@ class CollectorEditForm extends CollectorForm
 
     $this->validatorSchema['seller_settings_store_header_image'] = new cqValidatorFile(array(
       'mime_types' => 'cq_supported_images',
-      'required' => false
+      'required' => false,
+      'max_size' => 10485760, // 10mb
     ));
     $this->validatorSchema['seller_settings_store_header_image_delete'] = new sfValidatorBoolean(array(
         'required' => false,

@@ -242,6 +242,19 @@ class CollectorCollection extends BaseCollectorCollection
     $multimedia->makeCustomThumb(190, 190, '190x190', 'top', $watermark);
   }
 
+  /**
+   * @param PropelPDO $con
+   * @return type
+   */
+  public function preDelete(PropelPDO $con = null)
+  {
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
+
+    return parent::preDelete($con);
+  }
+
 }
 
 sfPropelBehavior::add('CollectorCollection', array('IceMultimediaBehavior'));
