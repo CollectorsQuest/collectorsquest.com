@@ -64,7 +64,7 @@ class aetnComponents extends cqFrontendComponents
      */
     $q = CollectionCollectibleQuery::create()
       ->filterByCollectionId($franks_picks['collection'])
-      ->isForSale()
+      //->isForSale()
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
