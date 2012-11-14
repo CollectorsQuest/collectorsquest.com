@@ -29,6 +29,18 @@
     elseif ($aetn_show['id'] === 'american_restoration'):
       include_partial('aetn/partials/pawnStarsPromo_300x90');
       include_partial('aetn/partials/americanPickersPromo_300x90');
+
+    elseif ($aetn_show['id'] === 'franks_picks'):
+      include_partial('aetn/partials/pawnStarsPromo_300x90');
+      include_partial('aetn/partials/americanPickersPromo_300x90');
+
+      include_component(
+        '_sidebar', 'widgetCollectiblesForSale',
+        array(
+          'collectible' => $collectible, 'limit' => 4,
+          'fallback' => 'random', 'height' => &$height
+        )
+      );
     endif;
   ?>
 

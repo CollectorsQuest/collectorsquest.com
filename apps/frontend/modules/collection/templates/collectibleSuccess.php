@@ -84,6 +84,13 @@
           '@aetn_picked_off'
         );
       }
+      else if ($aetn_show['id'] === 'franks_picks')
+      {
+        cq_ad_slot(
+          ice_image_tag_placeholder('620x67'),
+          '@aetn_franks_picks'
+        );
+      }
       $height_main_div->value += 87;
     ?>
   </div>
@@ -320,7 +327,7 @@
     );
   }
 
-  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && !$ref_marketplace)
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && !$ref_marketplace && empty($aetn_show))
   {
     include_component('collector', 'indexCollectiblesForSale',
       array(
