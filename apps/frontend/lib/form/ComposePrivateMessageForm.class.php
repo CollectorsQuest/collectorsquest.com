@@ -123,6 +123,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
             'page' => 'compose'
         )),
         'submit_on_enter' => false,
+        'min_activation_chars' => 3,
       ));
     }
 
