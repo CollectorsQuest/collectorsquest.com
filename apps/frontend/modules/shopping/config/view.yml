@@ -15,11 +15,7 @@ orderShippingSuccess:
     sidebar_300: [shopping, sidebarCheckout]
 
 orderPaySuccess:
-  components:
-    header:  [global, headerStripped]
-    footer:  []
-    breadcrumbs: []
-    sidebar_300: [shopping, sidebarCheckout]
+  layout: layout-minimal
 
 orderReviewSuccess:
   components:

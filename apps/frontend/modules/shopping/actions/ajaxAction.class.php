@@ -8,7 +8,7 @@ class ajaxAction extends cqAjaxAction
 
   public function preExecute()
   {
-    $this->forward404If(IceGateKeeper::locked('shopping_cart'));
+    $this->forward404If(cqGateKeeper::locked('shopping_cart'));
   }
 
   public function getObject(sfRequest $request)

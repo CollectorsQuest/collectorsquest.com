@@ -1,27 +1,38 @@
-<?php
-  include_partial(
-    'global/wizard_bar',
-    array('steps' => array(1 => __('Shipping'), __('PayPal Payment'), __('Review')) , 'active' => 2)
-  );
-
-  $domain = sfConfig::get('app_paypal_sandbox', true) ? 'www.sandbox.paypal.com' : 'www.paypal.com';
-?>
-
-<div style="text-align: center; margin: 100px auto;">
-  <form action= "https://<?= $domain ?>/webapps/adaptivepayment/flow/pay" target="PPDGFrame">
-    <input id="type" type="hidden" name="expType" value="light"/>
-    <input id="paykey" type="hidden" name="paykey" value="<?= $pay_key; ?>"/>
-    <input type="image" id="submitBtn" src="//www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif"
-           style="width: 150px; height: 33px;" width="150" height="33"/>
-  </form>
+<div class="row-fluid spacer-top-30">
+  <div class="span4">
+    <div class="pull-right">
+      <?= cq_image_tag('frontend/logo/175x80.png'); ?>
+    </div>
+  </div>
+  <div class="span3" style="text-align: center;">
+    <center><?= cq_image_tag('loading.arrows.gif', array('class' => 'block spacer-top-30')); ?></center>
+  </div>
+  <div class="span5">
+    <div class="pull-left">
+      <?= cq_image_tag('frontend/paypal-logo-175.png'); ?>
+    </div>
+  </div>
 </div>
 
-<script src="//www.paypalobjects.com/js/external/dg.js"></script>
-<script>
-  var dgFlow = new PAYPAL.apps.DGFlow({ trigger: 'submitBtn' });
+<br>
+<h3 class="text-center spacer-top-20">Please wait while we redirect you to PayPal</h3>
+<p id="manual" class="brown text-center js-hide">
+  If you're not redirected within 5 seconds
+  <?= link_to_function('click here.', "$('input#submit').click();"); ?>
+</p>
 
-  $(document).ready(function()
-  {
-    $('#submitBtn').click();
-  });
-</script>
+<form action="<?= sfConfig::get('app_paypal_url'); ?>" name="frmpaypal" id="frmpaypal" method="post">
+  <input type="hidden" name="cmd" value="_ap-payment"/>
+  <input type="hidden" name="paykey" value="<?= $pay_key ?>"/>
+  <input type="submit" id="submit" value="Continue to PayPal →" style="display: block; margin: 0 auto;" />
+  <script>
+    $(document).ready(function()
+    {
+      $('#manual').show();
+      $('#submit').hide().click();
+    });
+  </script>
+  <noscript>
+    <p>Javascript is disabled. Please click on the 'Continue to PayPal' button to be redirected to PayPal.</p>
+  </noscript>
+</form>

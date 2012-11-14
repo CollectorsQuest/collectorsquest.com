@@ -35,14 +35,23 @@ class cqPatternRouting extends sfPatternRouting
     $url = parent::generate($name, $params, $absolute);
 
     // Check if we need to encrypt the route
-    if (stripos($url, '&encrypt=1') || stripos($url, '?encrypt=1'))
+    if (preg_match('/[\&|\?]_?encrypt=1/i', $url))
     {
       $relative = parent::generate($name, $params, false);
+      $relative = preg_replace('/[\&|\?]_?encrypt=1/i', '', $relative);
+      $relative = preg_replace('/[\&|\?]_?lifetime=\d+/i', '', $relative);
 
-      $relative = str_replace(array('&encrypt=1', '?encrypt=1'), '', $relative);
-      $encrypted = $this->encryptUrl($relative);
+      if (preg_match('/[\&|\?]_?lifetime=(\d+)/i', $url, $m))
+      {
+        $encrypted = $this->encryptUrl($relative, $m[1]);
+      }
+      else
+      {
+        $encrypted = $this->encryptUrl($relative);
+      }
 
-      $url = str_replace(array('&encrypt=1', '?encrypt=1'), '', $url);
+      $url = preg_replace('/[\&|\?]_?encrypt=1/i', '', $url);
+      $url = preg_replace('/[\&|\?]_?lifetime=\d+/i', '', $url);
       $url = str_replace($relative, $encrypted, $url);
     }
     if (stripos($url, '&_decode=1') || stripos($url, '?_decode=1'))
@@ -54,7 +63,7 @@ class cqPatternRouting extends sfPatternRouting
     return !empty($url) ? $url : '/';
   }
 
-  public function encryptUrl($url)
+  public function encryptUrl($url, $lifetime = 86400)
   {
     $config = sfConfig::get('app_ice_libs_routing', array('secret' => 'yWJ2wUvHwZDnub7MtZLh2Zknd8TFXQGa'));
     $time = time();
@@ -66,12 +75,13 @@ class cqPatternRouting extends sfPatternRouting
     $iv = mcrypt_create_iv(mcrypt_get_iv_size($alg, MCRYPT_MODE_ECB), MCRYPT_RAND);
 
     $string = serialize(array(
-      'version' => 'v1', 'url' => $url, 'time' => (int) $time
+      'version' => 'v1', 'url' => $url,
+      'time' => (int) $time, 'lifetime' => (int) $lifetime
     ));
 
     $string = mcrypt_encrypt($alg, $config['secret'], $string, MCRYPT_MODE_CBC, $iv);
     $string = strtr(base64_encode(gzcompress($string, 9)), '+/', '-_');
-    $hash = sprintf("v1;%s;%s", $string, strtr(base64_encode($iv), '+/', '-_'));
+    $hash = sprintf('v1;%s;%s', $string, strtr(base64_encode($iv), '+/', '-_'));
 
     return '/ex/'. $hash;
   }
@@ -95,7 +105,10 @@ class cqPatternRouting extends sfPatternRouting
     ));
 
     // Valid requests are within one day of generating the URL
-    if (is_array($data) && $data['version'] == $version && $data['time'] > time() - 86400)
+    if (
+      is_array($data) && $data['version'] == $version &&
+      ((int) @$data['lifetime'] <= 0 || (int) $data['time'] > time() - (int) $data['lifetime'])
+      )
     {
       $url = (string) $data['url'];
       @list($url, $query_string) = explode('?', $url);

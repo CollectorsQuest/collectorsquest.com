@@ -50,6 +50,8 @@ class SellerPackagesForm extends BaseForm
       'label'      => 'Package',
       'formatter'  => function($widget, $inputs)
       {
+        /* @var $widget sfWidget  */
+
         $rows = array();
         foreach ($inputs as $input)
         {
@@ -424,6 +426,7 @@ class SellerPackagesForm extends BaseForm
    * no payment information is required
    *
    * @param     array $taintedValues
+   * @return    boolean
    */
   protected function isNoPaymentInfoRequired($taintedValues)
   {
@@ -473,6 +476,7 @@ class SellerPackagesForm extends BaseForm
   }
 
   /**
+   * @param     string|null  $promo_code
    * @return    Promotion|null
    */
   public function getPromotion($promo_code = null)

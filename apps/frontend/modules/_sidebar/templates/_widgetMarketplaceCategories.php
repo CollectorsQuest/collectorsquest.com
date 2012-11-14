@@ -7,7 +7,7 @@
    */
 
   // remove the 'false' to enable 'See all' link
-  if (false && IceGateKeeper::open('marketplace_categories', 'page'))
+  if (false && cqGateKeeper::open('marketplace_categories', 'page'))
   {
     $link = link_to(
       'See all &raquo;', '@marketplace_categories',

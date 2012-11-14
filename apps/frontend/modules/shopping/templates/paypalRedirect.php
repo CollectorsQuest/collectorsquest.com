@@ -15,6 +15,10 @@
       _top.location.replace('<?= url_for($url); ?>');
       _dgFlow.closeFlow();
     }
+    else
+    {
+      window.location.replace('<?= url_for($url); ?>');
+    }
   </script>
 </head>
 <body style="background: #fff;">
