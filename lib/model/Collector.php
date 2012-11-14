@@ -1568,6 +1568,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));
 sfPropelBehavior::add('Collector', array('IceTaggableBehavior'));
+sfPropelBehavior::add('Collector', array('cqBadgesBehavior'));
 
 sfPropelBehavior::add(
   'Collector',

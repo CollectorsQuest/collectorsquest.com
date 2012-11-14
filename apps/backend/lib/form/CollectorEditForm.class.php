@@ -20,6 +20,7 @@ class CollectorEditForm extends BaseFormPropel
       'password'      => new sfWidgetFormInputText(),
       'email'         => new sfWidgetFormInputText(),
       'photo'         => new sfWidgetFormInputFile(),
+      'badges'        => new sfWidgetFormPropelChoice(array('model' => 'cqBadge', 'multiple' => true)),
       'is_public'     => new sfWidgetFormInputCheckbox()
     ));
 
@@ -29,8 +30,10 @@ class CollectorEditForm extends BaseFormPropel
       'password'      => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'email'         => new sfValidatorEmail(array('max_length' => 128, 'required' => true)),
       'photo'         => new cqValidatorFile(array('mime_types' => 'cq_supported_images', 'required' => false)),
+      'badges'        => new sfValidatorPropelChoice(array('model' => 'cqBadge', 'multiple' => true, 'required' => false)),
       'is_public'     => new sfValidatorBoolean(array('required' => false))
     ));
+    $this->widgetSchema['badges']->setDefault($this->getObject()->getBadges()->getPrimaryKeys());
 
     $this->validatorSchema->setPostValidator(
       new sfValidatorPropelUnique(array('model' => 'Collector', 'column' => array('email')))
@@ -46,6 +49,13 @@ class CollectorEditForm extends BaseFormPropel
   public function getModelName()
   {
     return 'Collector';
+  }
+
+  public function updateBadgesColumn($value)
+  {
+    $this->getObject()->setBadges(cqBadgeQuery::create()->filterById($value)->find());
+
+    return $value;
   }
 
 }

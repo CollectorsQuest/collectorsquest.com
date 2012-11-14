@@ -18,7 +18,7 @@ all:
     no_script_name:         false
     cache:                  false
 
-    enabled_modules:        [sfGuardAuth, sfGuardUser, sfGuardPermission, sfGuardGroup, iceBackendModule, iceMetaTagBackendModule, cqEmailsBackendModule]
+    enabled_modules:        [sfGuardAuth, sfGuardUser, sfGuardPermission, sfGuardGroup, iceBackendModule, iceMetaTagBackendModule, cqEmailsBackendModule, cqBadgesBackendModule]
     standard_helpers:       [Partial, Cache, I18N, Text, iceAssets, iceJavascript, iceBackend, cqAssets, cqImages, cqJavascripts]
     sf_compat_10:           off
 
