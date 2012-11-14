@@ -350,12 +350,12 @@ class shoppingActions extends cqFrontendActions
         $PayRequestFields = $shopping_order->getPaypalPayRequestFields();
         $PayRequestFields['ReturnURL'] = $this->generateUrl(
           'shopping_order_paypal',
-          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'return', 'encrypt' => true),
+          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'return', 'encrypt' => true, 'lifetime' => 0),
           true
         );
         $PayRequestFields['CancelURL'] = $this->generateUrl(
           'shopping_order_paypal',
-          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'cancel', 'encrypt' => true),
+          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'cancel', 'encrypt' => true, 'lifetime' => 0),
           true
         );
 
@@ -363,7 +363,7 @@ class shoppingActions extends cqFrontendActions
         {
           $PayRequestFields['IPNNotificationURL'] = $domain . $this->generateUrl(
             'shopping_order_paypal',
-            array('uuid' => $shopping_order->getUuid(), 'cmd' => 'ipn', 'encrypt' => true),
+            array('uuid' => $shopping_order->getUuid(), 'cmd' => 'ipn', 'encrypt' => true, 'lifetime' => 0),
             false
           );
         }
@@ -371,7 +371,7 @@ class shoppingActions extends cqFrontendActions
         {
           $PayRequestFields['IPNNotificationURL'] = $this->generateUrl(
             'shopping_order_paypal',
-            array('uuid' => $shopping_order->getUuid(), 'cmd' => 'ipn', 'encrypt' => true),
+            array('uuid' => $shopping_order->getUuid(), 'cmd' => 'ipn', 'encrypt' => true, 'lifetime' => 0),
             true
           );
         }
@@ -408,7 +408,7 @@ class shoppingActions extends cqFrontendActions
           $SenderOptions = array(
             // If true, require the sender to select a shipping address
             // during the embedded payment flow. Default is false.
-            'RequireShippingAddressSelection' => false
+            'RequireShippingAddressSelection' => true
           );
 
           $InvoiceData = array(
@@ -495,7 +495,7 @@ class shoppingActions extends cqFrontendActions
         'shopping_order_pay',
         array(
           'sf_subject' => $shopping_order,
-          'encrypt' => 1
+          'encrypt' => 1, 'lifetime' => 3600
         )
       );
     }
@@ -562,7 +562,7 @@ class shoppingActions extends cqFrontendActions
           'shopping_order_review',
           array(
             'sf_subject' => $shopping_order,
-            'encrypt' => 1
+            'encrypt' => 1, 'lifetime' => 0
           )
         );
       }
@@ -607,6 +607,10 @@ class shoppingActions extends cqFrontendActions
         /* @var $transaction_id string */
         $transaction_id = (string) $result['PaymentInfo']['TransactionID'];
 
+        if ($shopping_payment->getStatus() === ShoppingPaymentPeer::STATUS_INPROGRESS)
+        {
+          $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CONFIRMED);
+        }
         $shopping_payment->setProperty('paypal.transaction_id', $transaction_id);
         $shopping_payment->setProperty('paypal.sender_email', $result['SenderEmail']);
         $shopping_payment->setProperty('paypal.status', $status);
