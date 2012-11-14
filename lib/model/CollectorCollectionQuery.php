@@ -19,7 +19,7 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
     $where = sprintf("
         CollectorCollection.Id IN (
           SELECT tagging.taggable_id
-            FROM tagging RIGHT JOIN tag ON (tag.id = tagging.tag_id AND tag.slug %s ('%s'))
+            FROM tagging INNER JOIN tag ON (tag.id = tagging.tag_id AND tag.slug %s ('%s'))
            WHERE taggable_model = 'CollectorCollection'
         )
       ",
@@ -49,7 +49,7 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
     $where = sprintf("
         collector_collection.ID IN (
           SELECT tagging.taggable_id
-            FROM tagging RIGHT JOIN tag ON (
+            FROM tagging INNER JOIN tag ON (
               tag.id = tagging.tag_id AND tag.is_triple = 1 AND
               tag.triple_value %s ('%s') AND
               tag.triple_namespace = '%s' AND
@@ -91,7 +91,7 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
                 ORDER BY FIELD(tag.triple_key, '%s') ASC, tagging.id ASC
                 SEPARATOR ','
               )
-              FROM tagging RIGHT JOIN tag ON (
+              FROM tagging INNER JOIN tag ON (
                 tag.id = tagging.tag_id AND tag.is_triple = 1 AND
                 tag.triple_value %s ('%s') AND
                 tag.triple_namespace = '%s' AND
@@ -116,6 +116,19 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
   {
     // @todo: we need implementation
     return $this;
+  }
+
+  /**
+   * Filter on only collections that have collectibles for sale
+   *
+   * @return    ContentCategoryQuery
+   */
+  public function hasCollectiblesForSale()
+  {
+    return $this
+       ->useCollectionCollectibleQuery()
+        ->isForSale()
+      ->endUse();
   }
 
 }

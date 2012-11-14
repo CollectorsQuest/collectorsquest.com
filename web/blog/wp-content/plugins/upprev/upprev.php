@@ -15,7 +15,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright 2011-2012 Marcin Pietrzak (marcin@iworks.pl)
 
 this program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as 
+it under the terms of the GNU General Public License, version 2, as
 published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful,
@@ -381,7 +381,7 @@ function iworks_upprev_box()
                 $value .= sprintf ( '%s ', __('More in', 'upprev' ) );
                 $a = array();
                 foreach ( $siblings as $url => $name ) {
-                    $a[] = sprintf( '<a href="%s" rel="%s">%s</a>', $url, $current_post_title, $name );
+                    $a[] = sprintf( '<a href="%s?ref=bp_flybox" rel="%s">%s</a>', $url, $current_post_title, $name );
                 }
                 $value .= implode( ', ', $a);
             } else if ( $compare == 'random' ) {
@@ -410,15 +410,16 @@ function iworks_upprev_box()
                 get_permalink(),
                 $url_sufix
             );
-            if ( current_theme_supports('post-thumbnails') && $show_thumb && has_post_thumbnail( get_the_ID() ) ) {
+            if (true || current_theme_supports('post-thumbnails') && $show_thumb && has_post_thumbnail( get_the_ID() ) ) {
                 $item_class .= ' upprev_thumbnail';
                 $image = sprintf(
-                    '<a href="%s" title="%s" class="upprev_thumbnail"%s rel="%s">%s</a>',
+                    '<a href="%s?ref=bp_flybox" title="%s" class="upprev_thumbnail"%s rel="%s">%s</a>',
                     $permalink,
                     wptexturize(get_the_title()),
                     $ga_click_track,
                     $current_post_title,
-                    apply_filters(
+                    '<img src=' . get_post_image_url('thumbnail') . ' alt="' . get_the_title() . '" width="80" height="80">'
+                    /*apply_filters(
                         'iworks_upprev_get_the_post_thumbnail', get_the_post_thumbnail(
                             get_the_ID(),
                             array(
@@ -430,7 +431,7 @@ function iworks_upprev_box()
                                 'class'=>'iworks_upprev_thumb'
                             )
                         )
-                    )
+                    )*/
                 );
             } else {
                 ob_start();
@@ -439,7 +440,7 @@ function iworks_upprev_box()
             }
             $item .= sprintf( '<div class="%s">%s', $item_class, $image );
             $item .= sprintf(
-                '<h5><a href="%s"%s rel="%s">%s</a></h5>',
+                '<h5><a href="%s?ref=bp_flybox"%s rel="%s">%s</a></h5>',
                 $permalink,
                 $ga_click_track,
                 $current_post_title,

@@ -122,18 +122,22 @@
   }
 }
 
-.arrow-white-previous {
+.arrow-white-previous, .arrow-white-next {
   display: block;
   .size(31px, 21px);
+  cursor: pointer;
+}
+
+.arrow-white-previous {
   background-position: 0 -275px;
+
   &:hover {
     background-position: 0 -310px;
   }
 }
 
 .arrow-white-next {
-  display: block;
-  .size(31px, 21px);
+
   background-position: -30px -275px;
   &:hover {
     background-position: -30px -310px;

@@ -34,6 +34,17 @@ all:
     timeout_check_period: 60 minutes
     timeout_check_period_increase_for_unsigned: 30 minutes
 
+  skip_spam_check:
+    by_username:
+      - resonantfish # Robotbacon
+      - slideonover # Slideonover
+      - beadylittleeyes # Beadylittleeyes
+
+  marketplace:
+    storefront_settings:
+      header_image_name: 620x67
+      header_image_size: [620, 67]
+
   smart_menus:
     defaults:
       template:

@@ -204,7 +204,8 @@ class marketplaceComponents extends cqFrontendComponents
 
       $this->menu[] = array(
         'id' => $wp_post->getId(),
-        'name' => $name, 'slug' => $wp_post->getSlug(),
+        'name' => $name,
+        'slug' => $wp_post->getSlug(),
         'content' => $wp_post->getPostContent(),
         'tags' => $wp_post->getTags('array')
       );
@@ -243,6 +244,7 @@ class marketplaceComponents extends cqFrontendComponents
       $q = FrontendCollectibleForSaleQuery::create()
         ->isForSale()
         ->filterByMachineTags($tags, 'market', 'theme')
+        ->clearOrderByColumns()
         ->orderByAverageRating(Criteria::DESC)
         ->orderByUpdatedAt(Criteria::DESC);
 
@@ -350,7 +352,9 @@ class marketplaceComponents extends cqFrontendComponents
       $query
         ->hasThumbnail()
         ->filterById(null, Criteria::NOT_EQUAL)
-        ->orderByCreatedAt(Criteria::DESC);
+        ->orderByCreatedAt(Criteria::DESC)
+        ->clearGroupByColumns()
+        ->groupBy('Id');
 
       $pager = new cqPropelModelPager($query, 16);
     }

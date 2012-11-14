@@ -1,6 +1,5 @@
 //
-//  This is a simple plugin which converts normal links into
-// AJAX GET requests
+// This is a simple plugin which converts normal links into AJAX GET requests
 //
 // Steve Kemp
 // --
@@ -50,7 +49,7 @@
             opts.success = function (data) {
               $(div).html(data);
               if (opts.oncomplete) {
-                opts.oncomplete($(this));
+                opts.oncomplete();
               }
             };
           }

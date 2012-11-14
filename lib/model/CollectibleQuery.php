@@ -25,7 +25,7 @@ class CollectibleQuery extends BaseCollectibleQuery
     $where = sprintf("
         Collectible.Id IN (
           SELECT tagging.taggable_id
-            FROM tagging RIGHT JOIN tag ON (tag.id = tagging.tag_id AND tag.is_triple = 0 AND tag.slug %s ('%s'))
+            FROM tagging INNER JOIN tag ON (tag.id = tagging.tag_id AND tag.is_triple = 0 AND tag.slug %s ('%s'))
            WHERE taggable_model = 'Collectible'
         )
       ",
@@ -57,7 +57,7 @@ class CollectibleQuery extends BaseCollectibleQuery
                 ORDER BY tagging.id ASC
                 SEPARATOR ','
               )
-              FROM tagging RIGHT JOIN tag ON (tag.id = tagging.tag_id AND tag.is_triple = 0 AND tag.slug %s ('%s'))
+              FROM tagging INNER JOIN tag ON (tag.id = tagging.tag_id AND tag.is_triple = 0 AND tag.slug %s ('%s'))
               WHERE tagging.taggable_model = 'Collectible'
               GROUP BY tagging.taggable_model
           )
@@ -89,7 +89,7 @@ class CollectibleQuery extends BaseCollectibleQuery
     $where = sprintf("
         collectible.ID IN (
           SELECT tagging.taggable_id
-            FROM tagging RIGHT JOIN tag ON (
+            FROM tagging INNER JOIN tag ON (
               tag.id = tagging.tag_id AND tag.is_triple = 1 AND
               tag.triple_value %s ('%s') AND
               tag.triple_namespace = '%s' AND
@@ -131,7 +131,7 @@ class CollectibleQuery extends BaseCollectibleQuery
                 ORDER BY FIELD(tag.triple_key, '%s') ASC, tagging.id ASC
                 SEPARATOR ','
               )
-              FROM tagging RIGHT JOIN tag ON (
+              FROM tagging INNER JOIN tag ON (
                 tag.id = tagging.tag_id AND tag.is_triple = 1 AND
                 tag.triple_value %s ('%s') AND
                 tag.triple_namespace = '%s' AND

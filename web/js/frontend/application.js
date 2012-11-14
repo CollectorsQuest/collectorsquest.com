@@ -90,7 +90,8 @@ var APP = window.APP = {
       if (window.cq.settings.collectionColletiblesWidget)
       {
         $('#collectionCollectiblesWidget').collectionCollectiblesCarousel({
-          collection_id: window.cq.settings.collectionColletiblesWidget.collection_id
+            collection_id: window.cq.settings.collectionColletiblesWidget.collection_id,
+            collectible_id: window.cq.settings.collectionColletiblesWidget.collectible_id
         });
       }
     }
@@ -542,7 +543,7 @@ var COMMON = window.COMMON = (function(){
               {
                 return this;
               }
-            }
+            };
           }());
         }
       }

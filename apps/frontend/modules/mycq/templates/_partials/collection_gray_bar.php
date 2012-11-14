@@ -40,7 +40,7 @@
             </li>
             <li>
               <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details', 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-                 class="btn-delete-simple" onclick="return confirm('Are you sure you want to delete this Collection?');">
+                 class="btn-delete-simple open-dialog" onclick="return false;">
                 <i class="icon icon-trash"></i>
                 Delete Collection
               </a>
@@ -49,7 +49,7 @@
         </li>
       </ul>
     </div>
-    <?php if ($collection->getNumViews() > 0): ?>
+    <?php if ($collection->countCollectionCollectibles() > 0): ?>
     <div class="span4">
       <div class="mini-input-append-search">
         <div class="input-append pull-right">

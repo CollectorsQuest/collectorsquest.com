@@ -632,27 +632,23 @@ class shoppingActions extends cqFrontendActions
           $this->getUser()->setOwnerOf($shopping_order);
         }
 
-        if (strtoupper($result['Status']) === 'COMPLETED')
+        /* @var $status string */
+        $status = strtoupper($result['Status']);
+
+        /* @var $transaction_id string */
+        $transaction_id = (string) $result['PaymentInfo']['TransactionID'];
+
+        if ('COMPLETED' === $status)
         {
-          $this->orderComplete($shopping_order, $result['PaymentInfo']['TransactionID']);
+          $this->orderComplete($shopping_order, $transaction_id);
         }
-        else if (
-          in_array(
-            strtoupper($request->getParameter('payment_status')),
-            array('CANCELED', 'VOIDED', 'DENIED', 'FAILED', 'REFUSED')
-          )
-        )
+        else if (in_array($status, array('CANCELED', 'VOIDED', 'DENIED', 'FAILED', 'REFUSED')))
         {
-          $this->orderFailed($shopping_order, $request->getParameter('txn_id'));
+          $this->orderFailed($shopping_order, $transaction_id);
         }
-        else if (
-          in_array(
-            strtoupper($request->getParameter('payment_status')),
-            array('REFUNDED', 'REFUSED', 'REVERSED', 'UNCLAIMED', 'EXPIRED')
-          )
-        )
+        else if (in_array($status, array('REFUNDED', 'REFUSED', 'REVERSED', 'UNCLAIMED', 'EXPIRED')))
         {
-          $this->orderRefunded($shopping_order, $request->getParameter('txn_id'));
+          $this->orderRefunded($shopping_order, $transaction_id);
         }
         else
         {
@@ -699,27 +695,24 @@ class shoppingActions extends cqFrontendActions
           // Try to process the IPN post
           if ($ipn->processIpn())
           {
-            if ('COMPLETED' === strtoupper($request->getParameter('payment_status')))
+            /* @var $status string */
+            $status = (string) $request->getParameter('payment_status', $request->getParameter('status'));
+            $status = strtoupper($status);
+
+            /* @var $transaction_id string */
+            $transaction_id = (string) $request->getParameter('txn_id');
+
+            if ('COMPLETED' === $status)
             {
-              $this->orderComplete($shopping_order, $request->getParameter('txn_id'));
+              $this->orderComplete($shopping_order, $transaction_id);
             }
-            else if (
-              in_array(
-                strtoupper($request->getParameter('payment_status')),
-                array('CANCELED', 'VOIDED', 'DENIED', 'FAILED', 'REFUSED')
-              )
-            )
+            else if (in_array($status, array('CANCELED', 'VOIDED', 'DENIED', 'FAILED', 'REFUSED')))
             {
-              $this->orderFailed($shopping_order, $request->getParameter('txn_id'));
+              $this->orderFailed($shopping_order, $transaction_id);
             }
-            else if (
-              in_array(
-                strtoupper($request->getParameter('payment_status')),
-                array('REFUNDED', 'REFUSED', 'REVERSED', 'UNCLAIMED', 'EXPIRED')
-              )
-            )
+            else if (in_array($status, array('REFUNDED', 'REFUSED', 'REVERSED', 'UNCLAIMED', 'EXPIRED')))
             {
-              $this->orderRefunded($shopping_order, $request->getParameter('txn_id'));
+              $this->orderRefunded($shopping_order, $transaction_id);
             }
             else
             {
@@ -812,16 +805,16 @@ class shoppingActions extends cqFrontendActions
     $shopping_order->getCollectibleForSale()->setIsSold(false);
     $shopping_order->getCollectibleForSale()->save();
 
-//    $cqEmail = new cqEmail($this->getMailer());
-//    $cqEmail->send('Shopping/buyer_order_failed', array(
-//      'to' => $shopping_order->getBuyerEmail(),
-//      'params' => array(
-//        'buyer_name'  => $shopping_order->getShippingFullName(),
-//        'oSeller' => $shopping_order->getSeller(),
-//        'oCollectible' => $shopping_order->getCollectible(),
-//        'oShoppingOrder' => $shopping_order
-//      )
-//    ));
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send('Shopping/buyer_order_failed', array(
+      'to' => $shopping_order->getBuyerEmail(),
+      'params' => array(
+        'buyer_name' => $shopping_order->getShippingFullName(),
+        'transaction_id' => $transaction_id,
+        'oCollectible' => $shopping_order->getCollectible(),
+        'oShoppingOrder' => $shopping_order
+      )
+    ));
   }
 
   /**
@@ -844,15 +837,16 @@ class shoppingActions extends cqFrontendActions
     $shopping_order->getCollectibleForSale()->setIsSold(false);
     $shopping_order->getCollectibleForSale()->save();
 
-//    $cqEmail = new cqEmail($this->getMailer());
-//    $cqEmail->send('Shopping/buyer_order_refunded', array(
-//      'to' => $shopping_order->getBuyerEmail(),
-//      'params' => array(
-//        'buyer_name'  => $shopping_order->getShippingFullName(),
-//        'oSeller' => $shopping_order->getSeller(),
-//        'oCollectible' => $shopping_order->getCollectible(),
-//        'oShoppingOrder' => $shopping_order
-//      )
-//    ));
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send('Shopping/buyer_order_refunded', array(
+      'to' => $shopping_order->getBuyerEmail(),
+      'params' => array(
+        'buyer_name'  => $shopping_order->getShippingFullName(),
+        'transaction_id' => $transaction_id,
+        'oSeller' => $shopping_order->getSeller(),
+        'oCollectible' => $shopping_order->getCollectible(),
+        'oShoppingOrder' => $shopping_order
+      )
+    ));
   }
 }
