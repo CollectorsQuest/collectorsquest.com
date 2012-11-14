@@ -332,6 +332,8 @@ class collectionActions extends cqFrontendActions
       if (isset ($show['franks_picks']) && $collection->getId() === $show['franks_picks'])
       {
         $this->aetn_show = $show;
+        $this->aetn_show['name'] = 'Frank\'s Picks';
+        $this->aetn_show['collection'] = $show['franks_picks'];
         $this->aetn_show['id'] = 'franks_picks';
 
         break;
