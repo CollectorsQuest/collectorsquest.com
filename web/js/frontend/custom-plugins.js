@@ -10,6 +10,7 @@ jQuery.fn.collectionCollectiblesCarousel = function(options)
 {
   var defaults = {
     collection_id: 0,
+    collectible_id: null,
     nextControl:'.right-arrow',
     prevControl:'.left-arrow',
     itemsHolder:'.thumbnails'
@@ -47,7 +48,8 @@ jQuery.fn.collectionCollectiblesCarousel = function(options)
         holder.load(url +' #carousel > *',
           {
             p: page,
-            collection_id: options.collection_id
+            collection_id: options.collection_id,
+            collectible_id: options.collectible_id
           },
           function(data)
           {

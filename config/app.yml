@@ -21,6 +21,7 @@ all:
         name: American Pickers®
         collector: 6668
         collection: 2842
+        franks_picks: 4224
       american_restoration:
         name: American Restoration™
         collector: 14728
@@ -41,10 +42,6 @@ all:
         name: Storage Wars™
         collector: -1
         collection: -1
-      franks_picks:
-        name: Frank's Picks
-        collector: 15716
-        collection: 4224
 
     # Leave this for now for BC
     american_pickers:
@@ -59,9 +56,6 @@ all:
     picked_off:
       collector: 13389
       collection: 3751
-    franks_picks:
-      collector: 15716
-      collection: 4224
 
 
   credentials:
@@ -437,7 +431,7 @@ dev:
     domain: "cqcdns.dev"
 
   paypal:
-    ipn_domain: 'http://astoria.dyndns-home.com'
+    ipn_domain: 'http://manhattan.dyndns-office.com'
 
 test:
   domain_name: "example.com"
