@@ -8,9 +8,9 @@
  */
 ?>
 
-<?php if (isset($aetn_show)) : ?>
+<?php if (isset($aetn_show)): ?>
   <?php
-    if($collectible->isForSale()) :
+    if($collectible->isForSale()):
       include_component(
         '_sidebar', 'widgetCollectibleBuy',
         array('collectible' => $collectible, 'height' => &$height)
@@ -32,11 +32,11 @@
   <?php endif; ?>
 
   <?php
-    if ($aetn_show['id'] === 'pawn_stars') :
+    if ($aetn_show['id'] === 'pawn_stars'):
       include_partial('aetn/partials/americanPickersPromo_300x90');
       include_partial('aetn/partials/americanRestorationPromo_300x90');
 
-    elseif ($aetn_show['id'] === 'american_pickers') :
+    elseif ($aetn_show['id'] === 'american_pickers'):
       include_partial('aetn/partials/pawnStarsPromo_300x90');
       include_partial('aetn/partials/americanRestorationPromo_300x90');
 
