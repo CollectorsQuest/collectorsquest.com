@@ -8,7 +8,7 @@
  */
 ?>
 
-<?php if (isset($aetn_show)): ?>
+<?php if (isset($aetn_show)) : ?>
   <?php
     if($collectible->isForSale()) :
       include_component(
@@ -24,7 +24,7 @@
         )
       );
   ?>
-  <?php else : ?>
+  <?php else: ?>
     <div class="banner-sidebar-top">
       <?php cq_dart_slot('300x250', 'collections', str_replace('_', '', $aetn_show['id']), 'sidebar'); ?>
     </div>
