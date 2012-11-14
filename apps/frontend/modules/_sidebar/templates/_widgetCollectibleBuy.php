@@ -7,7 +7,7 @@
 $_height = 0;
 ?>
 
-<?php if ($collectible_for_sale->hasActiveCredit() && IceGateKeeper::open('shopping_cart') ): ?>
+<?php if ($collectible_for_sale->hasActiveCredit() && cqGateKeeper::open('shopping_cart') ): ?>
 
   <?php if ($collectible_for_sale->getIsSold()): ?>
 

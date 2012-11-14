@@ -121,7 +121,7 @@ class cqAdminBar
 
     // Limitation for the first version
     if (
-      IceGateKeeper::open('machine_tags') &&
+      cqGateKeeper::open('machine_tags') &&
       in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible'))
     )
     {
