@@ -85,11 +85,11 @@ class FrontendCommentForm extends BaseCommentForm
   /**
    * Callback used to skip spam and timeout checks for specific users
    *
+   * @param  array The submitted form values after base validation
    * @return boolean
    */
   public function forceSkipSpamCheck($values)
   {
-
     if ($this->sf_user->isAdmin())
     {
       // if the user is logged in the backend as admin, skip spam check
