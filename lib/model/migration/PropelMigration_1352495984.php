@@ -3,7 +3,7 @@
 /**
  * A singular migration to introduce all changes related to the organizations module
  */
-class PropelMigration_1352405984
+class PropelMigration_1352495984
 {
 
   public function preUp($manager)
