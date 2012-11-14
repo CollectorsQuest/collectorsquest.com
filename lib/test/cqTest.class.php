@@ -29,7 +29,7 @@ class cqTest
           'collector_interview',
           'collector_profile',
           'collector_profile_archive',
-          'collector_profile_extra_property'
+          'collector_profile_extra_property',
         ));
         break;
 
@@ -52,7 +52,15 @@ class cqTest
           'collection_collectible',
           'collectible_archive',
           'collectible_for_sale',
-          'collectible_for_sale_archive'
+          'collectible_for_sale_archive',
+        ));
+        break;
+      case 'Organization':
+        self::resetTables(array(
+          'organization',
+          'organization_type',
+          'organization_membership',
+          'organization_membership_request',
         ));
         break;
 

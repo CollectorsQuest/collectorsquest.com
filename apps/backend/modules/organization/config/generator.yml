@@ -1,0 +1,35 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Organization
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Organization
+    plural:                Organizations
+    route_prefix:          organization
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        founder_id: { label: "Founder Collector" }
+        display_type: { label: "Type" }
+        nb_members: { label: "Members count" }
+      list:
+        title: Organizations
+        display: [=name, founder, display_type, access, nb_members, referral_code, created_at]
+        object_actions:
+          _edit: ~
+          _delete: ~
+          goToFrontendPage: { label: "Go to frontend page", params: { target: "_blank" } }
+      filter:
+        class:  BackendOrganizationFormFilter
+        display: [type, founder_id, access, name, url, phone]
+      form:
+        class:  BackendOrganizationForm
+      edit:
+        display: [founder_id, type, type_other, name, url, phone, description, access, referral_code, logo, profile_image, _form_images, _file_uploader]
+      new:
+        display: [founder_id, type, type_other, name, url, phone, description, access, referral_code, logo, profile_image]

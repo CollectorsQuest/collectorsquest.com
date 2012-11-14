@@ -18,6 +18,10 @@ all:
           Comments:
             url: comment
             image: theme/icons/language.png
+          Emails Log:
+            icon: envelope
+            url: emails_log
+            image: theme/icons/messaging.png
 
       Collectors:
         icon: user
@@ -64,6 +68,13 @@ all:
             url: shopping_order
             image: theme/icons/generic.png
 
+      Organizations:
+        icon: group
+        items:
+          Organizations:
+            url: organization
+            image: theme/icons/users.png
+
       Blog:
         icon: book
         items:
@@ -71,18 +82,10 @@ all:
             url: wp_post
             image: theme/icons/addedit.png
 
-      SEO:
-        items:
-          Meta Tags:
-            url: ice_model_meta_tag
-
-      Emails:
-        icon: envelope
-        items:
-          Emails Log:
-            url: emails_log
-            image: theme/icons/messaging.png
-
+#      SEO:
+#        items:
+#          Meta Tags:
+#            url: ice_model_meta_tag
 
 next:
   ice_assets:

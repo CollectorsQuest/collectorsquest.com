@@ -1,0 +1,13 @@
+OrganizationType:
+  collector_club:
+    type: collector_club
+    name: Collector's club
+  antique_mall:
+    type: antique_mall
+    name: Antique Mall
+  flea_market:
+    type: flea_market
+    name: Flea Market
+  trade_show:
+    type: trade_show
+    name: Trade Show

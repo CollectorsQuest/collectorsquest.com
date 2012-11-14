@@ -347,6 +347,13 @@ class CollectorPeer extends BaseCollectorPeer
         $collectorEmail->setIsVerified(false);
         $collectorEmail->save();
       }
+
+      // if we are have a referral code to an organization, make the collector
+      // a member of that organization
+      if (!empty($data['referral_code']) && $organization = OrganizationQuery::create()->findOneByReferralCode($data['referral_code']))
+      {
+        OrganizationAccess::addMember($organization, $collector);
+      }
     }
     catch (PropelException $e)
     {

@@ -64,7 +64,7 @@
 
   <form action="<?= url_for($login_action, true); ?>" id="form-guide-login"
         method="post" class="form-horizontal form-footer">
-    <?php $login_form->renderHiddenFields(); ?>
+    <?= $login_form->renderHiddenFields(); ?>
 
     <?= $login_form['username']->renderRow(); ?>
     <?= $login_form['password']->renderRow(); ?>

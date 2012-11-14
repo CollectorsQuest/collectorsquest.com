@@ -31,6 +31,21 @@ class CollectorGuideSignupForm extends CollectorSignupStep1Form
     parent::configure();
     $this->offsetUnset('display_name');
 
+    $this->setupReferralField();
+
+    // This will give it the right order of the fields
+    $this->widgetSchema->setPositions(array(
+        'username',
+        'password',
+        'password_again',
+        'email',
+        'referral_code',
+        'seller',
+        'newsletter',
+        'goto',
+        'ip_address',
+    ));
+
     $this->widgetSchema->setFormFormatterName('BootstrapWithRowFluid');
   }
 
@@ -51,4 +66,5 @@ class CollectorGuideSignupForm extends CollectorSignupStep1Form
 
     return md5($secret.session_id().'CollectorSignupStep1Form');
   }
+
 }

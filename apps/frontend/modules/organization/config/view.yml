@@ -1,0 +1,6 @@
+#all:
+#  stylesheets: [frontend/modules/organization.css]
+
+indexSuccess:
+  components:
+    sidebar_300: [organization, sidebarIndex]

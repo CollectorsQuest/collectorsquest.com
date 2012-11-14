@@ -37,13 +37,14 @@ class CollectorSignupStep1Form extends BaseForm
           2 => 'I collect and sell',
         ),
 
-        'formatter'   =>   function($widget, $inputs) {
+        'formatter'   => function($widget, $inputs) {
           $rows = array();
           foreach ($inputs as $input)
           {
             $rows[] = $widget->renderContentTag('label',
               $input['input'].$widget->getOption('label_separator').strip_tags($input['label']),
-              array('class'=>'radio'));
+              array('class'=>'radio')
+            );
           }
 
           return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
@@ -54,6 +55,7 @@ class CollectorSignupStep1Form extends BaseForm
       'newsletter'  => new sfWidgetFormInputCheckbox(array(), array(
         'checked'   => 'checked'
       )),
+      'goto'        => new sfWidgetFormInputHidden(),
     ));
 
     $this->setValidators(array(
@@ -91,6 +93,7 @@ class CollectorSignupStep1Form extends BaseForm
         'invalid'    => 'This email address is invalid.',
       )),
       'newsletter'     => new sfValidatorBoolean(array('required' => false)),
+      'goto'           => new sfValidatorPass(),
     ));
 
     $this->validatorSchema['password_again'] = clone $this->validatorSchema['password'];
@@ -126,6 +129,21 @@ class CollectorSignupStep1Form extends BaseForm
 
     $this->widgetSchema->setNameFormat('signup_step1[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
+  }
+
+  public function setupReferralField()
+  {
+    $this->widgetSchema['referral_code'] = new sfWidgetFormInputText(array(
+        'label' => 'Referrer',
+      ), array(
+        'rel'   => 'tooltip',
+        'title' => 'Do you have a referral code for one of our organizations? Input it here!',
+      ));
+    $this->validatorSchema['referral_code'] = new sfValidatorPropelChoice(array(
+        'model' => 'Organization',
+        'column' => 'referral_code',
+        'required' => false
+    ));
   }
 
   public function getJavaScripts()
