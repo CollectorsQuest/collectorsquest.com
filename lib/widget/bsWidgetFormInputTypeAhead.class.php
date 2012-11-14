@@ -21,6 +21,7 @@ class bsWidgetFormInputTypeAhead extends sfWidgetFormInput
     $this->addOption('highlighter');
     $this->addOption('autoselect');
     $this->addOption('submit_on_enter', true);
+    $this->addOption('min_activation_chars', 1);
 
     parent::__construct($options, $attributes);
   }
@@ -56,7 +57,7 @@ $(document).ready(function()
     if( $.inArray(ev.keyCode,[40,38,9,13,27]) === -1 )
     {
       // active used so we aren't triggering duplicate keyup events
-      if( !self.data('active') && self.val().length > 0)
+      if( !self.data('active') && self.val().length >= %d)
       {
         // the self executing getJsonLoop function will call itself again
         // if at the end of retrieving the search suggestions the value of the
@@ -110,6 +111,7 @@ $(document).ready(function()
 EOF
           , $this->generateId($name),
           json_encode($typeAheadOptions),
+          $this->getOption('min_activation_chars'),
           is_array($source) ? json_encode($source) : $source,
           $this->getOption('submit_on_enter') ? 'true' : 'false'
         );
