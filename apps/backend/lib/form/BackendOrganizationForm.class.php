@@ -44,7 +44,11 @@ class BackendOrganizationForm extends OrganizationForm
 
   protected function setupUrlField()
   {
-    $this->validatorSchema['url']->setOption('trim', true);
+    $this->validatorSchema['url'] = new sfValidatorUrl(array(
+        'required' => 'false',
+        'protocols' => array('http', 'https'),
+        'trim' => true,
+    ));
   }
 
   protected function setupDescriptionField()
