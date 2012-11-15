@@ -1,3 +1,4 @@
+<?php
  /**
   * @var $class                 string
   * @var $package_transactions  PackageTransaction[]
