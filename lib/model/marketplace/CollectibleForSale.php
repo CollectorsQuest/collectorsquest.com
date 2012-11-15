@@ -201,11 +201,18 @@ class CollectibleForSale extends BaseCollectibleForSale
       ->findOne($con);
   }
 
+  /**
+   * Get expiry date of collectible for sale
+   *
+   * @param string $format
+   * @param PropelPDO $con
+   * @return mixed|null
+   */
   public function getExpiryDate($format = 'Y-m-d H:i:s', PropelPDO $con = null)
   {
     $package_transaction = PackageTransactionCreditQuery::create()
       ->filterByCollectibleId($this->getCollectibleId())
-      ->orderByExpiryDate(Criteria::ASC)
+      ->orderByExpiryDate(Criteria::DESC)
       ->findOne($con);
 
     if ($package_transaction)
