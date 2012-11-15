@@ -48,6 +48,7 @@ dev:
     shopping_checkout_help: false
     mycq_homepage: true
     mycq_marketplace: true
+    mycq_marketplace_credit_history: true
     mycq_wanted: false
     mycq_profile_addresses: false
     collectible_shipping: true

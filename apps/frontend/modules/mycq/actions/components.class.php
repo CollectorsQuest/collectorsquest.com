@@ -289,6 +289,21 @@ class mycqComponents extends cqFrontendComponents
     // Make the seller available to the template
     $this->seller = $collector->getSeller();
 
+    // check if the seller has valid credits left
+    $this->has_no_credits = true;
+    foreach ($this->package_transactions as $package)
+    {
+      /* @var $package PackageTransaction */
+      if (
+        $package->getCredits() - $package->getCreditsUsed() > 0 &&
+        $package->getExpiryDate('YmdHis') > date('YmdHis')
+      )
+      {
+        $this->has_no_credits = false;
+        break;
+      }
+    }
+
     return sfView::SUCCESS;
   }
 
