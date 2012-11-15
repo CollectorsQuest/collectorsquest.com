@@ -178,13 +178,15 @@ seo:
         Find the collectible, vintage or antique item you’ve been looking for from trusted
         sellers in the Collectors Quest marketplace.
 
-  collectibles:
-    collectorList:
+  seller:
+    store:
       model: true
       title:
-       - %ShopTitle%
-       - %ShopTitle% | Collectors Quest
-       - %ShopTitle% by %DisplayName% | Collectors Quest
+        - %StoreTitle%
+        - %StoreTitle% | Collectors Quest
+        - %StoreTitle% by %DisplayName% | Collectors Quest
+      description:
+        - %StoreDescription%
 
   misc:
     guideToCollecting:
