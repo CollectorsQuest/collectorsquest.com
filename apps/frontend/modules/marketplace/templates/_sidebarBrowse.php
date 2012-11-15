@@ -39,7 +39,7 @@
 
 
 <?php
-  if (IceGateKeeper::open('expose_market_categories'))
+  if (cqGateKeeper::open('expose_market_categories'))
   {
     include_component(
       '_sidebar', 'widgetMarketplaceCategories',

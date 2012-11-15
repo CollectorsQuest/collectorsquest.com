@@ -20,4 +20,13 @@ if(typeof(networkedblogs)=="undefined"){networkedblogs = {};networkedblogs.blogI
 
   <?php // remove shadowbox from galleries so only JetPack gallery appears ?>
   $('.gallery-icon a').removeAttr("rel");
+
+  // remove upPrev box if page has not enough height
+  $(document).ready(function()
+  {
+    if ($(document).height() < 2600)
+    {
+      $('#upprev_box').remove();
+    }
+  });
 </script>

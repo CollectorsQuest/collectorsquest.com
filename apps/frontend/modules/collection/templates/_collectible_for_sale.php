@@ -106,7 +106,7 @@
     </p>
     Quantity sold: 1
   </div>
-<?php elseif ($collectible_for_sale->isForSale() && IceGateKeeper::open('shopping_cart')): ?>
+<?php elseif ($collectible_for_sale->isForSale() && cqGateKeeper::open('shopping_cart')): ?>
   <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
     <div id="price-container">
       <p class="price">

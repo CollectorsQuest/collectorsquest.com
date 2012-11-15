@@ -150,7 +150,8 @@ class ShoppingOrder extends BaseShoppingOrder
     if (
       ($shipping_reference = $this->getShippingReference()) &&
       ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_reference->getShippingType()
-    ) {
+    )
+    {
       return null;
     }
 
@@ -205,7 +206,11 @@ class ShoppingOrder extends BaseShoppingOrder
       'FeesPayer' => 'EACHRECEIVER',
 
       // A note associated with the payment (text, not HTML).  1000 char max
-      'Memo' => $this->getNoteToSeller(),
+      'Memo' => trim(
+        $this->getNoteToSeller() .
+        ' (This transaction was initiated on collectorsquest.com!'.
+        ' Please, go to https://www.collectorsquest.com/mycq/marketplace for more information)'
+      ),
 
       // Whether to reverse paralel payments if an error occurs with a payment.
       // Values are:  TRUE, FALSE
@@ -356,7 +361,7 @@ class ShoppingOrder extends BaseShoppingOrder
         ));
 
         $hash = sprintf(
-          "%s;%d;%s;%d",
+          '%s;%d;%s;%d',
           $version, $this->getId(),
           hash_hmac('sha1', base64_encode($json), $salt), $time
         );

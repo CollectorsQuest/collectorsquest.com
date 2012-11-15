@@ -13,7 +13,7 @@ all:
     domain: "d2y8496azcwpd6.cloudfront.net"
 
   ice_multimedia:
-    default_adapter: GD
+    default_adapter: ImageMagick
 
   aetn:
     shows:

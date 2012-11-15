@@ -18,6 +18,9 @@ all:
           Comments:
             url: comment
             image: theme/icons/language.png
+          Spam Control:
+            url: spam_control
+            image: theme/icons/trash.png
 
       Collectors:
         icon: user
