@@ -1,12 +1,15 @@
 <?php
+  if (( $header_image = $collector->getMultimediaByRole(CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE) ))
+  {
+    echo image_tag_multimedia($header_image, '620x67', array('class' => 'spacer-bottom-15'));
+  }
+?>
+
+<?php
   use_helper('iceMultimedia');
   $link = link_to('Back to Seller Profile >>', 'collector_by_slug', $collector);
   cq_page_title($title, $link, array());
 ?>
-
-<?php if (( $header_image = $collector->getMultimediaByRole(CollectorPeer::MULTIMEDIA_ROLE_STOREFRONT_HEADER_IMAGE) )): ?>
-  <?php echo ice_image_tag_multimedia($header_image, '620x67'); ?>
-<?php endif; ?>
 
 <p class="spacer-top-15">
   <?= $collector->getSeller()->getSellerSettingsStoreDescription(); ?>

@@ -41,7 +41,7 @@
     </div>
     <?= $form['condition']->renderRow(); ?>
 
-    <?php if (IceGateKeeper::open('collectible_shipping')): ?>
+    <?php if (cqGateKeeper::open('collectible_shipping')): ?>
       <?= $form_shipping_us->renderHiddenFields(); ?>
       <div class="control-group form-inline">
         <label class="control-label" for="">US shipping</label>
@@ -77,7 +77,7 @@
       <div class="control-group form-inline">
         <label class="control-label" for="">International shipping</label>
         <div class="controls flat-rate-controller">
-          <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?>
+          <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?>
           <label class="radio">
             <input name="shipping_rates_zz[shipping_type]" type="radio"
                    value="no_shipping"
@@ -110,7 +110,7 @@
             <?= $form_shipping_zz['flat_rate']->renderError(); ?>
           <?php endif; ?>
           <br />
-          <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?><br />
+          <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?><br />
           <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
           <?= $form_shipping_zz['do_not_ship_to']; ?>
           <?php endif; ?>
@@ -173,7 +173,7 @@ $(document).ready(function()
     }
   });
 
-  <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?>
+  <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?>
   $('#shipping_rates_zz_do_not_ship_to').chosen({
     no_results_text: "No countries found for "
   });
