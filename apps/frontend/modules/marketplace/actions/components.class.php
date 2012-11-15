@@ -228,13 +228,9 @@ class marketplaceComponents extends cqFrontendComponents
       $aetn_shows = sfConfig::get('app_aetn_shows', array());
       $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
 
-      /*
-      * Collectibles are not public right now, when the become public we should use FrontendQuery
-      * $q = FrontendCollectionCollectibleQuery::create()
-      */
-      $q = CollectionCollectibleQuery::create()
+      $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollection($collection)
-      //->isForSale()
+        ->isForSale()
         ->orderByPosition(Criteria::ASC)
         ->orderByUpdatedAt(Criteria::ASC);
 
@@ -270,8 +266,8 @@ class marketplaceComponents extends cqFrontendComponents
 
       if ($wp_post && ($tags = $wp_post->getTags('array')))
       {
-        /* @var $q FrontendCollectibleForSaleQuery */
-        $q = FrontendCollectibleForSaleQuery::create()
+        /* @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectibleQuery::create()
           ->isForSale()
           ->filterByMachineTags($tags, 'market', 'theme')
           ->clearOrderByColumns()
