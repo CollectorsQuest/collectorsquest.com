@@ -18,7 +18,8 @@
         </tr>
       </thead>
       <tbody>
-      <?php if ($pager->getNbResults() > 0): foreach ($pager->getResults() as $i => $collectible_for_sale): ?>
+      <?php if ($pager->getNbResults()): ?>
+        <?php foreach ($pager->getResults() as $i => $collectible_for_sale): ?>
         <?php /* @var $collectible_for_sale CollectibleForSale */ ?>
         <tr>
           <td>
@@ -60,31 +61,33 @@
             <?= $collectible_for_sale->getExpiryDate($format = 'F j, Y'); ?>
           </td>
           <td class="status">
-            <?php if ($collectible_for_sale->getIsSold()) : ?>
+            <?php if ($collectible_for_sale->getIsSold()): ?>
               Sold
-            <?php elseif ($collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()) : ?>
+            <?php elseif ($collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()): ?>
               Active
-            <?php elseif(!$collectible_for_sale->hasActiveCredit() && $collectible_for_sale->isForSale()) : ?>
+            <?php elseif(!$collectible_for_sale->hasActiveCredit() && $collectible_for_sale->isForSale()): ?>
               Expired
-            <?php else : ?>
+            <?php else: ?>
               Inactive
             <?php endif; ?>
           </td>
           <td>
-            <?php if ($collectible_for_sale->getIsSold()) : ?>
+            <?php if ($collectible_for_sale->getIsSold()): ?>
               -
             <?php elseif ($collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()) : ?>
               <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
-                 class="deactivate btn btn-mini" onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
+                 class="deactivate btn btn-mini"
+                 onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
                 <i class="icon-minus-sign"></i>&nbsp;Deactivate
               </a>
             <?php elseif (!$seller->hasPackageCredits()) : ?>
               <a href="<?php echo url_for('@seller_packages'); ?>" class="btn btn-mini">
                 <i class="icon-plus-sign"></i>&nbsp;Buy credits
               </a>
-            <?php else : ?>
+            <?php else: ?>
             <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
-               class="relist btn btn-mini" onclick="return confirm('Are you sure you sure you want to re-list this item?')">
+               class="relist btn btn-mini"
+               onclick="return confirm('Are you sure you sure you want to re-list this item?')">
               <i class="icon-undo"></i>&nbsp;Re-list
             </a>
             <?php endif; ?>
@@ -97,7 +100,7 @@
             items for sale yet.
         </td>
       </tr>
-        <?php else : ?>
+        <?php else: ?>
       <tr>
         <td colspan="5">
             No <?= $filter_by == 'all' ? '' : '<strong>' . $filter_by. '</strong>' ?>
