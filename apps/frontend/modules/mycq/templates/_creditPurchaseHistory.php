@@ -59,9 +59,17 @@
         case PackageTransactionPeer::PAYMENT_STATUS_PAID :
           $class = '';
           if ($package_transaction->getCredits() - $package_transaction->getCreditsUsed() <= 5)
+          {
             $class = 'alert';
+          }
+          if (strtotime('-5 days', $package_transaction->getExpiryDate('U')) < time())
+          {
+            $class = 'alert';
+          }
           if ($package_transaction->getExpiryDate('YmdHis') < date('YmdHis'))
+          {
             $class = 'expired';
+          }
           break;
         case PackageTransactionPeer::PAYMENT_STATUS_PROCESSING :
           $class = 'processing';
@@ -70,7 +78,9 @@
     ?>
   <tr class=" <?= $class ?>">
     <td><?= $package_transaction->getPackage()->getPackageName(); ?></td>
-    <td><?= $package_transaction->getCredits(); ?></td>
+    <td><?= $package_transaction->getCredits() < 9999
+      ? $package_transaction->getCredits()
+      : 'unlimited'; ?></td>
     <td><?= $package_transaction->getCreditsUsed(); ?></td>
     <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
     <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
