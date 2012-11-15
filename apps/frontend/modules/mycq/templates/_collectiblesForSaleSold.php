@@ -9,7 +9,7 @@
     echo link_to(image_tag_collectible(
       $shopping_order->getCollectible(), '140x140',
       array('width' => 130, 'height' => 130)
-    ), 'mycq_collectible_by_slug', $shopping_order->getCollectible());
+    ), '@mycq_transaction?uuid=' . $shopping_order->getUuid());
   ?>
   <span class="sold">SOLD</span>
   <p>
@@ -18,7 +18,7 @@
         cqStatic::truncateText(
           $shopping_order->getCollectible()->getName(), 36, '...', true
         ),
-        'mycq_collectible_by_slug', $shopping_order->getCollectible(),
+        '@mycq_transaction?uuid=' . $shopping_order->getUuid(),
         array('class' => 'target')
       );
     ?>

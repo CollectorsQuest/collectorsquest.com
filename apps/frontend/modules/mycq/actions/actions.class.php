@@ -902,6 +902,48 @@ class mycqActions extends cqFrontendActions
     $this->redirect('mycq_collectible_by_slug', $collectible);
   }
 
+
+  public function executeTransaction()
+  {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    $this->shopping_order = $this->getRoute()->getObject();
+
+    $this->collectible = $this->shopping_order->getCollectible();
+
+    $this->setTemplate('collectible');
+
+    $this->shopping_payment = $this->shopping_order->getShoppingPayment();
+
+    $this->buyer = $this->shopping_order->getBuyer();
+    $this->seller = $this->shopping_order->getSeller();
+
+    $subject = sprintf(
+      'Regarding order %s (%s)',
+      $this->shopping_order->getUuid(), $this->collectible->getName()
+    );
+
+    if ($this->getCollector()->isOwnerOf($this->collectible))
+    {
+      $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+        $this->seller, $this->buyer ?: $this->shopping_order->getBuyerEmail(),
+        $subject, array('attach' => array($this->collectible))
+      );
+
+      return 'Sold';
+    }
+    else if ($this->getCollector()->isOwnerOf($this->buyer))
+    {
+      $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+        $this->buyer, $this->seller, $subject, array('attach' => $this->collectible)
+      );
+
+      return 'Purchased';
+    }
+    
+    $this->forward404();
+  }
+
   public function executeShoppingOrderTracking(sfWebRequest $request)
   {
     /** @var $shopping_order ShoppingOrder */
@@ -945,7 +987,7 @@ class mycqActions extends cqFrontendActions
         ));
       }
 
-      $this->redirect('mycq_collectible_by_slug', $shopping_order->getCollectible());
+      $this->redirect('@mycq_transaction?uuid=' . $shopping_order->getUuid());
     }
 
     return sfView::SUCCESS;
