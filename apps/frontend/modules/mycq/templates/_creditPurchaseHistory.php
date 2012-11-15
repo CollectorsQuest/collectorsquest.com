@@ -6,11 +6,12 @@
   */
 ?>
 
-<?php if(!$seller->hasPackageCredits()): ?>
+<?php if (!$seller->getCreditsLeft() <= 5): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
   <p class="spacer-top">
-    Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+    Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
+      lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
   </p>
   <br/>
   <a class="btn btn-primary" href="<?php echo url_for('@seller_packages') ?>">Buy Credits</a>
@@ -53,7 +54,8 @@
   </tr>
   </thead>
   <tbody>
-  <?php if (count($package_transactions)) : foreach ($package_transactions as $package_transaction) : ?>
+  <?php if (count($package_transactions)): ?>
+  <?php foreach ($package_transactions as $package_transaction): ?>
     <?php
       switch ($package_transaction->getPaymentStatus())
       {
@@ -104,7 +106,7 @@
       ?>
     </td>
   </tr>
-    <?php endforeach; else : ?>
+    <?php endforeach; else: ?>
   <tr>
     <td colspan="6">
       You have not purchased any packages yet.
