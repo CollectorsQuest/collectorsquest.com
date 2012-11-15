@@ -166,7 +166,7 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    if (IceGateKeeper::locked('aetn_franks_picks', 'page'))
+    if (cqGateKeeper::locked('aetn_franks_picks', 'page'))
     {
       $this->menu = array();
     }
@@ -222,7 +222,7 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $page integer */
     $page = (integer) $this->getRequestParameter('p', 1);
 
-    if ($t == 0 && IceGateKeeper::open('aetn_franks_picks', 'page'))
+    if ($t == 0 && cqGateKeeper::open('aetn_franks_picks', 'page'))
     {
       /* @var $aetn_shows array */
       $aetn_shows = sfConfig::get('app_aetn_shows', array());
@@ -250,7 +250,7 @@ class marketplaceComponents extends cqFrontendComponents
     }
     else
     {
-      $offset = IceGateKeeper::open('aetn_franks_picks', 'page') ? $t-1 : $t;
+      $offset = cqGateKeeper::open('aetn_franks_picks', 'page') ? $t-1 : $t;
 
       /* @var $q wpPostQuery */
       $q = wpPostQuery::create()

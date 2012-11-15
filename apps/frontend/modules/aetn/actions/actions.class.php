@@ -174,7 +174,7 @@ class aetnActions extends cqFrontendActions
   public function executeFranksPicks(sfWebRequest $request)
   {
     // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_franks_picks', 'page'));
+    $this->forward404Unless(cqGateKeeper::open('aetn_franks_picks', 'page'));
 
     /* @var $aetn_shows array */
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
