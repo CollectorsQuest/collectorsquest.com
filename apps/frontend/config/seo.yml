@@ -30,6 +30,12 @@ seo:
         Check out these collectors items from the American Pickers collection.
         CollectorsQuest.com gives you an inside look at the American Pickers collectibles.
 
+    franksPicks:
+      title: Frank's Picks | TV Show Collectibles | Collectors Quest
+      description: |
+        Check out these collectors items from the Frank's Picks collection.
+        CollectorsQuest.com gives you an inside look at the Frank's Picks collectibles.
+
     americanRestoration:
       title: American Restoration | TV Show Collectibles | Collectors Quest
       description: |
@@ -172,13 +178,15 @@ seo:
         Find the collectible, vintage or antique item you’ve been looking for from trusted
         sellers in the Collectors Quest marketplace.
 
-  collectibles:
-    collectorList:
+  seller:
+    store:
       model: true
       title:
-       - %ShopTitle%
-       - %ShopTitle% | Collectors Quest
-       - %ShopTitle% by %DisplayName% | Collectors Quest
+        - %StoreTitle%
+        - %StoreTitle% | Collectors Quest
+        - %StoreTitle% by %DisplayName% | Collectors Quest
+      description:
+        - %StoreDescription%
 
   misc:
     guideToCollecting:
