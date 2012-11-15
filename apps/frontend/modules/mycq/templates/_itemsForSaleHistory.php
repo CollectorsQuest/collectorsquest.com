@@ -126,7 +126,9 @@
     );
     ?>
   </div>
-</div> <!-- #items-for-sale -->
+  <?php endif; ?>
+</div>
+<!-- #items-for-sale -->
 
 <script>
   $(document).ready(function()
@@ -189,6 +191,4 @@
 
   });
 </script>
-
-<?php endif; ?>
 
