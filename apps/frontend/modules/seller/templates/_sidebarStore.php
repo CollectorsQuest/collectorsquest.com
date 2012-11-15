@@ -9,6 +9,7 @@
  * @var $store_refunds              string
  * @var $store_return_policy        string
  * @var $store_additional_policies  string
+ * @var  $sf_user                   cqFrontendUser
  */
 ?>
 
@@ -85,14 +86,19 @@
   </div>
 </div>
 
+
 <?php
-  include_component(
-    '_sidebar', 'widgetCollector',
-    array(
-      'collector' => $collector,
-      'limit' => 0, 'message' => true
-    )
-  );
+  if (!$sf_user->isOwnerOf($collector))
+  {
+    include_component(
+      '_sidebar', 'widgetCollector',
+      array(
+        'collector' => $collector,
+        'limit' => 0, 'message' => true, 'message_only' => true,
+        'title' => 'Contact the Seller',
+      )
+    );
+  }
 ?>
 
 <?php
