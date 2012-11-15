@@ -92,8 +92,6 @@
 
         <?php include_component('mycq', 'itemsForSaleHistory', array('filter_by' => $filter_by)); ?>
 
-      </div>
-
       </div> <!-- .tab-content-inner.spacer -->
     </div> <!-- .tab-pane.active -->
   </div> <!-- .tab-content -->
