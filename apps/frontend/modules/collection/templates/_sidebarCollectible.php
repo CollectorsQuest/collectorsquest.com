@@ -9,70 +9,17 @@
 ?>
 
 <?php if (isset($aetn_show)): ?>
-  <?php
-    if($collectible->isForSale()):
-      include_component(
-        '_sidebar', 'widgetCollectibleBuy',
-        array('collectible' => $collectible, 'height' => &$height)
-      );
-      include_component(
-        '_sidebar', 'widgetCollector',
-        array(
-          'collector' => $collectible->getCollector(),
-          'collectible' => $collectible,
-          'limit' => 0, 'message' => true, 'height' => &$height
-        )
-      );
-  ?>
-      <div style="height: 20px;"></div>
-  <?php else: ?>
-    <div class="banner-sidebar-top">
-      <?php cq_dart_slot('300x250', 'collections', str_replace('_', '', $aetn_show['id']), 'sidebar'); ?>
-    </div>
-  <?php endif; ?>
 
   <?php
-    if ($aetn_show['id'] === 'pawn_stars'):
-      include_partial('aetn/partials/americanPickersPromo_300x90');
-      include_partial('aetn/partials/americanRestorationPromo_300x90');
-
-    elseif ($aetn_show['id'] === 'american_pickers'):
-      include_partial('aetn/partials/pawnStarsPromo_300x90');
-      include_partial('aetn/partials/americanRestorationPromo_300x90');
-
-    elseif ($aetn_show['id'] === 'picked_off'):
-      include_partial('aetn/partials/pawnStarsPromo_300x90');
-      include_partial('aetn/partials/americanPickersPromo_300x90');
-
-    elseif ($aetn_show['id'] === 'american_restoration'):
-      include_partial('aetn/partials/pawnStarsPromo_300x90');
-      include_partial('aetn/partials/americanPickersPromo_300x90');
-
-    elseif ($aetn_show['id'] === 'franks_picks'):
-      include_partial('aetn/partials/pawnStarsPromo_300x90');
-      include_partial('aetn/partials/americanRestorationPromo_300x90');
-    endif;
+    include_partial(
+      'aetn/sidebarCollectible',
+      array(
+        'aetn_show' => $aetn_show,
+        'collectible' => $collectible,
+        'height' => &$height
+      )
+    );
   ?>
-
-  <?php
-    // height of add + 2 promo banners and all margins
-    $height->value -= 530;
-  ?>
-
-  <?php
-    if (!$collectible->isForSale())
-    {
-      include_component(
-        '_sidebar', 'widgetCollectiblesForSale',
-        array(
-          'collectible' => $collectible, 'limit' => 4,
-          'fallback' => 'random', 'height' => &$height
-        )
-      );
-    }
-  ?>
-
-  <?php include_component('_sidebar', 'widgetMoreHistory', array('height' => &$height)); ?>
 
 <?php else: ?>
 

@@ -314,7 +314,7 @@
     );
   }
 
-  if (!empty($aetn_show))
+  if (!empty($aetn_show) && $aetn_show['id'] != 'franks_picks')
   {
     include_partial(
       'collection/aetn_collectible_related',
