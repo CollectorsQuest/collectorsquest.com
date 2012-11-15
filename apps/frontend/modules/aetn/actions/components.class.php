@@ -53,7 +53,7 @@ class aetnComponents extends cqFrontendComponents
 
   public function executeFranksPicksCollectiblesForSale()
   {
-    /* @var $franks_picks array */
+    /* @var $aetn_shows array */
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
 
     $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
@@ -68,20 +68,23 @@ class aetnComponents extends cqFrontendComponents
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
-    $p = $this->getRequestParameter('p', 1);
+    /* @var $page integer */
+    $page = (integer) $this->getRequestParameter('p', 1);
 
     $pager = new PropelModelPager($q, 12);
-    $pager->setPage($p);
+    $pager->setPage($page);
     $pager->init();
     $this->pager = $pager;
 
     $this->collection = $collection;
 
     // if we are trying to get an out of bounds page
-    if ($p > 1 && $p > $pager->getLastPage())
+    if ($page > 1 && $page > $pager->getLastPage())
     {
       // return empty response
       return sfView::NONE;
     }
+
+    return sfView::SUCCESS;
   }
 }

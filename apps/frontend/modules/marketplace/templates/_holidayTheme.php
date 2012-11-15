@@ -7,14 +7,32 @@
     <div class="row-content" style="margin-left: 24px;">
 
       <?php if ($pager->getPage() === 1): ?>
-      <div id="collectible_for_sale_0_grid_view_square_big"
-           class="span6 collectible_for_sale_grid_view_square_big fade-white link"
-          style='background: url(<?= cq_image_src('frontend/misc/holiday-market/holiday-item-background.jpg') ?>) no-repeat;'>
+        <?php if (!isset($wp_post)): ?>
+          <div id="collectible_for_sale_0_grid_view_square_big"
+               class="span6 collectible_for_sale_grid_view_square_big"'>
 
-        <div style="color: #fff; padding: 20px; font-size: 14px;">
-          <?= $wp_post->getPostContent(); ?>
+               <?= ice_image_tag_placeholder('296x296'); ?>
+          </div>
+          <div id="collectible_for_sale_0_grid_view_square_big"
+               class="span6 collectible_for_sale_grid_view_square_big"'>
+
+               <?= ice_image_tag_placeholder('296x296'); ?>
+          </div>
+          <div id="collectible_for_sale_0_grid_view_square_big"
+               class="span6 collectible_for_sale_grid_view_square_big"'>
+
+               <?= ice_image_tag_placeholder('296x296'); ?>
+          </div>
+        <?php else: ?>
+        <div id="collectible_for_sale_0_grid_view_square_big"
+             class="span6 collectible_for_sale_grid_view_square_big fade-white link"
+            style='background: url(<?= cq_image_src('frontend/misc/holiday-market/holiday-item-background.jpg') ?>) no-repeat;'>
+
+          <div style="color: #fff; padding: 20px; font-size: 14px;">
+            <?= $wp_post->getPostContent(); ?>
+          </div>
         </div>
-      </div>
+        <?php endif; ?>
       <?php endif; ?>
 
       <?php

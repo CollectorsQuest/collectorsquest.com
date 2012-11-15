@@ -166,7 +166,7 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    if (true)
+    if (IceGateKeeper::locked('aetn_franks_picks', 'page'))
     {
       $this->menu = array();
     }
@@ -222,42 +222,73 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $page integer */
     $page = (integer) $this->getRequestParameter('p', 1);
 
-    /* @var $q wpPostQuery */
-    $q = wpPostQuery::create()
-      ->filterByPostType('market_theme')
-      ->filterByPostParent(0)
-      ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
-      ->orderByPostDate(Criteria::DESC)
-      ->offset($t);
-
-    if (sfConfig::get('sf_environment') === 'prod')
+    if ($t == 0 && IceGateKeeper::open('aetn_franks_picks', 'page'))
     {
-      $q->filterByPostStatus('publish');
-    }
+      /* @var $aetn_shows array */
+      $aetn_shows = sfConfig::get('app_aetn_shows', array());
+      $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
 
-    /* @var $wp_post wpPost */
-    $wp_post = $q->findOne();
-
-    if ($wp_post && ($tags = $wp_post->getTags('array')))
-    {
-      /* @var $q FrontendCollectibleForSaleQuery */
-      $q = FrontendCollectibleForSaleQuery::create()
-        ->isForSale()
-        ->filterByMachineTags($tags, 'market', 'theme')
-        ->clearOrderByColumns()
-        ->orderByAverageRating(Criteria::DESC)
-        ->orderByUpdatedAt(Criteria::DESC);
+      /*
+      * Collectibles are not public right now, when the become public we should use FrontendQuery
+      * $q = FrontendCollectionCollectibleQuery::create()
+      */
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+      //->isForSale()
+        ->orderByPosition(Criteria::ASC)
+        ->orderByUpdatedAt(Criteria::ASC);
 
       $pager = new PropelModelPager($q);
       $pager->setPage($page);
-      $pager->setMaxPerPage(($page === 1) ? 5 : 6);
+      $pager->setMaxPerPage(($page === 1) ? 3 : 6);
       $pager->init();
 
       $this->pager = $pager;
-      $this->wp_post = $wp_post;
       $this->t = $t;
 
       return sfView::SUCCESS;
+    }
+    else
+    {
+      $offset = IceGateKeeper::open('aetn_franks_picks', 'page') ? $t-1 : $t;
+
+      /* @var $q wpPostQuery */
+      $q = wpPostQuery::create()
+        ->filterByPostType('market_theme')
+        ->filterByPostParent(0)
+        ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
+        ->orderByPostDate(Criteria::DESC)
+        ->offset($offset);
+
+      if (sfConfig::get('sf_environment') === 'prod')
+      {
+        $q->filterByPostStatus('publish');
+      }
+
+      /* @var $wp_post wpPost */
+      $wp_post = $q->findOne();
+
+      if ($wp_post && ($tags = $wp_post->getTags('array')))
+      {
+        /* @var $q FrontendCollectibleForSaleQuery */
+        $q = FrontendCollectibleForSaleQuery::create()
+          ->isForSale()
+          ->filterByMachineTags($tags, 'market', 'theme')
+          ->clearOrderByColumns()
+          ->orderByAverageRating(Criteria::DESC)
+          ->orderByUpdatedAt(Criteria::DESC);
+
+        $pager = new PropelModelPager($q);
+        $pager->setPage($page);
+        $pager->setMaxPerPage(($page === 1) ? 5 : 6);
+        $pager->init();
+
+        $this->pager = $pager;
+        $this->wp_post = $wp_post;
+        $this->t = $t;
+
+        return sfView::SUCCESS;
+      }
     }
 
     return sfView::NONE;

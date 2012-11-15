@@ -176,9 +176,8 @@ class aetnActions extends cqFrontendActions
     // Check if the page is publicly available yet
     $this->forward404Unless(IceGateKeeper::open('aetn_franks_picks', 'page'));
 
-    /* @var $franks_picks array */
+    /* @var $aetn_shows array */
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
-
     $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
     $this->forward404Unless($collection instanceof CollectorCollection);
 
