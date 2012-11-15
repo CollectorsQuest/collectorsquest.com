@@ -607,6 +607,13 @@ class shoppingActions extends cqFrontendActions
         /* @var $transaction_id string */
         $transaction_id = (string) $result['PaymentInfo']['TransactionID'];
 
+        /**
+         * Let's reload both the ShoppingOrder and ShoppingPayment
+         * from the database
+         */
+        $shopping_order->reload(false);
+        $shopping_payment->reload(false);
+
         if ($shopping_payment->getStatus() === ShoppingPaymentPeer::STATUS_INPROGRESS)
         {
           $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CONFIRMED);
