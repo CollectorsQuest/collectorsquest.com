@@ -601,12 +601,6 @@ class shoppingActions extends cqFrontendActions
           return 'Redirect';
         }
 
-        /* @var $status string */
-        $status = strtoupper($result['Status']);
-
-        /* @var $transaction_id string */
-        $transaction_id = (string) $result['PaymentInfo']['TransactionID'];
-
         /**
          * Let's reload both the ShoppingOrder and ShoppingPayment
          * from the database
@@ -617,11 +611,8 @@ class shoppingActions extends cqFrontendActions
         if ($shopping_payment->getStatus() === ShoppingPaymentPeer::STATUS_INPROGRESS)
         {
           $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CONFIRMED);
+          $shopping_payment->save();
         }
-        $shopping_payment->setProperty('paypal.transaction_id', $transaction_id);
-        $shopping_payment->setProperty('paypal.sender_email', $result['SenderEmail']);
-        $shopping_payment->setProperty('paypal.status', $status);
-        $shopping_payment->save();
 
         // Remove the CollectibleForSale from the shopping cart
         $q = ShoppingCartCollectibleQuery::create()
@@ -681,32 +672,41 @@ class shoppingActions extends cqFrontendActions
           // Try to process the IPN post
           if ($ipn->processIpn())
           {
-            /* @var $status string */
-            $status = (string) $request->getParameter('status', $request->getParameter('payment_status'));
-            $status = strtoupper($status);
+            /**
+             * This will properly populate the $_POST from the IPN request
+             *
+             * @see http://tinyurl.com/cmgaj6o
+             */
+            $post = array();
+            parse_str(preg_replace('/(\.(\w*))=/i', '%5B$2%5D=', file_get_contents('php://input')), $post);
 
             /* @var $transactions array */
-            $transaction = (array) $request->getParameter('transaction', array());
+            $transaction = $post['transaction'] ?: array();
 
             /* @var $transaction_id string */
-            $transaction_id = $transaction[0]['id'] ?: $transaction['id'];
+            $transaction_id = $transaction[0]['id'] ?: $transaction[0]['id_for_sender_txn'];
 
-            $shopping_payment->setProperty('paypal.payment_details', serialize($_POST));
+            /* @var $status string */
+            $status = (string) $request->getParameter('status', $post['status']);
+            $status = strtoupper($status);
+
+            $shopping_payment->setProperty('paypal.payment_details', serialize($post));
+            $shopping_payment->setProperty('paypal.transaction_id', $transaction_id);
             $shopping_payment->setProperty('paypal.sender_email', $request->getParameter('sender_email'));
             $shopping_payment->setProperty('paypal.status', $status);
             $shopping_payment->save();
 
             if ('COMPLETED' === $status)
             {
-              $this->orderComplete($shopping_order, $transaction_id);
+              $this->orderComplete($shopping_order);
             }
             else if (in_array($status, array('CANCELED', 'VOIDED', 'DENIED', 'FAILED', 'REFUSED')))
             {
-              $this->orderFailed($shopping_order, $transaction_id);
+              $this->orderFailed($shopping_order);
             }
             else if (in_array($status, array('REFUNDED', 'REFUSED', 'REVERSED', 'UNCLAIMED', 'EXPIRED')))
             {
-              $this->orderRefunded($shopping_order, $transaction_id);
+              $this->orderRefunded($shopping_order);
             }
             else
             {
@@ -731,12 +731,10 @@ class shoppingActions extends cqFrontendActions
    * All actions for when the Shopping Order is complete
    *
    * @param ShoppingOrder $shopping_order
-   * @param string $transaction_id
    */
-  private function orderComplete(ShoppingOrder $shopping_order, $transaction_id = null)
+  private function orderComplete(ShoppingOrder $shopping_order)
   {
     $shopping_payment = $shopping_order->getShoppingPayment();
-    $shopping_payment->setProperty('paypal.transaction_id', $transaction_id);
     $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
     $shopping_payment->save();
 
@@ -783,12 +781,10 @@ class shoppingActions extends cqFrontendActions
    * All actions for when the Shopping Order has failed
    *
    * @param ShoppingOrder $shopping_order
-   * @param string $transaction_id
    */
-  private function orderFailed(ShoppingOrder $shopping_order, $transaction_id = null)
+  private function orderFailed(ShoppingOrder $shopping_order)
   {
     $shopping_payment = $shopping_order->getShoppingPayment();
-    $shopping_payment->setProperty('paypal.transaction_id', $transaction_id);
     $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
     $shopping_payment->save();
 
@@ -804,7 +800,7 @@ class shoppingActions extends cqFrontendActions
       'to' => $shopping_order->getBuyerEmail(),
       'params' => array(
         'buyer_name' => $shopping_order->getShippingFullName(),
-        'transaction_id' => $transaction_id,
+        'transaction_id' => $shopping_payment->getProperty('paypal.transaction_id'),
         'oCollectible' => $shopping_order->getCollectible(),
         'oShoppingOrder' => $shopping_order
       )
@@ -815,12 +811,10 @@ class shoppingActions extends cqFrontendActions
    * All actions for when the Shopping Payment has been refunded
    *
    * @param ShoppingOrder $shopping_order
-   * @param string $transaction_id
    */
-  private function orderRefunded(ShoppingOrder $shopping_order, $transaction_id = null)
+  private function orderRefunded(ShoppingOrder $shopping_order)
   {
     $shopping_payment = $shopping_order->getShoppingPayment();
-    $shopping_payment->setProperty('paypal.transaction_id', $transaction_id);
     $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CANCELLED);
     $shopping_payment->save();
 
@@ -836,7 +830,7 @@ class shoppingActions extends cqFrontendActions
       'to' => $shopping_order->getBuyerEmail(),
       'params' => array(
         'buyer_name'  => $shopping_order->getShippingFullName(),
-        'transaction_id' => $transaction_id,
+        'transaction_id' => $shopping_payment->getProperty('paypal.transaction_id'),
         'oSeller' => $shopping_order->getSeller(),
         'oCollectible' => $shopping_order->getCollectible(),
         'oShoppingOrder' => $shopping_order
