@@ -21,6 +21,7 @@ ice_breadcrumbs:
     pawnStars: [{ name: 'As Seen on Pawn Stars' }]
     pickedOff: [{ name: 'As Seen on Picked Off' }]
     storageWars: [{ name: 'As Seen on Storage Wars' }]
+    franksPicks: [{ name: "As Seen on Frank's Picks" }]
 
   collection:
     index:
@@ -43,11 +44,6 @@ ice_breadcrumbs:
     signup:
       - { name: 'Collectors', route: collectors }
       - { name: 'Signup' }
-
-  collectibles:
-    collectorList:
-      - { name: 'Collectors', route: collectors }
-      - { name: '%DisplayName%', route: collector_by_slug, model: true, subobject: Collector, title: 'Collector: %DisplayName%' }
 
   collectors:
     index: [{ name: 'Collectors' }]
@@ -148,10 +144,11 @@ ice_breadcrumbs:
       - { name: 'Read message' }
 
   seller:
-    _prepend:
-      - { name: 'My Account', route: mycq }
     packages:
+      - { name: 'My Account', route: mycq }
       - { name: 'Seller packages' }
+    store:
+      - { name: '%DisplayName%', route: collector_by_slug, model: true, subobject: Collector, title: 'Collector: %DisplayName%' }
 
   shopping:
     _prepend:

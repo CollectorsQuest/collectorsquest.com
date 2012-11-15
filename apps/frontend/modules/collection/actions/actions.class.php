@@ -329,7 +329,16 @@ class collectionActions extends cqFrontendActions
 
     foreach ($aetn_shows as $id => $show)
     {
-      if ($collection->getId() === $show['collection'])
+      if (isset ($show['franks_picks']) && $collection->getId() === $show['franks_picks'])
+      {
+        $this->aetn_show = $show;
+        $this->aetn_show['name'] = 'Frank\'s Picks';
+        $this->aetn_show['collection'] = $show['franks_picks'];
+        $this->aetn_show['id'] = 'franks_picks';
+
+        break;
+      }
+      elseif ($collection->getId() === $show['collection'])
       {
         $this->aetn_show = $show;
         $this->aetn_show['id'] = $id;

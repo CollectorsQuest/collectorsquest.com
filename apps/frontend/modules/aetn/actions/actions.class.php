@@ -176,10 +176,9 @@ class aetnActions extends cqFrontendActions
     // Check if the page is publicly available yet
     $this->forward404Unless(cqGateKeeper::open('aetn_franks_picks', 'page'));
 
-    /* @var $franks_picks array */
-    $franks_picks = sfConfig::get('app_aetn_franks_picks', array());
-
-    $collection = CollectorCollectionQuery::create()->findOneById($franks_picks['collection']);
+    /* @var $aetn_shows array */
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
+    $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
     $this->forward404Unless($collection instanceof CollectorCollection);
 
     /**
@@ -190,19 +189,6 @@ class aetnActions extends cqFrontendActions
 //      $collection->setNumViews($collection->getNumViews() + 1);
 //      $collection->save();
 //    }
-
-    $q = FrontendCollectionCollectibleQuery::create()
-      ->filterByCollectionId($franks_picks['collection'])
-      ->isForSale()
-      ->orderByPosition(Criteria::ASC)
-      ->orderByUpdatedAt(Criteria::ASC);
-
-    $pager = new PropelModelPager($q, 12);
-    $pager->setPage($request->getParameter('page', 1));
-    $pager->init();
-    $this->pager = $pager;
-
-    $this->collection = $collection;
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
