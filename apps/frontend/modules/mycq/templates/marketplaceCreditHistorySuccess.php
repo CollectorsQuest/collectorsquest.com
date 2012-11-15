@@ -107,11 +107,11 @@
 
     $form.submit(function()
     {
-      $('#items-for-sale').showLoading();
-      var filter_by = $('.btn-filter.active').attr('id').replace('filter-items-', '');
-
-      $('#items-for-sale').load(
-        $url + '?p=1&filter_by=' + filter_by, $form.serialize(),
+        var filter_by = $('.btn-filter.active').attr('id').replace('filter-items-', '');
+        $('#items-for-sale')
+          .showLoading()
+          .load(
+        $url + '?p=1', $form.serialize(),
         function(data) {
           $('#items-for-sale').hideLoading();
         }

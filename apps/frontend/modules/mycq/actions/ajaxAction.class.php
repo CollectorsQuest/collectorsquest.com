@@ -813,10 +813,13 @@ class ajaxAction extends cqAjaxAction
     $collectible_for_sale = CollectibleForSaleQuery::create()
       ->findOneByCollectibleId($request->getParameter('id'));
 
-    try {
+    try
+    {
       // try to create a transaction credit for this collectible
       PackageTransactionCreditPeer::findActiveOrCreateForCollectible($collectible_for_sale->getCollectible());
-    } catch (CollectorHasNoCreditsAvailableException $e) {
+    }
+    catch (CollectorHasNoCreditsAvailableException $e)
+    {
       // and if for some reason there were no available credits
       return 'No credits available!';
     }
