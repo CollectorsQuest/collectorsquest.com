@@ -758,6 +758,8 @@ class shoppingActions extends cqFrontendActions
     // The Collectible has sold, mark it as sold (legacy)
     $shopping_order->getCollectibleForSale()->setIsSold(true);
     $shopping_order->getCollectibleForSale()->save();
+    // Put collectible to archive
+    $shopping_order->getCollectible()->delete();
 
     /**
      * Send emails to both the seller and the buyer

@@ -9,6 +9,11 @@ class ShoppingOrder extends BaseShoppingOrder
   protected $aShippingReference;
 
   /**
+   * @var        Collectible
+   */
+  protected $aCollectible;
+
+  /**
    * @param  null|PropelPDO  $con
    */
   public function postSave(PropelPDO $con = null)
@@ -359,6 +364,69 @@ class ShoppingOrder extends BaseShoppingOrder
     }
 
     return $hash;
+  }
+
+  public function setCollectible(Collectible $v = null)
+  {
+    if ($v === null)
+    {
+      $this->setCollectibleId(null);
+    }
+    else
+    {
+      $this->setCollectibleId($v->getId());
+    }
+
+    $this->aCollectible = $v;
+
+    // Add binding for other direction of this n:n relationship.
+    // If this object has already been added to the Collectible object, it will not be re-added.
+    if ($v !== null)
+    {
+      $v->addShoppingOrder($this);
+    }
+
+    return $this;
+  }
+
+
+  /**
+   * Get Collectible object related by collectible ID
+   *
+   * @param      PropelPDO Optional Connection object.
+   * @return     Collectible The associated Collectible object.
+   * @throws     PropelException
+   */
+  public function getCollectible(PropelPDO $con = null)
+  {
+    if ($this->aCollectible === null && ($this->collectible_id !== null))
+    {
+      $collectible = CollectibleQuery::create()->findPk($this->collectible_id, $con);
+
+      if (!$collectible)
+      {
+        $collectible_archive = CollectibleArchiveQuery::create()->findPk($this->collectible_id, $con);
+        if ($collectible_archive)
+        {
+          $collectible = new Collectible();
+          $collectible->populateFromArchive($collectible_archive, true);
+
+          $collectible_for_sale_archive =
+            CollectibleForSaleArchiveQuery::create()->findPk($this->collectible_id, $con);
+          if ($collectible_for_sale_archive)
+          {
+            $collectible_for_sale = new CollectibleForSale();
+            $collectible_for_sale->populateFromArchive($collectible_for_sale_archive, true);
+            $collectible_for_sale->setCollectible($collectible);
+          }
+          // TO DO Add multimedia
+        }
+      }
+
+      $this->aCollectible = $collectible;
+    }
+
+    return $this->aCollectible;
   }
 
 }
