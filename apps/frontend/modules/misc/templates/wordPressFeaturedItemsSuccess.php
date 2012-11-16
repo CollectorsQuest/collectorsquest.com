@@ -4,8 +4,14 @@
     array('class' => 'row-fluid header-bar')
   );
 ?>
+
 <div class="spacer-bottom-15">
-  <?= cq_image_tag($wp_post->getPostThumbnail('original'), array('alt' => $wp_post->getPostTitle())); ?>
+  <?php
+    if ($wp_post_image = $wp_post->getPostThumbnail('original'))
+    {
+      echo cq_image_tag($wp_post_image, array('alt' => $wp_post->getPostTitle()));
+    }
+  ?>
 </div>
 
 <p class="truncate js-hide">
