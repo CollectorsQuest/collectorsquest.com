@@ -97,7 +97,7 @@ Use [shortcodes](http://support.wordpress.com/shortcodes/) to embed your media. 
 * Enhancement: Open Graph: Provides more detailed information about your posts to social networks.
 * Enhancement: JSON API: New parameters for creating and viewing posts.
 * Enhancement: Improved compatibility for the upcoming WordPress 3.5.
-* Bug Fix: Sharing: When you set your sharing buttons to use icon, text, or icon + text mode, the Google+ button will display accordingly.
+* Bug Fix: Sharing: When you set your sharing buttons to use icon, text, or icon + text mode, the Google+ button will display accordingly. 
 * Bug Fix: Gravatar Profile Widget: Allow basic HTML to be displayed.
 * Bug Fix: Twitter Widget: Error handling fixes.
 * Bug Fix: Sharing: Improved theme compatibility

@@ -1172,6 +1172,9 @@ jQuery(document).ready(function($) {
 	if ( document.location.hash && document.location.hash.match(/jp-carousel-(\d+)/) ) {
 		$(document).ready(function(){
 			var gallery = $('div.gallery, div.tiled-gallery'), index = -1, n = document.location.hash.match(/jp-carousel-(\d+)/);
+			
+			if ( ! $(this).jp_carousel( 'testForData', gallery ) )
+				return;
 
 			if ( ! $(this).jp_carousel( 'testForData', gallery ) )
 				return;

@@ -151,7 +151,7 @@ function bbp_get_template_locations( $templates = array() ) {
  * @since bbPress (r3738)
  *
  * @param array $templates
- * @return array()
+ * @return array() 
  */
 function bbp_add_template_locations( $templates = array() ) {
 	$retval = array();
@@ -313,7 +313,7 @@ function bbp_parse_query( $posts_query ) {
 
 		// Get the post type from the main query loop
 		$post_type = $posts_query->get( 'post_type' );
-
+		
 		// Check which post_type we are editing, if any
 		if ( !empty( $post_type ) ) {
 			switch( $post_type ) {

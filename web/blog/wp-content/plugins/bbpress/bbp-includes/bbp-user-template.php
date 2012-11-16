@@ -473,7 +473,7 @@ function bbp_user_display_role( $user_id = 0 ) {
 
 					// Load roles if not set
 					if ( !isset( $wp_roles ) )
-						$wp_roles = new WP_Roles();
+						$wp_roles = new WP_Roles();					
 
 					// Get a translated role name
 					if ( !empty( $wp_roles->role_names[$user_role] ) )

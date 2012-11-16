@@ -561,7 +561,7 @@ class BBP_Topics_Widget extends WP_Widget {
 					'orderby'        => 'meta_value',
 					'order'          => 'DESC',
 					'meta_query'     => array( bbp_exclude_forum_ids( 'meta_query' ) )
-				);
+				);			
 				break;
 
 			// Order by which topic was created most recently
@@ -576,17 +576,17 @@ class BBP_Topics_Widget extends WP_Widget {
 					'show_stickes'   => false,
 					'order'          => 'DESC',
 					'meta_query'     => array( bbp_exclude_forum_ids( 'meta_query' ) )
-				);
+				);			
 				break;
 		}
-
+		
 		// Note: private and hidden forums will be excluded via the
 		// bbp_pre_get_posts_exclude_forums filter and function.
 		$widget_query = new WP_Query( $topics_query );
 
 		// Topics exist
-		if ( $widget_query->have_posts() ) :
-
+		if ( $widget_query->have_posts() ) : 
+			
 			echo $before_widget;
 			echo $before_title . $title . $after_title; ?>
 

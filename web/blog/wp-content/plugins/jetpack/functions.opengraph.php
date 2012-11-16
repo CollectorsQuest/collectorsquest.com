@@ -1,7 +1,7 @@
 <?php
 /**
  * Open Graph Tags
- *
+ * 
  * Add Open Graph tags so that Facebook (and any other service that supports them)
  * can crawl the site better and we provide a better sharing experience.
  *

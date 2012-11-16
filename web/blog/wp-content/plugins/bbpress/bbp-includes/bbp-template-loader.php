@@ -15,7 +15,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * Listens to the 'template_include' filter and waits for any bbPress specific
  * template condition to be met. If one is met and the template file exists,
- * it will be used; otherwise
+ * it will be used; otherwise 
  *
  * Note that the _edit() checks are ahead of their counterparts, to prevent them
  * from being stomped on accident.

@@ -998,11 +998,11 @@ EOPHP;
 
 		$gmt_offset = get_option( 'gmt_offset' );
 		$local_time = $time + $gmt_offset * 3600;
-
+		
 		$date = getdate( ( int ) $local_time );
 		$datetime->setDate( $date['year'], $date['mon'], $date['mday'] );
 		$datetime->setTime( $date['hours'], $date['minutes'], $date['seconds'] );
-
+        
 		$local      = $datetime->format( 'Y-m-d H:i:s' );
 		return array( (string) $local, (string) $gmt );
 	}
@@ -1773,9 +1773,9 @@ class WPCOM_JSON_API_Update_Post_Endpoint extends WPCOM_JSON_API_Post_Endpoint {
  		}
 
 		unset( $input['tags'], $input['categories'] );
-
+		
 		$insert = array();
-
+		
 		if ( !empty( $input['slug'] ) ) {
 			$insert['post_name'] = $input['slug'];
 			unset( $input['slug'] );
@@ -1785,18 +1785,18 @@ class WPCOM_JSON_API_Update_Post_Endpoint extends WPCOM_JSON_API_Post_Endpoint {
 			$insert['comment_status'] = 'open';
 		else if ( false === $input['comments_open'] )
 			$insert['comment_status'] = 'closed';
-
+			
 		if ( true === $input['pings_open'] )
 			$insert['ping_status'] = 'open';
 		else if ( false === $input['pings_open'] )
 			$insert['ping_status'] = 'closed';
-
+			
 		unset( $input['comments_open'], $input['pings_open'] );
-
+		
 		$publicize = $input['publicize'];
 		$publicize_custom_message = $input['publicize_message'];
 		unset( $input['publicize'], $input['publicize_message'] );
-
+		
 		foreach ( $input as $key => $value ) {
 			$insert["post_$key"] = $value;
 		}
@@ -1839,7 +1839,7 @@ class WPCOM_JSON_API_Update_Post_Endpoint extends WPCOM_JSON_API_Post_Endpoint {
 		if ( !$post_id || is_wp_error( $post_id ) ) {
 			return null;
 		}
-
+			
 		if ( $publicize === false ) {
 			foreach ( $GLOBALS['publicize_ui']->publicize->get_services( 'all' ) as $name => $service ) {
 				update_post_meta( $post_id, $GLOBALS['publicize_ui']->publicize->POST_SKIP . $name, 1 );
@@ -1851,10 +1851,10 @@ class WPCOM_JSON_API_Update_Post_Endpoint extends WPCOM_JSON_API_Post_Endpoint {
 				}
 			}
 		}
-
+		
 		if ( !empty( $publicize_custom_message ) )
-			update_post_meta( $post_id, $GLOBALS['publicize_ui']->publicize->POST_MESS, trim( $publicize_custom_message ) );
-
+			update_post_meta( $post_id, $GLOBALS['publicize_ui']->publicize->POST_MESS, trim( $publicize_custom_message ) ); 
+		
 		if ( is_array( $categories ) )
 			wp_set_object_terms( $post_id, $categories, 'category' );
 		if ( is_array( $tags ) )

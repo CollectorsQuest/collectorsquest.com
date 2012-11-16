@@ -12,7 +12,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get the default site options and their values.
- *
+ * 
  * These option
  *
  * @since bbPress (r3421)

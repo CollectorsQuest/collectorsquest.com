@@ -105,7 +105,7 @@ function bbp_time_since( $older_date, $newer_date = false ) {
 	 * @return string Formatted time
 	 */
 	function bbp_get_time_since( $older_date, $newer_date = false ) {
-
+		
 		// Setup the strings
 		$unknown_text   = apply_filters( 'bbp_core_time_since_unknown_text',   __( 'sometime',  'bbpress' ) );
 		$right_now_text = apply_filters( 'bbp_core_time_since_right_now_text', __( 'right now', 'bbpress' ) );
@@ -705,7 +705,7 @@ function bbp_check_for_flood( $anonymous_data = false, $author_id = 0 ) {
 		if ( !empty( $last_posted ) && time() < $last_posted + $throttle_time ) {
 			return false;
 		}
-
+		
 	// User is logged in, so check their last posted time
 	} elseif ( !empty( $author_id ) ) {
 		$author_id   = (int) $author_id;
@@ -1024,7 +1024,7 @@ function bbp_notify_subscribers( $reply_id = 0, $topic_id = 0, $forum_id = 0, $a
 		$message = sprintf( __( '%1$s wrote:
 
 %2$s
-
+			
 Post Link: %3$s
 
 -----------
@@ -1032,7 +1032,7 @@ Post Link: %3$s
 You are receiving this email because you subscribed to a forum topic.
 
 Login and visit the topic to unsubscribe from these emails.', 'bbpress' ),
-
+				
 			$reply_author_name,
 			$reply_content,
 			$reply_url

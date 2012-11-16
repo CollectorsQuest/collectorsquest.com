@@ -665,8 +665,8 @@ function bbp_admin_repair_freshness() {
 	if ( is_wp_error( $forums ) )
 		return array( 10, sprintf( $statement, $result ) );
 
-	// Loop through forums
-	foreach ( $forums as $forum_id ) {
+ 	// Loop through forums
+ 	foreach ( $forums as $forum_id ) {
 		if ( !bbp_is_forum_category( $forum_id ) ) {
 			bbp_update_forum( array( 'forum_id' => $forum_id ) );
 		}
@@ -678,7 +678,7 @@ function bbp_admin_repair_freshness() {
 			bbp_update_forum( array( 'forum_id' => $forum_id ) );
 		}
 	}
-
+	
 	// Complete results
 	$result = __( 'Complete!', 'bbpress' );
 	return array( 0, sprintf( $statement, $result ) );
@@ -924,7 +924,7 @@ function bbp_admin_reset_handler() {
 		$result     = is_wp_error( $wpdb->query( $sql_delete ) ) ? $failed : $success;
 		$messages[] = sprintf( $statement, $result );
 
-
+		
 		/** Post Meta *********************************************************/
 
 		if ( !empty( $sql_posts ) ) {
@@ -960,7 +960,7 @@ function bbp_admin_reset_handler() {
 			$result = $failed;
 		}
 		$messages[] = sprintf( $statement, $result );
-
+		
 		/** Options ***********************************************************/
 
 		$statement  = __( 'Deleting Settings&hellip; %s', 'bbpress' );

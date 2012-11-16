@@ -233,12 +233,12 @@ function bbp_new_topic_handler() {
 		bbp_add_error( 'bbp_topic_duplicate', __( '<strong>ERROR</strong>: Duplicate topic detected; it looks as though you&#8217;ve already said that!', 'bbpress' ) );
 
 	/** Topic Blacklist *******************************************************/
-
+	
 	if ( !bbp_check_for_blacklist( $anonymous_data, $topic_author, $topic_title, $topic_content ) )
 		bbp_add_error( 'bbp_topic_blacklist', __( '<strong>ERROR</strong>: Your topic cannot be created at this time.', 'bbpress' ) );
 
 	/** Topic Moderation ******************************************************/
-
+	
 	$post_status = bbp_get_public_status_id();
 	if ( !bbp_check_for_moderation( $anonymous_data, $topic_author, $topic_title, $topic_content ) )
 		$post_status = bbp_get_pending_status_id();
@@ -539,12 +539,12 @@ function bbp_edit_topic_handler() {
 		bbp_add_error( 'bbp_edit_topic_content', __( '<strong>ERROR</strong>: Your topic cannot be empty.', 'bbpress' ) );
 
 	/** topic Blacklist *******************************************************/
-
+	
 	if ( !bbp_check_for_blacklist( $anonymous_data, bbp_get_topic_author_id( $topic_id ), $topic_title, $topic_content ) )
 		bbp_add_error( 'bbp_topic_blacklist', __( '<strong>ERROR</strong>: Your topic cannot be edited at this time.', 'bbpress' ) );
 
 	/** Topic Moderation ******************************************************/
-
+	
 	$post_status = bbp_get_public_status_id();
 	if ( !bbp_check_for_moderation( $anonymous_data, bbp_get_topic_author_id( $topic_id ), $topic_title, $topic_content ) )
 		$post_status = bbp_get_pending_status_id();
@@ -931,7 +931,7 @@ function bbp_move_topic_handler( $topic_id, $old_forum_id, $new_forum_id ) {
 		// Topic was sticky, so restick in new forum
 		bbp_stick_topic( $topic_id );
 	}
-
+	
 	/** Topic Replies *********************************************************/
 
 	// Get the topics replies
@@ -1570,7 +1570,7 @@ function bbp_split_topic_handler() {
 	bbp_update_topic_last_reply_id   ( $source_topic->ID );
 	bbp_update_topic_last_active_id  ( $source_topic->ID );
 	bbp_update_topic_last_active_time( $source_topic->ID );
-
+	
 	/** Successful Split ******************************************************/
 
 	// Update counts, etc...
@@ -2663,7 +2663,7 @@ function bbp_spam_topic( $topic_id = 0 ) {
 			$topic['tax_input'] = array( bbp_get_topic_tag_tax_id() => '' );
 		}
 	}
-
+	
 	// Set post status to spam
 	$topic['post_status'] = bbp_get_spam_status_id();
 
@@ -2836,7 +2836,7 @@ function bbp_unstick_topic( $topic_id = 0 ) {
 
 /**
  * Called before deleting a topic.
- *
+ * 
  * This function is supplemental to the actual topic deletion which is
  * handled by WordPress core API functions. It is used to clean up after
  * a topic that is being deleted.
@@ -2882,7 +2882,7 @@ function bbp_delete_topic( $topic_id = 0 ) {
  * This function is supplemental to the actual topic being trashed which is
  * handled by WordPress core API functions. It is used to clean up after
  * a topic that is being trashed.
- *
+ * 
  * @uses bbp_get_topic_id() To get the topic id
  * @uses bbp_is_topic() To check if the passed id is a topic
  * @uses do_action() Calls 'bbp_trash_topic' with the topic id
@@ -3075,7 +3075,7 @@ function bbp_topic_content_autoembed() {
 	global $wp_embed;
 
 	if ( bbp_use_autoembed() && is_a( $wp_embed, 'WP_Embed' ) ) {
-		add_filter( 'bbp_get_topic_content', array( $wp_embed, 'autoembed' ), 8 );
+		add_filter( 'bbp_get_topic_content', array( $wp_embed, 'autoembed' ), 8 );		
 	}
 }
 
@@ -3186,7 +3186,7 @@ function bbp_display_topics_feed_rss2( $topics_query = array() ) {
 
 /**
  * Redirect if unathorized user is attempting to edit a topic
- *
+ * 
  * @since bbPress (r3605)
  *
  * @uses bbp_is_topic_edit()
@@ -3210,7 +3210,7 @@ function bbp_check_topic_edit() {
 
 /**
  * Redirect if unathorized user is attempting to edit a topic tag
- *
+ * 
  * @since bbPress (r3605)
  *
  * @uses bbp_is_topic_tag_edit()

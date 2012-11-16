@@ -89,7 +89,7 @@ all:
 
 next:
   ice_assets:
-    domain: "next.cqcdns.com"
+    domain: "cqcdns.com"
 
 
 dev:

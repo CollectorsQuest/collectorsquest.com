@@ -17,7 +17,7 @@
  *                bbp-includes/bbp-classes.php
  *  - Admin: More in {@link BBP_Admin::setup_actions()} in
  *            bbp-admin/bbp-admin.php
- *
+ * 
  * @see bbp-core-filters.php
  */
 

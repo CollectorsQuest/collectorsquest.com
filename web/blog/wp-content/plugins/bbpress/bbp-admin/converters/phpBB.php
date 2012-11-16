@@ -20,7 +20,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'forum',
 			'to_fieldname'   => '_bbp_forum_id'
 		);
-
+		
 		// Forum parent id.  If no parent, than 0. Stored in postmeta.
 		$this->field_map[] = array(
 			'from_tablename' => 'forums',
@@ -28,7 +28,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'forum',
 			'to_fieldname'   => '_bbp_parent_id'
 		);
-
+		
 		// Forum title.
 		$this->field_map[] = array(
 			'from_tablename' => 'forums',
@@ -36,7 +36,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'forum',
 			'to_fieldname'   => 'post_title'
 		);
-
+		
 		// Forum slug. Clean name.
 		$this->field_map[] = array(
 			'from_tablename'  => 'forums',
@@ -45,7 +45,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'post_name',
 			'callback_method' => 'callback_slug'
 		);
-
+		
 		// Forum description.
 		$this->field_map[] = array(
 			'from_tablename'  => 'forums',
@@ -54,7 +54,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'post_content',
 			'callback_method' => 'callback_null'
 		);
-
+		
 		// Forum display order.  Starts from 1.
 		$this->field_map[] = array(
 			'from_tablename' => 'forums',
@@ -62,7 +62,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'forum',
 			'to_fieldname'   => 'menu_order'
 		);
-
+		
 		// Forum date update.
 		$this->field_map[] = array(
 			'to_type'      => 'forums',
@@ -94,7 +94,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'topic',
 			'to_fieldname'   => '_bbp_topic_id'
 		);
-
+		
 		// Forum id. Stored in postmeta.
 		$this->field_map[] = array(
 			'from_tablename'  => 'topics',
@@ -103,7 +103,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => '_bbp_forum_id',
 			'callback_method' => 'callback_forumid'
 		);
-
+				
 		// Topic author.
 		$this->field_map[] = array(
 			'from_tablename'  => 'topics',
@@ -123,7 +123,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'         => 'topic',
 			'to_fieldname'    => 'post_content',
 			'callback_method' => 'callback_html'
-		);
+		);	
 
 		// Topic title.
 		$this->field_map[] = array(
@@ -132,7 +132,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'topic',
 			'to_fieldname'   => 'post_title'
 		);
-
+		
 		// Topic slug. Clean name.
 		$this->field_map[] = array(
 			'from_tablename'  => 'topics',
@@ -141,7 +141,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'post_name',
 			'callback_method' => 'callback_slug'
 		);
-
+		
 		// Forum id.  If no parent, than 0.
 		$this->field_map[] = array(
 			'from_tablename'  => 'topics',
@@ -180,7 +180,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'post_modified_gmt',
 			'callback_method' => 'callback_datetime'
 		);
-
+		
 		/** Tags Section ******************************************************/
 		/*
 		// Topic id.
@@ -191,7 +191,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'objectid',
 			'callback_method' => 'callback_topicid'
 		);
-
+		
 		// Tags text.
 		$this->field_map[] = array(
 			'from_tablename'  => 'tag',
@@ -201,9 +201,9 @@ class phpBB extends BBP_Converter_Base {
 			'join_expression' => 'USING (tagid)',
 			'to_type'         => 'tags',
 			'to_fieldname'    => 'name'
-		);
+		);		
 		*/
-
+		
 		/** Post Section ******************************************************/
 
 		// Post id. Stores in postmeta.
@@ -213,7 +213,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'reply',
 			'to_fieldname'   => '_bbp_post_id'
 		);
-
+		
 		// Topic content.
 		$this->field_map[] = array(
 			'from_tablename'  => 'topics',
@@ -222,8 +222,8 @@ class phpBB extends BBP_Converter_Base {
 			'join_type'       => 'LEFT',
 			'join_expression' => 'USING (topic_id) WHERE posts.post_id != topics.topic_first_post_id',
 			'to_type'         => 'reply'
-		);
-
+		);	
+		
 		// Forum id. Stores in postmeta.
 		$this->field_map[] = array(
 			'from_tablename'  => 'posts',
@@ -232,7 +232,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => '_bbp_forum_id',
 			'callback_method' => 'callback_topicid_to_forumid'
 		);
-
+		
 		// Topic id. Stores in postmeta.
 		$this->field_map[] = array(
 			'from_tablename'  => 'posts',
@@ -241,15 +241,15 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => '_bbp_topic_id',
 			'callback_method' => 'callback_topicid'
 		);
-
+		
 		// Author ip.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts',
 			'from_fieldname' => 'poster_ip',
 			'to_type'        => 'reply',
 			'to_fieldname'   => '_bbp_author_ip'
-		);
-
+		);	
+			
 		// Post author.
 		$this->field_map[] = array(
 			'from_tablename'  => 'posts',
@@ -258,7 +258,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'post_author',
 			'callback_method' => 'callback_userid'
 		);
-
+		
 		// Topic title.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts',
@@ -266,7 +266,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'reply',
 			'to_fieldname'   => 'post_title'
 		);
-
+		
 		// Topic slug. Clean name.
 		$this->field_map[] = array(
 			'from_tablename'  => 'posts',
@@ -275,7 +275,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'post_name',
 			'callback_method' => 'callback_slug'
 		);
-
+		
 		// Post content.
 		$this->field_map[] = array(
 			'from_tablename'  => 'posts',
@@ -284,7 +284,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'post_content',
 			'callback_method' => 'callback_html'
 		);
-
+		
 		// Topic id.  If no parent, than 0.
 		$this->field_map[] = array(
 			'from_tablename'  => 'posts',
@@ -333,7 +333,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'user',
 			'to_fieldname'   => '_bbp_user_id'
 		);
-
+		
 		// Store old User password. Stores in usermeta serialized with salt.
 		$this->field_map[] = array(
 			'from_tablename'  => 'users',
@@ -350,14 +350,14 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'user',
 			'to_fieldname'   => ''
 		);
-
+				
 		// User password verify class. Stores in usermeta for verifying password.
 		$this->field_map[] = array(
 			'to_type'      => 'user',
 			'to_fieldname' => '_bbp_class',
 			'default'      => 'phpBB'
 		);
-
+				
 		// User name.
 		$this->field_map[] = array(
 			'from_tablename' => 'users',
@@ -365,7 +365,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'user',
 			'to_fieldname'   => 'user_login'
 		);
-
+				
 		// User email.
 		$this->field_map[] = array(
 			'from_tablename' => 'users',
@@ -373,7 +373,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'user',
 			'to_fieldname'   => 'user_email'
 		);
-
+		
 		// User homepage.
 		$this->field_map[] = array(
 			'from_tablename' => 'users',
@@ -381,7 +381,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'user',
 			'to_fieldname'   => 'user_url'
 		);
-
+		
 		// User registered.
 		$this->field_map[] = array(
 			'from_tablename'  => 'users',
@@ -390,7 +390,7 @@ class phpBB extends BBP_Converter_Base {
 			'to_fieldname'    => 'user_registered',
 			'callback_method' => 'callback_datetime'
 		);
-
+		
 		// User aim.
 		$this->field_map[] = array(
 			'from_tablename' => 'users',
@@ -398,14 +398,14 @@ class phpBB extends BBP_Converter_Base {
 			'to_type'        => 'user',
 			'to_fieldname'   => 'aim'
 		);
-
+		
 		// User yahoo.
 		$this->field_map[] = array(
 			'from_tablename' => 'users',
 			'from_fieldname' => 'user_yim',
 			'to_type'        => 'user',
 			'to_fieldname'   => 'yim'
-		);
+		);	
 	}
 
 	/**
@@ -425,7 +425,7 @@ class phpBB extends BBP_Converter_Base {
 		$pass_array = array('hash' => $field, 'salt' => $row['salt']);
 		return $pass_array;
 	}
-
+	
 	/**
 	 * Check for correct password
 	 *
@@ -437,37 +437,37 @@ class phpBB extends BBP_Converter_Base {
 	public function authenticate_pass($password, $serialized_pass) {
 		$itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 		$pass_array = unserialize($serialized_pass);
-		if (strlen($pass_array['hash']) == 34) {
+		if (strlen($pass_array['hash']) == 34) {				
 			return ($this->_hash_crypt_private($password, $pass_array['hash'], $itoa64) === $pass_array['hash']) ? true : false;
 		}
-
+	
 		return (md5($password) === $pass_array['hash']) ? true : false;
 	}
-
+	
 	/**
 	 * The crypt function/replacement
 	 */
 	private function _hash_crypt_private($password, $setting, &$itoa64) {
 		$output = '*';
-
+	
 		// Check for correct hash
 		if (substr($setting, 0, 3) != '$H$') {
 			return $output;
 		}
-
+	
 		$count_log2 = strpos($itoa64, $setting[3]);
-
+	
 		if ($count_log2 < 7 || $count_log2 > 30) {
 			return $output;
 		}
-
+	
 		$count = 1 << $count_log2;
 		$salt = substr($setting, 4, 8);
-
+	
 		if (strlen($salt) != 8) {
 			return $output;
 		}
-
+	
 		/**
 		 * We're kind of forced to use MD5 here since it's the only
 		 * cryptographic primitive available in all versions of PHP
@@ -493,45 +493,45 @@ class phpBB extends BBP_Converter_Base {
 
 		$output = substr($setting, 0, 12);
 		$output .= $this->_hash_encode64($hash, 16, $itoa64);
-
+	
 		return $output;
 	}
-
+		
 	/**
 	 * Encode hash
 	 */
 	private function _hash_encode64($input, $count, &$itoa64) {
 		$output = '';
 		$i = 0;
-
+	
 		do {
 			$value = ord($input[$i++]);
 			$output .= $itoa64[$value & 0x3f];
-
+	
 			if ($i < $count) {
 				$value |= ord($input[$i]) << 8;
 			}
-
+	
 			$output .= $itoa64[($value >> 6) & 0x3f];
-
+	
 			if ($i++ >= $count) {
 				break;
 			}
-
+	
 			if ($i < $count) {
 				$value |= ord($input[$i]) << 16;
 			}
-
+	
 			$output .= $itoa64[($value >> 12) & 0x3f];
-
+	
 			if ($i++ >= $count) {
 				break;
 			}
-
+	
 			$output .= $itoa64[($value >> 18) & 0x3f];
 		}
 		while ($i < $count);
-
+	
 		return $output;
 	}
 

@@ -45,7 +45,7 @@ class BBP_Theme_Compat {
 	 *     'dir'     => Path to theme
 	 *     'url'     => URL to theme
 	 * );
-	 * @var array
+	 * @var array 
 	 */
 	private $_data = array();
 
@@ -342,7 +342,7 @@ function bbp_theme_compat_reset_post( $args = array() ) {
 	unset( $post            );
 
 	// Setup the dummy post object
-	$wp_query->post                 = new stdClass;
+	$wp_query->post                 = new stdClass; 
 	$wp_query->post->ID             = $dummy['ID'];
 	$wp_query->post->post_title     = $dummy['post_title'];
 	$wp_query->post->post_author    = $dummy['post_author'];
@@ -572,7 +572,7 @@ function bbp_template_include_theme_compat( $template = '' ) {
 	 * Uses bbp_get_theme_compat_templates() to provide fall-backs that
 	 * should be coded without superfluous mark-up and logic (prev/next
 	 * navigation, comments, date/time, etc...)
-	 *
+	 * 
 	 * Hook into the 'bbp_get_bbpress_template' to override the array of
 	 * possible templates, or 'bbp_bbpress_template' to override the result.
 	 */

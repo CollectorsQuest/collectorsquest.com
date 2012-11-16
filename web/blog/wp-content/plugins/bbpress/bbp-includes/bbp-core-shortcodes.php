@@ -695,7 +695,7 @@ class BBP_Shortcodes {
 			bbp_get_template_part( 'form',     'user-lost-pass' );
 		else
 			bbp_get_template_part( 'feedback', 'logged-in'      );
-
+	
 		// Return contents of output buffer
 		return $this->end();
 	}

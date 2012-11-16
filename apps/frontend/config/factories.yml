@@ -147,8 +147,8 @@ dev:
     class: cqMailer
     param:
       delivery_strategy: single_address
-      # delivery_address:  developers@collectorsquest.com
-      delivery_address:  kangov@collectorsquest.com
+      delivery_address:  developers@collectorsquest.com
+      #delivery_address:  kangov@collectorsquest.com
       force_redirect_of_collectorsquest_emails: true
       logging: false
 

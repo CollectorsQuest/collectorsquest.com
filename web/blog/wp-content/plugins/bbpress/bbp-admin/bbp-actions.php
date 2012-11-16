@@ -15,7 +15,7 @@
  *  - bbPress: In {@link bbPress::setup_actions()} in bbpress.php
  *  - Admin: More in {@link BBP_Admin::setup_actions()} in
  *            bbp-admin/bbp-admin.php
- *
+ * 
  * @see bbp-core-actions.php
  * @see bbp-core-filters.php
  */
@@ -73,7 +73,7 @@ add_action( 'bbp_deactivation', 'bbp_remove_caps',    1 );
 add_action( 'bbp_deactivation', 'bbp_remove_roles',   2 );
 add_action( 'bbp_deactivation', 'flush_rewrite_rules'   );
 
-//
+// 
 add_action( 'bbp_new_site', 'bbp_add_roles',              2 );
 add_action( 'bbp_new_site', 'bbp_add_caps',               4 );
 add_action( 'bbp_new_site', 'bbp_add_options',            6 );

@@ -22,6 +22,12 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
     ;
   }
 
+  /**
+   * @param  boolean $isPublic
+   * @param  null $comparison
+   *
+   * @return CollectionCollectibleQuery
+   */
   public function filterByIsPublic($isPublic = null, $comparison = null)
   {
     return $this
@@ -30,6 +36,9 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
       ->endUse();
   }
 
+  /**
+   * @return CollectionCollectibleQuery
+   */
   public function isForSale()
   {
     return $this

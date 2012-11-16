@@ -321,7 +321,7 @@ function bbp_is_user_favorite( $user_id = 0, $topic_id = 0 ) {
 	$favorites = bbp_get_user_favorites_topic_ids( $user_id );
 
 	if ( !empty( $favorites ) ) {
-
+		
 		// Checking a specific topic id
 		if ( !empty( $topic_id ) ) {
 			$topic    = bbp_get_topic( $topic_id );
@@ -993,7 +993,7 @@ function bbp_edit_user_handler() {
  * @return array|bool Results if the user has created topics, otherwise false
  */
 function bbp_get_user_topics_started( $user_id = 0 ) {
-
+	
 	// Validate user
 	$user_id = bbp_get_user_id( $user_id );
 	if ( empty( $user_id ) )
@@ -1303,9 +1303,9 @@ function bbp_is_user_deleted( $user_id = 0 ) {
 
 /**
  * Checks if user is active
- *
+ * 
  * @since bbPress (r3502)
- *
+ * 
  * @uses is_user_logged_in() To check if user is logged in
  * @uses bbp_get_displayed_user_id() To get current user ID
  * @uses bbp_is_user_spammer() To check if user is spammer
@@ -1338,9 +1338,9 @@ function bbp_is_user_active( $user_id = 0 ) {
 
 /**
  * Checks if user is not active.
- *
+ * 
  * @since bbPress (r3502)
- *
+ * 
  * @uses is_user_logged_in() To check if user is logged in
  * @uses bbp_get_displayed_user_id() To get current user ID
  * @uses bbp_is_user_active() To check if user is active
@@ -1399,7 +1399,7 @@ function bbp_get_user_role( $user_id = 0 ) {
  * which a user can edit another user (or themselves.) If these conditions are
  * met. We assume a user cannot perform this task, and look for ways they can
  * earn the ability to access this template.
- *
+ * 
  * @since bbPress (r3605)
  *
  * @uses bbp_is_topic_edit()

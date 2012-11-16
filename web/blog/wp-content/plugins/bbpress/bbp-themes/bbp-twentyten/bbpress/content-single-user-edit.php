@@ -10,7 +10,7 @@
 ?>
 
 <div id="bbpress-forums">
-
+	
 	<?php do_action( 'bbp_template_notices' );
 
 	// Profile details

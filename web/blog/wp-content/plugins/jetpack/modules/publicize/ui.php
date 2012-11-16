@@ -85,36 +85,36 @@ class Publicize_UI {
 		$_blog_id = get_current_blog_id();
 		?>
 
-			<form action="" id="publicize-form">
-				<h3 id="publicize"><?php _e( 'Publicize', 'jetpack' ) ?></h3>
-				<p>
-					<?php esc_html_e( 'Connect your blog to popular social networking sites and automatically share new posts with your friends.', 'jetpack' ) ?>
-					<?php esc_html_e( 'You can make a connection for just yourself or for all users on your blog. Shared connections are marked with the (Shared) text.', 'jetpack' ); ?>
-				</p>
+  		<form action="" id="publicize-form">
+	  		<h3 id="publicize"><?php _e( 'Publicize', 'jetpack' ) ?></h3>
+	  		<p>
+	  			<?php esc_html_e( 'Connect your blog to popular social networking sites and automatically share new posts with your friends.', 'jetpack' ) ?>
+	  			<?php esc_html_e( 'You can make a connection for just yourself or for all users on your blog. Shared connections are marked with the (Shared) text.', 'jetpack' ); ?>
+	  		</p>
+	  		
+  			<?php
+  			if ( $this->in_jetpack )
+  				$doc_link = "http://jetpack.me/support/publicize/";
+  			else
+  				$doc_link = "http://en.support.wordpress.com/publicize/";
+  			?>
+	  		
+	  		<p>&rarr; <a href="<?php echo esc_url( $doc_link ); ?>"><?php esc_html_e( 'More information on using Publicize.', 'jetpack' ); ?></a></p>
 
-				<?php
-				if ( $this->in_jetpack )
-					$doc_link = "http://jetpack.me/support/publicize/";
-				else
-					$doc_link = "http://en.support.wordpress.com/publicize/";
-				?>
+	  		<div id="publicize-services-block">
+		  		<?php
+		  		foreach ( $this->publicize->get_services( 'all' ) as $name => $service ) :
+		  			$connect_url = $this->publicize->connect_url( $name );
+		  			?>
+		  			<div class="publicize-service-entry">
+			  			<div id="<?php echo esc_attr( $name ); ?>" class="publicize-service-left">
+			  				<a href="<?php echo esc_url( $connect_url ); ?>"><span class="pub-logos" id="<?php echo esc_attr( $name ); ?>">&nbsp;</span></a>
+			  			</div>
 
-				<p>&rarr; <a href="<?php echo esc_url( $doc_link ); ?>"><?php esc_html_e( 'More information on using Publicize.', 'jetpack' ); ?></a></p>
-
-				<div id="publicize-services-block">
-					<?php
-					foreach ( $this->publicize->get_services( 'all' ) as $name => $service ) :
-						$connect_url = $this->publicize->connect_url( $name );
-						?>
-						<div class="publicize-service-entry">
-							<div id="<?php echo esc_attr( $name ); ?>" class="publicize-service-left">
-								<a href="<?php echo esc_url( $connect_url ); ?>"><span class="pub-logos" id="<?php echo esc_attr( $name ); ?>">&nbsp;</span></a>
-							</div>
-
-							<div class="publicize-service-right">
-								<?php if ( $this->publicize->is_enabled( $name ) && $connections = $this->publicize->get_connections( $name ) ) : ?>
-									<ul>
-										<?php
+			  			<div class="publicize-service-right">
+			  				<?php if ( $this->publicize->is_enabled( $name ) && $connections = $this->publicize->get_connections( $name ) ) : ?>
+			  					<ul>
+				  					<?php
 									foreach( $connections as $c ) :
 										$id = $this->publicize->get_connection_id( $c );
 										$disconnect_url = $this->publicize->disconnect_url( $name, $id );
@@ -163,18 +163,18 @@ class Publicize_UI {
 
 										<?php
 									endforeach;
-										?>
-									</ul>
-								<?php endif; ?>
+				  					?>
+				  				</ul>
+				  			<?php endif; ?>
 							<a id="<?php echo esc_attr( $name ); ?>" class="publicize-add-connection" href="<?php echo esc_url( $connect_url); ?>"><?php echo esc_html( sprintf( __( 'Add new %s connection.', 'jetpack' ), $this->publicize->get_service_label( $name ) ) ); ?></a>
-							</div>
-						</div>
+			  			</div>
+			  		</div>
 				<?php endforeach; ?>
-				</div>
+	  		</div>
 
 			<?php wp_nonce_field( "wpas_posts_{$_blog_id}", "_wpas_posts_{$_blog_id}_nonce" ); ?>
 			<input type="hidden" id="wpas_ajax_blog_id" name="wpas_ajax_blog_id" value="<?php echo $_blog_id; ?>" />
-			</form><?php
+	  	</form><?php
 
 	}
 
@@ -457,7 +457,7 @@ jQuery( function($) {
 						$title = esc_html( $title );
 					else
 						$title = '';
-					?>
+ 					?>
 
 					</ul>
 

@@ -830,7 +830,7 @@ class Share_GooglePlus1 extends Sharing_Source {
 	public function get_name() {
 		return __( 'Google +1', 'jetpack' );
 	}
-
+	
 	public function has_custom_button_style() {
 		return $this->smart;
 	}
@@ -858,7 +858,7 @@ class Share_GooglePlus1 extends Sharing_Source {
 		}
 		// Record stats
 		parent::process_request( $post, $post_data );
-
+		
 		// Redirect to Google +'s sharing endpoint
 		$url = 'https://plus.google.com/share?url=' . rawurlencode( $this->get_share_url( $post->ID ) );
 		wp_redirect( $url );
@@ -867,10 +867,10 @@ class Share_GooglePlus1 extends Sharing_Source {
 	
 	public function display_footer() {
 		global $post;
-
+		
 		if ( $this->smart ) { ?>
 			<script type="text/javascript" charset="utf-8">
-				function sharing_plusone( obj ) {
+				function sharing_plusone( obj ) { 
 					jQuery.ajax( {
 						url: '<?php echo get_permalink( $post->ID ) . '?share=google-plus-1'; ?>',
 						type: 'POST',

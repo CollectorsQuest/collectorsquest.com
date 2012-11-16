@@ -236,7 +236,7 @@ class BBP_Admin {
 	 * If this is a new installation, create some initial forum content.
 	 *
 	 * @since bbPress (r3767)
-	 * @return type
+	 * @return type 
 	 */
 	public static function new_install() {
 		if ( !bbp_is_install() )
@@ -564,7 +564,7 @@ class BBP_Admin {
 			#menu-posts-<?php echo $topic_class; ?>:hover .wp-menu-image,
 			#menu-posts-<?php echo $reply_class; ?>:hover .wp-menu-image,
 
-			#menu-posts-<?php echo $forum_class; ?>.wp-has-current-submenu .wp-menu-image,
+			#menu-posts-<?php echo $forum_class; ?>.wp-has-current-submenu .wp-menu-image,				
 			#menu-posts-<?php echo $topic_class; ?>.wp-has-current-submenu .wp-menu-image,
 			#menu-posts-<?php echo $reply_class; ?>.wp-has-current-submenu .wp-menu-image {
 				background: url('<?php echo $menu_icon_url; ?>');
@@ -604,7 +604,7 @@ class BBP_Admin {
 				#menu-posts-<?php echo $topic_class; ?>:hover .wp-menu-image,
 				#menu-posts-<?php echo $reply_class; ?>:hover .wp-menu-image,
 
-				#menu-posts-<?php echo $forum_class; ?>.wp-has-current-submenu .wp-menu-image,
+				#menu-posts-<?php echo $forum_class; ?>.wp-has-current-submenu .wp-menu-image,				
 				#menu-posts-<?php echo $topic_class; ?>.wp-has-current-submenu .wp-menu-image,
 				#menu-posts-<?php echo $reply_class; ?>.wp-has-current-submenu .wp-menu-image {
 					background-image: url('<?php echo $menu_icon_url_2x; ?>');
@@ -691,7 +691,7 @@ class BBP_Admin {
 				bbp_version_bump();
 
 				?>
-
+			
 				<p><?php _e( 'All done!', 'bbpress' ); ?></p>
 				<a class="button" href="index.php?page=bbpress-update"><?php _e( 'Go Back', 'bbpress' ); ?></a>
 

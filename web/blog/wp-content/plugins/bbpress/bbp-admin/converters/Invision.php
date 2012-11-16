@@ -20,39 +20,39 @@ class Invision extends BBP_Converter_Base
 			'from_tablename' => 'forums', 'from_fieldname' => 'id',
 			'to_type' => 'forum', 'to_fieldname' => '_bbp_forum_id'
 		);
-
+		
 		// Forum parent id.  If no parent, than 0. Stored in postmeta.
 		$this->field_map[] = array(
 			'from_tablename' => 'forums', 'from_fieldname' => 'parent_id',
 			'to_type' => 'forum', 'to_fieldname' => '_bbp_parent_id'
 		);
-
+		
 		// Forum title.
 		$this->field_map[] = array(
 			'from_tablename' => 'forums', 'from_fieldname' => 'name',
 			'to_type' => 'forum', 'to_fieldname' => 'post_title'
 		);
-
+		
 		// Forum slug. Clean name.
 		$this->field_map[] = array(
 			'from_tablename' => 'forums', 'from_fieldname' => 'name',
 			'to_type' => 'forum', 'to_fieldname' => 'post_name',
 			'callback_method' => 'callback_slug'
 		);
-
+		
 		// Forum description.
 		$this->field_map[] = array(
 			'from_tablename' => 'forums', 'from_fieldname' => 'description',
 			'to_type' => 'forum', 'to_fieldname' => 'post_content',
 			'callback_method' => 'callback_null'
 		);
-
+		
 		// Forum display order.  Starts from 1.
 		$this->field_map[] = array(
 			'from_tablename' => 'forums', 'from_fieldname' => 'position',
 			'to_type' => 'forum', 'to_fieldname' => 'menu_order'
 		);
-
+		
 		// Forum date update.
 		$this->field_map[] = array(
 			'to_type' => 'forum', 'to_fieldname' => 'post_date',
@@ -78,42 +78,42 @@ class Invision extends BBP_Converter_Base
 			'from_tablename' => 'topics', 'from_fieldname' => 'tid',
 			'to_type' => 'topic', 'to_fieldname' => '_bbp_topic_id'
 		);
-
+		
 		// Forum id. Stored in postmeta.
 		$this->field_map[] = array(
 			'from_tablename' => 'topics', 'from_fieldname' => 'forum_id',
 			'to_type' => 'topic', 'to_fieldname' => '_bbp_forum_id',
 			'callback_method' => 'callback_forumid'
 		);
-
+				
 		// Topic author.
 		$this->field_map[] = array(
 			'from_tablename' => 'topics', 'from_fieldname' => 'starter_id',
 			'to_type' => 'topic', 'to_fieldname' => 'post_author',
 			'callback_method' => 'callback_userid'
 		);
-
+			
 		// Topic content.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'post',
 			'join_tablename' => 'topics', 'join_type' => 'INNER', 'join_expression' => 'ON(topics.tid = posts.topic_id) WHERE posts.new_topic = 1',
 			'to_type' => 'topic', 'to_fieldname' => 'post_content',
 			'callback_method' => 'callback_html'
-		);
-
+		);	
+		
 		// Topic title.
 		$this->field_map[] = array(
 			'from_tablename' => 'topics', 'from_fieldname' => 'title',
 			'to_type' => 'topic', 'to_fieldname' => 'post_title'
 		);
-
+		
 		// Topic slug. Clean name.
 		$this->field_map[] = array(
 			'from_tablename' => 'topics', 'from_fieldname' => 'title',
 			'to_type' => 'topic', 'to_fieldname' => 'post_name',
 			'callback_method' => 'callback_slug'
 		);
-
+		
 		// Forum id.  If no parent, than 0.
 		$this->field_map[] = array(
 			'from_tablename' => 'topics', 'from_fieldname' => 'forum_id',
@@ -144,20 +144,20 @@ class Invision extends BBP_Converter_Base
 		);
 
 		/** Tags Section ******************************************************/
-
+		
 		// Topic id.
 		$this->field_map[] = array(
 			'from_tablename' => 'core_tags', 'from_fieldname' => 'tag_meta_id',
 			'to_type' => 'tags', 'to_fieldname' => 'objectid',
 			'callback_method' => 'callback_topicid'
 		);
-
+		
 		// Tags text.
 		$this->field_map[] = array(
 			'from_tablename' => 'core_tags', 'from_fieldname' => 'tag_text',
 			'to_type' => 'tags', 'to_fieldname' => 'name'
-		);
-
+		);	
+		
 		/** Post Section ******************************************************/
 
 		// Post id. Stores in postmeta.
@@ -165,54 +165,54 @@ class Invision extends BBP_Converter_Base
 			'from_tablename' => 'posts', 'from_fieldname' => 'pid', 'from_expression' => 'WHERE posts.new_topic = 0',
 			'to_type' => 'reply', 'to_fieldname' => '_bbp_post_id'
 		);
-
+		
 		// Forum id. Stores in postmeta.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'topic_id',
 			'to_type' => 'reply', 'to_fieldname' => '_bbp_forum_id',
 			'callback_method' => 'callback_topicid_to_forumid'
 		);
-
+		
 		// Topic id. Stores in postmeta.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'topic_id',
 			'to_type' => 'reply', 'to_fieldname' => '_bbp_topic_id',
 			'callback_method' => 'callback_topicid'
 		);
-
+		
 		// Author ip.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'ip_address',
 			'to_type' => 'reply', 'to_fieldname' => '__bbp_author_ip'
-		);
-
+		);	
+			
 		// Post author.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'author_id',
 			'to_type' => 'reply', 'to_fieldname' => 'post_author',
 			'callback_method' => 'callback_userid'
 		);
-
+		
 		// Topic title.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'post_title',
 			'to_type' => 'reply', 'to_fieldname' => 'post_title'
 		);
-
+		
 		// Topic slug. Clean name.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'post_title',
 			'to_type' => 'reply', 'to_fieldname' => 'post_name',
 			'callback_method' => 'callback_slug'
 		);
-
+		
 		// Post content.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'post',
 			'to_type' => 'reply', 'to_fieldname' => 'post_content',
 			'callback_method' => 'callback_html'
 		);
-
+		
 		// Topic id.  If no parent, than 0.
 		$this->field_map[] = array(
 			'from_tablename' => 'posts', 'from_fieldname' => 'topic_id',
@@ -249,7 +249,7 @@ class Invision extends BBP_Converter_Base
 			'from_tablename' => 'members', 'from_fieldname' => 'member_id',
 			'to_type' => 'user', 'to_fieldname' => '_bbp_user_id'
 		);
-
+		
 		// Store old User password. Stores in usermeta serialized with salt.
 		$this->field_map[] = array(
 			'from_tablename' => 'members', 'from_fieldname' => 'members_pass_hash',
@@ -262,53 +262,53 @@ class Invision extends BBP_Converter_Base
 			'from_tablename' => 'members', 'from_fieldname' => 'members_pass_salt',
 			'to_type' => 'user', 'to_fieldname' => ''
 		);
-
+				
 		// User password verify class. Stores in usermeta for verifying password.
 		$this->field_map[] = array(
 			'to_type' => 'user', 'to_fieldname' => '_bbp_class',
 			'default' => 'Invision'
 		);
-
+		
 		// User name.
 		$this->field_map[] = array(
 			'from_tablename' => 'members', 'from_fieldname' => 'name',
 			'to_type' => 'user', 'to_fieldname' => 'user_login'
 		);
-
+				
 		// User email.
 		$this->field_map[] = array(
 			'from_tablename' => 'members', 'from_fieldname' => 'email',
 			'to_type' => 'user', 'to_fieldname' => 'user_email'
 		);
-
+		
 		// User registered.
 		$this->field_map[] = array(
 			'from_tablename' => 'members', 'from_fieldname' => 'joined',
 			'to_type' => 'user', 'to_fieldname' => 'user_registered',
 			'callback_method' => 'callback_datetime'
 		);
-
-/*
- * Table pfields_content AND pfields_data
+				
+/*	
+ * Table pfields_content AND pfields_data	
 		// User homepage.
 		$this->field_map[] = array(
 			'from_tablename' => 'members', 'from_fieldname' => 'homepage',
 			'to_type' => 'user', 'to_fieldname' => 'user_url'
-		);
-
+		);		
+		
 		// User aim.
 		$this->field_map[] = array(
 			'from_tablename' => 'members', 'from_fieldname' => 'aim',
 			'to_type' => 'user', 'to_fieldname' => 'aim'
 		);
-
+		
 		// User yahoo.
 		$this->field_map[] = array(
 			'from_tablename' => 'members', 'from_fieldname' => 'yahoo',
 			'to_type' => 'user', 'to_fieldname' => 'yim'
 		);
-*/
-
+*/		
+		
 	}
 
 	/**

@@ -123,8 +123,8 @@ class Jetpack_User_Agent_Info {
 	   		return 'blackberry';
 	   	elseif ( $this->is_WindowsPhone7() )
 	   		return 'win7';
-			elseif ( $this->is_windows_phone_8() )
-				return 'winphone8';
+	   	elseif ( $this->is_windows_phone_8() )
+	   		return 'winphone8';
 	   	elseif ( $this->is_opera_mini() )
 	   		return 'opera-mini';
 		elseif ( $this->is_opera_mini_dumb() )
@@ -387,7 +387,7 @@ class Jetpack_User_Agent_Info {
 				||  self::is_TouchPad()
 		);
 	}
-
+	
 	/*
 	 *  Detects if the current UA is the default iPhone or iPod Touch Browser.
 	 *
@@ -731,7 +731,7 @@ class Jetpack_User_Agent_Info {
 	function is_windows_phone_8() {
 		if ( empty( $_SERVER['HTTP_USER_AGENT'] ) )
 			return false;
-
+			
 		$ua = strtolower( $_SERVER['HTTP_USER_AGENT'] );
 		if ( strpos( $ua, 'windows phone 8' ) === false ) {
 			return false;
@@ -739,8 +739,8 @@ class Jetpack_User_Agent_Info {
 			return true;
 		}
 	}
-
-
+	
+	
 	/*
 	 * Detects if the current browser is on a Palm device running the new WebOS. This EXCLUDES TouchPad.
 	 *
@@ -1058,7 +1058,7 @@ class Jetpack_User_Agent_Info {
 	function is_wordpress_for_win8( ) {
 		if ( empty( $_SERVER['HTTP_USER_AGENT'] ) )
 			return false;
-
+	
 		$agent = strtolower( $_SERVER['HTTP_USER_AGENT'] );
 		$pos   = strpos( $agent, 'wp-windows8' );
 		if ( $pos !== false )
@@ -1066,8 +1066,8 @@ class Jetpack_User_Agent_Info {
 		else
 			return false;
 	}
-
-
+	
+	
 	/*
 	 * is_blackberry_tablet() can be used to check the User Agent for a RIM blackberry tablet
 	 * The user agent of the BlackBerry® Tablet OS follows a format similar to the following:

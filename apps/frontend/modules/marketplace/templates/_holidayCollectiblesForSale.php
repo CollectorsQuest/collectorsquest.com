@@ -103,7 +103,7 @@
           $bricks.imagesLoaded(function() {
             // show bricks now that they're ready
             $bricks.animate({opacity: 1});
-            $('#collectibles').masonry('appended', $bricks, true);
+            $container.masonry('appended', $bricks, true);
           });
         });
 

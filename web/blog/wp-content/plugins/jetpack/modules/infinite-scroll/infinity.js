@@ -302,10 +302,10 @@ Scroller.prototype.refresh = function() {
  */
 Scroller.prototype.ensureFilledViewport = function() {
 	var	self = this,
-			windowHeight = self.window.height(),
-			postsHeight = self.element.height()
-			aveSetHeight = 0,
-			wrapperQty = 0;
+	   	windowHeight = self.window.height(),
+	   	postsHeight = self.element.height()
+	   	aveSetHeight = 0,
+	   	wrapperQty = 0;
 
 	// Account for situations where postsHeight is 0 because child list elements are floated
 	if ( postsHeight === 0 ) {

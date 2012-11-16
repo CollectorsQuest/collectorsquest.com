@@ -173,7 +173,7 @@ function bbp_new_forum_handler() {
 	// Forum parent was passed (the norm)
 	if ( !empty( $_POST['bbp_forum_parent_id'] ) )
 		$forum_parent_id = (int) $_POST['bbp_forum_parent_id'];
-
+		
 	// Filter and sanitize
 	$forum_parent_id = apply_filters( 'bbp_new_forum_pre_parent_id', $forum_parent_id );
 
@@ -202,7 +202,7 @@ function bbp_new_forum_handler() {
 		// Forum is hidden and user cannot access
 		if ( bbp_is_forum_hidden( $forum_parent_id ) && !current_user_can( 'read_hidden_forums' ) ) {
 			bbp_add_error( 'bbp_new_forum_forum_hidden', __( '<strong>ERROR</strong>: This forum is hidden and you do not have the capability to read or create new forums in it.', 'bbpress' ) );
-		}
+		}		
 	}
 
 	/** Forum Flooding ********************************************************/
@@ -1182,7 +1182,7 @@ function bbp_update_forum_last_reply_id( $forum_id = 0, $reply_id = 0 ) {
 	// Cast as integer in case of empty or string
 	$reply_id            = (int) $reply_id;
 	$children_last_reply = (int) $children_last_reply;
-
+	
 	// If child forums have higher ID, check for newer reply id
 	if ( !empty( $children ) && ( $children_last_reply > $reply_id ) )
 		$reply_id = $children_last_reply;
@@ -1530,7 +1530,7 @@ function bbp_update_forum( $args = '' ) {
  *                        and forum id
  */
 function bbp_get_hidden_forum_ids() {
-		$forum_ids = get_option( '_bbp_hidden_forums', array() );
+   	$forum_ids = get_option( '_bbp_hidden_forums', array() );
 
 	return apply_filters( 'bbp_get_hidden_forum_ids', (array) $forum_ids );
 }
@@ -1547,7 +1547,7 @@ function bbp_get_hidden_forum_ids() {
  *                        and forum id
  */
 function bbp_get_private_forum_ids() {
-		$forum_ids = get_option( '_bbp_private_forums', array() );
+   	$forum_ids = get_option( '_bbp_private_forums', array() );
 
 	return apply_filters( 'bbp_get_private_forum_ids', (array) $forum_ids );
 }
@@ -1584,7 +1584,7 @@ function bbp_exclude_forum_ids( $type = 'string' ) {
 			$retval = array( array() ) ;
 			break;
 	}
-
+	
 	// Exclude for everyone but super admins
 	if ( !is_super_admin() ) {
 
@@ -1732,7 +1732,7 @@ function bbp_pre_get_posts_exclude_forums( $posts_query ) {
  *                        and forum id
  */
 function bbp_forum_query_topic_ids( $forum_id ) {
-		$topic_ids = bbp_get_public_child_ids( $forum_id, bbp_get_topic_post_type() );
+   	$topic_ids = bbp_get_public_child_ids( $forum_id, bbp_get_topic_post_type() );
 
 	return apply_filters( 'bbp_forum_query_topic_ids', $topic_ids, $forum_id );
 }
@@ -1920,7 +1920,7 @@ function bbp_forum_enforce_private() {
 
 /**
  * Redirect if unathorized user is attempting to edit a forum
- *
+ * 
  * @since bbPress (r3607)
  *
  * @uses bbp_is_forum_edit()
@@ -1981,7 +1981,7 @@ function bbp_delete_forum_topics( $forum_id = 0 ) {
 
 /**
  * Trash all topics inside a forum
- *
+ * 
  * @since bbPress (r3668)
  *
  * @param int $forum_id

@@ -92,7 +92,7 @@
 		<div class="bbp-topic-content">
 
 			<?php _e( 'Topic', 'bbpress' ); ?>
-
+			
 		</div><!-- .bbp-topic-content -->
 
 	</li>

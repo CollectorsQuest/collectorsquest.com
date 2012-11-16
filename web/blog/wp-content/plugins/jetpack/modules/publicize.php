@@ -38,7 +38,7 @@ class Jetpack_Publicize {
 		if ( $this->in_jetpack) {
 			add_action( 'jetpack_activate_module_publicize',   array( $this, 'module_state_toggle' ) );
 			add_action( 'jetpack_deactivate_module_publicize', array( $this, 'module_state_toggle' ) );
-
+			
 			// if sharedaddy isn't active, the sharing menu hasn't been added yet
 			$active = Jetpack::get_active_modules();
 			if ( in_array( 'publicize', $active ) && !in_array( 'sharedaddy', $active ) )

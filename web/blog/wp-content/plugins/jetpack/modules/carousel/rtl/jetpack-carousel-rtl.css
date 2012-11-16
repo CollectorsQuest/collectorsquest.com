@@ -50,7 +50,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	background: #68c9e8; /* Safari */
 	color: #fff;
 	}
-
+	
 .jp-carousel-info ::-moz-selection {
 	background: #68c9e8; /* Firefox */
 	color: #fff;
@@ -484,7 +484,7 @@ div#carousel-reblog-box {
 	display: none;
 }
 
-.jp-carousel-photo-info h1:before,
+.jp-carousel-photo-info h1:before, 
 .jp-carousel-photo-info h1:after,
 .jp-carousel-left-column-wrapper h1:before,
 .jp-carousel-left-column-wrapper h1:after {
@@ -696,7 +696,7 @@ textarea#jp-carousel-comment-form-comment-field {
 	border-radius: 3px;
 	overflow: hidden;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
+	-moz-box-sizing: border-box;    
 	box-sizing: border-box;
 }
 
@@ -794,7 +794,7 @@ textarea#jp-carousel-comment-form-comment-field:focus::-webkit-input-placeholder
 }
 
 #jp-carousel-comment-post-results {
-	display: none;
+	display: none;	
 	overflow:auto;
 	width:100%;
 }

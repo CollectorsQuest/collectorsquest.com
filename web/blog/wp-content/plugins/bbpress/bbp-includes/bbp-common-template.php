@@ -17,7 +17,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
  * Ouput the forum URL
- *
+ * 
  * @since bbPress (r3979)
  *
  * @uses bbp_get_forums_url() To get the forums URL
@@ -28,7 +28,7 @@ function bbp_forums_url( $path = '/' ) {
 }
 	/**
 	 * Return the forum URL
-	 *
+	 * 
 	 * @since bbPress (r3979)
 	 *
 	 * @uses home_url() To get the home URL
@@ -621,7 +621,7 @@ function bbp_is_single_user_edit() {
  *
  * @since bbPress (r2789)
  *
- * @global WP_Query $wp_query To check if WP_Query::bbp_is_view is true
+ * @global WP_Query $wp_query To check if WP_Query::bbp_is_view is true 
  * @uses bbp_is_query_name() To get the query name
  * @return bool Is it a view page?
  */
@@ -1448,7 +1448,7 @@ function bbp_the_content( $args = array() ) {
 	 * @uses bbp_is_edit() To see if we are editing something
 	 * @uses wp_editor() To output the WordPress editor
 	 *
-	 * @return string HTML from output buffer
+	 * @return string HTML from output buffer 
 	 */
 	function bbp_get_the_content( $args = array() ) {
 

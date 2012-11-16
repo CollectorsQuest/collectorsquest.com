@@ -430,6 +430,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
+   * Get the store description
+   *
+   * @return    string
+   */
+  public function getStoreDescription()
+  {
+    return $this->getSeller()->getSellerSettingsStoreDescription();
+  }
+
+  /**
    * @param  BaseObject $something
    * @return boolean
    */
