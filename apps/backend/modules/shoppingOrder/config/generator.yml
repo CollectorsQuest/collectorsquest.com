@@ -21,6 +21,7 @@ generator:
         created_at: { label: Date, date_format: 'MM/dd/yyyy' }
       list:
         fields:
+          uuid: { label: 'Order #' }
           list_seller: { label: Seller }
           list_buyer: { label: Buyer }
           list_buyer_profile: { label: '<i class="icon-user"></i>' }
@@ -45,7 +46,7 @@ generator:
         object_actions: {}
       filter:
         class: BackendShoppingOrderFormFilter
-        display: [collector_seller, buyer_email, shipping_full_name, payment_status, created_at]
+        display: [collector_seller, buyer_email, shipping_full_name, progress, payment_status, created_at]
       form:
         display:
           - shipping_full_name

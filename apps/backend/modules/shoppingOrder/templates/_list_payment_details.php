@@ -14,14 +14,14 @@
     }
     elseif ($ShoppingPayment->getStatus() == ShoppingPaymentPeer::STATUS_CONFIRMED)
     {
-      if ($ShoppingPayment->getUpdatedAt() < time() - 86400)
+      if ($ShoppingPayment->getUpdatedAt('U') < time() - 86400)
       {
         echo '<br/><span style="color: red;">timed out</span>';
       }
     }
     else
     {
-      if ($ShoppingPayment->getUpdatedAt() < time() - 3600)
+      if ($ShoppingPayment->getUpdatedAt('U') < time() - 3600)
       {
         echo '<br/><span style="color: red;">abandoned</span>';
       }
