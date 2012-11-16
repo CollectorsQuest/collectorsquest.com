@@ -82,6 +82,7 @@ classes:
       shipping_tracking_number:  { type: varchar(64), required: false }
 
       note_to_seller:       { type: varchar, size: 255 }
+      progress:             { type: enum, valueSet: "step1, step2, step3", default: step1, required: true }
 
     uniques:
       shopping_order_U_1: [shopping_cart_id, collectible_id]

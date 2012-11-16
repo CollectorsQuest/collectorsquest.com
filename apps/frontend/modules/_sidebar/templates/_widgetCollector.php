@@ -6,8 +6,8 @@
  *
  * @var  $title          string
  * @var  $has_message    boolean
- * @var  $widget_height  integer
  * @var  $height         stdClass
+ * @var  $sf_user        cqFrontendUser
  */
 
 $_height = 0;
@@ -15,32 +15,35 @@ $_height = 0;
 
 <div class="row-fluid spacer-top-20 link">
   <?php cq_sidebar_title($title, null); ?>
-  <div class="span3">
-    <?php
-      echo link_to_collector($collector, 'image', array(
-        'link_to' => array('class' => 'target'),
-        'image_tag' => array('max_width' => 60, 'max_height' => 60)
-      ));
-    ?>
-  </div>
-  <div class="span8">
-    <ul style="list-style: none; margin-left: 5px;">
-      <li>
-        <?php
-        echo sprintf(
-          '%s %s collector',
-          in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
-          '<strong>'. $collector->getCollectorType() .'</strong>'
-        );
-        ?>
-      </li>
-      <?php if ($country_iso3166 = $collector->getProfile()->getCountryIso3166()): ?>
-      <li>
-        From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountryName(); ?>
-      </li>
-      <?php endif; ?>
-    </ul>
-  </div>
+
+  <?php if (!isset($message_only)): ?>
+    <div class="span3">
+      <?php
+        echo link_to_collector($collector, 'image', array(
+          'link_to' => array('class' => 'target'),
+          'image_tag' => array('max_width' => 60, 'max_height' => 60)
+        ));
+      ?>
+    </div>
+    <div class="span8">
+      <ul style="list-style: none; margin-left: 5px;">
+        <li>
+          <?php
+          echo sprintf(
+            '%s %s %s',
+            in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
+            '<strong>'. $collector->getCollectorType() .'</strong>', $collector->getSeller() ? 'seller' : 'collector'
+          );
+          ?>
+        </li>
+        <?php if ($country_iso3166 = $collector->getProfile()->getCountryIso3166()): ?>
+        <li>
+          From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountryName(); ?>
+        </li>
+        <?php endif; ?>
+      </ul>
+    </div>
+  <?php endif; ?>
 </div>
 
 <?php $_height -= 128; ?>

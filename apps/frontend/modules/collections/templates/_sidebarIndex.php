@@ -67,4 +67,11 @@
   }
 ?>
 
+<?php
+  include_partial(
+    'marketplace/partials/holidayMarketBuyPackagePromo_300x90',
+    array('class' => 'spacer-top-20')
+  );
+?>
+
 <?php include_component('_sidebar', 'widgetMagnifyVideos'); ?>

@@ -25,5 +25,6 @@ class sellerComponents extends cqFrontendComponents
     $this->collections = $q->find();
     $this->collection_id = $this->getRequestParameter('collection_id');
     $this->collector = $collector;
+    $this->num_views = $collector->getProfile()->getNumViews();
   }
 }

@@ -11,6 +11,20 @@ $_height = 0;
 ?>
 
 <?php
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    include_partial(
+      'marketplace/partials/holidayMarketBuyPackagePromo_300x90',
+      array('height' => &$height)
+    );
+  }
+  else
+  {
+    include_partial('marketplace/partials/holidayMarketBuyPackagePromo_300x90');
+  }
+?>
+
+<?php
   if (!isset($collector))
   {
     $link = cq_link_to(

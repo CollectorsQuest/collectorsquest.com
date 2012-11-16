@@ -32,11 +32,10 @@ class cqAdminBar
   /**
    * Add new object to admin bar
    *
-   * @param $object
+   * @param BaseObject $object
    */
   private function addObject($object)
   {
-
     $label = sfToolkit::pregtr(get_class($object), array('/([A-Z]+)([A-Z][a-z])/' => '\\1 \\2',
                                                          '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
     if ($params = $this->getObjectBackendParameters($object))
@@ -120,10 +119,7 @@ class cqAdminBar
     }
 
     // Limitation for the first version
-    if (
-      cqGateKeeper::open('machine_tags') &&
-      in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible'))
-    )
+    if (in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible')))
     {
       $url = $this->application->generateBackendUrl(
         'object_machine_tags', array(

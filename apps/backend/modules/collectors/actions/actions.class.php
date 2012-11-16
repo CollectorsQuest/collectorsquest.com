@@ -167,4 +167,23 @@ class collectorsActions extends autoCollectorsActions
     return $this->redirect('@collector');
   }
 
+  /**
+   * Mark as spam and delete a collector
+   */
+  public function executeListSpamAndDestroy()
+  {
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+
+    $this->getUser()->setFlash('notice', sprintf(
+      'The collector %s was marked as spam and removed from the CollectorsQuest.',
+      $collector->getDisplayName()
+    ));
+
+    $collector->markAsSpam();
+    $collector->delete();
+
+    return $this->redirect('@collector');
+  }
+
 }
