@@ -8,20 +8,8 @@
 
       <?php if ($pager->getPage() === 1): ?>
         <?php if (!isset($wp_post)): ?>
-          <div id="collectible_for_sale_0_grid_view_square_big"
-               class="span6 collectible_for_sale_grid_view_square_big">
-
-               <?= ice_image_tag_placeholder('296x296'); ?>
-          </div>
-          <div id="collectible_for_sale_0_grid_view_square_big"
-               class="span6 collectible_for_sale_grid_view_square_big">
-
-               <?= ice_image_tag_placeholder('296x296'); ?>
-          </div>
-          <div id="collectible_for_sale_0_grid_view_square_big"
-               class="span6 collectible_for_sale_grid_view_square_big">
-
-               <?= ice_image_tag_placeholder('296x296'); ?>
+          <div style="float: left; margin-left: 15px; margin-right: 6px;">
+            <?= link_to(ice_image_tag_placeholder('296x605'), '@aetn_franks_picks'); ?>
           </div>
         <?php else: ?>
           <div id="collectible_for_sale_0_grid_view_square_big"
@@ -73,6 +61,15 @@
             'anchor' => 'holiday-market-theme',
             'class' => 'ajax bullet '. ($i === $pager->getPage() ? 'on' : 'off')
           )
+        );
+      }
+
+      // special case for Frank's Picks
+      if (!isset($wp_post))
+      {
+        echo link_to(
+          'See all Frank\'s Picks &raquo;', '@aetn_franks_picks',
+          array('style' => 'float: right; margin-right: 27px;')
         );
       }
     ?>
