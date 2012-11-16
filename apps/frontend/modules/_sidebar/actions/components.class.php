@@ -722,8 +722,7 @@ class _sidebarComponents extends cqFrontendComponents
 
     // have random  Items on Frank's Picks pages
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
-    if ($this->getVar('collector') &&
-      $this->collector->getId() != $aetn_shows['american_pickers']['collector'])
+    if ($this->getVar('collector') && $this->collector->getId() != $aetn_shows['american_pickers']['collector'])
     {
       $q->orderBy('UpdatedAt', Criteria::DESC);
     }

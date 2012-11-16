@@ -78,7 +78,7 @@
 
 <div id="information-box">
   <?php
-    if ($collector->getDisplayName() != 'American Pickers')
+    if ($collector->getId() != 6668)
     {
       $send_text = sprintf('Send a message to %s »', $collector->getDisplayName());
     }
