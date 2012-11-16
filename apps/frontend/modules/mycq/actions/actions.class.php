@@ -797,6 +797,8 @@ class mycqActions extends cqFrontendActions
 
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
+    $collector = $this->getCollector(true);
+
     $form = new CollectorEditForm($this->getCollector(), array(
       'seller_settings_show'     => true,
       'seller_settings_required' => false,
@@ -814,10 +816,43 @@ class mycqActions extends cqFrontendActions
       'seller_settings_store_header_image',
     ));
 
+    $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
+      $this->getCollector(),
+      'US',
+      $request->getParameter('shipping_rates_us')
+    );
+    $form_shipping_us->setDefaults(array(
+      'shipping_type' => $collector->getSellerSettingsShippingUsType(),
+      'flat_rate' => $collector->getSellerSettingsShippingUsRate(),
+    ));
+    $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
+      $this->getCollector(),
+      $request->getParameter('shipping_rates_zz')
+    );
+    $form_shipping_zz->setDefaults(array(
+      'shipping_type' => $collector->getSellerSettingsShippingInternationalType(),
+      'flat_rate' => $collector->getSellerSettingsShippingInternationalRate(),
+      'do_not_ship_to' => $collector->getSellerSettingsShippingInternationalExclude(),
+    ));
+
     if (sfRequest::POST == $request->getMethod())
     {
-      if ($form->bindAndSave($request->getParameter($form->getName()), $request->getFiles($form->getName())))
+      $form_shipping_us->bind($request->getParameter($form_shipping_us->getName()));
+      $form_shipping_zz->bind($request->getParameter($form_shipping_zz->getName()));
+
+      if ($form->bindAndSave($request->getParameter($form->getName()), $request->getFiles($form->getName()))
+      && $form_shipping_us->isValid() && $form_shipping_zz->isValid()
+      )
       {
+        $collector->setSellerSettingsShippingUsType($form_shipping_us->getValue('shipping_type'));
+        $collector->setSellerSettingsShippingUsRate($form_shipping_us->getValue('flat_rate'));
+
+        $collector->setSellerSettingsShippingInternationalType($form_shipping_zz->getValue('shipping_type'));
+        $collector->setSellerSettingsShippingInternationalRate($form_shipping_zz->getValue('flat_rate'));
+        $collector->setSellerSettingsShippingInternationalExclude($form_shipping_zz->getValue('do_not_ship_to'));
+
+        $collector->save();
+
         $this->getUser()->setFlash(
           'success', 'You have successfully updated your store settings.'
         );
@@ -839,8 +874,10 @@ class mycqActions extends cqFrontendActions
       }
     }
 
-    $this->collector = $this->getCollector(true);
+    $this->collector = $collector;
     $this->form = $form;
+    $this->form_shipping_us = $form_shipping_us;
+    $this->form_shipping_zz = $form_shipping_zz;
 
     return sfView::SUCCESS;
   }
