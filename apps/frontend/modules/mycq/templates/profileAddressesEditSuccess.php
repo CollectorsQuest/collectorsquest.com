@@ -23,7 +23,7 @@
             'Return to manage address book &raquo;', '@mycq_profile_addresses',
             array('class' => 'text-v-middle link-align')
           );
-          cq_sidebar_title('Edit your address', $link, array('left' => 8, 'right' => 4));
+          cq_section_title('Edit your address', $link, array('left' => 8, 'right' => 4));
         ?>
 
         <?= form_tag('@mycq_profile_addresses_edit?id='.$form->getObject()->getId(), array('class' => 'form-horizontal')); ?>

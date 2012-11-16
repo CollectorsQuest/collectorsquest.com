@@ -56,7 +56,7 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
    * Check if the shipping type is really flat rate or if it is a fake flat rate
    * that hides a free shipping rate
    *
-   * @return    booleanb
+   * @return    boolean
    */
   public function isShippingTypeFreeShipping()
   {
