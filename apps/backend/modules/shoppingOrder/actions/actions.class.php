@@ -13,4 +13,18 @@ require_once dirname(__FILE__).'/../lib/shoppingOrderGeneratorHelper.class.php';
  */
 class shoppingOrderActions extends autoShoppingOrderActions
 {
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->redirect('shopping_order_view', $this->getRoute()->getObject());
+  }
+
+  public function executeView(sfWebRequest $request)
+  {
+    $this->shopping_order = $this->getRoute()->getObject();
+    $this->shopping_payment = $this->shopping_order->getShoppingPayment();
+    $this->collectible = $this->shopping_order->getCollectible();
+
+
+    return sfView::SUCCESS;
+  }
 }
