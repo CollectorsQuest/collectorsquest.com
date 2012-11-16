@@ -14,7 +14,7 @@ generator:
     config:
       actions: ~
       fields:
-        collector: { label: Seller }
+        list_seller: { label: Seller }
         package_price: { label: Price }
         expiry_date: { label: Expiry Date }
         payment_status: { label: Status }
@@ -22,10 +22,11 @@ generator:
 
       list:
         title: Package Transactions
-        display: [collector, package_name, payment_status, credits, package_price, expiry_date, created_at]
+        display: [_list_seller, package_name, payment_status, credits, package_price, expiry_date, created_at]
         hide: [id]
         sort: [id, desc]
-        object_actions: { }
+        object_actions:
+          addExtraCredits:  { label: "Add extra credits to seller", action: addExtraCredits }
         batch_actions: { }
         actions: { }
 

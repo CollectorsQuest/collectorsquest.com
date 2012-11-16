@@ -24,9 +24,10 @@ class collectorBrokenEmailCheckTask extends sfBaseTask
     // initialize the database connection
     $databaseManager = new sfDatabaseManager($this->configuration);
 
-    /** @var $propel PropelPDO */
+    /* @var $propel PropelPDO */
     $propel = $databaseManager->getDatabase('propel')->getConnection();
 
+    /* @var $collectors PropelObjectCollection|Collector[] */
     $collectors = CollectorQuery::create()
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($propel);
@@ -42,7 +43,10 @@ class collectorBrokenEmailCheckTask extends sfBaseTask
       }
       catch (sfValidatorError $e)
       {
-        $this->log(sprintf('ID: %d  UserName: %s  Email: %s', $collector->getId(), $collector->getUsername(), $collector->getEmail()));
+        $this->log(sprintf(
+          'ID: %d  UserName: %s  Email: %s',
+          $collector->getId(), $collector->getUsername(), $collector->getEmail())
+        );
         $count++;
       }
     }

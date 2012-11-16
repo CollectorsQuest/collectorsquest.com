@@ -1,5 +1,8 @@
 all:
 
+  title: 'Collectors Quest'
+  title_delimiter: ' | '
+
   ssl_redirect:
     # if insecure pages accesed with https should be rerouted to http
     strict: true
@@ -17,12 +20,30 @@ all:
 
   private_messages:
     # require the user to input a captcha every N outgoing messages
-    require_captcha_threshold: 5
+    require_captcha_threshold: 3
+    timeout_threshold: 6
+    timeout_duration: 30 minutes
+    timeout_check_period: 60 minutes
     similarity_percent: 90
     spam_receiver: info@collectorsquest.com
 
   comments:
     num_load: 10
+    timeout_threshold: 6
+    timeout_duration: 30 minutes
+    timeout_check_period: 60 minutes
+    timeout_check_period_increase_for_unsigned: 30 minutes
+
+  skip_spam_check:
+    by_username:
+      - resonantfish # Robotbacon
+      - slideonover # Slideonover
+      - beadylittleeyes # Beadylittleeyes
+
+  marketplace:
+    storefront_settings:
+      header_image_name: 620x67
+      header_image_size: [620, 67]
 
   smart_menus:
     defaults:
@@ -36,6 +57,9 @@ all:
         blog:         { name: Blog, uri: "blog", target: '_top' }
         video:        { name: Video, uri: "video", target: '_top' }
         marketplace:  { name: Market, uri: "marketplace", target: '_top' }
+      template:
+        normal: '<li id="header_menu_%id%"><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
+        active: '<li id="header_menu_%id%"><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
 
     mycq_menu:
       items:
@@ -73,10 +97,6 @@ all:
         compose:  { name: 'Compose Message', icon: edit, uri: "messages_compose" }
 
 dev:
-  domain_name: "collectorsquest.dev"
-  www_domain: "www.collectorsquest.dev"
-  static_domain: "www.collectorsquest.dev"
-  multimedia_domain: "multimedia.cqcdns.dev"
 
   ssl_redirect:
     # do not force SSL on collectorsquest.dev

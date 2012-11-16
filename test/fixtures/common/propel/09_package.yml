@@ -39,3 +39,10 @@ Package:
     package_price: '0'
     created_at: '2011-06-05 19:49:24'
     updated_at: '2012-06-13 10:34:01'
+  Package_10000:
+    package_name: 'Admin Package'
+    package_description: 'Used when manually adding credits to an user.'
+    credits: '0'
+    package_price: '0'
+    created_at: '2012-10-09 15:21:16'
+    updated_at: '2012-10-09 15:21:16'

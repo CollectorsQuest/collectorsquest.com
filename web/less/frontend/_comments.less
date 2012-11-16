@@ -9,8 +9,7 @@
   margin: 10px 25px 10px 0;
 
   .username {
-    display: block;
-    width: 100%;
+    display: inline-block;
     margin-bottom: 5px;
     font-weight: bold;
     color: @blue;
@@ -126,45 +125,31 @@
   .box-shadow(-1px 1px 1px rgba(50, 50, 50, 0.1));
   color: #555;
 
-  &:before {
-    border-color: #b8adad transparent;
-    border-style: solid;
-    border-width: 20px 20px 0;
-    bottom: -20px;
-    content: "";
-    display: block;
-    left: 10px;
-    position: absolute;
-    width: 0;
-  }
-  &:after {
-    border-color: #FFFFFF transparent;
-    border-style: solid;
-    border-width: 12px 12px 0;
-    bottom: -13px;
-    content: "";
-    display: block;
-    left: 48px;
-    position: absolute;
-    width: 0;
-  }
   &.left {
     margin-left: 10px;
   }
 
   &.left:before {
-    border-color: transparent #b8adad;
-    border-width: 8px 8px 8px 0;
+    content: "";
+    position: absolute;
+    border-right: 8px solid #b8adad;
+    border-right-color: #b8adad;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
     bottom: auto;
     left: -9px;
     top: 14px;
   }
   &.left:after {
-    border-color: transparent #FFFFFF;
-    border-width: 7px 7px 7px 0;
+    content: "";
+    position: absolute;
+    border-right: 8px solid #fff;
+    border-right-color: #fff;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
     bottom: auto;
     left: -7px;
     top: 14px;
-    //top: 15px; without box-shadow
+  //top: 15px; without box-shadow
   }
 }

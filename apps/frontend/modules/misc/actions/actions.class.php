@@ -175,10 +175,10 @@ class miscActions extends cqFrontendActions
       $mimeType = 'pdf' == $format ? 'application/pdf' : 'application/zip';
       $sourceFile = sfConfig::get('sf_data_dir') . '/download/essential-guide.' . $format;
 
-      header("Expires: 0");
-      header("Cache-control: private");
-      header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-      header("Content-Description: File Transfer");
+      header('Expires: 0');
+      header('Cache-control: private');
+      header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+      header('Content-Description: File Transfer');
       header(sprintf('Content-Type: %s, charset=UTF-8; encoding=UTF-8', $mimeType));
       header('Content-disposition: attachment; filename="' . $filename .'"');
 
@@ -257,47 +257,212 @@ class miscActions extends cqFrontendActions
     /** @var $wp_post wpPost */
     $wp_post = $this->getRoute()->getObject();
 
-    $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
+    /** @var $post_id integer */
+    $post_id = $request->getParameter('id');
+
+    $values = $wp_post->getPostMetaValue('_featured_items');
 
     // Initialize the arrays
-    $collection_ids = $collectible_ids = array();
+    $collection_ids = $collectible_ids = $category_ids = $tags = $homepage_collectible_ids = array();
+    $collection_ids_exclude = $collectible_ids_exclude = $category_ids_exclude = $tags_exclude = array();
 
     if (!empty($values['cq_collection_ids']))
     {
-      $collection_ids = explode(',', $values['cq_collection_ids']);
-      $collection_ids = array_map('trim', $collection_ids);
-      $collection_ids = array_filter($collection_ids);
+      $collection_ids = cqFunctions::explode(',', $values['cq_collection_ids']);
     }
     if (!empty($values['cq_collectible_ids']))
     {
-      $collectible_ids = explode(',', $values['cq_collectible_ids']);
-      $collectible_ids = array_map('trim', $collectible_ids);
-      $collectible_ids = array_filter($collectible_ids);
+      $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
+    }
+    if (!empty($values['cq_category_ids']))
+    {
+      $category_ids = cqFunctions::explode(',', $values['cq_category_ids']);
+    }
+    if (!empty($values['cq_tags']))
+    {
+      $tags = cqFunctions::explode(',', $values['cq_tags']);
+    }
+    if (!empty($values['cq_homepage_collectible_ids']))
+    {
+      $homepage_collectible_ids = cqFunctions::explode(',', $values['cq_homepage_collectible_ids']);
+      $collectible_ids = array_merge($homepage_collectible_ids, $collectible_ids);
     }
 
-    if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids', null, 'cache'))
+    // exclude values
+    if (!empty($values['cq_collection_ids_exclude']))
     {
-      /** @var $q CollectionCollectibleQuery */
-      $q = CollectionCollectibleQuery::create()
+      $collection_ids_exclude = cqFunctions::explode(',', $values['cq_collection_ids_exclude']);
+    }
+    if (!empty($values['cq_collectible_ids_exclude']))
+    {
+      $collectible_ids_exclude = cqFunctions::explode(',', $values['cq_collectible_ids_exclude']);
+    }
+    if (!empty($values['cq_category_ids_exclude']))
+    {
+      $category_ids_exclude = cqFunctions::explode(',', $values['cq_category_ids_exclude']);
+    }
+    if (!empty($values['cq_tags_exclude']))
+    {
+      $tags_exclude = cqFunctions::explode(',', $values['cq_tags_exclude']);
+    }
+
+    $status = $wp_post->getPostStatus();
+    $_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache');
+
+    if (!$_collectible_ids || $status !== 'publish')
+    {
+      // add Collectibles based on Category IDs
+      if (!empty($category_ids))
+      {
+        /** @var $q ContentCategoryQuery */
+        $q = ContentCategoryQuery::create()
+          ->filterById($category_ids, Criteria::IN);
+
+        /** @var $content_categories ContentCategory[] */
+        $_content_categories = $q->find();
+
+        /** @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectionCollectibleQuery::create()
+          ->filterByContentCategoryWithDescendants($_content_categories)
+          ->select('CollectibleId');
+
+        $_collectible_ids_content_categories = $q->find()->toArray();
+
+        $collectible_ids = array_merge($collectible_ids, $_collectible_ids_content_categories);
+        $collectible_ids = array_unique($collectible_ids);
+      }
+
+      // exclude Collectibles based on Category IDs
+      if (!empty($category_ids_exclude))
+      {
+        /** @var $q ContentCategoryQuery */
+        $q = ContentCategoryQuery::create()
+          ->filterById($category_ids_exclude, Criteria::IN);
+
+        /** @var $content_categories_exclude ContentCategory[] */
+        $_content_categories_exclude = $q->find();
+
+        /** @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectionCollectibleQuery::create()
+          ->filterByContentCategoryWithDescendants($_content_categories_exclude)
+          ->filterByCollectibleId($homepage_collectible_ids, Criteria::NOT_IN)
+          ->select('CollectibleId');
+
+        $_collectible_ids_content_categories_exclude = $q->find()->toArray();
+
+        $collectible_ids_exclude = array_merge($collectible_ids_exclude, $_collectible_ids_content_categories_exclude);
+        $collectible_ids_exclude = array_unique($collectible_ids_exclude);
+      }
+
+      // add Collections and Collectibles based on tag matching
+      if (!empty($tags))
+      {
+        /** @var $q FrontendCollectorCollectionQuery */
+        $q = FrontendCollectorCollectionQuery::create()
+          ->filterByTags($tags)
+          ->select('Id');
+
+        $_collection_ids_tags = $q->find()->toArray();
+
+        $collection_ids = array_merge($collection_ids, $_collection_ids_tags);
+        $collection_ids = array_unique($collection_ids);
+
+        // @todo not sure if/how this sould be done with CollectorCollectionQuery
+        /** @var $q FrontendCollectibleQuery */
+        $q = FrontendCollectibleQuery::create()
+          ->filterByTags($tags)
+          ->select('Id');
+
+        $_collectible_ids_tags = $q->find()->toArray();
+
+        $collectible_ids = array_merge($collectible_ids, $_collectible_ids_tags);
+        $collectible_ids = array_unique($collectible_ids);
+      }
+
+      // exclude Collections and Collectibles based on tag matching
+      if (!empty($tags_exclude))
+      {
+        /** @var $q FrontendCollectorCollectionQuery */
+        $q = FrontendCollectorCollectionQuery::create()
+          ->filterByTags($tags_exclude)
+          ->select('Id');
+
+        $_collection_ids_tags_exclude = $q->find()->toArray();
+
+        $collection_ids_exclude = array_merge($collection_ids_exclude, $_collection_ids_tags_exclude);
+        $collection_ids_exclude = array_unique($collection_ids_exclude);
+
+        /** @var $q CollectibleQuery */
+        $q = CollectibleQuery::create()
+          ->isComplete()
+          ->isPartOfCollection()
+          ->filterByTags($tags_exclude)
+          ->filterById($homepage_collectible_ids, Criteria::NOT_IN)
+          ->select('Id');
+
+        $_collectible_ids_tags_exclude = $q->find()->toArray();
+
+        $collectible_ids_exclude = array_merge($collectible_ids_exclude, $_collectible_ids_tags_exclude);
+        $collectible_ids_exclude = array_unique($collectible_ids_exclude);
+      }
+
+      // add Collectibles based on Collection IDs
+      if (!empty($collection_ids))
+      {
+        /** @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectionCollectibleQuery::create()
+          ->filterByCollectionId($collection_ids, Criteria::IN)
+          ->select('CollectibleId');
+
+        $_collectible_ids_collection= $q->find()->toArray();
+
+        $collectible_ids = array_merge($collectible_ids, $_collectible_ids_collection);
+        $collectible_ids = array_unique($collectible_ids);
+      }
+
+      // exclude Collectibles based on Collection IDs
+      if (!empty($collection_ids_exclude))
+      {
+        /** @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectionCollectibleQuery::create()
+          ->filterByCollectionId($collection_ids_exclude, Criteria::IN)
+          ->filterByCollectibleId($homepage_collectible_ids, Criteria::NOT_IN)
+          ->select('CollectibleId');
+
+        $_collectible_ids_collection_exclude = $q->find()->toArray();
+
+        $collectible_ids_exclude = array_merge($collectible_ids_exclude, $_collectible_ids_collection_exclude);
+        $collectible_ids_exclude = array_unique($collectible_ids_exclude);
+      }
+
+      /** @var $q FrontendCollectionCollectibleQuery */
+      $q = FrontendCollectionCollectibleQuery::create()
         ->select('CollectibleId')
-        ->filterByCollectionId($collection_ids, Criteria::IN)
-        ->_or()
-        ->filterByCollectibleId($collectible_ids, Criteria::IN);
+        ->filterByCollectibleId($collectible_ids, Criteria::IN)
+        ->_and()
+        ->filterByCollectibleId($collectible_ids_exclude, Criteria::NOT_IN);
+
+      if (!empty($homepage_collectible_ids))
+      {
+        $q->addDescendingOrderByColumn(
+          'FIELD(collection_collectible.collectible_id, ' . implode(',', array_reverse($homepage_collectible_ids)) . ')'
+        );
+      }
 
       /** @var $collectible_ids array */
       $_collectible_ids = $q->find()->toArray();
 
-      // Give some element of surprise
-      shuffle($_collectible_ids);
-
       // Cache the result for the life of the session
-      $this->getUser()->setAttribute('featured_items_collectible_ids', $_collectible_ids, 'cache');
+      $this->getUser()->setAttribute('featured_items_collectible_ids_' . $post_id, $_collectible_ids, 'cache');
     }
 
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollectibleId($_collectible_ids)
+    // We cannot show a custom page without custom Collectible IDs
+    $this->forward404Unless(is_array($_collectible_ids));
+
+    $q = FrontendCollectibleQuery::create()
+      ->filterById($_collectible_ids)
       ->addAscendingOrderByColumn(
-        'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
+        'FIELD(collectible.id, ' . implode(',', $_collectible_ids) . ')'
       );
 
     $pager = new PropelModelPager($q, 20);
@@ -316,4 +481,5 @@ class miscActions extends cqFrontendActions
 
     return sfView::SUCCESS;
   }
+
 }

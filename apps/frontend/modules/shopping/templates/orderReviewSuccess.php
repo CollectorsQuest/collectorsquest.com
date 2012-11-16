@@ -135,3 +135,64 @@
     </table>
   </div>
 </div>
+
+<div class="row-fluid">
+  <div class="span8 spacer-left-reset">
+    <table class="table table-collectible-purchased">
+      <tr>
+        <td>Item Name:</td>
+        <td><?= $collectible->getName(); ?></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><?= $collectible->getDescription(); ?></td>
+      </tr>
+      <tr>
+        <td>Price:</td>
+        <td><?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?></td>
+      </tr>
+      <tr>
+        <td>Condition:</td>
+        <td><?= $collectible->getCollectibleForSale()->getCondition(); ?></td>
+      </tr>
+    </table>
+  </div><!-- ./span8 -->
+
+  <div class="span4">
+    <div class="thumbnail">
+    <?php
+      echo image_tag_multimedia(
+        $collectible->getPrimaryImage(), '190x190'
+      );
+    ?>
+    </div>
+  </div><!-- ./span4 -->
+</div>
+
+<script>
+if (Modernizr.isproduction)
+{
+  _gaq.push(['_addTrans',
+    '<?= $shopping_order->getUuid() ?>',
+    '<?= addcslashes($shopping_order->getSeller()->getDisplayName(), "'") ?>',
+    '<?= number_format((float) $shopping_order->getTotalAmount(), 2) ?>',
+    '0',
+    '<?= number_format((float) $shopping_order->getShippingFeeAmount(), 2) ?>',
+    '<?= addcslashes($shopping_order->getShippingCity(), "'") ?>',
+    '<?= addcslashes($shopping_order->getShippingStateRegion(), "'") ?>',
+    '<?= $shopping_order->getShippingCountryName() ?>'
+  ]);
+
+  _gaq.push(['_addItem',
+    '<?= $shopping_order->getUuid() ?>',
+    '<?= $collectible->getId(); ?>',
+    '<?= addcslashes($collectible->getName(), "'") ?>',
+    '<?= addcslashes($collectible->getContentCategory(), "'") ?>',
+    '<?= number_format((float) $shopping_order->getCollectiblesAmount(), 2) ?>',
+    '1'
+  ]);
+
+  // Submits transaction to the Analytics servers
+  _gaq.push(['_trackTrans']);
+}
+</script>

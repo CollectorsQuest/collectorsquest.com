@@ -14,24 +14,27 @@ class collectorActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-    if (!$this->getCollector()->isOwnerOf($collector))
-    {
-      $profile->setNumViews($profile->getNumViews() + 1);
-      $profile->save();
-    }
+//    if (!$this->getCollector()->isOwnerOf($collector))
+//    {
+//      $profile->setNumViews($profile->getNumViews() + 1);
+//      $profile->save();
+//    }
 
     $this->collector = $collector;
     $this->profile   = $profile;
 
-    $c = new Criteria();
-    $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
-    $this->collectionsCount = $collector->countCollectionsWithCollectibles($c);
+    /** @var $q FrontendCollectorCollectionQuery */
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($collector)
+      ->hasPublicCollectibles();
+    $this->collectionsCount = $q->count();
 
-    $c = new Criteria();
-    $c->add(CollectiblePeer::IS_PUBLIC, true);
-    $this->collectiblesCount = $collector->countCollectiblesInCollections($c);
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($collector);
+    $this->collectiblesCount = $q->count();
 
     $this->i_collect_tags = $collector->getICollectTags();
+    $this->i_sell_tags = $collector->getISellTags();
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collector);
@@ -90,6 +93,10 @@ class collectorActions extends cqFrontendActions
     // Finally add the meta description to the response
     $this->getResponse()->addMeta(
       'description', cqStatic::truncateText(strip_tags($meta_description), 156, '...', true)
+    );
+
+    $this->dispatcher->notify(
+      new sfEvent($this, 'application.show_object', array('object' => $this->collector))
     );
 
     return sfView::SUCCESS;

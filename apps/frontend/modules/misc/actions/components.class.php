@@ -10,16 +10,14 @@ class miscComponents extends cqFrontendComponents
     }
 
     /** @var $values array */
-    $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
+    $values = $wp_post->getPostMetaValue('_featured_items');
 
     // Initialize the arrays
     $collectibles_for_sale_ids = $wp_post_ids = array();
 
     if (!empty($values['cq_collectibles_for_sale_ids']))
     {
-      $collectibles_for_sale_ids = explode(',', $values['cq_collectibles_for_sale_ids']);
-      $collectibles_for_sale_ids = array_map('trim', $collectibles_for_sale_ids);
-      $collectibles_for_sale_ids = array_filter($collectibles_for_sale_ids);
+      $collectibles_for_sale_ids = cqFunctions::explode(',', $values['cq_collectibles_for_sale_ids']);
 
       // Get some element of surprise
       shuffle($collectibles_for_sale_ids);
@@ -30,15 +28,13 @@ class miscComponents extends cqFrontendComponents
         ->filterByCollectibleId($collectibles_for_sale_ids, Criteria::IN)
         ->select('CollectibleId')
         ->addAscendingOrderByColumn(
-          'FIELD(collectible_id, ' . implode(',', $collectibles_for_sale_ids) . ')'
+          'FIELD(collectible_for_sale.collectible_id, ' . implode(',', $collectibles_for_sale_ids) . ')'
         );
       $collectibles_for_sale_ids = $q->find()->toArray();
     }
     if (!empty($values['cq_wp_post_ids']))
     {
-      $wp_post_ids = explode(',', $values['cq_wp_post_ids']);
-      $wp_post_ids = array_map('trim', $wp_post_ids);
-      $wp_post_ids = array_filter($wp_post_ids);
+      $wp_post_ids = cqFunctions::explode(',', $values['cq_wp_post_ids']);
     }
 
     $this->wp_post = $wp_post;
@@ -47,4 +43,5 @@ class miscComponents extends cqFrontendComponents
 
     return $this->wp_post ? sfView::SUCCESS : sfView::NONE;
   }
+
 }

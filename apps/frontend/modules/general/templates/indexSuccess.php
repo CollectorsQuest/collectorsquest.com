@@ -1,9 +1,3 @@
-<?php
-//  slot('header_pushdown');
-//  cq_dart_slot('970x66', 'homepage', null, 'top');
-//  end_slot();
-?>
-
 <?php cq_page_title("Now On Display") ?>
 
 <div class="row">
@@ -88,8 +82,7 @@
       $container.masonry(
       {
         itemSelector : '.brick, .span3, .span6',
-        columnWidth : 140, gutterWidth: 15,
-        isAnimated: !Modernizr.csstransitions
+        columnWidth : 140, gutterWidth: 15
       });
     });
   });

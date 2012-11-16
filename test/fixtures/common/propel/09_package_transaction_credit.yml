@@ -1,139 +1,4 @@
 PackageTransactionCredit:
-  PackageTransactionCredit_1:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73970
-    expiry_date: '2012-12-23 20:33:07'
-    created_at: '2012-06-23 20:33:07'
-  PackageTransactionCredit_2:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73969
-    expiry_date: '2012-12-23 20:34:22'
-    created_at: '2012-06-23 20:34:22'
-  PackageTransactionCredit_3:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73967
-    expiry_date: '2012-12-23 20:34:45'
-    created_at: '2012-06-23 20:34:45'
-  PackageTransactionCredit_4:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73968
-    expiry_date: '2012-12-23 20:36:33'
-    created_at: '2012-06-23 20:36:33'
-  PackageTransactionCredit_5:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73965
-    expiry_date: '2012-12-23 20:37:23'
-    created_at: '2012-06-23 20:37:23'
-  PackageTransactionCredit_6:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73979
-    expiry_date: '2012-12-23 20:38:02'
-    created_at: '2012-06-23 20:38:02'
-  PackageTransactionCredit_7:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73980
-    expiry_date: '2012-12-23 20:38:42'
-    created_at: '2012-06-23 20:38:42'
-  PackageTransactionCredit_8:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73982
-    expiry_date: '2012-12-23 20:39:24'
-    created_at: '2012-06-23 20:39:24'
-  PackageTransactionCredit_9:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73986
-    expiry_date: '2012-12-23 20:39:58'
-    created_at: '2012-06-23 20:39:58'
-  PackageTransactionCredit_10:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73985
-    expiry_date: '2012-12-23 20:41:49'
-    created_at: '2012-06-23 20:41:49'
-  PackageTransactionCredit_11:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73984
-    expiry_date: '2012-12-23 20:43:07'
-    created_at: '2012-06-23 20:43:07'
-  PackageTransactionCredit_12:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73983
-    expiry_date: '2012-12-23 20:44:08'
-    created_at: '2012-06-23 20:44:08'
-  PackageTransactionCredit_13:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_71460
-    expiry_date: '2012-12-23 20:45:06'
-    created_at: '2012-06-23 20:45:06'
-  PackageTransactionCredit_14:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74019
-    expiry_date: '2012-12-23 20:46:14'
-    created_at: '2012-06-23 20:46:14'
-  PackageTransactionCredit_15:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74020
-    expiry_date: '2012-12-23 20:54:34'
-    created_at: '2012-06-23 20:54:34'
-  PackageTransactionCredit_16:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74022
-    expiry_date: '2012-12-23 20:56:41'
-    created_at: '2012-06-23 20:56:41'
-  PackageTransactionCredit_17:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74255
-    expiry_date: '2012-12-23 20:58:05'
-    created_at: '2012-06-23 20:58:05'
-  PackageTransactionCredit_18:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74256
-    expiry_date: '2012-12-23 20:58:31'
-    created_at: '2012-06-23 20:58:31'
-  PackageTransactionCredit_19:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_75001
-    expiry_date: '2012-12-23 20:59:07'
-    created_at: '2012-06-23 20:59:07'
-  PackageTransactionCredit_20:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74679
-    expiry_date: '2012-12-23 21:00:56'
-    created_at: '2012-06-23 21:00:56'
-  PackageTransactionCredit_21:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_75130
-    expiry_date: '2012-12-23 21:02:39'
-    created_at: '2012-06-23 21:02:39'
-  PackageTransactionCredit_22:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74676
-    expiry_date: '2012-12-23 21:03:43'
-    created_at: '2012-06-23 21:03:43'
-  PackageTransactionCredit_23:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74435
-    expiry_date: '2012-12-23 21:10:35'
-    created_at: '2012-06-23 21:10:35'
-  PackageTransactionCredit_24:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_75114
-    expiry_date: '2012-12-23 21:12:04'
-    created_at: '2012-06-23 21:12:04'
-  PackageTransactionCredit_26:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_75115
-    expiry_date: '2012-12-23 21:13:46'
-    created_at: '2012-06-23 21:13:46'
-  PackageTransactionCredit_27:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_75116
-    expiry_date: '2012-12-23 21:16:14'
-    created_at: '2012-06-23 21:16:14'
-  PackageTransactionCredit_28:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73991
-    expiry_date: '2012-12-23 21:22:03'
-    created_at: '2012-06-23 21:22:03'
   PackageTransactionCredit_29:
     package_transaction_id: PackageTransaction_4
     collectible_id: Collectible_75357
@@ -189,11 +54,6 @@ PackageTransactionCredit:
     collectible_id: Collectible_75368
     expiry_date: '2012-12-24 22:36:26'
     created_at: '2012-06-24 22:36:26'
-  PackageTransactionCredit_56:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_74678
-    expiry_date: '2012-12-25 17:28:25'
-    created_at: '2012-06-25 17:28:25'
   PackageTransactionCredit_57:
     package_transaction_id: PackageTransaction_134
     collectible_id: Collectible_75610
@@ -214,63 +74,18 @@ PackageTransactionCredit:
     collectible_id: Collectible_75613
     expiry_date: '2012-12-25 20:16:24'
     created_at: '2012-06-25 20:16:24'
-  PackageTransactionCredit_61:
-    package_transaction_id: PackageTransaction_139
-    collectible_id: Collectible_75633
-    expiry_date: '2012-12-25 23:55:25'
-    created_at: '2012-06-25 23:55:25'
-  PackageTransactionCredit_72:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73963
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_73:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73964
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_74:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73971
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_75:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73972
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_76:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73975
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_77:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73976
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_78:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73977
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_79:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73978
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_80:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73981
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_81:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_73988
-    expiry_date: '2013-01-12 10:20:39'
-    created_at: '2012-07-12 10:20:39'
-  PackageTransactionCredit_82:
-    package_transaction_id: PackageTransaction_132
-    collectible_id: Collectible_77607
-    expiry_date: '2013-01-19 16:27:04'
-    created_at: '2012-07-19 16:27:04'
+  PackageTransactionCredit_333:
+    package_transaction_id: PackageTransaction_142
+    collectible_id: Collectible_87877
+    expiry_date: '2013-03-10 04:56:02'
+    created_at: '2012-09-10 04:56:02'
+  PackageTransactionCredit_334:
+    package_transaction_id: PackageTransaction_142
+    collectible_id: Collectible_87879
+    expiry_date: '2013-03-10 05:08:05'
+    created_at: '2012-09-10 05:08:05'
+  PackageTransactionCredit_701:
+    package_transaction_id: PackageTransaction_142
+    collectible_id: Collectible_92646
+    expiry_date: '2013-04-08 05:20:01'
+    created_at: '2012-10-08 05:20:01'

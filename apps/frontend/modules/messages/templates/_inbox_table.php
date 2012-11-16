@@ -14,10 +14,10 @@
       <td class="sender-col">
         <?= image_tag_collector($message->getCollectorRelatedBySender(),
           '50x50', array('class' => 'avatar')); ?>
-        From:&nbsp;<?= link_to_collector($message->getCollectorRelatedBySender()); ?>
-        <p class="font10">
+        From:&nbsp;<?= link_to_collector($message->getCollectorRelatedBySender()); ?><br/>
+        <span class="font10" title="<?= $message->getCreatedAt('c') ?>">
           <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
-        </p>
+        </span>
       </td>
       <td class="message-col">
         <?= link_to($message->getSubject(), $message_link); ?>
@@ -70,6 +70,7 @@
         $form.serialize(),
         function() {
           $('#messages-table').hideLoading();
+          APP.messages.inbox();
         }
       );
 

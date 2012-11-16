@@ -55,6 +55,25 @@ function migrate() {
 		// Set option so that we dont keep doing this
 		update_option( 'safecss_revision_migrated', time() );
 	}
+
+	$newest_safecss_post = get_current_revision();
+
+	if ( $newest_safecss_post ) {
+		if ( get_option( 'safecss_content_width' ) ) {
+			// Add the meta to the post and the latest revision.
+			update_post_meta( $newest_safecss_post['ID'], 'content_width', get_option( 'safecss_content_width' ) );
+			update_metadata( 'post', $newest_safecss_post['ID'], 'content_width', get_option( 'safecss_content_width' ) );
+
+			delete_option( 'safecss_content_width' );
+		}
+
+		if ( get_option( 'safecss_add' ) ) {
+			update_post_meta( $newest_safecss_post['ID'], 'custom_css_add', get_option( 'safecss_add' ) );
+			update_metadata( 'post', $newest_safecss_post['ID'], 'custom_css_add', get_option( 'safecss_add' ) );
+
+			delete_option( 'safecss_add' );
+		}
+	}
 }
 
 function safecss_revision_redirect( $redirect ) {
@@ -102,16 +121,49 @@ function safecss_revision_post_link( $post_link, $post_id, $context ) {
 add_filter( 'get_edit_post_link', 'safecss_revision_post_link', 10, 3 );
 
 /**
- * Get the safecss record
+ * Get the published custom CSS post.
  *
  * @return array
  */
 function get_safecss_post() {
-	$safecss_post = array();
-	$a = array_shift( get_posts( array( 'numberposts' => 1, 'post_type' => 'safecss', 'post_status' => 'publish' ) ) );
-	if ( $a )
-		$safecss_post = get_object_vars( $a ); // needed for php 5.3
-	return $safecss_post;
+	$custom_css_post_id = custom_css_post_id();
+
+	if ( $custom_css_post_id )
+		return get_post( $custom_css_post_id, ARRAY_A );
+
+	return array();
+}
+
+/**
+ * Get the post ID of the published custom CSS post.
+ *
+ * @return int|bool The post ID if it exists; false otherwise.
+ */
+function custom_css_post_id() {
+	$custom_css_post_id = wp_cache_get( 'custom_css_post_id' );
+
+	if ( false === $custom_css_post_id ) {
+		$custom_css_post = array_shift( get_posts( array(
+			'posts_per_page' => 1,
+			'post_type' => 'safecss',
+			'post_status' => 'publish',
+			'orderby' => 'date',
+			'order' => 'DESC'
+		) ) );
+
+		if ( $custom_css_post )
+			$custom_css_post_id = $custom_css_post->ID;
+		else
+			$custom_css_post_id = 0;
+
+		// Save post_id=0 to note that no safecss post exists.
+		wp_cache_set( 'custom_css_post_id', $custom_css_post_id );
+	}
+
+	if ( ! $custom_css_post_id )
+		return false;
+
+	return $custom_css_post_id;
 }
 
 /**
@@ -126,10 +178,10 @@ function get_current_revision() {
 		return false;
 	}
 
-	$revisions = wp_get_post_revisions( $safecss_post['ID'], 'orderby=ID&order=DESC&limit=1' );
+	$revisions = wp_get_post_revisions( $safecss_post['ID'], array( 'posts_per_page' => 1, 'orderby' => 'date', 'order' => 'DESC' ) );
 
 	// Empty array if no revisions exist
-	if ( empty( $revisions) ) {
+	if ( empty( $revisions ) ) {
 		// Return original post
 		return $safecss_post;
 	} else {
@@ -145,57 +197,113 @@ function get_current_revision() {
  *
  * @param string $css
  * @param bool $is_preview
- * @return bool
+ * @return bool|int If nothing was saved, returns false. If a post
+ *                  or revision was saved, returns the post ID.
  */
 function save_revision( $css, $is_preview = false ) {
 	$safecss_post = get_safecss_post();
 
+	$compressed_css = custom_css_minify( $css );
+
 	// If null, there was no original safecss record, so create one
 	if ( null == $safecss_post ) {
+		if ( ! $css )
+			return false;
+
 		$post = array();
 		$post['post_content'] = $css;
 		$post['post_title'] = 'safecss';
 		$post['post_status'] = 'publish';
 		$post['post_type'] = 'safecss';
+		$post['post_content_filtered'] = $compressed_css;
+
+		// Set excerpt to current theme, for display in revisions list
+		if ( function_exists( 'wp_get_theme' ) ) {
+			$current_theme = wp_get_theme();
+			$post['post_excerpt'] = $current_theme->Name;
+		}
+		else {
+			$post['post_excerpt'] = get_current_theme();
+		}
 
 		// Insert the CSS into wp_posts
 		$post_id = wp_insert_post( $post );
-		return true;
+		wp_cache_set( 'custom_css_post_id', $post_id );
+		return $post_id;
 	}
 
+	// Update CSS in post array with new value passed to this function
 	$safecss_post['post_content'] = $css;
+	$safecss_post['post_content_filtered'] = $compressed_css;
+
+	// Set excerpt to current theme, for display in revisions list
+	if ( function_exists( 'wp_get_theme' ) ) {
+		$current_theme = wp_get_theme();
+		$safecss_post['post_excerpt'] = $current_theme->Name;
+	}
+	else {
+		$safecss_post['post_excerpt'] = get_current_theme();
+	}
+
+	// Don't carry over last revision's timestamps, otherwise revisions all have matching timestamps
+	unset( $safecss_post['post_date'] );
+	unset( $safecss_post['post_date_gmt'] );
+	unset( $safecss_post['post_modified'] );
+	unset( $safecss_post['post_modified_gmt'] );
 
 	// Do not update post if we are only saving a preview
 	if ( false === $is_preview ) {
-		wp_update_post( $safecss_post );
+		$post_id = wp_update_post( $safecss_post );
+		wp_cache_set( 'custom_css_post_id', $post_id );
+		return $post_id;
 	}
 	else if ( !defined( 'DOING_MIGRATE' ) ) {
-		_wp_put_post_revision( $safecss_post );
+		return _wp_put_post_revision( $safecss_post );
 	}
 }
 
 function safecss_skip_stylesheet() {
-	if ( safecss_is_preview() )
-		return (bool) ( get_option('safecss_preview_add') == 'no' );
-	else
-		return (bool) ( get_option('safecss_add') == 'no' );
+	if ( custom_css_is_customizer_preview() )
+		return false;
+	else {
+		if ( safecss_is_preview() ) {
+			$safecss_post = get_current_revision();
+
+			return (bool) ( get_option('safecss_preview_add') == 'no' || get_post_meta( $safecss_post['ID'], 'custom_css_add', true ) == 'no' );
+		}
+		else {
+			$custom_css_post_id = custom_css_post_id();
+
+			return (bool) ( get_option('safecss_add') == 'no' || ( $custom_css_post_id && get_post_meta( $custom_css_post_id, 'custom_css_add', true ) == 'no' ) );
+		}
+	}
 }
 
 function safecss_init() {
-	define( 'SAFECSS_USE_ACE', apply_filters( 'safecss_use_ace', true ) );
+	define( 'SAFECSS_USE_ACE', ! jetpack_is_mobile() && ! Jetpack_User_Agent_Info::is_ipad() && apply_filters( 'safecss_use_ace', true ) );
 
-	// Register safecss as a custom post_type
-	register_post_type( 'safecss', array(
+  	// Register safecss as a custom post_type
+  	// Explicit capability definitions are largely unnecessary because the posts are manipulated in code via an options page, managing CSS revisions does check the capabilities, so let's ensure that the proper caps are checked.
+  	register_post_type( 'safecss', array(
 //		These are the defaults
 //		'exclude_from_search' => true,
 //		'public' => false,
 //		'publicly_queryable' => false,
 //		'show_ui' => false,
-		'supports' => array( 'revisions' ),
-		'label' => 'Custom CSS',
-		'can_export' => false,
-		'rewrite' => false,
-	) );
+  		'supports' => array( 'revisions' ),
+  		'label' => 'Custom CSS',
+  		'can_export' => false,
+  		'rewrite' => false,
+  		'capabilities' => array(
+  			'edit_post' => 'edit_theme_options',
+  			'read_post' => 'read',
+  			'delete_post' => 'edit_theme_options',
+  			'edit_posts' => 'edit_theme_options',
+  			'edit_others_posts' => 'edit_theme_options',
+  			'publish_posts' => 'edit_theme_options',
+  			'read_private_posts' => 'read'
+  		)
+  	) );
 
 	// Short-circuit WP if this is a CSS stylesheet request
 	if ( isset( $_GET['custom-css'] ) ) {
@@ -229,17 +337,22 @@ function safecss_init() {
 
 		do_action( 'safecss_save_pre' );
 
+		$warnings = array();
+
 		safecss_class();
 		$csstidy = new csstidy();
 		$csstidy->optimise = new safecss($csstidy);
-		$csstidy->set_cfg('remove_bslash', false);
-		$csstidy->set_cfg('compress_colors', false);
-		$csstidy->set_cfg('compress_font-weight', false);
-		$csstidy->set_cfg('discard_invalid_properties', true);
-		$csstidy->set_cfg('merge_selectors', false);
-		$csstidy->set_cfg('remove_last_;', false);
-		$csstidy->set_cfg('css_level', 'CSS3.0');
-		$csstidy->set_cfg('template', dirname( __FILE__ ) . '/csstidy/wordpress-standard.tpl');
+
+		$csstidy->set_cfg( 'remove_bslash',              false );
+		$csstidy->set_cfg( 'compress_colors',            false );
+		$csstidy->set_cfg( 'compress_font-weight',       false );
+		$csstidy->set_cfg( 'optimise_shorthands',        0 );
+		$csstidy->set_cfg( 'remove_last_;',              false );
+		$csstidy->set_cfg( 'case_properties',            false );
+		$csstidy->set_cfg( 'discard_invalid_properties', true );
+		$csstidy->set_cfg( 'css_level',                  'CSS3.0' );
+		$csstidy->set_cfg( 'preserve_css',               true );
+		$csstidy->set_cfg( 'template',                   dirname( __FILE__ ) . '/csstidy/wordpress-standard.tpl' );
 
 		$css = $orig = stripslashes($_POST['safecss']);
 
@@ -266,7 +379,7 @@ function safecss_init() {
 
 		$css = $csstidy->print->plain();
 
-		if ( intval($_POST['custom_content_width']) > 0 )
+		if ( isset( $_POST['custom_content_width'] ) && intval($_POST['custom_content_width']) > 0 )
 			$custom_content_width = intval($_POST['custom_content_width']);
 		else
 			$custom_content_width = false;
@@ -277,14 +390,14 @@ function safecss_init() {
 			$add_to_existing = 'no';
 
 		if ( $_POST['action'] == 'preview' || safecss_is_freetrial() ) {
-			$is_preview = true;
 			// Save the CSS
-			save_revision( $css, $is_preview );
+			$safecss_revision_id = save_revision( $css, true );
 
 			// Cache Buster
 			update_option('safecss_preview_rev', intval( get_option('safecss_preview_rev') ) + 1);
-			update_option('safecss_preview_add', $add_to_existing );
-			update_option('safecss_preview_content_width', $custom_content_width);
+
+			update_metadata( 'post', $safecss_revision_id, 'custom_css_add', $add_to_existing );
+			update_metadata( 'post', $safecss_revision_id, 'content_width', $custom_content_width );
 
 			if ( $_POST['action'] == 'preview' ) {
 				wp_safe_redirect( add_query_arg( 'csspreview', 'true', get_option('home') ) );
@@ -295,10 +408,16 @@ function safecss_init() {
 		}
 
 		// Save the CSS
-		save_revision( $css );
+		$safecss_post_id = save_revision( $css );
+
+		$safecss_post_revision = get_current_revision();
+
 		update_option( 'safecss_rev', intval( get_option( 'safecss_rev' ) ) + 1 );
-		update_option( 'safecss_add', $add_to_existing );
-		update_option( 'safecss_content_width', $custom_content_width );
+
+		update_post_meta( $safecss_post_id, 'custom_css_add', $add_to_existing );
+		update_post_meta( $safecss_post_id, 'content_width', $custom_content_width );
+		update_metadata( 'post', $safecss_post_revision['ID'], 'custom_css_add', $add_to_existing );
+		update_metadata( 'post', $safecss_post_revision['ID'], 'content_width', $custom_content_width );
 
 		add_action('admin_notices', 'safecss_saved');
 	}
@@ -321,7 +440,7 @@ function safecss_is_freetrial() {
 	return apply_filters( 'safecss_is_freetrial', false );
 }
 
-function safecss() {
+function safecss( $compressed = false ) {
 	$default_css = apply_filters( 'safecss_get_css_error', false );
 
 	if ( $default_css !== false )
@@ -332,13 +451,13 @@ function safecss() {
 	if ( 'safecss' == $option ) {
 		if ( get_option( 'safecss_revision_migrated' ) ) {
 			$safecss_post = get_safecss_post();
-			$css = $safecss_post['post_content'];
+			$css = ( $compressed && $safecss_post['post_content_filtered'] ) ? $safecss_post['post_content_filtered'] : $safecss_post['post_content'];
 		} else {
 			$current_revision = get_current_revision();
 			if ( false === $current_revision ) {
 				$css = '';
 			} else {
-				$css = $current_revision['post_content'];
+				$css = ( $compressed && $current_revision['post_content_filtered'] ) ? $current_revision['post_content_filtered'] : $current_revision['post_content'];
 			}
 		}
 
@@ -350,22 +469,27 @@ function safecss() {
 			}
 		}
 	}
-
-	if ( 'safecss_preview' == $option ) {
+	else if ( 'safecss_preview' == $option ) {
 		$safecss_post = get_current_revision();
 		$css = $safecss_post['post_content'];
 		$css = stripslashes( $css );
+		$css = custom_css_minify( $css );
 	}
 
 	$css = str_replace( array( '\\\00BB \\\0020', '\0BB \020', '0BB 020' ), '\00BB \0020', $css );
 
 	if ( empty( $css ) ) {
-		$css = _e( apply_filters( 'safecss_default_css', '/* Welcome to Custom CSS!
-
-CSS (Cascading Style Sheets) is a kind of code that tells the browser how to render a web page. You may delete these comments and get started with your customizations.
-
-By default, your stylesheet will be loaded after the theme stylesheets, which means that your rules can take precedence and override the theme CSS rules. Just write here what you want to change, you don\'t need to copy all your theme\'s stylesheet content.
-*/' ), 'jetpack' );
+		$css = "/*\n"
+			. wordwrap(
+				apply_filters(
+					'safecss_default_css',
+					__(
+						"Welcome to Custom CSS!\n\nCSS (Cascading Style Sheets) is a kind of code that tells the browser how to render a web page. You may delete these comments and get started with your customizations.\n\nBy default, your stylesheet will be loaded after the theme stylesheets, which means that your rules can take precedence and override the theme CSS rules. Just write here what you want to change, you don't need to copy all your theme's stylesheet content.",
+						'jetpack'
+					)
+				)
+			)
+			. "\n*/";
 	}
 
 	$css = apply_filters( 'safecss_css', $css );
@@ -376,7 +500,7 @@ By default, your stylesheet will be loaded after the theme stylesheets, which me
 function safecss_print() {
 	do_action( 'safecss_print_pre' );
 
-	echo safecss();
+	echo safecss( true );
 }
 
 function safecss_style() {
@@ -385,7 +509,10 @@ function safecss_style() {
 	if ( apply_filters( 'safecss_style_error', false ) )
 		return;
 
-	if ( ! is_super_admin() && ( 1 == $current_blog->spam || 1 == $current_blog->deleted ) )
+	if ( ! is_super_admin() && isset( $current_blog ) && ( 1 == $current_blog->spam || 1 == $current_blog->deleted ) )
+		return;
+
+	if ( custom_css_is_customizer_preview() )
 		return;
 
 	$option = safecss_is_preview() ? 'safecss_preview' : 'safecss';
@@ -564,78 +691,24 @@ function safecss_class() {
 	// Wrapped so we don't need the parent class just to load the plugin
 	if ( class_exists('safecss') )
 		return;
-	require_once('csstidy/class.csstidy.php');
-	class safecss extends csstidy_optimise {
-		var $tales = array();
-		var $props_w_urls = array('background', 'background-image', 'list-style', 'list-style-image');
-		var $allowed_protocols = array('http');
 
-		function safecss(&$css) {
-			return $this->csstidy_optimise($css);
+	require_once( 'csstidy/class.csstidy.php' );
+
+	class safecss extends csstidy_optimise {
+		function safecss( &$css ) {
+			return $this->csstidy_optimise( $css );
 		}
 
 		function postparse() {
-			if ( !empty($this->parser->import) ) {
-				$this->tattle("Import attempt:\n".print_r($this->parser->import,1));
-				$this->parser->import = array();
-			}
-			if ( !empty($this->parser->charset) ) {
-				$this->tattle("Charset attempt:\n".print_r($this->parser->charset,1));
-				$this->parser->charset = array();
-			}
+			do_action( 'csstidy_optimize_postparse', $this );
+
 			return parent::postparse();
 		}
 
 		function subvalue() {
-			$this->sub_value = trim($this->sub_value);
-
-			// Send any urls through our filter
-			if ( preg_match('!^\s*(?P<url_expression>url\s*(?P<opening_paren>\(|\\0028)(?P<parenthetical_content>.*)(?P<closing_paren>\)|\\0029))(.*)$!Dis', $this->sub_value, $matches) ) {
-				$this->sub_value = $this->clean_url( $matches['parenthetical_content'] );
-
-				// Only replace the url([...]) portion of the sub_value so we don't
-				// lose things like trailing commas or !important declarations.
-				if ( $this->sub_value ) $this->sub_value = str_replace( $matches['url_expression'], $this->sub_value, $matches[0] );
-			}
-
-			// Strip any expressions
-			if ( preg_match('!^\\s*expression!Dis', $this->sub_value) ) {
-				$this->tattle("Expression attempt: $this->sub_value");
-				$this->sub_value = '';
-			}
+			do_action( 'csstidy_optimize_subvalue', $this );
 
 			return parent::subvalue();
-		}
-
-		function clean_url($url) {
-			// Clean up the string
-			$url = trim($url, "' \" \r \n");
-
-			// Check against whitelist for properties allowed to have URL values
-			if ( ! in_array(trim($this->property), $this->props_w_urls) ) { 
-				// trim() is because multiple properties with the same name are stored with 
-				// additional trailing whitespace so they don't overwrite each other in the hash.
-				$this->tattle('URL in illegal property ' . $this->property . ":\n$url");
-				return '';
-			}
-
-			$url = wp_kses_bad_protocol_once($url, $this->allowed_protocols);
-
-			if ( empty($url) ) {
-				$this->tattle('URL empty');
-				return '';
-			}
-
-			return "url('" . str_replace( "'", "\\'", $url ) . "')";
-		}
-
-		function tattle($msg, $send=false) {
-			if ( $msg )
-				$this->tales [] = $msg;
-
-			if ( $send && $this->tales ) {
-				do_action( 'safecss_tattle', $this );
-			}
 		}
 	}
 }
@@ -682,8 +755,8 @@ textarea#safecss {
 }
 #safecssform .button,
 #safecssform .button-primary {
-	border-radius: 2em;
 	padding: 7px 12px;
+	margin-left: 6px;
 }
 <?php
 if ( defined( 'SAFECSS_USE_ACE' ) && SAFECSS_USE_ACE ) :
@@ -766,89 +839,142 @@ function safecss_saved() {
 function safecss_admin() {
 ?>
 <div class="wrap">
-<?php do_action( 'custom_design_header' ); ?>
-<div id="poststuff" class="has-right-sidebar">
-<h2><?php _e( 'CSS Stylesheet Editor', 'jetpack' ); ?></h2>
-<p class="css-support"><?php echo apply_filters( 'safecss_intro_text', __( 'New to CSS? Start with a <a href="http://www.htmldog.com/guides/cssbeginner/">beginner tutorial</a>. Questions? 
-Ask in the <a href="http://wordpress.org/support/forum/themes-and-templates">Themes and Templates forum</a>.', 'jetpack' ) ); ?></p>
+	<?php do_action( 'custom_design_header' ); ?>
+	<div id="poststuff" class="has-right-sidebar metabox-holder">
+	<h2><?php _e( 'CSS Stylesheet Editor', 'jetpack' ); ?></h2>
+	<p class="css-support"><?php echo apply_filters( 'safecss_intro_text', __( 'New to CSS? Start with a <a href="http://www.htmldog.com/guides/cssbeginner/">beginner tutorial</a>. Questions?
+	Ask in the <a href="http://wordpress.org/support/forum/themes-and-templates">Themes and Templates forum</a>.', 'jetpack' ) ); ?></p>
 
-<form id="safecssform" action="" method="post">
-	<?php if ( defined( 'SAFECSS_USE_ACE' ) && SAFECSS_USE_ACE ) : ?>
-		<div id="safecss-container">
-			<div id="safecss-ace"></div>
-		</div>
-		<script type="text/javascript">
-			jQuery.fn.spin && jQuery("#safecss-container").spin( 'large' );
-		</script>
-		<textarea id="safecss" name="safecss" class="hide-if-js"><?php echo esc_textarea( safecss() ); ?></textarea>
-		<div class="clear"></div>
-	<?php else : ?>
-	<p><textarea id="safecss" name="safecss"><?php echo str_replace('</textarea>', '&lt;/textarea&gt', safecss()); ?></textarea></p>
-	<?php endif; ?>
-	<p class="submit">
-		<span>
-			<input type="hidden" name="action" value="save" />
-			<?php wp_nonce_field( 'safecss' ) ?>
-			<input type="button" class="button" id="preview" name="preview" value="<?php esc_attr_e( 'Preview', 'jetpack' ) ?>" />
-			<input type="submit" class="button-primary" id="save" name="save" value="<?php ( safecss_is_freetrial() ) ? esc_attr_e( 'Save Stylesheet &amp; Buy Upgrade', 'jetpack' ) : esc_attr_e( 'Save Stylesheet', 'jetpack' ); ?>" />
-			<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
-		</span>
-	</p>
-
-	<?php
-	function custom_css_meta_box() {
-		$custom_content_width = intval( get_option('safecss_content_width' ) );
-		// If custom content width hasn't been overridden and the theme has a content_width value, use that as a default.
-		if ( $custom_content_width <= 0 && ! empty( $GLOBALS['content_width'] ) )
-			$custom_content_width = intval( $GLOBALS['content_width'] );
-	?>
-		<p class="css-settings">
-			<label><input type="radio" name="add_to_existing" value="true" <?php checked( get_option( 'safecss_add' ) != 'no' ); ?> /> <?php printf( __( 'Add my CSS to <strong>%s&apos;s</strong> CSS stylesheet.', 'jetpack' ), get_current_theme() ); ?></label><br />
-			<label><input type="radio" name="add_to_existing" value="false" <?php checked( get_option( 'safecss_add' ) == 'no' ); ?> /> <?php printf( __( 'Don&apos;t use <strong>%s&apos;s</strong> CSS, and replace everything with my own CSS.', 'jetpack' ), get_current_theme() ); ?></label>
+	<form id="safecssform" action="" method="post">
+		<?php if ( defined( 'SAFECSS_USE_ACE' ) && SAFECSS_USE_ACE ) : ?>
+			<div id="safecss-container">
+				<div id="safecss-ace"></div>
+			</div>
+			<script type="text/javascript">
+				jQuery.fn.spin && jQuery("#safecss-container").spin( 'large' );
+			</script>
+			<textarea id="safecss" name="safecss" class="hide-if-js"><?php echo esc_textarea( safecss() ); ?></textarea>
+			<div class="clear"></div>
+		<?php else : ?>
+		<p><textarea id="safecss" name="safecss"><?php echo str_replace('</textarea>', '&lt;/textarea&gt', safecss()); ?></textarea></p>
+		<?php endif; ?>
+		<p class="submit">
+			<span>
+				<input type="hidden" name="action" value="save" />
+				<?php wp_nonce_field( 'safecss' ) ?>
+				<input type="button" class="button" id="preview" name="preview" value="<?php esc_attr_e( 'Preview', 'jetpack' ) ?>" />
+				<input type="submit" class="button-primary" id="save" name="save" value="<?php ( safecss_is_freetrial() ) ? esc_attr_e( 'Save Stylesheet &amp; Buy Upgrade', 'jetpack' ) : esc_attr_e( 'Save Stylesheet', 'jetpack' ); ?>" />
+				<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
+			</span>
 		</p>
-		<p><?php printf( __( '<a href="%s">View the original stylesheet</a> for the %s theme. Use this as a reference and do not copy and paste all of it into the CSS Editor.', 'jetpack' ), apply_filters( 'safecss_theme_stylesheet_url', get_bloginfo( 'stylesheet_directory' ) . '/style.css' ), get_current_theme() ); ?></p>
-		<p class="custom_content_width" style="display: none;">
-			<label for="custom_content_width"><?php _e( 'Limit width to', 'jetpack' ); ?></label><input type="text" name="custom_content_width" id="custom_content_width" value="<?php echo esc_attr( $custom_content_width ); ?>" size=5 /> <?php printf( __( 'pixels for videos, full size images, and other shortcodes. (<a href="%s">More info</a>.)', 'jetpack' ), apply_filters( 'safecss_limit_width_link', 'http://jetpack.me/support/custom-css/#limited-width' ) ); ?>
-		<?php if ( !empty( $GLOBALS['content_width'] ) && $custom_content_width != $GLOBALS['content_width'] ) printf( __( 'The default content width for the %s theme is %d pixels.', 'jetpack' ), get_current_theme(), intval( $GLOBALS['content_width'] ) ); ?>
-		</p>
-	<?php
-	}
 
-	add_meta_box( 'settingsdiv', __( 'CSS Settings', 'jetpack' ), 'custom_css_meta_box', 'editcss', 'normal' );
+		<?php add_meta_box( 'settingsdiv', __( 'CSS Settings', 'jetpack' ), 'custom_css_meta_box', 'editcss', 'normal' ); ?>
 
-	?>
+		<?php
+		$safecss_post = get_safecss_post();
 
+		if ( ! empty( $safecss_post ) && 0 < $safecss_post['ID'] && wp_get_post_revisions( $safecss_post['ID'] ) ) {
+			echo '<div id="side-info-column" class="inner-sidebar">';
+			add_meta_box( 'revisionsdiv', __( 'CSS Revisions', 'jetpack' ), 'custom_css_post_revisions_meta_box', 'editcss', 'side' );
+			do_meta_boxes( 'editcss', 'side', $safecss_post );
+			echo '</div>';
+
+			echo '<div id="post-body"><div id="post-body-content">';
+			do_meta_boxes( 'editcss', 'normal', $safecss_post );
+			echo '</div></div>';
+			echo '<div class="clear"></div>';
+		} else {
+			do_meta_boxes( 'editcss', 'normal', $safecss_post );
+		}
+		?>
+		</form>
+	</div>
+</div>
 <?php
-$safecss_post = get_safecss_post();
-
-if ( ! empty( $safecss_post ) && 0 < $safecss_post['ID'] && wp_get_post_revisions( $safecss_post['ID'] ) ) {
-	function post_revisions_meta_box( $safecss_post ) {
-		// Specify numberposts and ordering args
-		$args = array( 'numberposts' => 6, 'orderby' => 'ID', 'order' => 'DESC' );
-		// Remove numberposts from args if show_all_rev is specified
-		if ( isset( $_GET['show_all_rev'] ) )
-			unset( $args['numberposts'] );
-
-		wp_list_post_revisions( $safecss_post['ID'], $args );
-	}
-
-	echo '<div id="side-info-column" class="inner-sidebar">';
-	add_meta_box( 'revisionsdiv', __( 'CSS Revisions', 'jetpack' ), 'post_revisions_meta_box', 'editcss', 'side' );
-	do_meta_boxes( 'editcss', 'side', $safecss_post );
-	echo '</div>';
-
-	echo '<div id="post-body"><div id="post-body-content">';
-	do_meta_boxes( 'editcss', 'normal', $safecss_post );
-	echo '</div></div>';
-	echo '<div class="clear"></div>';
-} else {
-	do_meta_boxes( 'editcss', 'normal', $safecss_post );
 }
-?>
-</form>
-</div>
-</div>
-<?php
+
+/**
+ * Render CSS Settings metabox
+ * Called by `safecss_admin`
+ *
+ * @uses get_option, checked, __, get_current_theme, apply_filters, get_stylesheet_uri, _e, esc_attr, wp_get_theme
+ * @return string
+ */
+function custom_css_meta_box() {
+	if ( function_exists( 'wp_get_theme' ) ) {
+		$current_theme = wp_get_theme();
+		$current_theme = $current_theme->Name;
+	}
+	else {
+		$current_theme = get_current_theme();
+	}
+
+	$safecss_post = get_current_revision();
+
+	?>
+	<p class="css-settings">
+		<label><input type="radio" name="add_to_existing" value="true" <?php checked( get_post_meta( $safecss_post['ID'], 'custom_css_add', true ) != 'no' ); ?> /> <?php printf( __( 'Add my CSS to <strong>%s&apos;s</strong> CSS stylesheet.', 'jetpack' ), $current_theme ); ?></label><br />
+		<label><input type="radio" name="add_to_existing" value="false" <?php checked( get_post_meta( $safecss_post['ID'], 'custom_css_add', true ) == 'no' ); ?> /> <?php printf( __( 'Don&apos;t use <strong>%s&apos;s</strong> CSS, and replace everything with my own CSS.', 'jetpack' ), $current_theme ); ?></label>
+	</p>
+	<p><?php printf( __( '<a href="%s">View the original stylesheet</a> for the %s theme. Use this as a reference and do not copy and paste all of it into the CSS Editor.', 'jetpack' ), apply_filters( 'safecss_theme_stylesheet_url', get_stylesheet_uri() ), $current_theme ); ?></p>
+	<?php
+
+	do_action( 'custom_css_meta_fields' );
+
+}
+
+/**
+ * Render metabox listing CSS revisions and the themes that correspond to the revisions.
+ * Called by `safecss_admin`
+ *
+ * @param array $safecss_post
+ * @global $post
+ * @uses WP_Query, wp_post_revision_title, esc_html, add_query_arg, menu_page_url, wp_reset_query
+ * @return string
+ */
+function custom_css_post_revisions_meta_box( $safecss_post ) {
+	$max_revisions = defined( 'WP_POST_REVISIONS' ) && is_numeric( WP_POST_REVISIONS ) ? (int) WP_POST_REVISIONS : 25;
+	$posts_per_page = isset( $_GET['show_all_rev'] ) ? $max_revisions : 6;
+
+	$revisions = new WP_Query( array(
+		'posts_per_page' => $posts_per_page,
+		'post_type' => 'revision',
+		'post_status' => 'inherit',
+		'post_parent' => $safecss_post['ID'],
+		'orderby' => 'date',
+		'order' => 'DESC'
+	) );
+
+	if ( $revisions->have_posts() ) : ?>
+		<ul class="post-revisions"><?php
+
+		global $post;
+
+		while ( $revisions->have_posts() ) :
+			$revisions->the_post();
+
+			?><li>
+				<?php
+					echo wp_post_revision_title( $post );
+
+					if ( ! empty( $post->post_excerpt ) )
+						echo ' (' . esc_html( $post->post_excerpt ) . ')';
+				?>
+			</li><?php
+
+		endwhile;
+
+		?></ul><?php
+
+		if ( $revisions->found_posts > 6 ) : ?>
+
+		<br>
+		<a href="<?php echo add_query_arg( 'show_all_rev', 'true', menu_page_url( 'editcss', false ) ); ?>">Show more</a>
+
+		<?php endif; // "Show more"
+	endif; // have_posts();
+
+	wp_reset_query();
 }
 
 if ( !function_exists( 'safecss_filter_attr' ) ) {
@@ -889,3 +1015,72 @@ function disable_safecss_style() {
 	remove_action( 'wp_head', 'safecss_style', 101 );
 	remove_filter( 'stylesheet_uri', 'safecss_style_filter' );
 }
+
+/**
+ * Reset all aspects of Custom CSS on a theme switch so that changing
+ * themes is a sure-fire way to get a clean start.
+ */
+function custom_css_reset() {
+	$safecss_post_id = save_revision( '' );
+	$safecss_revision = get_current_revision();
+
+	update_option( 'safecss_rev', intval( get_option( 'safecss_rev' ) ) + 1 );
+
+	update_post_meta( $safecss_post_id, 'custom_css_add', 'yes' );
+	update_post_meta( $safecss_post_id, 'content_width', false );
+	update_metadata( 'post', $safecss_revision['ID'], 'custom_css_add', 'yes' );
+	update_metadata( 'post', $safecss_revision['ID'], 'content_width', false );
+}
+
+add_action( 'switch_theme', 'custom_css_reset' );
+
+function custom_css_is_customizer_preview() {
+	if ( isset ( $GLOBALS['wp_customize'] ) )
+		return ! $GLOBALS['wp_customize']->is_theme_active();
+
+	return false;
+}
+
+function custom_css_minify( $css ) {
+	if ( ! $css )
+		return '';
+
+	safecss_class();
+	$csstidy = new csstidy();
+	$csstidy->optimise = new safecss( $csstidy );
+
+	$csstidy->set_cfg( 'remove_bslash',              false );
+	$csstidy->set_cfg( 'compress_colors',            true );
+	$csstidy->set_cfg( 'compress_font-weight',       true );
+	$csstidy->set_cfg( 'remove_last_;',              true );
+	$csstidy->set_cfg( 'case_properties',            true );
+	$csstidy->set_cfg( 'discard_invalid_properties', true );
+	$csstidy->set_cfg( 'css_level',                  'CSS3.0' );
+	$csstidy->set_cfg( 'template', 'highest');
+	$csstidy->parse( $css );
+
+	return $csstidy->print->plain();
+}
+
+/**
+ * When restoring a SafeCSS post revision, also copy over the
+ * content_width and custom_css_add post metadata.
+ */
+function custom_css_restore_revision( $_post_id, $_revision_id ) {
+	$_post = get_post( $_post_id );
+
+	if ( 'safecss' != $_post->post_type )
+		return;
+
+	$safecss_revision = get_current_revision();
+
+	$content_width = get_post_meta( $_revision_id, 'content_width', true );
+	$custom_css_add = get_post_meta( $_revision_id, 'custom_css_add', true );
+
+	update_metadata( 'post', $safecss_revision['ID'], 'content_width', $content_width );
+	update_metadata( 'post', $safecss_revision['ID'], 'custom_css_add', $custom_css_add );
+	update_post_meta( $_post->ID, 'content_width', $content_width );
+	update_post_meta( $_post->ID, 'custom_css_add', $custom_css_add );
+}
+
+add_action( 'wp_restore_post_revision', 'custom_css_restore_revision', 10, 2 );

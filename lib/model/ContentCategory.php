@@ -2,12 +2,63 @@
 
 require 'lib/model/om/BaseContentCategory.php';
 
+/**
+ *
+ * @method     ContentCategory setSeoCollectionsTitlePrefix(string $v)
+ * @method     string    getSeoCollectionsTitlePrefix()
+ *
+ * @method     ContentCategory setSeoMarketTitlePrefix(string $v)
+ * @method     string    getSeoMarketTitlePrefix()
+ *
+ * @method     ContentCategory setSeoCollectionsTitleSuffix(string $v)
+ * @method     string    getSeoCollectionsTitleSuffix()
+ *
+ * @method     ContentCategory setSeoMarketTitleSuffix(string $v)
+ * @method     string    getSeoMarketTitleSuffix()
+ *
+ * @method     ContentCategory setSeoCollectionsDescription(string $v)
+ *
+ * @method     ContentCategory setSeoCollectionsKeywords(string $v)
+ * @method     string    getSeoCollectionsKeywords()
+ *
+ * @method     ContentCategory setSeoMarketDescription(string $v)
+ *
+ * @method     ContentCategory setSeoMarketKeywords(string $v)
+ * @method     string    getSeoMarketKeywords()
+ *
+ * @method     ContentCategory setSeoCollectionsUseSingular(boolean $v)
+ * @method     boolean   getSeoCollectionsUseSingular()
+ *
+ * @method     ContentCategory setSeoMarketUseSingular(boolean $v)
+ * @method     boolean   getSeoMarketUseSingular()
+ */
+
 class ContentCategory extends BaseContentCategory
 {
 
   protected $autoSort = true;
   protected $isAutoSorting = false;
   protected $path = array();
+
+  /**
+   * Register extra properties to allow magic getters/setters to be used
+   *
+   * @see     ExtraPropertiesBehavior
+   */
+  public function initializeProperties()
+  {
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_TITLE_PREFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_TITLE_SUFFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_DESCRIPTION);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_KEYWORDS);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_USE_SINGULAR);
+
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_TITLE_PREFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_TITLE_SUFFIX);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_DESCRIPTION);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_KEYWORDS);
+    $this->registerProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_USE_SINGULAR);
+  }
 
   /**
    * Retrieve a text representation of the path to this content category, ex:
@@ -212,6 +263,118 @@ class ContentCategory extends BaseContentCategory
       ->orderBy('Name');
 
     return $this->getChildren($q);
+  }
+
+  /**
+   * Page SEO
+   */
+  public function getSeoCollectionsTitle()
+  {
+    $prefix = $this->getSeoCollectionsTitlePrefix() ?: 'Collectible';
+    $suffix = $this->getSeoCollectionsTitleSuffix() ? ' '. $this->getSeoCollectionsTitleSuffix() : null;
+    $name = $this->getSeoCollectionsUseSingular() ? $this->getNameSingular() : $this->getName();
+
+    $title = $prefix .' '. $name . $suffix .' on Collectors Quest';
+
+    if (!$keywords = $this->getSeoCollectionsKeywords())
+    {
+      $q = ContentCategoryQuery::create()
+        ->hasCollectionsWithCollectibles()
+        ->limit(3);
+
+      /** @var $descendants ContentCategory[] */
+      $descendants = $this->getDescendants($q);
+
+      $names = array();
+      foreach ($descendants as $descendant)
+      {
+        $names[] = $descendant->getName();
+      }
+
+      if (!empty($names))
+      {
+        $title .= ' - ' . implode(', ', $names);
+      }
+    }
+    else
+    {
+      $title .= ' - ' . $keywords;
+    }
+
+    return $title;
+  }
+
+  public function getSeoCollectionsDescription()
+  {
+    if (!$description = $this->getProperty(ContentCategoryPeer::PROPERTY_SEO_COLLECTIONS_DESCRIPTION))
+    {
+      $description = strip_tags($this->getDescription());
+    }
+
+    return cqStatic::truncateText($description, 160, '', true);
+  }
+
+  public function getSeoMarketTitle()
+  {
+    $prefix = $this->getSeoMarketTitlePrefix() ?: 'Buy';
+    $suffix = $this->getSeoMarketTitleSuffix() ? ' '. $this->getSeoMarketTitleSuffix() : null;
+    $name = $this->getSeoMarketUseSingular() ? $this->getNameSingular() : $this->getName();
+
+    $title = $prefix .' '. $name . $suffix .' on Collectors Quest';
+
+    if (!$keywords = $this->getSeoCollectionsKeywords())
+    {
+      // @todo: $q->hasCollectionsWithCollectiblesForSale()
+      $q = ContentCategoryQuery::create()
+        ->hasCollectionsWithCollectibles()
+        ->limit(3);
+
+      /** @var $descendants ContentCategory[] */
+      $descendants = $this->getDescendants($q);
+
+      $names = array();
+      foreach ($descendants as $descendant)
+      {
+        $names[] = $descendant->getName();
+      }
+
+      if (!empty($names))
+      {
+        $title .= ' - ' . implode(', ', $names);
+      }
+    }
+    else
+    {
+      $title .= ' - ' . $keywords;
+    }
+
+    return $title;
+  }
+
+  public function getSeoMarketDescription()
+  {
+    if (!$description = $this->getProperty(ContentCategoryPeer::PROPERTY_SEO_MARKET_DESCRIPTION))
+    {
+      $description = strip_tags($this->getDescription());
+    }
+
+    return cqStatic::truncateText($description, 160, '', true);
+  }
+
+  /**
+   * Compute the number of relater collectibles for sale
+   *
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function computeNumCollectiblesForSale(PropelPDO $con)
+  {
+    return CollectibleQuery::create()
+      ->isPartOfCollection()
+      ->isForSale()
+      ->filterByIsPublic(true)
+      ->filterByContentCategoryWithDescendants($this)
+      ->count($con);
   }
 
 }

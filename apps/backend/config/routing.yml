@@ -89,6 +89,17 @@ package_transaction:
     column:               id
     with_wildcard_routes: true
 
+package_transaction_add_extra_credits:
+  url:                    /packageTransaction/:id/addExtraCredits
+  class:                  sfPropelORMRoute
+  options:
+    model:                PackageTransaction
+    type:                 object
+    column:               id
+  param:                  { module: packageTransaction, action: addExtraCredits }
+  requirements:           { sf_method: [get, post] }
+
+
 package:
   class: sfPropelORMRouteCollection
   options:
@@ -196,6 +207,20 @@ item_offers:
   url:   /item/offers
   param: { module: collectibleForSale, action: itemOffers }
 
+object_rating:
+  url:   /ajax/set-rating/:class/:id
+  param: { module: adminbar, action: rating }
+  requirements: { class: "[^/]+", id: '\d+' }
+
+ajax_object_rating:
+  url:   /object/set-rating/:dimension/:class/:id
+  param: { module: adminbar, action: rating }
+  requirements: {dimension: "[^/]+", class: "[^/]+", id: '\d+' }
+
+object_machine_tags:
+  url:   /ajax/machine-tags/:class/:id
+  param: { module: adminbar, action: machinetags }
+  requirements: { class: "[^/]+", id: '\d+' }
 
 # default rules
 

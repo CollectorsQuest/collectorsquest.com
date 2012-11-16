@@ -34,6 +34,8 @@ class cqEmail
    * @param     array  $options
    *
    * @throws    InvalidArgumentException
+   * @throws    Swift_TransportException
+   *
    * @return    integer number of actually sent emails (recepients + cc + bcc)
    */
   public function send($name, $options = array())
@@ -83,7 +85,7 @@ class cqEmail
         ->setCharset('UTF-8')
         ->addPart(strip_tags($rendered_template), 'text/plain')
         ->addPart($rendered_template, 'text/html');
-      
+
       $return = $this->getMailer()->send($message);
     }
     catch (Swift_RfcComplianceException $e)

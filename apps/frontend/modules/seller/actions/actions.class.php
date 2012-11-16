@@ -1,8 +1,6 @@
 <?php
 
 /**
- * seller actions.
- *
  * @package    CollectorsQuest
  * @subpackage seller
  * @author     Collectors
@@ -12,14 +10,63 @@ class sellerActions extends cqFrontendActions
 
   public function preExecute()
   {
-    $this->redirectIf(IceGateKeeper::locked('mycq_marketplace'), '@mycq');
-
     SmartMenu::setSelected('mycq_menu', 'marketplace');
   }
 
   public function executeIndex()
   {
     return $this->redirect('@mycq_marketplace');
+  }
+
+  public function executeStore(sfWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+
+    if ($request->getParameter('legacy'))
+    {
+      $this->redirect('collector_by_slug', $collector, 301);
+    }
+
+    $for_sale_ids = FrontendCollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->isForSale()
+      ->select('CollectibleId')
+      ->find()->getArrayCopy();
+
+    /* @var $q FrontendCollectionCollectibleQuery */
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($collector)
+      ->filterByCollectibleId($for_sale_ids, Criteria::IN)
+      ->groupBy('CollectionCollectible.CollectibleId')
+      ->joinWith('CollectionCollectible.Collectible')
+      ->joinWith('Collectible.CollectibleForSale');
+
+    if ($collection_id = $request->getParameter('collection_id'))
+    {
+      $q->filterByCollectionId($collection_id);
+      $this->collection_id = $collection_id;
+
+      // Make the collection_id available to the sidebar
+      $this->setComponentVar('collection_id', $collection_id, 'sidebarCollectorList');
+    }
+
+    $pager = new PropelModelPager($q, 36);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+
+    SmartMenu::setSelected('collectibles_for_collector_list', 'for_sale');
+    $store_name = $collector->getSeller()->getSellerSettingsStoreName();
+    $this->title = $store_name ?: $collector->getDisplayName() ."'s Store";
+    $this->addBreadcrumb($store_name);
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl(
+      $this->generateUrl('seller_store', array('sf_subject' => $collector))
+    );
+
+    $this->collector = $collector;
+    $this->pager = $pager;
   }
 
   public function executeSignup()
@@ -410,8 +457,6 @@ class sellerActions extends cqFrontendActions
         if ($verified && 'COMPLETED' === strtoupper($request->getParameter('payment_status')))
         {
           $collector = $package_transaction->getCollector();
-          $package = $package_transaction->getPackage();
-
           $collector->setUserType(CollectorPeer::TYPE_SELLER);
           $collector->save();
 
@@ -430,7 +475,7 @@ class sellerActions extends cqFrontendActions
             $collector->save();
           }
 
-          // Send Mail To Seller
+          // Send Email To Seller
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Seller/package_confirmation', array(
             'to'     => $collector->getEmail(),

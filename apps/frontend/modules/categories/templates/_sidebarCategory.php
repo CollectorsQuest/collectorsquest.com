@@ -1,10 +1,24 @@
 <?php
 /**
  * @var $category ContentCategory
+ * @var $sf_user  cqFrontendUser
  */
 
-if (IceGateKeeper::open('expose_collection_categories'))
+if (cqGateKeeper::open('expose_collection_categories'))
 {
+  if (!$sf_user->isAuthenticated())
+  {
+    cq_ad_slot(
+      cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png',
+        array(
+          'width' => '300', 'height' => '90',
+          'alt' => 'Quest Your Best: The Essential Guide to Collecting'
+        )
+      ),
+      '@misc_guide_to_collecting'
+    );
+  }
+
   include_component(
     '_sidebar', 'widgetCollectionSubCategories',
     array(
@@ -15,7 +29,7 @@ if (IceGateKeeper::open('expose_collection_categories'))
 
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('category' => $category,'limit' => 3)
+    array('category' => $category,'limit' => 4)
   );
 }
 else
@@ -24,7 +38,7 @@ else
 
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('category' => $category,'limit' => 3)
+    array('category' => $category,'limit' => 4)
   );
 
   include_component(

@@ -4,28 +4,39 @@ require 'lib/model/om/BasePrivateMessageQuery.php';
 
 class PrivateMessageQuery extends BasePrivateMessageQuery
 {
-  public function filterByCollectorSender($value)
+  /**
+   * Filter the query by a related Collector username
+   *
+   * @param null $username
+   * @param null $comparison
+   * @param string $alias
+   * @return ModelCriteria
+   */
+  public function filterByCollectorSenderUsername($username = null, $comparison = null, $alias = 'sender_col')
   {
-    $this->addAlias('sender_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(
-      PrivateMessagePeer::SENDER, CollectorPeer::alias('sender_col', CollectorPeer::ID), Criteria::LEFT_JOIN
-    );
-    $this->add(CollectorPeer::alias('sender_col', CollectorPeer::USERNAME), '%' . $value . '%', Criteria::LIKE);
-    return $this;
+    return $this->useCollectorRelatedBySenderQuery($alias)
+        ->filterByUsername($username, $comparison)
+      ->endUse();
   }
 
-  public function filterByCollectorReceiver($value)
+  /**
+   * Filter the query by a related Collector username
+   *
+   * @param null $username
+   * @param null $comparison
+   * @param string $alias
+   * @return ModelCriteria
+   */
+  public function filterByCollectorReceiverUsername($username = null, $comparison = null, $alias = 'receiver_col')
   {
-    $this->addAlias('receiver_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(
-      PrivateMessagePeer::RECEIVER, CollectorPeer::alias('receiver_col', CollectorPeer::ID), Criteria::LEFT_JOIN
-    );
-    $this->add(CollectorPeer::alias('receiver_col', CollectorPeer::USERNAME), '%' . $value . '%', Criteria::LIKE);
-    return $this;
+    return $this->useCollectorRelatedByReceiverQuery($alias)
+        ->filterByUsername($username, $comparison)
+      ->endUse();
   }
 
   /**
    * Order by Sender Username
+   *
    * @param $type string
    * @return PrivateMessageQuery
    */

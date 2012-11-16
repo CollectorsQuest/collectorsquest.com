@@ -22,3 +22,23 @@ pickedOff:
   enabled:     true
   with_layout: false
   lifetime:    3600
+
+mwba:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
+
+mwbaPetroliana:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
+
+mwbaRooseveltiana:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
+
+mwbaRailroadiana:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600

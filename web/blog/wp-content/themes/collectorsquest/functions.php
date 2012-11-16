@@ -2,15 +2,36 @@
 
 /** http://codex.wordpress.org/Post_Thumbnails */
 add_theme_support('post-thumbnails');
-//require_once __DIR__ .'/lib/crop-fix.php';
 
 /** Adding custom image size for the site's homepage (not the blog homepage) */
 add_image_size('homepage', 270, 270, true);
+
 /** Adding custom image size for the blog's homepage */
 add_image_size('blog-homepage-p1', 300, 300, true);
-//bt_add_image_size('thumbnail', 140, 140, array( 'center', 'top' ));
-//bt_add_image_size('large', 620, 440, array( 'center', 'top' ));
 
+// Custon taxonomy for blog posts matching
+register_taxonomy(
+  'matching', 'post',
+  array(
+    'hierarchical' => false, 'label' => 'Matching',
+    'query_var' =>  true, 'rewrite' => true
+  )
+);
+
+/**
+ * @see http://www.kanasolution.com/2011/01/session-variable-in-wordpress/
+ */
+add_action('init', 'cq_init_session', 1);
+function cq_init_session()
+{
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfSessionStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/collectorsquest/cqSessionStorage.class.php';
+
+  $options = array('session_name' => 'cq_frontend', 'auto_start' => true);
+  $session = new cqSessionStorage($options);
+  $session->initialize(array());
+}
 
 /**
  * @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types
@@ -275,8 +296,33 @@ function cq_custom_post_type_init()
     'menu_position'   => 100,
     'supports'        => array('title', 'revisions')
   ));
-}
 
+  register_post_type('market_theme', array(
+    'labels' => array(
+      'name'               => _x('Market Themes', 'post type general name'),
+      'singular_name'      => _x('Market Theme', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Market Theme'),
+      'add_new_item'       => __('Add New Market Theme'),
+      'edit_item'          => __('Edit Market Theme'),
+      'new_item'           => __('New Market Theme'),
+      'view_item'          => __('View Market Theme'),
+      'search_items'       => __('Search Market Theme'),
+      'not_found'          => __('No Market Themes found'),
+      'not_found_in_trash' => __('No Market Themes found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'taxonomies'      => array('post_tag'),
+    'supports'        => array('title', 'editor', 'tags', 'thumbnail')
+  ));
+}
 
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
 function map_meta_cap_editorial($caps, $cap, $user_id, $args)
@@ -335,7 +381,6 @@ function hide_edit_permalinks_admin_css() {
   endif;
 
 }
-
 
 // ajax post loading
 function cq_ajax_posts_comments() {
@@ -487,13 +532,39 @@ function cq_comment($comment, $args, $depth) {
   <div <?php comment_class(); ?> id="div-comment-<?php comment_ID() ?>">
     <div id="div-comment-<?php comment_ID() ?>" class="row-fluid user-comment">
       <div class="span2 text-right">
-        <a href="#">
-          <?php echo get_avatar( $comment->comment_author_email, 65 ); ?>
-        </a>
+        <?php
+          $comment_author_id = get_comment_meta(get_comment_ID(), 'comment_author_id', true);
+          $comment_author_slug = get_comment_meta(get_comment_ID(), 'comment_author_slug', true) ?: 'n-a';
+
+          $comment_author_link =
+            '<a href="/collector/' . $comment_author_id . '/' . $comment_author_slug . '"
+                title="' . $comment->comment_author . '">';
+
+          if ($comment_author_id)
+          {
+            echo  $comment_author_link . '<img src="/collector/' . $comment_author_id . '/65x65/avatar.jpg"
+                  alt="' . $comment->comment_author . '" width="65" height="65" class="gravatar_photo"></a>';
+          }
+          else
+          {
+            echo get_avatar( $comment->comment_author_email, 65 );
+          }
+        ?>
       </div>
       <div class="span10">
         <p class="bubble left">
-          <span class="comment-author"><?php comment_author_link() ?></span>
+          <span class="comment-author">
+            <?php
+              if ($comment_author_id)
+              {
+                echo $comment_author_link . $comment->comment_author . '</a>';
+              }
+              else
+              {
+                comment_author_link();
+              }
+            ?>
+          </span>
           <?php if ($comment->comment_approved == '0') : ?>
           <em>Your comment is awaiting moderation.</em>
           <?php endif; ?>
@@ -504,6 +575,13 @@ function cq_comment($comment, $args, $depth) {
     </div>
   <?php
   }
+
+// Attach comment_author_id variable to post comments
+add_action ('comment_post', 'add_meta_settings', 1);
+function add_meta_settings($comment_id) {
+  add_comment_meta($comment_id, 'comment_author_id', $_POST['comment_author_id'], true);
+  add_comment_meta($comment_id, 'comment_author_slug', $_POST['comment_author_slug'], true);
+}
 
 // ajax comments
 function add_ajaxurl_cdata_to_front() {
@@ -941,3 +1019,92 @@ $img = wp_get_attachment_url( $post->ID );
   return $actions;
 }
 add_filter('media_row_actions', 'add_media_row_action', 10, 3);
+
+/**
+ * The formatted output of a list of pages.
+ *
+ * @param string|array $args Optional. Overwrite the defaults.
+ * @return string Formatted output in HTML.
+ */
+function custom_wp_link_pages( $args = '' ) {
+  global $page, $numpages, $multipage, $more, $pagenow;
+
+  $defaults = array(
+    'before' => '<p id="post-pagination" class="entry-meta span12">',
+    'after' => '</p>',
+    'text_before' => '',
+    'text_after' => '',
+    'next_or_number' => 'next',
+    'nextpagelink' => __( 'Click Here to See #' ),
+    'previouspagelink' => __( 'Click Here to See #' ),
+    'pagelink' => '%',
+    'echo' => 1
+  );
+
+  $r = wp_parse_args( $args, $defaults );
+  $r = apply_filters( 'wp_link_pages_args', $r );
+  extract( $r, EXTR_SKIP );
+
+  $output = '';
+  if ( $multipage ) {
+    if ( 'number' == $next_or_number ) {
+      $output .= $before;
+      for ( $i = 1; $i < ( $numpages + 1 ); $i = $i + 1 ) {
+        $j = str_replace( '%', $i, $pagelink );
+        $output .= ' ';
+        if ( $i != $page || ( ( ! $more ) && ( $page == 1 ) ) )
+          $output .= _wp_link_page( $i );
+        else
+          $output .= '<span class="current-post-page">';
+
+        $output .= $text_before . $j . $text_after;
+        if ( $i != $page || ( ( ! $more ) && ( $page == 1 ) ) )
+          $output .= '</a>';
+        else
+          $output .= '</span>';
+      }
+      $output .= $after;
+    } else {
+      if ( $more ) {
+        $output .= $before;
+        $i = $page - 1;
+        if ( $i && $more ) {
+          $output .= _wp_link_page( $i );
+          $page_number  = (string) $numpages - $page + 2;
+          $output .= '<span class="previous"><i class="icon-chevron-left"></i>&nbsp;&nbsp;' .
+            $text_before . $previouspagelink . $page_number . $text_after . '<span></a>';
+        }
+        $i = $page + 1;
+        if ( $i <= $numpages && $more ) {
+          $output .= _wp_link_page( $i );
+          $page_number  = (string) $numpages - $page;
+          $output .= '<span class="next">' . $text_before . $nextpagelink . $page_number . $text_after .
+            '&nbsp;&nbsp;<i class="icon-chevron-right"></i><span></a>';
+        }
+        $output .= $after;
+      }
+    }
+  }
+
+  if ( $echo )
+    echo $output;
+
+  return $output;
+}
+
+
+// Add nextpage button to TinyMCE
+add_filter('mce_buttons','cq_wysiwyg_editor');
+function cq_wysiwyg_editor($mce_buttons)
+{
+  $pos = array_search('wp_more', $mce_buttons, true);
+
+  if ($pos !== false)
+  {
+    $tmp_buttons = array_slice($mce_buttons, 0, $pos+1);
+    $tmp_buttons[] = 'wp_page';
+    $mce_buttons = array_merge($tmp_buttons, array_slice($mce_buttons, $pos + 1));
+  }
+
+  return $mce_buttons;
+}

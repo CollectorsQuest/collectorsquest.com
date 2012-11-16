@@ -1,8 +1,7 @@
 <?php
-/**
- * @var $form CollectibleForSaleEditForm
- * @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm
- */
+  /* @var $form CollectibleForSaleEditForm */
+  /* @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm */
+  /* @var $form_shipping_zz SimpleShippingCollectorCollectibleInternationalForm */
 ?>
 
 <div class="control-group">
@@ -42,7 +41,7 @@
     </div>
     <?= $form['condition']->renderRow(); ?>
 
-    <?php if (IceGateKeeper::open('collectible_shipping')): ?>
+    <?php if (cqGateKeeper::open('collectible_shipping')): ?>
       <?= $form_shipping_us->renderHiddenFields(); ?>
       <div class="control-group form-inline">
         <label class="control-label" for="">US shipping</label>
@@ -90,7 +89,7 @@
       <div class="control-group form-inline">
         <label class="control-label" for="">International shipping</label>
         <div class="controls flat-rate-controller">
-          <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?>
+          <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?>
           <label class="radio">
             <input name="shipping_rates_zz[shipping_type]" type="radio"
                    value="no_shipping"
@@ -135,7 +134,7 @@
             <?= $form_shipping_zz['combined_flat_rate']->renderError(); ?>
           <?php endif; ?>
           <br />
-          <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?><br />
+          <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?><br />
           <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
           <?= $form_shipping_zz['do_not_ship_to']; ?>
           <?php endif; ?>
@@ -144,18 +143,21 @@
     <?php endif; // if collectible shipping allowed in gatekeeper ?>
 
   <?php elseif (!$sf_user->getSeller()->hasPackageCredits()): ?>
-    <center>
-      <?php
-        echo link_to(
-          cq_image_tag('headlines/want-to-sell-this-item.png'),
-          '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
-        );
-      ?>
-    </center>
+    <?php
+      cq_ad_slot(
+        cq_image_tag('headlines/want-to-sell-this-item.png',
+          array(
+            'width' => '530', 'height' => '71', 'style' => 'display: block; margin: auto',
+            'alt' => 'Want to sell this item?'
+            )
+          ),
+        '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
+      );
+    ?>
     <br/>
   <?php elseif (!$sf_user->getCollector()->hasPayPalDetails()): ?>
     <div class="alert alert-error all-errors">
-      You must <?= link_to('setup your paypal account', '@mycq_marketplace_settings') ?>
+      You must <?= link_to('setup your store settings', '@mycq_marketplace_settings') ?>
       before you can sell in the Market.
     </div>
   <?php endif; ?>
@@ -195,7 +197,7 @@ $(document).ready(function()
     }
   });
 
-  <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?>
+  <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?>
   $('#shipping_rates_zz_do_not_ship_to').chosen({
     no_results_text: "No countries found for "
   });

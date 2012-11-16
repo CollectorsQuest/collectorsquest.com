@@ -4,6 +4,7 @@
  * @var  $collector    Collector
  * @var  $collection   CollectorCollection
  * @var  $collectible  Collectible
+ * @var  $sf_user      cqFrontendUser
  */
 ?>
 
@@ -30,22 +31,14 @@
 <div id="user-collections">
   <div class="row">
     <?php foreach ($pager->getResults() as $collection): ?>
-    <div class="span4 spacer-bottom-15">
-      <div class="user-collections-inner">
-        <span class="link-user-collection">
-          <?= link_to_collection($collection, 'text') ?>
-        </span>
-        <ul class="thumbnails">
-          <?php foreach ($collection->getLatestCollectibles(9, true) as $collectible): ?>
-          <li class="span4">
-            <a href="<?= url_for_collectible($collectible) ?>" class="thumbnail" title="<?= $collectible->getName() ?>">
-              <?= image_tag_collectible($collectible, '75x75', array('width' => 55, 'height' => 55)); ?>
-            </a>
-          </li>
-          <?php endforeach; ?>
-        </ul>
+      <div class="span4">
+        <?php
+          include_partial(
+            'collection/collection_stack_grid_view',
+            array('collection' => $collection)
+          );
+        ?>
       </div>
-    </div>
     <?php endforeach; ?>
   </div>
 
@@ -77,6 +70,9 @@
           $("<div>").load($url +'&p=2 #user-collections', function()
           {
             $('#user-collections').append($(this).find('#user-collections').html());
+            $('.fade-white').mosaic();
+            $('a.target').bigTarget({hoverClass: 'over', clickZone: '.link'});
+
             $button.hide();
           });
         });

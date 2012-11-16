@@ -35,16 +35,21 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
 
   public function setupPaymentStatusField()
   {
-    $this->widgetSchema['payment_status'] = new sfWidgetFormChoice(array(
-      'choices' =>
-        array(
-          '' => 'All', 0 => 'Initialized', 1 => 'Inprogress',
-          2 => 'Confirmed', 3=>'Cancelled', 4=>'Failed', 5=>'Completed',
-        )
-
+    $choices = array(
+        '' => '',
+        ShoppingPaymentPeer::STATUS_INITIALIZED => 'Initialized',
+        ShoppingPaymentPeer::STATUS_INPROGRESS => 'Inprogress',
+        ShoppingPaymentPeer::STATUS_CONFIRMED => 'Confirmed',
+        ShoppingPaymentPeer::STATUS_CANCELLED => 'Cancelled',
+        ShoppingPaymentPeer::STATUS_FAILED => 'Failed',
+        ShoppingPaymentPeer::STATUS_COMPLETED => 'Completed',
+    );
+    $this->widgetSchema['payment_status'] = new sfWidgetFormSelect(array(
+        'choices' => $choices,
     ));
     $this->validatorSchema['payment_status'] = new sfValidatorChoice(array(
-      'required' => false, 'choices' => array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5,)
+        'choices' => array_keys($choices),
+        'required' => false,
     ));
   }
 

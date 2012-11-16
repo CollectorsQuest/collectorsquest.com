@@ -1,162 +1,18 @@
-test:
-  logger:
-    class: sfNoLogger
-    param:
-      loggers: ~
-
-  storage:
-    class: sfSessionTestStorage
-    param:
-      session_path: %SF_TEST_CACHE_DIR%/sessions
-
-  request:
-    class: cqWebTestRequest
-
-  response:
-    class: cqWebTestResponse
-    param:
-      send_http_headers: false
-
-  mailer:
-    param:
-      delivery_strategy: none
-
-
-dev:
-  logger:
-    class: sfAggregateLogger
-    param:
-      level: debug
-      loggers:
-        sf_web_debug:
-          class: IceWebDebugLogger
-          param:
-            level: debug
-            condition:       %SF_WEB_DEBUG%
-            xdebug_logging:  false
-            web_debug_class: sfWebDebug
-        sf_file_debug:
-          class: sfNoLogger
-          # class: sfFileLogger
-          # param:
-          #   level: debug
-          #   file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
-
-  mailer:
-    class: cqMailer
-    param:
-      delivery_strategy: single_address
-      delivery_address:  developers@collectorsquest.com
-      charset: UTF-8
-      transport:
-        class: Swift_SmtpTransport
-        param:
-          host: email-smtp.us-east-1.amazonaws.com
-          port: 465
-          username: AKIAJXXQN5BYO3YM5AAQ
-          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
-          encryption: tls
-
-
-next:
-  mailer:
-    class: cqMailer
-    param:
-      delivery_strategy: single_address
-      delivery_address:  developers@collectorsquest.com
-      charset: UTF-8
-      transport:
-        class: Swift_SmtpTransport
-        param:
-          host: email-smtp.us-east-1.amazonaws.com
-          port: 465
-          username: AKIAJXXQN5BYO3YM5AAQ
-          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
-          encryption: tls
-
-next_debug:
-  mailer:
-    class: cqMailer
-    param:
-      delivery_strategy: single_address
-      delivery_address:  developers@collectorsquest.com
-      charset: UTF-8
-      transport:
-        class: Swift_SmtpTransport
-        param:
-          host: email-smtp.us-east-1.amazonaws.com
-          port: 465
-          username: AKIAJXXQN5BYO3YM5AAQ
-          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
-          encryption: tls
-
-  logger:
-    class: sfAggregateLogger
-    param:
-      level: debug
-      loggers:
-        sf_web_debug:
-          class: IceWebDebugLogger
-          param:
-            level: debug
-            condition:       %SF_WEB_DEBUG%
-            xdebug_logging:  false
-            web_debug_class: sfWebDebug
-        sf_file_debug:
-          class: sfFileLogger
-          param:
-            level: debug
-            file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
-
-
-prod:
-  view_cache:
-    class: cqMemcacheCache
-
-  view_cache_manager:
-    class: IceViewCacheManager
-    param:
-      cache_key_use_vary_headers: true
-      cache_key_use_host_name:    false
-
-prod_debug:
-  view_cache:
-    class: cqMemcacheCache
-
-  view_cache_manager:
-    class: IceViewCacheManager
-    param:
-      cache_key_use_vary_headers: true
-      cache_key_use_host_name:    false
-
-  logger:
-    class: sfAggregateLogger
-    param:
-      level: debug
-      loggers:
-        sf_web_debug:
-          class: IceWebDebugLogger
-          param:
-            level: debug
-            condition:       %SF_WEB_DEBUG%
-            xdebug_logging:  false
-            web_debug_class: sfWebDebug
-        sf_file_debug:
-          class: sfFileLogger
-          param:
-            level: debug
-            file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
-
-
 all:
   mailer:
     class: cqMailer
     param:
-      logging: %SF_LOGGING_ENABLED%
+      logging: true
       charset: %SF_CHARSET%
       delivery_strategy: realtime
       transport:
-        class: Swift_AWSTransport
+        class: Swift_SmtpTransport
+        param:
+          host: email-smtp.us-east-1.amazonaws.com
+          port: 465
+          username: AKIAJXXQN5BYO3YM5AAQ
+          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
+          encryption: tls
 
   routing:
     class: cqPatternRouting
@@ -190,3 +46,133 @@ all:
 
   controller:
     class: cqFrontWebController
+
+
+prod:
+  view_cache:
+    class: cqMemcacheCache
+
+  view_cache_manager:
+    class: cqViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    false
+
+prod_debug:
+  view_cache:
+    class: cqMemcacheCache
+
+  view_cache_manager:
+    class: cqViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    false
+
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+        sf_web_debug:
+          class: IceWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+        sf_file_debug:
+          class: sfFileLogger
+          param:
+            level: debug
+            file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
+
+
+next:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+
+next_debug:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+        sf_web_debug:
+          class: IceWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+        sf_file_debug:
+          class: sfFileLogger
+          param:
+            level: debug
+            file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
+
+
+dev:
+  view_cache_manager:
+    class: cqViewCacheManager
+
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+        sf_web_debug:
+          class: IceWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+        sf_file_debug:
+          class: sfNoLogger
+          # class: sfFileLogger
+          # param:
+          #   level: debug
+          #   file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
+
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      #delivery_address:  kangov@collectorsquest.com
+      force_redirect_of_collectorsquest_emails: true
+      logging: false
+
+
+test:
+  logger:
+    class: sfNoLogger
+    param:
+      loggers: ~
+
+  storage:
+    class: sfSessionTestStorage
+    param:
+      session_path: %SF_TEST_CACHE_DIR%/sessions
+
+  request:
+    class: cqWebTestRequest
+
+  response:
+    class: cqWebTestResponse
+    param:
+      send_http_headers: false
+
+  mailer:
+    param:
+      delivery_strategy: none
+      logging: false

@@ -42,3 +42,7 @@ feedbackSuccess:
 error404Success:
   components:
     sidebar_160: [general, sidebarIndex]
+
+startPageSuccess:
+  components:
+    footer: []

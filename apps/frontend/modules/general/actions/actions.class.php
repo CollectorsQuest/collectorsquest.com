@@ -65,34 +65,26 @@ class generalActions extends cqFrontendActions
 
     foreach ($themes as $theme)
     {
-      $values = unserialize($theme->getPostMetaValue('_homepage_showcase_items'));
+      $values = $theme->getPostMetaValue('_homepage_showcase_items');
 
       // Initialize the arrays
       $collector_ids = $collection_ids = $collectible_ids = $video_ids = array();
 
       if (!empty($values['cq_collector_ids']))
       {
-        $collector_ids = explode(',', $values['cq_collector_ids']);
-        $collector_ids = array_map('trim', $collector_ids);
-        $collector_ids = array_filter($collector_ids);
+        $collector_ids = cqFunctions::explode(',', $values['cq_collector_ids']);
       }
       if (!empty($values['cq_collection_ids']))
       {
-        $collection_ids = explode(',', $values['cq_collection_ids']);
-        $collection_ids = array_map('trim', $collection_ids);
-        $collection_ids = array_filter($collection_ids);
+        $collection_ids = cqFunctions::explode(',', $values['cq_collection_ids']);
       }
       if (!empty($values['cq_collectible_ids']))
       {
-        $collectible_ids = explode(',', $values['cq_collectible_ids']);
-        $collectible_ids = array_map('trim', $collectible_ids);
-        $collectible_ids = array_filter($collectible_ids);
+        $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
       }
       if (!empty($values['magnify_video_ids']))
       {
-        $video_ids = explode(',', $values['magnify_video_ids']);
-        $video_ids = array_map('trim', $video_ids);
-        $video_ids = array_filter($video_ids);
+        $video_ids = cqFunctions::explode(',', $values['magnify_video_ids']);
       }
 
       if ($collection_ids)
@@ -105,16 +97,13 @@ class generalActions extends cqFrontendActions
         $q = FrontendCollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
-          ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+          ->addAscendingOrderByColumn('FIELD(collector_collection.id, '. implode(',', $collection_ids) .')');
 
         $this->collections = $q->find();
       }
       if ($collectible_ids)
       {
-        if (IceGateKeeper::locked('independence_day'))
-        {
-          shuffle($collectible_ids);
-        }
+        shuffle($collectible_ids);
 
         /**
          * Get the Collectibles
@@ -123,17 +112,13 @@ class generalActions extends cqFrontendActions
          */
         $q = FrontendCollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
-           ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+           ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
-        IceGateKeeper::open('independence_day') ?
-          $q->limit(47) : $q->limit(22);
-
-        $this->collectibles = $q->find();
+        $this->collectibles = $q->limit(22)->find();
       }
     }
 
-    return IceGateKeeper::open('independence_day') ?
-      'IndependenceDay' : sfView::SUCCESS;
+    return sfView::SUCCESS;
   }
 
   public function executeDefault()
@@ -169,6 +154,7 @@ class generalActions extends cqFrontendActions
       $form->bind($request->getParameter($form->getName()));
       if ($form->isValid())
       {
+
         /* @var $collector Collector */
         $collector = $form->getValue('collector');
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
@@ -240,6 +226,19 @@ class generalActions extends cqFrontendActions
 
         // Run the post create hook
         $this->getUser()->postCreateHook($collector);
+
+        // Send an email to urge user to set their own username/password
+        if ($collector->getEmail())
+        {
+          $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
+          $cqEmail->send('Collector/social_password', array(
+            'to'     => $collector->getEmail(),
+            'params' => array(
+              'collector'       => $collector,
+              'collector_email' => $collector->getEmail(),
+            )
+          ));
+        }
 
         $new_collector = true;
       }
@@ -377,6 +376,11 @@ class generalActions extends cqFrontendActions
   {
     return cqStatic::isCrawler() ?
       sfView::HEADER_ONLY : sfView::SUCCESS;
+  }
+
+  public function executeStartPage()
+  {
+    return sfView::SUCCESS;
   }
 
 }

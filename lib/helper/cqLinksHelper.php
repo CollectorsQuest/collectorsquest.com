@@ -294,9 +294,15 @@ function url_for_collector(Collector $collector = null, $absolute = false)
 
 function route_for_collector(Collector $collector = null)
 {
-  return ($collector) ?
-      '@collector_by_slug?id=' . $collector->getId() . '&slug=' . $collector->getSlug() :
-      null;
+  $route = null;
+
+  if ($collector)
+  {
+    $route = '@collector_by_slug?id=' . $collector->getId() . '&slug=' . $collector->getSlug();
+    $route .= ($ref = cq_link_ref()) ? '&ref='. $ref : '';
+  }
+
+  return $route;
 }
 
 /**
@@ -406,6 +412,8 @@ function route_for_collection(Collection $collection = null)
     $route = '@collection_by_slug?id=' . $collection->getId() . '&slug=' . $collection->getSlug();
   }
 
+  $route .= ($ref = cq_link_ref()) ? '&ref='. $ref : '';
+
   return $route;
 }
 
@@ -511,7 +519,10 @@ function route_for_collectible($collectible = null)
     return null;
   }
 
-  return '@collectible_by_slug?id=' . $id . '&slug=' . $slug;
+  $route  = '@collectible_by_slug?id=' . $id . '&slug=' . $slug;
+  $route .= ($ref = cq_link_ref()) ? '&ref='. $ref : '';
+
+  return $route;
 }
 
 function link_to_blog_post(wpPost $post, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))

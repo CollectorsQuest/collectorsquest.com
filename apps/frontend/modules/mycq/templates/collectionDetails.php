@@ -7,7 +7,19 @@
 slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail below');
 ?>
 
-<?= $form->renderAllErrors(); ?>
+<?php
+  if ($form->hasErrors())
+  {
+    echo $form->renderAllErrors();
+  }
+  else if ($collection->getIsPublic() === false)
+  {
+    echo '<div class="alert"><strong>NOTE:</strong>',
+    ' Your collection will not be discoverable until you fill in all the required information!',
+    ' (marked with a <span style="color: #cc0000;">*</span> in the form below)',
+    '</div>';
+  }
+?>
 
 <?php
   cq_sidebar_title(

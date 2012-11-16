@@ -12,7 +12,7 @@ class collectionsActions extends cqFrontendActions
 
   public function executeIndex(sfWebRequest $request)
   {
-    if ($request->getRequestFormat() === 'rss')
+    if ($request->getRequestFormat() === 'rss' || (int) $request->getParameter('page', 0) > 0)
     {
       /** @var $q FrontendCollectorCollectionQuery */
       $q = FrontendCollectorCollectionQuery::create();
@@ -37,6 +37,8 @@ class collectionsActions extends cqFrontendActions
       $pager->init();
 
       $this->pager = $pager;
+
+      $this->setTemplate('collections');
     }
 
     return sfView::SUCCESS;
@@ -58,10 +60,11 @@ class collectionsActions extends cqFrontendActions
    */
   public function executeCollector(sfWebRequest $request)
   {
-    $this->collector = $this->getRoute()->getObject();
+    /** @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
 
     $q = FrontendCollectorCollectionQuery::create()
-        ->filterByCollector($this->collector)
+        ->filterByCollector($collector)
         ->orderByUpdatedAt(Criteria::DESC);
 
     $pager = new PropelModelPager($q, 36);
@@ -69,6 +72,7 @@ class collectionsActions extends cqFrontendActions
     $pager->init();
 
     $this->pager = $pager;
+    $this->collector = $collector;
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl($this->generateUrl('collections_by_collector', $this->collector));

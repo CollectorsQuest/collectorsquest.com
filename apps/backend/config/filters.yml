@@ -1,4 +1,8 @@
 rendering: ~
+
+uuid:
+  class: cqUuidFilter
+
 security:  ~
 cache:     ~
 execution: ~

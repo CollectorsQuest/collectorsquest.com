@@ -63,25 +63,19 @@ class collectionActions extends cqFrontendActions
       }
       else if ($collection->getId() == $american_restoration['collection'])
       {
-       $this->redirectIf(
-          IceGateKeeper::open('aetn_american_restoration', 'page'),
-          '@aetn_american_restoration', 301
-        );
+        $this->redirect('@aetn_american_restoration', 301);
       }
       else if ($collection->getId() == $picked_off['collection'])
       {
-        $this->redirectIf(
-          IceGateKeeper::open('aetn_picked_off', 'page'),
-          '@aetn_picked_off', 301
-        );
+        $this->redirect('@aetn_picked_off', 301);
       }
     }
 
-    if (!$this->getCollector()->isOwnerOf($collection))
-    {
-      $collection->setNumViews($collection->getNumViews() + 1);
-      $collection->save();
-    }
+//    if (!$this->getCollector()->isOwnerOf($collection))
+//    {
+//      $collection->setNumViews($collection->getNumViews() + 1);
+//      $collection->save();
+//    }
 
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
@@ -116,14 +110,35 @@ class collectionActions extends cqFrontendActions
     $this->editable = $this->getUser()->isOwnerOf($collection);
 
     // calculate how many rows of collectibles will be on the page
-    $collectible_rows = count($pager->getResults());
-    $collectible_rows = $collectible_rows % 3 == 0 ? intval($collectible_rows / 3) : intval($collectible_rows / 3 + 1);
-
+    $results_count = count($pager->getResults());
+    $collectible_rows = $results_count % 3 == 0 ? intval($results_count / 3) : intval($results_count / 3 + 1);
     $this->collectible_rows = $collectible_rows;
 
-    // Building the meta tags
-    // $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
-    // $this->getResponse()->addMeta('keywords', $collection->getTagString());
+    // if we don't have (public) Collectibles in Collection
+    if ($results_count == 0)
+    {
+      // user is NOT owner of Collection -> should not display Collection
+      if (!$this->getCollector()->isOwnerOf($collection))
+      {
+        $this->forward404();
+      }
+      // user IS owner of Collection -> display Flash to explain why Collection is not visible
+      else
+      {
+        $this->getUser()->setFlash(
+          'error',
+          'Your collection will not be discoverable until you have publicly viewable items in it!'
+        );
+      }
+    }
+
+    // if Collection is not public and user is it's owner
+    if ($collection->getIsPublic() === false && $this->getCollector()->isOwnerOf($collection))
+    {
+      $this->getUser()->setFlash(
+        'error', 'Your collection will not be discoverable until you fill in all the required information!'
+      );
+    }
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
@@ -149,11 +164,14 @@ class collectionActions extends cqFrontendActions
 
       return 'NoCollectibles';
     }
+    $this->dispatcher->notify(
+      new sfEvent($this, 'application.show_object', array('object' => $this->collection))
+    );
 
     return sfView::SUCCESS;
   }
 
-  public function executeCollectible()
+  public function executeCollectible(sfWebRequest $request)
   {
     $this->forward404Unless($this->getRoute() instanceof sfPropelRoute);
 
@@ -180,11 +198,11 @@ class collectionActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-    if (!$this->getCollector()->isOwnerOf($collectible))
-    {
-      $collectible->setNumViews($collectible->getNumViews() + 1);
-      $collectible->save();
-    }
+//    if (!$this->getCollector()->isOwnerOf($collectible))
+//    {
+//      $collectible->setNumViews($collectible->getNumViews() + 1);
+//      $collectible->save();
+//    }
 
     /**
      * Figure out the previous and the next item in the collection
@@ -194,14 +212,14 @@ class collectionActions extends cqFrontendActions
     {
       if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
         $this->previous = $q->findOne();
       }
       else
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
         $this->previous = $q->findOne();
@@ -209,14 +227,14 @@ class collectionActions extends cqFrontendActions
 
       if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[0]);
         $this->next = $q->findOne();
       }
       else
       {
-        $q = CollectionCollectibleQuery::create()
+        $q = FrontendCollectionCollectibleQuery::create()
             ->filterByCollection($collection)
             ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
         $this->next = $q->findOne();
@@ -224,7 +242,7 @@ class collectionActions extends cqFrontendActions
       /**
        * Figure out the first item in the collection
        */
-      $q = CollectionCollectibleQuery::create()
+      $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollection($collection)
         ->filterByCollectibleId($collectible_ids[0]);
       $this->first = $q->findOne();
@@ -267,6 +285,31 @@ class collectionActions extends cqFrontendActions
     // Make the Collectible available to the sidebar
     $this->setComponentVar('collectible', $collectible, 'sidebarCollectible');
 
+    $this->dispatcher->notify(
+      new sfEvent($this, 'application.show_object', array(
+        'object' => $this->collectible instanceof CollectionCollectible
+          ? $this->collectible->getCollectible() : $this->collectible))
+    );
+
+    if ($collectible->getIsPublic() === false && $this->getCollector()->isOwnerOf($collectible))
+    {
+      $this->getUser()->setFlash(
+        'error', 'Your item will not be discoverable until you fill in all the required information!'
+      );
+    }
+
+    // check if the user comes from the marketplace page
+    $this->ref_marketplace = $request->getParameter('ref');
+    if ($this->ref_marketplace !== 'mp')
+    {
+      $this->ref_marketplace = false;
+    }
+    else
+    {
+      $this->ref_marketplace = true;
+    }
+
+
     return sfView::SUCCESS;
   }
 
@@ -286,7 +329,16 @@ class collectionActions extends cqFrontendActions
 
     foreach ($aetn_shows as $id => $show)
     {
-      if ($collection->getId() === $show['collection'])
+      if (isset ($show['franks_picks']) && $collection->getId() === $show['franks_picks'])
+      {
+        $this->aetn_show = $show;
+        $this->aetn_show['name'] = 'Frank\'s Picks';
+        $this->aetn_show['collection'] = $show['franks_picks'];
+        $this->aetn_show['id'] = 'franks_picks';
+
+        break;
+      }
+      elseif ($collection->getId() === $show['collection'])
       {
         $this->aetn_show = $show;
         $this->aetn_show['id'] = $id;
@@ -302,7 +354,7 @@ class collectionActions extends cqFrontendActions
     }
 
     /** @var $q CollectionCollectibleQuery */
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollection($collection)
       ->filterByCollectible($collectible->getCollectible(), Criteria::NOT_EQUAL)
       ->addAscendingOrderByColumn('RAND()');

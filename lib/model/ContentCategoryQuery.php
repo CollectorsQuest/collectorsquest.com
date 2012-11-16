@@ -51,7 +51,16 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   public function hasCollections()
   {
     return $this
-      ->innerJoinCollection()
+      ->innerJoinCollectorCollection()
+      ->groupBy('Id');
+  }
+
+  public function hasCollectionsWithCollectibles()
+  {
+    return $this
+      ->useCollectorCollectionQuery(null, Criteria::INNER_JOIN)
+        ->hasCollectibles()
+      ->endUse()
       ->groupBy('Id');
   }
 
@@ -68,6 +77,17 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
     return $this
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getLeftValue(), Criteria::GREATER_EQUAL)
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getRightValue(), Criteria::LESS_EQUAL);
+  }
+
+  /**
+   * Filter by descendants of our root
+   *
+   * @return    ContentCategoryQuery
+   */
+  public function descendantsOfRoot()
+  {
+    return $this
+      ->descendantsOf(ContentCategoryQuery::create()->findRoot());
   }
 
   /**
@@ -90,4 +110,52 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
     return $this->filterByTreeLevel($level, $comparison);
   }
 
+  /**
+   * Order by the collections count (combined number)
+   *
+   * @param string $order
+   * @return ContentCategoryQuery
+   */
+  public function orderByNumCollections($order = Criteria::ASC)
+  {
+    $this->addSelfSelectColumns();
+    $this->addAsColumn(
+      'num_collections',
+        sprintf(
+          '(%s + %s)',
+          sprintf(
+            '(SELECT COUNT(*) FROM %s WHERE %s=%s)',
+            CollectorCollectionPeer::TABLE_NAME,
+            CollectorCollectionPeer::CONTENT_CATEGORY_ID,
+            ContentCategoryPeer::ID
+          ),
+          sprintf(
+            '(SELECT COUNT(*) FROM %s WHERE %s IN (%s))',
+            CollectorCollectionPeer::TABLE_NAME,
+            CollectorCollectionPeer::CONTENT_CATEGORY_ID,
+            sprintf(
+              'SELECT %s AS "Id" FROM %s AS r WHERE (%s>%s AND %s<%s)',
+              ContentCategoryPeer::alias('r', ContentCategoryPeer::ID),
+              ContentCategoryPeer::TABLE_NAME,
+              ContentCategoryPeer::alias('r', ContentCategoryPeer::LEFT_COL),
+              ContentCategoryPeer::LEFT_COL,
+              ContentCategoryPeer::alias('r', ContentCategoryPeer::LEFT_COL),
+              ContentCategoryPeer::RIGHT_COL
+            )
+          )
+        )
+
+    );
+
+    switch ($order) {
+      case 'asc':
+        $this->addAscendingOrderByColumn('num_collections');
+        break;
+      case 'desc':
+        $this->addDescendingOrderByColumn('num_collections');
+        break;
+    }
+
+    return $this;
+  }
 }

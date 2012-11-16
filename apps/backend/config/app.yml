@@ -10,6 +10,7 @@ all:
 
     categories:
       General:
+        icon: sign-blank
         items:
           Categories:
             url: content_category
@@ -17,6 +18,9 @@ all:
           Comments:
             url: comment
             image: theme/icons/language.png
+          Spam Control:
+            url: spam_control
+            image: theme/icons/trash.png
 
       Collectors:
         icon: user
@@ -75,10 +79,17 @@ all:
           Meta Tags:
             url: ice_model_meta_tag
 
+      Emails:
+        icon: envelope
+        items:
+          Emails Log:
+            url: emails_log
+            image: theme/icons/messaging.png
+
 
 next:
   ice_assets:
-    domain: "next.cqcdns.com"
+    domain: "cqcdns.com"
 
 
 dev:

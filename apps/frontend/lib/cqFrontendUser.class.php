@@ -3,16 +3,56 @@
 class cqFrontendUser extends cqBaseUser
 {
 
-  /** @var integer */
+  /* @var integer */
   protected $unread_messages_count;
 
-  /** @var array */
+  /* @var array */
   protected $visitor_info_array;
 
-  const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
+  /* @var integer */
+  protected $_sf_guard_user_id = null;
+
+  /**
+   * Sent counters for comments and private messages; Used for spam thresholds
+   */
+  const SENT_COUNT_COMMENTS = 'sent_count_comments';
+  const SENT_COUNT_PRIVATE_MESSAGES = 'sent_count_private_messages';
+
+  protected static $sent_counter_keys = array(
+    self::SENT_COUNT_COMMENTS,
+    self::SENT_COUNT_PRIVATE_MESSAGES,
+  );
+
+  /**
+   * A sent counter should be incremented only once per request,
+   * we keep a list of the incremented counters here
+   */
+  protected $sent_count_incemented = array();
+
+  const PRIVATE_MESSAGES_SENT_TEXT = 'text_to_check_similarity';
+
+  /**
+   * Cookie names
+   */
   const DROPBOX_OPEN_STATE_COOKIE_NAME = 'cq_mycq_dropbox_open';
   const VISITOR_INFO_COOKIE_NAME = 'cq_visitor';
-  const PRIVATE_MESSAGES_SENT_TEXT = 'text_to_check_similarity';
+
+  public function __construct(sfEventDispatcher $dispatcher, sfStorage $storage, $options = array())
+  {
+    parent::__construct($dispatcher, $storage, $options);
+
+    if ($this->isAdmin())
+    {
+      // Connect listeners
+      $dispatcher->connect('application.show_object', array('cqAdminBar', 'listenShowObject'));
+
+      /* @var $response sfWebResponse */
+      $response = sfContext::getInstance()->getResponse();
+
+      // Add the adminbar.css only when the use is admin
+      $response->addStylesheet('frontend/modules/adminbar.css');
+    }
+  }
 
   /**
    * @param  boolean  $strict
@@ -30,7 +70,7 @@ class cqFrontendUser extends cqBaseUser
         $this->Authenticate(false);
       }
 
-      return $this->collector = ($strict === true) ? null : new Collector();
+      return $this->collector = ($strict === true) ? null: new Collector();
     }
 
     if (!($this->collector instanceof Collector))
@@ -74,8 +114,9 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getCountryCode($default = false)
   {
-    if ( $this->isAuthenticated() && !$this->getCollector()->isNew()
-      && $country_code = $this->getCollector()->getProfile()->getCountryIso3166() )
+    if ($this->isAuthenticated() && !$this->getCollector()->isNew()
+      && $country_code = $this->getCollector()->getProfile()->getCountryIso3166()
+    )
     {
       return $country_code;
     }
@@ -181,7 +222,9 @@ class cqFrontendUser extends cqBaseUser
       // set username cookie
       $expiration_time = sfConfig::get('app_collector_username_cookie_expiration_age', 15 * 24 * 3600);
       $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
-      $response->setCookie($username_cookie, $this->getCollector()->getUsername(), time() + $expiration_time);
+      $response->setCookie(
+        $username_cookie, urlencode($this->getCollector()->getUsername()), time() + $expiration_time
+      );
 
       return true;
     }
@@ -227,7 +270,7 @@ class cqFrontendUser extends cqBaseUser
      */
     if ($this->hasFlash('cq_mycq_dropbox_open', 'cookies'))
     {
-      return (boolean) $this->getFlash('cq_mycq_dropbox_open', false, true, 'cookies');
+      return (boolean) $this->getFlashAndDelete('cq_mycq_dropbox_open', false, 'cookies');
     }
     else
     {
@@ -258,7 +301,7 @@ class cqFrontendUser extends cqBaseUser
   public function getUsernameFromCookie()
   {
     $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
-    return cqContext::getInstance()->getRequest()->getCookie($username_cookie);
+    return urldecode(cqContext::getInstance()->getRequest()->getCookie($username_cookie));
   }
 
   /**
@@ -300,6 +343,16 @@ class cqFrontendUser extends cqBaseUser
     {
       $this->clearUsernameCookie();
       $this->clearMycqDropboxOpenStateCookie();
+    }
+
+    // when we log in user add $_SESSION variables used in blog
+    if (true == $boolean)
+    {
+      $collector = $this->getCollector();
+      $this->setAttribute('id', $collector->getId(), 'collector');
+      $this->setAttribute('email', $collector->getEmail(), 'collector');
+      $this->setAttribute('display_name', $collector->getDisplayName(), 'collector');
+      $this->setAttribute('slug', $collector->getSlug(), 'collector');
     }
 
     return $ret;
@@ -389,9 +442,9 @@ class cqFrontendUser extends cqBaseUser
       {
         $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
         $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
-          'to' => $collector->getEmail(),
+          'to'     => $collector->getEmail(),
           'params' => array(
-            'collector' => $collector,
+            'collector'       => $collector,
             'collector_email' => $collector_email,
           )
         ));
@@ -442,7 +495,7 @@ class cqFrontendUser extends cqBaseUser
   {
     $ids = $this->getObjectIdsOwned($name);
 
-    return call_user_func(array(sfInflector::classify($name).'Peer', 'retrieveByPks'), $ids);
+    return call_user_func(array(sfInflector::classify($name) . 'Peer', 'retrieveByPks'), $ids);
   }
 
   public function getObjectIdsOwned($name)
@@ -462,8 +515,8 @@ class cqFrontendUser extends cqBaseUser
   {
     return $this->getCookieUuid()
       ? CollectorQuery::create()
-          ->filterByCookieUuid($this->getCookieUuid())
-          ->findOne()
+         ->filterByCookieUuid($this->getCookieUuid())
+        ->findOne()
       : null;
   }
 
@@ -480,12 +533,13 @@ class cqFrontendUser extends cqBaseUser
     if (null === $this->visitor_info_array || $force)
     {
       // if the user is authenticated or we can get it from the UUID cookie
-      $collector = $this->getCollector($strict = true)
-        ?: $this->getCollectorByUuid();
+      $collector = $this->getCollector($strict = true) ?: $this->getCollectorByUuid();
+
       if ($collector)
       {
         // populate the array from ExtraProperties behavior data for the collector
         $this->visitor_info_array = array();
+
         foreach (CollectorPeer::$visitor_info_props as $prop_name)
         {
           $this->visitor_info_array[$prop_name] = $collector->getProperty($prop_name);
@@ -514,8 +568,7 @@ class cqFrontendUser extends cqBaseUser
     $this->visitor_info_array = $data;
 
     // if the user is authenticated or we can get it from the UUID cookie
-    $collector = $this->getCollector($strict = true)
-      ?: $this->getCollectorByUuid();
+    $collector = $this->getCollector($strict = true) ?: $this->getCollectorByUuid();
 
     if ($collector)
     {
@@ -559,7 +612,7 @@ class cqFrontendUser extends cqBaseUser
   {
     $data = $this->getVisitorInfoArray();
 
-    if (!array_key_exists($prop_name, $data))
+    if (!array_key_exists($prop_name, (array) $data))
     {
       throw new RuntimeException(sprintf(
         '[cqFrontendUser] There is no visitor property named %s',
@@ -638,9 +691,78 @@ class cqFrontendUser extends cqBaseUser
       return $default_data;
     }
 
-    return json_decode(base64_decode($raw_data), true);
+    return (array) json_decode(base64_decode($raw_data), true);
   }
 
+  /**
+   * Get the sent count for a specific counter
+   *
+   * @param     string $key
+   * @return    integer
+   */
+  public function getSentCount($key)
+  {
+    $this->checkSentCounterKey($key);
+
+    return $this->getAttribute($key, 0, 'collector');
+  }
+
+  /**
+   * Reset the sent count for a specific counter, or manually set it
+   *
+   * @param     string  $key
+   * @param     mixed  $value
+   *
+   * @return    cqFrontendUser
+   */
+  public function resetSentCount($key, $value = 0)
+  {
+    $this->checkSentCounterKey($key);
+    $this->setAttribute($key, $value, 'collector');
+
+    return $this;
+  }
+
+  /**
+   * Increments a specific sent counter; Will only increment the counter once
+   * per request, even if called multiple times
+   *
+   * @param     string $key
+   * @return    cqFrontendUser
+   */
+  public function incrementSentCount($key)
+  {
+    $this->checkSentCounterKey($key);
+
+    if (!isset($this->sent_count_incemented[$key]))
+    {
+      $this->resetSentCount($key, $this->getSentCount($key) + 1);
+      $this->sent_count_incemented[$key] = true;
+    }
+
+    return $this;
+  }
+
+  /**
+   * @param     string $key
+   * @throws    RuntimeException
+   *
+   * @return    void
+   */
+  protected function checkSentCounterKey($key)
+  {
+    if (!in_array($key, self::$sent_counter_keys))
+    {
+      throw new RuntimeException(sprintf('Unknown sent counter %s', $key));
+    }
+  }
+
+  /**
+   * Try to delete the related collector; Returns true on successful deletion
+   * and false when the collector was already removed or never committed to teh DB
+   *
+   * @return    boolean
+   */
   public function delete()
   {
     try
@@ -649,11 +771,45 @@ class cqFrontendUser extends cqBaseUser
       $this->Authenticate(false);
       $collector->delete();
     }
-    catch (PropelException $e)
+    catch (Exception $e)
     {
       return false;
     }
 
     return true;
   }
+
+  /**
+   * Check, is current user logged in at backend as admin
+   *
+   * @return bool
+   */
+  public function isAdmin()
+  {
+    /* @var $request sfWebRequest */
+    $request = sfContext::getInstance()->getRequest();
+
+    /* @var $cq_admin_cookie string */
+    $cq_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cq_admin');
+
+    if ($cookie = $request->getCookie($cq_admin_cookie))
+    {
+      @list($id, $hmac) = explode(':', $cookie);
+
+      if ((string) $hmac === hash_hmac('sha1', $id . ':' . $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
+      {
+        $this->_sf_guard_user_id = $id;
+
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public function getBackendUserId()
+  {
+    return $this->isAdmin() ? $this->_sf_guard_user_id: null;
+  }
+
 }

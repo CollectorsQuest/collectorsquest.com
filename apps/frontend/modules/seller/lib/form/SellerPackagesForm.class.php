@@ -50,6 +50,8 @@ class SellerPackagesForm extends BaseForm
       'label'      => 'Package',
       'formatter'  => function($widget, $inputs)
       {
+        /* @var $widget sfWidget  */
+
         $rows = array();
         foreach ($inputs as $input)
         {
@@ -308,16 +310,6 @@ class SellerPackagesForm extends BaseForm
 
   public function applyPromoCode($validator, $values)
   {
-    if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
-    {
-      throw new sfValidatorErrorSchema($validator, array(
-        'promo_code'=> new sfValidatorError($validator,
-          'A promo code is required while we are in private beta!<br/>
-           Please email info@collectorsquest.com for more information.'
-        ))
-      );
-    }
-
     if (empty($values['promo_code']))
     {
       return $values;
@@ -361,16 +353,6 @@ class SellerPackagesForm extends BaseForm
         if ($this->package->getPackagePrice() <= $this->package->getDiscount())
         {
           $this->validatorSchema['payment_type']->setOption('required', false);
-        }
-        else if (IceGateKeeper::locked('mycq_seller_pay'))
-        {
-          throw new sfValidatorErrorSchema(
-            $validator, array(
-              'promo_code' => new sfValidatorError(
-                $validator, 'This promo code cannot be used in beta testing mode!'
-              )
-            )
-          );
         }
       }
 
@@ -444,6 +426,7 @@ class SellerPackagesForm extends BaseForm
    * no payment information is required
    *
    * @param     array $taintedValues
+   * @return    boolean
    */
   protected function isNoPaymentInfoRequired($taintedValues)
   {
@@ -493,6 +476,7 @@ class SellerPackagesForm extends BaseForm
   }
 
   /**
+   * @param     string|null  $promo_code
    * @return    Promotion|null
    */
   public function getPromotion($promo_code = null)

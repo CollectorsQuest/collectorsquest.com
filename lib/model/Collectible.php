@@ -95,6 +95,8 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    *
    * @param  string  $v     The description text itself
    * @param  string  $type  Can be only 'html' for now
+   *
+   * @return Collectible
    */
   public function setDescription($v, $type = 'html')
   {
@@ -106,7 +108,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       );
     }
 
-    parent::setDescription($v);
+    return parent::setDescription($v);
   }
 
   public function getDescription($type = 'html', $limit = 0)
@@ -171,7 +173,9 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
         $c->addAscendingOrderByColumn('RAND()');
 
-        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
+        $collections = array_merge(
+          $collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c)
+        );
       }
     }
 
@@ -292,6 +296,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     $this->collectionsScheduledForDeletion = $this->getCollectionCollectibles()->diff($collectionCollectibles, false);
     $this->collCollectionCollectibles = $collectionCollectibles;
 
+    /* @var $collection Collection */
     foreach ($collections as $collection)
     {
       // Fix issue with collection modified by reference
@@ -360,7 +365,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
 
   public function getTagString()
   {
-    return implode(", ", $this->getTags());
+    return implode(', ', $this->getTags());
   }
 
   public function hasTags()
@@ -407,7 +412,9 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     }
     shuffle($keywords);
 
-    return str_replace(' ', '+', implode('+', (array) array_slice($keywords, 0, (count($keywords) < 2) ? count($keywords) : 2)));
+    return str_replace(
+      ' ', '+', implode('+', (array) array_slice($keywords, 0, (count($keywords) < 2) ? count($keywords) : 2))
+    );
   }
 
   /**
@@ -618,7 +625,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       {
         $is_public = false;
       }
-      else if (!$this->getPrimaryImage())
+      else if (!$this->getPrimaryImage(Propel::CONNECTION_WRITE))
       {
         $is_public = false;
       }
@@ -631,6 +638,15 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     // Update only if there is a change of the public status
     if ($is_public !== $this->getIsPublic())
     {
+      // A&E's Collectors
+      if ($is_public && in_array($this->getCollectorId(), array(6668, 6667, 13389, 14728)))
+      {
+        $is_public = false;
+      }
+
+      // Make the change in the local instance of the object
+      $this->setIsPublic($is_public);
+
       $sql = sprintf(
         'UPDATE %s SET %s = %d WHERE %s = %d',
         CollectiblePeer::TABLE_NAME, CollectiblePeer::IS_PUBLIC, $is_public,
@@ -685,6 +701,17 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     {
       $collectible_for_sale->delete($con);
     }
+
+    /* @var $shopping_orders ShoppingOrder[] */
+    $shopping_orders = $this->getShoppingOrders();
+    foreach ($shopping_orders as $shopping_order)
+    {
+      $shopping_order->delete($con);
+    }
+
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
 
     return parent::preDelete($con);
   }

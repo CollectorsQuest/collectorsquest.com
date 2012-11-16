@@ -47,20 +47,18 @@ class collectionsComponents extends cqFrontendComponents
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())
     {
-      $values = unserialize($wp_post->getPostMetaValue('_featured_week_collectibles'));
+      $values = $wp_post->getPostMetaValue('_featured_week_collectibles');
 
       if (isset($values['cq_collectible_ids']))
       {
-        $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
-        $collectible_ids = array_map('trim', $collectible_ids);
-        $collectible_ids = array_filter($collectible_ids);
+        $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
 
         /** @var $q FrontendCollectibleQuery */
         $q = FrontendCollectibleQuery::create()
           ->filterById($collectible_ids)
           ->limit(4)
           ->addAscendingOrderByColumn(
-            'FIELD(id, ' . implode(',', $collectible_ids) . ')'
+            'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
           );
         $this->collectibles = $q->find();
       }
@@ -77,13 +75,11 @@ class collectionsComponents extends cqFrontendComponents
 
     if ($wp_post instanceof wpPost)
     {
-      $values = unserialize($wp_post->getPostMetaValue('_featured_week_collectibles'));
+      $values = $wp_post->getPostMetaValue('_featured_week_collectibles');
 
       if (isset($values['cq_collectible_ids']))
       {
-        $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
-        $collectible_ids = array_map('trim', $collectible_ids);
-        $collectible_ids = array_filter($collectible_ids);
+        $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
 
         /** @var $q CollectibleQuery */
         $q = CollectibleQuery::create()
@@ -91,7 +87,7 @@ class collectionsComponents extends cqFrontendComponents
           ->offset(4)
           ->limit(12)
           ->addAscendingOrderByColumn(
-            'FIELD(id, ' . implode(',', $collectible_ids) . ')'
+            'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
           );
         $this->collectibles = $q->find();
       }
@@ -109,7 +105,7 @@ class collectionsComponents extends cqFrontendComponents
     $p = (int) $this->getRequestParameter('p', 1);
     $pager = null;
 
-    if ($s != 'most-relevant')
+    if ($s != 'most-recent')
     {
       $query = array(
         'q' => $q,
@@ -138,7 +134,7 @@ class collectionsComponents extends cqFrontendComponents
 
       $pager = new cqSphinxPager($query, array('collections'), 16);
     }
-    else
+    else if (false)
     {
       /** @var $query wpPostQuery */
       $query = wpPostQuery::create()
@@ -154,13 +150,11 @@ class collectionsComponents extends cqFrontendComponents
       /** @var $wp_post wpPost */
       if ($wp_post = $query->findOne())
       {
-        $values = unserialize($wp_post->getPostMetaValue('_collections_explore_items'));
+        $values = $wp_post->getPostMetaValue('_collections_explore_items');
 
         if (isset($values['cq_collection_ids']))
         {
-          $collection_ids = explode(',', (string) $values['cq_collection_ids']);
-          $collection_ids = array_map('trim', $collection_ids);
-          $collection_ids = array_filter($collection_ids);
+          $collection_ids = cqFunctions::explode(',', $values['cq_collection_ids']);
 
           // Adding American Pickers and Pawn Stars at the top
           $collection_ids = array_merge(array(2842, 2841), $collection_ids);
@@ -169,13 +163,26 @@ class collectionsComponents extends cqFrontendComponents
           $query = FrontendCollectorCollectionQuery::create()
             ->filterById($collection_ids)
             ->hasThumbnail()
-            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+            ->addAscendingOrderByColumn('FIELD(collector_collection.id, '. implode(',', $collection_ids) .')');
 
           $pager = new PropelModelPager($query, 16);
         }
 
         $this->wp_post = $wp_post;
       }
+    }
+    else
+    {
+      $query = FrontendCollectorCollectionQuery::create()
+        ->hasCollectibles()
+        ->hasThumbnail()
+        ->groupByCollectorId()
+        ->orderByCreatedAt(Criteria::DESC);
+
+      // Temporary filter out Guruzen's collections
+      $query->filterByCollectorId(4267, Criteria::NOT_EQUAL);
+
+      $pager = new PropelModelPager($query, 16);
     }
 
     if ($pager)
@@ -184,7 +191,7 @@ class collectionsComponents extends cqFrontendComponents
       $pager->init();
 
       $this->pager = $pager;
-      $this->url = '@search_collections?q='. $q . '&s='. $s .'&page='. $pager->getNextPage();
+      $this->url = '@search_collections?q='. $q . '&s='. $s .'&page=1';
 
       return sfView::SUCCESS;
     }

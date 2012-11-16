@@ -87,7 +87,8 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
   public function isShippingTypeNoShipping()
   {
     return ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING
-        == $this->getTaintedRequestValue('shipping_type', $this->getObject()->getShippingType());
+        == $this->getTaintedRequestValue('shipping_type', $this->getObject()->getShippingType())
+        || ($this->isNew() && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getDefault('shipping_type'));
   }
 
   protected static function getShippingTypeChoices()

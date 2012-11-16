@@ -101,6 +101,7 @@ classes:
 
     propel_behaviors:
       timestampable:  ~
+      archivable: { archive_class: ShoppingOrderArchive, archived_at_column: archived_at }
 
 #  ShoppingOrderCollectible:
 #      isCrossRef: true
@@ -132,6 +133,7 @@ classes:
     propel_behaviors:
       extra_properties: ~
       timestampable:  ~
+      archivable: { archive_class: ShoppingPaymentArchive, archived_at_column: archived_at }
 
   ShippingReference:
     columns:

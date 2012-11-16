@@ -81,12 +81,22 @@ a.bold-links {
   .span3 {
     text-align: right;
   }
+
+  &.blue {
+    background: url("@{baseUrl}/blue-dotted-line.png") repeat-x bottom;
+
+    h2 {
+      color: @blueDark;
+      font-family: "Arial Black", @baseFontFamily;
+      font-style: normal;
+    }
+  }
 }
 
 .red-dashes-bottom {
-  background: url("@{baseUrl}/red-dotted-line.png") repeat-x bottom;
-  padding-bottom: 12px;
   margin-bottom: 15px;
+  padding-bottom: 12px;
+  background: url("@{baseUrl}/red-dotted-line.png") repeat-x bottom;
 }
 
 .brown-dashes {
@@ -217,7 +227,6 @@ li {
 	 display: none;
 	 background-color: transparent;
 	 background-color: rgba(0, 0, 0, 0.6);
-	 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7F000000', endColorstr = '#7F000000', GradientType = 0);
 	 .border-radius(7px);
 	 cursor: pointer;
 
@@ -234,7 +243,6 @@ li {
 	font-size: 14px;
 	background-color: transparent;
 	background-color: rgba(0, 0, 0, 0.6);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7F000000', endColorstr = '#7F000000', GradientType = 0);
 	.border-radius(7px);
 	cursor: pointer;
 
@@ -244,6 +252,13 @@ li {
 		color: @grayLighter;
 	}
 }
+
+.lt-ie9 {
+  .holder-icon-play,  .holder-icon-edit {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#80000000', endColorstr = '#80000000', GradientType = 0);
+  }
+}
+
 
 // Bricks
 
@@ -374,8 +389,8 @@ li {
 }
 
 #body-mycq-marketplaceCreditHistory .filter-container {
-  padding-top: 5px;
   margin-left: 5px;
+  padding-top: 5px;
 
   .control-group {
     margin-bottom: 0;

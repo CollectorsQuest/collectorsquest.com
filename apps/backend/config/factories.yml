@@ -47,7 +47,7 @@ all:
   storage:
     class: cqSessionStorage
     param:
-      session_name: backend
+      session_name: cq_backend
 
   request:
     class: cqWebRequest

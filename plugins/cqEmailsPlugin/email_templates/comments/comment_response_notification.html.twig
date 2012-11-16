@@ -20,7 +20,8 @@
 </p>
 
 <small>
-  Or you can unsubscribe from further notifications by {{ link_to('clicking here', sUnsubscribeUrl) }}.
+  You can unsubscribe from further comment notifications by
+  {{ link_to('clicking here', "@auto_login?hash=#{oOwner.autoLoginHash}&r=#{url_for('@mycq_profile_email_preferences?comments=0&comments_opt_out=1', false) | url_encode}", {absolute: true}) }}.
 </small>
 
 {% endblock %}
