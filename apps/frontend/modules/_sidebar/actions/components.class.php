@@ -587,6 +587,41 @@ class _sidebarComponents extends cqFrontendComponents
     return sfView::NONE;
   }
 
+  public function executeWidgetCollectorAmericanPickers()
+  {
+    /** @var $collector Collector */
+    $collector = $this->getVar('collector');
+
+    $this->title = $this->getVar('title') ?: 'American Pickers on HISTORY';
+
+    // setup PM form
+    $subject = null;
+    if (isset($this->collectible))
+    {
+      $subject = 'Regarding your item: '. addslashes($this->collectible->getName());
+    }
+    else if (isset($this->collection))
+    {
+      $subject = 'Regarding your collection: '. addslashes($this->collection->getName());
+    }
+
+    $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+      $this->getUser()->getCollector(), $this->getVar('collector'), $subject, array(
+          'attach' => array(
+              isset($this->collectible) ? $this->collectible->getCollectible() : null,
+              isset($this->collection)  ? $this->collection : null,
+          ),
+      )
+    );
+
+    if ($collector instanceof Collector)
+    {
+      return sfView::SUCCESS;
+    }
+
+    return sfView::NONE;
+  }
+
   public function executeWidgetCollectorMostWanted()
   {
     /** @var $collector Collector */

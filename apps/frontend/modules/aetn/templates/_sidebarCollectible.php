@@ -1,3 +1,9 @@
+<?php
+  /* @var $aetn_show    array       */
+  /* @var $collectible  Collectible */
+  /* @var $height       stdClass    */
+?>
+
 <?php if ($collectible->isForSale()): ?>
   <?php
     include_component(
@@ -5,14 +11,28 @@
       array('collectible' => $collectible, 'height' => &$height)
     );
 
-    include_component(
-      '_sidebar', 'widgetCollector',
-      array(
-        'collector' => $collectible->getCollector(),
-        'collectible' => $collectible,
-        'limit' => 0, 'message' => true, 'height' => &$height
-      )
-    );
+    if ('franks_picks' == $aetn_show['id'])
+    {
+      include_component(
+        '_sidebar', 'widgetCollectorAmericanPickers',
+        array(
+          'collector' => $collectible->getCollector(),
+          'collectible' => $collectible,
+          'message' => true, 'height' => &$height
+        )
+      );
+    }
+    else
+    {
+      include_component(
+        '_sidebar', 'widgetCollector',
+        array(
+          'collector' => $collectible->getCollector(),
+          'collectible' => $collectible,
+          'limit' => 0, 'message' => true, 'height' => &$height
+        )
+      );
+    }
   ?>
 <?php else: ?>
   <div class="banner-sidebar-top">
