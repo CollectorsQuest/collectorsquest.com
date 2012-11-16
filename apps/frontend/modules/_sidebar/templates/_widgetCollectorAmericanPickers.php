@@ -24,7 +24,7 @@ $_height = 0;
   <div class="span8">
     <ul style="list-style: none; margin-left: 5px;">
       <li>
-        These one-of-a-kind finds were hand-picked by Frank Fritz, host of HISTORY's American Pickers.
+        These unique finds were picked by Frank Fritz, host of HISTORY's <em>American Pickers</em>.
       </li>
     </ul>
   </div>
