@@ -32,7 +32,7 @@
     array('class' => 'text-v-middle link-align')
   );
 
-  cq_sidebar_title(
+  cq_section_title(
     'My Collections (' . $total . ')', null,
     array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid')
   );

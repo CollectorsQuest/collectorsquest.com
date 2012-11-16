@@ -45,7 +45,7 @@ else
   ?>
 
   <?php
-    cq_sidebar_title(
+    cq_section_title(
       sprintf('%s <small>(%s)</small>', $collectible->getName() ?: 'Untitled', $collection->getName()), null,
       array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
     );

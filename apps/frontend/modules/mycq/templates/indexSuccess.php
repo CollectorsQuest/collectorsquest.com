@@ -1,5 +1,5 @@
 <?php
-//  cq_sidebar_title(
+//  cq_section_title(
 //    "Welcome to Collectors' Quest, {$collector->getDisplayName()}!", null,
 //    array('class' => 'row-fluid sidebar-title spacer')
 //  );

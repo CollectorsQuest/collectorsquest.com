@@ -13,7 +13,7 @@
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
-        <?php cq_sidebar_title('Edit Your Address Book'); ?>
+        <?php cq_section_title('Edit Your Address Book'); ?>
 
         <div class="collector-addresses-holder">
           <h2>Shopping Address</h2>
