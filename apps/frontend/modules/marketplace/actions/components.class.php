@@ -235,8 +235,9 @@ class marketplaceComponents extends cqFrontendComponents
         ->orderByUpdatedAt(Criteria::ASC);
 
       $pager = new PropelModelPager($q);
+      $pager->setMaxRecordLimit(4);
       $pager->setPage($page);
-      $pager->setMaxPerPage(($page === 1) ? 3 : 6);
+      $pager->setMaxPerPage(($page === 1) ? 4 : 6);
       $pager->init();
 
       $this->pager = $pager;

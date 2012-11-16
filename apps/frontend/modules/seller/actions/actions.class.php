@@ -28,6 +28,14 @@ class sellerActions extends cqFrontendActions
       $this->redirect('collector_by_slug', $collector, 301);
     }
 
+    /* @var $aetn_shows array */
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
+    $aetn_collector_id = $aetn_shows['american_pickers']['collector'];
+    if ($collector->getId() == $aetn_collector_id)
+    {
+      $this->redirect('@aetn_franks_picks', 301);
+    }
+
     $for_sale_ids = FrontendCollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale()

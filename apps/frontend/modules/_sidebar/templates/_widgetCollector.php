@@ -6,7 +6,6 @@
  *
  * @var  $title          string
  * @var  $has_message    boolean
- * @var  $widget_height  integer
  * @var  $height         stdClass
  * @var  $sf_user        cqFrontendUser
  */
