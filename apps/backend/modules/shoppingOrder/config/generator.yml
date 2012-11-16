@@ -26,18 +26,18 @@ generator:
           list_buyer_profile: { label: '<i class="icon-user"></i>' }
           list_collectible: { label: Collectible }
           list_total_amount: { label: Total }
+          list_progress: { label: Progress }
           list_payment_details: { label: Payment }
           list_shipping: { label: Shipping }
         title: Orders
         display:
-          - id
+          - =uuid
           - _list_seller
           - _list_buyer
-          - _list_buyer_profile
           - _list_collectible
           - _list_total_amount
+          - _list_progress
           - _list_payment_details
-          - _list_shipping
           - created_at
         sort: [created_at, desc]
         actions: []
