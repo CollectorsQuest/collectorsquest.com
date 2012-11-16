@@ -26,7 +26,7 @@
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
-        <?php cq_sidebar_title('Edit Your Profile') ?>
+        <?php cq_section_title('Edit Your Profile') ?>
         <form method="post" action="<?= url_for('@mycq_profile') ?>"
               class="form-horizontal" enctype="multipart/form-data">
           <?= $avatar_form->renderHiddenFields(); ?>
@@ -153,7 +153,7 @@
           'View public profile &raquo;', 'collector/me/index',
           array('class' => 'text-v-middle link-align')
         );
-        cq_sidebar_title('Edit Your Profile Settings', $link, array('left' => 8, 'right' => 4));
+        cq_section_title('Edit Your Profile Settings', $link, array('left' => 8, 'right' => 4));
         ?>
         <p>Settings Content</p>
       </div><!-- .tab-content-inner -->

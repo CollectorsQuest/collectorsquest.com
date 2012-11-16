@@ -6,7 +6,7 @@
 ?>
 
 <?php
-  cq_sidebar_title(
+  cq_section_title(
     $collection->getName(), null,
     array('left' => 10, 'right' => 2, 'class'=>'spacer-top-reset row-fluid sidebar-title')
   );

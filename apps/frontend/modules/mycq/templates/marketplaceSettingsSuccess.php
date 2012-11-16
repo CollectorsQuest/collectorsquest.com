@@ -45,7 +45,7 @@
           </div>
         <?php endif; ?>
 
-        <?php cq_sidebar_title('PayPal Account'); ?>
+        <?php cq_section_title('PayPal Account'); ?>
 
         <fieldset class="form-container-center spacer-top-20">
           <?= $form['seller_settings_paypal_email']->renderRow(); ?>
@@ -55,7 +55,7 @@
         </fieldset>
 
 
-        <?php cq_sidebar_title('Store Information'); ?>
+        <?php cq_section_title('Store Information'); ?>
 
         <fieldset class="form-container-center spacer-top-20">
           <?= $form['seller_settings_store_name']->renderRow() ?>
@@ -65,7 +65,7 @@
           <?= $form['seller_settings_shipping']->renderRow() ?>
         </fieldset>
 
-        <?php cq_sidebar_title('Shipping & handling') ?>
+        <?php cq_section_title('Shipping & Handling') ?>
 
         <?= $form_shipping_us->renderHiddenFields(); ?>
         <fieldset class="form-container-center spacer-top-20">
