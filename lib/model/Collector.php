@@ -92,6 +92,9 @@ require 'lib/model/om/BaseCollector.php';
  *
  * @method     Collector setNotificationsMessage(boolean $v)
  * @method     boolean   getNotificationsMessage()
+ *
+ * @method     Collector setTimeoutIgnoreForUser(boolean $v)
+ * @method     boolean   getTimeoutIgnoreForUser()
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
@@ -158,11 +161,71 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
     $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
       CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_DEFAULT);
-    $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY,
-      CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_OPT_OUT,
+      CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_OPT_OUT_DEFAULT);
     $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
       CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_OPT_OUT,
+      CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_OPT_OUT_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY,
+      CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY_DEFAULT);
 
+    $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_COMMENTS_AT);
+    $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_PRIVATE_MESSAGES_AT);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_IGNORE_FOR_USER, false);
+  }
+
+  /**
+   * @param     mixed $v string, integer (timestamp), or DateTime value.
+   *               Empty strings are treated as NULL.
+   * @return    Collector The current object (for fluent API support)
+   */
+  public function setTimeoutCommentsAt($v)
+  {
+    $v = cqPropelTime::translateTimeToString($v);
+
+    return parent::setTimeoutCommentsAt($v);
+  }
+
+  /**
+   * @param     string $format The date/time format string (either date()-style or strftime()-style).
+   *              If format is NULL, then the raw DateTime object will be returned.
+   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @throws    RuntimeException - if unable to parse/validate the date/time value.
+   */
+  public function getTimeoutCommentsAt($format = 'Y-m-d H:i:s')
+  {
+    return cqPropelTime::format(
+      parent::getTimeoutCommentsAt(),
+      $format
+    );
+  }
+
+  /**
+   * @param     mixed $v string, integer (timestamp), or DateTime value.
+   *               Empty strings are treated as NULL.
+   * @return    Collector The current object (for fluent API support)
+   */
+  public function setTimeoutPrivateMessagesAt($v)
+  {
+    $v = cqPropelTime::translateTimeToString($v);
+
+    return parent::setTimeoutPrivateMessagesAt($v);
+  }
+
+  /**
+   * @param     string $format The date/time format string (either date()-style or strftime()-style).
+   *              If format is NULL, then the raw DateTime object will be returned.
+   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @throws    RuntimeException - if unable to parse/validate the date/time value.
+   */
+  public function getTimeoutPrivateMessagesAt($format = 'Y-m-d H:i:s')
+  {
+    return cqPropelTime::format(
+      parent::getTimeoutPrivateMessagesAt(),
+      $format
+    );
   }
 
   /**
@@ -172,7 +235,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setVisitorInfoFirstVisitAt($v)
   {
-    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+    $v = cqPropelTime::translateTimeToString($v);
 
     return parent::setVisitorInfoFirstVisitAt($v);
   }
@@ -186,7 +249,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getVisitorInfoFirstVisitAt($format = 'Y-m-d H:i:s')
   {
-    return CollectorPeer::formatTimePropelSyle(
+    return cqPropelTime::format(
       parent::getVisitorInfoFirstVisitAt(),
       $format
     );
@@ -199,7 +262,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setVisitorInfoLastVisitAt($v)
   {
-    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+    $v = cqPropelTime::translateTimeToString($v);
 
     return parent::setVisitorInfoLastVisitAt($v);
   }
@@ -214,7 +277,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getVisitorInfoLastVisitAt($format = 'Y-m-d H:i:s')
   {
-    return CollectorPeer::formatTimePropelSyle(
+    return cqPropelTime::format(
       parent::getVisitorInfoLastVisitAt(),
       $format
     );
@@ -279,8 +342,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function hasPayPalDetails()
   {
-    return CollectorPeer::PAYPAL_ACCOUNT_STATUS_VERIFIED ==
-      $this->getSellerSettingsPaypalAccountStatus();
+    return $this->getSellerSettingsPaypalEmail();
   }
 
   /**
@@ -340,6 +402,41 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function getCollectorSlug()
   {
     return $this->getSlug();
+  }
+
+  /**
+   * Get the slug of Collector shop to use in route 'collector_shop'
+   *
+   * @return    string
+   */
+  public function getStoreSlug()
+  {
+    if (!$slug = Utf8::slugify($this->getSeller()->getSellerSettingsStoreName(), '-', true))
+    {
+      $slug = $this->getSlug();
+    }
+
+    return $slug;
+  }
+
+  /**
+   * Get the store title
+   *
+   * @return    string
+   */
+  public function getStoreTitle()
+  {
+    return $this->getSeller()->getSellerSettingsStoreName();
+  }
+
+  /**
+   * Get the store description
+   *
+   * @return    string
+   */
+  public function getStoreDescription()
+  {
+    return $this->getSeller()->getSellerSettingsStoreDescription();
   }
 
   /**
@@ -1124,9 +1221,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $params['http-headers'] =
         'HTTP_ACCEPT_LANGUAGE: ' . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "\n" .
         'HTTP_REFERER: ' . $_SERVER['HTTP_REFERER'] . "\n" .
-        'HTTP_ACCEPT_CHARSET: ' . @$_SERVER['HTTP_ACCEPT_CHARSET'] . "\n" .
-        'HTTP_KEEP_ALIVE: ' . @$_SERVER['HTTP_KEEP_ALIVE'] . "\n" .
-        'HTTP_ACCEPT_ENCODING: ' . $_SERVER['HTTP_ACCEPT_ENCODING'] . "\n" .
+        (isset($_SERVER['HTTP_ACCEPT_CHARSET']) ? 'HTTP_ACCEPT_CHARSET: '. $_SERVER['HTTP_ACCEPT_CHARSET'] ."\n" : '') .
+        (isset($_SERVER['HTTP_KEEP_ALIVE']) ? 'HTTP_KEEP_ALIVE: '. $_SERVER['HTTP_KEEP_ALIVE'] ."\n" : '') .
+        (isset($_SERVER['HTTP_ACCEPT_ENCODING']) ? 'HTTP_ACCEPT_ENCODING: '. $_SERVER['HTTP_ACCEPT_ENCODING'] ."\n" : '') .
         'HTTP_CONNECTION: ' . $_SERVER['HTTP_CONNECTION'] . "\n" .
         'HTTP_ACCEPT: ' . $_SERVER['HTTP_ACCEPT'] . "\n" .
         'HTTP_USER_AGENT: ' . $_SERVER['HTTP_USER_AGENT'];
@@ -1307,14 +1404,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       }
     }
 
-    /** @var $comments Comment[] */
-    if ($comments = $this->getComments())
-    {
-      foreach ($comments as $comment)
-      {
-        $comment->delete($con);
-      }
-    }
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
 
     // Deleting private messages
     $c = new Criteria();
@@ -1446,16 +1538,42 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * Returns the number of related public CollectorCollection objects.
+   * Returns the number of related FrontendCollectorCollection objects.
    *
    * @return int
    */
-  public function countPublicCollectorCollections()
+  public function countFrontendCollectorCollections()
   {
-    $q = CollectorCollectionQuery::create();
-    $q->filterByIsPublic(true);
-    return $this->countCollectorCollections($q);
+    return FrontendCollectorCollectionQuery::create()
+      ->filterByCollector($this)
+      ->count();
   }
+
+  /**
+   * Returns the number of related FrontendCollectionCollectibles objects.
+   *
+   * @return int
+   */
+  public function countFrontendCollectionCollectibles()
+  {
+    return FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($this)
+      ->count();
+  }
+
+  /**
+   * Returns the number of related FrontendCollectionCollectiblesForSale objects.
+   *
+   * @return int
+   */
+  public function countFrontendCollectionCollectiblesForSale()
+  {
+    return FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($this)
+      ->isForSale()
+      ->count();
+  }
+
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));

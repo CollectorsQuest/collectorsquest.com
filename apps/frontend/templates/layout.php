@@ -1,13 +1,7 @@
 <?php
-  /**
-   * @var  $sf_user     cqFrontendUser
-   * @var  $sf_params   sfParameterHolder
-   * @var  $sf_context  sfContext
-   */
-
-  /** @var $sf_cache_key string */
-  $sf_cache_key  = (int) $sf_user->getId() .'_';
-  $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+/* @var  $sf_user     cqFrontendUser */
+/* @var  $sf_params   sfParameterHolder */
+/* @var  $sf_context  sfContext */
 ?>
 <!doctype html>
 <!--[if IE 8 ]>
@@ -18,7 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
       lang="en" class="no-js lt-ie10 ie9">
 <![endif]-->
-<!--[if gt IE 9]>
+<!--[if gt IE 9]><!-->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
       lang="en" class="no-js">
 <!--<![endif]-->
@@ -34,9 +28,10 @@
       class="<?= 'body-'. $sf_context->getModuleName(); ?>"
       data-controller="<?= $sf_context->getModuleName(); ?>"
       data-action="<?= $sf_context->getActionName(); ?>">
+  <?php include_component('global', 'adminBar'); ?>
   <a name="top"></a>
 
-  <!--
+  <?php /*
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function()
@@ -57,20 +52,10 @@
       d.getElementsByTagName('head')[0].appendChild(js);
     }(document));
   </script>
-  //-->
+ */ ?>
 
   <?php
-    $k = $sf_user->getShoppingCartCollectiblesCount();
-
-    include_component_slot('header', array(
-      'q' => $sf_params->get('q'),
-      'k' => $k,
-      'sf_cache_key' => implode('-', array(
-        $sf_cache_key,
-        md5(serialize(array($sf_params->get('q'), $k))),
-        SmartMenu::getCacheKey('header'),
-      ))
-    ));
+    include_component_slot('header');
   ?>
   <div class="shadow">
   <?php
@@ -84,7 +69,7 @@
     if (has_component_slot('slot1'))
     {
       echo '<div class="slots-container"><div id="slot1">';
-        include_component_slot('slot1', array('sf_cache_key' => $sf_cache_key));
+        include_component_slot('slot1');
       echo '</div></div>';
     }
 
@@ -127,7 +112,7 @@
   <?php
     if (null !== $sidebar)
     {
-      $height = $sf_user->getFlash('height_main_div', null, true, 'internal');
+      $height = $sf_user->getFlashAndDelete('height_main_div', null, 'internal');
 
       // Make sure we are backwords compatible to the old behavior
       if (empty($height) || !property_exists($height, 'value') || $height->value <= 0)
@@ -137,17 +122,23 @@
       }
 
       echo '<div id="sidebar">';
-      include_component_slot($sidebar, array(
-        'sf_cache_key' => $sf_cache_key,
-        'height' => $height
-      ));
+      include_component_slot($sidebar, array('height' => $height));
       echo '</div>';
     }
     echo '</div>';
   ?>
 
   <?php
-    include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
+    if (has_component_slot('slot2'))
+    {
+      echo '<div class="slots-container"><div id="slot2">';
+      include_component_slot('slot2');
+      echo '</div></div>';
+    }
+  ?>
+
+  <?php
+    include_component_slot('footer');
     include_partial('global/footer_links');
 
     if (!$sf_user->isAuthenticated())
@@ -159,10 +150,10 @@
     include_partial('global/modal_confirm');
 
     // Include the global javascripts
-    include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
+    include_partial('global/javascripts');
 
-    // Include analytics code only in production
-    if (sfConfig::get('sf_environment') === 'prod')
+    // Include analytics code only in production and exclude the NY office IP address
+    if (sfConfig::get('sf_environment') === 'prod' && cqStatic::getUserIpAddress() != '207.237.37.24')
     {
       include_partial('global/js/analytics');
     }

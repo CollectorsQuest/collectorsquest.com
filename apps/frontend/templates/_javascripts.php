@@ -1,3 +1,34 @@
+<script>
+  if (document.getElementById('shopping-cart-count') !== null)
+  {
+    <?php $k = $sf_user->getShoppingCartCollectiblesCount(); ?>
+    document.getElementById('shopping-cart-count').innerHTML = '<?= (string) $k ?>';
+    <?php if ($k): ?>
+    document.getElementById('shopping-cart-count').className = '';
+    <?php endif; ?>
+    document.getElementById('shopping-cart-count-link').setAttribute(
+            'title', '<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>'
+    );
+
+  }
+  if (document.getElementById('header_menu_<?= (string) SmartMenu::getSelected('header'); ?>') !== null)
+  {
+    document.getElementById('header_menu_<?= (string) SmartMenu::getSelected('header'); ?>').className = 'active';
+  }
+  if (document.getElementById('q') !== null)
+  {
+    document.getElementById('q').value = '<?= (string) $sf_params->get('q'); ?>';
+  }
+<?php if ($sf_user->isAuthenticated()): ?>
+  if (document.getElementById('footer-user-info') !== null)
+  {
+    document.getElementById('footer-user-info').innerHTML = '<?= preg_replace('/^\s+|\n|\r|\s+$/m', '',get_partial(
+      'global/footer_authenticated'
+    )); ?>';
+  }
+<?php endif; ?>
+
+</script>
 <?php include_component_slot('jquery_footer'); ?>
 
 <?php if ($sf_params->get('gcf')): ?>
@@ -50,7 +81,7 @@ if (document.getElementById('social-sharing') !== null)
   })(document, 'script');
 
   $(window).load(function() {
-    addthis.init()
+    addthis.toolbox('#social-sharing');
   });
 }
 </script>

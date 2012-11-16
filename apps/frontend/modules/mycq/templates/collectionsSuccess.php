@@ -3,17 +3,19 @@
  * @var $total integer
  * @var $incomplete_collections boolean
  * @var $incomplete_collectibles boolean
+ * @var $collector Collector
  */
 ?>
 
-<?php if ($incomplete_collections && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+<?php if ($incomplete_collections && cqGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">
     Some <?= $incomplete_collectibles ? 'items' : 'collections' ?> need your attention!
   </h4>
   <p class="spacer-top">
     You have <?= $incomplete_collectibles ? 'items' : 'collections' ?> which are not fully described yet.
-    If you would like others to see and buy them you should describe them as best as you can!
+    If you would like other users to be able to see your <?= $incomplete_collectibles ? 'items' : 'collections' ?>,<br/>
+    you should describe them as best as you can!
   </p>
   <br/>
   <a class="btn btn-primary"
@@ -46,7 +48,7 @@
     <div class="span6">
       <ul class="nav nav-pills spacer-bottom-reset">
         <li>
-          <a href="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
+          <a href="<?= url_for('@ajax_mycq?section=collectible&page=upload&model=collection'); ?>"
              class="open-dialog" onclick="return false;"
              title="Create a new collection by clicking here">
             <i class="icon-plus"></i>

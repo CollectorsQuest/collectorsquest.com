@@ -97,12 +97,41 @@ comments_unsubscribe:
   url:    /comments/unsubscribe/email/:email/model_class/:model_class/model_pk/:model_pk
   param:  { module: comments, action: unsubscribe }
 
+comments_manage:
+  url:     /comments/manage/:id
+  class:   cqPropelRoute
+  options: { model: Comment, type: object, column: id }
+  param:   { module: comments, action: manage }
+  requirements: { id: \d+, sf_method: [get] }
+
+comments_hide:
+  url:     /comments/manage/:id/hide
+  class:   cqPropelRoute
+  options: { model: Comment, type: object, column: id }
+  param:   { module: comments, action: hide }
+  requirements: { id: \d+, sf_method: [get, post] }
+
+comments_unhide:
+  url:     /comments/manage/:id/unhide
+  class:   cqPropelRoute
+  options: { model: Comment, type: object, column: id }
+  param:   { module: comments, action: unhide }
+  requirements: { id: \d+, sf_method: [get, post] }
+
 comments_delete:
   url:     /comments/delete/:id
   class:   cqPropelRoute
   options: { model: Comment, type: object, column: id }
   param:   { module: comments, action: delete }
   requirements: { id: \d+, sf_method: [get, post] }
+
+comments_report_spam:
+  url:     /comments/manage/:id/report-spam
+  class:   cqPropelRoute
+  options: { model: Comment, type: object, column: id }
+  param:   { module: comments, action: reportSpam }
+  requirements: { id: \d+, sf_method: [get, post] }
+
 
 ### MISC
 
@@ -163,3 +192,7 @@ error_500:
 error_50x:
   url:   /errors/50x
   param: { module: general, action: error50x }
+
+startpage:
+  url: /startpage
+  param: { module: general, action: startPage }

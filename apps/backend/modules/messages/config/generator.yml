@@ -15,18 +15,18 @@ generator:
       actions: ~
       fields:
         created_at: { label: Date }
-        list_sender:  { label: Sender }
-        list_receiver:  { label: Receiver }
+        list_sender:  { label: Sender, is_sortable: true, sort_method: orderBySenderName}
+        list_receiver:  { label: Receiver,  is_sortable: true, sort_method: orderByReceiverName }
       list:
         title: Messages
         display: [_list_sender, _list_receiver, =subject, is_read, is_replied, is_deleted, created_at]
         sort: [created_at, desc]
       filter:
         class: BackendPrivateMessageFormFilter
-        display: [collector_sender,collector_receiver, subject, body, created_at]
+        display: [collector_sender_username, collector_receiver_username, subject, body, created_at]
         fields:
-          collector_sender: {label: "Sender"}
-          collector_receiver: {label: "Receiver"}
+          collector_sender_username: {label: "Sender"}
+          collector_receiver_username: {label: "Receiver"}
       form:
         display: [subject, body]
       edit:    ~

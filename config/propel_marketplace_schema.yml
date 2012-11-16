@@ -101,6 +101,7 @@ classes:
 
     propel_behaviors:
       timestampable:  ~
+      archivable: { archive_class: ShoppingOrderArchive, archived_at_column: archived_at }
 
 #  ShoppingOrderCollectible:
 #      isCrossRef: true
@@ -132,6 +133,7 @@ classes:
     propel_behaviors:
       extra_properties: ~
       timestampable:  ~
+      archivable: { archive_class: ShoppingPaymentArchive, archived_at_column: archived_at }
 
   ShippingReference:
     columns:
@@ -147,10 +149,11 @@ classes:
   ShippingRate:
     columns:
       id:                   ~
-      shipping_reference_id: { type: integer, required: true, foreignClass: ShippingReference, foreignReference: id, onDelete: cascade }
-      shipping_carrier_service_id: { type: integer, required: false, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade }
-      flat_rate_in_cents:   { type: integer, required: false }
-      is_free_shipping:     { type: boolean, required: true, default: false }
+      shipping_reference_id:        { type: integer, required: true, foreignClass: ShippingReference, foreignReference: id, onDelete: cascade }
+      shipping_carrier_service_id:  { type: integer, required: false, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade }
+      flat_rate_in_cents:           { type: integer, required: false }
+      combined_flat_rate_in_cents:  { type: integer, required: false }
+      is_free_shipping:             { type: boolean, required: true, default: false }
 
   ShippingCarrierService:
     columns:

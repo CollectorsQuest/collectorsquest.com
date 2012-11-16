@@ -57,36 +57,23 @@ jetpack = {
 		});
 
 		var widerWidth = 0;
-		jQuery( '#jp-disconnect' ).hover( function() {
-			var t = jQuery( this ),
-			    a = t.find( 'a' ),
-			    width = t.width(),
-			    changeWidth = widerWidth == 0;
-
-			if ( changeWidth && widerWidth < width ) {
-				widerWidth = width;
-			}
-			jetpack.statusText = a.html();
-			a.html( jQuery( '#jp-disconnect span' ).html() );
-			width = t.width();
-			if ( changeWidth && widerWidth < width ) {
-				widerWidth = width + 15;
-			}
-			if ( changeWidth ) {
-				t.width( widerWidth );
-			}
-			a.hide().fadeIn(100);
-		}, function() {
-			var a = jQuery( 'a', this );
-			a.html( jetpack.statusText );
-			a.hide().fadeIn(100);
-			jetpack.statusText = null;
-		} ).find( 'a' ).click( function() {
+		jQuery( '#jp-disconnect a' ).click( function() {
 			if ( confirm( jetpackL10n.ays_disconnect ) ) {
-				jQuery( '#jp-disconnect' ).unbind( 'mouseenter mouseleave' );
-				jQuery( this ).css( {
-					"background-image": 'url( ' + userSettings.url + 'wp-admin/images/wpspin_dark.gif )',
+				jQuery( this ).addClass( 'clicked' ).css( {
+					"background-image": 'url( ' + userSettings.url + 'wp-admin/images/wpspin_light.gif )',
 					"background-position": '9px 5px',
+					"background-size": '16px 16px'
+				} ).unbind( 'click' ).click( function() { return false; } );
+			} else {
+				return false;
+			}
+		} );
+		jQuery( '#jp-unlink a' ).click( function() {
+			if ( confirm( jetpackL10n.ays_unlink ) ) {
+				jQuery( this ).css( {
+					"background-image": 'url( ' + userSettings.url + 'wp-admin/images/wpspin_light.gif )',
+					"background-position": '9px 5px',
+					"background-size": '16px 16px'
 				} ).unbind( 'click' ).click( function() { return false; } );
 			} else {
 				return false;
@@ -108,7 +95,7 @@ jetpack = {
 		jQuery( 'div.placeholder' ).show();
 
 		var containerWidth = jetpack.container.width(),
-		    needed = 4 * parseInt( containerWidth / 242, 10 ) - jetpack.numModules
+		    needed = 5 * parseInt( containerWidth / 242, 10 ) - jetpack.numModules
 
 		if ( jetpack.numModules * 242 > containerWidth )
 			jQuery( 'div.placeholder' ).slice( needed ).hide();

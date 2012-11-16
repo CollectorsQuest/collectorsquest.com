@@ -186,9 +186,11 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
    * will be overwritten
    *
    * @param     string|null $country_code
+   * @param     boolean $combined_shipping
+   *
    * @return    ShoppingCartCollectible
    */
-  public function updateShippingFeeAmountFromCountryCode($country_code = null)
+  public function updateShippingFeeAmountFromCountryCode($country_code = null, $combined_shipping = false)
   {
     if (!empty($country_code))
     {
@@ -196,7 +198,11 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     }
 
     $shipping_amount = $this->getCollectibleForSale()
-      ->getShippingAmountForCountry($this->getShippingCountryIso3166(), 'integer');
+      ->getShippingAmountForCountry(
+          $this->getShippingCountryIso3166(),
+          'integer',
+          $combined_shipping
+      );
 
     // if no shipping amout can be returned for a country we get "FALSE"
     if (false !== $shipping_amount)
@@ -248,11 +254,13 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
    * on a new shipping country code
    *
    * @param     string $country_code
+   * @param     boolean $combined_shipping
+   *
    * @return    boolean
    */
-  public function updateShippingFromCountryCode($country_code)
+  public function updateShippingFromCountryCode($country_code, $combined_shipping = false)
   {
-    $this->updateShippingFeeAmountFromCountryCode($country_code);
+    $this->updateShippingFeeAmountFromCountryCode($country_code, $combined_shipping);
 
     return $this->updateShippingTypeFromCountryCode($country_code);
   }
@@ -289,6 +297,10 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     return $this;
   }
 
+  /**
+   * @param     PropelPDO $con
+   * @return    string|null
+   */
   public function getShippingCountryName(PropelPDO $con = null)
   {
     $q = GeoCountryQuery::create()

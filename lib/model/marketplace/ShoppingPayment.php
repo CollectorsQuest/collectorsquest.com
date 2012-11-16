@@ -41,8 +41,6 @@ class ShoppingPayment extends BaseShoppingPayment
     return null;
   }
 
-
-
   public function setShoppingOrder(ShoppingOrder $shopping_order)
   {
     /**
@@ -98,5 +96,22 @@ class ShoppingPayment extends BaseShoppingPayment
       $key = sfInflector::underscore($key);
       $this->setProperty('paypal.'. $key, serialize($values));
     }
+  }
+
+  /**
+   * @return array
+   */
+  public function getPayPalErrors()
+  {
+    $result = array();
+    if ($p = $this->getProperty(ShoppingPaymentPeer::PAYPAL_ERROR))
+    {
+      $p = unserialize($p);
+      if (isset($p['Errors']))
+      {
+        $result = $p['Errors'];
+      }
+    }
+    return $result;
   }
 }

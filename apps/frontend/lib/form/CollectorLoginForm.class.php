@@ -25,7 +25,7 @@ class CollectorLoginForm extends BaseForm
     ));
 
     $this->setValidators(array(
-      'username'  => new sfValidatorString(),
+      'username'  => new cqValidatorCollectorUsername(),
       'password'  => new sfValidatorString(),
       'remember'  => new sfValidatorBoolean(),
       'goto'      => new sfValidatorPass(),

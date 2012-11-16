@@ -78,7 +78,7 @@ $height_main_div->value = 116;
 
 <div class="row spacer-top">
   <div id="collectibles" class="row-content">
-    <?php
+  <?php
     /** @var $collectible Collectible */
     foreach ($pager->getResults() as $i => $collectible)
     {
@@ -87,10 +87,7 @@ $height_main_div->value = 116;
         // Show the collectible (in grid, list or hybrid view)
         include_partial(
           'marketplace/collectible_for_sale_grid_view_square',
-          array(
-            'collectible_for_sale' => $collectible->getCollectibleForSale(),
-            'i' => (integer) $i
-          )
+          array('collectible_for_sale' => $collectible->getCollectibleForSale(), 'i' => (integer) $i)
         );
       }
       else
@@ -98,14 +95,11 @@ $height_main_div->value = 116;
         // Show the collectible (in grid, list or hybrid view)
         include_partial(
           'collection/collectible_grid_view_square',
-          array(
-            'collectible' => $collectible,
-            'i' => (integer) $i
-          )
+          array('collectible' => $collectible,'i' => (integer) $i)
         );
       }
     }
-    ?>
+  ?>
   </div>
 </div>
 
@@ -128,8 +122,8 @@ $height_main_div->value = 116;
 </div>
 
 <?php
-  include_partial(
-    'comments/comments', array(
+  include_component(
+    'comments', 'comments', array(
       'for_object' => $collection,
       'height' => &$height_main_div
   ));

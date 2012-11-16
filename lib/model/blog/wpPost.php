@@ -1,5 +1,6 @@
 <?php
 
+require 'web/blog/wp-includes/functions.php';
 require 'lib/model/blog/om/BasewpPost.php';
 
 class wpPost extends BasewpPost
@@ -27,7 +28,7 @@ class wpPost extends BasewpPost
   {
     $excerpt = parent::getPostExcerpt();
 
-    if (empty($excerpt))
+    if (empty($excerpt) && $length > 0)
     {
       $excerpt = strip_tags($this->getPostContentStripped());
     }
@@ -144,7 +145,7 @@ class wpPost extends BasewpPost
     /** @var $wp_post_meta wpPostMeta */
     $wp_post_meta = $q->findOne();
 
-    return ($wp_post_meta) ? $wp_post_meta->getMetaValue() : null;
+    return ($wp_post_meta) ? maybe_unserialize($wp_post_meta->getMetaValue()) : null;
   }
 
   /**

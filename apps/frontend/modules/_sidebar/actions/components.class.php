@@ -38,7 +38,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create()
       ->filterByTreeLevel($level)
-      ->joinCollectorCollection(null, Criteria::INNER_JOIN)
+      ->hasCollectionsWithCollectibles()
       ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
       ->groupById()
@@ -89,7 +89,7 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->hasCollections()
+      ->hasCollectionsWithCollectibles()
       ->orderBy('Name')
       ->find();
 
@@ -97,7 +97,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
         ->childrenOf($this->current_sub_category)
-        ->hasCollections()
+        ->hasCollectionsWithCollectibles()
         ->find();
     }
 
@@ -120,8 +120,8 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByName('None', Criteria::NOT_EQUAL)
       ->filterByLevel(array(1, 2))
       ->hasCollectiblesForSale()
+      ->filterByNumCollectiblesForSale(3, Criteria::GREATER_EQUAL)
       ->orderBy('Name', Criteria::ASC);
-
     $this->categories = $q->find();
 
     return $this->_sidebar_if(count($this->categories) > 0);
@@ -134,109 +134,48 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $this->current_category = $this->getVar('current_category');
 
+    $this->widget_title = $this->current_category->getName();
+
     // initialize as new ContentCategory so we can check in template if value was assigned
     $this->current_subcategory = new ContentCategory();
-    $this->current_sub_subcategory = new ContentCategory();
-    $this->current_sub_sub_subcategory = new ContentCategory();
 
-    // 4th level categories
-    $this->sub_sub_subcategories = array();
-
-    // if current_category is level > 1 we should retrieve sub_subcategories
-    $retrieve_sub_subcategories = false;
-    // if current_category is level > 2 we should retrieve sub_sub_subcategories
-    $retrieve_sub_sub_subcategories = false;
-
-    switch ($this->current_category->getLevel())
+    if ($this->current_category->getLevel() == 2)
     {
-      case 4:
-        $this->current_sub_sub_subcategory = $this->current_category;
-        $this->current_sub_subcategory = $this->current_category->getParent();
-        $this->current_subcategory = $this->current_category->getParent()->getParent();
-        $this->current_category = $this->current_category->getParent()->getParent()->getParent();
-        $retrieve_sub_subcategories = true;
-        $retrieve_sub_sub_subcategories = true;
-        break;
-      case 3:
-        $this->current_sub_subcategory = $this->current_category;
-        $this->current_subcategory = $this->current_category->getParent();
-        $this->current_category = $this->current_category->getParent()->getParent();
-        $retrieve_sub_subcategories = true;
-        $retrieve_sub_sub_subcategories = true;
-        break;
-      case 2:
-        $this->current_subcategory = $this->current_category;
-        $this->current_category = $this->current_category->getParent();
-        $retrieve_sub_subcategories = true;
-        break;
+      // we want to make the current category display as subcategory
+      $this->current_subcategory = $this->current_category;
+
+      // we want display category parent as widget title
+      $this->current_category = $this->current_category->getParent();
+
+      if ($this->current_category->getLevel() != 0 )
+      {
+        $this->widget_title = $this->current_category->getName();
+      }
+      // this means we have a level 2 category with parent level 0 (Root)
+      else
+      {
+        $this->widget_title = 'Marketplace categories';
+      }
     }
 
-    $this->subcategories = ContentCategoryQuery::create()
+    /** @var $q ContentCategoryQuery */
+    $q = ContentCategoryQuery::create()
       ->descendantsOf($this->current_category)
       ->hasCollectiblesForSale()
-      ->filterByLevel(2)
-      ->orderBy('Name', Criteria::ASC)
-      ->find();
+      ->orderBy('Name', Criteria::ASC);
 
-    /*
-    * logic of $this->subcategories query should be changed so all subcategories with
-    * sub_subcategories that have items for sale should be visible. Currently adding the
-    * current_subcategory by hand if it doesn't exist in list
-    */
-
-    $missing_category = true;
-    foreach ($this->subcategories as $subcateogry)
+    if ($this->current_category->getLevel() == 0)
     {
-      if ($subcateogry == $this->current_subcategory)
-      {
-        $missing_category = false;
-      }
+      $q->filterByLevel(array(1, 2));
+    }
+    else
+    {
+      $q->filterByLevel(2);
     }
 
-    if ($missing_category)
-    {
-      $this->subcategories[] = $this->current_subcategory;
-    }
+    $this->subcategories = $q->find();
 
-    $this->sub_subcategories = array();
-    if ($retrieve_sub_subcategories)
-    {
-      $this->sub_subcategories = ContentCategoryQuery::create()
-        ->descendantsOf($this->current_subcategory)
-        ->hasCollectiblesForSale()
-        ->filterByLevel(3)
-        ->orderBy('Name', Criteria::ASC)
-        ->find();
-
-      /*
-       * logic of $this->sub_subcategories query should be changed so all sub_subcategories with
-       * sub_sub_subcategories that have items for sale should be visible. Currently adding the
-       * current_sub_subcategory by hand if it doesn't exist in list
-       */
-
-      $missing_category = true;
-      foreach ($this->sub_subcategories as $sub_subcateogry)
-      {
-        if ($sub_subcateogry == $this->current_sub_subcategory)
-        {
-            $missing_category = false;
-        }
-      }
-
-      if ($missing_category)
-      {
-        $this->sub_subcategories[] = $this->current_sub_subcategory;
-      }
-    }
-
-    if ($retrieve_sub_sub_subcategories)
-    $this->sub_sub_subcategories = ContentCategoryQuery::create()
-      ->descendantsOf($this->current_sub_subcategory)
-      ->hasCollectiblesForSale()
-      ->orderBy('Name', Criteria::ASC)
-      ->find();
-
-    return $this->_sidebar_if(count($this->subcategories) > 0);
+    return $this->_sidebar_if(count($this->subcategories) > 1);
   }
 
   /**
@@ -274,6 +213,42 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $content_category_id integer */
       $content_category_id = $collection->getContentCategoryId();
 
+      $machine_tags = $collection->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'key' => array('collections', 'all'),
+          'return' => 'value'
+        )
+      );
+
+      if (!empty($machine_tags))
+      {
+        /**
+         * match machine tags against machine tags
+         * @var $machine_query FrontendCollectorCollectionQuery
+         */
+        $machine_query = clone $q;
+
+        $machine_query
+          ->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'))
+          ->orderByMachineTags ($machine_tags, 'matching', array('collections', 'all'));
+
+        /**
+         * match machine tags against regular tags
+         * @var $tag_query FrontendCollectorCollectionQuery
+         */
+        $tag_query = clone $q;
+
+        $tag_query->filterByTags($machine_tags, Criteria::IN);
+      }
+
+      $q->filterByTags($tags, Criteria::IN)
+        ->_or()
+        ->filterByContentCategoryId($content_category_id)
+        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
+        ->orderByUpdatedAt(Criteria::DESC);
+
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
@@ -282,12 +257,6 @@ class _sidebarComponents extends cqFrontendComponents
 
         $q->filterByContentCategoryWithDescendants($category);
       }
-
-      $q->filterByTags($tags)
-        ->_or()
-        ->filterByContentCategoryId($content_category_id)
-        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
-        ->orderByUpdatedAt(Criteria::DESC);
     }
     /** @var $collectible Collectible */
     else if (
@@ -304,6 +273,42 @@ class _sidebarComponents extends cqFrontendComponents
       // See if we can get common tags between the collectible and the collection and use those
       $tags = array_intersect($collectible_tags, $collection_tags) ?: $collectible_tags;
 
+      $q->filterById($collection->getId(), Criteria::NOT_EQUAL)
+        ->orderByUpdatedAt(Criteria::DESC);
+
+      $machine_tags = $collectible->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'key' => array('collections', 'all'),
+          'return' => 'value'
+        )
+      );
+
+      if (!empty($machine_tags))
+      {
+        /**
+         * match machine tags against machine tags
+         * @var $machine_query FrontendCollectorCollectionQuery
+         */
+        $machine_query = clone $q;
+
+        /**
+         * match machine tags against regular tags
+         * @var $tag_query FrontendCollectorCollectionQuery
+         */
+        $tag_query = clone $q;
+
+        $machine_query
+          ->filterByMachineTags($machine_tags, 'matching', array('collections', 'all'))
+          ->orderByMachineTags ($machine_tags, 'matching', array('collections', 'all'));
+
+        $tag_query->filterByTags($machine_tags, Criteria::IN);
+      }
+
+
+      $q->filterByTags($tags, Criteria::IN);
+
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
@@ -312,11 +317,6 @@ class _sidebarComponents extends cqFrontendComponents
 
         $q->filterByContentCategoryWithDescendants($category);
       }
-
-      $q
-        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
-        ->filterByTags($tags)
-        ->orderByUpdatedAt(Criteria::DESC);
     }
     else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
     {
@@ -333,7 +333,46 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     // Make the actual query and get the Collections
-    $this->collections = $q->limit($this->limit)->find();
+    if (isset($machine_query))
+    {
+      $this->collections = $machine_query->limit($this->limit)->find();
+      $count_collections = $machine_query->limit($this->limit)->count();
+
+      if (isset($tag_query) && $count_collections < $this->limit)
+      {
+        // make sure we are not repeating collectibles_for_sale
+        $tag_query->filterByCollection($this->collections, Criteria::NOT_IN);
+
+        $additional_collections = $tag_query->limit($this->limit - $count_collections)->find();
+
+        // add collections that are matching by machine tags
+        $this->collections->exchangeArray(
+          array_merge($this->collections->getArrayCopy(), $additional_collections->getArrayCopy())
+        );
+
+        // update the number of collections we already have so we can compare with limit
+        $count_collections += $tag_query->limit($this->limit - $count_collections)->count();
+      }
+
+      if ($count_collections < $this->limit)
+      {
+        if (isset($tag_query))
+        {
+          // make sure we are not repeating collectibles_for_sale
+          $q->filterByCollection($this->collections, Criteria::NOT_IN);
+        }
+        $additional_collections = $q->limit($this->limit - $count_collections)->find();
+
+        // add collections that are not matching by machine tags but are matching by regular tags
+        $this->collections->exchangeArray(
+          array_merge($this->collections->getArrayCopy(), $additional_collections->getArrayCopy())
+        );
+      }
+    }
+    else
+    {
+      $this->collections = $q->limit($this->limit)->find();
+    }
 
     if (count($this->collections) === 0 && $this->getVar('fallback') === 'random')
     {
@@ -601,13 +640,11 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())
     {
-      $values = unserialize($wp_post->getPostMetaValue('_seller_spotlight'));
+      $values = $wp_post->getPostMetaValue('_seller_spotlight');
 
       if (isset($values['cq_collector_ids']))
       {
-        $collector_ids = explode(',', (string) $values['cq_collector_ids']);
-        $collector_ids = array_map('trim', $collector_ids);
-        $collector_ids = array_filter($collector_ids);
+        $collector_ids = cqFunctions::explode(',', $values['cq_collector_ids']);
 
         /** @var $q FrontendCollectorQuery */
         $q = FrontendCollectorQuery::create()
@@ -629,12 +666,13 @@ class _sidebarComponents extends cqFrontendComponents
     $this->title = $this->getVar('title') ?: 'From the Market';
 
     // Set the limit of Collectibles For Sale to show
-    $this->limit = (int) $this->getVar('limit') ?: 3;
+    $this->limit = (int) $this->getVar('limit') ?: 4;
 
     /** @var $height stdClass */
     if ($height = $this->getVar('height'))
     {
-      $this->limit = min(floor(($height->value - 63) / 85), $this->limit);
+      // one row is 142px in height, fits 2 collectibles
+      $this->limit = min(floor(($height->value - 63) / 142 * round($this->limit / 2)), $this->limit);
     }
 
     // We want to stop right here if we are not going to show anything (0 items)
@@ -643,13 +681,10 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->useCollectibleQuery()
-        ->filterByIsPublic(true)
-        ->endUse()
+    /** @var $q FrontendCollectibleForSaleQuery */
+    $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale()
-      ->orderByUpdatedAt(Criteria::DESC);
+      ->orderBy('UpdatedAt', Criteria::DESC);
 
     // See if we need to filter by CollectibleId first
     if (!empty($this->ids) && is_array($this->ids))
@@ -657,21 +692,8 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterByCollectibleId($this->ids, Criteria::IN)
         ->addAscendingOrderByColumn(
-          'FIELD(collectible_id, ' . implode(',', $this->ids) . ')'
+          'FIELD(collectible_for_sale.collectible_id, ' . implode(',', $this->ids) . ')'
         );
-    }
-
-    /** @var $wp_post wpPost */
-    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
-    {
-      $tags = $wp_post->getTags('array');
-      $q->filterByTags($tags, Criteria::IN);
-    }
-    /** @var $wp_user wpUser */
-    else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
-    {
-      $tags = $wp_user->getTags('array');
-      $q->filterByTags($tags, Criteria::IN);
     }
 
     /** @var $category ContentCategory */
@@ -686,6 +708,37 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $tags array */
       $tags = $collection->getTags();
 
+      $q->filterByCollection($collection, Criteria::NOT_EQUAL);
+
+      $machine_tags = $collection->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'key' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
+
+      if (!empty($machine_tags))
+      {
+        /**
+         * match machine tags against machine tags
+         * @var $machine_query FrontendCollectibleForSaleQuery
+         */
+        $machine_query = clone $q;
+
+        /**
+         * match machine tags against regular tags
+         * @var $tag_query FrontendCollectibleForSaleQuery
+         */
+        $tag_query = clone $q;
+
+        $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+        $tag_query->filterByTags($machine_tags, Criteria::IN);
+      }
+
+      $q->filterByTags($tags, Criteria::IN);
+
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
@@ -694,18 +747,41 @@ class _sidebarComponents extends cqFrontendComponents
 
         $q->filterByContentCategoryWithDescendants($category);
       }
-
-      $q
-        ->filterByCollection($collection, Criteria::NOT_EQUAL)
-        ->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
     {
       $tags = $collectible->getTags();
-      $q
-        ->filterByCollectible($collectible, Criteria::NOT_EQUAL)
-        ->filterByTags($tags, Criteria::IN);
+      $q->filterByCollectible($collectible, Criteria::NOT_EQUAL);
+
+      $machine_tags = $collectible->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'key' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
+
+      if (!empty($machine_tags))
+      {
+        /**
+         * match machine tags against machine tags
+         * @var $machine_query FrontendCollectibleForSaleQuery
+         */
+        $machine_query = clone $q;
+
+        /**
+         * match machine tags against regular tags
+         * @var $tag_query FrontendCollectibleForSaleQuery
+         */
+        $tag_query = clone $q;
+
+        $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+        $tag_query->filterByTags($machine_tags, Criteria::IN);
+      }
+
+      $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible CollectionCollectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
@@ -719,6 +795,37 @@ class _sidebarComponents extends cqFrontendComponents
       // See if we can get common tags between the collectible and the collection and use those
       $tags = array_intersect($collectible_tags, $collection_tags) ?: $collectible_tags;
 
+      $q->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL);
+
+      $machine_tags = $collectible->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'key' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
+
+      if (!empty($machine_tags))
+      {
+        /**
+         * match machine tags against machine tags
+         * @var $machine_query FrontendCollectibleForSaleQuery
+         */
+        $machine_query = clone $q;
+
+        /**
+         * match machine tags against regular tags
+         * @var $tag_query FrontendCollectibleForSaleQuery
+         */
+        $tag_query = clone $q;
+
+        $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+        $tag_query->filterByTags($machine_tags, Criteria::IN);
+      }
+
+      $q->filterByTags($tags, Criteria::IN);
+
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
@@ -727,19 +834,136 @@ class _sidebarComponents extends cqFrontendComponents
 
         $q->filterByContentCategoryWithDescendants($category);
       }
+    }
 
-      $q
-        ->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL)
-        ->filterByTags($tags, Criteria::IN);
+    if ($collector = $this->getVar('collector'))
+    {
+      $exclude_collectible_ids = $this->getVar('exclude_collectible_ids');
+      if ($collector instanceof Collector)
+      {
+        $q
+          ->filterByCollector($collector)
+          ->filterByCollectibleId($exclude_collectible_ids, Criteria::NOT_IN);
+
+        $this->collector = $collector;
+      }
+    }
+
+    /** @var $wp_post wpPost */
+    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
+    {
+      $tags = $wp_post->getTags('array');
+
+      $machine_tags = $wp_post->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'key' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
+
+      if (!empty($machine_tags))
+      {
+        /**
+         * match machine tags against machine tags
+         * @var $machine_query FrontendCollectibleForSaleQuery
+         */
+        $machine_query = clone $q;
+
+        /**
+         * match machine tags against regular tags
+         * @var $tag_query FrontendCollectibleForSaleQuery
+         */
+        $tag_query = clone $q;
+
+        $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+        $tag_query->filterByTags($machine_tags, Criteria::IN);
+      }
+
+      $q->filterByTags($tags, Criteria::IN);
+    }
+    /** @var $wp_user wpUser */
+    else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
+    {
+      $tags = $wp_user->getTags('array');
+
+      $machine_tags = $wp_user->getTags(
+        array(
+          'is_triple' => true,
+          'namespace' => 'matching',
+          'key' => array('market', 'all'),
+          'return' => 'value'
+        )
+      );
+
+      if (!empty($machine_tags))
+      {
+        /**
+         * match machine tags against machine tags
+         * @var $machine_query FrontendCollectibleForSaleQuery
+         */
+        $machine_query = clone $q;
+
+        /**
+         * match machine tags against regular tags
+         * @var $tag_query FrontendCollectibleForSaleQuery
+         */
+        $tag_query = clone $q;
+
+        $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+        $tag_query->filterByTags($machine_tags, Criteria::IN);
+      }
+
+      $q->filterByTags($tags, Criteria::IN);
     }
 
     // Make the actual query and get the CollectiblesForSale
-    $this->collectibles_for_sale = $q->limit($this->limit)->find();
+    if (isset($machine_query))
+    {
+      $this->collectibles_for_sale = $machine_query->limit($this->limit)->find();
+      $count_collectibles_for_sale = $machine_query->limit($this->limit)->count();
 
+      if (isset($tag_query) && $count_collectibles_for_sale < $this->limit)
+      {
+        // make sure we are not repeating collectibles_for_sale
+        $collectible_ids = $this->collectibles_for_sale->toKeyValue('CollectibleId', 'CollectibleId');
+        $tag_query->filterByCollectibleId($collectible_ids, Criteria::NOT_IN);
+
+        $additional_collectibles_for_sale = $tag_query->limit($this->limit - $count_collectibles_for_sale)->find();
+        // add collectibles_for_sale that are matching by machine tags
+        $this->collectibles_for_sale->exchangeArray(
+          array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles_for_sale->getArrayCopy())
+        );
+
+        // update the number of collectibles_for_sale we already have so we can compare with limit
+        $count_collectibles_for_sale += $tag_query->limit($this->limit - $count_collectibles_for_sale)->count();
+      }
+
+      if ($count_collectibles_for_sale < $this->limit)
+      {
+        // make sure we are not repeating collectibles_for_sale
+        $collectible_ids = $this->collectibles_for_sale->toKeyValue('CollectibleId', 'CollectibleId');
+        $q->filterByCollectibleId($collectible_ids, Criteria::NOT_IN);
+
+        $additional_collectibles_for_sale = $q->limit($this->limit - $count_collectibles_for_sale)->find();
+        // add collectibles_for_sale that are not matching by machine tags but are matching by regular tags
+        $this->collectibles_for_sale->exchangeArray(
+          array_merge($this->collectibles_for_sale->getArrayCopy(), $additional_collectibles_for_sale->getArrayCopy())
+        );
+      }
+    }
+    else
+    {
+      $this->collectibles_for_sale = $q->limit($this->limit)->find();
+    }
+
+
+    // Should be "fallback" if there are no collectibles for sale?
     if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
     {
       /* @var $q CollectibleForSaleQuery */
-      $q = CollectibleForSaleQuery::create()
+      $q = FrontendCollectibleForSaleQuery::create()
         ->hasActiveCredit()
         ->isForSale()
         ->addAscendingOrderByColumn('RAND()');
@@ -757,7 +981,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->collectibles_for_sale = $q->limit($this->limit)->find();
     }
 
-    return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
+    return $this->_sidebar_if($this->collectibles_for_sale->count() > 1);
   }
 
   public function executeWidgetBlogPosts()
@@ -785,7 +1009,7 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterById($this->ids, Criteria::IN)
         ->addAscendingOrderByColumn(
-          'FIELD(id, ' . implode(',', $this->ids) . ')'
+          'FIELD(wp_posts.id, ' . implode(',', $this->ids) . ')'
         );
     }
 
@@ -824,60 +1048,14 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    // We need to make sure $collectible is CollectionCollectible
-    if ($collectible instanceof Collectible)
-    {
-      /** @var $q CollectionCollectibleQuery */
-      $q = CollectionCollectibleQuery::create()
-        ->filterByCollectible($collectible->getCollectible());
-
-      if ($collection)
-      {
-        $q->filterByCollection($collection);
-      }
-
-      $collectible = $q->findOne();
-    }
-
-    /** @var $limit integer */
-    $limit = (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3);
-    $page = $collectible ? (integer) ceil($collectible->getPosition() / $limit) : $limit;
-    $page = $this->getRequest()->getParameter('p', $page);
-
-    $q = CollectionCollectibleQuery::create();
-    $q->useCollectibleQuery()
-      ->filterByIsPublic(true)
-      ->endUse();
-    $q->joinWith('Collectible')
-      ->orderBy('Position', Criteria::ASC);
-
-    // Filter by Collection if specified
-    if ($collection)
-    {
-      $q->filterByCollection($collection);
-    }
-
-    $a = clone $q;
-
-    $pager = new PropelModelPager($q, $limit);
-    $pager->setPage($page);
+    $pager = new cqCollectionCollectiblesPager(
+      $collection, (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3)
+    );
+    $pager->setPage($this->getRequest()->getParameter('p', 1));
+    $pager->setCollectibleId($collectible ? $collectible->getId() : $request->getParameter('collectible_id'));
     $pager->init();
 
-    // NOTE: Here we have to assume that we show 3 collectibles per "page"
-    if ($collectible && $collectible->getPosition() % 3 !== 2 && $pager->haveToPaginate())
-    {
-      $position = $collectible->getPosition();
-      $this->collectibles = $a
-        ->filterByPosition(array($position > 1 ? $position - 1 : 3, $position, $position + 1), Criteria::IN)
-        ->find();
-    }
-    else
-    {
-      $this->collectibles = $pager->getResults();
-    }
-
     $this->pager = $pager;
-    $this->collection = $collection;
     $this->collectible = $collectible;
 
     return $this->_sidebar_if($pager->getNbResults() > 1);

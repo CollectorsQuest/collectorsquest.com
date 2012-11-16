@@ -10,9 +10,11 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     $this->setupDescriptionField();
     $this->setupThumbnailField();
     $this->setupContentCategoryPlainField();
+    $this->setupContentCategoryIdField();
 
     // Define which fields to use from the base form
     $this->useFields(array(
+        'content_category_id',
         'content_category_plain',
         'name',
         'thumbnail',
@@ -26,9 +28,24 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     }
   }
 
+  protected function setupContentCategoryIdField()
+  {
+    $this->widgetSchema ['content_category_id'] = new sfWidgetFormInputHidden(array(
+      'label' => 'Category',
+    ), array(
+      'required' => 'required'
+    ));
+
+    $this->validatorSchema ['content_category_id'] =  new sfValidatorPropelChoice(array(
+      'required' => true,
+      'model' => 'ContentCategory',
+      'column' => 'id',
+    ));
+  }
+
   protected function setupNameField()
   {
-    $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['name']->setAttribute('class', 'input-large');
     $this->widgetSchema['name']->setAttribute('required', 'required');
 
     $this->validatorSchema['name'] = new cqValidatorName(
@@ -44,7 +61,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     $this->widgetSchema['description']->setAttribute('required', 'required');
 
     $this->getWidgetSchema()->setHelp(
-      'description', 'Add more details about your collection. (You can also change this later!)'
+      'description', 'Add more details about your collection. (You can change this later!)'
     );
   }
 
@@ -68,6 +85,40 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
       array('style' => 'margin-top: 5px;')
     );
     $this->validatorSchema['content_category_plain'] = new sfValidatorPass();
+  }
+
+  protected function setupTagsField()
+  {
+    // pretty ugly hack, but in this case this is the only way
+    // to keep the field's state between requests...
+    $tags = $this->getObject()->getTags();
+    if (sfContext::hasInstance())
+    {
+      $request = cqContext::getInstance()->getRequest();
+      if (( $values = $request->getParameter($this->getName()) ))
+      {
+        if (isset($values['tags']))
+        {
+          $tags = $values['tags'];
+        }
+      }
+    }
+
+    $this->widgetSchema['tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
+    ), array(
+      'required' => 'required',
+    ));
+    $this->getWidgetSchema()->setHelp(
+      'tags', 'Choose at least three descriptive words
+               or phrases'
+    );
+
+    $this->widgetSchema['tags']->setDefault($tags);
+    $this->validatorSchema['tags'] = new cqValidatorTags(array(), array(
+      'required' => 'Please enter tags for your collection.',
+    ));
   }
 
   protected function updateDefaultsFromObject()

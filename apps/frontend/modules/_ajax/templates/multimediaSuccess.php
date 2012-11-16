@@ -1,4 +1,4 @@
-<div class="modal hide" data-dynamic="true">
+<div class="modal hide" data-dynamic="true" tabindex="-1">
   <div class="modal-body" style="max-height: none; padding: 0;">
     <?= image_tag_multimedia($multimedia, $which, array('max_width' => 940, 'max_height' => null)); ?>
   <div class="modal-footer">

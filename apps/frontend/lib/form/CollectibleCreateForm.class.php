@@ -10,7 +10,12 @@ class CollectibleCreateForm extends CollectibleForm
         'label' => 'Name',
       ), array(
         'required' => 'required',
-        'class' => 'input-xlarge'
+        'class' => 'input-large'
+      )),
+      'content_category_id' => new sfWidgetFormInputHidden(array(
+        'label' => 'Category',
+      ), array(
+        'required' => false
       )),
       'description' => new sfWidgetFormTextarea(
         array(),
@@ -25,8 +30,7 @@ class CollectibleCreateForm extends CollectibleForm
       ), array(
         'required' => 'required',
         'class' => 'input-xlarge'
-      )),
-      'thumbnail'  => new sfWidgetFormInputHidden()
+      ))
     ));
 
     $this->setValidators(array(
@@ -37,8 +41,12 @@ class CollectibleCreateForm extends CollectibleForm
         array('required' => true),
         array('invalid' => 'You need to use more descriptive name for your item
                             (is it the camera auto generated name?)')),
-      'description'  => new sfValidatorString(array('required' => true)),
-      'thumbnail'  => new sfValidatorInteger(array('required' => false))
+      'content_category_id' => new sfValidatorPropelChoice(array(
+        'required' => false,
+        'model' => 'ContentCategory',
+        'column' => 'id',
+      )),
+      'description'  => new sfValidatorString(array('required' => true))
     ));
 
     // Setup the Tags field
@@ -48,6 +56,18 @@ class CollectibleCreateForm extends CollectibleForm
 
     $this->widgetSchema->setNameFormat('collectible[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
+  }
+
+  protected function unsetFields()
+  {
+    parent::unsetFields();
+
+    unset($this['thumbnail']);
+  }
+
+  public function unsetCollectionIdField()
+  {
+    unset ($this['collection_id']);
   }
 
   protected function setupTagsField()
@@ -66,7 +86,7 @@ class CollectibleCreateForm extends CollectibleForm
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
       'tags', 'Choose at least three descriptive words
-               or phrases, separated by commas'
+               or phrases'
     );
 
     $this->validatorSchema['tags'] = new cqValidatorTags();

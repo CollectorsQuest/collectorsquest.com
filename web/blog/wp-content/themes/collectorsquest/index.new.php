@@ -77,6 +77,8 @@
   wp_register_script('jquery', '/wp-content/themes/collectorsquest/js/empty.js', array(), '1.7.2', 1);
   wp_enqueue_script('jquery');
 
+  wp_enqueue_style('cq-styles', '/wp-content/themes/collectorsquest/css/smartWizard.css', array(), '1.0', 'all');
+
   ob_start();
   wp_head();
   $head = ob_get_clean();
@@ -89,7 +91,7 @@
 
 ?>
 
-<div class="row-fluid header-bar">
+<div class="row-fluid header-bar <?= get_the_ID() == '33316' ? 'js-hide' : null ; ?> ">
   <?php if (is_page() && !is_child(23509) && !is_child(23511)) { ?>
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>
@@ -350,6 +352,15 @@ $lastclass = 0;
           <?php
           if (is_single()) :
              the_content();
+
+             // post pagination if <!--nextpage--> is found
+             $pagination_text = get_post_meta($post->ID, $key = 'pagination_text', true);
+             $args = array();
+             if ($pagination_text) :
+               $args['nextpagelink'] = $pagination_text;
+               $args['previouspagelink'] = $pagination_text;
+             endif;
+             custom_wp_link_pages( $args );
           elseif (is_front_page() || is_archive() || is_search()) :
 
             if (is_front_page() && $count == 1) :
@@ -378,7 +389,8 @@ $lastclass = 0;
 
           <div id="social-sharing" class="entry-share pull-right">
             <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style">
+            <div class="addthis_toolbox addthis_default_style"
+                 addthis:url="<?php the_permalink(); ?>" addthis:title="<?php the_title(); ?>">
               <a class="addthis_button_email"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
@@ -428,6 +440,7 @@ $lastclass = 0;
   <?php else :
 
   $page = get_page_by_title( '404' );
+  $data['is_404'] = true;
 
   if($page) :
     echo $page->post_content;

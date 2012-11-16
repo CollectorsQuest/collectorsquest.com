@@ -27,8 +27,11 @@
         </p>
 
         <div class="address-data">
-          <?php include_partial('collector_address',
-             array('collector_address' => $collector_address)); ?>
+          <?php
+            include_partial('mycq/partials/collector_address', array(
+                'collector_address' => $collector_address,
+            ));
+          ?>
           <div class="actions">
             <?php echo link_to('Confirm Delete', array(
                 'sf_route' => 'mycq_profile_addresses_delete',

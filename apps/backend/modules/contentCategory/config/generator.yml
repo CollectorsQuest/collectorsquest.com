@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:
         id: { label: ID }
-        num_collections: { label: Collections }
+        num_collections: { label: Collections, is_sortable: true, sort_method: orderByNumCollections}
         tree_level: { label: Level }
       list:
         display: [id,  tree_level, =name, _ancestors, _num_collections]
@@ -32,8 +32,33 @@ generator:
         sort: [id, asc]
         display: [id, tree_level, name, _num_collections]
 
-      form:    ~
+      form:  ~
       edit:
+        fields:
+          seo_title:
+            type:  plain
         title: Edit Content Category
+        display:
+         '':
+           - name
+           - name_singular
+           - description
+
+         'SEO (Collections Pages)':
+           - seo_collections_title_prefix
+           - seo_collections_title_suffix
+           - seo_collections_description
+           - seo_collections_keywords
+           - seo_collections_use_singular
+           - _edit_collections_seo_snippet
+
+         'SEO (Market Pages)':
+           - seo_market_title_prefix
+           - seo_market_title_suffix
+           - seo_market_description
+           - seo_market_keywords
+           - seo_market_use_singular
+           - _edit_market_seo_snippet
+
       new:
         title: New Content Category

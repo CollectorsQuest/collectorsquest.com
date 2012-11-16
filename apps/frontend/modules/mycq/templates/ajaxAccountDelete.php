@@ -1,3 +1,9 @@
+<style>
+  .modal .modal-body label.control-label {
+    width: auto;
+  }
+</style>
+
 <form action="<?= url_for('@ajax_mycq?section=account&page=delete'); ?>"
       method="post" id="form-delete-account" class="ajax form-modal">
 

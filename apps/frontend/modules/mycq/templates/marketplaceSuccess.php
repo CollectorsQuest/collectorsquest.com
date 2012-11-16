@@ -13,12 +13,13 @@
   // include_partial('mycq/seller_snapshot', array('seller' => $seller));
 ?>
 
-<?php if ($incomplete_collections && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+<?php if ($incomplete_collections && cqGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Some items for sale need your attention!</h4>
   <p class="spacer-top">
     You have items for sale which are not fully described yet.
-    If you would like others to see and buy them you should describe them as best as you can!
+    If you would like other users to be able to find and buy your items,
+    you should describe them as best as you can!
   </p>
   <br/>
   <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collectibles') ?>">Fix Incomplete Items</a>

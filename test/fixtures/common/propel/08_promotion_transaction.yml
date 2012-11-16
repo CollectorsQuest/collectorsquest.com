@@ -5,30 +5,12 @@ PromotionTransaction:
     amount: '250'
     amount_type: Fix
     created_at: '2011-06-06 08:08:21'
-  PromotionTransaction_14:
-    promotion_id: Promotion_2
-    collector_id: Collector_6610
-    amount: '250'
-    amount_type: Fix
-    created_at: '2011-06-09 17:52:10'
-  PromotionTransaction_26:
-    promotion_id: Promotion_3
-    collector_id: Collector_12
-    amount: '250'
-    amount_type: Percentage
-    created_at: '2012-06-23 19:54:20'
   PromotionTransaction_28:
     promotion_id: Promotion_3
     collector_id: Collector_963
     amount: '250'
     amount_type: Percentage
     created_at: '2012-06-24 22:34:48'
-  PromotionTransaction_33:
-    promotion_id: Promotion_3
-    collector_id: Collector_52
-    amount: '250'
-    amount_type: Percentage
-    created_at: '2012-06-25 21:41:45'
   PromotionTransaction_36:
     promotion_id: Promotion_3
     collector_id: Collector_59

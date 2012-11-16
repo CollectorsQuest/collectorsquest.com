@@ -1,9 +1,16 @@
 <?php
-/**
- * @var $form CollectibleForSaleCreateForm
- * @var $collectible Collectible
- */
+  /* @var $form CollectibleForSaleCreateForm */
+  /* @var $collectible Collectible */
+  $categories = ContentCategoryQuery::create()
+    ->descendantsOfRoot()
+    ->findTree();
 ?>
+
+<style>
+  .modal .modal-body .chzn-choices {
+    width: 220px;
+  }
+</style>
 
 <?php
   if (isset($collectible) && !$collectible->isNew())
@@ -27,28 +34,49 @@
 <form action="<?= url_for('@ajax_mycq?section=collectibleForSale&page=create'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Add a New Item for Sale</h1>
-  <?= $form->renderGlobalErrors(); ?>
+  <h1>Step 2: Describe Your Item for Sale</h1>
+  <?= $form->renderAllErrors(); ?>
 
-  <?php
-    if (isset($form['collectible']['collection_id'])) {
-      echo $form['collectible']['collection_id'];
-    }
-    if (isset($form['collectible']['collection_collectible_list'])) {
-      echo $form['collectible']['collection_collectible_list']->renderRow();
-    }
-  ?>
-  <?= $form['collectible']['name']->renderRow() ?>
-  <?= $form['collectible']['tags']->renderRow() ?>
+  <div style="position: relative;">
+    <?php
+      if (isset($donor))
+      {
+        echo image_tag_collectible(
+          $donor, '100x100',
+          array('style'=> 'position: absolute; top: 0px; right: 10px;')
+        );
+      }
+    ?>
 
-  <?php // include_partial('mycq/collectible_form_for_sale', array('form' => $form)); ?>
+    <?php
+      if (isset($form['collectible']['collection_id']))
+      {
+        echo $form['collectible']['collection_id'];
+      }
+      else if (isset($form['collectible']['collection_collectible_list']))
+      {
+        echo $form['collectible']['collection_collectible_list']->renderRow();
+      }
+    ?>
+    <?= $form['collectible']['name']->renderRow() ?>
+    <?= $form['collectible']['tags']->renderRow() ?>
+
+    <div class="control-group spacer-bottom-reset">
+      <?= $form['collectible']['content_category_id']->renderLabel('Category') ?>
+      <div class="controls">
+        <div class="with-required-token">
+          <span class="required-token">*</span>
+          <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Next Step
+      Finish
     </button>
-    <button type="reset" class="btn"
-            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+    <button type="reset" class="btn" onClick="$(this).parents('.modal-body.opened').dialog2('close'); return false;">
       Cancel
     </button>
   </div>
@@ -59,17 +87,18 @@
 <script>
 $(document).ready(function()
 {
-  $(".chzn-select").find("option:selected").each(function(index, option)
+  var $chzn = $(".chzn-select");
+
+  $chzn.find("option:selected").each(function(index, option)
   {
     if ($(option).val() === '') {
       $(option).removeAttr("selected");
     }
   });
 
-  $(".chzn-select")
+  $chzn
     .chosen({ no_results_text: "No collections found for" })
-    .change(function()
-    {
+    .change(function() {
       if ($(this).find("option:selected").val() === '')
       {
         $(this).find("option:selected").removeAttr("selected");
@@ -82,5 +111,19 @@ $(document).ready(function()
         }
       }
     });
+
+  var categories_tabindex = $('#categories').attr('tabIndex') || 0;
+  $("#categories").attr('tabIndex', 0).columnview({
+    multi: false, preview: false,
+    onchange: function(element) {
+      if (0 < $(element).data('object-id')) {
+        $("#collectible_for_sale_collectible_content_category_id").val($(element).data('object-id'));
+      }
+      $('#categories').scrollLeft(500);
+      $('.feature', '#categories').hide();
+    }
+  });
+
+  $('.top', '#categories').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
 });
 </script>

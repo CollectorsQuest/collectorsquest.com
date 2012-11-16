@@ -1,3 +1,4 @@
+
 ### MY CQ
 
 mycq_aviary_update_image:
@@ -11,6 +12,10 @@ mycq_profile:
 mycq_profile_account_info:
   url:   /mycq/profile/account-information
   param: { module: mycq, action: profileAccountInfo }
+
+mycq_profile_create_password:
+  url:   /mycq/profile/create-password
+  param: { module: mycq, action: createPassword }
 
 mycq_profile_email_preferences:
   url:   /mycq/profile/email-preferences
@@ -37,6 +42,13 @@ mycq_profile_addresses_delete:
   param:    { module: mycq, action: profileAddressesDelete }
   options:  { model: CollectorAddress, type: object }
   requirements: { id: '\d+', sf_method: [get, delete] }
+
+mycq_profile_addresses_make_primary:
+  url:      /mycq/profile/addresses/:id/make-primary
+  class:    sfPropelORMRoute
+  param:    { module: mycq, action: profileAddressesMakePrimary }
+  options:  { model: CollectorAddress, type: object }
+  requirements: { id: '\d+', sf_method: [get] }
 
 mycq_dropbox:
   url:   /mycq/dropbox
@@ -200,3 +212,8 @@ messages_compose:
 messages_batch_actions:
   url:   /messages/batch-actions
   param: { module: messages, action: batchActions }
+
+messages_thread_actions:
+  url:   /messages/thread-actions
+  param: { module: messages, action: threadActions }
+  requirements: { sf_method: post }

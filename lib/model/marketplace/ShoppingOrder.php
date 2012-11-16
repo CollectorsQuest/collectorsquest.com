@@ -22,11 +22,16 @@ class ShoppingOrder extends BaseShoppingOrder
     }
   }
 
-//  public function getSeller()
-//  {
-//    return CollectorQuery::create()
-//      ->findOneById($this->getSellerId());
-//  }
+  public function preDelete(PropelPDO $con = null)
+  {
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $this->getShoppingPayment();
+
+    // Archive and delete related ShoppingPayment objects
+    $shopping_payment->delete($con);
+
+    return parent::preDelete($con);
+  }
 
   public function getBuyer()
   {
@@ -129,6 +134,14 @@ class ShoppingOrder extends BaseShoppingOrder
    */
   public function getShippingFeeAmount($return = 'float')
   {
+    if (
+      ($shipping_reference = $this->getShippingReference()) &&
+      ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_reference->getShippingType()
+    )
+    {
+      return null;
+    }
+
     if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
     {
       return $payment->getAmountShippingFee($return);
@@ -160,10 +173,10 @@ class ShoppingOrder extends BaseShoppingOrder
         $this->getShoppingCartId(), $shopping_order_collectible->getCollectibleId()
       );
       $shopping_cart_collectible
-        ->setShippingCountryIso3166($address->getCountryIso3166())
-        ->updateShippingFeeAmountFromCountryCode()
+        ->updateShippingFromCountryCode($address->getCountryIso3166())
         ->save();
     }
+
     return $this;
   }
 
@@ -188,7 +201,11 @@ class ShoppingOrder extends BaseShoppingOrder
       'FeesPayer' => 'EACHRECEIVER',
 
       // A note associated with the payment (text, not HTML).  1000 char max
-      'Memo' => $this->getNoteToSeller(),
+      'Memo' => trim(
+        $this->getNoteToSeller() .
+        ' (This transaction was initiated on collectorsquest.com!'.
+        ' Please, go to https://www.collectorsquest.com/mycq/marketplace for more information)'
+      ),
 
       // Whether to reverse paralel payments if an error occurs with a payment.
       // Values are:  TRUE, FALSE
@@ -311,7 +328,7 @@ class ShoppingOrder extends BaseShoppingOrder
         ));
 
         $hash = sprintf(
-          "%s;%d;%s;%d",
+          '%s;%d;%s;%d',
           $version, $this->getId(),
           hash_hmac('sha1', base64_encode($json), $salt), $time
         );

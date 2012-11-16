@@ -9,7 +9,8 @@
  * @var  $next         Collectible
  * @var  $first        Collectible
  * @var  $collectible_for_sale  CollectibleForSale
- * @var  $editable     boolean
+ * @var  $editable            boolean
+ * @var  $ref_marketplace     boolean
  *
  * @var  $additional_multimedia  iceModelMultimedia[]
  *
@@ -37,19 +38,58 @@
     <?php
       if ($aetn_show['id'] === 'american_pickers')
       {
-        echo link_to(image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
+        cq_ad_slot(
+          cq_image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items seen on American Pickers'
+            )
+          ),
+          '@aetn_american_pickers'
+        );
       }
       else if ($aetn_show['id'] === 'american_restoration')
       {
-        echo link_to(image_tag('headlines/2012-0777_AR_620x67.jpg'), '@aetn_american_restoration');
+        cq_ad_slot(
+          cq_image_tag('headlines/2012-0777_AR_620x67.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items seen on American Restoration'
+            )
+          ),
+          '@aetn_american_restoration'
+        );
       }
       else if ($aetn_show['id'] === 'pawn_stars')
       {
-        echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
+        cq_ad_slot(
+          cq_image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items seen on Pawn Stars'
+            )
+          ),
+          '@aetn_pawn_stars'
+        );
       }
       else if ($aetn_show['id'] === 'picked_off')
       {
-        echo link_to(image_tag('headlines/2012-0777_Picked_Off_620x67.jpg'), '@aetn_picked_off');
+        cq_ad_slot(
+          cq_image_tag('headlines/2012-0777_Picked_Off_620x67.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items seen on Picked Off'
+            )
+          ),
+          '@aetn_picked_off'
+        );
+      }
+      else if ($aetn_show['id'] === 'franks_picks')
+      {
+        cq_ad_slot(
+          ice_image_tag_placeholder('620x67'),
+          '@aetn_franks_picks'
+        );
       }
       $height_main_div->value += 87;
     ?>
@@ -59,7 +99,8 @@
 <?php
   $options = array(
     'id' => sprintf('collectible_%d_name', $collectible->getId()),
-    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar'
+    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar',
+    'itemprop' => 'itemprop = "name"'
   );
 
   cq_page_title($collectible->getName(), null, $options);
@@ -77,17 +118,21 @@
 
     <?php if (isset($previous)): ?>
     <a href="<?= url_for_collectible($previous) ?>"
-       class="prev-collectible" title="Previous: <?= $previous->getName(); ?>">
-      <span>prev</span>
-      <i class="icon-caret-left white"></i>
+       class="prev-zone" title="Previous: <?= $previous->getName(); ?>">
+      <span class="hide-text">prev</span>
+      <span class="prev-btn">
+        <i class="icon-chevron-left white"></i>
+      </span>
     </a>
     <?php endif; ?>
 
     <?php if (isset($next)): ?>
     <a href="<?= url_for_collectible($next) ?>"
-       class="next-collectible" title="Next: <?= $next->getName(); ?>">
-      <span>next</span>
-      <i class="icon-caret-right white"></i>
+       class="next-zone" title="Next: <?= $next->getName(); ?>">
+      <span class="hide-text">next</span>
+      <span class="next-btn">
+        <i class="icon-chevron-right white"></i>
+      </span>
     </a>
     <?php endif; ?>
 
@@ -117,7 +162,7 @@
       echo link_to(
         image_tag_collectible(
           $collectible, '620x0',
-          array('width' => null, 'height' => null)
+          array('width' => null, 'height' => null, 'itemprop' => 'image')
         ),
         src_tag_collectible($collectible, 'original'),
         array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
@@ -156,20 +201,23 @@
         <?php foreach ($additional_multimedia as $i => $m): ?>
         <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
           <?php
-            echo image_tag_multimedia(
-              $m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')
+            echo image_tag_multimedia($m, '150x150',
+              array(
+                'height' => null, 'title' => $m->getName(),
+                'style' => 'margin-bottom: 12px;', 'itemprop' => 'image'
+              )
             );
           ?>
         </a>
         <?php endforeach; ?>
       </div>
       <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible"
-         class="ui-carousel-navigation hidden left-arrow">
-        <i class="icon-chevron-up white"></i>
+         class="ui-carousel-navigation hidden up-arrow">
+          <i class="icon-chevron-up white"></i>
       </a>
       <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible"
-         class="ui-carousel-navigation hidden right-arrow">
-        <i class="icon-chevron-down white"></i>
+         class="ui-carousel-navigation hidden down-arrow">
+          <i class="icon-chevron-down white"></i>
       </a>
     </div>
   </div>
@@ -210,7 +258,7 @@
 
 <?php if ($collectible->getDescription('stripped')): ?>
   <div class="item-description <?= $editable ? 'editable_html' : '' ?>"
-       id="collectible_<?= $collectible->getId(); ?>_description">
+       id="collectible_<?= $collectible->getId(); ?>_description" itemprop = "description">
     <?= $description = $collectible->getDescription('html'); ?>
 
     <?php if (!empty($aetn_show)): ?>
@@ -257,8 +305,8 @@
   }
   else
   {
-    include_partial(
-      'comments/comments',
+    include_component(
+      'comments', 'comments',
       array(
         'for_object' => $collectible->getCollectible(),
         'height' => &$height_main_div
@@ -266,12 +314,12 @@
     );
   }
 
-  if (!empty($aetn_show))
+  if (!empty($aetn_show) && $aetn_show['id'] != 'franks_picks')
   {
     include_partial(
       'collection/aetn_collectible_related',
       array(
-        'title' => 'Other Items from '. $aetn_show['name'],
+        'title' => 'Other Items from '. strtoupper($aetn_show['name']),
         'collectible' => $collectible,
         'related_collectibles' => $related_collectibles,
         'height' => &$height_main_div
@@ -279,10 +327,13 @@
     );
   }
 
-  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale())
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && !$ref_marketplace && empty($aetn_show))
   {
     include_component('collector', 'indexCollectiblesForSale',
-      array('collector' => $collector, 'title' => 'Other Items from this Seller')
+      array(
+        'collector' => $collector, 'collectible' => $collectible->getCollectible(),
+        'title' => 'Other Items from this Seller'
+      )
     );
 
     $height_main_div->value += 293;

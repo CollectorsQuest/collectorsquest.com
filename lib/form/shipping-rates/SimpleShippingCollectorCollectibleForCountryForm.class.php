@@ -11,10 +11,12 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
   {
     parent::configure();
 
-    $this->setupFlatRateAmountField($this->isShippingTypeFreeShipping());
+    $this->setupFlatRateAmountField($disabled = $this->isShippingTypeFreeShipping());
+    $this->setupCombinedFlatRateAmountField($disabled = $this->isShippingTypeFreeShipping());
 
     $this->mergePostValidator(
-      new SimpleShippingCollectorCollectibleForCountryFormValidatorSchema(null));
+      new SimpleShippingCollectorCollectibleForCountryFormValidatorSchema()
+    );
 
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
@@ -52,6 +54,22 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
     }
   }
 
+  protected function setupCombinedFlatRateAmountField($disabled = false)
+  {
+    $this->widgetSchema['combined_flat_rate'] = new sfWidgetFormInput();
+    $this->validatorSchema['combined_flat_rate'] = new cqValidatorPrice(array(
+        'required' => false, 'min' => 0
+    ));
+
+    if ($disabled)
+    {
+      $this->widgetSchema['combined_flat_rate']->setAttributes(array(
+          'class' => 'disabled',
+          'disabled' => 'disabled',
+      ));
+    }
+  }
+
   /**
    * Check if the shipping type is really flat rate or if it is a fake flat rate
    * that hides a free shipping rate
@@ -69,7 +87,8 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
   public function isShippingTypeNoShipping()
   {
     return ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING
-        == $this->getTaintedRequestValue('shipping_type', $this->getObject()->getShippingType());
+        == $this->getTaintedRequestValue('shipping_type', $this->getObject()->getShippingType())
+        || ($this->isNew() && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getDefault('shipping_type'));
   }
 
   protected static function getShippingTypeChoices()
@@ -101,6 +120,7 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
         // if not then we repopulate the "flat_rate" field;
         // shipping_tye
         $this->setDefault('flat_rate', $shipping_rate->getFlatRateInUSD());
+        $this->setDefault('combined_flat_rate', $shipping_rate->getCombinedFlatRateInUSD());
       }
     }
     else if (
@@ -129,11 +149,12 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
       $shipping_rate->setIsFreeShipping(true);
       $shipping_rate->setShippingReference($this->getObject());
       // the shipping rate object will be saved when this form's object is saved
-    } else
-    if ($values['shipping_type'] == ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE)
+    }
+    elseif ($values['shipping_type'] == ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE)
     {
       $shipping_rate = new ShippingRate();
       $shipping_rate->setFlatRateInUSD($values['flat_rate']);
+      $shipping_rate->setCombinedFlatRateInUSD($values['combined_flat_rate']);
       $shipping_rate->setShippingReference($this->getObject());
     }
 

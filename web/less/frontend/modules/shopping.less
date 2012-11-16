@@ -5,12 +5,13 @@
   background: transparent url("@{baseUrl}/empty_cart.png") no-repeat;
   .size(100px, 280px);
   margin: 80px 0 0 120px;
+
   p {
-    color: #6c6c6c;
-    font-size: 24px;
-    font-weight: bold;
     padding-top: 14px;
     padding-left: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #6c6c6c;
   }
   span {
     padding-left: 22px;
@@ -55,28 +56,27 @@
     text-align: right;
   }
   .simple-textarea {
-    border: 1px solid #d4d4d4;
+    overflow: auto;
+    .size(80px, 370px);
+    min-height: 80px;
+    margin: 15px 0 0 0;
     font-size: 13px;
     color: #777;
-    width: 370px;
-    height: 130px;
-    min-height: 80px;
-    margin: 0;
-    background:#fff none;
-    overflow: auto;
+    background: #fff none;
+    border: 1px solid #d4d4d4;
   }
   .item-title-sc {
     margin: 0 0 0.5em 0;
     font-size: 16px;
-    color: #1a1a1a;
     font-weight: bold;
+    color: #1a1a1a;
   }
   .label-condition {
-    font-size: 11px;
-    color: #7ca02f;
-    text-transform: uppercase;
-    font-weight: normal;
     display: block;
+    font-size: 11px;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #7ca02f;
   }
   .title-item {
     font-size: 15px;
@@ -90,19 +90,20 @@
     padding-bottom: 4px;
   }
   tr.rainbow-dash td {
-    border-top: 1px solid lighten(@brown, 20%);
     padding-bottom: 10px;
+    border-top: 1px solid #afbec6;
   }
   .line-under-title {
-   // border-bottom: 1px solid #DEDDDA;
     background: url("@{baseUrl}/gray-dotted-line.png") repeat-x bottom;
     margin-bottom: 10px;
+    border-bottom: 1px solid #DEDDDA;
 
     p {
-      line-height: 20px;
-      font-size: 15px;
       margin-bottom: 0;
+      font-size: 15px;
+      line-height: 20px;
     }
+
     [class*="span"] {
       height: auto !important;
       height: 15px;
@@ -112,8 +113,8 @@
 }
 
 .shopping-cart-shadow {
-  background: url("@{baseUrl}/checkout-shadow.png") left bottom no-repeat;
   padding-bottom: 10px;
+  background: url("@{baseUrl}/checkout-shadow.png") left bottom no-repeat;
 }
 
 
@@ -174,9 +175,9 @@
     display: block;
     padding-top: 2px;
     font-size: 10px;
+    font-weight: bold;
     line-height: 14px;
     color: #F6F5EF;
-    font-weight: bold;
   }
 }
 

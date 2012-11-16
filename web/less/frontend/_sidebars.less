@@ -134,8 +134,8 @@
     max-height: 28px;
     margin-bottom: 5px;
     font-size: @baseFontSize - 1;
-    line-height: 14px;
     font-weight: bold;
+    line-height: 14px;
     color: @blue;
 
   }
@@ -206,59 +206,39 @@
 }
 
 #items-for-sale-sidebar {
-  font-size: @baseFontSize - 1;
+  .thumbnails {
+    .span3 {
+      border: 1px solid @boxBorder;
+      width: 132px;
+      margin-bottom: 15px;
+      font-size: 12px;
+      .box-shadow(none);
+      .border-radius(0);
 
-  .row-fluid {
-    margin-bottom: 10px;
-    .inner-border {
-      border: 1px solid #afa4a4;
-      .clearfix();
-      padding: 3px 7px 3px 3px;
       &:hover {
-        border-color: @blue;
+        background-color: white;
+        border: 1px solid @blue;
+        .border-radius(0);
       }
-      .span9 {
-        margin-left: 4px;
+      p {
+        font-size: 12px;
+        margin-bottom: 2px;
+        padding: 5px 2px 0 2px;
+        .text-overflow();
+      }
+      span {
+        font-weight: bold;
+        color: @blueDark;
+        display: block;
+        text-align: right;
+        padding-right: 2px;
       }
     }
   }
-  .fix-height-text-block {
-    overflow: hidden;
-    max-height: 56px;
 
-  }
-  .content-container {
-    padding-top: 4px;
-    padding-left: 0;
-
-    p {
-      height: 15px;
-      margin-bottom: 0;
-      font-size: @baseFontSize - 1;
-      line-height: 14px;
-      color: @blueDark;
-      .text-overflow();
-    }
-    a.target {
-      display: block;
-      overflow: hidden;
-      height: 15px;
-      margin-bottom: 6px;
-      font-size: @baseFontSize - 1;
-      line-height: 14px;
-      color: @blue;
-
-      &:hover {
-        color: @red;
-      }
-    }
-    .price {
-      display: block;
-      margin-top: 2px;
-      color: @blueDark;
-      font-weight: bold;
-      text-align: right;
-    }
+  .well {
+    padding: 10px;
+    padding-bottom: 5px;
   }
 }
 

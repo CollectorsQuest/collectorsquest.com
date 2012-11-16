@@ -2,10 +2,11 @@
 
 class mycqActions extends cqFrontendActions
 {
+
   public function executeIndex()
   {
     // Redirect to Collections if the homepage is not allowed
-    $this->redirectUnless(IceGateKeeper::open('mycq_homepage'), '@mycq_collections');
+    $this->redirectUnless(cqGateKeeper::open('mycq_homepage'), '@mycq_collections');
 
     // Set the "home" as the active mycq menu item
     SmartMenu::setSelected('mycq_menu', 'home');
@@ -78,6 +79,14 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;
 
+    if ($this->image = $this->collector->getPhoto())
+    {
+      $this->aviary_hmac_message = $this->getUser()->hmacSignMessage(
+        json_encode(array('multimedia-id' => $this->image->getId())),
+        cqConfig::getCredentials('aviary', 'hmac_secret')
+      );
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -87,7 +96,7 @@ class mycqActions extends cqFrontendActions
 
     $collector_form = new CollectorEditForm($this->getCollector());
     $collector_form->useFields(array(
-        'old_password', 'password', 'password_again'
+      'old_password', 'password', 'password_again'
     ));
     $email_form = new CollectorEmailChangeForm($this->getCollector());
 
@@ -125,15 +134,15 @@ class mycqActions extends cqFrontendActions
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Collector/verify_new_email', array(
-              'to' => $collector_email->getEmail(),
-              'params' => array(
-                'collector' => $collector_email->getCollector(),
-                'collector_email' => $collector_email,
-              )
+            'to'     => $collector_email->getEmail(),
+            'params' => array(
+              'collector'       => $collector_email->getCollector(),
+              'collector_email' => $collector_email,
+            )
           ));
 
           $this->getUser()->setFlash('success',
-            'A verification email was sent to '. $collector_email->getEmail()
+            'A verification email was sent to ' . $collector_email->getEmail()
           );
 
           $this->redirect('mycq_profile_account_info');
@@ -161,14 +170,18 @@ class mycqActions extends cqFrontendActions
    */
   public function executeProfileEmailPreferences(cqWebRequest $request)
   {
+    SmartMenu::setSelected('mycq_menu', 'profile');
+
     /* @var $collector Collector */
     $collector = $this->getCollector();
 
     $_preferences = array(
-      'opt_out'     => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
-      'newsletter'  => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
-      'comments'    => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
-      'messages'    => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE
+      'opt_out'          => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
+      'newsletter'       => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+      'comments'         => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+      'comments_opt_out' => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_OPT_OUT,
+      'messages'         => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+      'messages_opt_out' => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_OPT_OUT
     );
 
     // Assume there are no properties changed in this request
@@ -178,7 +191,7 @@ class mycqActions extends cqFrontendActions
     {
       if ($request->hasParameter($key))
       {
-        $collector->setProperty($property, (boolean) $request->getParameter($key));
+        $collector->setProperty($property, (boolean)$request->getParameter($key));
         $_property_changed = $key;
       }
 
@@ -205,6 +218,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileAddresses()
   {
+    SmartMenu::setSelected('mycq_menu', 'profile');
+
     $this->collector_addresses = $this->getCollector()->getCollectorAddresses();
 
     return sfView::SUCCESS;
@@ -221,9 +236,10 @@ class mycqActions extends cqFrontendActions
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
         $this->getUser()->setFlash('success',
-          'You have successfully added a new address.');
+          'You have successfully added a new address.'
+        );
 
-        $this->redirect('@mycq_profile_addresses');
+        return $this->redirect('@mycq_profile_addresses');
       }
     }
     $this->form = $form;
@@ -245,9 +261,10 @@ class mycqActions extends cqFrontendActions
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
         $this->getUser()->setFlash('success',
-          'You have successfully edited your address.');
+          'You have successfully edited your address.'
+        );
 
-        $this->redirect('@mycq_profile_addresses');
+        return $this->redirect('@mycq_profile_addresses');
       }
     }
 
@@ -267,14 +284,38 @@ class mycqActions extends cqFrontendActions
     {
       $address->delete();
       $this->getUser()->setFlash('success',
-        $this->__('You have successfully removed an address from your account.'));
+        'You have successfully removed an address from your account.'
+      );
 
-      $this->redirect('@mycq_profile_addresses');
+      return $this->redirect('@mycq_profile_addresses');
     }
 
     $this->collector_address = $address;
 
     return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesMakePrimary(cqWebRequest $request)
+  {
+    /* @var $address CollectorAddress */
+    $address = $this->getRoute()->getObject();
+
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    // unmark the old primary address
+    CollectorAddressQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->filterByIsPrimary(true)
+      ->update(array('IsPrimary' => false));
+
+    // and set the new one
+    $address->setIsPrimary(true)->save();
+
+    $this->getUser()->setFlash('success',
+      'You have successfully changed your primary address'
+    );
+
+    return $this->redirect('@mycq_profile_addresses');
   }
 
   public function executeDropbox(sfWebRequest $request)
@@ -324,7 +365,7 @@ class mycqActions extends cqFrontendActions
      */
     $this->incomplete_collectibles = false;
 
-    if (IceGateKeeper::open('mycq_incomplete', 'page'))
+    if (cqGateKeeper::open('mycq_incomplete', 'page'))
     {
       $q = CollectorCollectionQuery::create()
         ->filterByCollector($this->collector)
@@ -352,13 +393,16 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
+    /** @var $collection CollectorCollection */
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($collection),
       '@mycq_collections'
     );
 
+    /** @var $collectible Collectible */
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
 
@@ -377,15 +421,23 @@ class mycqActions extends cqFrontendActions
     // auto-set collection thumbnail if none set yet
     if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
     {
-      $collection->setPrimaryImage($collectible->getPrimaryImage()
-        ->getAbsolutePath('original'));
+      $collection->setPrimaryImage(
+        $collectible->getPrimaryImage()->getAbsolutePath('original')
+      );
       $collection->save();
     }
 
+    if (1 == $collectible->countCollections(new Criteria()))
+    {
+      // Give the collectible the same category as the collection
+      $collectible->setContentCategoryId($collection->getContentCategoryId());
+      $collectible->save();
+    }
+
     return $this->redirect($this->getController()->genUrl(array(
-        'sf_route' => 'mycq_collectible_by_slug',
-        'sf_subject' => $collection_collectible,
-        'suggest_tags' => true,
+      'sf_route'     => 'mycq_collectible_by_slug',
+      'sf_subject'   => $collection_collectible,
+      'suggest_tags' => true,
     )));
   }
 
@@ -393,6 +445,9 @@ class mycqActions extends cqFrontendActions
   {
     /** @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
+
+    /** @var $collection CollectorCollection */
+    $collection = $collectible->getCollectorCollection();
 
     /**
      * Handle sold/purchased Collectibles
@@ -410,7 +465,7 @@ class mycqActions extends cqFrontendActions
         ->endUse()
         ->joinShoppingPaymentRelatedByShoppingPaymentId()
         ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
-          ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
+        ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
         ->endUse()
         ->findOne();
 
@@ -424,7 +479,7 @@ class mycqActions extends cqFrontendActions
       {
         $this->shopping_payment = $this->shopping_order->getShoppingPayment();
 
-        $this->buyer  = $this->shopping_order->getBuyer();
+        $this->buyer = $this->shopping_order->getBuyer();
         $this->seller = $this->shopping_order->getSeller();
 
         $subject = sprintf(
@@ -455,12 +510,9 @@ class mycqActions extends cqFrontendActions
     }
 
     $this->redirectUnless(
-      $this->getCollector()->isOwnerOf($collectible),
+      $collection instanceof CollectorCollection && $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
     );
-
-    /** @var $collection CollectorCollection */
-    $collection = $collectible->getCollectorCollection();
 
     if ($request->getParameter('cmd'))
     {
@@ -515,8 +567,7 @@ class mycqActions extends cqFrontendActions
                 );
                 break;
             }
-          }
-          catch (PropelException $e)
+          } catch (PropelException $e)
           {
             if (stripos($e->getMessage(), 'a foreign key constraint fails'))
             {
@@ -574,8 +625,9 @@ class mycqActions extends cqFrontendActions
 
       if (
         (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
-        && IceGateKeeper::open('collectible_shipping')
-      ) {
+        && cqGateKeeper::open('collectible_shipping')
+      )
+      {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
         $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
       }
@@ -584,7 +636,8 @@ class mycqActions extends cqFrontendActions
         ($form_shipping_us->isBound() && $form_shipping_zz->isBound()) &&
         !($form_shipping_us->isValid() && $form_shipping_zz->isValid()) &&
         $form->isValid()
-      ) {
+      )
+      {
         $this->getUser()->setFlash('error', 'There is a problem with your shipping information.');
       }
 
@@ -607,7 +660,8 @@ class mycqActions extends cqFrontendActions
           null !== $for_sale &&
           $for_sale['is_ready'] !== $collectible->getCollectibleForSale()->getIsReady() &&
           $for_sale['is_ready'] === true
-        ) {
+        )
+        {
           $message = sprintf(
             'Your item item "<a href="%s">%%s</a>" has been posted to the Market!',
             $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible))
@@ -652,13 +706,15 @@ class mycqActions extends cqFrontendActions
                 break;
             }
           }
-        }
-        catch (PropelException $e)
+        } catch (PropelException $e)
         {
           $this->getUser()->setFlash(
             'error', 'There was a problem saving your information'
           );
         }
+
+        // after a successful form save we should alway perform a redirect!
+        return $this->redirect($request->getUri());
       }
       else
       {
@@ -693,7 +749,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeMarketplace()
   {
-    $this->redirectUnless(IceGateKeeper::open('mycq_marketplace'), '@mycq');
+    $this->redirectUnless(cqGateKeeper::open('mycq_marketplace'), '@mycq');
 
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
@@ -708,15 +764,9 @@ class mycqActions extends cqFrontendActions
       ->isForSale();
     $this->total = $q->count();
 
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($collector)
-      ->filterByIsSold(true)
-      ->groupByCollectibleId()
-      ->joinCollectible()
-      ->useCollectibleQuery()
-        ->joinWith('ShoppingOrderCollectible', Criteria::RIGHT_JOIN)
-      ->endUse();
-
+    $q = ShoppingOrderQuery::create()
+      ->isPaid()
+      ->filterBySellerId($collector->getId());
     $this->sold_total = $q->count();
 
     // Make the seller available to the template
@@ -728,7 +778,7 @@ class mycqActions extends cqFrontendActions
     // determine weather to show message for incomplete collectibles
     $this->incomplete_collections = false;
 
-    if (IceGateKeeper::open('mycq_incomplete', 'page'))
+    if (cqGateKeeper::open('mycq_incomplete', 'page'))
     {
       $q = CollectibleQuery::create()
         ->filterByCollector($collector)
@@ -755,11 +805,9 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
-    $q = ShoppingOrderCollectibleQuery::create()
-      ->useShoppingOrderQuery()
-        ->filterByCollectorId($this->getCollector()->getId())
-        ->endUse()
-      ->paid();
+    $q = ShoppingOrderQuery::create()
+      ->filterByCollectorId($this->getCollector()->getId())
+      ->isPaidOrConfirmed();
 
     $this->purchases_total = $q->count();
 
@@ -773,7 +821,7 @@ class mycqActions extends cqFrontendActions
     $this->package_transactions = PackageTransactionQuery::create()
       ->filterByCollector($this->getCollector())
       ->_if('dev' != sfConfig::get('sf_environment'))
-        ->paidFor()
+      ->paidFor()
       ->_endif()
       ->find();
 
@@ -787,7 +835,7 @@ class mycqActions extends cqFrontendActions
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
     $form = new CollectorEditForm($this->getCollector(), array(
-      'seller_settings_show' => true,
+      'seller_settings_show'     => true,
       'seller_settings_required' => false,
     ));
 
@@ -799,12 +847,13 @@ class mycqActions extends cqFrontendActions
       'seller_settings_store_name',
       'seller_settings_store_title',
       'seller_settings_refunds',
-      'seller_settings_shipping'
+      'seller_settings_shipping',
+      'seller_settings_store_header_image',
     ));
 
     if (sfRequest::POST == $request->getMethod())
     {
-      if ($form->bindAndSave($request->getParameter($form->getName())))
+      if ($form->bindAndSave($request->getParameter($form->getName()), $request->getFiles($form->getName())))
       {
         $this->getUser()->setFlash(
           'success', 'You have successfully updated your store settings.'
@@ -919,20 +968,20 @@ class mycqActions extends cqFrontendActions
         $shopping_order_collectible->save();
 
         $cqEmail = new cqEmail($this->getMailer());
-        $cqEmail->send('shoppingnew/buyer_order_shipped', array( //TO DO Change template name
-          'to' => $shopping_order->getBuyerEmail(),
+        $cqEmail->send('shopping/buyer_order_shipped', array(
+          'to'      => $shopping_order->getBuyerEmail(),
           'subject' => 'Your order from CollectorsQuest.com has shipped',
-          'params' => array(
-            'buyer_name' => $shopping_order->getShippingFullName(),
-            'oCollectible' => $shopping_order_collectible,
-            'oSeller' => $shopping_order_collectible->getCollector(),
+          'params'  => array(
+            'buyer_name'     => $shopping_order->getShippingFullName(),
+            'oCollectible'   => $shopping_order->getCollectible(),
+            'oSeller'        => $shopping_order->getSeller(),
             'oShoppingOrder' => $shopping_order
           )
         ));
 
         $this->getUser()->setFlash('success', sprintf(
           'An email was sent to %s (%s) with the tracking number information',
-           $shopping_order->getShippingFullName(), $shopping_order->getBuyerEmail()
+          $shopping_order->getShippingFullName(), $shopping_order->getBuyerEmail()
         ));
       }
 
@@ -951,7 +1000,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncomplete()
   {
-    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+    $this->forward404Unless(cqGateKeeper::open('mycq_incomplete', 'page'));
 
     $q = CollectorCollectionQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
@@ -980,7 +1029,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncompleteCollections()
   {
-    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+    $this->forward404Unless(cqGateKeeper::open('mycq_incomplete', 'page'));
 
     SmartMenu::setSelected('mycq_menu', 'collections');
 
@@ -1002,13 +1051,14 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncompleteCollectibles()
   {
-    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+    $this->forward404Unless(cqGateKeeper::open('mycq_incomplete', 'page'));
 
     SmartMenu::setSelected('mycq_menu', 'collections');
 
     /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
+      ->isPartOfCollection()
       ->isIncomplete();
 
     $this->total = $q->count();
@@ -1018,6 +1068,50 @@ class mycqActions extends cqFrontendActions
     $pager->init();
 
     $this->pager = $pager;
+
+    return sfView::SUCCESS;
+  }
+
+  /**
+   * Action CreatePassword
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   *
+   */
+  public function executeCreatePassword(sfWebRequest $request)
+  {
+    SmartMenu::setSelected('mycq_menu', 'profile');
+
+    $collector = $this->getCollector();
+
+    $this->redirectUnless($collector->getGraphId() && substr($collector->getUsername(), 0, 3) == 'rpx', 'mycq_profile_account_info');
+
+    $collector_form = new CollectorCreatePasswordForm($this->getCollector());
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $success = $collector_form->bindAndSave($request->getParameter($collector_form->getName()));
+
+      if ($success)
+      {
+        $this->getUser()->setFlash('success',
+          'You have successfully updated your profile.');
+
+        $this->redirect('mycq_profile_account_info');
+      }
+      else
+      {
+        $this->getUser()->setFlash(
+          'error', 'There was an error while updating your profile.
+                    Please see below.'
+        );
+      }
+    }
+
+    $this->collector = $collector;
+    $this->collector_form = $collector_form;
 
     return sfView::SUCCESS;
   }

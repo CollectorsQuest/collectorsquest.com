@@ -133,8 +133,8 @@ header {
   }
 
   .container {
-    width: 100%;
     float: left;
+    width: 100%;
     clear: both;
     padding-left: 0;
     .box-shadow(none);
@@ -222,4 +222,17 @@ header {
 .s-24-icon-pinterest, .s-24-icon-google {
   display: inline-block;
   margin-left: 3px;
+}
+
+
+#sidebar {
+  .nav-list li {
+    > a {
+      padding-left: 37px;
+    }
+
+    &.active a {
+      padding-left: 15px;
+    }
+  }
 }

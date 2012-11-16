@@ -187,7 +187,7 @@ class CollectorCollection extends BaseCollectorCollection
       {
         $is_public = false;
       }
-      else if (!$this->getMultimediaCount('image'))
+      else if (!$this->getPrimaryImage(Propel::CONNECTION_WRITE))
       {
         $is_public = false;
       }
@@ -200,6 +200,8 @@ class CollectorCollection extends BaseCollectorCollection
     // Update only if there is a change of the public status
     if ($is_public !== $this->getIsPublic())
     {
+      $this->setIsPublic($is_public);
+
       $sql = sprintf(
         'UPDATE %s SET %s = %d WHERE %s = %d',
         CollectorCollectionPeer::TABLE_NAME, CollectorCollectionPeer::IS_PUBLIC, $is_public,
@@ -238,6 +240,19 @@ class CollectorCollection extends BaseCollectorCollection
     $multimedia->makeCustomThumb(50, 50, '50x50', 'top', false);
     $multimedia->makeCustomThumb(190, 150, '190x150', 'top', $watermark);
     $multimedia->makeCustomThumb(190, 190, '190x190', 'top', $watermark);
+  }
+
+  /**
+   * @param PropelPDO $con
+   * @return type
+   */
+  public function preDelete(PropelPDO $con = null)
+  {
+    CommentQuery::create()
+      ->filterByModelObject($this)
+      ->delete($con);
+
+    return parent::preDelete($con);
   }
 
 }

@@ -1,13 +1,10 @@
 <?php
-  /**
-   * @var $comment  Comment
-   * @var $form     CommentDeleteConfirmationForm
-   */
+  /* @var $comment  Comment */
+  /* @var $form     CommentDeleteConfirmationForm */
 
   $link = link_to_model_object('Back to comment thread >>', $comment);
   cq_page_title('Remove comment on "'.$comment->getModelObject().'"', $link, array());
 ?>
-
 
 <div class="row-fluid">
   <h2> Are you sure you want to delete this comment? </h2>

@@ -2770,7 +2770,7 @@ wpPostmeta:
   wpPostmeta_41769:
     post_id: wpPost_22975
     meta_key: _edit_lock
-    meta_value: '1338475176:20'
+    meta_value: '1349975119:20'
   wpPostmeta_41770:
     post_id: wpPost_22979
     meta_key: _wp_attached_file
@@ -2854,11 +2854,11 @@ wpPostmeta:
   wpPostmeta_41792:
     post_id: wpPost_22988
     meta_key: _edit_lock
-    meta_value: '1342189253:20'
+    meta_value: '1348265139:20'
   wpPostmeta_41793:
     post_id: wpPost_22988
     meta_key: _homepage_showcase_items
-    meta_value: 'a:2:{s:18:"cq_collectible_ids";s:489:"2045, 4406, 6057, 7597, 10876, 12319, 18323, 8009, 18426, 21339, 21545, 22443, 22600, 25012, 25261, 29208, 52875, 6362, 9416, 9666, 13097, 13774, 18384, 18641, 21234, 23108, 25869, 28918, 30695, 44722, 56219, 56662, 70183, 71383, 71849, 5557, 8947, 10712, 11655, 13938, 17582, 18245, 19797, 20467, 21389, 21974, 24246, 25946, 56024, 56791, 56797, 62351, 70720, 70779, 241, 10754, 2145, 2563, 4590, 6937, 7142, 8003, 11711, 13272, 16503, 18652, 25018, 34582, 36826, 62294, 7951, 73431,22129";s:17:"cq_collection_ids";s:98:"1138,1547,1452,862,1271,910,156,1497,527,3155,967,1290,1335,562,702,1244,1223, 1779,3327,3302,3306";}'
+    meta_value: 'a:2:{s:18:"cq_collectible_ids";s:787:"2045, 4406, 6057, 7597, 10876, 12319, 18323, 8009, 18426, 21339, 21545, 22443, 22600, 25012, 25261, 29208, 52875, 6362, 9416, 9666, 13097, 13774, 18384, 18641, 21234, 23108, 25869, 28918, 44722, 56219, 56662, 70183, 71383, 71849, 5557, 8947, 10712, 11655, 13938, 17582, 18245, 19797, 20467, 21389, 21974, 24246, 25946, 56024, 56791, 56797, 62351, 70720, 70779, 241, 10754, 2145, 2563, 4590, 6937, 7142, 8003, 11711, 13272, 16503, 18652, 25018, 34582, 36826, 62294, 7951, 73431, 22129, 81240, 81241, 81238, 82313, 82383, 82369, 81556, 20633, 25947, 23284, 81039, 82962, 83002, 86332, 85741, 21218, 76082, 5542, 84912, 75738, 9060, 18693, 86400, 85938, 5304, 78154, 78665, 75058, 79277, 56680, 23710, 14479, 86332, 10536, 86190, 20918, 9305, 18589, 61640, 85727, 84953, 19467, 29158, 28916";s:17:"cq_collection_ids";s:127:"1138,3591,1547,1452,862,1271,910,156,1497,527,3155,967,1290,1335,562,702,1244,1223, 1779,3327,3302,3306,82313,82383,82369,81556";}'
   wpPostmeta_51738:
     post_id: wpPost_22988
     meta_key: _yoast_wpseo_linkdex
@@ -2934,7 +2934,7 @@ wpPostmeta:
   wpPostmeta_42770:
     post_id: wpPost_23222
     meta_key: _edit_lock
-    meta_value: '1345237434:20'
+    meta_value: '1349975416:20'
   wpPostmeta_42771:
     post_id: wpPost_20049
     meta_key: _edit_last
@@ -3038,7 +3038,7 @@ wpPostmeta:
   wpPostmeta_46239:
     post_id: wpPost_24571
     meta_key: _edit_lock
-    meta_value: '1338473132:20'
+    meta_value: '1349975070:20'
   wpPostmeta_46240:
     post_id: wpPost_24572
     meta_key: _wp_attached_file
@@ -3202,7 +3202,7 @@ wpPostmeta:
   wpPostmeta_56164:
     post_id: wpPost_29141
     meta_key: _edit_lock
-    meta_value: '1345046367:20'
+    meta_value: '1345842595:20'
   wpPostmeta_56165:
     post_id: wpPost_29142
     meta_key: _wp_attached_file
@@ -3223,6 +3223,118 @@ wpPostmeta:
     post_id: wpPost_29141
     meta_key: _thumbnail_id
     meta_value: '29201'
+  wpPostmeta_56366:
+    post_id: wpPost_29239
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/DSC00139.jpg
+  wpPostmeta_56367:
+    post_id: wpPost_29239
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:4:"1024";s:6:"height";s:3:"768";s:14:"hwstring_small";s:23:"height=''96'' width=''128''";s:4:"file";s:20:"2012/08/DSC00139.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"DSC00139-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:20:"DSC00139-300x225.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"225";}s:5:"large";a:3:{s:4:"file";s:20:"DSC00139-620x465.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"465";}s:8:"homepage";a:3:{s:4:"file";s:20:"DSC00139-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:20:"DSC00139-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:3:"2.8";s:6:"credit";s:0:"";s:6:"camera";s:8:"FDMAVICA";s:7:"caption";s:0:"";s:17:"created_timestamp";s:10:"1343730943";s:9:"copyright";s:0:"";s:12:"focal_length";s:3:"4.8";s:3:"iso";s:3:"153";s:13:"shutter_speed";s:17:"0.033333333333333";s:5:"title";s:0:"";}}'
+  wpPostmeta_56349:
+    post_id: wpPost_29229
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"326";s:6:"height";s:3:"398";s:14:"hwstring_small";s:22:"height=''96'' width=''78''";s:4:"file";s:31:"2012/08/index_brooks_photo1.gif";s:5:"sizes";a:4:{s:9:"thumbnail";a:3:{s:4:"file";s:31:"index_brooks_photo1-140x140.gif";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:31:"index_brooks_photo1-300x366.gif";s:5:"width";s:3:"300";s:6:"height";s:3:"366";}s:8:"homepage";a:3:{s:4:"file";s:31:"index_brooks_photo1-270x270.gif";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:31:"index_brooks_photo1-300x300.gif";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56348:
+    post_id: wpPost_29229
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/index_brooks_photo1.gif
+  wpPostmeta_56350:
+    post_id: wpPost_29230
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/BSA_0125.jpg
+  wpPostmeta_56351:
+    post_id: wpPost_29230
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"192";s:6:"height";s:3:"152";s:14:"hwstring_small";s:23:"height=''96'' width=''121''";s:4:"file";s:20:"2012/08/BSA_0125.jpg";s:5:"sizes";a:1:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"BSA_0125-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56352:
+    post_id: wpPost_29231
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/archive4.jpg
+  wpPostmeta_56353:
+    post_id: wpPost_29231
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"820";s:6:"height";s:3:"200";s:14:"hwstring_small";s:23:"height=''31'' width=''128''";s:4:"file";s:20:"2012/08/archive4.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"archive4-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:19:"archive4-300x73.jpg";s:5:"width";s:3:"300";s:6:"height";s:2:"73";}s:5:"large";a:3:{s:4:"file";s:20:"archive4-620x151.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"151";}s:8:"homepage";a:3:{s:4:"file";s:20:"archive4-270x200.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"200";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:20:"archive4-300x200.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"200";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56354:
+    post_id: wpPost_29232
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/archive1.jpg
+  wpPostmeta_56355:
+    post_id: wpPost_29232
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"820";s:6:"height";s:3:"200";s:14:"hwstring_small";s:23:"height=''31'' width=''128''";s:4:"file";s:20:"2012/08/archive1.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"archive1-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:19:"archive1-300x73.jpg";s:5:"width";s:3:"300";s:6:"height";s:2:"73";}s:5:"large";a:3:{s:4:"file";s:20:"archive1-620x151.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"151";}s:8:"homepage";a:3:{s:4:"file";s:20:"archive1-270x200.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"200";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:20:"archive1-300x200.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"200";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56356:
+    post_id: wpPost_29233
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/BSA_BR_2031.jpg
+  wpPostmeta_56357:
+    post_id: wpPost_29233
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"192";s:6:"height";s:3:"152";s:14:"hwstring_small";s:23:"height=''96'' width=''121''";s:4:"file";s:23:"2012/08/BSA_BR_2031.jpg";s:5:"sizes";a:1:{s:9:"thumbnail";a:3:{s:4:"file";s:23:"BSA_BR_2031-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56358:
+    post_id: wpPost_29234
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/BSA_BR_0237.jpg
+  wpPostmeta_56359:
+    post_id: wpPost_29234
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"192";s:6:"height";s:3:"147";s:14:"hwstring_small";s:23:"height=''96'' width=''125''";s:4:"file";s:23:"2012/08/BSA_BR_0237.jpg";s:5:"sizes";a:1:{s:9:"thumbnail";a:3:{s:4:"file";s:23:"BSA_BR_0237-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56360:
+    post_id: wpPost_29235
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/BSA_0750.jpg
+  wpPostmeta_56361:
+    post_id: wpPost_29235
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"150";s:6:"height";s:3:"192";s:14:"hwstring_small";s:22:"height=''96'' width=''75''";s:4:"file";s:20:"2012/08/BSA_0750.jpg";s:5:"sizes";a:1:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"BSA_0750-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56364:
+    post_id: wpPost_29238
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/DSC00034.jpg
+  wpPostmeta_56365:
+    post_id: wpPost_29238
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:4:"1024";s:6:"height";s:3:"768";s:14:"hwstring_small";s:23:"height=''96'' width=''128''";s:4:"file";s:20:"2012/08/DSC00034.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"DSC00034-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:20:"DSC00034-300x225.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"225";}s:5:"large";a:3:{s:4:"file";s:20:"DSC00034-620x465.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"465";}s:8:"homepage";a:3:{s:4:"file";s:20:"DSC00034-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:20:"DSC00034-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:3:"2.8";s:6:"credit";s:0:"";s:6:"camera";s:8:"FDMAVICA";s:7:"caption";s:0:"";s:17:"created_timestamp";s:10:"1343639793";s:9:"copyright";s:0:"";s:12:"focal_length";s:3:"4.8";s:3:"iso";s:3:"238";s:13:"shutter_speed";s:17:"0.033333333333333";s:5:"title";s:0:"";}}'
+  wpPostmeta_56368:
+    post_id: wpPost_29240
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/DSC09873.jpg
+  wpPostmeta_56369:
+    post_id: wpPost_29240
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:4:"1024";s:6:"height";s:3:"768";s:14:"hwstring_small";s:23:"height=''96'' width=''128''";s:4:"file";s:20:"2012/08/DSC09873.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"DSC09873-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:20:"DSC09873-300x225.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"225";}s:5:"large";a:3:{s:4:"file";s:20:"DSC09873-620x465.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"465";}s:8:"homepage";a:3:{s:4:"file";s:20:"DSC09873-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:20:"DSC09873-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:3:"2.8";s:6:"credit";s:0:"";s:6:"camera";s:8:"FDMAVICA";s:7:"caption";s:0:"";s:17:"created_timestamp";s:10:"1342703535";s:9:"copyright";s:0:"";s:12:"focal_length";s:3:"4.8";s:3:"iso";s:3:"125";s:13:"shutter_speed";s:17:"0.033333333333333";s:5:"title";s:0:"";}}'
+  wpPostmeta_56370:
+    post_id: wpPost_29241
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/DSC09806.jpg
+  wpPostmeta_56371:
+    post_id: wpPost_29241
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:4:"1024";s:6:"height";s:3:"768";s:14:"hwstring_small";s:23:"height=''96'' width=''128''";s:4:"file";s:20:"2012/08/DSC09806.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"DSC09806-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:20:"DSC09806-300x225.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"225";}s:5:"large";a:3:{s:4:"file";s:20:"DSC09806-620x465.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"465";}s:8:"homepage";a:3:{s:4:"file";s:20:"DSC09806-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:20:"DSC09806-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:3:"2.8";s:6:"credit";s:0:"";s:6:"camera";s:8:"FDMAVICA";s:7:"caption";s:0:"";s:17:"created_timestamp";s:10:"1340101021";s:9:"copyright";s:0:"";s:12:"focal_length";s:3:"4.8";s:3:"iso";s:3:"145";s:13:"shutter_speed";s:17:"0.033333333333333";s:5:"title";s:0:"";}}'
+  wpPostmeta_56372:
+    post_id: wpPost_29242
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/DSC09622.jpg
+  wpPostmeta_56373:
+    post_id: wpPost_29242
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:4:"1024";s:6:"height";s:3:"768";s:14:"hwstring_small";s:23:"height=''96'' width=''128''";s:4:"file";s:20:"2012/08/DSC09622.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"DSC09622-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:20:"DSC09622-300x225.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"225";}s:5:"large";a:3:{s:4:"file";s:20:"DSC09622-620x465.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"465";}s:8:"homepage";a:3:{s:4:"file";s:20:"DSC09622-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:20:"DSC09622-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:3:"2.8";s:6:"credit";s:0:"";s:6:"camera";s:8:"FDMAVICA";s:7:"caption";s:0:"";s:17:"created_timestamp";s:10:"1336670220";s:9:"copyright";s:0:"";s:12:"focal_length";s:3:"4.8";s:3:"iso";s:2:"80";s:13:"shutter_speed";s:17:"0.022222222222222";s:5:"title";s:0:"";}}'
+  wpPostmeta_56378:
+    post_id: wpPost_29245
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/sm_bio2.jpg
+  wpPostmeta_56376:
+    post_id: wpPost_29244
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/index_brooks_photo.gif
+  wpPostmeta_56377:
+    post_id: wpPost_29244
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"326";s:6:"height";s:3:"398";s:14:"hwstring_small";s:22:"height=''96'' width=''78''";s:4:"file";s:30:"2012/08/index_brooks_photo.gif";s:5:"sizes";a:4:{s:9:"thumbnail";a:3:{s:4:"file";s:30:"index_brooks_photo-140x140.gif";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:30:"index_brooks_photo-300x366.gif";s:5:"width";s:3:"300";s:6:"height";s:3:"366";}s:8:"homepage";a:3:{s:4:"file";s:30:"index_brooks_photo-270x270.gif";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:30:"index_brooks_photo-300x300.gif";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56379:
+    post_id: wpPost_29245
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:5:{s:5:"width";s:3:"140";s:6:"height";s:3:"140";s:14:"hwstring_small";s:22:"height=''96'' width=''96''";s:4:"file";s:19:"2012/08/sm_bio2.jpg";s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
   wpPostmeta_56523:
     post_id: wpPost_29308
     meta_key: _wp_attachment_metadata
@@ -3231,3 +3343,171 @@ wpPostmeta:
     post_id: wpPost_23222
     meta_key: _thumbnail_id
     meta_value: '29308'
+  wpPostmeta_56751:
+    post_id: wpPost_29428
+    meta_key: _yoast_wpseo_linkdex
+    meta_value: '0'
+  wpPostmeta_56752:
+    post_id: wpPost_29429
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/cluster2.jpg
+  wpPostmeta_56753:
+    post_id: wpPost_29429
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:4:"1000";s:6:"height";s:3:"667";s:14:"hwstring_small";s:23:"height=''85'' width=''128''";s:4:"file";s:20:"2012/08/cluster2.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:20:"cluster2-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:20:"cluster2-300x200.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"200";}s:5:"large";a:3:{s:4:"file";s:20:"cluster2-620x413.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"413";}s:8:"homepage";a:3:{s:4:"file";s:20:"cluster2-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:20:"cluster2-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56754:
+    post_id: wpPost_29430
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/cluster21.jpg
+  wpPostmeta_56755:
+    post_id: wpPost_29430
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:4:"1000";s:6:"height";s:3:"667";s:14:"hwstring_small";s:23:"height=''85'' width=''128''";s:4:"file";s:21:"2012/08/cluster21.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:21:"cluster21-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:21:"cluster21-300x200.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"200";}s:5:"large";a:3:{s:4:"file";s:21:"cluster21-620x413.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"413";}s:8:"homepage";a:3:{s:4:"file";s:21:"cluster21-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:21:"cluster21-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56759:
+    post_id: wpPost_29431
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/Buttons_Home1.jpg
+  wpPostmeta_56757:
+    post_id: wpPost_29428
+    meta_key: _edit_last
+    meta_value: '20'
+  wpPostmeta_56758:
+    post_id: wpPost_29428
+    meta_key: _edit_lock
+    meta_value: '1349881191:20'
+  wpPostmeta_56760:
+    post_id: wpPost_29431
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"666";s:6:"height";s:3:"397";s:14:"hwstring_small";s:23:"height=''76'' width=''128''";s:4:"file";s:25:"2012/08/Buttons_Home1.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:25:"Buttons_Home1-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:25:"Buttons_Home1-300x178.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"178";}s:5:"large";a:3:{s:4:"file";s:25:"Buttons_Home1-620x369.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"369";}s:8:"homepage";a:3:{s:4:"file";s:25:"Buttons_Home1-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:25:"Buttons_Home1-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56762:
+    post_id: wpPost_29432
+    meta_key: _wp_attached_file
+    meta_value: 2012/08/Buttons_Home11.jpg
+  wpPostmeta_56763:
+    post_id: wpPost_29432
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"666";s:6:"height";s:3:"397";s:14:"hwstring_small";s:23:"height=''76'' width=''128''";s:4:"file";s:26:"2012/08/Buttons_Home11.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:26:"Buttons_Home11-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:26:"Buttons_Home11-300x178.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"178";}s:5:"large";a:3:{s:4:"file";s:26:"Buttons_Home11-620x369.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"369";}s:8:"homepage";a:3:{s:4:"file";s:26:"Buttons_Home11-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:26:"Buttons_Home11-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_56764:
+    post_id: wpPost_29428
+    meta_key: _thumbnail_id
+    meta_value: '29432'
+  wpPostmeta_59411:
+    post_id: wpPost_22975
+    meta_key: _yoast_wpseo_linkdex
+    meta_value: '0'
+  wpPostmeta_59410:
+    post_id: wpPost_24571
+    meta_key: _yoast_wpseo_linkdex
+    meta_value: '0'
+  wpPostmeta_59409:
+    post_id: wpPost_22971
+    meta_key: _edit_last
+    meta_value: '1'
+  wpPostmeta_59408:
+    post_id: wpPost_22971
+    meta_key: _yoast_wpseo_linkdex
+    meta_value: '0'
+  wpPostmeta_59407:
+    post_id: wpPost_22971
+    meta_key: _edit_lock
+    meta_value: '1347567364:1'
+  wpPostmeta_60654:
+    post_id: wpPost_30886
+    meta_key: _edit_last
+    meta_value: '20'
+  wpPostmeta_60653:
+    post_id: wpPost_30886
+    meta_key: _yoast_wpseo_linkdex
+    meta_value: '0'
+  wpPostmeta_60655:
+    post_id: wpPost_30886
+    meta_key: _edit_lock
+    meta_value: '1349975338:20'
+  wpPostmeta_60656:
+    post_id: wpPost_30887
+    meta_key: _wp_attached_file
+    meta_value: 2012/09/2012-0777_AR_520x311.jpg
+  wpPostmeta_60657:
+    post_id: wpPost_30887
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"520";s:6:"height";s:3:"311";s:14:"hwstring_small";s:23:"height=''76'' width=''128''";s:4:"file";s:32:"2012/09/2012-0777_AR_520x311.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:3:{s:4:"file";s:32:"2012-0777_AR_520x311-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:32:"2012-0777_AR_520x311-300x179.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"179";}s:8:"homepage";a:3:{s:4:"file";s:32:"2012-0777_AR_520x311-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:32:"2012-0777_AR_520x311-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_60658:
+    post_id: wpPost_30886
+    meta_key: _thumbnail_id
+    meta_value: '30887'
+  wpPostmeta_61149:
+    post_id: wpPost_31125
+    meta_key: _wp_attached_file
+    meta_value: 2012/09/DSC000072.jpg
+  wpPostmeta_61150:
+    post_id: wpPost_31125
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"658";s:6:"height";s:3:"929";s:14:"hwstring_small";s:22:"height=''96'' width=''67''";s:4:"file";s:21:"2012/09/DSC000072.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:21:"DSC000072-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:21:"DSC000072-300x423.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"423";}s:5:"large";a:3:{s:4:"file";s:21:"DSC000072-620x875.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"875";}s:8:"homepage";a:3:{s:4:"file";s:21:"DSC000072-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:21:"DSC000072-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:3:"2.8";s:6:"credit";s:0:"";s:6:"camera";s:8:"FDMAVICA";s:7:"caption";s:0:"";s:17:"created_timestamp";s:10:"1346158591";s:9:"copyright";s:0:"";s:12:"focal_length";s:3:"4.8";s:3:"iso";s:3:"106";s:13:"shutter_speed";s:17:"0.033333333333333";s:5:"title";s:0:"";}}'
+  wpPostmeta_61151:
+    post_id: wpPost_31126
+    meta_key: _wp_attached_file
+    meta_value: 2012/09/DSC098701.jpg
+  wpPostmeta_61152:
+    post_id: wpPost_31126
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"891";s:6:"height";s:3:"668";s:14:"hwstring_small";s:23:"height=''96'' width=''128''";s:4:"file";s:21:"2012/09/DSC098701.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:3:{s:4:"file";s:21:"DSC098701-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:21:"DSC098701-300x224.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"224";}s:5:"large";a:3:{s:4:"file";s:21:"DSC098701-620x464.jpg";s:5:"width";s:3:"620";s:6:"height";s:3:"464";}s:8:"homepage";a:3:{s:4:"file";s:21:"DSC098701-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:21:"DSC098701-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:3:"2.8";s:6:"credit";s:0:"";s:6:"camera";s:8:"FDMAVICA";s:7:"caption";s:0:"";s:17:"created_timestamp";s:10:"1340186716";s:9:"copyright";s:0:"";s:12:"focal_length";s:3:"4.8";s:3:"iso";s:3:"283";s:13:"shutter_speed";s:17:"0.033333333333333";s:5:"title";s:0:"";}}'
+  wpPostmeta_61867:
+    post_id: wpPost_14629
+    meta_key: _yoast_wpseo_linkdex
+    meta_value: '0'
+  wpPostmeta_62220:
+    post_id: wpPost_31676
+    meta_key: _yoast_wpseo_linkdex
+    meta_value: '0'
+  wpPostmeta_62221:
+    post_id: wpPost_31676
+    meta_key: _edit_last
+    meta_value: '20'
+  wpPostmeta_62222:
+    post_id: wpPost_31676
+    meta_key: _edit_lock
+    meta_value: '1349974962:20'
+  wpPostmeta_62235:
+    post_id: wpPost_31681
+    meta_key: _wp_attached_file
+    meta_value: 2012/10/TheMen.jpg
+  wpPostmeta_62236:
+    post_id: wpPost_31681
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"519";s:6:"height";s:3:"309";s:14:"hwstring_small";s:23:"height=''76'' width=''128''";s:4:"file";s:18:"2012/10/TheMen.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:3:{s:4:"file";s:18:"TheMen-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:18:"TheMen-300x178.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"178";}s:8:"homepage";a:3:{s:4:"file";s:18:"TheMen-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:18:"TheMen-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_62237:
+    post_id: wpPost_31676
+    meta_key: _thumbnail_id
+    meta_value: '31681'
+  wpPostmeta_63185:
+    post_id: wpPost_31987
+    meta_key: _yoast_wpseo_linkdex
+    meta_value: '0'
+  wpPostmeta_63186:
+    post_id: wpPost_31987
+    meta_key: _edit_last
+    meta_value: '20'
+  wpPostmeta_63187:
+    post_id: wpPost_31987
+    meta_key: _edit_lock
+    meta_value: '1349988038:1'
+  wpPostmeta_63188:
+    post_id: wpPost_31989
+    meta_key: _wp_attached_file
+    meta_value: 2012/10/Halloween_header1.jpg
+  wpPostmeta_63189:
+    post_id: wpPost_31989
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"620";s:6:"height";s:3:"180";s:14:"hwstring_small";s:23:"height=''37'' width=''128''";s:4:"file";s:29:"2012/10/Halloween_header1.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:3:{s:4:"file";s:29:"Halloween_header1-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:28:"Halloween_header1-300x87.jpg";s:5:"width";s:3:"300";s:6:"height";s:2:"87";}s:8:"homepage";a:3:{s:4:"file";s:29:"Halloween_header1-270x180.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"180";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:29:"Halloween_header1-300x180.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"180";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_63293:
+    post_id: wpPost_32045
+    meta_key: _wp_attached_file
+    meta_value: 2012/10/thumbnail.jpg
+  wpPostmeta_63294:
+    post_id: wpPost_32045
+    meta_key: _wp_attachment_metadata
+    meta_value: 'a:6:{s:5:"width";s:3:"520";s:6:"height";s:3:"311";s:14:"hwstring_small";s:23:"height=''76'' width=''128''";s:4:"file";s:21:"2012/10/thumbnail.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:3:{s:4:"file";s:21:"thumbnail-140x140.jpg";s:5:"width";s:3:"140";s:6:"height";s:3:"140";}s:6:"medium";a:3:{s:4:"file";s:21:"thumbnail-300x179.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"179";}s:8:"homepage";a:3:{s:4:"file";s:21:"thumbnail-270x270.jpg";s:5:"width";s:3:"270";s:6:"height";s:3:"270";}s:16:"blog-homepage-p1";a:3:{s:4:"file";s:21:"thumbnail-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'
+  wpPostmeta_63295:
+    post_id: wpPost_31987
+    meta_key: _thumbnail_id
+    meta_value: '32045'

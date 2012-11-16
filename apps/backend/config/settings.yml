@@ -1,30 +1,24 @@
-prod:
-  .settings:
-    no_script_name:         true
-
 dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              true
     logging_enabled:        true
-    cache:                  false
-    no_script_name:         false
     etag:                   false
 
 test:
   .settings:
     error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
-    cache:                  false
     web_debug:              false
-    no_script_name:         false
     etag:                   false
 
 all:
   .settings:
     default_timezone:       America/New_York
     charset:                utf-8
+    no_script_name:         false
+    cache:                  false
 
-    enabled_modules:        [sfGuardAuth, sfGuardUser, sfGuardPermission, sfGuardGroup, iceBackendModule, iceMetaTagBackendModule]
+    enabled_modules:        [sfGuardAuth, sfGuardUser, sfGuardPermission, sfGuardGroup, iceBackendModule, iceMetaTagBackendModule, cqEmailsBackendModule, iceSpamControlBackendModule]
     standard_helpers:       [Partial, Cache, I18N, Text, iceAssets, iceJavascript, iceBackend, cqAssets, cqImages, cqJavascripts]
     sf_compat_10:           off
 

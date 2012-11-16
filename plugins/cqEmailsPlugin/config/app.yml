@@ -5,7 +5,11 @@ all:
       Tag: ~ # only load the helper, do not make functions from it available in twig
       Url: [link_to, url_for]
       Asset: [image_path, image_tag]
-      cqLinks: [link_to_collector, link_to_collection, link_to_collectible]
+      cqLinks:
+        - link_to_collector
+        - link_to_collection
+        - link_to_collectible
+        - link_to_model_object
       cqImages: [image_tag_multimedia]
 
     defaults:
@@ -17,6 +21,8 @@ all:
         subject: "Please confirm your email at CollectorsQuest.com"
       welcome_to_cq:
         subject: "Welcome to Collectors Quest!"
+      social_password:
+        subject: "Please create your password for Collectors Quest!"
       password_reminder:
         subject: "CollectorsQuest.com Password Reset"
         required_params: [collector, password]
@@ -32,6 +38,8 @@ all:
         subject: "Please confirm your email at CollectorsQuest.com"
       welcome_to_cq:
         subject: "Thanks for becoming a seller on Collectors Quest!"
+      social_password:
+        subject: "Pleas create your password for Collectors Quest!"
       package_confirmation:
         subject: "Thanks for purchasing credits on Collectors Quest!"
         required_params: [collector, package_transaction]
@@ -53,7 +61,7 @@ all:
         required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
       new_comment_on_owned_item_notification:
         subject: "Someone posted a new comment about your {{ oModelObject }} on Collectors Quest!"
-        required_params: [ oModelObject, oNewComment, sThreadUrl, sCommentRemoveUrl ]
+        required_params: [ oModelObject, oNewComment, sThreadUrl, sCommentRemoveUrl, sCommentReportSpamUrl ]
 
     Shopping:
       buyer_order_confirmation:
@@ -62,8 +70,22 @@ all:
       seller_order_notification:
         subject: "Congratulations! You’ve sold on Collectors Quest!"
         required_params: [ oSeller, oShoppingOrder, oCollectible ]
+      buyer_order_failed:
+        subject: "Your PayPal transaction could not be processed on Collectors Quest"
+        required_params: [ oShoppingOrder, oCollectible]
+      buyer_order_refunded:
+        subject: "Your PayPal payment has been refunded on Collectors Quest"
+        required_params: [ oSeller, oShoppingOrder, oCollectible]
 
     internal:
+      spam_notification_comment:
+        subject: "Comment spam reported by {{ oReporterCollector }} on {{ oModelObject }}"
+        to: info@collectorsquest.com
+        required_params: [ oReporterCollector, oModelObject, oComment ]
+      spam_notification_pm:
+        subject: "Private message spam reported by {{ oReporterCollector }}"
+        to: info@collectorsquest.com
+        required_params: [ oReporterCollector, rqMessages ]
       feedback:
         subject: "[Feedback]"
         required_params: [feedback, browser]

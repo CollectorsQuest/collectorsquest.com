@@ -30,6 +30,12 @@ seo:
         Check out these collectors items from the American Pickers collection.
         CollectorsQuest.com gives you an inside look at the American Pickers collectibles.
 
+    franksPicks:
+      title: Frank's Picks | TV Show Collectibles | Collectors Quest
+      description: |
+        Check out these collectors items from the Frank's Picks collection.
+        CollectorsQuest.com gives you an inside look at the Frank's Picks collectibles.
+
     americanRestoration:
       title: American Restoration | TV Show Collectibles | Collectors Quest
       description: |
@@ -42,6 +48,30 @@ seo:
         Check out these collectors items from the Picked Off collection.
         CollectorsQuest.com gives you an inside look at the Picked Off collectibles.
 
+    mwba:
+      title: The Men Who Built America | Collectors Quest
+      description: |
+        Vanderbilt, Roosevelt & Rockefeller : The Men Who Built America
+
+    mwbaPetroliana:
+      title: John D. Rockefeller | Oil, Gas & Petroliana | Collectors Quest
+      description: |
+        Oil cans, gas pumps, station signs and other petroliana have all found their way
+        into the hands of dedicated collectors, and all come from the outstanding legacy of
+        John D. Rockefeller.
+
+    mwbaRooseveltiana:
+      title: Theodore Roosevelt | Politics & Rooseveltiana | Collectors Quest
+      description: |
+        Rooseveltiana collectors have collected their share of political buttons,
+        but one can also find his face and figure on clocks and watches, knives, banks,
+        plates, and many other collectibles.
+
+    mwbaRailroadiana:
+      title: Cornelius Vanderbilt | Trains & Railroadiana | Collectors Quest
+      description: |
+        Railroadiana aficionados owe Vanderbilt a great debt as they collect and display
+        railroad signs, lanterns, scale models, and even conductors’ caps that celebrate his legacy.
 
   categories:
     index:
@@ -52,13 +82,12 @@ seo:
 
     category:
       model: true
-      title:
-        - %Name% | Collectors Quest
-        - %Name% Collections | Collectors Quest
-        - %Name% | Antique Collectible & Vintage | Collectors Quest
-      description: |
-        Browse collectible, vintage and antique items on Collectors Quest,
-        like these %Name% items, posted by trusted sellers and passionate collectors!
+      title: %SeoCollectionsTitle%
+      description:
+        - |
+          Browse collectible, vintage and antique items on Collectors Quest,
+          like these %Name% items, posted by trusted sellers and passionate collectors!
+        - %SeoCollectionsDescription%
 
   collections:
     title: Unique Antique, Collectible & Vintage Items | Collectors Quest
@@ -134,11 +163,14 @@ seo:
       model: true
       title:
         - %Name% | Collectors Quest
-        - %Name% - Marketplace | Collectors Quest
-        - Buy %Name% - Marketplace | Collectors Quest
+        - Buy %Name% on Collectors Quest
+        - %SeoMarketTitle%
       description:
         - Buy, sell & trade on Collectors Quest! Find %Name% posted by passionate collectors and trusted sellers.
-        - Buy and sell antique, collectible & vintage items on Collectors Quest! Find %Name% posted by passionate collectors and trusted sellers.
+        - |
+          Buy and sell antique, collectible & vintage items on Collectors Quest!
+          Find %Name% posted by passionate collectors and trusted sellers.
+        - %SeoMarketDescription%
 
     categories:
       title: Buy Antique Collectible & Vintage Marketplace Items | Collectors Quest
@@ -146,10 +178,15 @@ seo:
         Find the collectible, vintage or antique item you’ve been looking for from trusted
         sellers in the Collectors Quest marketplace.
 
-  collectibles:
-    collectorList:
+  seller:
+    store:
       model: true
-      title: Collectibles by %DisplayName% | Collectors Quest
+      title:
+        - %StoreTitle%
+        - %StoreTitle% | Collectors Quest
+        - %StoreTitle% by %DisplayName% | Collectors Quest
+      description:
+        - %StoreDescription%
 
   misc:
     guideToCollecting:

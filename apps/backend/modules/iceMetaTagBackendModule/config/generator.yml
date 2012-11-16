@@ -19,8 +19,10 @@ generator:
       filter:
         display: [url]
       form:
-        display: [url, parameters, en_US]
+        display: [url, parameters, en]
       edit:
         title: Edit Meta Tags
+        display: [url, parameters, en]
       new:
         title: New Meta Tags
+        display: [url, parameters, en]

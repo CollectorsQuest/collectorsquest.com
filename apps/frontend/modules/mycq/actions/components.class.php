@@ -31,7 +31,7 @@ class mycqComponents extends cqFrontendComponents
 
   public function executeCollections()
   {
-    $this->collector = $this->getVar('collector') ? : $this->getUser()->getCollector();
+    $this->collector = $this->getVar('collector') ?: $this->getUser()->getCollector();
     $sort = $this->getRequestParameter('s', 'most-recent');
 
     $q = CollectorCollectionQuery::create()
@@ -88,28 +88,25 @@ class mycqComponents extends cqFrontendComponents
     }
 
     $q = CollectionCollectibleQuery::create()
-        ->filterByCollection($collection);
+       ->filterByCollection($collection);
 
     switch ($this->getRequestParameter('s', 'position'))
     {
       case 'most-popular':
-        $q
-            ->joinCollection()
-            ->useCollectionQuery()
-            ->orderByNumViews(Criteria::DESC)
-            ->endUse();
+        $q->joinCollection()
+          ->useCollectionQuery()
+          ->orderByNumViews(Criteria::DESC)
+          ->endUse();
         break;
 
       case 'most-recent':
-        $q
-            ->orderByCreatedAt(Criteria::DESC);
+        $q->orderByCreatedAt(Criteria::DESC);
         break;
 
       case 'position':
       default:
-        $q
-            ->orderByPosition(Criteria::ASC)
-            ->orderByCreatedAt(Criteria::DESC);
+        $q->orderByPosition(Criteria::ASC)
+          ->orderByCreatedAt(Criteria::DESC);
         break;
     }
 
@@ -174,9 +171,9 @@ class mycqComponents extends cqFrontendComponents
   {
     $collector = $this->getCollector();
 
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($collector)
-      ->filterByIsSold(true)
+    $q = ShoppingOrderQuery::create()
+      ->isPaid()
+      ->filterBySellerId($collector->getId())
       ->orderByCreatedAt(Criteria::DESC);
 
     if ($this->getRequestParameter('q'))
@@ -198,11 +195,9 @@ class mycqComponents extends cqFrontendComponents
   {
     $collector = $this->getCollector();
 
-    $q = ShoppingOrderCollectibleQuery::create()
-      ->paid()
-      ->useShoppingOrderQuery()
-        ->filterByCollectorId($collector->getId())
-      ->endUse()
+    $q = ShoppingOrderQuery::create()
+      ->isPaidOrConfirmed()
+      ->filterByCollectorId($collector->getId())
       ->orderByCreatedAt(Criteria::DESC);
 
     if ($this->getRequestParameter('q'))

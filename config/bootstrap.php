@@ -3,29 +3,17 @@
 // Set the correct timezone and do not rely on php.ini settings
 date_default_timezone_set('America/New_York');
 
-if (
-  $_SERVER['SERVER_NAME'] == '92.247.236.83' ||
-  $_SERVER['SERVER_NAME'] == '221.58.193.147' ||
-  $_SERVER['SERVER_NAME'] == 'zecho.dyndns-home.com'
-)
-{
-  $app = 'frontend';
-  $env = 'dev';
-  $dbg = true;
-}
-else if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.com')
+$app = isset($_SERVER['SF_APP']) ? (string) $_SERVER['SF_APP'] : 'frontend';
+$env = isset($_SERVER['SF_ENV']) ? (string) $_SERVER['SF_ENV'] : 'prod';
+$dbg = isset($_SERVER['SF_DEBUG']) ? (boolean) $_SERVER['SF_DEBUG'] : $env === 'dev';
+
+/**
+ * Special case for when we want to access the backend application via web/backend.php
+ */
+if (trim($_SERVER['SCRIPT_NAME'], '/') === 'backend.php')
 {
   $app = 'backend';
-  $env = 'prod';
-  $dbg = false;
 }
-else
-{
-  $app = isset($_SERVER['SF_APP']) ? (string) $_SERVER['SF_APP'] : 'frontend';
-  $env = isset($_SERVER['SF_ENV']) ? (string) $_SERVER['SF_ENV'] : 'prod';
-  $dbg = isset($_SERVER['SF_DEBUG']) ? (boolean) $_SERVER['SF_DEBUG'] : $env === 'dev';
-}
-
 if (isset($_COOKIE['sf_debug']) && $_COOKIE['sf_debug'] == '1')
 {
   $env = $env .'_debug';

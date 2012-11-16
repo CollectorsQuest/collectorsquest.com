@@ -13,7 +13,7 @@
 <table class="shipping-rates">
   <thead>
   <tr class="shipping-dest">
-    <th colspan="2">
+    <th colspan="3">
       <strong>Shipping from:</strong> <span class="darkblue">
           <?= $collector->getProfile()->getCountryName() ?: '-'; ?>
         </span>
@@ -22,6 +22,7 @@
   <tr class="dotted-line-brown">
     <th>SHIP TO</th>
     <th>COST</th>
+    <th>WITH ANOTHER ITEM</th>
   </tr>
   </thead>
   <tbody>
@@ -40,39 +41,45 @@
             $<?= $shipping_reference->getSimpleShippingAmount(); ?>
             <?php endif; ?>
           </td>
+          <td>
+            <?php if ($shipping_reference->isSimpleFreeShipping()): ?>
+            Free shipping
+            <?php else: ?>
+            $<?= $shipping_reference->getSimpleShippingAmount('float', $combined_shipping = true); ?>
+            <?php endif; ?>
+          </td>
         </tr>
-          <?php $shipping_will_ship_text .= ob_get_clean(); ?>
+        <?php $shipping_will_ship_text .= ob_get_clean(); ?>
 
-          <?php else: // shipping_type = no shipping
-          $shipping_no_shipping_countries[] = $shipping_reference->getCountryName();
+      <?php else: // shipping_type = no shipping
+        $shipping_no_shipping_countries[] = $shipping_reference->getCountryName();
+      endif;
+    endforeach; // foreach shipping reference ?>
 
-        endif;
-      endforeach; // foreach shipping reference ?>
+    <?= $shipping_will_ship_text; // first output which countries we ship to ?>
 
-      <?= $shipping_will_ship_text; // first output which countries we ship to ?>
-
-      <?php $international_shipping = $collectible->getShippingReferenceForCountryCode('ZZ'); ?>
-      <?php if ($international_shipping && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $international_shipping->getShippingType()): ?>
-        <tr>
-          <td>International Shipping</td>
-          <td>This item cannot be shipped internationally</td>
-        </tr>
-      <?php elseif ($shipping_no_shipping_countries): ?>
-        <tr>
-          <td>This item cannot be shipped to the following countries</td>
-          <td><?= implode($shipping_no_shipping_countries, ', '); ?></td>
-        </tr>
-      <?php endif; ?>
-    <?php else: ?>
+    <?php $international_shipping = $collectible->getShippingReferenceForCountryCode('ZZ'); ?>
+    <?php if ($international_shipping && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $international_shipping->getShippingType()): ?>
       <tr>
-        <td>United States</td>
-        <td>Free shipping</td>
+        <td>International Shipping</td>
+        <td colspan="2">This item cannot be shipped internationally</td>
       </tr>
+    <?php elseif ($shipping_no_shipping_countries): ?>
       <tr>
-        <td>Everywhere Else</td>
-        <td>Free shipping</td>
+        <td>This item cannot be shipped to the following countries</td>
+        <td colspan="2"><?= implode($shipping_no_shipping_countries, ', '); ?></td>
       </tr>
     <?php endif; ?>
+  <?php else: // if no shipping references are defined assume free shipping ?>
+    <tr>
+      <td>United States</td>
+      <td>Free shipping</td>
+    </tr>
+    <tr>
+      <td>Everywhere Else</td>
+      <td>Free shipping</td>
+    </tr>
+  <?php endif; ?>
   </tbody>
 </table>
 
@@ -106,7 +113,7 @@
     </p>
     Quantity sold: 1
   </div>
-<?php elseif ($collectible_for_sale->isForSale() && IceGateKeeper::open('shopping_cart')): ?>
+<?php elseif ($collectible_for_sale->isForSale() && cqGateKeeper::open('shopping_cart')): ?>
   <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
     <div id="price-container">
       <p class="price">

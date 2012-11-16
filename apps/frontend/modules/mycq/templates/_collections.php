@@ -5,7 +5,7 @@
 ?>
 
 <?php slot('mycq_create_collection'); ?>
-<a href="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
+<a href="<?= url_for('@ajax_mycq?section=collection&page=create'); ?>"
    id="collection-create-html" class="span5 add-new-zone open-dialog"
    title="Create a new collection by clicking here" onclick="return false;">
       <span id="collection-create-icon" class="btn-upload-collectible spacer-top-40">
@@ -19,6 +19,7 @@
 <?php end_slot(); ?>
 
 <?php foreach ($pager->getResults() as $i => $collection): ?>
+  <?php /** @var $collection CollectorCollection */ ?>
   <div class="span5 collectible_grid_view_square link"
        data-collection-id="<?= $collection->getId(); ?>">
     <p>
@@ -64,6 +65,10 @@
         ADD ITEM
       </span>
     </div>
+
+    <?php if ($collection->getIsPublic() === false): ?>
+      <span class="not-public">NOT PUBLIC</span>
+    <?php endif; ?>
   </div>
 
 <?php
@@ -81,7 +86,7 @@
     <i class="icon-warning-sign"></i>&nbsp;
     None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong>.
     Do you want to <?= link_to('see all collections', '@mycq_collections'); ?> or
-    <?= link_to('create a new collection', '@ajax_mycq?section=collection&page=createStep1', array('class' => 'open-dialog', 'onclick' => 'return false;')); ?>?
+    <?= link_to('create a new collection', '@ajax_mycq?section=collectible&page=upload&model=collection', array('class' => 'open-dialog', 'onclick' => 'return false;')); ?>?
   </div>
   <?php else: ?>
     <?php include_slot('mycq_create_collection'); ?>

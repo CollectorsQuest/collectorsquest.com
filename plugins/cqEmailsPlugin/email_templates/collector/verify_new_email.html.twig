@@ -6,7 +6,7 @@
   </p>
   <p>
     Your email has been changed to <strong>{{ collector_email.email }}</strong> and needs to be verified.
-    Please click or copy and paste the link below:<br><br>
+    Please click or copy & paste the link below into <strong>your internet browser</strong>:<br><br>
 
     {{ url_for('collector_verify_email', { hash: collector_email.hash }, { absolute: true}) }}.
   </p>

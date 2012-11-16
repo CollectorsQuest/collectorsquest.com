@@ -25,6 +25,8 @@
       </ul>
     </div>
     <div id="social-sharing" class="pull-right share">
+      <?php // removing the addthis_button_email causes a JS error - no toolbar displayed ?>
+      <a class="addthis_button_email" style="display: none;"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
@@ -54,7 +56,7 @@
 <?php if ($about_me || $about_collections || $about_interests || $store_welcome): ?>
 
   <?php cq_section_title('More About '. $collector->getDisplayName()); ?>
-  <div class="personal-info-sidebar">
+  <div class="personal-info-sidebar" itemprop="description">
     <?php if ($about_me): ?>
       <p><strong>About me:</strong> <?= nl2br($about_me); ?></p>
     <?php endif; ?>
@@ -74,21 +76,17 @@
 <?php if ($store_shipping || $store_refunds || $store_return_policy ||
           $store_additional_policies): ?>
 
-  <?php cq_section_title('Store Policies'); ?>
-  <div class="personal-info-sidebar">
-    <?php if ($store_shipping): ?>
-      <p><strong>Shipping Policy:</strong> <?= nl2br($store_shipping); ?></p>
-    <?php endif; ?>
-    <?php if ($store_refunds): ?>
-      <p><strong>Refunds and Exchanges:</strong> <?= nl2br($store_refunds); ?></p>
-    <?php endif; ?>
-    <?php if ($store_return_policy): ?>
-      <p><strong>Return Policy:</strong> <?= nl2br($store_return_policy); ?></p>
-    <?php endif; ?>
-    <?php if ($store_additional_policies): ?>
-      <p><strong>Additional Policies and FAQ:</strong> <?= nl2br($store_additional_policies); ?></p>
-    <?php endif; ?>
-  </div>
+  <?php
+    include_partial(
+      'collector/store_policy',
+      array(
+        'store_shipping' => $store_shipping, 'store_refunds' => $store_refunds,
+        'store_return_policy' => $store_return_policy,
+        'store_additional_policies' => $store_additional_policies
+      )
+    )
+  ?>
+
 <?php endif; ?>
 
 <?php

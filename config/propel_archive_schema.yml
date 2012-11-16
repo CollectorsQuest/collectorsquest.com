@@ -18,6 +18,9 @@ classes:
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
       locale:         { type: varchar, size: 5, default: "en_US" }
       score:          { type: integer, default: 0 }
+      average_rating:         { type: float, default: 0 }
+      average_content_rating: { type: float, default: 0 }
+      average_images_rating:  { type: float, default: 0 }
       spam_score:     { type: integer, default: 0 }
       is_spam:        { type: boolean, default: false }
       is_public:      { type: boolean, default: true }
@@ -32,6 +35,10 @@ classes:
       updated_at:   { type: timestamp }
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
 
   CollectorProfileArchive:
     columns:
@@ -51,6 +58,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   CollectorIdentifierArchive:
     columns:
       id:            { type: integer, primaryKey: true, autoIncrement: false }
@@ -58,6 +69,10 @@ classes:
       identifier:    { type: varchar, size: 255, index: true }
       created_at:    { type: timestamp }
       archived_at:   { type: timestamp }
+
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
+
 
   CollectorGeocacheArchive:
     columns:
@@ -72,6 +87,10 @@ classes:
       latitude:         { type: float, sqlType: "DECIMAL(8,5)" }
       longitude:        { type: float, sqlType: "DECIMAL(8,5)" }
       timezone:         { type: varchar, size: 128 }
+
+    propel_behaviors:
+      symfony:          { form: false, filter: false }
+
 
   CollectionArchive:
     columns:
@@ -88,6 +107,9 @@ classes:
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
       score:                   { type: integer, default: 0 }
+      average_rating:          { type: float, default: 0 }
+      average_content_rating:  { type: float, default: 0 }
+      average_images_rating:   { type: float, default: 0 }
       is_public:               { type: boolean, default: true }
       is_featured:             { type: boolean, default: false }
       comments_on:             { type: boolean, default: true }
@@ -99,6 +121,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   ContentCategoryArchive:
     columns:
       id:                      { type: integer, primaryKey: true, autoIncrement: false }
@@ -109,8 +135,10 @@ classes:
       tree_left:    { type: integer }
       tree_right:   { type: integer }
       tree_level:   { type: integer }
+
     propel_behaviors:
-      symfony: { form: false, filter: false }
+      symfony:      { form: false, filter: false }
+
 
   CollectorCollectionArchive:
     columns:
@@ -127,6 +155,9 @@ classes:
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
       score:                   { type: integer, default: 0 }
+      average_rating:          { type: float, default: 0 }
+      average_content_rating:  { type: float, default: 0 }
+      average_images_rating:   { type: float, default: 0 }
       is_public:               { type: boolean, default: true }
       is_featured:             { type: boolean, default: false }
       comments_on:             { type: boolean, default: true }
@@ -138,11 +169,16 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   CollectibleArchive:
     columns:
       id:                { type: integer, primaryKey: true, autoIncrement: false }
       graph_id:          { type: integer, required: false, index: index }
       collector_id:      { type: integer, index: true }
+      content_category_id: { type: integer, required: false, index: true }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: true }
       description:       { type: longvarchar, required: true }
@@ -150,6 +186,9 @@ classes:
       num_views:         { type: integer, default: 0 }
       num_comments:      { type: integer, default: 0 }
       score:             { type: integer, default: 0 }
+      average_rating:         { type: float, default: 0 }
+      average_content_rating: { type: float, default: 0 }
+      average_images_rating:  { type: float, default: 0 }
       is_name_automatic: { type: boolean, default: false }
       is_public:         { type: boolean, default: true }
 
@@ -158,6 +197,10 @@ classes:
       updated_at:   { type: timestamp }
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
 
   CollectibleForSaleArchive:
     columns:
@@ -176,6 +219,10 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
   CommentArchive:
     columns:
       id:              { type: integer, primaryKey: true, autoIncrement: false }
@@ -190,9 +237,66 @@ classes:
       author_email:    { type: varchar, size: 128 }
       author_url:      { type: varchar, size: 255 }
       is_notify:       { type: boolean, required: true, default: false }
+      is_hidden:       { type: boolean, required: true, default: false }
+      is_spam:         { type: boolean, required: true, default: false }
       subject:         { type: varchar, size: 128 }
       body:            { type: longvarchar, required: true }
       ip_address:      { type: varchar, size: 15 }
 
       created_at:      { type: timestamp }
       archived_at:     { type: timestamp }
+
+    propel_behaviors:
+      symfony:         { form: false, filter: false }
+
+
+  ShoppingOrderArchive:
+    columns:
+      id:                   { type: integer, primaryKey: true, autoIncrement: false }
+      uuid:                 { type: varchar, size: 8 }
+      seller_id:            { type: integer, index: true }
+      collector_id:         { type: integer, index: true }
+      shopping_cart_id:     { type: integer, index: true }
+      collectible_id:       { type: integer, index: true }
+      shopping_payment_id:  { type: integer, index: true }
+      buyer_email:          { type: varchar, size: 128, index: true }
+      shipping_address_id:       { type: integer, index: true }
+      shipping_full_name:        { type: varchar(255), required: true  }
+      shipping_phone:            { type: varchar(50),  required: false }
+      shipping_address_line_1:   { type: varchar(255), required: true  }
+      shipping_address_line_2:   { type: varchar(255), required: false }
+      shipping_city:             { type: varchar(100), required: true  }
+      shipping_state_region:     { type: varchar(100), required: false }
+      shipping_zip_postcode:     { type: varchar(50),  required: true }
+      shipping_country_iso3166:  { type: char, size: 2, required: false }
+      shipping_carrier:          { type: enum, required: false, valueSet: "FedEx, UPS, USPS, DHL" }
+      shipping_tracking_number:  { type: varchar(64), required: false }
+      note_to_seller:       { type: varchar, size: 255 }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+
+  ShoppingPaymentArchive:
+    columns:
+      id:                   { type: integer, primaryKey: true, autoIncrement: false }
+      shopping_order_id:   { type: integer, index: true }
+      cookie_uuid:         { type: varchar, size: 32, required: false }
+      processor:           { type: enum, valueSet: "PayPal, Google, Amazon", default: PayPal, required: true }
+      status:              { type: enum, valueSet: "initialized, inprogress, confirmed, cancelled, failed, completed", default: initialized, required: true }
+      currency:            { type: char, size: 3, default: USD }
+      amount_total:        { type: integer, required: true, default: 0 }
+      amount_collectibles: { type: integer, required: true, default: 0 }
+      amount_shipping_fee: { type: integer, required: true, default: 0 }
+      amount_tax:          { type: integer, required: true, default: 0 }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
