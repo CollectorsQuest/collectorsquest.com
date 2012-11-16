@@ -895,16 +895,6 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
-    /** @var $shopping_order ShoppingOrder */
-    $shopping_order = $this->getRoute()->getObject();
-
-    $this->redirect('@mycq_transaction?uuid=' . $shopping_order->getUuid());
-  }
-
-  public function executeTransaction()
-  {
-    SmartMenu::setSelected('mycq_menu', 'marketplace');
-
     $this->shopping_order = $this->getRoute()->getObject();
 
     $this->collectible = $this->shopping_order->getCollectible();
@@ -985,7 +975,7 @@ class mycqActions extends cqFrontendActions
         ));
       }
 
-      $this->redirect('@mycq_transaction?uuid=' . $shopping_order->getUuid());
+      $this->redirect('@mycq_shopping_order?uuid=' . $shopping_order->getUuid());
     }
 
     return sfView::SUCCESS;

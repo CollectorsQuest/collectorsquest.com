@@ -304,11 +304,12 @@ function src_tag_multimedia($multimedia, $which = 'thumbnail', $options = array(
     'http';
 
   $src = sprintf(
-    '%s://%s/%s/%s/%s-%d.%s?%d',
+    '%s://%s/%s/%s/%s-%d.%s?%d%s',
     $protocol, sfConfig::get('app_multimedia_domain'),
     $multimedia->getType(), $which,
     (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
-    $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getCreatedAt('U')
+    $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getCreatedAt('U'),
+    isset($multimedia->isArchive) ? '&archive=true' : ''
   );
 
   return $src;

@@ -4,6 +4,9 @@ require 'lib/model/marketplace/om/BaseCollectibleForSale.php';
 
 class CollectibleForSale extends BaseCollectibleForSale
 {
+  /* @var boolean  if true object will not be saved on save()*/
+  protected $read_only = false;
+
   /**
    * Pre save hooks
    *
@@ -12,6 +15,11 @@ class CollectibleForSale extends BaseCollectibleForSale
    */
   public function preSave(PropelPDO $con = null)
   {
+    if ($this->read_only)
+    {
+      return false;
+    }
+
     // we check if the IS_READY field was modified, and if the MARKED_FOR_SALE_AT
     // field was not manually set and IS_READY is true we set MARKED_FOR_SALE_AT
     // to the current time
@@ -241,5 +249,18 @@ class CollectibleForSale extends BaseCollectibleForSale
   public function getTagString()
   {
     return $this->getCollectible()->getTagString();
+  }
+
+  /**
+   * Set Read only flag, if true object will not be saved on save()
+   *
+   * @param $read_only
+   * @return Collectible
+   */
+  public function setReadOnly($read_only)
+  {
+    $this->read_only = (boolean) $read_only;
+
+    return $this;
   }
 }

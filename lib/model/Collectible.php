@@ -18,11 +18,34 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   /** @var array */
   public $_counts = array();
 
+
+  /* @var boolean  if true object will not be saved on save()*/
+  protected $read_only = false;
+
   /**
    * @var        array ShoppingOrder[] Collection to store aggregation of ShoppingOrder objects.
    */
   protected $collShoppingOrders;
 
+  /**
+   * Code to be run before persisting the object
+   * @param PropelPDO $con
+   * @return bloolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    if ($this->read_only)
+    {
+      return false;
+    }
+
+    return parent::preSave($con);
+  }
+
+  /**
+   * Code to be run after persisting the object
+   * @param PropelPDO $con
+   */
   public function postSave(PropelPDO $con = null)
   {
     parent::postSave($con);
@@ -879,6 +902,19 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   {
     $this->collShoppingOrders[]= $shoppingOrder;
     $shoppingOrder->setCollectible($this);
+  }
+
+  /**
+   * Set Read only flag, if true object will not be saved on save()
+   *
+   * @param $read_only
+   * @return Collectible
+   */
+  public function setReadOnly($read_only)
+  {
+    $this->read_only = (boolean) $read_only;
+
+    return $this;
   }
 
 }

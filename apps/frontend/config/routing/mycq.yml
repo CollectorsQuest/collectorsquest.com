@@ -165,12 +165,6 @@ mycq_shopping_orders:
   url:   /mycq/orders
   param: { module: mycq, action: shoppingOrders }
 
-mycq_transaction:
-  url:   /mycq/transaction/:uuid
-  class: sfPropelRoute
-  options: { model: ShoppingOrder, type: object }
-  param: { module: mycq, action: transaction }
-
 mycq_upload_cancel:
   url:   /mycq/upload/:batch/cancel
   param: { module: mycq, action: uploadCancel }

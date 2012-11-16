@@ -43,20 +43,14 @@ if (in_array($type, array('image', 'video')))
     {
       $row = $stmt->fetch(PDO::FETCH_NAMED);
 
-      if (!$row && isset($_SERVER['HTTP_REFERER']))
+      if (!$row && isset($_GET['archive']))
       {
-        header('Content-Type: text/html');
-        $referer = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
-
-        // Show arhived images only at mycq transaction or marketplace pages
-        if (preg_match('/^\/mycq\/(transaction\/|marketplace).*$/', $referer))
+        $stmt = $dbh->prepare('SELECT * FROM `multimedia_archive` WHERE `id` = ? AND `type` = ? LIMIT 1');
+        if ($stmt->execute(array($m[1], $type)))
         {
-          $stmt = $dbh->prepare('SELECT * FROM `multimedia_archive` WHERE `id` = ? AND `type` = ? LIMIT 1');
-          if ($stmt->execute(array($m[1], $type)))
-          {
-            $row = $stmt->fetch(PDO::FETCH_NAMED);
-          }
+          $row = $stmt->fetch(PDO::FETCH_NAMED);
         }
+
       }
 
       $created_at = new DateTime($row['created_at']);

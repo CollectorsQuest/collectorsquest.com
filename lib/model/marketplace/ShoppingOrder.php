@@ -415,9 +415,7 @@ class ShoppingOrder extends BaseShoppingOrder
         {
           $collectible = new Collectible();
           $collectible->populateFromArchive($collectible_archive, true);
-
-          $collectible_for_sale_archive =
-            CollectibleForSaleArchiveQuery::create()->findPk($this->collectible_id, $con);
+          $collectible->setReadOnly(true);
 
           // Load multimedia
           $m_archive = iceModelMultimediaArchiveQuery::create()
@@ -435,15 +433,27 @@ class ShoppingOrder extends BaseShoppingOrder
               $multimedia[] = $ma;
             }
             $collectible->setEblobElement('multimedia', $multimedia->toXML(true));
+
+            // Set isArchive flag for multimedia objects
+            foreach ($collectible->getMultimedia() as $m)
+            {
+              $m->isArchive = true;
+            }
+            $collectible->getPrimaryImage()->isArchive = true;
+
           }
+
+          $collectible_for_sale_archive =
+            CollectibleForSaleArchiveQuery::create()->findPk($this->collectible_id, $con);
 
           if ($collectible_for_sale_archive)
           {
             $collectible_for_sale = new CollectibleForSale();
             $collectible_for_sale->populateFromArchive($collectible_for_sale_archive, true);
-            $collectible_for_sale->setCollectible($collectible);
+            $collectible_for_sale
+              ->setReadOnly(true)
+              ->setCollectible($collectible);
           }
-          // TO DO Add multimedia
         }
       }
 
