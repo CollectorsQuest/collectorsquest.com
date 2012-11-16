@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This migration will push all soled collectibles to archive
+ * This migration will push all sold collectibles to archive
  */
 class PropelMigration_1353096655
 {
