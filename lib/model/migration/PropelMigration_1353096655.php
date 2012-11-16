@@ -1,15 +1,14 @@
 <?php
 
 /**
- * Data object containing the SQL and PHP code to migrate the database
- * up to version 1353096655.
- * Generated on 2012-11-16 15:10:55 by root
+ * This migration will push all soled collectibles to archive
  */
 class PropelMigration_1353096655
 {
 
   public function preUp($manager)
   {
+    // Get items by payment status
     /* @var $collectibles PropelObjectCollection */
     $collectibles = CollectibleQuery::create()
       ->addJoin(CollectiblePeer::ID, ShoppingOrderPeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN)
@@ -22,7 +21,22 @@ class PropelMigration_1353096655
       $collectible->delete();
     }
 
-    echo sprintf('%d - collectibles was pushed to archive', $collectibles->count());
+    echo sprintf("%d - collectibles was pushed to archive\n", $collectibles->count());
+
+    // Get items by isSold status
+    /* @var $collectibles PropelObjectCollection */
+    $collectibles = CollectibleQuery::create()
+      ->useCollectibleForSaleQuery()
+        ->filterByIsSold(true)
+      ->endUse()
+      ->find();
+
+    foreach ($collectibles as $collectible)
+    {
+      $collectible->delete();
+    }
+
+    echo sprintf("%d - collectibles with isSold=true was pushed to archive\n", $collectibles->count());
 
   }
 

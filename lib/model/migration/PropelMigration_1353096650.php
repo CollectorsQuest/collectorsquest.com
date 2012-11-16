@@ -3,7 +3,7 @@
 /**
  * Remove foreign Reference from ShoppingOrder collectible_id field, fix ShoppingOrder table to match it schema.yml
  */
-class PropelMigration_1352929157
+class PropelMigration_1353096650
 {
 
   public function preUp($manager)
