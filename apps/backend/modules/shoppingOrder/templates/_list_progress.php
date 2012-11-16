@@ -1,8 +1,23 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: collectorsquest
- * Date: 11/16/12
- * Time: 12:27 PM
- * To change this template use File | Settings | File Templates.
- */
+
+/* @var $ShoppingOrder ShoppingOrder */
+switch ($ShoppingOrder->getProgress())
+{
+  case ShoppingOrderPeer::PROGRESS_STEP1:
+    echo 'Shipping';
+    if ($ShoppingOrder->getUpdatedAt() < time() - 86400)
+    {
+      echo '<br/><span style="color: red;">abandoned</span>';
+    }
+    break;
+  case ShoppingOrderPeer::PROGRESS_STEP2:
+    echo 'Payment';
+    if ($ShoppingOrder->getUpdatedAt() < time() - 86400)
+    {
+      echo '<br/><span style="color: red;">abandoned</span>';
+    }
+    break;
+  case ShoppingOrderPeer::PROGRESS_STEP3:
+    echo 'Sale';
+    break;
+}
