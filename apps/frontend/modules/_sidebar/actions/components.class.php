@@ -718,8 +718,18 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $q FrontendCollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create()
-      ->isForSale()
-      ->orderBy('UpdatedAt', Criteria::DESC);
+      ->isForSale();
+
+    // have random  Items on Frank's Picks pages
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
+    if ($this->getVar('collector') && $this->collector->getId() != $aetn_shows['american_pickers']['collector'])
+    {
+      $q->orderBy('UpdatedAt', Criteria::DESC);
+    }
+    else
+    {
+      $q->addAscendingOrderByColumn('RAND()');;
+    }
 
     // See if we need to filter by CollectibleId first
     if (!empty($this->ids) && is_array($this->ids))
