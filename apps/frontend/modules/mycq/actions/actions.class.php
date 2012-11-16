@@ -563,15 +563,26 @@ class mycqActions extends cqFrontendActions
       $form->setDefault('tags', $collection->getTags());
     }
 
+    $collector = $this->getCollector(true);
+
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
       $collectible,
       'US',
       $request->getParameter('shipping_rates_us')
     );
+    $form_shipping_us->setDefaults(array(
+      'shipping_type'=> $collector->getSellerSettingsShippingUsType(),
+      'flat_rate' => $collector->getSellerSettingsShippingUsRate(),
+    ));
     $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
       $collectible,
       $request->getParameter('shipping_rates_zz')
     );
+    $form_shipping_zz->setDefaults(array(
+      'shipping_type' => $collector->getSellerSettingsShippingInternationalType(),
+      'flat_rate' => $collector->getSellerSettingsShippingInternationalRate(),
+      'do_not_ship_to' => $collector->getSellerSettingsShippingInternationalExclude(),
+    ));
 
     if ($request->isMethod('post'))
     {
