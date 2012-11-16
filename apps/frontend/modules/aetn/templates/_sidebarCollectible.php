@@ -4,7 +4,7 @@
   /* @var $height       stdClass    */
 ?>
 
-<?php if ($collectible->isForSale()): ?>
+<?php if ($collectible->isWasForSale()): ?>
   <?php
     include_component(
       '_sidebar', 'widgetCollectibleBuy',
