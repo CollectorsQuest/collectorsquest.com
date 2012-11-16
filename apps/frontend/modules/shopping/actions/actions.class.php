@@ -526,13 +526,6 @@ class shoppingActions extends cqFrontendActions
         )
       );
     }
-    else if ($shopping_payment->getStatus() === ShoppingPaymentPeer::STATUS_CONFIRMED)
-    {
-      $this->getUser()->setFlash(
-        'highlight', '<strong>NOTICE:</strong> Your payment has been confirmed but not yet COMPLETE!
-                      The seller will wait until the payment has cleared in their account before shipping the item.'
-      );
-    }
 
     $this->shopping_order   = $shopping_order;
     $this->shopping_payment = $shopping_payment;
