@@ -139,7 +139,7 @@ class messagesActions extends cqFrontendActions
 
     // If "to" param is numeric, try to add corresponding Collector username as default
     $to = $request->getParameter('to');
-    if (is_numeric($to) && $receiver = CollectorPeer::retrieveByPK($to))
+    if (is_numeric($to) && ($receiver = CollectorPeer::retrieveByPK($to)))
     {
       $form->setDefault('receiver', $receiver->getUsername());
     }
@@ -176,7 +176,7 @@ class messagesActions extends cqFrontendActions
               ),
           ));
         }
-        else
+        else if (filter_var($receiver, FILTER_VALIDATE_EMAIL))
         {
           // so we just notify the recepient and set the reply-to header to
           // the sender's email
