@@ -13,7 +13,8 @@
         array(
           'collectible_for_sale' => $collectible->getCollectibleForSale(),
           'url' => url_for_collectible($collectible),
-          'link_parameters' => array('class' => 'target zoom-zone')
+          'link_parameters' => array('class' => 'target zoom-zone'),
+          'show_sold' => true
         )
       );
     }

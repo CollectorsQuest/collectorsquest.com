@@ -60,11 +60,13 @@ class aetnComponents extends cqFrontendComponents
 
     /*
      * Collectibles are not public right now, when the become public we should use FrontendQuery
+     *
+     * Do not add 'for sale' to this query as we want to display sold items as well
+     *
      * $q = FrontendCollectionCollectibleQuery::create()
      */
     $q = CollectionCollectibleQuery::create()
       ->filterByCollection($collection)
-      //->isForSale()
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 

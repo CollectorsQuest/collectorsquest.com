@@ -3,6 +3,7 @@
  * @var $collectible_for_sale CollectibleForSale
  * @var $url                  string
  * @var $link_parameters      string
+ * @var $show_sold            boolean
  */
 ?>
 
@@ -15,6 +16,10 @@
   <a href="<?= $url ?: $default_url ?>" <?= _tag_options($link_parameters ?: array('class' => 'target')); ?>>
     <?= image_tag_collectible($collectible_for_sale->getCollectible(), '220x0'); ?>
   </a>
+
+  <?php if (isset($show_sold) && $collectible_for_sale->getIsSold()): ?>
+    <span class="sold">SOLD</span>
+  <?php endif; ?>
 
   <div class="collectible-info">
     <a href="<?= $url ?: $default_url ?>" <?= _tag_options($link_parameters ?: array('class' => 'target')); ?>>
