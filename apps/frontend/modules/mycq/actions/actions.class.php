@@ -898,10 +898,8 @@ class mycqActions extends cqFrontendActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
-    $collectible = $shopping_order->getCollectible();
-    $this->redirect('mycq_collectible_by_slug', $collectible);
+    $this->redirect('@mycq_transaction?uuid=' . $shopping_order->getUuid());
   }
-
 
   public function executeTransaction()
   {
