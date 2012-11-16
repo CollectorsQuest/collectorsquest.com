@@ -940,7 +940,7 @@ class mycqActions extends cqFrontendActions
 
       return 'Purchased';
     }
-    
+
     $this->forward404();
   }
 

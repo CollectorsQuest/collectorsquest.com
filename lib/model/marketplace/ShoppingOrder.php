@@ -418,6 +418,25 @@ class ShoppingOrder extends BaseShoppingOrder
 
           $collectible_for_sale_archive =
             CollectibleForSaleArchiveQuery::create()->findPk($this->collectible_id, $con);
+
+          // Load multimedia
+          $m_archive = iceModelMultimediaArchiveQuery::create()
+            ->filterByModel(get_class($collectible))
+            ->filterByModelId($this->collectible_id)
+            ->find();
+          if ($m_archive->count())
+          {
+            $multimedia = new PropelObjectCollection();
+            $multimedia->setModel('iceModelMultimedia');
+            foreach ($m_archive as $m)
+            {
+              $ma = new iceModelMultimedia();
+              $ma->populateFromArchive($m, true);
+              $multimedia[] = $ma;
+            }
+            $collectible->setEblobElement('multimedia', $multimedia->toXML(true));
+          }
+
           if ($collectible_for_sale_archive)
           {
             $collectible_for_sale = new CollectibleForSale();
