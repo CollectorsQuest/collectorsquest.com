@@ -783,6 +783,55 @@ class ajaxAction extends cqAjaxAction
     return $template;
   }
 
+  /**
+   * section: collectibleForSale
+   * page: deactivate
+   * params: id
+   */
+  public function executeCollectibleForSaleDeactivate(sfWebRequest $request, $template)
+  {
+    /* @var $collectible CollectibleForSale */
+    $collectible_for_sale = CollectibleForSaleQuery::create()
+     ->findOneByCollectibleId($request->getParameter('id'));
+
+    $collectible_for_sale->setIsReady(false);
+    $collectible_for_sale->save();
+
+    $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
+
+    return $template;
+  }
+
+  /**
+   * section: collectibleForSale
+   * page: relist
+   * params: id
+   */
+  public function executeCollectibleForSaleRelist(sfWebRequest $request, $template)
+  {
+    /* @var $collectible CollectibleForSale */
+    $collectible_for_sale = CollectibleForSaleQuery::create()
+      ->findOneByCollectibleId($request->getParameter('id'));
+
+    try
+    {
+      // try to create a transaction credit for this collectible
+      PackageTransactionCreditPeer::findActiveOrCreateForCollectible($collectible_for_sale->getCollectible());
+    }
+    catch (CollectorHasNoCreditsAvailableException $e)
+    {
+      // and if for some reason there were no available credits
+      return 'No credits available!';
+    }
+
+    $collectible_for_sale->setIsReady(true);
+    $collectible_for_sale->save();
+
+    $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
+
+    return $template;
+  }
+
   public function executeCollectibleForSaleCreate(sfWebRequest $request, $template)
   {
     /** @var $collector Collector */

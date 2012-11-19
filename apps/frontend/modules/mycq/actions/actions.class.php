@@ -134,11 +134,11 @@ class mycqActions extends cqFrontendActions
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Collector/verify_new_email', array(
-            'to'     => $collector_email->getEmail(),
-            'params' => array(
-              'collector'       => $collector_email->getCollector(),
-              'collector_email' => $collector_email,
-            )
+              'to' => $collector_email->getEmail(),
+              'params' => array(
+                'collector' => $collector_email->getCollector(),
+                'collector_email' => $collector_email,
+              )
           ));
 
           $this->getUser()->setFlash('success',
@@ -437,7 +437,7 @@ class mycqActions extends cqFrontendActions
         ->filterByCollectibleId($collectible->getId())
         ->joinShoppingPaymentRelatedByShoppingPaymentId()
         ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
-        ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
+          ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
         ->endUse()
         ->findOne();
 
@@ -479,6 +479,9 @@ class mycqActions extends cqFrontendActions
       $collection instanceof CollectorCollection && $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
     );
+
+    /** @var $collection CollectorCollection */
+    $collection = $collectible->getCollectorCollection();
 
     if ($request->getParameter('cmd'))
     {
@@ -533,7 +536,8 @@ class mycqActions extends cqFrontendActions
                 );
                 break;
             }
-          } catch (PropelException $e)
+          }
+          catch (PropelException $e)
           {
             if (stripos($e->getMessage(), 'a foreign key constraint fails'))
             {
@@ -683,7 +687,8 @@ class mycqActions extends cqFrontendActions
                 break;
             }
           }
-        } catch (PropelException $e)
+        }
+        catch (PropelException $e)
         {
           $this->getUser()->setFlash(
             'error', 'There was a problem saving your information'
@@ -738,9 +743,15 @@ class mycqActions extends cqFrontendActions
       ->isForSale();
     $this->total = $q->count();
 
-    $q = ShoppingOrderQuery::create()
-      ->isPaid()
-      ->filterBySellerId($collector->getId());
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->filterByIsSold(true)
+      ->groupByCollectibleId()
+      ->joinCollectible()
+      ->useCollectibleQuery()
+        ->joinWith('ShoppingOrder', Criteria::RIGHT_JOIN)
+      ->endUse();
+
     $this->sold_total = $q->count();
 
     // Make the seller available to the template
@@ -788,10 +799,28 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeMarketplaceCreditHistory()
+  public function executeMarketplaceCreditHistory(sfWebRequest $request)
   {
+    $this->redirectUnless(IceGateKeeper::open('mycq_marketplace_credit_history'), '@mycq');
+
+    $this->filter_by = $request->getParameter('filter_by', 'all');
+
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
+    // Get the Collector
+    $collector = $this->getCollector(true);
+
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollector($collector);
+      //->isForSale()
+      //->filterByIsSold(true)
+    $this->total = $q->count();
+    $this->collectibles_for_sale = $q->find();
+
+    // Make the collector available to the template
+    $this->collector = $collector;
+
+    // retrieve the package transactions
     $this->package_transactions = PackageTransactionQuery::create()
       ->filterByCollector($this->getCollector())
       ->_if('dev' != sfConfig::get('sf_environment'))
@@ -799,7 +828,45 @@ class mycqActions extends cqFrontendActions
       ->_endif()
       ->find();
 
+    // check if the seller has valid credits left
+    $this->has_no_credits = true;
+    foreach ($this->package_transactions as $package)
+    {
+      /* @var $package PackageTransaction */
+      if (
+        $package->getCredits() - $package->getCreditsUsed() > 0 &&
+        $package->getExpiryDate('YmdHis') > date('YmdHis')
+      )
+      {
+        $this->has_no_credits = false;
+      }
+    }
+
     return sfView::SUCCESS;
+  }
+
+  public function executeItemActions(sfWebRequest $request)
+  {
+    // possible keys: activate, deactivate, re-list
+    $action = $request->getParameter('action');
+
+    /*
+     * @todo add proper actions for activate, deactivate, re-list
+     */
+
+    if ($request->isXmlHttpRequest())
+    {
+      // if ajax request, simply forward the rendering to mycq/marketplace_credit_history
+      return $this->forward('mycq', 'marketplace_credit_history');
+    }
+    else
+    {
+      // if a normal request, do a proper redirect to marketplace_credit_history
+      return $this->redirect('marketplace_credit_history', array(
+        'filter_by' => $request->getParameter('filter_by') ?: null,
+        'search' => $request->getParameter('search') ?: null,
+      ));
+    }
   }
 
   public function executeMarketplaceSettings(sfWebRequest $request)
@@ -811,7 +878,7 @@ class mycqActions extends cqFrontendActions
     $collector = $this->getCollector(true);
 
     $form = new CollectorEditForm($this->getCollector(), array(
-      'seller_settings_show'     => true,
+      'seller_settings_show' => true,
       'seller_settings_required' => false,
     ));
 

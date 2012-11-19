@@ -19,20 +19,53 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
   /**
-   * Filter on collectibles that have an active (not yet expired) transaction credit,
-   * ie are paid to be shown as for sale
+   * Filter on collectibles that have an active (or inactive) transaction credit,
+   * ie are paid (or not paid/expired)
+   *
+   * @param     boolean $active_credit Whether to filter on collectibles with or
+   *                                   without an active credit
+   * @return    CollectibleForSaleQuery
+   */
+  public function hasActiveCredit($active_credit = true)
+  {
+    if ($active_credit)
+    {
+      return $this
+        ->useCollectibleQuery('collectible_check_credit_alias')
+          ->usePackageTransactionCreditQuery()
+            ->notExpired()
+          ->endUse()
+        ->endUse();
+    }
+    else
+    {
+      /*
+       * In order to select the collectibles for sale without an active credit
+       * we first find all that do have one and then add their IDs as a NOT IN
+       * condition
+       */
+      $q = clone $this;
+      return $this
+        ->filterByCollectibleId(
+          $q
+            ->useCollectibleQuery('collectible_check_credit_alias')
+              ->usePackageTransactionCreditQuery()
+                ->notExpired()
+              ->endUse()
+            ->endUse()
+            ->select('CollectibleId')
+            ->find()->getArrayCopy(),
+          Criteria::NOT_IN
+        );
+    }
+  }
+
+  /**
+   * Filter on collectibles that have inactive (expired) transaction credit,
+   * ie were paid to be shown as for sale but expired
    *
    * @return    CollectibleForSaleQuery
    */
-  public function hasActiveCredit()
-  {
-    return $this
-      ->useCollectibleQuery('collectible_check_credit_alias')
-        ->usePackageTransactionCreditQuery()
-          ->notExpired()
-        ->endUse()
-      ->endUse();
-  }
 
   /**
    * @return CollectibleForSaleQuery
@@ -46,8 +79,6 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
   /**
-   * Does not check for a transaction credit present or not!
-   *
    * @return CollectibleForSaleQuery
    * @deprecated
    */
@@ -58,7 +89,9 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->_or()
       ->filterByPriceAmount(1, Criteria::LESS_THAN)
       ->_or()
-      ->filterByQuantity(1, Criteria::LESS_THAN);
+      ->filterByQuantity(1, Criteria::LESS_THAN)
+      ->_or()
+      ->hasActiveCredit(false);
 
     return $this;
   }

@@ -2,9 +2,10 @@
 /**
  * @var $collection Collection
  * @var $collectible Collectible
+ * @var $collectibles Collectible[]
  *
  * @var $form CollectibleEditForm
- * @var $for_for_sale CollectibleForSaleEditForm
+ * @var $form_for_sale CollectibleForSaleEditForm
  */
 ?>
 
