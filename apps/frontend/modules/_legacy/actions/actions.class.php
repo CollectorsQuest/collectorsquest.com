@@ -100,4 +100,9 @@ class _legacyActions extends sfActions
 
     $this->redirect('@marketplace', 301);
   }
+
+  public function executeRedirectToSellerStore()
+  {
+    $this->redirect('seller_store', $this->getRoute()->getObject(), 301);
+  }
 }
