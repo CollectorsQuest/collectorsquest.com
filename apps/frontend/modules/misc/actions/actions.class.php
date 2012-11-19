@@ -267,6 +267,9 @@ class miscActions extends cqFrontendActions
     $collection_ids_exclude = $collectible_ids_exclude = $category_ids_exclude = $tags_exclude = array();
     $collectibles_2x2 = $collectibles_2x1 = $collectibles_1x2 = array();
 
+    // set the number of items on page
+    $limit = !empty($values['cq_items_per_page']) ? (int) $values['cq_items_per_page'] : '20';
+
     if (!empty($values['cq_collection_ids']))
     {
       $collection_ids = cqFunctions::explode(',', $values['cq_collection_ids']);
@@ -520,7 +523,7 @@ class miscActions extends cqFrontendActions
         'FIELD(collectible.id, ' . implode(',', $_collectible_ids) . ')'
       );
 
-    $pager = new PropelModelPager($q, 20);
+    $pager = new PropelModelPager($q, $limit);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 
@@ -540,44 +543,5 @@ class miscActions extends cqFrontendActions
 
     return sfView::SUCCESS;
   }
-
-  // WIP - avoid having empty space in last row
-/* public static function numCollectiblesOnPage($q, $page, $limit, $collectibles_2x2, $collectibles_2x1, $collectibles_1x2)
-  {
-    /* @var $pager PropelModelPager */
-/*    $pager = new PropelModelPager($q, $limit);
-    $pager->setPage($page);
-
-    $collectibles = $pager->getResults();
-
-    $area = 0;
-    foreach ($collectibles as $collectible)
-    {
-      /* @var $collectible Collectible */
-/*      $id = $collectible->getId();
-      if (in_array($id, $collectibles_2x1) || in_array($id, $collectibles_1x2))
-      {
-        $area += 2;
-      }
-      else if (in_array($id, $collectibles_2x2))
-      {
-        $area += 4;
-      }
-      else
-      {
-        $area++;
-      }
-    }
-
-    if ($area % 4 != 0)
-    {
-      return self::numCollectiblesOnPage($pager, $page, $limit-1, $collectibles_2x2, $collectibles_2x1, $collectibles_1x2);
-    }
-    else
-    {
-      return $pager;
-    }
-
-  }*/
 
 }
