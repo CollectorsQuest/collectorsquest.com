@@ -140,7 +140,7 @@
               <br />
               <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?><br />
               <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
-              <?= $form_shipping_zz['do_not_ship_to']; ?>
+              <?= $form_shipping_zz['do_not_ship_to']->render(array('class'=>'input-xxlarge')); ?>
               <?php endif; ?>
             </div>
           </div>
