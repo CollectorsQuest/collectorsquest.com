@@ -1108,3 +1108,124 @@ function cq_wysiwyg_editor($mce_buttons)
 
   return $mce_buttons;
 }
+
+// validate collectible IDs with sizes
+function validate_collectible_ids_with_sizes($meta, $post_id)
+{
+  $valid_homepage_collectible_ids = validate_collectible_ids_helper ($meta['cq_homepage_collectible_ids']);
+  $valid_collectible_ids = validate_collectible_ids_helper ($meta['cq_collectible_ids']);
+
+  if (!$valid_homepage_collectible_ids)
+  {
+    add_admin_message('There was an error in the format of Homepage Collectible IDs filed! Please correct it and save again', true);
+  }
+
+  if (!$valid_collectible_ids)
+  {
+    add_admin_message('There was an error in the format of Collectible IDs filed! Please correct it and save again', true);
+  }
+
+  // if there is error we abort the save
+  if (!$valid_collectible_ids || !$valid_homepage_collectible_ids)
+  {
+    return false;
+  }
+
+  // if no error - save post as usual
+  return $meta;
+}
+
+// do the actual id and size validation
+function validate_collectible_ids_helper($meta)
+{
+  $cq_collectible_ids = explode(',', (string) $meta);
+  $cq_collectible_ids = array_map('trim', $cq_collectible_ids);
+  $cq_collectible_ids = array_filter($cq_collectible_ids);
+
+  foreach ($cq_collectible_ids as $collectible_id)
+  {
+    if (strstr($collectible_id, ':'))
+    {
+      $parsed_value = explode(':', $collectible_id);
+      // check if first part is integer
+      if ($parsed_value[0] != (int) $parsed_value[0])
+      {
+        return false;
+      }
+      // check if second part is some of the following
+      switch ($parsed_value[1]) {
+        case '2x2': break;
+        case '2x1': break;
+        case '1x2': break;
+        case '1x1': break;
+        default:
+          return false;
+      }
+    }
+
+  }
+
+  return true;
+}
+
+/**
+ * Messages with the default wordpress classes
+ */
+function showMessage($message, $errormsg = false)
+{
+  if ($errormsg) {
+    echo '<div id="message" class="error">';
+  }
+  else {
+    echo '<div id="message" class="updated fade">';
+  }
+
+  echo "<p>$message</p></div>";
+}
+
+/**
+ * Display custom messages
+ */
+function show_admin_messages()
+{
+  if(isset($_COOKIE['wp-admin-messages-normal'])) {
+    $messages = strtok($_COOKIE['wp-admin-messages-normal'], "@@");
+
+    while ($messages !== false) {
+      showMessage($messages, true);
+      $messages = strtok("@@");
+    }
+
+    setcookie('wp-admin-messages-normal', null);
+  }
+
+  if(isset($_COOKIE['wp-admin-messages-error'])) {
+    $messages = strtok($_COOKIE['wp-admin-messages-error'], "@@");
+
+    while ($messages !== false) {
+      showMessage($messages, true);
+      $messages = strtok("@@");
+    }
+
+    setcookie('wp-admin-messages-error', null);
+  }
+}
+
+/**
+ * Hook into admin notices
+ */
+add_action('admin_notices', 'show_admin_messages');
+
+/**
+ * User Wrapper
+ */
+function add_admin_message($message, $error = false)
+{
+  if(empty($message)) return false;
+
+  if($error) {
+    setcookie('wp-admin-messages-error', $_COOKIE['wp-admin-messages-error'] . '@@' . $message, time()+5);
+  } else {
+    setcookie('wp-admin-messages-normal', $_COOKIE['wp-admin-messages-normal'] . '@@' . $message, time()+5);
+  }
+}

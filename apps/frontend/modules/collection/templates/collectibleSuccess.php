@@ -38,50 +38,57 @@
     <?php
       if ($aetn_show['id'] === 'american_pickers')
       {
-        cq_ad_slot(
+        echo link_to(
           cq_image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg',
             array(
               'width' => '620', 'height' => '67',
               'alt' => 'Check out items seen on American Pickers'
             )
           ),
-          '@aetn_american_pickers'
+          '@aetn_american_pickers?ref=collectible'
         );
       }
       else if ($aetn_show['id'] === 'american_restoration')
       {
-        cq_ad_slot(
+        echo link_to(
           cq_image_tag('headlines/2012-0777_AR_620x67.jpg',
             array(
               'width' => '620', 'height' => '67',
               'alt' => 'Check out items seen on American Restoration'
             )
           ),
-          '@aetn_american_restoration'
+          '@aetn_american_restoration?ref=collectible'
         );
       }
       else if ($aetn_show['id'] === 'pawn_stars')
       {
-        cq_ad_slot(
+        echo link_to(
           cq_image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg',
             array(
               'width' => '620', 'height' => '67',
               'alt' => 'Check out items seen on Pawn Stars'
             )
           ),
-          '@aetn_pawn_stars'
+          '@aetn_pawn_stars?ref=collectible'
         );
       }
       else if ($aetn_show['id'] === 'picked_off')
       {
-        cq_ad_slot(
+        echo link_to(
           cq_image_tag('headlines/2012-0777_Picked_Off_620x67.jpg',
             array(
               'width' => '620', 'height' => '67',
               'alt' => 'Check out items seen on Picked Off'
             )
           ),
-          '@aetn_picked_off'
+          '@aetn_picked_off?ref=collectible'
+        );
+      }
+      else if ($aetn_show['id'] === 'franks_picks')
+      {
+        echo link_to(
+          ice_image_tag_placeholder('620x67'),
+          '@aetn_franks_picks?ref=collectible'
         );
       }
       $height_main_div->value += 87;
@@ -307,7 +314,7 @@
     );
   }
 
-  if (!empty($aetn_show))
+  if (!empty($aetn_show) && $aetn_show['id'] != 'franks_picks')
   {
     include_partial(
       'collection/aetn_collectible_related',
@@ -320,7 +327,7 @@
     );
   }
 
-  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && !$ref_marketplace)
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && !$ref_marketplace && empty($aetn_show))
   {
     include_component('collector', 'indexCollectiblesForSale',
       array(

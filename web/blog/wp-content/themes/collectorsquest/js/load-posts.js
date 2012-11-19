@@ -40,7 +40,7 @@ $(document).ready(function()
         {
           // Update page number and nextLink.
           pageNum++;
-          nextLink = nextLink.replace(/\/page\/[0-9]?/, '/page/' + pageNum);
+          nextLink = nextLink.replace(/\/page\/[0-9]*/, '/page/' + pageNum);
 
           // Add a new placeholder, for when user clicks again.
           $('#cq-load-posts')

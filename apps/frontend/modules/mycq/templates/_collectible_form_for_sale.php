@@ -125,8 +125,8 @@
           array(
             'width' => '530', 'height' => '71', 'style' => 'display: block; margin: auto',
             'alt' => 'Want to sell this item?'
-          )
-        ),
+            )
+          ),
         '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
       );
     ?>
