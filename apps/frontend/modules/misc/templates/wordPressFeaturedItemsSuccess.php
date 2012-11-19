@@ -1,7 +1,7 @@
 <?php
   /* @var $pager             PropelModelPager */
   /* @var $wp_post           wpPost           */
-  /* @var $collectibles_4x4  array            */
+  /* @var $collectibles_2x2  array            */
   /* @var $collectibles_1x2  array            */
   /* @var $collectibles_2x1  array            */
 
@@ -43,7 +43,7 @@
       {
         $partial = 'tall';
       }
-      else if (in_array($id, $collectibles_4x4))
+      else if (in_array($id, $collectibles_2x2))
       {
         $partial = 'square_big';
       }
