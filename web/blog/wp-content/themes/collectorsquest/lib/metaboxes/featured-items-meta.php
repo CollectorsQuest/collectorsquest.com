@@ -1,7 +1,14 @@
 <div class="my_meta_control">
+  <label>Items per page (if blank default is 20):
+  <?php $mb->the_field('cq_items_per_page'); ?>
+
+  <input name="<?php $mb->the_name(); ?>" value="<?php $mb->the_value(); ?>" /></label>
+
   <p>Enter comma separated ID numbers. (1,2,3)</p>
 
-  <label>Homepage Collectible IDs:
+  <label>Homepage Collectible IDs<br>
+         You can enter size formats like this - ID:size, example: 1111:2x1,2222:2x2,3333:1x2.<br>
+         Possible sizes are 2x2, 1x2 and 2x1, default size is 1x1
   <?php $mb->the_field('cq_homepage_collectible_ids'); ?>
 
   <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
@@ -16,7 +23,9 @@
 
   <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
-  <label>Collectible IDs:
+  <label>Collectible IDs<br>
+    You can enter size formats like this - ID:size, example: 1111:2x1,2222:2x2,3333:1x2.<br>
+    Possible sizes are 2x2, 1x2 and 2x1, default size is 1x1
     <?php $mb->the_field('cq_collectible_ids'); ?>
 
     <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
@@ -53,7 +62,7 @@
 
   <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
-  <label>Collectible IDs:
+  <label>Collectible IDs (do not enter sizes here):
     <?php $mb->the_field('cq_collectible_ids_exclude'); ?>
 
     <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
