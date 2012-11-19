@@ -8,6 +8,7 @@ $custom_thumbs_mb = new WPAlchemy_MetaBox(array
   'types' => array('featured_items'),
   'context' => 'normal',
   'priority' => 'high',
+  'save_filter' => 'validate_collectible_ids_with_sizes'
 ));
 
 /* eof */
