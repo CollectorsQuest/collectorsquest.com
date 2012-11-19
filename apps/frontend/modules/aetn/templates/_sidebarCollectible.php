@@ -4,7 +4,7 @@
   /* @var $height       stdClass    */
 ?>
 
-<?php if ($collectible->isForSale()): ?>
+<?php if ($collectible->isWasForSale()): ?>
   <?php
     include_component(
       '_sidebar', 'widgetCollectibleBuy',
@@ -67,7 +67,7 @@ switch ($aetn_show['id'])
       array(
         'collector' => $collectible->getCollector(),
         'exclude_collectible_ids' => array($collectible->getId()), 'limit' => 4,
-        'title' => 'More Frank\'s Picks', 'height' => &$height
+        'title' => 'More of Frank\'s Picks', 'height' => &$height
       )
     );
 
@@ -75,7 +75,6 @@ switch ($aetn_show['id'])
 
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanRestorationPromo_300x90');
-    include_partial('marketplace/partials/holidayMarketPromo_300x90');
     break;
 }
 

@@ -223,6 +223,15 @@ class shoppingActions extends cqFrontendActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
+    /**
+     * Set the apropriate progress step of the ShoppingOrder
+     */
+    if ($shopping_order->getProgress() < ShoppingOrderPeer::PROGRESS_STEP1)
+    {
+      $shopping_order->setProgress(ShoppingOrderPeer::PROGRESS_STEP1);
+      $shopping_order->save();
+    }
+
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
 
@@ -311,6 +320,15 @@ class shoppingActions extends cqFrontendActions
   {
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
+
+    /**
+     * Set the apropriate progress step of the ShoppingOrder
+     */
+    if ($shopping_order->getProgress() < ShoppingOrderPeer::PROGRESS_STEP2)
+    {
+      $shopping_order->setProgress(ShoppingOrderPeer::PROGRESS_STEP2);
+      $shopping_order->save();
+    }
 
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
@@ -472,6 +490,15 @@ class shoppingActions extends cqFrontendActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
+    /**
+     * Set the apropriate progress step of the ShoppingOrder
+     */
+    if ($shopping_order->getProgress() < ShoppingOrderPeer::PROGRESS_STEP3)
+    {
+      $shopping_order->setProgress(ShoppingOrderPeer::PROGRESS_STEP3);
+      $shopping_order->save();
+    }
+
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
 
@@ -497,13 +524,6 @@ class shoppingActions extends cqFrontendActions
           'sf_subject' => $shopping_order,
           'encrypt' => 1, 'lifetime' => 3600
         )
-      );
-    }
-    else if ($shopping_payment->getStatus() === ShoppingPaymentPeer::STATUS_CONFIRMED)
-    {
-      $this->getUser()->setFlash(
-        'highlight', '<strong>NOTICE:</strong> Your payment has been confirmed but not yet COMPLETE!
-                      The seller will wait until the payment has cleared in their account before shipping the item.'
       );
     }
 
@@ -734,6 +754,15 @@ class shoppingActions extends cqFrontendActions
    */
   private function orderComplete(ShoppingOrder $shopping_order)
   {
+    /**
+     * Set the apropriate progress step of the ShoppingOrder
+     */
+    if ($shopping_order->getProgress() < ShoppingOrderPeer::PROGRESS_STEP3)
+    {
+      $shopping_order->setProgress(ShoppingOrderPeer::PROGRESS_STEP3);
+      $shopping_order->save();
+    }
+
     $shopping_payment = $shopping_order->getShoppingPayment();
     $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
     $shopping_payment->save();

@@ -432,7 +432,7 @@ class cqSphinxPager extends sfPager
 
       foreach ($query['filters'] as $name => $values)
       {
-        if ($name == 'id')
+        if ($name == 'id' && !empty($values[0]))
         {
           $sphinx->setFilter('object_id', (array) $values[0], (boolean) $values[1]);
         }

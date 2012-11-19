@@ -1,23 +1,3 @@
-<?php
-/**
- * @var $collectible Collectible
- * @var $shopping_order ShoppingOrder
- * @var $shopping_payment ShoppingPayment
- * @var $pm_form ComposeAbridgedPrivateMessageForm
- */
-?>
-<?php
-  $link = link_to(
-    'Back to Items for Sale &raquo;', '@mycq_marketplace',
-    array('class' => 'text-v-middle link-align')
-  );
-
-  cq_section_title(
-    $collectible->getName(), $link,
-    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-  );
-?>
-
 <div class="row-fluid">
   <div class="span8">
     <table class="table table-collectible-purchased">
@@ -47,33 +27,62 @@
   </div><!-- ./span8 -->
   <div class="span4">
     <div class="thumbnail">
-    <?php
-      echo image_tag_multimedia(
-        $collectible->getPrimaryImage(), '300x0', array('width' => 294, 'height' => null)
-      );
-    ?>
+      <?php
+        echo image_tag_multimedia(
+          $collectible->getPrimaryImage(), '300x0', array('width' => 300, 'height' => null)
+        );
+      ?>
     </div>
   </div><!-- ./span4 -->
 </div>
 
-<?php
-  cq_section_title(
-    'Shipping Information', null,
-    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-  );
-?>
+<h3>Seller Information</h3>
+<div class="row-fluid">
+  <div class="span8">
+    <table class="table table-collectible-purchased">
+      <tr>
+        <td style="width: 40%;">Name:</td>
+        <td><?= $shopping_order->getSeller(); ?></td>
+      </tr>
+      <tr>
+        <td>Email Address:</td>
+        <td>
+          <?php
+          echo mail_to(
+            $shopping_order->getSeller()->getEmail(),
+            $shopping_order->getSeller()->getEmail()
+          );
+          ?>
+        </td>
+      </tr>
+      <?php if ($v = $shopping_order->getShippingPhone()): ?>
+      <tr>
+        <td>Phone Number:</td>
+        <td><?= $v; ?></td>
+      </tr>
+      <?php endif; ?>
+    </table>
+  </div>
+  <div class="span4">
+    &nbsp;
+  </div>
+</div>
+
+
+
+<h3>Buyer Information</h3>
 <div class="row-fluid">
   <div class="span8 spacer-left-reset">
     <table class="table table-collectible-purchased">
       <tr>
-        <td>Email Address:</td>
+        <td style="width: 40%;">Email Address:</td>
         <td>
-        <?php
+          <?php
           echo mail_to(
             $shopping_order->getBuyerEmail(),
             $shopping_order->getBuyerEmail()
           );
-        ?>
+          ?>
         </td>
       </tr>
       <tr>
@@ -108,57 +117,26 @@
         <td>Tracking Number:</td>
         <td>
           <?php if ($shopping_order->getShippingTrackingNumber()): ?>
-            <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order->getShippingCarrier()) ?>/<?= $shopping_order->getShippingTrackingNumber() ?>"
-               target="_blank">
-              <?= $shopping_order->getShippingTrackingNumber() ?>
-            </a>
-          <?php else: ?>
-            <div class="row-fluid">
-            <form action="<?= url_for('mycq_shopping_order_tracking', $shopping_order); ?>" method="post">
-              <div class="span4 spacer-left-reset">
-                <select name="carrier" style="width: 100px;">
-                  <option value="">Courier</option>
-                  <option value="">-------</option>
-                  <option value="FedEx">FedEx</option>
-                  <option value="UPS">UPS</option>
-                  <option value="USPS">USPS</option>
-                </select>
-              </div>
-              <div class="span8">
-                <input type="text" name="tracking_number" placeholder="enter the tracking number here"/>
-              </div>
-              <button type="submit" class="btn btn-primary">Mark as Shipped</button>
-            </form>
-            </div>
+          <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order->getShippingCarrier()) ?>/<?= $shopping_order->getShippingTrackingNumber() ?>"
+             target="_blank">
+            <?= $shopping_order->getShippingTrackingNumber() ?>
+          </a>
           <?php endif; ?>
         </td>
       </tr>
     </table>
   </div>
   <div class="span4">
-    <div class="send-pm">
-      <?= form_tag('@messages_compose'); ?>
-      <?= $pm_form->renderHiddenFields(); ?>
-      <?= $pm_form['body']->render(); ?>
-      <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
-        <i class="mail-icon-mini"></i> &nbsp;Send message
-      </button>
-      <?= '</form>'; ?>
-    </div>
+
   </div>
 </div>
 
-<?php
-  cq_section_title(
-    'Order Information', null,
-    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-  );
-?>
+<h3>Order Information</h3>
 <div class="row-fluid">
   <div class="span8 spacer-left-reset">
     <table class="table table-collectible-purchased">
       <tr>
-        <td>Payment Status:</td>
+        <td style="width: 40%;">Payment Status:</td>
         <td>
           <?= strtoupper($shopping_order->getShoppingPaymentRelatedByShoppingPaymentId()->getStatus()); ?>
         </td>
@@ -187,12 +165,12 @@
       <tr>
         <td>
           <span class="f-20">
-            Total Amount:
+            <strong>Total Amount:</strong>
           </span>
         </td>
         <td>
           <span class="f-20">
-          <?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?>
+          <strong><?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?></strong>
           </span>
         </td>
       </tr>
@@ -200,15 +178,10 @@
   </div>
 </div>
 
-<?php
-  cq_section_title(
-    'PayPal Transaction', null,
-    array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title spacer-top-20')
-  );
-?>
+<h3>PayPal Transaction</h3>
 <table class="table table-collectible-purchased">
   <tr>
-    <td>Payment Status:</td>
+    <td style="width: 26%;">Payment Status:</td>
     <td><?= strtoupper($shopping_payment->getStatus()); ?></td>
   </tr>
   <?php if ($v = $shopping_payment->getTransactionId()): ?>
@@ -224,4 +197,3 @@
   </tr>
   <?php endif; ?>
 </table>
-

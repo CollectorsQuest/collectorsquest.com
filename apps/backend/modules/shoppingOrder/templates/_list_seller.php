@@ -7,6 +7,3 @@ if ($collector)
   echo $collector, "<br />\n";
   echo mail_to($collector->getEmail(), $collector->getEmail());
 }
-
-
-

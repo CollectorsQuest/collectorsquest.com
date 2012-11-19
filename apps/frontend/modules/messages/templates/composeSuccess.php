@@ -38,3 +38,16 @@
     </div>
   </fieldset>
 <?= '</form>'; ?>
+
+<script>
+  $(document).ready(function()
+  {
+    <?php // special case for Frank's Picks ?>
+    var message_receiver = $('input#message_receiver');
+    if (message_receiver.val() == 'aetn_american_pickers')
+    {
+      message_receiver.hide();
+      $('label[for="message_receiver"]').parent().append('<div class="controls"><div style="margin-top: 6px">HISTORY</div></div>');
+    }
+  });
+</script>
