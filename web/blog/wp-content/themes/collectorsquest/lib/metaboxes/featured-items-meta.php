@@ -1,4 +1,9 @@
 <div class="my_meta_control">
+  <label>Items per page (if blank default is 20):
+  <?php $mb->the_field('cq_items_per_page'); ?>
+
+  <input name="<?php $mb->the_name(); ?>" value="<?php $mb->the_value(); ?>" /></label>
+
   <p>Enter comma separated ID numbers. (1,2,3)</p>
 
   <label>Homepage Collectible IDs<br>
