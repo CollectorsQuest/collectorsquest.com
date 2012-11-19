@@ -80,4 +80,9 @@ legacy_feed_pages:
   param: { module: _legacy, action: redirectToContentCategories }
   requirements: { string: "[^/]+" }
 
-
+legacy_collectibles_for_sale_by_collector:
+  url:  /collectibles-for-sale/by/:id/:store_slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: _legacy, action: redirectToSellerStore }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
