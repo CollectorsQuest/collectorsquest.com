@@ -764,10 +764,12 @@ class mycqActions extends cqFrontendActions
       ->isForSale();
     $this->total = $q->count();
 
-    $q = ShoppingOrderQuery::create()
-      ->isPaid()
-      ->filterBySellerId($collector->getId());
-    $this->sold_total = $q->count();
+    $this->sold_total = ShoppingOrderCollectibleQuery::create()
+      ->filterBySellerId($collector->getId())
+      ->useShoppingOrderQuery()
+        ->isPaid()
+      ->endUse()
+      ->count();
 
     // Make the seller available to the template
     $this->seller = $seller;
