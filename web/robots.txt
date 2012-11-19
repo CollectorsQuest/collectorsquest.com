@@ -24,6 +24,7 @@ crawl-delay: 5
 #   - http://support.google.com/webmasters/bin/answer.py?hl=en&answer=35769#2
 
 Disallow: /ad_slot.php
+Disallow: /backend.php
 Disallow: /blog/wp-admin/
 Disallow: /blog/wp-includes/
 Disallow: /ajax/

@@ -651,6 +651,7 @@ a.buy-credits-button {
     border: none;
     .box-shadow(none);
     .border-radius(0);
+    .transition(none);
   }
 
   .icon-remove-sign {
@@ -1971,6 +1972,13 @@ textarea.input-xlarge {
 .mycq-red-title {
   margin: 0 0 1px 0;
   background: url("@{baseUrl}/red-dotted-line.png") repeat-x bottom;
+
+  h2 {
+    .custom-font(22px, 24px, italic, normal);
+    letter-spacing: 0.01em;
+    color: @red;
+    .smooth-font();
+  }
 
   h3 {
     .custom-font(20px, 22px, italic, normal);

@@ -587,6 +587,41 @@ class _sidebarComponents extends cqFrontendComponents
     return sfView::NONE;
   }
 
+  public function executeWidgetCollectorAmericanPickers()
+  {
+    /** @var $collector Collector */
+    $collector = $this->getVar('collector');
+
+    $this->title = $this->getVar('title') ?: 'American Pickers on HISTORY';
+
+    // setup PM form
+    $subject = null;
+    if (isset($this->collectible))
+    {
+      $subject = 'Regarding your item: '. addslashes($this->collectible->getName());
+    }
+    else if (isset($this->collection))
+    {
+      $subject = 'Regarding your collection: '. addslashes($this->collection->getName());
+    }
+
+    $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+      $this->getUser()->getCollector(), $this->getVar('collector'), $subject, array(
+          'attach' => array(
+              isset($this->collectible) ? $this->collectible->getCollectible() : null,
+              isset($this->collection)  ? $this->collection : null,
+          ),
+      )
+    );
+
+    if ($collector instanceof Collector)
+    {
+      return sfView::SUCCESS;
+    }
+
+    return sfView::NONE;
+  }
+
   public function executeWidgetCollectorMostWanted()
   {
     /** @var $collector Collector */
@@ -683,8 +718,18 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $q FrontendCollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create()
-      ->isForSale()
-      ->orderBy('UpdatedAt', Criteria::DESC);
+      ->isForSale();
+
+    // have random  Items on Frank's Picks pages
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
+    if ($this->getVar('collector') && $this->collector->getId() != $aetn_shows['american_pickers']['collector'])
+    {
+      $q->orderBy('UpdatedAt', Criteria::DESC);
+    }
+    else
+    {
+      $q->addAscendingOrderByColumn('RAND()');;
+    }
 
     // See if we need to filter by CollectibleId first
     if (!empty($this->ids) && is_array($this->ids))

@@ -12,7 +12,7 @@
     array('class' => 'text-v-middle link-align')
   );
 
-  cq_sidebar_title(
+  cq_section_title(
     $collectible->getName(), $link,
     array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
   );
@@ -57,7 +57,7 @@
 </div>
 
 <?php
-  cq_sidebar_title(
+  cq_section_title(
     'Shipping Information', null,
     array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
   );
@@ -149,7 +149,7 @@
 </div>
 
 <?php
-  cq_sidebar_title(
+  cq_section_title(
     'Order Information', null,
     array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
   );
@@ -201,7 +201,7 @@
 </div>
 
 <?php
-  cq_sidebar_title(
+  cq_section_title(
     'PayPal Transaction', null,
     array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title spacer-top-20')
   );

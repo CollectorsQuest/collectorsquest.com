@@ -10,7 +10,7 @@ $link = link_to(
   'Back to Purchases &raquo;', '@mycq_marketplace_purchased',
   array('class' => 'text-v-middle link-align')
 );
-cq_sidebar_title(
+cq_section_title(
   'Order Information', $link,
   array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
 );
@@ -113,7 +113,7 @@ cq_sidebar_title(
 
 
 <?php
-  cq_sidebar_title(
+  cq_section_title(
     $collectible->getName(), null,
     array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title')
   );
@@ -158,7 +158,7 @@ cq_sidebar_title(
 
 
 <?php
-cq_sidebar_title(
+cq_section_title(
   'Seller Information', null,
   array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title')
 );

@@ -67,8 +67,6 @@
   {
     $('.collectibles-to-sort li').draggable(
     {
-      // containment: '#content',
-      appendTo: 'body',
       helper: function() {
         return $(this).clone().removeAttr('id').addClass('ui-draggable-dragging')[0];
       },

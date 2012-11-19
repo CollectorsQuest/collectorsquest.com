@@ -78,6 +78,7 @@ classes:
       shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
 
       note_to_seller:       { type: varchar, size: 255 }
+      progress:             { type: enum, valueSet: "step1, step2, step3", default: step1, required: true }
 
     propel_behaviors:
       timestampable:  ~
