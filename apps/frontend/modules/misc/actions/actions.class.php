@@ -275,7 +275,6 @@ class miscActions extends cqFrontendActions
     {
       $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
 
-      // @todo figure out a better way to do this, cqFunctions if possible
       $parsed_collectible_ids = array();
       foreach ($collectible_ids as $collectible_id)
       {
@@ -300,6 +299,7 @@ class miscActions extends cqFrontendActions
           $parsed_collectible_ids[] = $collectible_id;
         }
       }
+
       $collectible_ids = $parsed_collectible_ids;
     }
     if (!empty($values['cq_category_ids']))
@@ -313,6 +313,33 @@ class miscActions extends cqFrontendActions
     if (!empty($values['cq_homepage_collectible_ids']))
     {
       $homepage_collectible_ids = cqFunctions::explode(',', $values['cq_homepage_collectible_ids']);
+
+      $parsed_collectible_ids = array();
+      foreach ($homepage_collectible_ids as $collectible_id)
+      {
+        if (strstr($collectible_id, ':'))
+        {
+          $parsed_value = explode(':', $collectible_id);
+          $parsed_collectible_ids[] = $parsed_value[0];
+          switch ($parsed_value[1]) {
+            case '4x4':
+              $collectibles_4x4[] = $parsed_value[0];
+              break;
+            case '2x1':
+              $collectibles_2x1[] = $parsed_value[0];
+              break;
+            case '1x2':
+              $collectibles_1x2[] = $parsed_value[0];
+              break;
+          }
+        }
+        else
+        {
+          $parsed_collectible_ids[] = $collectible_id;
+        }
+      }
+
+      $homepage_collectible_ids = $parsed_collectible_ids;
       $collectible_ids = array_merge($homepage_collectible_ids, $collectible_ids);
     }
 
@@ -494,11 +521,43 @@ class miscActions extends cqFrontendActions
       );
 
     $pager = new PropelModelPager($q, 20);
+
+/*
+    // avoid having empty space in last row
+    $results = $pager->getResults();
+    $area = 0;
+    foreach ($results as $collectible)
+    {
+      /* @var $collectible Collectible */
+/*      $id = $collectible->getId();
+      if (in_array($id, $collectibles_2x1) || in_array($id, $collectibles_1x2))
+      {
+        $area += 2;
+      }
+      else if (in_array($id, $collectibles_4x4))
+      {
+        $area += 4;
+      }
+      else
+      {
+        $area++;
+      }
+    }
+    if ($area % 4 != 0)
+    {
+      // set new limit and repeat check
+    }
+*/
+
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 
     $this->pager = $pager;
     $this->wp_post = $wp_post;
+
+    $this->collectibles_4x4 = $collectibles_4x4;
+    $this->collectibles_2x1 = $collectibles_2x1;
+    $this->collectibles_1x2 = $collectibles_1x2;
 
     $this->addBreadcrumb($wp_post->getPostTitle(), null);
 

@@ -1,4 +1,10 @@
 <?php
+  /* @var $pager             PropelModelPager */
+  /* @var $wp_post           wpPost           */
+  /* @var $collectibles_4x4  array            */
+  /* @var $collectibles_1x2  array            */
+  /* @var $collectibles_2x1  array            */
+
   cq_page_title(
     $wp_post->getPostTitle(), null,
     array('class' => 'row-fluid header-bar')
@@ -24,10 +30,33 @@
   <?php
     foreach ($pager->getResults() as $i => $collectible)
     {
-      // Show the collectible (in grid, list or hybrid view)
+      /* @var $collectible Collectible */
+      $id = $collectible->getId();
+
+      // which partial we want to show the Collectible with
+      $partial = '';
+      if (in_array($id, $collectibles_2x1))
+      {
+        $partial = 'wide';
+      }
+      else if (in_array($id, $collectibles_1x2))
+      {
+        $partial = 'tall';
+      }
+      else if (in_array($id, $collectibles_4x4))
+      {
+        $partial = 'square_big';
+      }
+      else
+      {
+        $partial = 'square_small';
+      }
+
       include_partial(
-        'collection/collectible_grid_view_square_small',
-        array('collectible' => $collectible, 'i' => (int) $i)
+        'collection/collectible_grid_view_' . $partial,
+        array(
+          'collectible' => $collectible, 'i' => (int) $i
+        )
       );
     }
   ?>
@@ -56,5 +85,15 @@ $(document).ready(function ()
   })
   .show();
 
+  var $container = $('#collectibles');
+
+  $container.imagesLoaded(function()
+  {
+    $container.masonry(
+      {
+        itemSelector : '.span3, .span6',
+        columnWidth : 140, gutterWidth: 15
+      });
+  });
 });
 </script>
