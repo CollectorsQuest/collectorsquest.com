@@ -963,6 +963,12 @@ class mycqActions extends cqFrontendActions
           'error', 'You need to provide the tracking number in order to mark the item as shipped!'
         );
       }
+      else if (!$request->getParameter('carrier'))
+      {
+        $this->getUser()->setFlash(
+          'error', 'You need to provide the shipping carrier in order to mark the item as shipped!'
+        );
+      }
       else if ($shopping_order->getShippingTrackingNumber())
       {
         $this->getUser()->setFlash(
