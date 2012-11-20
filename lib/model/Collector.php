@@ -95,19 +95,6 @@ require 'lib/model/om/BaseCollector.php';
  *
  * @method     Collector setTimeoutIgnoreForUser(boolean $v)
  * @method     boolean   getTimeoutIgnoreForUser()
- *
- * @method     Collector setSellerSettingsShippingUsType(string $v)
- * @method     string    getSellerSettingsShippingUsType()
- *
- * @method     Collector setSellerSettingsShippingUsRate(float $v)
- * @method     float     getSellerSettingsShippingUsRate()
- *
- * @method     Collector setSellerSettingsShippingInternationalType(string $v)
- * @method     string    getSellerSettingsShippingInternationalType()
- *
- * @method     Collector setSellerSettingsShippingInternationalRate(float $v)
- * @method     float     getSellerSettingsShippingInternationalRate()
- *
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
@@ -155,13 +142,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_REFUNDS);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES);
-
-    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING_US_TYPE);
-    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING_US_RATE);
-
-    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING_INTERNATIONAL_TYPE);
-    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING_INTERNATIONAL_RATE);
-    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING_INTERNATIONAL_EXCLUDE);
 
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT);
@@ -1594,25 +1574,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       ->count();
   }
 
-  /**
-   * @param array|string $v
-   */
-  public function setSellerSettingsShippingInternationalExclude($v)
-  {
-    $v = (array) $v;
-
-    parent::setSellerSettingsShippingInternationalExclude(json_encode($v));
-  }
-
-  /**
-   * @return array
-   */
-  public function getSellerSettingsShippingInternationalExclude()
-  {
-    $v = parent::getSellerSettingsShippingInternationalExclude();
-
-    return @json_decode($v);
-  }
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));
