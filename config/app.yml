@@ -415,6 +415,7 @@ all:
       # FLAT
       firstClassMailType: ''
 
+  default_collection_content_category_id: 3560
 
 dev:
   domain_name: "collectorsquest.dev"
