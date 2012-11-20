@@ -27,7 +27,7 @@ dev:
     logging_enabled:        true
     cache:                  false
     etag:                   false
-    web_debug:              true
+    web_debug:              false
     web_debug_web_dir:      "/sf/sf_web_debug"
 
 test:
