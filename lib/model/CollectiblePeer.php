@@ -16,10 +16,6 @@ class CollectiblePeer extends BaseCollectiblePeer
     $collectible = null;
     $parameters['id'] = str_replace(array('.html', '.htm'), '', $parameters['id']);
 
-    /* @var $q CollectibleQuery */
-    $q = CollectibleQuery::create()
-      ->joinWith('Collector');
-
     if (preg_match('/-c(\d+)$/i', $parameters['slug'], $m))
     {
       /* @var $q CollectionCollectibleQuery */
@@ -32,7 +28,7 @@ class CollectiblePeer extends BaseCollectiblePeer
       $collectible = $q->findOne();
     }
 
-    return $collectible ?: $q->findOneById($parameters['id']);
+    return $collectible ?: CollectibleQuery::create()->joinCollector('Collector')->findOneById($parameters['id']);
   }
 
   public static function getLatest($limit = 18)
