@@ -94,6 +94,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
         );
         $collection = $q->findOneOrCreate();
         $collection->setName($name);
+        $collection->setContentCategoryId(sfConfig::get('app_default_collection_content_category_id'));
         $collection->save();
       }
 
