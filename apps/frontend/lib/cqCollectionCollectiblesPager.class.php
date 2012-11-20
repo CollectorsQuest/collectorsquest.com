@@ -32,12 +32,12 @@ class cqCollectionCollectiblesPager extends sfPager
   {
     $selectByOne = false;
 
-    /* @var $stmt PDOStatemen */
+    /* @var $stmt PDOStatement */
     $stmt = FrontendCollectionCollectibleQuery::create()
-      ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
       ->filterByCollection($this->collection)
       ->orderByPosition()
-      ->addSelectColumn(CollectionCollectiblePeer::COLLECTIBLE_ID)
+      ->select(array(CollectionCollectiblePeer::COLLECTIBLE_ID))
+      ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
       ->find();
 
     // Get all public collectibles IDs related to collection and sorted by position
@@ -106,16 +106,18 @@ class cqCollectionCollectiblesPager extends sfPager
       $this->results = new PropelObjectCollection();
       foreach ($ids as $id)
       {
-        $this->results[] = FrontendCollectibleQuery::create()->filterById($id)->findOne();
+        $this->results[] = FrontendCollectionCollectibleQuery::create()
+          ->filterByCollection($this->collection)
+          ->filterByCollectibleId($id)
+          ->findOne();
       }
     }
     else
     {
-      $this->results = FrontendCollectibleQuery::create()
-        ->filterById($ids)
-        ->useCollectionCollectibleQuery()
+      $this->results = FrontendCollectionCollectibleQuery::create()
+        ->filterByCollection($this->collection)
+        ->filterByCollectibleId($ids)
         ->orderByPosition()
-        ->endUse()
         ->find();
     }
   }
