@@ -597,26 +597,15 @@ class mycqActions extends cqFrontendActions
       $form->setDefault('tags', $collection->getTags());
     }
 
-    $collector = $this->getCollector(true);
-
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
       $collectible,
       'US',
       $request->getParameter('shipping_rates_us')
     );
-    $form_shipping_us->setDefaults(array(
-      'shipping_type'=> $collector->getSellerSettingsShippingUsType(),
-      'flat_rate' => $collector->getSellerSettingsShippingUsRate(),
-    ));
     $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
       $collectible,
       $request->getParameter('shipping_rates_zz')
     );
-    $form_shipping_zz->setDefaults(array(
-      'shipping_type' => $collector->getSellerSettingsShippingInternationalType(),
-      'flat_rate' => $collector->getSellerSettingsShippingInternationalRate(),
-      'do_not_ship_to' => $collector->getSellerSettingsShippingInternationalExclude(),
-    ));
 
     if ($request->isMethod('post'))
     {
@@ -849,7 +838,7 @@ class mycqActions extends cqFrontendActions
 
     $collector = $this->getCollector(true);
 
-    $form = new CollectorEditForm($this->getCollector(), array(
+    $form = new CollectorEditForm($collector, array(
       'seller_settings_show'     => true,
       'seller_settings_required' => false,
     ));
@@ -867,23 +856,14 @@ class mycqActions extends cqFrontendActions
     ));
 
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
-      $this->getCollector(),
+      $collector,
       'US',
       $request->getParameter('shipping_rates_us')
     );
-    $form_shipping_us->setDefaults(array(
-      'shipping_type' => $collector->getSellerSettingsShippingUsType(),
-      'flat_rate' => $collector->getSellerSettingsShippingUsRate(),
-    ));
     $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
-      $this->getCollector(),
+      $collector,
       $request->getParameter('shipping_rates_zz')
     );
-    $form_shipping_zz->setDefaults(array(
-      'shipping_type' => $collector->getSellerSettingsShippingInternationalType(),
-      'flat_rate' => $collector->getSellerSettingsShippingInternationalRate(),
-      'do_not_ship_to' => $collector->getSellerSettingsShippingInternationalExclude(),
-    ));
 
     if (sfRequest::POST == $request->getMethod())
     {
@@ -894,14 +874,8 @@ class mycqActions extends cqFrontendActions
       && $form_shipping_us->isValid() && $form_shipping_zz->isValid()
       )
       {
-        $collector->setSellerSettingsShippingUsType($form_shipping_us->getValue('shipping_type'));
-        $collector->setSellerSettingsShippingUsRate($form_shipping_us->getValue('flat_rate'));
-
-        $collector->setSellerSettingsShippingInternationalType($form_shipping_zz->getValue('shipping_type'));
-        $collector->setSellerSettingsShippingInternationalRate($form_shipping_zz->getValue('flat_rate'));
-        $collector->setSellerSettingsShippingInternationalExclude($form_shipping_zz->getValue('do_not_ship_to'));
-
-        $collector->save();
+        $form_shipping_us->save();
+        $form_shipping_zz->save();
 
         $this->getUser()->setFlash(
           'success', 'You have successfully updated your store settings.'
