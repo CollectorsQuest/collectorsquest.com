@@ -580,10 +580,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         ->filterByCountryIso3166('ZZ') // international
         ->findOne($con)
     )
-    ?: ShippingReferenceQuery::create()
-      ->filterByCollector($this->getCollector())
-      ->filterByCountryIso3166($coutry_code)
-      ->findOne($con); // for collector
+    ?: $this->getCollector()->getShippingReferenceForCountryCode($coutry_code, $con);
   }
 
   /**
