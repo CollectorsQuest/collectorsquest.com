@@ -48,6 +48,15 @@ shopping_order_export:
     column: id
   param: { module: ShoppingOrder, action: export }
 
+shopping_cart_collectible:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                ShoppingCartCollectible
+    module:               shoppingCartCollectible
+    prefix_path:          /shoppingCartCollectible
+    column:               shopping_cart_id
+    with_wildcard_routes: true
+
 collectible_for_sale:
   class: icePropelRouteCollection
   options:
