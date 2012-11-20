@@ -24,9 +24,9 @@ class CollectibleQuery extends BaseCollectibleQuery
 
     $where = sprintf("
         Collectible.Id IN (
-          SELECT tagging.taggable_id
-            FROM tagging INNER JOIN tag ON (tag.id = tagging.tag_id AND tag.is_triple = 0 AND tag.slug %s ('%s'))
-           WHERE taggable_model = 'Collectible'
+          SELECT tagging.taggable_id from (
+            SELECT tag.id from tag WHERE tag.is_triple = 0 AND tag.slug %s ('%s')
+          ) res INNER JOIN tagging ON (res.id = tag_id AND taggable_model = 'Collectible')
         )
       ",
       $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
@@ -88,14 +88,14 @@ class CollectibleQuery extends BaseCollectibleQuery
 
     $where = sprintf("
         collectible.ID IN (
-          SELECT tagging.taggable_id
-            FROM tagging INNER JOIN tag ON (
-              tag.id = tagging.tag_id AND tag.is_triple = 1 AND
+          SELECT tagging.taggable_id FROM (
+            SELECT tag.id from tag
+             WHERE
+              tag.is_triple = 1 AND
               tag.triple_value %s ('%s') AND
               tag.triple_namespace = '%s' AND
               tag.triple_key IN ('%s')
-            )
-           WHERE taggable_model = 'Collectible'
+          ) res INNER JOIN tagging ON (res.id = tag_id AND taggable_model = 'Collectible')
         )
       ",
       $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
