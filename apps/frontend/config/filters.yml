@@ -3,22 +3,22 @@
 
 rendering: ~
 
-#ssl:
-#  class: cqSslRedirectFilter
-#remember_me:
-#  class: cqCollectorRememberMeFilter
-#uuid:
-#  class: cqUuidFilter
+ssl:
+  class: cqSslRedirectFilter
+remember_me:
+  class: cqCollectorRememberMeFilter
+uuid:
+  class: cqUuidFilter
 security:
   class: cqSecurityFilter
-#seo:
-#  class: iceSeoFilter
-#history:
-#  class: iceRequestHistoryFilter
-#visitorInfo:
-#  class: cqVisitorInfoFilter
-#admin_cache:
-#  class: cqConditionalCacheFilter
+seo:
+  class: iceSeoFilter
+history:
+  class: iceRequestHistoryFilter
+visitorInfo:
+  class: cqVisitorInfoFilter
+admin_cache:
+  class: cqConditionalCacheFilter
 
 cache: ~
 execution: ~
