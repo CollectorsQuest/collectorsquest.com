@@ -2,3 +2,12 @@ index:
   enabled:     true
   with_layout: false
   lifetime:    300
+
+holiday:
+  enabled:     true
+  with_layout: false
+  lifetime:    300
+
+_holidaySlot1:
+  enabled:     true
+  lifetime:    300
