@@ -2,6 +2,7 @@
 
 /**
  * Add extra tables and schema changes for grouping of items in the cart
+ * + combined_flat_rate_in_cents to shipping_rate table
  */
 class PropelMigration_1353494211
 {
@@ -39,6 +40,9 @@ class PropelMigration_1353494211
         # This is a fix for InnoDB in MySQL >= 4.1.x
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
+
+        ALTER TABLE `shipping_rate` ADD `combined_flat_rate_in_cents` INTEGER AFTER `flat_rate_in_cents`;
+
 
         ALTER TABLE `shopping_order` DROP FOREIGN KEY `shopping_order_FK_5`;
 
@@ -154,6 +158,9 @@ class PropelMigration_1353494211
         # This is a fix for InnoDB in MySQL >= 4.1.x
         # It "suspends judgement" for fkey relationships until are tables are set.
         SET FOREIGN_KEY_CHECKS = 0;
+
+        ALTER TABLE `shipping_rate` DROP `combined_flat_rate_in_cents`;
+
 
         DROP TABLE IF EXISTS `shopping_order_collectible`;
 
