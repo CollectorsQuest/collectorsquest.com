@@ -415,7 +415,9 @@ class ShoppingOrder extends BaseShoppingOrder
         {
           $collectible = new Collectible();
           $collectible->populateFromArchive($collectible_archive, true);
-          $collectible->setReadOnly(true);
+          $collectible
+            ->setReadOnly(true)
+            ->isArchive = true;
 
           // Load multimedia
           $m_archive = iceModelMultimediaArchiveQuery::create()
