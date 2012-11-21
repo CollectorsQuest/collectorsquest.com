@@ -96,19 +96,18 @@ class batchGenerateSitemapTask extends sfBaseTask
       foreach ($collectors as $collector)
       {
         $writer->startElement('url');
-        $writer->writeElement('loc', url_for_collector($collector, true));
-        $writer->writeElement('changefreq', 'weekly');
-        $writer->writeElement('priority', '0.4');
+          $writer->writeElement('loc', url_for_collector($collector, true));
+          $writer->writeElement('changefreq', 'weekly');
+          $writer->writeElement('priority', '0.4');
 
-        $writer->endElement();
-
-        /**
-         * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
-         */
-        $writer->startElement('image:image');
-        $writer->writeElement('image:loc', src_tag_collector($collector, '235x315'));
-        $writer->writeElement('image:caption', $collector->getDisplayName());
-        $writer->writeElement('image:title', 'Collectors Quest Collector - ' . $collector->getDisplayName());
+          /**
+           * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
+           */
+          $writer->startElement('image:image');
+            $writer->writeElement('image:loc', src_tag_collector($collector, '235x315'));
+            $writer->writeElement('image:caption', $collector->getDisplayName());
+            $writer->writeElement('image:title', 'Collectors Quest Collector - ' . $collector->getDisplayName());
+          $writer->endElement(); //image
 
         $writer->endElement();
       }
@@ -142,19 +141,18 @@ class batchGenerateSitemapTask extends sfBaseTask
       foreach ($collections as $collection)
       {
         $writer->startElement('url');
-        $writer->writeElement('loc', url_for_collection($collection, true));
-        $writer->writeElement('changefreq', 'weekly');
-        $writer->writeElement('priority', '0.6');
+          $writer->writeElement('loc', url_for_collection($collection, true));
+          $writer->writeElement('changefreq', 'weekly');
+          $writer->writeElement('priority', '0.6');
 
-        $writer->endElement();
-
-        /**
-         * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
-         */
-        $writer->startElement('image:image');
-        $writer->writeElement('image:loc', src_tag_collection($collection, '190x190'));
-        $writer->writeElement('image:caption', $collection->getName());
-        $writer->writeElement('image:title', 'Collectors Quest Collection - ' . $collection->getName());
+          /**
+           * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
+           */
+          $writer->startElement('image:image');
+            $writer->writeElement('image:loc', src_tag_collection($collection, '190x190'));
+            $writer->writeElement('image:caption', $collection->getName());
+            $writer->writeElement('image:title', 'Collectors Quest Collection - ' . $collection->getName());
+          $writer->endElement(); // image
 
         $writer->endElement();
       }
@@ -203,22 +201,21 @@ class batchGenerateSitemapTask extends sfBaseTask
         $is_for_sale = $collectible->isForSale();
 
         $writer->startElement('url');
-        $writer->writeElement('loc', url_for_collectible($collectible, true));
-        $writer->writeElement('changefreq', 'weekly');
-        $writer->writeElement('priority', $is_for_sale ? '0.6' : '0.5');
+          $writer->writeElement('loc', url_for_collectible($collectible, true));
+          $writer->writeElement('changefreq', 'weekly');
+          $writer->writeElement('priority', $is_for_sale ? '0.6' : '0.5');
 
-        $writer->endElement();
-
-        /**
-         * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
-         */
-        $writer->startElement('image:image');
-        $writer->writeElement('image:loc', src_tag_collectible($collectible, '620x0'));
-        $writer->writeElement('image:caption', $collectible->getName());
-        $title_string = $is_for_sale ? 'Item for Sale' : 'Collectible';
-        $writer->writeElement(
-          'image:title', sprintf('Collectors Quest %s - %s', $title_string, $collectible->getName())
-        );
+          /**
+           * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
+           */
+          $writer->startElement('image:image');
+            $writer->writeElement('image:loc', src_tag_collectible($collectible, '620x0'));
+            $writer->writeElement('image:caption', $collectible->getName());
+            $title_string = $is_for_sale ? 'Item for Sale' : 'Collectible';
+            $writer->writeElement(
+              'image:title', sprintf('Collectors Quest %s - %s', $title_string, $collectible->getName())
+            );
+          $writer->endElement(); // image
 
         $writer->endElement();
 
