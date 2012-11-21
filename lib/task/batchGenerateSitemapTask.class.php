@@ -1,5 +1,7 @@
 <?php
 
+// @todo add method to reset sitemap and data in .txt files so a new sitemap can be generated
+
 class batchGenerateSitemapTask extends sfBaseTask
 {
   /** @var SimpleXMLElement */
@@ -16,6 +18,13 @@ class batchGenerateSitemapTask extends sfBaseTask
 
   /** @var sfApplicationConfiguration */
   protected $configuration;
+
+  /*
+   * set limit for records processed on a single iteration
+   *
+   * @var integer
+   */
+  protected $limit = 2000;
 
   protected function configure()
   {
@@ -50,11 +59,12 @@ class batchGenerateSitemapTask extends sfBaseTask
     // Load the Links helper
     $this->configuration->loadHelpers('cqLinks');
 
-    $this->_landing_pages();
+    // we can easily process the first 2 in one iteration and just add a check it is done
+    // $this->_landing_pages();
+    // $this->_content_categories($connection);
     $this->_collectors($connection);
-    $this->_collections($connection);
-    $this->_collectibles($connection);
-    $this->_content_categories($connection);
+    // $this->_collections($connection);
+    // $this->_collectibles($connection);
 
     // Write the sitemap index file
     if ($this->sitemap_index instanceof SimpleXMLElement)
@@ -65,10 +75,13 @@ class batchGenerateSitemapTask extends sfBaseTask
       $sitemap_url = 'http://'. sfConfig::get('app_www_domain').'/sitemap.xml';
 
       // Ping search engines
+      /*
+       * @ todo uncomment when functionality is ready and we have added all items
       file('http://www.google.com/webmasters/sitemaps/ping?sitemap='. $sitemap_url);
       file('http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap='. $sitemap_url);
       file('http://webmaster.live.com/webmaster/ping.aspx?siteMap='. $sitemap_url);
       file('http://submissions.ask.com/ping?sitemap='. $sitemap_url);
+      */
     }
   }
 
@@ -85,32 +98,65 @@ class batchGenerateSitemapTask extends sfBaseTask
       ->orderBy('Collector.CreatedAt', 'DESC')
       ->filterByIsPublic(true);
 
-    /** @var $collectors Collector[] */
-    $collectors = $q->find($connection);
+    $collector_ids = $q->select('Id')->find($connection)->toArray();
+
+    /** @var $q CollectorQuery */
+    $q = CollectorQuery::create()
+      ->orderBy('Collector.CreatedAt', 'DESC')
+      ->filterByIsPublic(true);
+
+    $old_collector_ids = file_get_contents(sfConfig::get('sf_web_dir') . '/sitemaps/collectors.txt');
+    if ($old_collector_ids != '')
+    {
+      $old_collector_ids = explode(",", trim($old_collector_ids));
+      $new_collector_ids = array_diff($collector_ids, $old_collector_ids);
+
+      /** @var $collectors Collector[] */
+      $collectors = $q->filterById($new_collector_ids, Criteria::IN)->limit($this->limit)->find($connection);
+    }
+    else
+    {
+      $old_collector_ids = array();
+
+      /** @var $collectors Collector[] */
+      $collectors = $q->limit($this->limit)->find($connection);
+    }
+
+    $added_collector_ids = array();
 
     if (!empty($collectors))
     {
-      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectors.xml';
+      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectors_'. time() . '.xml';
       $writer = $this->getWriter($sitemap);
 
-      foreach ($collectors as $collector)
+      $max = count($collectors);
+      for ($i = 0; $i < $max; $i++)
       {
-        $writer->startElement('url');
-          $writer->writeElement('loc', url_for_collector($collector, true));
-          $writer->writeElement('changefreq', 'weekly');
-          $writer->writeElement('priority', '0.4');
+        if ($this->limit > 0)
+        {
+          $writer->startElement('url');
+            $writer->writeElement('loc', url_for_collector($collectors[$i], true));
+            $writer->writeElement('changefreq', 'weekly');
+            $writer->writeElement('priority', '0.4');
 
-          /**
-           * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
-           */
-          $writer->startElement('image:image');
-            $writer->writeElement('image:loc', src_tag_collector($collector, '235x315'));
-            $writer->writeElement('image:caption', $collector->getDisplayName());
-            $writer->writeElement('image:title', 'Collectors Quest Collector - ' . $collector->getDisplayName());
-          $writer->endElement(); //image
+            /**
+             * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
+             */
+            $writer->startElement('image:image');
+              $writer->writeElement('image:loc', src_tag_collector($collectors[$i], '235x315'));
+              $writer->writeElement('image:caption', $collectors[$i]->getDisplayName());
+              $writer->writeElement('image:title', 'Collectors Quest Collector - ' . $collectors[$i]->getDisplayName());
+            $writer->endElement(); //image
 
-        $writer->endElement();
+          $writer->endElement();
+
+          $this->limit--;
+          $added_collector_ids[] = $collectors[$i]->getId();
+        }
       }
+
+      $added_collector_ids = array_merge($added_collector_ids, $old_collector_ids);
+      file_put_contents(sfConfig::get('sf_web_dir') . '/sitemaps/collectors.txt', implode(',', $added_collector_ids));
 
       $this->flushWriter($writer);
       $this->addSitemap($sitemap);
@@ -278,7 +324,7 @@ class batchGenerateSitemapTask extends sfBaseTask
     $writer = $this->getWriter($sitemap);
 
     //routes with daily changes and 1 priority (Main Pages)
-    $daily_routes_highest = array('@homepage', '@blog', '@video', '@marketplace');
+    $daily_routes_highest = array('@blog', '@video', '@marketplace');
 
     //routes with weekly changes and 0.9 priority (Sub Pages / Product  Listings)
     $daily_routes = array(
