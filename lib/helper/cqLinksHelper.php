@@ -206,7 +206,7 @@ function cq_link_ref($ref = null)
   /** @var $sf_context cqContext */
   $sf_context = sfContext::getInstance();
 
-/*  if ($sf_context->isHomePage())
+  if ($sf_context->isHomePage())
   {
     $ref = 'hp' . (!empty($ref) ? '_' . $ref : '');
   }
@@ -225,7 +225,7 @@ function cq_link_ref($ref = null)
   else if ($sf_context->isMarketPage())
   {
     $ref = 'mp' . (!empty($ref) ? '_' . $ref : '');
-  }*/
+  }
 
   return $ref;
 }

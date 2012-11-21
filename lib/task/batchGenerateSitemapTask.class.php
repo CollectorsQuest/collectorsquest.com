@@ -4,19 +4,19 @@
 
 class batchGenerateSitemapTask extends sfBaseTask
 {
-  /** @var SimpleXMLElement */
+  /* @var SimpleXMLElement */
   protected $sitemap_index = null;
 
-  /** @var null|integer */
+  /* @var null|integer */
   protected $month = null;
 
-  /** @var null|integer */
+  /* @var null|integer */
   protected $start_date = null;
 
-  /** @var null|integer */
+  /* @var null|integer */
   protected $end_date = null;
 
-  /** @var sfApplicationConfiguration */
+  /* @var sfApplicationConfiguration */
   protected $configuration;
 
   /*
@@ -41,7 +41,7 @@ class batchGenerateSitemapTask extends sfBaseTask
   {
     $_SERVER['HTTP_HOST'] = sfConfig::get('app_www_domain');
 
-    sfContext::createInstance($this->configuration);
+    cqContext::createInstance($this->configuration);
 
     // Database initialization
     new sfDatabaseManager($this->configuration);

@@ -6,7 +6,7 @@
  */
 class checkTagsSpellingTask extends sfBaseTask
 {
-  /** @var sfProjectConfiguration */
+  /* @var sfApplicationConfiguration */
   protected $configuration = null;
 
   protected function configure()
@@ -22,12 +22,8 @@ class checkTagsSpellingTask extends sfBaseTask
 
   protected function execute($arguments = array(), $options = array())
   {
-    $config = ProjectConfiguration::getApplicationConfiguration(
-      $options['application'],
-      $options['env'],
-      false
-    );
-    sfContext::createInstance($config);
+    cqContext::createInstance($this->configuration);
+
     // initialize the database connection
     $databaseManager = new sfDatabaseManager($this->configuration);
 
