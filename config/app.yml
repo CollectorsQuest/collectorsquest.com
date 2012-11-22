@@ -415,7 +415,6 @@ all:
       # FLAT
       firstClassMailType: ''
 
-
 dev:
   domain_name: "collectorsquest.dev"
   www_domain: "www.collectorsquest.dev"
