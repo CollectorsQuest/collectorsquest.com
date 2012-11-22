@@ -2,7 +2,7 @@
 
 // @todo add method to reset sitemap and data in .txt files so a new sitemap can be generated
 
-class batchGenerateSitemapTask extends sfBaseTask
+class batchGenerateSitemapsTask extends sfBaseTask
 {
   /* @var SimpleXMLElement */
   protected $sitemap_index = null;
@@ -24,7 +24,7 @@ class batchGenerateSitemapTask extends sfBaseTask
     unset($_SERVER['PATH_TRANSLATED'], $_SERVER['SCRIPT_NAME']);
 
     $this->namespace  = 'batch';
-    $this->name       = 'generate-sitemap';
+    $this->name       = 'generate-sitemaps';
 
     $this->addArgument('application', sfCommandArgument::OPTIONAL, 'The application name', 'frontend');
     $this->addOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev');
