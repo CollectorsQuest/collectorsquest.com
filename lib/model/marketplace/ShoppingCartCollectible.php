@@ -33,6 +33,15 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       $this->updateShippingTypeFromCountryCode();
     }
 
+    // if the shipping country iso 3166 and region has been changed
+    // update tax amount
+    if (
+      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) ||
+      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_STATE_REGION)
+    ) {
+      $this->updateTaxAmount();
+    }
+
     return parent::preSave($con);
   }
 
@@ -213,6 +222,19 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     }
 
     return $this;
+  }
+
+  private function updateTaxAmount()
+  {
+    $this->setTaxAmount(0);
+    /* @var $collectible_for_sale CollectibleForSale */
+    $collectible_for_sale = $this->getCollectibleForSale();
+
+    if ($collectible_for_sale->getTaxCountry() == $this->getShippingCountryIso3166() &&
+      strtolower($collectible_for_sale->getTaxState()) == strtolower($this->getShippingStateRegion()))
+    {
+      $this->setTaxAmount(($this->getPriceAmount() / 100) * $collectible_for_sale->getTaxPercentage());
+    }
   }
 
   /**
