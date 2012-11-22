@@ -65,6 +65,16 @@ class CollectibleForSale extends BaseCollectibleForSale
     $this->setPriceAmount((int) bcmul($v, 100));
   }
 
+  public function getTaxPercentage()
+  {
+    return (float) bcdiv((string) parent::getTaxPercentage(), 100, 2);
+  }
+
+  public function setTaxPercentage($v)
+  {
+    parent::setTaxPercentage((int) bcmul($v, 100));
+  }
+
   /**
    * Check if shipping is free for this collectible for sale
    *

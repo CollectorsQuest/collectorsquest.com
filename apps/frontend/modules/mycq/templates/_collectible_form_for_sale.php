@@ -39,6 +39,22 @@
         <?= $form['price']->renderError(); ?>
       </div>
     </div>
+    <?= $form['tax_country']->renderRow(); ?>
+    <?= $form['tax_state']->renderRow(); ?>
+    <div class="control-group">
+      <?= $form['tax']->renderLabel(); ?>
+        <div class="controls">
+            <div class="input-prepend">
+                <span class="add-on">%</span>
+              <?php
+              echo $form['tax']->render(array(
+                'class' => 'item-price text-center', 'required' => 'required'
+              ));
+              ?>
+            </div>
+          <?= $form['tax']->renderError(); ?>
+        </div>
+    </div>
     <?= $form['condition']->renderRow(); ?>
 
     <?php if (cqGateKeeper::open('collectible_shipping')): ?>
@@ -178,5 +194,66 @@ $(document).ready(function()
     no_results_text: "No countries found for "
   });
   <?php endif; ?>
+  var states_cache = {};
+  $('#collectible_for_sale_tax_country').change(function()
+  {
+    var $state = $('#collectible_for_sale_tax_state');
+    var $tax = $('#collectible_for_sale_tax');
+    var country_code = $(this).val();
+    var update_states = function(data)
+      {
+        var $input = $('#collectible_for_sale_tax_state');
+        if (data.length == 0)
+        {
+          if ($input[0].nodeName.toLowerCase() == 'select')
+          {
+            var $new_input = $('<input type="text" id="collectible_for_sale_tax_state">')
+            $new_input.attr('name', $input.attr('name'));
+            $input.replaceWith($new_input);
+          }
+        }
+        else
+        {
+          var $new_input = $('<select id="collectible_for_sale_tax_state"></select>')
+          $new_input.attr('name', $input.attr('name'));
+          $.each(data, function(key, value) {
+          $new_input.append($("<option></option>")
+                          .attr("value", value).text(key));
+          });
+          $new_input.val($input.val());
+          $input.replaceWith($new_input);
+        }
+      };
+    if ($(this).val() == '')
+    {
+      $state.attr('disabled', 'disabled').closest('.control-group').hide();
+      $tax.attr('disabled', 'disabled').closest('.control-group').hide();
+    }
+    else
+    {
+      $state.removeAttr('disabled').closest('.control-group').show();
+      $tax.removeAttr('disabled').closest('.control-group').show();
+      if (country_code in states_cache)
+      {
+        update_states(states_cache[country_code]);
+      }
+      else
+      {
+        $.ajax({
+          url: '<?= url_for('@ajax_mycq?section=states&page=lookup'); ?>',
+            type: 'GET',
+              data: {
+                c: country_code
+                },
+              dataType: 'json',
+              success: function(responce)
+                {
+                  states_cache[country_code] = responce;
+                  update_states(states_cache[country_code]);
+                }
+        });
+      }
+    }
+  }).change();
 });
 </script>

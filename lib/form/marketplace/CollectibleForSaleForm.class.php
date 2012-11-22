@@ -77,6 +77,18 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     $this->getObject()->setPrice($v);
   }
 
+  public function setupTaxFields()
+  {
+    $this->widgetSchema['tax'] = new sfWidgetFormInputText(array(), array('required' => 'false'));
+    $this->setValidator('tax', new sfValidatorString(array('required' => false)));
+    $this->setDefault('tax', sprintf('%01.2f', $this->getObject()->getTaxPercentage()));
+  }
+
+  public function updateTaxColumn($v)
+  {
+    $this->getObject()->setTaxPercentage($v);
+  }
+
   public function validatePriceField($validator, $values)
   {
     if (!empty($values['is_ready']))

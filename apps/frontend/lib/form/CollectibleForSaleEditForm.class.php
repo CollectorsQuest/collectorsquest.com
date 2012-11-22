@@ -7,6 +7,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
     parent::configure();
 
     $this->setupPriceField();
+    $this->setupTaxFields();
     $this->setupConditionField();
 
     // add a post validator
@@ -31,7 +32,10 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
     $this->useFields(array(
       'is_ready',
       'price',
-      'condition'
+      'condition',
+      'tax_country',
+      'tax_state',
+      'tax'
     ));
 
     $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
