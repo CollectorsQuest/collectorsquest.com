@@ -14,7 +14,7 @@ classes:
       price_amount:         { type: integer, required: true, default: 0 }
       price_currency:       { type: char, size: 3, required: true, default: 'USD' }
       tax_country:          { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
-      tax_state:            { type: varchar, size: 64, required: false }
+      tax_state:            { type: varchar, size: 100, required: false }
       tax_percentage:       { type: integer, required: false }
       condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
       is_price_negotiable:  { type: boolean, default: false }
@@ -51,6 +51,7 @@ classes:
       price_currency:            { type: char, size: 3, required: true, default: 'USD' }
       tax_amount:                { type: integer, required: true, default: 0 }
       shipping_country_iso3166:  { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 }
+      shipping_state_region:     { type: varchar(100), required: false }
       shipping_fee_amount:       { type: integer, required: false }
       # should always mirror shipping_reference.shipping_type
       shipping_type:             { type: enum,    required: false, valueSet: "no_shipping, local_pickup_only, flat_rate, calculated_shipping" }
