@@ -53,8 +53,8 @@ class batchGenerateSitemapTask extends sfBaseTask
     $this->configuration->loadHelpers('cqLinks');
 
     // we can easily process the first 2 in one iteration and just add a check it is done
-    // $this->_landing_pages();
-    // $this->_content_categories($connection);
+    $this->_landing_pages();
+    $this->_content_categories($connection);
     $this->_collectors($connection);
     $this->_collections($connection);
     $this->_collectibles($connection);
@@ -89,14 +89,8 @@ class batchGenerateSitemapTask extends sfBaseTask
       $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectors.xml';
       $writer = $this->getWriter($sitemap);
 
-      foreach ($collectors as $i => $collector)
+      foreach ($collectors as $collector)
       {
-        if ($i % 1000 == 0)
-        {
-          $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectors_' . floor($i / 1000) . '.xml';
-          $writer = $this->getWriter($sitemap);
-        }
-
         $writer->startElement('url');
           $writer->writeElement('loc', url_for_collector($collector, true));
           $writer->writeElement('changefreq', 'weekly');
@@ -111,14 +105,6 @@ class batchGenerateSitemapTask extends sfBaseTask
 //          $writer->writeElement('image:title', 'Collectors Quest Collector - ' . $collector->getDisplayName());
 //        $writer->endElement();
         $writer->endElement();
-
-        if ($i % 1000 == 999)
-        {
-          $this->flushWriter($writer);
-          $this->addSitemap($sitemap);
-        }
-
-        echo $i ."\n";
       }
 
       $this->flushWriter($writer);
@@ -149,14 +135,8 @@ class batchGenerateSitemapTask extends sfBaseTask
       $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collections.xml';
       $writer = $this->getWriter($sitemap);
 
-      foreach ($collections as $i => $collection)
+      foreach ($collections as $collection)
       {
-        if ($i % 20000 == 0)
-        {
-          $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectibles_' . floor($i / 20000) . '.xml';
-          $writer = $this->getWriter($sitemap);
-        }
-
         $writer->startElement('url');
           $writer->writeElement('loc', url_for_collection($collection, true));
           $writer->writeElement('changefreq', 'weekly');
@@ -205,18 +185,16 @@ class batchGenerateSitemapTask extends sfBaseTask
        */
       foreach ($collectibles as $i => $collectible)
       {
-        if ($i % 20000 == 0)
+        if ($i > 0 && $i % 20000 == 0)
         {
           $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectibles_' . floor($i / 20000) . '.xml';
           $writer = $this->getWriter($sitemap);
         }
 
-        $is_for_sale = $collectible->isForSale();
-
         $writer->startElement('url');
           $writer->writeElement('loc', url_for_collectible($collectible, true));
           $writer->writeElement('changefreq', 'weekly');
-          $writer->writeElement('priority', $is_for_sale ? '0.6' : '0.5');
+          $writer->writeElement('priority', $collectible->isForSale() ? '0.6' : '0.5');
 
           /**
            * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
