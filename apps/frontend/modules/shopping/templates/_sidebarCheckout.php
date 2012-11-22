@@ -18,6 +18,14 @@
         1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?>
       </td>
     </tr>
+    <?php if (0 != (int) $shopping_order->getTaxAmount()) : ?>
+      <tr>
+          <td>Tax:</td>
+          <td class="text-right">
+              <?= money_format('%.2n', (float) $shopping_order->getTaxAmount()); ?>
+          </td>
+      </tr>
+    <?php endif; ?>
     <tr>
       <td style="vertical-align: top;">Shipping:</td>
       <td class="text-right">

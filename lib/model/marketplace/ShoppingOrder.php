@@ -113,9 +113,16 @@ class ShoppingOrder extends BaseShoppingOrder
 
   public function getTaxAmount($return = 'float')
   {
-    $amount = 0;
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getAmountTax($return);
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getTaxAmount($return);
+    }
 
-    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+    return null;
   }
 
   public function getCollectiblesAmount($return = 'float')

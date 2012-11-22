@@ -37,37 +37,48 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
 
   private function setupStateField()
   {
-    /* @var $collectible_for_sale CollectibleForSale */
-    $collectible_for_sale = $this->getObject()->getCollectibleForSale();
-    // Show state field only if
-    // collectible with tax and country is same
-    if (
-      !$collectible_for_sale->getTaxPercentage()
-      || $collectible_for_sale->getTaxCountry() != $this->getObject()->getShippingCountryIso3166()
-    )
+    if ($this->getObject()->getCollectible())
     {
-      return;
-    }
-    $states = $this->getStatesForCountry($this->getObject()->getShippingCountryIso3166());
-    if (count($states))
-    {
-      $this->widgetSchema['state_region'] =  new sfWidgetFormChoice(
-        array('choices' => $states), array('style' => 'width: 100%;')
-      );
-      $this->validatorSchema['state_region'] = new sfValidatorChoice(
-        array('choices' => $states, 'required' => true)
-      );
+
+      /* @var $collectible_for_sale CollectibleForSale */
+      $collectible_for_sale = $this->getObject()->getCollectibleForSale();
+      // Show state field only if
+      // collectible with tax and country is same
+      if (
+        !$collectible_for_sale->getTaxPercentage()
+        || $collectible_for_sale->getTaxCountry() != $this->getObject()->getShippingCountryIso3166()
+      )
+      {
+        return;
+      }
+      $states = $this->getStatesForCountry($this->getObject()->getShippingCountryIso3166());
+      if (count($states))
+      {
+        $this->widgetSchema['state_region'] =  new sfWidgetFormChoice(
+          array('choices' => $states), array('style' => 'width: 100%;')
+        );
+        $this->validatorSchema['state_region'] = new sfValidatorChoice(
+          array('choices' => $states, 'required' => true)
+        );
+      }
+      else
+      {
+        $this->widgetSchema['state_region'] =  new sfWidgetFormInputText(
+          array(), array('style' => 'width: 91%;')
+        );
+        $this->validatorSchema['state_region'] = new sfValidatorString(
+          array('max_length' => 100, 'required' => false)
+        );
+      }
+      $this->setDefault('state_region', $this->getObject()->getShippingStateRegion());
     }
     else
     {
-      $this->widgetSchema['state_region'] =  new sfWidgetFormInputText(
-        array(), array('style' => 'width: 91%;')
-      );
+      $this->widgetSchema['state_region'] =  new sfWidgetFormInputHidden();
       $this->validatorSchema['state_region'] = new sfValidatorString(
-        array('max_length' => 100, 'required' => true)
+        array('max_length' => 100, 'required' => false)
       );
     }
-    $this->setDefault('state_region', $this->getObject()->getShippingStateRegion());
   }
 
   private function getStatesForCountry ($country_iso3166)
