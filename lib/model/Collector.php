@@ -27,6 +27,13 @@ require 'lib/model/om/BaseCollector.php';
  * @method     string    getSellerSettingsPaypalLastName()
  *
  *
+ * @method     Collector setSellerSettingsTaxCountry(string $v)
+ * @method     string    getSellerSettingsTaxCountry()
+ *
+ * @method     Collector setSellerSettingsTaxState(string $v)
+ * @method     string    getSellerSettingsTaxState()
+ *
+ *
  * @method     Collector setSellerSettingsPhoneCode(string $v)
  * @method     string    getSellerSettingsPhoneCode()
  *
@@ -142,6 +149,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_REFUNDS);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_COUNTRY);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_STATE);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_PERCENTAGE);
 
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT);
@@ -1572,6 +1583,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       ->filterByCollector($this)
       ->isForSale()
       ->count();
+  }
+
+  public function getSellerSettingsTaxPercentage()
+  {
+    return (float) bcdiv((string) parent::getSellerSettingsTaxPercentage(), 100, 2);
+  }
+
+  public function setSellerSettingsTaxPercentage($v)
+  {
+    parent::setSellerSettingsTaxPercentage((int) bcmul($v, 100));
   }
 
 }

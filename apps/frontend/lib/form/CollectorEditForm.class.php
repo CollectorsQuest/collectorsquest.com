@@ -108,6 +108,7 @@ class CollectorEditForm extends CollectorForm
     $this->setupSellerSettingsShippingField($required);
     $this->setupSellerSettingStoreHeaderImageField();
     $this->setupSellerSettingsAdditionalPoliciesField($required);
+    $this->setupSellerSettingsTaxFields($required);
 
     $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(
       array('required' => $required)
@@ -264,6 +265,26 @@ class CollectorEditForm extends CollectorForm
       );
     }
 
+
+    if (isset($values['seller_settings_tax_country']))
+    {
+      $this->getObject()->setSellerSettingsTaxCountry(
+        strip_tags($values['seller_settings_tax_country'])
+      );
+    }
+    if (isset($values['seller_settings_tax_state']))
+    {
+      $this->getObject()->setSellerSettingsTaxState(
+        strip_tags($values['seller_settings_tax_state'])
+      );
+    }
+    if (isset($values['seller_settings_tax_percentage']))
+    {
+      $this->getObject()->setSellerSettingsTaxPercentage(
+        strip_tags($values['seller_settings_tax_percentage'])
+      );
+    }
+
     // if user selected the delete widget remove the old header image
     if (isset($values['seller_settings_store_header_image_delete']) &&
         $values['seller_settings_store_header_image_delete'])
@@ -332,6 +353,9 @@ class CollectorEditForm extends CollectorForm
       'seller_settings_shipping'              => $this->getObject()->getSellerSettingsShipping(),
       'seller_settings_refunds'               => $this->getObject()->getSellerSettingsRefunds(),
       'seller_settings_additional_policies'   => $this->getObject()->getSellerSettingsAdditionalPolicies(),
+      'seller_settings_tax_country'           => $this->getObject()->getSellerSettingsTaxCountry(),
+      'seller_settings_tax_state'             => $this->getObject()->getSellerSettingsTaxState(),
+      'seller_settings_tax_percentage'        => sprintf('%01.2f', $this->getObject()->getSellerSettingsTaxPercentage()),
     )));
   }
 
@@ -531,6 +555,30 @@ class CollectorEditForm extends CollectorForm
     ));
 
     $this->validatorSchema['seller_settings_additional_policies'] = new sfValidatorString(
+      array('required' => $required)
+    );
+  }
+
+  public function setupSellerSettingsTaxFields($required = false)
+  {
+    $this->widgetSchema['seller_settings_tax_country'] = new sfWidgetFormPropelChoice(
+      array('label' => 'Country', 'model' => 'GeoCountry', 'add_empty' => true, 'key_method' => 'getIso3166')
+    );
+    $this->validatorSchema['seller_settings_tax_country'] =  new sfValidatorPropelChoice(
+      array('model' => 'GeoCountry', 'column' => 'iso3166', 'required' => $required)
+    );
+
+    $this->widgetSchema['seller_settings_tax_state'] = new sfWidgetFormInputText(
+      array('label' => 'State')
+    );
+    $this->validatorSchema['seller_settings_tax_state'] = new sfValidatorString(
+      array('max_length' => 100, 'required' => $required)
+    );
+
+    $this->widgetSchema['seller_settings_tax_percentage'] = new sfWidgetFormInputText(
+      array('label' => 'Percentage'), array('required' => $required)
+    );
+    $this->validatorSchema['seller_settings_tax_percentage'] = new sfValidatorString(
       array('required' => $required)
     );
   }
