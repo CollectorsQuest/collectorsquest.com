@@ -38,6 +38,13 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
       'tax'
     ));
 
+    $this->mergePostValidator(new cqValidatorCountryRegions(array(
+      'country_field' => 'tax_country',
+      'region_field' => 'tax_state',
+    ), array(
+      'invalid' => 'Sorry this State / Province is wrong',
+    )));
+
     $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
     $this->getWidgetSchema()->setNameFormat('collectible_for_sale[%s]');
   }

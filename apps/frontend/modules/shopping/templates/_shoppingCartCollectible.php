@@ -75,7 +75,7 @@
           </tr>
           <?php if (0 != (int) $shopping_cart_collectible->getTaxAmount()): ?>
             <tr>
-                <td>Tax:</td>
+                <td>Tax (<?= $shopping_cart_collectible->getCollectibleForSale()->getTaxPercentage() ?> %):</td>
                 <td class="text-right">
                   <?= money_format('%.2n', (float) $shopping_cart_collectible->getTaxAmount()); ?>
                     <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>

@@ -80,7 +80,10 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
   public function setupTaxFields()
   {
     $this->widgetSchema['tax'] = new sfWidgetFormInputText(array(), array('required' => 'false'));
-    $this->setValidator('tax', new sfValidatorString(array('required' => false)));
+    $this->validatorSchema['tax'] = new cqValidatorPrice(
+      array('required' => false, 'max' => 50), array('max' => 'You cannot set Tax more than 50%',
+        'invalid' => 'The tax percentage you have specified is not valid')
+    );
     $this->setDefault('tax', sprintf('%01.2f', $this->getObject()->getTaxPercentage()));
   }
 

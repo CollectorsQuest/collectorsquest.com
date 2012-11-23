@@ -81,6 +81,20 @@ cq_section_title(
           </span>
           </td>
         </tr>
+        <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
+          <tr>
+            <td>
+            <span class="f-14">
+              Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage(); ?>%):
+            </span>
+            </td>
+            <td>
+            <span class="f-14">
+              <?= money_format('%.2n', (float) $shopping_order->getTaxAmount()) ?>
+            </span>
+            </td>
+          </tr>
+        <?php endif; ?>
         <tr>
           <td>
           <span class="f-14">

@@ -97,6 +97,7 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
     {
       $result[$row['NAME_LATIN']] = $row['NAME_LATIN'];
     };
+
     return $result;
   }
 

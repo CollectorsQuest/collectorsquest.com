@@ -97,6 +97,13 @@
     )
   ); ?></p>
 
+  <?php if (0 != $collectible_for_sale->getTaxPercentage()): ?>
+    <p>
+      <strong>Tax:</strong> <?= $collectible_for_sale->getTaxPercentage(); ?> %
+        for <?= $collectible_for_sale->getGeoCountry()->getName(); ?> <?= $collectible_for_sale->getTaxState(); ?>
+    </p>
+  <?php endif; ?>
+
   <?php if ($refunds_policy = $collector->getSellerSettingsRefunds()): ?>
     <p><strong>Refunds Policy:</strong> <?= $refunds_policy ?></p>
   <?php endif; ?>

@@ -184,82 +184,84 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('.flat-rate-controller').on('change', 'input[type=radio]', function () {
-            var $flat_rate_field = $(this).parents('.controls').find('.flat-rate-field');
-            var flat_rate_checked = !!$(this).parents('.controls').find('.flat-rate-checkbox:checked').length;
+  $(document).ready(function () {
+    $('.flat-rate-controller').on('change', 'input[type=radio]', function () {
+      var $flat_rate_field = $(this).parents('.controls').find('.flat-rate-field');
+      var flat_rate_checked = !!$(this).parents('.controls').find('.flat-rate-checkbox:checked').length;
 
-            if (flat_rate_checked) {
-                $flat_rate_field.removeAttr('disabled');
-            } else {
-                $flat_rate_field.attr('disabled', 'disabled');
-            }
-        });
-
-        $('#shipping_rates_zz_do_not_ship_to').chosen({
-          no_results_text: "No countries found for "
-        });
-
-        var states_cache = {};
-        $('#collector_seller_settings_tax_country').change(function()
-        {
-            var $state = $('#collector_seller_settings_tax_state');
-            var $tax = $('#collector_seller_settings_tax_percentage');
-            var country_code = $(this).val();
-            var update_states = function(data)
-            {
-                var $input = $('#collector_seller_settings_tax_state');
-                if (data.length == 0)
-                {
-                    if ($input[0].nodeName.toLowerCase() == 'select')
-                    {
-                        var $new_input = $('<input type="text" id="collector_seller_settings_tax_state">')
-                        $new_input.attr('name', $input.attr('name'));
-                        $input.replaceWith($new_input);
-                    }
-                }
-                else
-                {
-                    var $new_input = $('<select id="collector_seller_settings_tax_state"></select>')
-                    $new_input.attr('name', $input.attr('name'));
-                    $.each(data, function(key, value) {
-                        $new_input.append($("<option></option>")
-                                .attr("value", value).text(key));
-                    });
-                    $new_input.val($input.val());
-                    $input.replaceWith($new_input);
-                }
-            };
-            if ($(this).val() == '')
-            {
-                $state.attr('disabled', 'disabled').closest('.control-group').hide();
-                $tax.attr('disabled', 'disabled').closest('.control-group').hide();
-            }
-            else
-            {
-                $state.removeAttr('disabled').closest('.control-group').show();
-                $tax.removeAttr('disabled').closest('.control-group').show();
-                if (country_code in states_cache)
-                {
-                    update_states(states_cache[country_code]);
-                }
-                else
-                {
-                    $.ajax({
-                        url: '<?= url_for('@ajax_mycq?section=states&page=lookup'); ?>',
-                        type: 'GET',
-                        data: {
-                            c: country_code
-                        },
-                        dataType: 'json',
-                        success: function(responce)
-                        {
-                            states_cache[country_code] = responce;
-                            update_states(states_cache[country_code]);
-                        }
-                    });
-                }
-            }
-        }).change();
+      if (flat_rate_checked) {
+        $flat_rate_field.removeAttr('disabled');
+      } else {
+        $flat_rate_field.attr('disabled', 'disabled');
+      }
     });
+
+    $('#shipping_rates_zz_do_not_ship_to').chosen({
+      no_results_text: "No countries found for "
+    });
+
+    var states_cache = {};
+    $('#collector_seller_settings_tax_country').change(function()
+    {
+      var $state = $('#collector_seller_settings_tax_state');
+      var $tax = $('#collector_seller_settings_tax_percentage');
+      var country_code = $(this).val();
+      var update_states = function(data)
+      {
+        var $input = $state;
+        if (data.length == 0)
+        {
+          if ($input[0].nodeName.toLowerCase() == 'select')
+          {
+            var $new_input = $('<input type="text">')
+            $new_input.attr('name', $input.attr('name'));
+            $new_input.attr('id', $input.attr('id'));
+            $input.replaceWith($new_input);
+          }
+        }
+        else
+        {
+          var $new_input = $('<select></select>')
+          $new_input.attr('name', $input.attr('name'));
+          $new_input.attr('id', $input.attr('id'));
+          $.each(data, function(key, value) {
+            $new_input.append($("<option></option>")
+                .attr("value", value).text(key));
+          });
+          $new_input.val($input.val());
+          $input.replaceWith($new_input);
+        }
+      };
+      if ($(this).val() == '')
+      {
+        $state.attr('disabled', 'disabled').closest('.control-group').hide();
+        $tax.attr('disabled', 'disabled').closest('.control-group').hide();
+      }
+      else
+      {
+        $state.removeAttr('disabled').closest('.control-group').show();
+        $tax.removeAttr('disabled').closest('.control-group').show();
+        if (country_code in states_cache)
+        {
+          update_states(states_cache[country_code]);
+        }
+        else
+        {
+          $.ajax({
+            url: '<?= url_for('@ajax?section=states&page=lookup'); ?>',
+            type: 'GET',
+            data: {
+              c: country_code
+            },
+            dataType: 'json',
+            success: function(responce)
+            {
+              states_cache[country_code] = responce;
+              update_states(states_cache[country_code]);
+            }
+          });
+        }
+      }
+    }).change();
+  });
 </script>

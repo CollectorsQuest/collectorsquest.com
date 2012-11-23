@@ -569,7 +569,7 @@ class CollectorEditForm extends CollectorForm
     );
 
     $this->widgetSchema['seller_settings_tax_state'] = new sfWidgetFormInputText(
-      array('label' => 'State')
+      array('label' => 'State / Province')
     );
     $this->validatorSchema['seller_settings_tax_state'] = new sfValidatorString(
       array('max_length' => 100, 'required' => $required)
@@ -578,9 +578,17 @@ class CollectorEditForm extends CollectorForm
     $this->widgetSchema['seller_settings_tax_percentage'] = new sfWidgetFormInputText(
       array('label' => 'Percentage'), array('required' => $required)
     );
-    $this->validatorSchema['seller_settings_tax_percentage'] = new sfValidatorString(
-      array('required' => $required)
+    $this->validatorSchema['seller_settings_tax_percentage'] = new cqValidatorPrice(
+      array('required' => false, 'max' => 50), array('max' => 'You cannot set Tax more than 50%',
+        'invalid' => 'The tax percentage you have specified is not valid')
     );
+
+    $this->mergePostValidator(new cqValidatorCountryRegions(array(
+      'country_field' => 'seller_settings_tax_country',
+      'region_field' => 'seller_settings_tax_state',
+    ), array(
+      'invalid' => 'Sorry this State / Province is wrong',
+    )));
   }
 
   public function validateSellerSettingsPayPal($validator, $values)

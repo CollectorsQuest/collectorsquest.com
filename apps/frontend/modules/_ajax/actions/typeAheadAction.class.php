@@ -66,4 +66,26 @@ class typeAheadAction extends cqAjaxAction
 
     return $this->output($tags);
   }
+
+  public function executeStatesLookup(sfWebRequest $request)
+  {
+    /* @var $country_id string */
+    $country_id = $request->getParameter('c');
+    $stmt = GeoRegionQuery::create()
+      ->useGeoCountryQuery()
+      ->filterByIso3166($country_id)
+      ->endUse()
+      ->addAscendingOrderByColumn(GeoRegionPeer::NAME_LATIN)
+      ->clearSelectColumns()
+      ->addSelectColumn(GeoRegionPeer::NAME_LATIN)
+      ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
+      ->find();
+    $result = array();
+    while ($row = $stmt->fetch())
+    {
+      $result[$row['NAME_LATIN']] = $row['NAME_LATIN'];
+    };
+
+    return $this->renderText(json_encode($result));
+  }
 }

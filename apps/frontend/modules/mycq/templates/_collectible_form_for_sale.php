@@ -40,10 +40,10 @@
       </div>
     </div>
     <?= $form['tax_country']->renderRow(); ?>
-    <?= $form['tax_state']->renderRow(); ?>
+    <?= $form['tax_state']->renderRow(array(), 'Tax  State / Province'); ?>
     <div class="control-group">
-      <?= $form['tax']->renderLabel(); ?>
-        <div class="controls">
+      <?= $form['tax']->renderLabel('Tax percentage'); ?>
+      <div class="controls">
             <div class="input-prepend">
                 <span class="add-on">%</span>
               <?php
@@ -201,29 +201,31 @@ $(document).ready(function()
     var $tax = $('#collectible_for_sale_tax');
     var country_code = $(this).val();
     var update_states = function(data)
+    {
+      var $input = $state;
+      if (data.length == 0)
       {
-        var $input = $('#collectible_for_sale_tax_state');
-        if (data.length == 0)
+        if ($input[0].nodeName.toLowerCase() == 'select')
         {
-          if ($input[0].nodeName.toLowerCase() == 'select')
-          {
-            var $new_input = $('<input type="text" id="collectible_for_sale_tax_state">')
-            $new_input.attr('name', $input.attr('name'));
-            $input.replaceWith($new_input);
-          }
-        }
-        else
-        {
-          var $new_input = $('<select id="collectible_for_sale_tax_state"></select>')
+          var $new_input = $('<input type="text">')
           $new_input.attr('name', $input.attr('name'));
-          $.each(data, function(key, value) {
-          $new_input.append($("<option></option>")
-                          .attr("value", value).text(key));
-          });
-          $new_input.val($input.val());
+          $new_input.attr('id', $input.attr('id'));
           $input.replaceWith($new_input);
         }
-      };
+      }
+      else
+      {
+        var $new_input = $('<select></select>')
+        $new_input.attr('name', $input.attr('name'));
+        $new_input.attr('id', $input.attr('id'));
+        $.each(data, function(key, value) {
+          $new_input.append($("<option></option>")
+              .attr("value", value).text(key));
+        });
+        $new_input.val($input.val());
+        $input.replaceWith($new_input);
+      }
+    };
     if ($(this).val() == '')
     {
       $state.attr('disabled', 'disabled').closest('.control-group').hide();
@@ -240,17 +242,17 @@ $(document).ready(function()
       else
       {
         $.ajax({
-          url: '<?= url_for('@ajax_mycq?section=states&page=lookup'); ?>',
-            type: 'GET',
-              data: {
-                c: country_code
-                },
-              dataType: 'json',
-              success: function(responce)
-                {
-                  states_cache[country_code] = responce;
-                  update_states(states_cache[country_code]);
-                }
+          url: '<?= url_for('@ajax?section=states&page=lookup'); ?>',
+          type: 'GET',
+          data: {
+            c: country_code
+          },
+          dataType: 'json',
+          success: function(responce)
+          {
+            states_cache[country_code] = responce;
+            update_states(states_cache[country_code]);
+          }
         });
       }
     }

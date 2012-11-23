@@ -115,6 +115,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   /**
    * @param integer|float|double $v
+   *
    */
   public function setTaxAmount($v)
   {
@@ -123,7 +124,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       $v = bcmul(cqStatic::floatval($v, 2), 100);
     }
 
-    parent::setTaxAmount($v);
+    return parent::setTaxAmount($v);
   }
 
   public function getTaxAmount($return = 'float')
@@ -143,9 +144,9 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     return parent::getTaxAmount();
   }
 
-
   /**
    * @param integer|float|double $v
+   * @return    ShoppingCartCollectible
    */
   public function setShippingFeeAmount($v)
   {
@@ -233,7 +234,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if ($collectible_for_sale->getTaxCountry() == $this->getShippingCountryIso3166() &&
       strtolower($collectible_for_sale->getTaxState()) == strtolower($this->getShippingStateRegion()))
     {
-      $this->setTaxAmount(($this->getPriceAmount() / 100) * $collectible_for_sale->getTaxPercentage());
+      $this->setTaxAmount(round(($this->getPriceAmount() / 100) * $collectible_for_sale->getTaxPercentage(), 2));
     }
   }
 
