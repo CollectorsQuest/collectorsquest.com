@@ -94,6 +94,8 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
         );
         $collection = $q->findOneOrCreate();
         $collection->setName($name);
+        // Set the content category to "Other" by default
+        $collection->setContentCategoryId(3560);
         $collection->save();
       }
 
