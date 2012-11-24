@@ -291,12 +291,12 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   public function getShippingCountryName(PropelPDO $con = null)
   {
-    $q = GeoCountryQuery::create()
+    $q = iceModelGeoCountryQuery::create()
        ->filterByIso3166($this->getShippingCountryIso3166());
 
-    if ($geo_country = $q->findOne($con))
+    if (( $country = $q->findOne($con) ))
     {
-      return $geo_country->getName();
+      return $country->getName();
     }
 
     return null;

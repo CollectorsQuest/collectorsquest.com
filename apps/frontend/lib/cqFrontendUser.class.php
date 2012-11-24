@@ -142,7 +142,7 @@ class cqFrontendUser extends cqBaseUser
       $country_code = $this->getCountryCode();
     }
 
-    return GeoCountryQuery::create()
+    return iceModelGeoCountryQuery::create()
       ->filterByIso3166($country_code)
       ->select('Name')
       ->findOne() ?: false;
