@@ -24,7 +24,7 @@ class CollectibleUploadForm extends sfForm
       array('label' => 'Photo')
     );
     $this->validatorSchema['thumbnail'] = new cqValidatorFile(array(
-      'mime_types' => 'cq_supported_images', 'required' => true
+      'mime_types' => 'cq_supported_multimedia', 'required' => true
     ));
 
     $this->getWidgetSchema()->setHelp(

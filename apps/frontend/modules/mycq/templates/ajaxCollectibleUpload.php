@@ -36,7 +36,7 @@
     <div id="dropzone-wrapper" class="dropzone-container">
       <div id="dropzone-c" class="dropzone single-file no-items-to-sort-box Chivo webfont spacer-inner">
         <span class="info-no-items-to-sort" style="text-align: center;">
-          <strong>Drag</strong> a photo from your computer<br/>
+          <strong>Drag</strong> a photo or video from your computer<br/>
           and <strong>drop it here</strong> to upload.
         </span>
         <div class="info-drop-here" style="line-height: 60px;">
@@ -247,7 +247,7 @@
 
     $('#fileupload-c').fileupload('option', {
       maxFileSize: 10000000,
-      acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
+      acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|flv)$/i
     });
 
     // Load existing files:

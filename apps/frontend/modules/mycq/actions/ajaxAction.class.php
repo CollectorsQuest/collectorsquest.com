@@ -485,7 +485,7 @@ class ajaxAction extends cqAjaxAction
 
     $form = new CollectibleUploadForm();
     $form->getWidgetSchema()->setHelp('thumbnail', null);
-    $form->getWidgetSchema()->setLabel('thumbnail', 'Item Photo');
+    $form->getWidgetSchema()->setLabel('thumbnail', 'Item Photo/Video');
 
     if ($model == 'collection')
     {
@@ -520,7 +520,14 @@ class ajaxAction extends cqAjaxAction
            *
            * @var $multimedia iceModelMultimedia
            */
-          if ($multimedia = $collectible->setThumbnail($file))
+          // @todo figure out why execution crashes here
+          if (true) // check if this is video
+          {
+            $multimedia = $collectible->addMultimedia($file);
+            $multimedia->setName($file);
+            $multimedia->save();
+          }
+          elseif ($multimedia = $collectible->setThumbnail($file))
           {
             $multimedia->setName($file);
             $multimedia->save();

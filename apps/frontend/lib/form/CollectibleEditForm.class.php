@@ -125,7 +125,7 @@ class CollectibleEditForm extends BaseCollectibleForm
       'label' => 'Item Photo'
     ));
     $this->validatorSchema['thumbnail'] = new cqValidatorFile(array(
-      'mime_types' => 'cq_supported_images', 'required' => false
+      'mime_types' => 'cq_supported_multimedia', 'required' => false
     ));
 
     $this->widgetSchema['is_alt_view'] = new sfWidgetFormInputHidden();
