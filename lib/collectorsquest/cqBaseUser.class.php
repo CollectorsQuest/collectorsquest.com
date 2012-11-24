@@ -239,7 +239,7 @@ class cqBaseUser extends IceSecurityUser
     // Construct the hmac secret
     $hmac_secret = $this->getSalt() . $id . ($hmac_secret ?: $this->getHmacSecret());
 
-    if ($hmac === base64_encode(hash_hmac('sha1', $id.$message.$time, $hmac_secret)))
+    if ($hmac === base64_encode(hash_hmac('sha1', $id . $message . $time, $hmac_secret)))
     {
       return $message;
     }
