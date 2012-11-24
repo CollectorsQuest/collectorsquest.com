@@ -27,6 +27,21 @@ define('SF_DEBUG', $dbg);
 // Cleanup
 unset($app, $env, $dbg);
 
+/**
+ * Tell NewRelic about the current application and environment
+ */
+if (extension_loaded('newrelic'))
+{
+  if (SF_APP !== 'frontend' || $env !== 'prod')
+  {
+    newrelic_set_appname(ucfirst(SF_APP) .'.CollectorsQuest.'. $env);
+  }
+  else
+  {
+    newrelic_set_appname('CollectorsQuest.com');
+  }
+}
+
 if (!defined('GIT_REVISION'))
 {
   if (SF_ENV === 'prod')
