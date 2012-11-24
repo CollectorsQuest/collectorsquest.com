@@ -6,7 +6,7 @@ all:
       ignore_errors:           []
       ignore_exceptions:       []
       log_ignored:             true
-      ignore_duplication:      false
+      ignore_duplication:      true
       ignore_duplication_time: 60  # seconds
 
   message:
@@ -24,10 +24,15 @@ all:
   driver:
     class:   fpErrorNotifierDriverPHPMailer
     options:
-      to:    pavel@collectorsquest.com
+      to:    developers@collectorsquest.com
       from:  no-reply@collectorsquest.com
       username: AKIAJXXQN5BYO3YM5AAQ
       password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
+
+dev:
+  driver:
+    class:   fpErrorNotifierDriverNull
+    options: {}
 
 cli:
   driver:
