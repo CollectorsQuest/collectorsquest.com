@@ -14,18 +14,20 @@ generator:
     config:
       actions: ~
       fields:
-        shopping_cart_id: { label: Cart }
-        shipping_country_iso3166: { label: Shipping Country }
-        shipping: { label: Shipping Rate }
-        price_amount: { label: Price }
-        price_currency: { label: Currency }
+        list_collector: { label: Buyer }
+        list_collectible: { label: Collectible }
+        list_price: { label: Price }
+        list_shipping: { label: Shipping Rate }
+        created_at: { label: Date, date_format: 'MM/dd/yyyy' }
       list:
-        display: [shopping_cart_id, collectible, _price, shipping_country_iso3166, _shipping, is_active]
+        title: Shopping Cart
+        display: [_list_collector, _list_collectible, _list_price, _list_shipping, created_at]
+        sort: [created_at, desc]
         actions: {}
         object_actions: {}
         batch_actions: {}
       filter:
-        display: [collectible_id, price_amount, shipping_country_iso3166, shipping_type, is_active]
+        display: [created_at]
       form:    ~
       edit:    ~
       new:     ~
