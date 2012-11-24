@@ -50,4 +50,18 @@ class cqWebRequest extends sfWebRequest
     return $this->is_mobile;
   }
 
+  /*
+   * Check if Lazy Load (JAIL) can be used
+   * We do not want to use lazy image loading when we have:
+   *  1) infinite scroll
+   *  2) an Ajax request
+   *  3) request comes from a mobile device
+   *
+   * @return boolean
+   */
+  public function isLazyLoadEnabled()
+  {
+    return !$this->isMobile() && !$this->isXmlHttpRequest() && 'all' !== $this->getParameter('show');
+  }
+
 }
