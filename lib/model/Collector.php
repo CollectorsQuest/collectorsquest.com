@@ -1070,10 +1070,12 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       else
       {
         $query = CollectibleQuery::create(null, $criteria);
+
         if ($distinct)
         {
-          $query->distinct();
+          $query->groupById();
         }
+
         return $query
           ->filterByCollector($this)
           ->innerJoinCollectionCollectible()
