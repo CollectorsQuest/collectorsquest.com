@@ -13,7 +13,7 @@
 $_height = 0;
 ?>
 
-<div class="row-fluid spacer-top-20 link">
+<div class="row-fluid collector-info-sidebar link">
   <?php cq_sidebar_title($title, null); ?>
 
   <?php if (!isset($message_only)): ?>
