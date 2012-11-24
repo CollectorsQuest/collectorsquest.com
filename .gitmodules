@@ -22,6 +22,9 @@
 [submodule "plugins/iceTaggablePlugin"]
 	path = plugins/iceTaggablePlugin
 	url = git@github.com:CollectorsQuest/iceTaggablePlugin.git
+[submodule "plugins/sfPropelORMPlugin"]
+	path = plugins/sfPropelORMPlugin
+	url = git@github.com:CollectorsQuest/sfPropelORMPlugin.git
 [submodule "lib/vendor/symfony"]
 	path = lib/vendor/symfony
 	url = https://github.com/symfony/symfony1.git
