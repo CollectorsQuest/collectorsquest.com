@@ -1,5 +1,7 @@
 rendering: ~
 
+ssl:
+  class: cqSslRedirectFilter
 uuid:
   class: cqUuidFilter
 
