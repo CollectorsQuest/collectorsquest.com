@@ -59,4 +59,13 @@ class cqBackendUser extends IceBackendUser
 
     parent::setAuthenticated($authenticated);
   }
+
+  /**
+   * @return string
+   */
+  public function getAvatarUrl()
+  {
+    return 'http://www.collectorsquest.com/images/frontend/logo/130x60.png';
+  }
+
 }

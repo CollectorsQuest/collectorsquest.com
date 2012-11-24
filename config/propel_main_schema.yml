@@ -272,6 +272,10 @@ classes:
       is_spam:       { type: boolean, default: false }
       created_at:    ~
 
+    indexes:
+      private_message_I_1: [thread];
+      private_message_I_2: [receiver, sender];
+
     propel_behaviors:
       extra_properties: ~
 
