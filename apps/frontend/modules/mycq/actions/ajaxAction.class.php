@@ -485,7 +485,7 @@ class ajaxAction extends cqAjaxAction
 
     $form = new CollectibleUploadForm();
     $form->getWidgetSchema()->setHelp('thumbnail', null);
-    $form->getWidgetSchema()->setLabel('thumbnail', 'Item Photo/Video');
+    $form->getWidgetSchema()->setLabel('thumbnail', 'Item Photo');
 
     if ($model == 'collection')
     {

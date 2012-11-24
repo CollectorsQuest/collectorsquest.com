@@ -1,8 +1,9 @@
 <?php
 /**
- * @var $form  CollectionCreateForm
- * @var $model string
+ * @var $form          CollectionCreateForm
+ * @var $model         string
  * @var $collection_id integer
+ * @var $sf_user       cqFrontendUser
  */
 ?>
 
@@ -11,16 +12,20 @@
       xmlns="http://www.w3.org/1999/html">
 
   <?php
+    $formats_text = "Please make sure your photo is 'GIF', 'JPEG' or 'PNG' file and try again!";
     switch (strtolower($model))
     {
       case 'collectible':
       case 'collectibleforsale':
         echo '<h1>Step 1: Upload Item Photo</h1>';
         echo "
-          Choose the photo or video you'd like to use as your main image for this individual item.<br/>
+          Choose the photo you'd like to use as your main image for this individual item.<br/>
           You will be able to add alternate views later.<br/><br/>
         ";
-        $formats_text = "Please make sure your photo or video is 'GIF', 'JPEG', 'PNG' or 'FLV' file and try again!";
+        if ($sf_user->isAdmin())
+        {
+          $formats_text = "Please make sure your photo or video is 'GIF', 'JPEG', 'PNG' or 'FLV' file and try again!";
+        }
         break;
       case 'collection':
         echo '<h1>Step 1: Upload Collection Photo</h1>';
@@ -28,7 +33,6 @@
           Choose the photo you'd like to use as your cover photo for this entire collection.<br/>
           You will be able to add individual items later.<br/><br/>
         ";
-        $formats_text = "Please make sure your photo is 'GIF', 'JPEG' or 'PNG' file and try again!";
         break;
     }
   ?>
@@ -38,7 +42,7 @@
     <div id="dropzone-wrapper" class="dropzone-container">
       <div id="dropzone-c" class="dropzone single-file no-items-to-sort-box Chivo webfont spacer-inner">
         <span class="info-no-items-to-sort" style="text-align: center;">
-          <strong>Drag</strong> a photo or video from your computer<br/>
+          <strong>Drag</strong> a photo from your computer<br/>
           and <strong>drop it here</strong> to upload.
         </span>
         <div class="info-drop-here" style="line-height: 60px;">
@@ -246,9 +250,20 @@
       )
     );
 
+    <?php
+      if ($sf_user->isAdmin())
+      {
+        $acceptFileTypes = '/(\.|\/)(gif|jpe?g|png|bmp|flv)$/i';
+      }
+      else
+      {
+        $acceptFileTypes = '/(\.|\/)(gif|jpe?g|png|bmp)$/i';
+      }
+    ?>
+
     $('#fileupload-c').fileupload('option', {
       maxFileSize: 10000000,
-      acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|flv)$/i
+      acceptFileTypes: <?= $acceptFileTypes ?>
     });
 
     // Load existing files:

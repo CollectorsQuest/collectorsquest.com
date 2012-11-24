@@ -2,7 +2,7 @@
 /**
  * @var $collectible Collectible
  * @var $sf_user     cqFrontendUser
- * @var $videos      iceModelMultimedia[]
+ * @var $video       iceModelMultimedia
  */
 ?>
 
@@ -103,24 +103,20 @@
       </div>
     </li>
     <?php endfor; ?>
-    <?php if ($videos): ?>
-      <?php foreach ($videos as $video): ?>
-        <li class="span4 square-thumb ui-state-empty">
-          <div class="thumbnail drop-zone">
-            <div class="alt-view-slot">
-              <span class="info-text">
-                Video
-              </span>
-              <a class="play-zone <?= $video->getId(); ?>" target="_blank" title="Click to play"
-                 href="<?= url_for_collectible($collectible) ?>#mediaspace" onclick="return false;">
-                <span class="holder-icon-play">
-                  <i class="icon icon-play"></i>
-                </span>
-              </a>
-            </div>
+    <?php if ($video && $sf_user->isAdmin()): ?>
+      <li class="span4 square-thumb">
+        <div class="thumbnail drop-zone">
+          <div class="alt-view-slot" style="padding-top: 5px;">
+            <a class="play-zone" target="_blank" title="Click to play"
+               href="<?= url_for_collectible($collectible) ?>#mediaspace" onclick="return false;">
+              <i class="icon icon-play white-alternate-view"></i>
+            </a>
+            <span class="info-text" style="line-height: 30px;">
+              Video
+            </span>
           </div>
-        </li>
-      <?php endforeach; ?>
+        </div>
+      </li>
     <?php endif; ?>
   </ul>
 </div>
@@ -230,7 +226,7 @@ $(document).ready(function()
 });
 </script>
 
-<?php if (!empty($videos)): ?>
+<?php if (!empty($video) && $sf_user->isAdmin()): ?>
 
 <div id="mediaspace" class="modal hide" tabindex="-1" role="dialog">
   <div id="mediaspace-body" class="modal-body">
@@ -241,8 +237,7 @@ $(document).ready(function()
 <script type="text/javascript">
   $(document).ready(function()
   {
-    <?php foreach ($videos as $video): ?>
-    $("a.play-zone."+"<?= $video->getId(); ?>").click(function(e)
+    $("a.play-zone").click(function(e)
     {
       e.preventDefault();
 
@@ -262,7 +257,6 @@ $(document).ready(function()
 
       return false;
     });
-    <?php endforeach; ?>
   });
 </script>
 <?php endif; ?>

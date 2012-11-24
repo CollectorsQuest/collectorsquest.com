@@ -270,9 +270,9 @@ class mycqComponents extends cqFrontendComponents
 
     $this->multimedia = $this->collectible->getMultimedia(0, 'image', false);
 
-    if ($videos = $this->collectible->getMultimedia(0, 'video', false))
+    if ($video = $this->collectible->getMultimedia(1, 'video', false))
     {
-      $this->videos = $videos;
+      $this->video = $video;
     }
 
     return sfView::SUCCESS;
