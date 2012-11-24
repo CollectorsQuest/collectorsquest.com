@@ -491,8 +491,17 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setPassword($password)
   {
+    // Legacy
     $this->setSha1Password('*');
+    // Generate the salt if empty
+    $this->getSalt();
+
+    /**
+     * Portable Password
+     * @since 2012-11-24
+     */
     $this->setPortablePassword(Password::hash($password));
+
     return $this;
   }
 
@@ -506,14 +515,17 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   {
     if ($this->getSha1Password() != '*')
     {
-      $result =  sha1($this->getSalt() . $password) === $this->getSha1Password();
-      if ($result)
+      if ($this->getSha1Password() === sha1($this->getSalt() . $password))
       {
         $this->setPassword($password);
         $this->save();
+
+        return true;
       }
-      return $result;
+
+      return false;
     }
+
     return Password::check($password, $this->getPortablePassword());
   }
 
