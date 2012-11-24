@@ -1,0 +1,107 @@
+// Fixed wrapper under 1024px
+@media (max-width: 767px) {
+
+//CONTAINERS & SIDEBAR
+header, nav, footer, #footer-links,
+.slots-container, .shadow,
+#slot1, #slot2, .container-fluid.fixed-right-300  {
+  width: 100%;
+  .margin-auto();
+}
+
+#main, #breadcrumbs {
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.fixed-right-300 > #sidebar {
+  width: 96%;
+  .margin-auto();
+  padding: 0 2%;
+}
+
+#content, .navbar, #breadcrumbs {
+  border: none;
+}
+
+
+
+//Collectibles
+#user-collectibles-for-sale .thumbnails .span3 {
+  float: left !important;
+  margin-left: 3%;
+}
+
+//HEADER & NAV
+
+.cq-logo {
+  top: 8px;
+}
+
+header .search-header {
+  margin-top: 18px;
+}
+
+//search input
+.search-header .input-append input {
+  width: 200px;
+}
+
+header .navbar-inner {
+  padding: 0;
+
+  .container {
+    padding: 0;
+  }
+}
+
+header .navbar .nav > li > a {
+  padding: 12px 10px 10px 10px;
+}
+
+.menu-wrapper-social-icons {
+  display: none; //NB!!
+}
+
+//FOOTER
+
+  .footer-inner > [class*="span"] {
+    .clearfix();
+  }
+
+  .footer-social-icons {
+    margin-bottom: 10px;
+  }
+
+//ELEMENTS
+
+//Comments
+.post-comment textarea {
+  width: 70%; //NB!!
+}
+
+
+//PAGES
+#sidebar #price-container {
+  display: none;
+}
+
+.main-collectible-container .prev-zone .prev-btn {
+  display: block;
+}
+
+.main-collectible-container .next-zone .next-btn {
+  display: block;
+}
+
+
+
+}
+
+@media (max-width: 480px) {
+  header {
+    width: 100%;
+    border: 1px solid #008000;
+  }
+}

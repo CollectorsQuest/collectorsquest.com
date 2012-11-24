@@ -5,7 +5,7 @@ default:
     title:        "Interactive Community and Marketplace for Collectors - CollectorsQuest.com"
     description:  "Collectors Quest is interactive community and marketplace for the collectible community. Showcase your collections, meet other collectors and buy, sell or trade with others. Find out the latest happenings in your own collectible community."
     keywords:     ""
-    viewport:     "width=device-width"
+    viewport:     "width=device-width, initial-scale=1.0"
 
     robots:       "index, follow, noodp, noydir"
     googlebot:    "all, index, follow"

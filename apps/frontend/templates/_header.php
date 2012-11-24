@@ -9,23 +9,28 @@
 <header>
 
   <div class="header-inner">
-    <div class="row-fluid">
-      <div class="span2">&nbsp;</div>
-      <div class="span6">
-        <div class="input-append search-header pull-right">
-          <form action="<?= url_for('@search', true) ?>" method="get">
-            <?php
-              echo $form['q']->render(array(
-                'autocomplete' => 'off', 'required' => 'required',
-                'placeholder' => 'Find collectibles, blog posts, videos and more...')
-              );
-            ?>
-            <button class="btn btn-large append-search-button" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-      <div class="span4 right-section-header">
+    <?php
+    if (sfConfig::get('sf_environment') === 'dev')
+    {
+      $class = 'cq-logo logo-development';
+    }
+    else if (sfConfig::get('sf_environment') === 'next')
+    {
+      $class = 'cq-logo logo-staging';
+    }
+    else
+    {
+      $class = 'cq-logo logo';
+    }
 
+    echo link_to(
+      'Collectors Quest', 'homepage',
+      array('ref' => cq_link_ref('logo')),
+      array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
+    );
+    ?>
+    <div class="row-fluid">
+      <div class="span4 right-section-header">
 
         <a href="<?= url_for('shopping_cart', array('ref' => cq_link_ref('header')), true); ?>"
            class="link-cart" id="shopping-cart-count-link">
@@ -112,32 +117,26 @@
           ?>
         <?php endif; ?>
       </div>
+
+      <div class="span8 search-header"><!-- Search box -->
+        <div class="input-append pull-right">
+          <form action="<?= url_for('@search', true) ?>" method="get">
+            <?php
+            echo $form['q']->render(array(
+                'autocomplete' => 'off', 'required' => 'required',
+                'placeholder' => 'Find collectibles, blog posts, videos and more...')
+            );
+            ?>
+              <button class="btn btn-large append-search-button" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div><!-- /navbar-inner -->
 
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container dark-bg">
-        <?php
-          if (sfConfig::get('sf_environment') === 'dev')
-          {
-            $class = 'cq-logo logo-development';
-          }
-          else if (sfConfig::get('sf_environment') === 'next')
-          {
-            $class = 'cq-logo logo-staging';
-          }
-          else
-          {
-            $class = 'cq-logo logo';
-          }
-
-          echo link_to(
-            'Collectors Quest', 'homepage',
-            array('ref' => cq_link_ref('logo')),
-            array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
-          );
-        ?>
         <ul class="nav">
           <?= SmartMenu::generate('header', array()); ?>
         </ul>
