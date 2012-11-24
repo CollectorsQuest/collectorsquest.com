@@ -1,7 +1,8 @@
 <?php
 /**
  * @var $collectible Collectible
- * @var $sf_user cqFrontendUser
+ * @var $sf_user     cqFrontendUser
+ * @var $videos      iceModelMultimedia[]
  */
 ?>
 
@@ -102,6 +103,25 @@
       </div>
     </li>
     <?php endfor; ?>
+    <?php if ($videos): ?>
+      <?php foreach ($videos as $video): ?>
+        <li class="span4 square-thumb ui-state-empty">
+          <div class="thumbnail drop-zone">
+            <div class="alt-view-slot">
+              <span class="info-text">
+                Video
+              </span>
+              <a class="play-zone <?= $video->getId(); ?>" target="_blank" title="Click to play"
+                 href="<?= url_for_collectible($collectible) ?>#mediaspace" onclick="return false;">
+                <span class="holder-icon-play">
+                  <i class="icon icon-play"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </li>
+      <?php endforeach; ?>
+    <?php endif; ?>
   </ul>
 </div>
 
@@ -209,3 +229,40 @@ $(document).ready(function()
     }, true));
 });
 </script>
+
+<?php if (!empty($videos)): ?>
+
+<div id="mediaspace" class="modal hide" tabindex="-1" role="dialog">
+  <div id="mediaspace-body" class="modal-body">
+    &nbsp;
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    <?php foreach ($videos as $video): ?>
+    $("a.play-zone."+"<?= $video->getId(); ?>").click(function(e)
+    {
+      e.preventDefault();
+
+      jwplayer('mediaspace-body').setup({
+        flashplayer: '/swf/mediaplayer.swf',
+        file: '<?= src_tag_multimedia($video, 'original'); ?>',
+        autostart: true,
+        width: 720, height: 416,
+        skin: "<?= cq_image_src('glow.zip', false); ?>",
+        'plugins': 'fbit-1,tweetit-1,gapro-2',
+        'gapro.accountid': 'UA-669177-1',
+        'fbit.link': '<?= cq_canonical_url(); ?>',
+        'tweetit.link': '<?= cq_canonical_url(); ?>'
+      });
+
+      $('#mediaspace').modal();
+
+      return false;
+    });
+    <?php endforeach; ?>
+  });
+</script>
+<?php endif; ?>

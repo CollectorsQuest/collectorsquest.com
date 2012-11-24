@@ -277,9 +277,9 @@ class collectionActions extends cqFrontendActions
     $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
     $this->editable = $this->getUser()->isOwnerOf($collectible);
 
-    if ($videos = $collectible->getMultimedia(1, 'video', false))
+    if ($videos = $collectible->getMultimedia(0, 'video', false))
     {
-      $this->video = $videos;
+      $this->videos = $videos;
     }
 
     // Make the Collectible available to the sidebar

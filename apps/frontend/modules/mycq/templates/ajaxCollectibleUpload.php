@@ -17,9 +17,10 @@
       case 'collectibleforsale':
         echo '<h1>Step 1: Upload Item Photo</h1>';
         echo "
-          Choose the photo you'd like to use as your main image for this individual item.<br/>
+          Choose the photo or video you'd like to use as your main image for this individual item.<br/>
           You will be able to add alternate views later.<br/><br/>
         ";
+        $formats_text = "Please make sure your photo or video is 'GIF', 'JPEG', 'PNG' or 'FLV' file and try again!";
         break;
       case 'collection':
         echo '<h1>Step 1: Upload Collection Photo</h1>';
@@ -27,6 +28,7 @@
           Choose the photo you'd like to use as your cover photo for this entire collection.<br/>
           You will be able to add individual items later.<br/><br/>
         ";
+        $formats_text = "Please make sure your photo is 'GIF', 'JPEG' or 'PNG' file and try again!";
         break;
     }
   ?>
@@ -138,8 +140,7 @@
             "errors": {
                 "maxFileSize": "File is too big",
                 "minFileSize": "File is too small",
-                "acceptFileTypes": "The file seems to be in the wrong format. " +
-                                   "Please make sure your photo is 'GIF', 'JPEG' or 'PNG' file and try again!",
+                "acceptFileTypes": "The file seems to be in the wrong format. " + "<?= $formats_text ?>",
                 "maxNumberOfFiles": "Sorry, you can upload only one image",
                 "uploadedBytes": "Uploaded bytes exceed file size",
                 "emptyResult": "Empty file upload result"

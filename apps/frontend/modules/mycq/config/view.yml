@@ -39,6 +39,7 @@ collectionDetails:
     mycq_dropbox: [mycq, dropbox]
 
 collectibleSuccess:
+  javascripts: [jwplayer.js]
   components:
     mycq_upload_photos: [mycq, uploadPhotos]
     mycq_dropbox: [mycq, dropbox]

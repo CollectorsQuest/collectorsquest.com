@@ -8,11 +8,13 @@
  * @var  $previous     Collectible
  * @var  $next         Collectible
  * @var  $first        Collectible
+ * @var  $related_collectibles        Collectible[]
  * @var  $collectible_for_sale  CollectibleForSale
  * @var  $editable            boolean
  * @var  $ref_marketplace     boolean
  *
  * @var  $additional_multimedia  iceModelMultimedia[]
+ * @var  $videos                 iceModelMultimedia[]
  *
  * Determine page height so we can display more/less sidebar widgets
  * @var  $height_main_div  stdClass
@@ -136,8 +138,8 @@
     </a>
     <?php endif; ?>
 
-    <?php if (!empty($video)): ?>
-      <a class="play-zone" target="_blank" title="Click to play" onclick="return false;"
+    <?php if (!empty($videos[0])): ?>
+      <a class="play-zone <?php $videos[0]->getId(); ?>" target="_blank" title="Click to play" onclick="return false;"
          href="<?= url_for_collectible($collectible) ?>#mediaspace">
         <span class="holder-icon-play">
           <i class="icon icon-play"></i>
@@ -386,7 +388,7 @@ $(document).ready(function()
       .siblings('a.zoom-zone')
       .attr('href', path[0] + '/original/' + path[1]);
 
-    <?php if (!empty($video)): ?>
+    <?php if (!empty($videos)): ?>
       if ($source.data('id') == first_picture_id)
       {
         $('a.play-zone').show();
@@ -436,7 +438,7 @@ $(document).ready(function()
 });
 </script>
 
-<?php if (!empty($video)): ?>
+<?php if (!empty($videos)): ?>
 
 <div id="mediaspace" class="modal hide" tabindex="-1" role="dialog">
   <div id="mediaspace-body" class="modal-body">
@@ -447,7 +449,8 @@ $(document).ready(function()
 <script type="text/javascript">
   $(document).ready(function()
   {
-    $("a.play-zone").click(function(e)
+    <?php foreach ($videos as $video): ?>
+    $("a.play-zone."+"<?= $video->getId(); ?>").click(function(e)
     {
       e.preventDefault();
 
@@ -467,6 +470,7 @@ $(document).ready(function()
 
       return false;
     });
+    <?php endforeach; ?>
   });
 </script>
 <?php endif; ?>
