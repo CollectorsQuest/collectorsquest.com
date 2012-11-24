@@ -121,9 +121,6 @@ next_debug:
 
 
 dev:
-  view_cache_manager:
-    class: cqViewCacheManager
-
   logger:
     class: sfAggregateLogger
     param:
@@ -148,7 +145,6 @@ dev:
     param:
       delivery_strategy: single_address
       delivery_address:  developers@collectorsquest.com
-      #delivery_address:  kangov@collectorsquest.com
       force_redirect_of_collectorsquest_emails: true
       logging: false
 
