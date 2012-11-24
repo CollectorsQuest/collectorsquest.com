@@ -3,7 +3,7 @@
   /* @var $class   string */
 ?>
 
-<?php if ($sf_user->isAuthenticated() && !$sf_user->getSeller()->hasPackageCredits()): ?>
+<?php if ($sf_user->isAuthenticated() && $sf_user->getSeller() && !$sf_user->getSeller()->hasPackageCredits()): ?>
 <div class="banner-sidebar-promo-300-90">
   <?php
     // display one of two random banners
