@@ -2,6 +2,11 @@
 
 class cqWebRequest extends sfWebRequest
 {
+  /*
+   * request comes from a mobile device
+   * @var $is_mobile boolean
+   */
+  protected $is_mobile = false;
 
   /**
    * Return the request protocol
@@ -28,6 +33,21 @@ class cqWebRequest extends sfWebRequest
     } else {
       return parent::getRemoteAddress();
     }
+  }
+
+  public function setIsMobile($value)
+  {
+    $this->is_mobile = $value;
+  }
+
+  /**
+   * Check if the request comes from a mobile device
+   *
+   * @return boolean
+   */
+  public function isMobile()
+  {
+    return $this->is_mobile;
   }
 
 }
