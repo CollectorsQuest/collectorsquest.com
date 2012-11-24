@@ -12,7 +12,7 @@ class cqMemcacheCache extends IceMemcacheCache
     $options = array_merge(
       array(
         'prefix' => 'collectorsquest',
-        'host' => 'localhost'
+        'host' => 'cache.e0sqlk.0001.use1.cache.amazonaws.com'
       ),
       $options
     );

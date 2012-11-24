@@ -32,9 +32,9 @@ unset($app, $env, $dbg);
  */
 if (extension_loaded('newrelic'))
 {
-  if (SF_APP !== 'frontend' || $env !== 'prod')
+  if (SF_APP !== 'frontend' || SF_ENV !== 'prod')
   {
-    newrelic_set_appname(ucfirst(SF_APP) .'.CollectorsQuest.'. $env);
+    newrelic_set_appname(ucfirst(SF_APP) .'.CollectorsQuest.'. SF_ENV);
   }
   else
   {

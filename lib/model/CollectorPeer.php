@@ -292,7 +292,8 @@ class CollectorPeer extends BaseCollectorPeer
     // We need to make sure we have a display name
     $display_name = !empty($data['display_name']) ?
       $data['display_name'] :
-      $data['username'];
+      // Avoid running into duplicate display names at this point
+      $data['username'] . rand(10, 99);
 
     $collector = new Collector();
     $collector->setUsername($data['username']);
