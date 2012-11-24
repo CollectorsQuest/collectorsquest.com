@@ -19,7 +19,7 @@ class cqVisitorInfoFilter extends sfFilter
    */
   public function execute($filterChain)
   {
-    /** @var $request sfWebREquest */
+    /* @var $request cqWebRequest */
     $request = $this->context->getRequest();
 
     if (!$request->isXmlHttpRequest())
@@ -29,6 +29,14 @@ class cqVisitorInfoFilter extends sfFilter
 
       $this->updateLastVisitedAtForAuthenticated($sf_user);
       $this->updateVisitorInfo($sf_user);
+
+      /**
+       * Send information about the Collector to NewRelic
+       */
+      if (extension_loaded('newrelic') && ($collector = $sf_user->getCollector(true)))
+      {
+        newrelic_set_user_attributes($collector->getUsername(), $collector->getId(), SF_APP);
+      }
     }
 
     $filterChain->execute();
@@ -155,6 +163,5 @@ class cqVisitorInfoFilter extends sfFilter
       });
     }
   }
-
 
 }
