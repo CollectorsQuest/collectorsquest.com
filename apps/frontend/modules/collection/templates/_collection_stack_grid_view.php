@@ -12,11 +12,7 @@
  *  3) request comes from a mobile device
  */
 $lazy_image = !isset($lazy_image) || $lazy_image;
-$lazy_image = $lazy_image && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_params->get('show');
-if ($sf_request->isMobile() === true)
-{
-  $lazy_image = null;
-}
+$lazy_image = $lazy_image && !$sf_request->isMobile() && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_params->get('show');
 
 ?>
 
