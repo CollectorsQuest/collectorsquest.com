@@ -27,8 +27,17 @@ EOF;
 
   protected function execute($arguments = array(), $options = array())
   {
+    if (function_exists('posix_getuid'))
+    {
+      $current_user = array_shift(posix_getpwuid(posix_getuid()));
+    }
+    else
+    {
+      $current_user = get_current_user();
+    }
+
     // We need to run this task with root or sphinx users
-    if (!in_array(get_current_user(), array('', 'root', 'sphinx', 'vagrant')))
+    if (!in_array($current_user, array('', 'root', 'sphinx', 'vagrant')))
     {
       $this->logBlock('You must run this task with root or sphinx priviliges!', 'error');
       return false;
@@ -82,7 +91,7 @@ EOF;
       file_put_contents($conf, file_get_contents('/www/etc/sphinx/sphinx.conf'), FILE_APPEND);
       $cmd = sprintf('/usr/bin/indexer --rotate --config %s %s', $conf, implode(' ', $indexes));
 
-      if (!get_current_user() || get_current_user() == 'root' || get_current_user() == 'vagrant')
+      if (in_array($current_user, array('', 'root', 'sphinx', 'vagrant')))
       {
         chown($conf, 'sphinx');
         $cmd = 'su --shell=/bin/bash --session-command="'. $cmd .'" sphinx &';
