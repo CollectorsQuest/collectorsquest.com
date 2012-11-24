@@ -68,7 +68,7 @@ all:
             image: theme/icons/generic.png
           ShoppingCart Collectibles:
             url: shopping_cart_collectible
-            image: theme/icons/generic.png
+            image: theme/icons/mediamanager.png
 
       Blog:
         icon: book
@@ -90,6 +90,12 @@ all:
             image: theme/icons/messaging.png
 
 
+  ssl_redirect:
+    # if insecure pages accesed with https should be rerouted to http
+    strict: true
+    # all modules and actions should be https
+    secure: ~
+
 next:
   ice_assets:
     domain: "cqcdns.com"
@@ -98,3 +104,7 @@ next:
 dev:
   ice_assets:
     domain: "cqcdns.dev"
+
+  ssl_redirect:
+    # do not force SSL on collectorsquest.dev
+    secure: ~
