@@ -334,8 +334,8 @@ class CollectorPeer extends BaseCollectorPeer
 
     try
     {
-      $collector_profile->save();
       $collector->save();
+      $collector_profile->save();
 
       if (!empty($data['email']))
       {
@@ -350,7 +350,7 @@ class CollectorPeer extends BaseCollectorPeer
     }
     catch (PropelException $e)
     {
-      return null;
+      throw $e;
     }
 
     return $collector;
