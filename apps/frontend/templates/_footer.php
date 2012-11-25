@@ -92,8 +92,8 @@
                     My Profile
                   </a>
                   <b><?= link_to('Log out', '@logout?ref='. cq_link_ref('footer'), array('class' => 'spacer-left logout-link')); ?></b>
-               </div>
-            </div>
+                </div>
+              </div>
             <?php
           }
         ?>
