@@ -10,7 +10,14 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
+    if ($this->getRequest()->isMobile())
+    {
+      return sfView::SUCCESS;
+    }
+    else
+    {
+      return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
+    }
   }
 
   /**
@@ -21,7 +28,14 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
+    if ($this->getRequest()->isMobile())
+    {
+      return sfView::SUCCESS;
+    }
+    else
+    {
+      return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
+    }
   }
 
   /**
@@ -189,7 +203,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = $this->getVar('limit') ?: 5;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobile())
     {
       $this->limit = min(floor(($height->value - 63) / 66), $this->limit);
     }
@@ -306,7 +321,6 @@ class _sidebarComponents extends cqFrontendComponents
         $tag_query->filterByTags($machine_tags, Criteria::IN);
       }
 
-
       $q->filterByTags($tags, Criteria::IN);
 
       /** @var $category ContentCategory */
@@ -387,9 +401,16 @@ class _sidebarComponents extends cqFrontendComponents
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->collections);
 
-    return $this->_sidebar_if(
-      $total > 0 && (!empty($height) ? $height->value >= ($total * 66 + 63) : true)
-    );
+    if ($this->getRequest()->isMobile())
+    {
+      return $this->_sidebar_if($total > 0);
+    }
+    else
+    {
+      return $this->_sidebar_if(
+        $total > 0 && (!empty($height) ? $height->value >= ($total * 66 + 63) : true)
+      );
+    }
   }
 
   public function executeWidgetTags()
@@ -428,7 +449,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 5;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobile())
     {
       $this->limit = min(floor(($height->value - 63) / 100), $this->limit);
     }
@@ -652,7 +674,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobile())
     {
       $this->limit = min(floor(($height->value - 63) / 161), $this->limit);
     }
@@ -704,7 +727,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 4;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobile())
     {
       // one row is 142px in height, fits 2 collectibles
       $this->limit = min(floor(($height->value - 63) / 142 * round($this->limit / 2)), $this->limit);
@@ -1037,7 +1061,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 3;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobile())
     {
       $this->limit = min(floor(($height->value - 63) / 120), $this->limit);
     }
@@ -1063,9 +1088,17 @@ class _sidebarComponents extends cqFrontendComponents
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->wp_posts);
 
-    return $this->_sidebar_if(
-      $total > 0 && (!empty($height) ? $height->value >= ($total * 120 + 63) : true)
-    );
+    if ($this->getRequest()->isMobile())
+    {
+      return $this->_sidebar_if($total > 0);
+    }
+    else
+    {
+      return $this->_sidebar_if(
+        $total > 0 && (!empty($height) ? $height->value >= ($total * 120 + 63) : true)
+      );
+    }
+
   }
 
   public function executeWidgetCollectionCollectibles(sfWebRequest $request)
@@ -1151,7 +1184,14 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
+    if ($this->getRequest()->isMobile())
+    {
+      return sfView::SUCCESS;
+    }
+    else
+    {
+      return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
+    }
   }
 
   private function _sidebar_if($condition = false)
