@@ -34,7 +34,7 @@ class PropelMigration_1353801621
       }
       else
       {
-        // otherwize just update the Collection
+        // otherwise just update the Collection
         $collection->updateNumPublicItems();
       }
 
@@ -71,6 +71,9 @@ class PropelMigration_1353801621
         ALTER TABLE `collection` ADD `num_public_items` INTEGER DEFAULT 0 AFTER `num_items`;
         ALTER TABLE `collector_collection` ADD `num_public_items` INTEGER DEFAULT 0 AFTER `num_items`;
 
+        ALTER TABLE `collection_archive` ADD `num_public_items` INTEGER DEFAULT 0 AFTER `num_items`;
+        ALTER TABLE `collector_collection_archive` ADD `num_public_items` INTEGER DEFAULT 0 AFTER `num_items`;
+
         # This restores the fkey checks, after having unset them earlier
         SET FOREIGN_KEY_CHECKS = 1;
       ',
@@ -97,6 +100,9 @@ class PropelMigration_1353801621
 
         ALTER TABLE `collection` DROP `num_public_items`;
         ALTER TABLE `collector_collection` DROP `num_public_items`;
+
+        ALTER TABLE `collection_archive` DROP `num_public_items`;
+        ALTER TABLE `collector_collection_archive` DROP `num_public_items`;
 
         # This restores the fkey checks, after having unset them earlier
         SET FOREIGN_KEY_CHECKS = 1;

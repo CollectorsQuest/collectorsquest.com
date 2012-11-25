@@ -663,7 +663,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         }
         else
         {
-          // otherwize just update the Collection
+          // otherwise just update the Collection
           $collection->updateNumPublicItems($con);
         }
       }

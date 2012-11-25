@@ -37,16 +37,9 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
      */
     $query
       ->filterByIsPublic(true)
-      ->hasCollectibles();
+      ->hasPublicCollectibles();
 
     return $query;
   }
 
-  /**
-   * @return FrontendCollectorCollectionQuery|CollectorCollectionQuery
-   */
-  public function hasCollectibles()
-  {
-    return $this->hasPublicCollectibles();
-  }
 }
