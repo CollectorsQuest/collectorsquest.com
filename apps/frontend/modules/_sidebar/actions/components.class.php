@@ -10,14 +10,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    if ($this->getRequest()->isMobile())
-    {
-      return sfView::SUCCESS;
-    }
-    else
-    {
-      return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
-    }
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 340);
   }
 
   /**
@@ -28,14 +21,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    if ($this->getRequest()->isMobile())
-    {
-      return sfView::SUCCESS;
-    }
-    else
-    {
-      return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
-    }
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 370);
   }
 
   /**
@@ -401,16 +387,9 @@ class _sidebarComponents extends cqFrontendComponents
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->collections);
 
-    if ($this->getRequest()->isMobile())
-    {
-      return $this->_sidebar_if($total > 0);
-    }
-    else
-    {
-      return $this->_sidebar_if(
-        $total > 0 && (!empty($height) ? $height->value >= ($total * 66 + 63) : true)
-      );
-    }
+    return $this->_sidebar_if(
+      $total > 0, !empty($height) ? $height->value >= ($total * 66 + 63) : true
+    );
   }
 
   public function executeWidgetTags()
@@ -1088,17 +1067,9 @@ class _sidebarComponents extends cqFrontendComponents
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->wp_posts);
 
-    if ($this->getRequest()->isMobile())
-    {
-      return $this->_sidebar_if($total > 0);
-    }
-    else
-    {
-      return $this->_sidebar_if(
-        $total > 0 && (!empty($height) ? $height->value >= ($total * 120 + 63) : true)
-      );
-    }
-
+    return $this->_sidebar_if(
+      $total > 0, !empty($height) ? $height->value >= ($total * 120 + 63) : true
+    );
   }
 
   public function executeWidgetCollectionCollectibles(sfWebRequest $request)
@@ -1184,23 +1155,17 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    if ($this->getRequest()->isMobile())
-    {
-      return sfView::SUCCESS;
-    }
-    else
-    {
-      return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
-    }
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 190);
   }
 
-  private function _sidebar_if($condition = false)
+  private function _sidebar_if($condition = false, $condition2 = true)
   {
-    if ($condition)
+    if ($condition && ($condition2 || $this->getRequest()->isMobile()))
     {
       return sfView::SUCCESS;
     }
     else if (
+      ($condition2 || $this->getRequest()->isMobile()) &&
       $this->fallback && is_string($this->fallback) &&
       method_exists($this, 'execute' . $this->fallback)
     )
@@ -1208,6 +1173,7 @@ class _sidebarComponents extends cqFrontendComponents
       echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
     }
     else if (
+      ($condition2 || $this->getRequest()->isMobile()) &&
       $this->fallback && count($this->fallback) === 2 &&
       function_exists($this->fallback[0])
     )
