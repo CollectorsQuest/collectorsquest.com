@@ -35,12 +35,11 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   public function hasCollectiblesForSale()
   {
     return $this
-      ->useCollectionQuery()
+      ->useCollectionQuery(null, Criteria::INNER_JOIN)
         ->useCollectionCollectibleQuery()
           ->isForSale()
         ->endUse()
-      ->endUse()
-      ->groupBy('Id');
+      ->endUse();
   }
 
   /**
@@ -51,8 +50,7 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   public function hasCollections()
   {
     return $this
-      ->innerJoinCollectorCollection()
-      ->groupBy('Id');
+      ->innerJoinCollectorCollection();
   }
 
   public function hasCollectionsWithCollectibles()
@@ -60,8 +58,7 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
     return $this
       ->useCollectorCollectionQuery(null, Criteria::INNER_JOIN)
         ->hasCollectibles()
-      ->endUse()
-      ->groupBy('Id');
+      ->endUse();
   }
 
   /**

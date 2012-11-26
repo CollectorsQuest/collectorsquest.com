@@ -16,6 +16,11 @@ class cqSphinxPager extends sfPager
   private $strictMode = false;
 
   /**
+   * @var array
+   */
+  private $joinWith = array();
+
+  /**
    * @param  array    $query
    * @param  array    $types
    * @param  integer  $maxPerPage
@@ -145,8 +150,17 @@ class cqSphinxPager extends sfPager
 
     if (!empty($wp_post_ids))
     {
-      /** @var $wp_posts wpPost[] */
-      $wp_posts = wpPostQuery::create()->filterById($wp_post_ids, Criteria::IN)->find();
+      $q = wpPostQuery::create()
+        ->filterById($wp_post_ids, Criteria::IN);
+
+      if (!empty($this->joinWith['wp_post']))
+      foreach ($this->joinWith['wp_post'] as $with)
+      {
+        $q->joinWith($with);
+      }
+
+      /* @var $wp_posts wpPost[] */
+      $wp_posts = $q->find();
 
       foreach ($wp_posts as $wp_post)
       {
@@ -159,10 +173,17 @@ class cqSphinxPager extends sfPager
     }
     if (!empty($collection_ids))
     {
-      /** @var $collections CollectorCollection[] */
-      $collections = FrontendCollectorCollectionQuery::create()
-        ->filterById($collection_ids, Criteria::IN)
-        ->find();
+      $q = FrontendCollectorCollectionQuery::create()
+        ->filterById($collection_ids, Criteria::IN);
+
+      if (!empty($this->joinWith['collection']))
+      foreach ($this->joinWith['collection'] as $with)
+      {
+        $q->joinWith($with);
+      }
+
+      /* @var $collections CollectorCollection[] */
+      $collections = $q->find();
 
       foreach ($collections as $collection)
       {
@@ -175,10 +196,17 @@ class cqSphinxPager extends sfPager
     }
     if (!empty($collector_ids))
     {
-      /** @var $collectors Collector[] */
-      $collectors = FrontendCollectorQuery::create()
-        ->filterById($collector_ids, Criteria::IN)
-        ->find();
+      $q = FrontendCollectorQuery::create()
+        ->filterById($collector_ids, Criteria::IN);
+
+      if (!empty($this->joinWith['collector']))
+      foreach ($this->joinWith['collector'] as $with)
+      {
+        $q->joinWith($with);
+      }
+
+      /* @var $collectors Collector[] */
+      $collectors = $q->find();
 
       foreach ($collectors as $collector)
       {
@@ -195,10 +223,17 @@ class cqSphinxPager extends sfPager
     }
     if (!empty($collectible_ids))
     {
-      /** @var $collectibles Collectible[] */
-      $collectibles = FrontendCollectibleQuery::create()
-        ->filterById($collectible_ids, Criteria::IN)
-        ->find();
+      $q = FrontendCollectibleQuery::create()
+        ->filterById($collectible_ids, Criteria::IN);
+
+      if (!empty($this->joinWith['collector']))
+      foreach ($this->joinWith['collector'] as $with)
+      {
+        $q->joinWith($with);
+      }
+
+      /* @var $collectibles Collectible[] */
+      $collectibles = $q->find();
 
       foreach ($collectibles as $collectible)
       {
@@ -337,6 +372,16 @@ class cqSphinxPager extends sfPager
   public function getStrictMode()
   {
     return $this->strictMode;
+  }
+
+  public function setJoinWith($joinWith = array())
+  {
+    $this->joinWith = $joinWith;
+  }
+
+  public function getJoinWith()
+  {
+    return $this->joinWith;
   }
 
   /**

@@ -1,14 +1,14 @@
 _exploreCollections:
   enabled:     true
   with_layout: false
-  lifetime:    300
+  lifetime:    600
 
 _featuredWeek:
   enabled:     true
   with_layout: false
-  lifetime:    300
+  lifetime:    600
 
 _sidebarIndex:
   enabled:     true
   with_layout: false
-  lifetime:    300
+  lifetime:    600
