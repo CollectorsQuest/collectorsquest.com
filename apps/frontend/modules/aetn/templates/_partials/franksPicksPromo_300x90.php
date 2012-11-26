@@ -8,7 +8,7 @@
           'alt' => 'One-of-a-kind finds picked fresh from Frank the host of American Pickers'
         )
       ),
-      '@aetn_american_restoration'
+      '@aetn_franks_picks'
     );
   ?>
 </div>
