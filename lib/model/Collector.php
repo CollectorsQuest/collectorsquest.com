@@ -587,6 +587,29 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
+   * Gets a single CollectorProfile object, which is related to this object by a
+   * one-to-one relationship, or creates it
+   *
+   * @param      PropelPDO $con optional connection object
+   * @return     CollectorProfile
+   *
+   * @throws     PropelException
+   */
+  public function getCollectorProfile(PropelPDO $con = null)
+  {
+    $profile = parent::getCollectorProfile($con);
+
+    if (null === $profile)
+    {
+      $profile = new CollectorProfile();
+      $profile->setCollector($this);
+      $profile->save($con);
+    }
+
+    return $profile;
+  }
+
+  /**
    * Determines whether the collector as a prifile photo
    *
    * @return boolean
