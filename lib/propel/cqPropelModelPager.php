@@ -2,6 +2,8 @@
 
 class cqPropelModelPager extends PropelModelPager
 {
+  protected $nbResults = null;
+
   /**
    * @var bool
    */
@@ -72,7 +74,7 @@ class cqPropelModelPager extends PropelModelPager
 		$hasMaxRecordLimit = ($this->getMaxRecordLimit() !== false);
 		$maxRecordLimit = $this->getMaxRecordLimit();
 
-    if (null == $this->getNbResults())
+    if (null === $this->getNbResults())
     {
       $qForCount = clone $this->getQuery();
       $count = $qForCount
