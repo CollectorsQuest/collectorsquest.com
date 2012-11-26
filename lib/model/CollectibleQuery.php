@@ -172,8 +172,7 @@ class CollectibleQuery extends BaseCollectibleQuery
   public function isPartOfCollection()
   {
     return $this
-      ->rightJoinCollectionCollectible()
-      ->groupById();
+      ->innerJoinCollectionCollectible();
   }
 
   /**

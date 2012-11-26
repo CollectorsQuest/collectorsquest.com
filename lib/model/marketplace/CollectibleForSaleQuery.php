@@ -27,10 +27,12 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   public function hasActiveCredit()
   {
     return $this
-      ->useCollectibleQuery('collectible_check_credit_alias')
-        ->usePackageTransactionCreditQuery()
-          ->notExpired()
-        ->endUse()
+      ->useCollectibleQuery('collectible_check_credit_alias', Criteria::INNER_JOIN)
+        ->joinPackageTransactionCredit(null, Criteria::INNER_JOIN)
+        ->addJoinCondition(
+          'PackageTransactionCredit',
+          'PackageTransactionCredit.EXPIRY_DATE >= NOW()'
+        )
       ->endUse();
   }
 

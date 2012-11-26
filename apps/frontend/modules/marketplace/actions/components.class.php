@@ -119,11 +119,6 @@ class marketplaceComponents extends cqFrontendComponents
       $query = FrontendCollectibleQuery::create();
 
       $query
-        ->useCollectionCollectibleQuery()
-          ->groupByCollectionId()
-        ->endUse();
-
-      $query
         ->useCollectibleForSaleQuery()
           ->isForSale()
           ->orderByMarkedForSaleAt(Criteria::DESC)
@@ -134,7 +129,6 @@ class marketplaceComponents extends cqFrontendComponents
         ->hasThumbnail()
         ->filterById(null, Criteria::NOT_EQUAL)
         ->orderByCreatedAt(Criteria::DESC)
-        ->clearGroupByColumns()
         ->groupBy('CollectorId');
 
       $pager = new PropelModelPager($query, 12);
@@ -367,11 +361,6 @@ class marketplaceComponents extends cqFrontendComponents
         ->orderByUpdatedAt(Criteria::DESC);
 
       $query
-        ->useCollectionCollectibleQuery()
-          ->groupByCollectionId()
-        ->endUse();
-
-      $query
         ->useCollectibleForSaleQuery()
           ->isForSale()
           ->orderByMarkedForSaleAt(Criteria::DESC)
@@ -381,10 +370,7 @@ class marketplaceComponents extends cqFrontendComponents
 
       $query
         ->hasThumbnail()
-        ->filterById(null, Criteria::NOT_EQUAL)
-        ->orderByCreatedAt(Criteria::DESC)
-        ->clearGroupByColumns()
-        ->groupBy('Id');
+        ->orderByCreatedAt(Criteria::DESC);
 
       $pager = new cqPropelModelPager($query, 16);
     }
