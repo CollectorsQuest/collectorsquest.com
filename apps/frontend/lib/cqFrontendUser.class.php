@@ -513,11 +513,14 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getCollectorByUuid()
   {
-    return $this->getCookieUuid()
-      ? CollectorQuery::create()
-         ->filterByCookieUuid($this->getCookieUuid())
-        ->findOne()
-      : null;
+    if ($uuid = $this->getCookieUuid())
+    {
+      return
+        @$this->collectors_by_uuid[$uuid] ?:
+        $this->collectors_by_uuid[$uuid] = CollectorQuery::create()->filterByCookieUuid($uuid)->findOne();
+    }
+
+    return null;
   }
 
   /**
