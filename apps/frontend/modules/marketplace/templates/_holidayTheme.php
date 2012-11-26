@@ -9,7 +9,17 @@
       <?php if ($pager->getPage() === 1): ?>
         <?php if (!isset($wp_post)): ?>
           <div style="float: left; margin-left: 15px; margin-right: 6px;">
-            <?= link_to(ice_image_tag_placeholder('296x605'), '@aetn_franks_picks'); ?>
+            <?php
+              echo link_to(
+                image_tag('headlines/2012-0883_FP_MarketLanding_296x605_FIN.jpg',
+                  array(
+                    'alt' => 'One-of-a-kind finds picked fresh from Frank the host of American Pickers',
+                    'size' => '296x605'
+                  )
+                ),
+                '@aetn_franks_picks'
+              );
+            ?>
           </div>
         <?php else: ?>
           <div id="collectible_for_sale_0_grid_view_square_big"
