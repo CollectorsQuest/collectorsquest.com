@@ -574,7 +574,17 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getProfile(PropelPDO $con = null)
   {
-    return parent::getCollectorProfile($con);
+    $profile = parent::getCollectorProfile($con);
+
+    // if for some reason the collector does not have a profile we create one
+    if (!$profile)
+    {
+      $profile = new CollectorProfile();
+      $this->setProfile($profile);
+      $this->save();
+    }
+
+    return $profile;
   }
 
   /***
