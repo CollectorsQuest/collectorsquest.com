@@ -357,10 +357,7 @@ class marketplaceComponents extends cqFrontendComponents
     {
       /** @var $query FrontendCollectibleQuery */
       $query = FrontendCollectibleQuery::create()
-        ->orderByAverageRating(Criteria::DESC)
-        ->orderByUpdatedAt(Criteria::DESC);
-
-      $query
+        ->hasThumbnail()
         ->useCollectibleForSaleQuery()
           ->isForSale()
           ->orderByMarkedForSaleAt(Criteria::DESC)
@@ -368,9 +365,9 @@ class marketplaceComponents extends cqFrontendComponents
         ->endUse()
         ->joinWith('CollectibleForSale');
 
-      $query
-        ->hasThumbnail()
-        ->orderByCreatedAt(Criteria::DESC);
+      $query->clearOrderByColumns();
+      $query->orderByAverageRating(Criteria::DESC);
+      $query->orderByUpdatedAt(Criteria::DESC);
 
       $pager = new cqPropelModelPager($query, 16);
     }
