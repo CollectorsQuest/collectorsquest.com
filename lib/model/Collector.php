@@ -574,7 +574,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getProfile(PropelPDO $con = null)
   {
-    return parent::getCollectorProfile($con);
+    return $this->getCollectorProfile($con);
   }
 
   /***
@@ -583,7 +583,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setProfile(CollectorProfile $v)
   {
-    return parent::setCollectorProfile($v);
+    return $this->setCollectorProfile($v);
   }
 
   /**
