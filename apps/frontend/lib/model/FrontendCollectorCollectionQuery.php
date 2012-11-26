@@ -18,7 +18,7 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
        */
       return $criteria
         ->filterByIsPublic(true)
-        ->hasCollectibles();
+        ->hasPublicCollectibles();
     }
 
     $query = new FrontendCollectorCollectionQuery();
