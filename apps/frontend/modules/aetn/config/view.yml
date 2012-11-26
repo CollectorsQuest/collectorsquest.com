@@ -59,6 +59,10 @@ blackHistorySuccess:
     - jquery/autoajax.js
     - jquery/infinitescroll.js
     - jquery/masonry.js
+  components:
+    slot1: [aetn, blackHistorySlot1]
+    breadcrumbs: []
+    footer: []
 
 storageWarsSuccess:
   components:

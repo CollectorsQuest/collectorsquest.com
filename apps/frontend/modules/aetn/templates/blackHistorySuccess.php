@@ -1,11 +1,3 @@
-<?php
-  /* @var $pager cqPropelModelPager */
-
-  echo ice_image_tag_placeholder('980x250');
-?>
-<br>
-<br>
-
 <p class="truncate js-hide">
   <?php // test intro text ?>
   Aliquam auctor aenean pid, velit ut, quis tempor elementum augue aenean scelerisque?

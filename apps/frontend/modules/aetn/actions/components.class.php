@@ -114,4 +114,9 @@ class aetnComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeBlackHistorySlot1()
+  {
+    return sfView::SUCCESS;
+  }
 }
