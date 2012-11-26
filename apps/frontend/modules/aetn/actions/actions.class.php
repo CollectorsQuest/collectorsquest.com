@@ -277,4 +277,12 @@ class aetnActions extends cqFrontendActions
 
     return sfView::SUCCESS;
   }
+
+  public function executeBlackHistory()
+  {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(cqGateKeeper::open('aetn_black_history', 'page'));
+
+    return sfView::SUCCESS;
+  }
 }
