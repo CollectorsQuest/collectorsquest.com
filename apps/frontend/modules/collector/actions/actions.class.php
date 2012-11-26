@@ -11,6 +11,9 @@ class collectorActions extends cqFrontendActions
     /** @var $profile CollectorProfile */
     $profile = $collector->getProfile();
 
+    // stop here if we don't have proper CollectorProfile object
+    $this->forward404Unless($profile instanceof CollectorProfile);
+
     /**
      * Increment the number of views
      */
