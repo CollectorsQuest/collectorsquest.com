@@ -103,6 +103,7 @@ classes:
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
       num_items:               { type: integer, default: 0 }
+      num_public_items:        { type: integer, default: 0 }
       num_views:               { type: integer, default: 0 }
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
@@ -151,6 +152,7 @@ classes:
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
       num_items:               { type: integer, default: 0 }
+      num_public_items:        { type: integer, default: 0 }
       num_views:               { type: integer, default: 0 }
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
