@@ -599,7 +599,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   {
     $profile = parent::getCollectorProfile($con);
 
-    if (null === $profile)
+    if (null === $profile && !$this->isNew())
     {
       $profile = new CollectorProfile();
       $profile->setCollector($this);
