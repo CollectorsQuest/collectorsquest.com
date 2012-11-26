@@ -174,7 +174,6 @@ class collectionsComponents extends cqFrontendComponents
     else
     {
       $query = FrontendCollectorCollectionQuery::create()
-        ->hasCollectibles()
         ->hasThumbnail()
         ->groupByCollectorId()
         ->orderByCreatedAt(Criteria::DESC);

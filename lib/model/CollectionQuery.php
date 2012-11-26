@@ -56,11 +56,7 @@ class CollectionQuery extends BaseCollectionQuery
   public function hasPublicCollectibles()
   {
     return $this
-      ->filterByNumItems(0, Criteria::GREATER_THAN)
-      ->useCollectionCollectibleQuery()
-        ->filterByIsPublic(true)
-      ->endUse()
-      ->groupBy('Id');
+      ->filterByNumPublicItems(0, Criteria::GREATER_THAN);
   }
 
   /**

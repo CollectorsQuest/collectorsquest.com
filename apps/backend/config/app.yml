@@ -68,7 +68,7 @@ all:
             image: theme/icons/generic.png
           ShoppingCart Collectibles:
             url: shopping_cart_collectible
-            image: theme/icons/generic.png
+            image: theme/icons/mediamanager.png
 
       Blog:
         icon: book

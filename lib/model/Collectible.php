@@ -658,6 +658,23 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         CollectiblePeer::ID, $this->getId()
       );
       $con->exec($sql);
+
+      foreach ($this->getCollections() as $collection)
+      {
+        /* @var $collection Collection */
+        if (( $collector_collection = $collection->getCollectorCollection() ))
+        {
+          /* @var $collector_collection CollectorCollection */
+          // if the collection has a related collector collection, update it
+          // and rely on cocrete inheritance's cascading parent update
+          $collector_collection->updateNumPublicItems($con);
+        }
+        else
+        {
+          // otherwise just update the Collection
+          $collection->updateNumPublicItems($con);
+        }
+      }
     }
   }
 

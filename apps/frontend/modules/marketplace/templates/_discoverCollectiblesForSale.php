@@ -76,7 +76,8 @@
         pathParse: function(path, page) {
           // add the search params from the form
           path = path + '&' + $form.serialize();
-          return path.match(/^(.*?)2(.*?$)/).slice(1);
+
+          return path.match(/^(.*?[\?|&]p=)2(.*?$)/).slice(1);
         },
         bufferPx:150
       },
