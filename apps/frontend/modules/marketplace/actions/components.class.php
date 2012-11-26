@@ -314,7 +314,7 @@ class marketplaceComponents extends cqFrontendComponents
         'order' => 'desc'
       );
 
-      if (!empty($s1) && $content_category = ContentCategoryQuery::create()->findOneById((integer) $s1))
+      if (!empty($s1) && ($content_category = ContentCategoryQuery::create()->findOneById((integer) $s1)))
       {
         $query['sortby'] = 'uint4';
         $query['order']  = 'desc';
@@ -357,6 +357,7 @@ class marketplaceComponents extends cqFrontendComponents
       }
 
       $pager = new cqSphinxPager($query, array('collectibles'), 16);
+      $pager->setJoinWith(array('collectible' => array('CollectibleForSale')));
     }
     else
     {
@@ -372,10 +373,11 @@ class marketplaceComponents extends cqFrontendComponents
 
       $query
         ->useCollectibleForSaleQuery()
-        ->isForSale()
-        ->orderByMarkedForSaleAt(Criteria::DESC)
-        ->orderByCreatedAt(Criteria::DESC)
-        ->endUse();
+          ->isForSale()
+          ->orderByMarkedForSaleAt(Criteria::DESC)
+          ->orderByCreatedAt(Criteria::DESC)
+        ->endUse()
+        ->joinWith('CollectibleForSale');
 
       $query
         ->hasThumbnail()
