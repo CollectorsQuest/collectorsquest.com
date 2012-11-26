@@ -23,6 +23,12 @@ class searchActions extends cqFrontendActions
 
     self::$_query['q'] = $request->getParameter('q');
 
+    if (!empty(self::$_query['q']))
+    {
+      $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());
+      $breadcrumbs->addItem(sprintf('Search results for "%s"', self::$_query['q']));
+    }
+
     // Setting the user preference for the adverts display type (grid or list)
     if ($request->getParameter('display'))
     {

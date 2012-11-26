@@ -30,12 +30,12 @@ class collectionComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    // Are we dealing with an item for sale?
-    if ($this->collectible->isForSale())
-    {
-      /* @var $collectible_for_sale CollectibleForSale */
-      $collectible_for_sale = $this->collectible->getCollectibleForSale();
+    /* @var $collectible_for_sale CollectibleForSale */
+    $collectible_for_sale = $this->getVar('collectible_for_sale');
 
+    // Are we dealing with an item for sale?
+    if ($collectible_for_sale && $collectible_for_sale->isForSale())
+    {
       $this->isSold = $collectible_for_sale->getIsSold();
       $this->collectible_for_sale = $collectible_for_sale;
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
