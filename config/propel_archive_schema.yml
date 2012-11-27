@@ -103,6 +103,7 @@ classes:
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
       num_items:               { type: integer, default: 0 }
+      num_public_items:        { type: integer, default: 0 }
       num_views:               { type: integer, default: 0 }
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
@@ -151,6 +152,7 @@ classes:
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
       num_items:               { type: integer, default: 0 }
+      num_public_items:        { type: integer, default: 0 }
       num_views:               { type: integer, default: 0 }
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
@@ -260,6 +262,7 @@ classes:
       collectible_id:       { type: integer, index: true }
       shopping_payment_id:  { type: integer, index: true }
       buyer_email:          { type: varchar, size: 128, index: true }
+
       shipping_address_id:       { type: integer, index: true }
       shipping_full_name:        { type: varchar(255), required: true  }
       shipping_phone:            { type: varchar(50),  required: false }
@@ -269,9 +272,12 @@ classes:
       shipping_state_region:     { type: varchar(100), required: false }
       shipping_zip_postcode:     { type: varchar(50),  required: true }
       shipping_country_iso3166:  { type: char, size: 2, required: false }
+
       shipping_carrier:          { type: enum, required: false, valueSet: "FedEx, UPS, USPS, DHL" }
       shipping_tracking_number:  { type: varchar(64), required: false }
+
       note_to_seller:       { type: varchar, size: 255 }
+      progress:             { type: enum, valueSet: "step1, step2, step3", default: step1, required: true }
 
       updated_at:   { type: timestamp }
       created_at:   { type: timestamp }

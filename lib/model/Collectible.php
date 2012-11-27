@@ -18,6 +18,11 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   /** @var array */
   public $_counts = array();
 
+  /**
+   * @var        Collection
+   */
+  protected $collection = null;
+
   public function postSave(PropelPDO $con = null)
   {
     parent::postSave($con);
@@ -277,6 +282,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       $collection_collectible = $q->findOneOrCreate();
       $collection_collectible->setCollection($collection);
       $collection_collectible->save();
+      $this->collection = $collection;
     }
     catch (PropelException $e)
     {
@@ -341,16 +347,18 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    */
   public function getCollection(PropelPDO $con = null)
   {
-    /** @var $q CollectionQuery */
-    $q = CollectionQuery::create()
-       ->filterByCollectible($this);
-
-    if (!$collection = $q->findOne($con))
+    if ($this->collection === null)
     {
-      $collection = new CollectionDropbox($this->getCollectorId());
-    }
+      /* @var $q CollectionQuery */
+      $q = CollectionQuery::create()
+         ->filterByCollectible($this);
 
-    return $collection;
+      if (!$this->collection = $q->findOne($con))
+      {
+        $this->collection = new CollectionDropbox($this->getCollectorId());
+      }
+    }
+    return $this->collection;
   }
 
   public function getCollectorCollection(PropelPDO $con = null)
@@ -650,6 +658,23 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         CollectiblePeer::ID, $this->getId()
       );
       $con->exec($sql);
+
+      foreach ($this->getCollections() as $collection)
+      {
+        /* @var $collection Collection */
+        if (( $collector_collection = $collection->getCollectorCollection() ))
+        {
+          /* @var $collector_collection CollectorCollection */
+          // if the collection has a related collector collection, update it
+          // and rely on cocrete inheritance's cascading parent update
+          $collector_collection->updateNumPublicItems($con);
+        }
+        else
+        {
+          // otherwise just update the Collection
+          $collection->updateNumPublicItems($con);
+        }
+      }
     }
   }
 

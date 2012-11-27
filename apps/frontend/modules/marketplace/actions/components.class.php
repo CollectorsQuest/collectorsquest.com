@@ -119,11 +119,6 @@ class marketplaceComponents extends cqFrontendComponents
       $query = FrontendCollectibleQuery::create();
 
       $query
-        ->useCollectionCollectibleQuery()
-          ->groupByCollectionId()
-        ->endUse();
-
-      $query
         ->useCollectibleForSaleQuery()
           ->isForSale()
           ->orderByMarkedForSaleAt(Criteria::DESC)
@@ -134,7 +129,6 @@ class marketplaceComponents extends cqFrontendComponents
         ->hasThumbnail()
         ->filterById(null, Criteria::NOT_EQUAL)
         ->orderByCreatedAt(Criteria::DESC)
-        ->clearGroupByColumns()
         ->groupBy('CollectorId');
 
       $pager = new PropelModelPager($query, 12);
@@ -314,7 +308,7 @@ class marketplaceComponents extends cqFrontendComponents
         'order' => 'desc'
       );
 
-      if (!empty($s1) && $content_category = ContentCategoryQuery::create()->findOneById((integer) $s1))
+      if (!empty($s1) && ($content_category = ContentCategoryQuery::create()->findOneById((integer) $s1)))
       {
         $query['sortby'] = 'uint4';
         $query['order']  = 'desc';
@@ -357,34 +351,28 @@ class marketplaceComponents extends cqFrontendComponents
       }
 
       $pager = new cqSphinxPager($query, array('collectibles'), 16);
+      $pager->setJoinWith(array('collectible' => array('CollectibleForSale')));
     }
     else
     {
       /** @var $query FrontendCollectibleQuery */
       $query = FrontendCollectibleQuery::create()
-        ->orderByAverageRating(Criteria::DESC)
-        ->orderByUpdatedAt(Criteria::DESC);
-
-      $query
-        ->useCollectionCollectibleQuery()
-          ->groupByCollectionId()
-        ->endUse();
-
-      $query
-        ->useCollectibleForSaleQuery()
-        ->isForSale()
-        ->orderByMarkedForSaleAt(Criteria::DESC)
-        ->orderByCreatedAt(Criteria::DESC)
-        ->endUse();
-
-      $query
         ->hasThumbnail()
-        ->filterById(null, Criteria::NOT_EQUAL)
-        ->orderByCreatedAt(Criteria::DESC)
-        ->clearGroupByColumns()
-        ->groupBy('Id');
+        ->useCollectibleForSaleQuery()
+          ->isForSale()
+        ->endUse()
+        ->joinWith('CollectibleForSale');
+      $pks = $query->select('Id')->find()->getArrayCopy();
+
+      $query = CollectibleQuery::create()
+        ->filterById($pks)
+        ->joinWith('CollectibleForSale')
+      ;
+      $query->orderByAverageRating(Criteria::DESC);
+      $query->orderByUpdatedAt(Criteria::DESC);
 
       $pager = new cqPropelModelPager($query, 16);
+      $pager->setNbResults(count($pks));
     }
 
     if ($pager)

@@ -1,9 +1,14 @@
 _indexCarousel:
   enabled:     true
   with_layout: false
-  lifetime:    300
+  lifetime:    3600
+
+_sidebarIndex:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
 
 index:
   enabled:     true
   with_layout: false
-  lifetime:    300
+  lifetime:    600

@@ -6,7 +6,7 @@
 class cqVisitorInfoFilter extends sfFilter
 {
 
-  /** @var array A list of update callbacks for properties */
+  /* @var array A list of update callbacks for properties */
   protected static $handlers_for_properties = array(
     CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT => 'updatePropFirstVisitAt',
     CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT => 'updatePropLastVisitAt',
@@ -16,6 +16,8 @@ class cqVisitorInfoFilter extends sfFilter
 
   /**
    * Main filter chain execution
+   *
+   * @param     sfFilterChain $filterChain
    */
   public function execute($filterChain)
   {
@@ -27,13 +29,19 @@ class cqVisitorInfoFilter extends sfFilter
       /* @var $sf_user cqFrontendUser */
       $sf_user = $this->context->getUser();
 
-      $this->updateLastVisitedAtForAuthenticated($sf_user);
+      /* @var $collector Collector */
+      $collector = $sf_user->getCollector($strict = true);
+
+      if ($collector instanceof Collector)
+      {
+        $this->updateLastVisitedAtForAuthenticated($collector);
+      }
       $this->updateVisitorInfo($sf_user);
 
       /**
        * Send information about the Collector to NewRelic
        */
-      if (extension_loaded('newrelic') && ($collector = $sf_user->getCollector(true)))
+      if (extension_loaded('newrelic') && $collector)
       {
         newrelic_set_user_attributes($collector->getUsername(), $collector->getId(), SF_APP);
       }
@@ -133,35 +141,33 @@ class cqVisitorInfoFilter extends sfFilter
   }
 
   /**
-   * Update the actual collector.last_visited_at DB field, when the current user
-   * is logged in
+   * Update the actual collector.last_visited_at DB field
+   * when the current user is logged in
    *
-   * @param cqFrontendUser $sf_user
+   * @param Collector $collector
    */
-  protected function updateLastVisitedAtForAuthenticated(cqFrontendUser $sf_user)
+  protected function updateLastVisitedAtForAuthenticated($collector)
   {
-    if (( $collector = $sf_user->getCollector($strict = true) ))
+    $collector->setLastVisitedAt(time());
+
+    // prevent updated at from being set to the current time;
+    // if the column has been manually modified TimestampableBehavior
+    // won't auto-set it to the current time
+    $updated_at = $collector->getUpdatedAt(null);
+    $collector->setUpdatedAt(false);
+    $collector->setUpdatedAt($updated_at);
+
+    /* @var $response IceWebResponse */
+    $response = $this->context->getResponse();
+
+    $response->addDelayedFunction(function()
     {
-      $collector->setLastVisitedAt(time());
-
-      // prevent updated at from being set to the current time;
-      // if the column has been manually modified TimestampableBehavior
-      // won't auto-set it to the current time
-      $updated_at = $collector->getUpdatedAt(null);
-      $collector->setUpdatedAt(false);
-      $collector->setUpdatedAt($updated_at);
-
-      /* @var $response IceWebResponse */
-      $response = $this->context->getResponse();
-
-      $response->addDelayedFunction(function()
+      if ($collector = cqContext::getInstance()->getUser()->getCollector($strict = true))
       {
-        if ($collector = cqContext::getInstance()->getUser()->getCollector($strict = true))
-        {
-          $collector->save();
-        }
-      });
-    }
+        $collector->save();
+      }
+    });
   }
+
 
 }
