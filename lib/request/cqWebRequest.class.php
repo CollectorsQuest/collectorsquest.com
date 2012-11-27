@@ -8,6 +8,12 @@ class cqWebRequest extends sfWebRequest
    */
   protected $is_mobile = false;
 
+  /*
+   * width of client screen in pixels
+   * @var $client_width integer
+   */
+  protected $client_width = 0;
+
   /**
    * Return the request protocol
    *
@@ -62,6 +68,21 @@ class cqWebRequest extends sfWebRequest
   public function isLazyLoadEnabled()
   {
     return !$this->isMobile() && !$this->isXmlHttpRequest() && 'all' !== $this->getParameter('show');
+  }
+
+  public function setClientWidth($value)
+  {
+    $this->client_width = $value;
+  }
+
+  /**
+   * Get the width of client browser in pixels
+   *
+   * @return integer
+   */
+  public function getClientWidth()
+  {
+    return $this->client_width;
   }
 
 }

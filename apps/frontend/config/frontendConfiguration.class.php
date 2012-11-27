@@ -55,6 +55,23 @@ class frontendConfiguration extends cqApplicationConfiguration
       $request->setIsMobile(true);
     }
 
+    // set the client width variable if not already set
+    if ($request->getClientWidth() != 0 && isset($_COOKIE['resolution']))
+    {
+      $cookie_value = $_COOKIE['resolution'];
+      // does the cookie look valid? [whole number, comma, potential floating number]
+      // no it doesn't look valid
+      if (!preg_match('/^[0-9]+[,]*[0-9\.]+$/', $cookie_value))
+      {
+        setcookie('resolution', '$cookie_value', time()-100); // delete cookie
+      }
+      // the cookie is valid, set request variable
+      else
+      {
+        $request->setClientWidth($cookie_value);
+      }
+    }
+
     return $parameters;
   }
 

@@ -47,6 +47,9 @@ var APP = window.APP = {
         clickZone: '.link'
       });
 
+      // set cookie with the client width in pixels
+      document.cookie='resolution='+Math.max(screen.width,screen.height)+'; path=/';
+
       window.locale = {
         "fileupload": {
           "errors": {
