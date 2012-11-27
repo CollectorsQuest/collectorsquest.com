@@ -141,9 +141,28 @@
           <?php endif; ?>
 
           <?php if ($shipping_policy = $collector->getSellerSettingsShipping()): ?>
-          <p><strong>Shipping Policy:</strong> <?= $shipping_policy; ?></p>
+          <p class="truncate"><strong>Shipping Policy:</strong> <?= $shipping_policy; ?></p>
           <?php endif; ?>
         </div>
       </div>
   </div>
 </div>
+
+<?php if ($collector->getId() == 6668): ?>
+<script type="text/javascript" src="/js/jquery/expander.js"></script>
+<script>
+  $(document).ready(function ()
+  {
+    $('.truncate').expander({
+      slicePoint: 250,
+      widow: 2,
+      expandEffect: 'show',
+      expandText: ' Read more >>',
+      expandPrefix: '',
+      userCollapseText: '[^]',
+      onSlice: function() { $(this).show(); }
+    })
+    .show();
+  });
+</script>
+<?php endif; ?>

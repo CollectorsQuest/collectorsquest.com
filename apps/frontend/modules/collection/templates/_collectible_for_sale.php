@@ -102,7 +102,7 @@
   <?php endif; ?>
 
   <?php if ($shipping_policy = $collector->getSellerSettingsShipping()): ?>
-    <p><strong>Shipping Policy:</strong> <?= $shipping_policy; ?></p>
+    <p class="truncate"><strong>Shipping Policy:</strong> <?= $shipping_policy; ?></p>
   <?php endif; ?>
 </div>
 
@@ -135,3 +135,21 @@
     <?= $buy_form->renderHiddenFields(); ?>
   </form>
 <?php endif; // if for sale ?>
+
+<?php if ($collector->getId() == 6668): ?>
+<script>
+  $(document).ready(function ()
+  {
+    $('.truncate').expander({
+      slicePoint: 250,
+      widow: 2,
+      expandEffect: 'show',
+      expandText: ' Read more >>',
+      expandPrefix: '',
+      userCollapseText: '[^]',
+      onSlice: function() { $(this).show(); }
+    })
+    .show();
+  });
+</script>
+<?php endif; ?>
