@@ -19,17 +19,50 @@
   {
     document.getElementById('q').value = '<?= (string) $sf_params->get('q'); ?>';
   }
-<?php if ($sf_user->isAuthenticated()): ?>
-  if (document.getElementById('footer-user-info') !== null)
-  {
-    document.getElementById('footer-user-info').innerHTML = '<?= preg_replace('/^\s+|\n|\r|\s+$/m', '',get_partial(
-      'global/footer_authenticated'
-    )); ?>';
-  }
-<?php endif; ?>
+
 
 </script>
 <?php include_component_slot('jquery_footer'); ?>
+
+<?= javascript_include_tag('frontend/pure.js'); ?>
+<?php if ($sf_user->isAuthenticated())
+{
+  /* @var $collector Collector */
+  $collector = $sf_user->getCollector();
+  $unread_messages = $collector->getUnreadMessagesCount();
+  $profile_completed = $collector->getProfile()->getProfileCompleted();
+  slot('profile-hint'); ?>
+  <?php if (75 <= $profile_completed): ?>
+    <a href="<?= url_for('@mycq_profile?ref=' . cq_link_ref('footer')) ?>" class="bold-links">
+      Add info about what you collect
+    </a>.
+    <?php elseif (50 <= $profile_completed): ?>
+    <a href="<?= url_for('@mycq_collections?ref=' . cq_link_ref('footer')) ?>" class="bold-links">
+      Add a collectible
+    </a> in minutes.
+    <?php else: ?>
+    <a href="<?= url_for('@mycq_collections?ref=' . cq_link_ref('footer')) ?>#my-collections"
+       class="bold-links">
+      Add a collection
+    </a> in minutes.
+    <?php endif; ?>
+    (+25%)
+  <?php end_slot(); ?>
+  <script>
+    var data = {
+      'collector-name':   '<?= $collector->getDisplayName(); ?>!',
+      'pm-counter':       <?= $unread_messages < 1000 ? $unread_messages : '&#8734;'; ?>,
+      'pm-counter-word':  '<?= format_number_choice('[0]no messages|[1]1 message|(1, +Inf]%count% messages',
+                            array('%count%' => $unread_messages), $unread_messages); ?>',
+      'profile-complected':  '<?= $profile_completed ?>',
+      'profile-hint':     '<?= preg_replace('/^\s+|\n|\r|\s+$/m', '', get_slot('profile-hint')) ?>',
+      'shopping-cart-inner': '<?= $sf_user->getShoppingCartCollectiblesCount(); ?>'
+    };
+    $('footer').autoRender(data);
+  </script>
+<?php } ?>
+
+<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
 
 <?php if ($sf_params->get('gcf')): ?>
 <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
