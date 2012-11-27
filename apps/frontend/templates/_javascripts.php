@@ -24,13 +24,15 @@
 </script>
 <?php include_component_slot('jquery_footer'); ?>
 
-<?= javascript_include_tag('frontend/pure.js'); ?>
+<?= javascript_include_tag('frontend/pure_min.js'); ?>
 <?php if ($sf_user->isAuthenticated())
 {
   /* @var $collector Collector */
   $collector = $sf_user->getCollector();
   $unread_messages = $collector->getUnreadMessagesCount();
   $profile_completed = $collector->getProfile()->getProfileCompleted();
+
+  // I don't see better way to compose hint
   slot('profile-hint'); ?>
   <?php if (75 <= $profile_completed): ?>
     <a href="<?= url_for('@mycq_profile?ref=' . cq_link_ref('footer')) ?>" class="bold-links">
@@ -55,7 +57,7 @@
       'pm-counter-word':  '<?= format_number_choice('[0]no messages|[1]1 message|(1, +Inf]%count% messages',
                             array('%count%' => $unread_messages), $unread_messages); ?>',
       'profile-complected':  '<?= $profile_completed ?>',
-      'profile-hint':     '<?= preg_replace('/^\s+|\n|\r|\s+$/m', '', get_slot('profile-hint')) ?>',
+      'profile-hint':        '<?= preg_replace('/^\s+|\n|\r|\s+$/m', '', get_slot('profile-hint')) ?>',
       'shopping-cart-inner': '<?= $sf_user->getShoppingCartCollectiblesCount(); ?>'
     };
     $('footer').autoRender(data);
