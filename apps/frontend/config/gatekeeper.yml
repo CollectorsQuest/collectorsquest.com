@@ -19,7 +19,9 @@ all:
     expose_market_categories: true
 
 stg:
-  pages: ~
+  pages:
+    aetn_franks_picks: true
+
   features: ~
 
 next:
