@@ -362,9 +362,6 @@ class marketplaceComponents extends cqFrontendComponents
           ->isForSale()
         ->endUse()
         ->joinWith('CollectibleForSale');
-
-      $query->clearOrderByColumns();
-      $query->orderByUpdatedAt(Criteria::DESC);
       $pks = $query->select('Id')->find()->getArrayCopy();
 
       $query = CollectibleQuery::create()
