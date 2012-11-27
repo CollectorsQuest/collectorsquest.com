@@ -758,7 +758,6 @@ var SEARCH = window.SEARCH = (function(){
           },
           // trigger Masonry as a callback
           function(selector) {
-            $('.fade-white').mosaic();
             $('.collectible_grid_view').mosaic({
               animation: 'slide'
             });
@@ -775,6 +774,7 @@ var SEARCH = window.SEARCH = (function(){
               // show bricks now that they're ready
               $bricks.animate({opacity: 1});
               $container.masonry('appended', $bricks, true);
+              $('.fade-white').mosaic();
             });
           });
 
