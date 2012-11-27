@@ -14,7 +14,8 @@ class FrontendCollectibleForSaleQuery extends CollectibleForSaleQuery
         ->useCollectibleQuery()
           ->isComplete()
           ->isPartOfCollection()
-        ->endUse();
+        ->endUse()
+        ->joinWith('Collectible');
     }
 
     $query = new FrontendCollectibleForSaleQuery();
@@ -35,7 +36,8 @@ class FrontendCollectibleForSaleQuery extends CollectibleForSaleQuery
       ->useCollectibleQuery()
         ->isComplete()
         ->isPartOfCollection()
-      ->endUse();
+      ->endUse()
+      ->joinWith('Collectible');
 
     return $query;
   }

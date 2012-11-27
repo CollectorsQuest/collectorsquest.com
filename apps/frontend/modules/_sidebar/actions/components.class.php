@@ -1008,7 +1008,6 @@ class _sidebarComponents extends cqFrontendComponents
     {
       /* @var $q CollectibleForSaleQuery */
       $q = FrontendCollectibleForSaleQuery::create()
-        ->hasActiveCredit()
         ->isForSale()
         ->addAscendingOrderByColumn('RAND()');
 

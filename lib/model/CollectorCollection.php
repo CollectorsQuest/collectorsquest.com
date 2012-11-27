@@ -1,7 +1,5 @@
 <?php
 
-require 'lib/model/om/BaseCollectorCollection.php';
-
 /**
  * IceTaggableBehavior
  *

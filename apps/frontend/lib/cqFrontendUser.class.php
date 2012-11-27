@@ -162,7 +162,7 @@ class cqFrontendUser extends cqBaseUser
     return null;
   }
 
-  public function getShoppingCart()
+  public function getShoppingCart($with_collectibles = false)
   {
     $q = ShoppingCartQuery::create();
 
@@ -174,6 +174,12 @@ class cqFrontendUser extends cqBaseUser
     {
       $q->filterByCollectorId(null, Criteria::EQUAL);
       $q->filterByCookieUuid($this->getCookieUuid());
+    }
+
+    // Optimize for the cases where we want to check for collectibles in the cart
+    if ($with_collectibles)
+    {
+      return $q->joinShoppingCartCollectible()->findOne();
     }
 
     if (!($shopping_cart = $q->findOne()) && $this->isAuthenticated())
@@ -199,7 +205,7 @@ class cqFrontendUser extends cqBaseUser
     // We default to zero collectibles in the cart
     $count = 0;
 
-    if ($shopping_cart = $this->getShoppingCart())
+    if ($shopping_cart = $this->getShoppingCart($with_collectibles = true))
     {
       $count = $shopping_cart->countShoppingCartCollectibles();
     }
@@ -513,11 +519,14 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getCollectorByUuid()
   {
-    return $this->getCookieUuid()
-      ? CollectorQuery::create()
-         ->filterByCookieUuid($this->getCookieUuid())
-        ->findOne()
-      : null;
+    if ($uuid = $this->getCookieUuid())
+    {
+      return
+        @$this->collectors_by_uuid[$uuid] ?:
+        $this->collectors_by_uuid[$uuid] = CollectorQuery::create()->filterByCookieUuid($uuid)->findOne();
+    }
+
+    return null;
   }
 
   /**

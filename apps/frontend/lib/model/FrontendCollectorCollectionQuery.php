@@ -18,7 +18,7 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
        */
       return $criteria
         ->filterByIsPublic(true)
-        ->hasCollectibles();
+        ->hasPublicCollectibles();
     }
 
     $query = new FrontendCollectorCollectionQuery();
@@ -37,16 +37,9 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
      */
     $query
       ->filterByIsPublic(true)
-      ->hasCollectibles();
+      ->hasPublicCollectibles();
 
     return $query;
   }
 
-  /**
-   * @return FrontendCollectorCollectionQuery|CollectorCollectionQuery
-   */
-  public function hasCollectibles()
-  {
-    return $this->hasPublicCollectibles();
-  }
 }
