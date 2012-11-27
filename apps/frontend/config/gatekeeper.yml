@@ -1,5 +1,6 @@
 all:
   pages:
+    aetn_black_history: false
     aetn_franks_picks: false
     holiday_marketplace: true
     marketplace_categories: false
@@ -19,6 +20,7 @@ all:
 
 next:
   pages:
+    aetn_black_history: true
     aetn_franks_picks: true
     holiday_marketplace: true
     marketplace_categories: false
@@ -38,6 +40,7 @@ next:
 
 dev:
   pages:
+    aetn_black_history: true
     aetn_franks_picks: true
     holiday_marketplace: true
     marketplace_categories: true
