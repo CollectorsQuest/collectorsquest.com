@@ -18,6 +18,10 @@ all:
     expose_collection_categories: true
     expose_market_categories: true
 
+stg:
+  pages: ~
+  features: ~
+
 next:
   pages:
     aetn_black_history: true
