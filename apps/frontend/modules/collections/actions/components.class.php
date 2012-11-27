@@ -105,7 +105,7 @@ class collectionsComponents extends cqFrontendComponents
     $p = (int) $this->getRequestParameter('p', 1);
     $pager = null;
 
-    if ($s != 'most-recent')
+    if ($s != 'most-recent' || !empty($q))
     {
       $query = array(
         'q' => $q,
