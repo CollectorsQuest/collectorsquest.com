@@ -102,7 +102,7 @@
   <?php endif; ?>
 
   <?php if ($shipping_policy = $collector->getSellerSettingsShipping()): ?>
-    <p class="truncate"><strong>Shipping Policy:</strong> <?= $shipping_policy; ?></p>
+    <p class="truncate"><strong>Shipping Policy:</strong> <?= nl2br($shipping_policy); ?></p>
   <?php endif; ?>
 </div>
 
