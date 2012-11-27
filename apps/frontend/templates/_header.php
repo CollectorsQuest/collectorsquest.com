@@ -122,12 +122,12 @@
         <div class="input-append pull-right">
           <form action="<?= url_for('@search', true) ?>" method="get">
             <?php
-            echo $form['q']->render(array(
+              echo $form['q']->render(array(
                 'autocomplete' => 'off', 'required' => 'required',
                 'placeholder' => 'Find collectibles, blog posts, videos and more...')
-            );
+              );
             ?>
-              <button class="btn btn-large append-search-button" type="submit">Search</button>
+            <button class="btn btn-large append-search-button" type="submit">Search</button>
           </form>
         </div>
       </div>
