@@ -56,7 +56,7 @@ class frontendConfiguration extends cqApplicationConfiguration
     }
 
     // set the client width variable if not already set
-    if ($request->getClientWidth() != 0 && isset($_COOKIE['resolution']))
+    if (isset($_COOKIE['resolution']))
     {
       $cookie_value = $_COOKIE['resolution'];
       // does the cookie look valid? [whole number, comma, potential floating number]
