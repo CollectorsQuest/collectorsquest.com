@@ -47,18 +47,22 @@ switch ($aetn_show['id'])
   case 'pawn_stars':
     include_partial('aetn/partials/americanPickersPromo_300x90');
     include_partial('aetn/partials/americanRestorationPromo_300x90');
+    include_partial('aetn/partials/franksPicksPromo_300x90');
     break;
   case 'american_pickers':
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanRestorationPromo_300x90');
+    include_partial('aetn/partials/franksPicksPromo_300x90');
     break;
   case 'picked_off':
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanPickersPromo_300x90');
+    include_partial('aetn/partials/franksPicksPromo_300x90');
     break;
   case 'american_restoration':
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanPickersPromo_300x90');
+    include_partial('aetn/partials/franksPicksPromo_300x90');
     break;
   case 'franks_picks':
 
@@ -80,6 +84,11 @@ switch ($aetn_show['id'])
 
 // height of add + 2 promo banners and all margins
 $height->value -= 530;
+
+if (cqGateKeeper::open('aetn_franks_picks', 'page') && $aetn_show['id'] != 'franks_picks')
+{
+  $height->value -= 120;
+}
 
 if (!$collectible->isForSale())
 {
