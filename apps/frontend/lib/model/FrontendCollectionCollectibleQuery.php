@@ -7,8 +7,10 @@ class FrontendCollectionCollectibleQuery extends CollectionCollectibleQuery
     if ($criteria instanceof FrontendCollectionCollectibleQuery)
     {
       return $criteria
-        ->filterByIsPublic(true)
-        ->joinWith('Collectible');
+        ->joinWith('Collectible')
+        ->_if(SF_ENV === 'prod')
+          ->isComplete()
+        ->_endif();
     }
 
     $query = new FrontendCollectionCollectibleQuery();
@@ -23,8 +25,10 @@ class FrontendCollectionCollectibleQuery extends CollectionCollectibleQuery
 
     // By default we want to only show public Collections
     $query
-      ->filterByIsPublic(true)
-      ->joinWith('Collectible');
+      ->joinWith('Collectible')
+      ->_if(SF_ENV === 'prod')
+        ->isComplete()
+      ->_endif();
 
     return $query;
   }
