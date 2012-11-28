@@ -96,6 +96,12 @@ all:
     # all modules and actions should be https
     secure: ~
 
+
+stg:
+  ice_assets:
+    domain: "cqcdns.com"
+
+
 next:
   ice_assets:
     domain: "cqcdns.com"

@@ -18,6 +18,12 @@ all:
     expose_collection_categories: true
     expose_market_categories: true
 
+stg:
+  pages:
+    aetn_franks_picks: true
+
+  features: ~
+
 next:
   pages:
     aetn_black_history: true

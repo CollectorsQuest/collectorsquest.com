@@ -2,11 +2,12 @@
 
 class cqWebRequest extends sfWebRequest
 {
-  /*
-   * request comes from a mobile device
-   * @var $is_mobile boolean
+  /**
+   * Tracks if the request comes from a mobile device
+   *
+   * @var null|boolean
    */
-  protected $is_mobile = false;
+  protected $is_mobile = null;
 
   /*
    * width of client screen in pixels
@@ -53,7 +54,9 @@ class cqWebRequest extends sfWebRequest
    */
   public function isMobile()
   {
-    return $this->is_mobile;
+    return $this->is_mobile !== null ?
+      (boolean) $this->is_mobile :
+      (boolean) @$_SERVER['mobile'];
   }
 
   /*

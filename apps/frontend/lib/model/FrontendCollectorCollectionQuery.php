@@ -17,8 +17,10 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
        * which have Collectibles asssigned to them
        */
       return $criteria
-        ->filterByIsPublic(true)
-        ->hasPublicCollectibles();
+        ->hasPublicCollectibles()
+        ->_if(SF_ENV === 'prod')
+          ->isComplete()
+        ->_endif();
     }
 
     $query = new FrontendCollectorCollectionQuery();
@@ -36,8 +38,10 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
      * which have Collectibles asssigned to them
      */
     $query
-      ->filterByIsPublic(true)
-      ->hasPublicCollectibles();
+      ->hasPublicCollectibles()
+      ->_if(SF_ENV === 'prod')
+        ->isComplete()
+      ->_endif();
 
     return $query;
   }
