@@ -41,6 +41,12 @@ EOF;
     $baseUrl = 'http://' . sfConfig::get('app_www_domain');
 
     $body = "Collectibles:\n";
+
+    if ($options['debug'])
+    {
+      $this->logSection('collectibles', 'Processing');
+    }
+
     $collectibles = CollectibleQuery::create()
       ->filterByIsPublic(true)
       ->filterByUpdatedAt(strtotime('-1 day'), Criteria::GREATER_EQUAL)
@@ -62,7 +68,7 @@ EOF;
           $suspicious['collectibles'][] = $collectible->getId();
           if ($options['debug'])
           {
-            $this->logSection('collectible', sprintf(
+            $this->logSection('collectible+', sprintf(
               '%d: %s', $collectible->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
             ));
           }
@@ -71,6 +77,10 @@ EOF;
     }
 
     $body .= "\nCollections:\n";
+    if ($options['debug'])
+    {
+      $this->logSection('collections', 'Processing');
+    }
     $collections = CollectionQuery::create()
       ->filterByIsPublic(true)
       ->filterByUpdatedAt(strtotime('-1 day'), Criteria::GREATER_EQUAL)
@@ -89,7 +99,7 @@ EOF;
           $suspicious['collections'][] = $collection->getId();
           if ($options['debug'])
           {
-            $this->logSection('collection', sprintf(
+            $this->logSection('collection+', sprintf(
               '%d: %s', $collection->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
             ));
           }
@@ -98,6 +108,10 @@ EOF;
     }
 
     $body .= "\nCollectors:\n";
+    if ($options['debug'])
+    {
+      $this->logSection('collectors', 'Processing');
+    }
     $collectors = CollectorQuery::create()
       ->filterByIsPublic(true)
       ->filterByUpdatedAt(strtotime('-1 day'), Criteria::GREATER_EQUAL)
@@ -107,7 +121,7 @@ EOF;
     /* @var $collectors Collector[] */
     foreach ($collectors as $collector)
     {
-      foreach (array('name', 'description') as $field)
+      foreach (array('displayName') as $field)
       {
         $string = $collector->{'get' . ucfirst($field)}();
         if (preg_match($pattern, $string))
@@ -116,7 +130,7 @@ EOF;
           $suspicious['collectors'][] = $collector->getId();
           if ($options['debug'])
           {
-            $this->logSection('collector', sprintf(
+            $this->logSection('collector+', sprintf(
               '%d: %s', $collector->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
             ));
           }
