@@ -51,17 +51,13 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   public function hasCollections()
   {
     return $this
-      ->innerJoinCollectorCollection()
-      ->groupById();
+      ->where('EXISTS ( SELECT 1 FROM '.CollectorCollectionPeer::TABLE_NAME.' WHERE '.CollectorCollectionPeer::CONTENT_CATEGORY_ID.' = ContentCategory.Id )');
   }
 
   public function hasCollectionsWithCollectibles()
   {
     return $this
-      ->useCollectorCollectionQuery(null, Criteria::INNER_JOIN)
-        ->hasCollectibles()
-      ->endUse()
-      ->groupById();
+      ->where('EXISTS ( SELECT 1 FROM '.CollectorCollectionPeer::TABLE_NAME.' WHERE '.CollectorCollectionPeer::CONTENT_CATEGORY_ID.' = ContentCategory.Id AND '.CollectorCollectionPeer::NUM_ITEMS.' <> 0 )');
   }
 
   /**

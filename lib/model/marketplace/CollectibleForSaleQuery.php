@@ -43,7 +43,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   {
     return $this
       ->useCollectibleQuery()
-      ->isPartOfCollection()
+        ->isPartOfCollection()
       ->endUse();
   }
 
