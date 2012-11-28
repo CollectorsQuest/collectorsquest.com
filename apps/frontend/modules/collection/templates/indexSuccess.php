@@ -5,6 +5,7 @@
  * @var  $collection         Collection
  * @var  $pager              sfPropelPager
  * @var  $collectible_rows   integer
+ * @var  $sf_request         cqWebRequest
  */
 $height_main_div = new stdClass;
 $height_main_div->value = 116;
@@ -44,6 +45,7 @@ $height_main_div->value = 116;
         </li>
       </ul>
     </div>
+    <?php if (!$sf_request->isMobile()): ?>
     <div id="social-sharing" class="pull-right share">
       <!-- AddThis Button BEGIN -->
       <a class="btn-lightblue btn-mini-social addthis_button_email">
@@ -55,6 +57,7 @@ $height_main_div->value = 116;
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
       <!-- AddThis Button END -->
     </div>
+    <?php endif; ?>
   </div>
 </div>
 

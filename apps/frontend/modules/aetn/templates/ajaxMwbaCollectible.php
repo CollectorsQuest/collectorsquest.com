@@ -2,6 +2,7 @@
 /**
  * @var $collectible Collectible
  * @var $collection  Collection
+ * @var $sf_request  cqWebRequest
  */
 ?>
 
@@ -44,6 +45,7 @@
               </li>
             </ul>
           </div>
+          <?php if (!$sf_request->isMobile()): ?>
           <div id="social-sharing-<?= $collectible->getId(); ?>" class="pull-right share">
             <!-- AddThis Button BEGIN -->
             <a class="btn-lightblue btn-mini-social addthis_button_email">
@@ -56,6 +58,7 @@
             <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
             <!-- AddThis Button END -->
           </div>
+          <?php endif; ?>
         </div>
       </div>
 

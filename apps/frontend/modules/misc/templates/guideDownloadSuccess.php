@@ -1,3 +1,8 @@
+<?php
+  /* @var  $sf_request  cqWebRequest */
+  /* @var  $hash        string */
+?>
+
 <div class="guide-splash-container">
   <div class="wrapper-top">
     <div class="row-fluid">
@@ -20,6 +25,7 @@
               </a>
             </div>
           </div>
+          <?php if (!$sf_request->isMobile()): ?>
           <br/><br/><br/>
           <p>
             Share the "<?= link_to('The Essential Guide to Collecting', '@misc_guide_to_collecting') ?>"
@@ -38,6 +44,7 @@
           </div>
           <!-- AddThis Button END -->
           <br>
+          <?php endif; ?>
         </div>
       </div>
     </div>

@@ -9,7 +9,8 @@
  * @var $store_refunds              string
  * @var $store_return_policy        string
  * @var $store_additional_policies  string
- * @var  $sf_user                   cqFrontendUser
+ * @var $sf_user                    cqFrontendUser
+ * @var $sf_request                 cqWebRequest
  */
 ?>
 
@@ -76,6 +77,7 @@
         </li>
       </ul>
     </div>
+    <?php if (!$sf_request->isMobile()): ?>
     <div id="social-sharing" class="pull-right share">
       <?php // removing the addthis_button_email causes a JS error - no toolbar displayed ?>
       <a class="addthis_button_email" style="display: none;"></a>
@@ -83,6 +85,7 @@
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
     </div>
+    <?php endif; ?>
   </div>
 </div>
 

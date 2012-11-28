@@ -1,6 +1,7 @@
 <?php
 /**
- * @var  $sf_user  cqFrontendUser
+ * @var  $sf_user      cqFrontendUser
+ * @var  $sf_request   cqWebRequest
  *
  * @var  $collector    Collector
  * @var  $collection   Collection
@@ -241,6 +242,7 @@
         //-->
       </ul>
     </div>
+    <?php if (!$sf_request->isMobile()): ?>
     <div id="social-sharing" class="pull-right share">
       <!-- AddThis Button BEGIN -->
       <a class="btn-lightblue btn-mini-social addthis_button_email">
@@ -253,6 +255,7 @@
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
       <!-- AddThis Button END -->
     </div>
+     <?php endif; ?>
   </div>
 </div>
 
