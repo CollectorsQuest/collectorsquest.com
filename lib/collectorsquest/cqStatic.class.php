@@ -376,7 +376,7 @@ class cqStatic extends IceStatic
       if (false !== $country_code = @geoip_country_code_by_name($ip))
       {
         if ( $check_against_geo_country
-          && !GeoCountryQuery::create()->filterByIso3166($country_code)->count() )
+          && !iceModelGeoCountryQuery::create()->filterByIso3166($country_code)->count() )
         {
           return false;
         }

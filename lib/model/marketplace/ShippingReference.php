@@ -37,7 +37,7 @@ class ShippingReference extends BaseShippingReference
     }
     else
     {
-      return $this->getGeoCountry()->getName();
+      return $this->geticeModelGeoCountry()->getName();
     }
   }
 
