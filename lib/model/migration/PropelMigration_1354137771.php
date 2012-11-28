@@ -2,7 +2,7 @@
 
 /**
  */
-class PropelMigration_1353532802
+class PropelMigration_1354137771
 {
 
   public function preUp($manager)

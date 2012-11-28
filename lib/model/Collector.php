@@ -655,7 +655,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   /**
    * Returns the multimedia object for the collector profile photo
    *
-   * @return Multimedia
+   * @return iceModelMultimedia
    */
   public function getPhoto()
   {
