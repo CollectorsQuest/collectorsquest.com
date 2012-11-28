@@ -30,7 +30,7 @@ $height_main_div->value = 116;
           <?php
             echo format_number_choice(
               '[0] no items yet|[1] 1 Item|(1,+Inf] %1% Items',
-              array('%1%' => number_format($collection->getNumItems())), $collection->getNumItems()
+              array('%1%' => number_format($collection->getNumPublicItems())), $collection->getNumPublicItems()
             );
           ?>
         </li>
