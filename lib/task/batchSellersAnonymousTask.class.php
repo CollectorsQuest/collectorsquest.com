@@ -42,6 +42,7 @@ EOF;
 
     $body = "Collectibles:\n";
     $collectibles = CollectibleQuery::create()
+      ->filterByIsPublic(true)
       ->filterByUpdatedAt(strtotime('-1 day'), Criteria::GREATER_EQUAL)
       ->useCollectibleForSaleQuery(null, Criteria::LEFT_JOIN)
         ->filterByCollectibleId(null, Criteria::ISNULL)
@@ -71,6 +72,7 @@ EOF;
 
     $body .= "\nCollections:\n";
     $collections = CollectionQuery::create()
+      ->filterByIsPublic(true)
       ->filterByUpdatedAt(strtotime('-1 day'), Criteria::GREATER_EQUAL)
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
@@ -96,7 +98,8 @@ EOF;
     }
 
     $body .= "\nCollectors:\n";
-    $collectors = CollectionQuery::create()
+    $collectors = CollectorQuery::create()
+      ->filterByIsPublic(true)
       ->filterByUpdatedAt(strtotime('-1 day'), Criteria::GREATER_EQUAL)
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
