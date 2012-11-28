@@ -383,4 +383,39 @@ class Collection extends BaseCollection
     return parent::postUpdate($con);
   }
 
+  /**
+   * Update the number of public items and save the object
+   *
+   * @param     PropelPDO $con
+   */
+  public function updateNumPublicItems(PropelPDO $con = null)
+  {
+    $this->setNumPublicItems($this->computeNumPublicItems($con));
+    $this->save($con);
+  }
+
+  /**
+   * Compute the number of public items for this object
+   *
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function computeNumPublicItems(PropelPDO $con = null)
+  {
+    $con = $con ?: Propel::getConnection();
+
+    /** @var $stmt PDOStatement */
+    $stmt = $con->prepare('
+      SELECT COUNT(collectible_id)
+        FROM `collection_collectible`
+        RIGHT JOIN `collectible` ON (collectible.id = collection_collectible.collectible_id)
+       WHERE collection_collectible.COLLECTION_ID = :p1
+       AND collectible.IS_PUBLIC = 1
+    ');
+    $stmt->bindValue(':p1', $this->getId());
+    $stmt->execute();
+
+    return (int) $stmt->fetchColumn();
+  }
+
 }

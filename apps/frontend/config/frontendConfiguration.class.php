@@ -42,4 +42,5 @@ class frontendConfiguration extends cqApplicationConfiguration
 
     return $this->backendRouting;
   }
+
 }

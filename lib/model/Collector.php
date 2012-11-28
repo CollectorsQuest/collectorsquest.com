@@ -585,7 +585,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getProfile(PropelPDO $con = null)
   {
-    return parent::getCollectorProfile($con);
+    return $this->getCollectorProfile($con);
   }
 
   /***
@@ -594,7 +594,30 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setProfile(CollectorProfile $v)
   {
-    return parent::setCollectorProfile($v);
+    return $this->setCollectorProfile($v);
+  }
+
+  /**
+   * Gets a single CollectorProfile object, which is related to this object by a
+   * one-to-one relationship, or creates it
+   *
+   * @param      PropelPDO $con optional connection object
+   * @return     CollectorProfile
+   *
+   * @throws     PropelException
+   */
+  public function getCollectorProfile(PropelPDO $con = null)
+  {
+    $profile = parent::getCollectorProfile($con);
+
+    if (null === $profile && !$this->isNew())
+    {
+      $profile = new CollectorProfile();
+      $profile->setCollector($this);
+      $profile->save($con);
+    }
+
+    return $profile;
   }
 
   /**
@@ -1081,10 +1104,12 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       else
       {
         $query = CollectibleQuery::create(null, $criteria);
+
         if ($distinct)
         {
-          $query->distinct();
+          $query->groupById();
         }
+
         return $query
           ->filterByCollector($this)
           ->innerJoinCollectionCollectible()

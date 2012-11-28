@@ -2,6 +2,8 @@
 
 class batchSellersAnonymousTask extends sfBaseTask
 {
+  /* @var sfApplicationConfiguration */
+  protected $configuration;
 
   protected function configure()
   {
@@ -25,11 +27,15 @@ EOF;
 
   protected function execute($arguments = array(), $options = array())
   {
+    /* @var $sf_context cqContext */
+    $sf_context = cqContext::createInstance($this->configuration);
+
+    /* @var $routing cqPatternRouting */
+    $routing = $sf_context->getRouting();
+
     // initialize the database connection
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase($options['connection'])->getConnection();
-
-    $routing = sfContext::createInstance($this->configuration)->getRouting();
 
     $pattern = '/((?:\$|£|€)\s*\d+|(?:shipping|(?<!not\s)for sale|selling))/i';
     $baseUrl = 'http://' . sfConfig::get('app_www_domain');

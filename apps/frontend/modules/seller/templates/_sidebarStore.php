@@ -107,7 +107,8 @@
     array(
       'store_shipping' => $store_shipping, 'store_refunds' => $store_refunds,
       'store_return_policy' => $store_return_policy,
-      'store_additional_policies' => $store_additional_policies
+      'store_additional_policies' => $store_additional_policies,
+      'collector' => $collector
     )
   )
 ?>

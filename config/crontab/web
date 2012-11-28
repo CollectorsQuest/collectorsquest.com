@@ -8,10 +8,13 @@ HOME=/www/vhosts/collectorsquest.com/current
 # */10  *  *  *  *  apache  cronic ./symfony job-queue:worker --application=frontend --env=prod --context=collectorsquest --port=3060 --deamonize=no
 # */10  *  *  *  *  apache  cronic ./symfony job-queue:worker --application=frontend --env=prod --context=collectorsquest --port=3061 --deamonize=no
 
+  30 00  *  *  *  apache  cronic ./symfony batch:generate-sitemaps --env=prod
+
 # Rotation of the Symfony logs
   01 00  *  *  *  apache  cronic ./symfony log:rotate backend prod
   01 00  *  *  *  apache  cronic ./symfony log:rotate frontend prod
 
+# Job Queues
    *  *  *  *  *  apache  solo -silent -port=2050 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_thumbs
   30  *  *  *  *  apache  solo -silent -port=2051 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_colors
  */2  *  *  *  *  apache  solo -silent -port=2052 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_rotate

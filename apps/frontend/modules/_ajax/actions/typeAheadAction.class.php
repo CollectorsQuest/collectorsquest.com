@@ -51,17 +51,20 @@ class typeAheadAction extends cqAjaxAction
       str_replace('%', '', $term).'%', PDO::PARAM_STR
     );
 
-    /** @var $q iceModelTagQuery */
+    /* @var $q iceModelTagQuery */
     $q = iceModelTagQuery::create()
-      ->distinct()
       ->addAsColumn('id', 'Id')
       ->addAsColumn('name', 'LOWER(CONVERT(`Name` USING utf8))')
-      ->addAsColumn('label', 'LOWER(CONVERT(`Name` USING utf8))')
-      ->filterBy('Name', 'name LIKE '. $term, Criteria::CUSTOM)
-      ->filterByIsTriple(false)
+      ->addAsColumn('label', 'LOWER(CONVERT(`Name` USING utf8))');
+
+    $q->filterBy('Name', 'name LIKE '. $term, Criteria::CUSTOM)
+      ->filterBy('IsTriple', false)
       ->orderBy('name', Criteria::ASC)
       ->select(array('id', 'name', 'label'))
+      ->groupBy('id')
       ->limit(10);
+
+    /* @var $tags array */
     $tags = $q->find()->getArrayCopy();
 
     return $this->output($tags);

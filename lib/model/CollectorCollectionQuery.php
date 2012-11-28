@@ -131,4 +131,21 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
       ->endUse();
   }
 
+
+  /**
+   * @return CollectorCollectionQuery
+   */
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  /**
+   * @return CollectorCollectionQuery
+   */
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
+  }
+
 }

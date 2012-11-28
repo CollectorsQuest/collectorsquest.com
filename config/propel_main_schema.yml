@@ -170,6 +170,7 @@ classes:
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
       num_items:               { type: integer, default: 0 }
+      num_public_items:        { type: integer, default: 0 }
       num_views:               { type: integer, default: 0 }
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
@@ -216,7 +217,7 @@ classes:
 
   CollectorCollection:
     columns:
-      collector_id:    { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      collector_id:     { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
 
     foreignKeys:
       collection_collectible:
@@ -271,6 +272,10 @@ classes:
       is_deleted:    { type: boolean, default: false }
       is_spam:       { type: boolean, default: false }
       created_at:    ~
+
+    indexes:
+      private_message_I_1: [thread];
+      private_message_I_2: [receiver, sender];
 
     propel_behaviors:
       extra_properties: ~

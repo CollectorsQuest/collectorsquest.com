@@ -9,6 +9,14 @@ class cqBaseUser extends IceSecurityUser
   /** @var Collector */
   protected $collector = null;
 
+  /** @var Collector[] */
+  protected $collectors_by_uuid = array();
+
+  /**
+   * @param sfEventDispatcher $dispatcher
+   * @param sfStorage $storage
+   * @param array $options
+   */
   public function __construct(sfEventDispatcher $dispatcher, sfStorage $storage, $options = array())
   {
     parent::__construct($dispatcher, $storage, $options);

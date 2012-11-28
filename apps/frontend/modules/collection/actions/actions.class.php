@@ -71,11 +71,11 @@ class collectionActions extends cqFrontendActions
       }
     }
 
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
 
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
@@ -198,11 +198,11 @@ class collectionActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collectible))
-//    {
-//      $collectible->setNumViews($collectible->getNumViews() + 1);
-//      $collectible->save();
-//    }
+    if (!$this->getCollector()->isOwnerOf($collectible))
+    {
+      $collectible->setNumViews($collectible->getNumViews() + 1);
+      $collectible->save();
+    }
 
     /**
      * Figure out the previous and the next item in the collection
@@ -213,38 +213,38 @@ class collectionActions extends cqFrontendActions
       if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
       {
         $q = FrontendCollectionCollectibleQuery::create()
-            ->filterByCollection($collection)
-            ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
+           ->filterByCollection($collection)
+           ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
         $this->previous = $q->findOne();
       }
       else
       {
         $q = FrontendCollectionCollectibleQuery::create()
-            ->filterByCollection($collection)
-            ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
+           ->filterByCollection($collection)
+           ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
         $this->previous = $q->findOne();
       }
 
       if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
       {
         $q = FrontendCollectionCollectibleQuery::create()
-            ->filterByCollection($collection)
-            ->filterByCollectibleId($collectible_ids[0]);
+           ->filterByCollection($collection)
+           ->filterByCollectibleId($collectible_ids[0]);
         $this->next = $q->findOne();
       }
       else
       {
         $q = FrontendCollectionCollectibleQuery::create()
-            ->filterByCollection($collection)
-            ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
+           ->filterByCollection($collection)
+           ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
         $this->next = $q->findOne();
       }
       /**
        * Figure out the first item in the collection
        */
       $q = FrontendCollectionCollectibleQuery::create()
-        ->filterByCollection($collection)
-        ->filterByCollectibleId($collectible_ids[0]);
+         ->filterByCollection($collection)
+         ->filterByCollectibleId($collectible_ids[0]);
       $this->first = $q->findOne();
     }
     if ($collectible->isWasForSale())
@@ -283,12 +283,13 @@ class collectionActions extends cqFrontendActions
     }
 
     // Make the Collectible available to the sidebar
-    $this->setComponentVar('collectible', $collectible, 'sidebarCollectible');
+    $this->setComponentVar('collectible', $this->collectible, 'sidebarCollectible');
+    $this->setComponentVar('collectible_for_sale', $this->collectible_for_sale, 'sidebarCollectible');
 
     $this->dispatcher->notify(
       new sfEvent($this, 'application.show_object', array(
-        'object' => $this->collectible instanceof CollectionCollectible
-          ? $this->collectible->getCollectible() : $this->collectible))
+        'object' => $this->collectible->getCollectible()
+      ))
     );
 
     if ($collectible->getIsPublic() === false && $this->getCollector()->isOwnerOf($collectible))
@@ -308,7 +309,6 @@ class collectionActions extends cqFrontendActions
     {
       $this->ref_marketplace = true;
     }
-
 
     return sfView::SUCCESS;
   }

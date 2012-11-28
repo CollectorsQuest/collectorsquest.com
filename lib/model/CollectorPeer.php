@@ -296,7 +296,8 @@ class CollectorPeer extends BaseCollectorPeer
     // We need to make sure we have a display name
     $display_name = !empty($data['display_name']) ?
       $data['display_name'] :
-      $data['username'];
+      // Avoid running into duplicate display names at this point
+      $data['username'] . rand(10, 99);
 
     $collector = new Collector();
     $collector->setUsername($data['username']);
@@ -338,8 +339,8 @@ class CollectorPeer extends BaseCollectorPeer
 
     try
     {
-      $collector_profile->save();
       $collector->save();
+      $collector_profile->save();
 
       if (!empty($data['email']))
       {
@@ -354,7 +355,7 @@ class CollectorPeer extends BaseCollectorPeer
     }
     catch (PropelException $e)
     {
-      return null;
+      throw $e;
     }
 
     return $collector;

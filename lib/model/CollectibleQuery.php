@@ -172,8 +172,10 @@ class CollectibleQuery extends BaseCollectibleQuery
   public function isPartOfCollection()
   {
     return $this
-      ->rightJoinCollectionCollectible()
-      ->groupById();
+      ->where(sprintf(
+        'EXISTS (SELECT 1 FROM %s WHERE %s = %s)',
+        CollectionCollectiblePeer::TABLE_NAME, CollectionCollectiblePeer::COLLECTIBLE_ID, CollectiblePeer::ID
+      ));
   }
 
   /**

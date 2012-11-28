@@ -69,7 +69,6 @@ classes:
       shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
       collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
       shopping_payment_id:  { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
-
       buyer_email:          { type: varchar, size: 128, index: true }
 
       shipping_address_id:       { type: integer, required: false, foreignClass: CollectorAddress, foreignReference: id, onDelete: setnull }

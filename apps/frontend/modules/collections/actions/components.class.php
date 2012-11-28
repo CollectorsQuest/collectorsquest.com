@@ -105,7 +105,7 @@ class collectionsComponents extends cqFrontendComponents
     $p = (int) $this->getRequestParameter('p', 1);
     $pager = null;
 
-    if ($s != 'most-recent')
+    if ($s != 'most-recent' || !empty($q))
     {
       $query = array(
         'q' => $q,
@@ -174,7 +174,6 @@ class collectionsComponents extends cqFrontendComponents
     else
     {
       $query = FrontendCollectorCollectionQuery::create()
-        ->hasCollectibles()
         ->hasThumbnail()
         ->groupByCollectorId()
         ->orderByCreatedAt(Criteria::DESC);
