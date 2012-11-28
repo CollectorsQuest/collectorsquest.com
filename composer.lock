@@ -1,5 +1,5 @@
 {
-    "hash": "f765af184b67d3fec8bc9bd4e4478da8",
+    "hash": "be618ef4327dbc2633493f400f708eaf",
     "packages": [
         {
             "name": "lib/vendor/faker",
@@ -10,8 +10,7 @@
                 "reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8"
             },
             "type": "library",
-            "installation-source": "source",
-            "time": "1328895211"
+            "installation-source": "source"
         },
         {
             "name": "lib/vendor/magnify",
