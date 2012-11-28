@@ -172,7 +172,10 @@ class CollectibleQuery extends BaseCollectibleQuery
   public function isPartOfCollection()
   {
     return $this
-      ->where('EXISTS ( SELECT 1 FROM '.CollectionCollectiblePeer::TABLE_NAME.' WHERE '.CollectionCollectiblePeer::COLLECTIBLE_ID.' = Collectible.Id )');
+      ->where(sprintf(
+        'EXISTS (SELECT 1 FROM %s WHERE %s = %s)',
+        CollectionCollectiblePeer::TABLE_NAME, CollectionCollectiblePeer::COLLECTIBLE_ID, CollectiblePeer::ID
+      ));
   }
 
   /**
