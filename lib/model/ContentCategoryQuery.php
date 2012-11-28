@@ -62,7 +62,8 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
     return $this
       ->where(sprintf(
         'EXISTS (SELECT 1 FROM %s WHERE %s = %s AND %s <> 0)',
-        CollectorCollectionPeer::TABLE_NAME, ContentCategoryPeer::ID, CollectorCollectionPeer::NUM_ITEMS
+        CollectorCollectionPeer::TABLE_NAME, CollectorCollectionPeer::CONTENT_CATEGORY_ID,
+        ContentCategoryPeer::ID, CollectorCollectionPeer::NUM_ITEMS
       ));
   }
 
