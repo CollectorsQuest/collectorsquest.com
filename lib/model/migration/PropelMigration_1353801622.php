@@ -3,7 +3,7 @@
 /**
  * Migration to add portable_password field to Collector table
  */
-class PropelMigration_1353790134
+class PropelMigration_1353801622
 {
 
   public function preUp($manager)
@@ -42,11 +42,11 @@ class PropelMigration_1353790134
         ALTER TABLE `collector_archive` ADD `portable_password` VARCHAR(64) NOT NULL AFTER `sha1_password`;
 
         SET FOREIGN_KEY_CHECKS = 1;
-',
+      ',
       'blog' => '
         SET FOREIGN_KEY_CHECKS = 0;
         SET FOREIGN_KEY_CHECKS = 1;
-',
+      ',
     );
   }
 
