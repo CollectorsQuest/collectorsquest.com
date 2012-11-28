@@ -95,7 +95,7 @@ EOF;
         $string = $collection->{'get' . ucfirst($field)}();
         if (preg_match($pattern, $string))
         {
-          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject' => $collection)));
+          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collection_by_slug', array('sf_subject' => $collection)));
           $suspicious['collections'][] = $collection->getId();
           if ($options['debug'])
           {
@@ -126,7 +126,7 @@ EOF;
         $string = $collector->{'get' . ucfirst($field)}();
         if (preg_match($pattern, $string))
         {
-          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject' => $collector)));
+          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collector_by_slug', array('sf_subject' => $collector)));
           $suspicious['collectors'][] = $collector->getId();
           if ($options['debug'])
           {
