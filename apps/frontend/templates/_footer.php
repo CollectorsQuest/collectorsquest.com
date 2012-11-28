@@ -1,3 +1,7 @@
+<?php
+/* @var $sf_user cqFrontendUser */
+/* @var $sf_request cqWebRequest */
+?>
 <footer id="footer">
   <div class="footer-inner">
     <div class="row-fluid">
@@ -53,18 +57,33 @@
 
       <div class="span4">
         <?php
-          /* @var $sf_user cqFrontendUser */
           if (!$sf_user->isAuthenticated())
           {
-            cq_ad_slot(
-              cq_image_tag('headlines/2012-06-24_CQGuide_300x250_footer.png',
-                array(
-                  'size' => '300x250', 'style' => 'display:block; margin: auto; clear: both',
-                  'alt_title' => 'Unlock your free guide to collecting—sign up today'
-                )
-              ),
-              '@misc_guide_to_collecting'
-            );
+            if ($sf_request->isMobile() || $sf_request->getClientWidth() < 767)
+            {
+              cq_ad_slot(
+                cq_image_tag('headlines/2012-06-24_CQGuide_610x107.png',
+                  array(
+                    'size' => '610x107', 'style' => 'display:block; margin: auto; clear: both;',
+                    'class' => 'spacer-bottom-15',
+                    'alt_title' => 'Unlock your free guide to collecting—sign up today'
+                  )
+                ),
+                '@misc_guide_to_collecting'
+              );
+            }
+            else
+            {
+              cq_ad_slot(
+                cq_image_tag('headlines/2012-06-24_CQGuide_300x250_footer.png',
+                  array(
+                    'size' => '300x250',
+                    'alt_title' => 'Unlock your free guide to collecting—sign up today'
+                  )
+                ),
+                '@misc_guide_to_collecting'
+              );
+            }
           }
           else
           { ?>
