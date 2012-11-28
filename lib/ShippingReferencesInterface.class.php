@@ -43,4 +43,11 @@ interface ShippingReferencesInterface
    */
   public function getShippingReferenceDomestic(PropelPDO $con = null);
 
+  /**
+   * Clean the local cache of shipping references for a specific object
+   *
+   * @return    void
+   */
+  public function clearShippingReferences();
+
 }
