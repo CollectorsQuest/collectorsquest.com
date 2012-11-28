@@ -18,6 +18,9 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   /** @var array */
   public $_counts = array();
 
+  /** @var ShippingReference[] */
+  protected $shipping_references = null;
+
   /**
    * @var        Collection
    */
@@ -334,7 +337,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     }
 
     // only add it if the **same** object is not already associated
-    if (!$this->collCollections->contains($collection, false))
+    if (!in_array($collection, $this->collCollections->getArrayCopy(), false))
     {
       $this->doAddCollection($collection);
       $this->collCollections[]= $collection;
@@ -555,14 +558,17 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    */
   public function getShippingReferencesByCountryCode(PropelPDO $con = null)
   {
-    return array_merge(
-      ShippingReferenceQuery::create()
-        ->filterByCollector($this->getCollector($con))
-        ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166'),
-      ShippingReferenceQuery::create()
-        ->filterByCollectible($this)
-        ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166')
-    );
+    if (null === $this->shipping_references)
+    {
+      // either use shipping settings set for this specific collectible,
+      // or general ones set for the Collector
+      $this->shipping_references = ShippingReferenceQuery::create()
+          ->filterByCollectible($this->getCollector($con))
+          ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166')
+        ?: $this->getCollector($con)->getShippingReferencesByCountryCode($con);
+    }
+
+    return $this->shipping_references;
   }
 
   /**
@@ -578,17 +584,23 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    */
   public function getShippingReferenceForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    return (
-      ShippingReferenceQuery::create()
-        ->filterByCollectible($this)
-        ->filterByCountryIso3166($coutry_code)
-        ->findOne($con)
-      ?: ShippingReferenceQuery::create()
-        ->filterByCollectible($this)
-        ->filterByCountryIso3166('ZZ') // international
-        ->findOne($con)
-    )
-    ?: $this->getCollector()->getShippingReferenceForCountryCode($coutry_code, $con);
+    // get all shiping references, indexed by country code
+    $shipping_references = $this->getShippingReferencesByCountryCode($con);
+
+    // if we have a shipping reference for the specified country code, return it
+    if (isset($shipping_references[$coutry_code]))
+    {
+      return $shipping_references[$coutry_code];
+    }
+
+    // otherwize if we have a ZZ code (international), return it instead
+    if (isset($shipping_references['ZZ']))
+    {
+      return $shipping_references['ZZ'];
+    }
+
+    // otherwize return null
+    return null;
   }
 
   /**
@@ -600,7 +612,17 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   public function getShippingReferenceDomestic(PropelPDO $con = null)
   {
     return $this->getShippingRateForCountryCode(
-      $this->getCollector($con)->getProfile($con)->getCountryIso3166(), $con);
+      $this->getCollector($con)->getProfile($con)->getCountryIso3166(),
+      $con
+    );
+  }
+
+  /**
+   * @return    void
+   */
+  public function clearShippingReferences()
+  {
+    $this->shipping_references = null;
   }
 
   public function updateIsPublic(PropelPDO $con = null)

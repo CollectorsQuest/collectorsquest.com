@@ -64,6 +64,13 @@
       );
     }
 
+    if (cqGateKeeper::open('aetn_franks_picks', 'page'))
+    {
+      include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-15'));
+
+      $height->value -= 110;
+    }
+
     if (!$collectible->isForSale())
     {
       include_component(

@@ -45,24 +45,24 @@
 switch ($aetn_show['id'])
 {
   case 'pawn_stars':
+    include_partial('aetn/partials/franksPicksPromo_300x90');
     include_partial('aetn/partials/americanPickersPromo_300x90');
     include_partial('aetn/partials/americanRestorationPromo_300x90');
-    include_partial('aetn/partials/franksPicksPromo_300x90');
     break;
   case 'american_pickers':
+    include_partial('aetn/partials/franksPicksPromo_300x90');
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanRestorationPromo_300x90');
-    include_partial('aetn/partials/franksPicksPromo_300x90');
     break;
   case 'picked_off':
+    include_partial('aetn/partials/franksPicksPromo_300x90');
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanPickersPromo_300x90');
-    include_partial('aetn/partials/franksPicksPromo_300x90');
     break;
   case 'american_restoration':
+    include_partial('aetn/partials/franksPicksPromo_300x90');
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanPickersPromo_300x90');
-    include_partial('aetn/partials/franksPicksPromo_300x90');
     break;
   case 'franks_picks':
 

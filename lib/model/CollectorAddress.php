@@ -12,9 +12,12 @@ class CollectorAddress extends BaseCollectorAddress
    */
   public function getCountryName()
   {
-    return $this->getGeoCountry()
-      ? $this->getGeoCountry()->getName()
-      : '';
+    if (( $country = $this->geticeModelGeoCountry() ))
+    {
+      return $country->getName();
+    }
+
+    return null;
   }
 
 }

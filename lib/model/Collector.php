@@ -1,7 +1,5 @@
 <?php
 
-require 'lib/model/om/BaseCollector.php';
-
 /**
  * @method     int getSingupNumCompletedSteps() Return the number of completed signup steps
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
@@ -116,6 +114,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
   /** @var Collector */
   protected $seller;
+
+  /** @var ShippingReference[] */
+  protected $shipping_references = null;
 
   /**
    * Register extra properties to allow magic getters/setters to be used
@@ -502,7 +503,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setPassword($password)
   {
-    $this->setSha1Password(sha1($this->getSalt() . $password));
+    // Legacy
+    $this->setSha1Password('*');
+    // Generate the salt if empty
+    $this->getSalt();
+
+    /**
+     * Portable Password
+     * @since 2012-11-24
+     */
+    $this->setPortablePassword(Password::hash($password));
 
     return $this;
   }
@@ -515,7 +525,20 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function checkPassword($password)
   {
-    return sha1($this->getSalt() . $password) === $this->getSha1Password();
+    if ($this->getSha1Password() != '*')
+    {
+      if ($this->getSha1Password() === sha1($this->getSalt() . $password))
+      {
+        $this->setPassword($password);
+        $this->save();
+
+        return true;
+      }
+
+      return false;
+    }
+
+    return Password::check($password, $this->getPortablePassword());
   }
 
   public function setDisplayName($v)
@@ -1383,9 +1406,14 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getShippingReferencesByCountryCode(PropelPDO $con = null)
   {
-    return ShippingReferenceQuery::create()
-      ->filterByCollector($this)
-      ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166');
+    if (null === $this->shipping_references)
+    {
+      $this->shipping_references = ShippingReferenceQuery::create()
+        ->filterByCollector($this)
+        ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166');
+    }
+
+    return $this->shipping_references;
   }
 
   /**
@@ -1398,14 +1426,23 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getShippingReferenceForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    return ShippingReferenceQuery::create()
-      ->filterByCollector($this)
-      ->filterByCountryIso3166($coutry_code)
-      ->findOne($con)
-    ?: ShippingReferenceQuery::create()
-      ->filterByCollector($this)
-      ->filterByCountryIso3166('ZZ') // international
-      ->findOne($con);
+    // get all shiping references, indexed by country code
+    $shipping_references = $this->getShippingReferencesByCountryCode($con);
+
+    // if we have a shipping reference for the specified country code, return it
+    if (isset($shipping_references[$coutry_code]))
+    {
+      return $shipping_references[$coutry_code];
+    }
+
+    // otherwize if we have a ZZ code (international), return it instead
+    if (isset($shipping_references['ZZ']))
+    {
+      return $shipping_references['ZZ'];
+    }
+
+    // otherwize return null
+    return null;
   }
 
   /**
@@ -1417,7 +1454,17 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function getShippingReferenceDomestic(PropelPDO $con = null)
   {
     return $this->getShippingReferenceForCountryCode(
-      $this->getProfile($con)->getCountryIso3166(), $con);
+      $this->getProfile($con)->getCountryIso3166(),
+      $con
+    );
+  }
+
+  /**
+   * @return    void
+   */
+  public function clearShippingReferences()
+  {
+    $this->shipping_references = null;
   }
 
   /**

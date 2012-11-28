@@ -13,6 +13,7 @@ classes:
       display_name:   { type: varchar, size: 64, required: true, primaryString: true }
       slug:           { type: varchar, size: 64, required: true, index: true }
       sha1_password:  { type: varchar, size: 40, required: true }
+      portable_password:  { type: varchar, size: 64, required: true }
       salt:           { type: varchar, size: 32, required: true }
       email:          { type: varchar, size: 128, index: true }
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }

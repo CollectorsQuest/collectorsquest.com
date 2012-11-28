@@ -215,10 +215,12 @@ class ShoppingOrder extends BaseShoppingOrder
 
   public function getShippingCountryName()
   {
-    $geo_country = GeoCountryQuery::create()
+    $country = iceModelGeoCountryQuery::create()
       ->findOneByIso3166($this->getShippingCountryIso3166());
 
-    return $geo_country ? $geo_country->getName() : '';
+    return $country
+      ? $country->getName()
+      : '';
   }
 
   public function getPaypalPayRequestFields()
