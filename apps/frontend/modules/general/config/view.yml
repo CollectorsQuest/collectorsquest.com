@@ -15,6 +15,19 @@ indexSuccess:
     slot1: [general, indexCarousel]
     sidebar_160: [general, sidebarIndex]
 
+indexMobileSuccess:
+  stylesheets: [frontend/modules/homepage.css]
+  javascripts:
+    - jquery/masonry.js
+    - jquery/easing.js
+    - jquery/event.drag.js
+    - jquery/event.drop.js
+    - jquery/roundabout.js
+
+  components:
+    breadcrumbs: []
+    slot1: [general, indexCarousel]
+
 indexIndependenceDay:
   stylesheets: [frontend/modules/homepage.css]
   javascripts:

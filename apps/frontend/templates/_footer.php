@@ -59,7 +59,7 @@
             cq_ad_slot(
               cq_image_tag('headlines/2012-06-24_CQGuide_300x250_footer.png',
                 array(
-                  'size' => '300x250',
+                  'size' => '300x250', 'style' => 'display:block; margin: auto; clear: both',
                   'alt_title' => 'Unlock your free guide to collecting—sign up today'
                 )
               ),
