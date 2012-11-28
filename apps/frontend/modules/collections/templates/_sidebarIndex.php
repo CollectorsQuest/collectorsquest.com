@@ -1,5 +1,7 @@
 <?php cq_dart_slot('300x250', 'collections', 'landing', 'sidebar') ?>
 
+<?php include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-20')); ?>
+
 <?php
   $link = link_to(
     'See all &raquo;',
