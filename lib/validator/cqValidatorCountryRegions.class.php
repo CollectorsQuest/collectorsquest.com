@@ -8,12 +8,12 @@ class cqValidatorCountryRegions extends sfValidatorBase
 {
   /**
    * Configures the user validator.
-   * 
+   *
    * Available options:
-   * 
+   *
    *  * country_field     Field name of country field (country by default)
    *  * region_field      Field name of region/state field (region by default)
-   * 
+   *
    * @see sfValidatorBase
    */
   public function configure($options = array(), $messages = array())
@@ -57,23 +57,17 @@ class cqValidatorCountryRegions extends sfValidatorBase
    * @param $country_iso3166
    * @return array
    */
-  private function getStatesForCountry ($country_iso3166)
+  private function getStatesForCountry($country_iso3166)
   {
-    $stmt = GeoRegionQuery::create()
-      ->useGeoCountryQuery()
-      ->filterByIso3166($country_iso3166)
+    $states = iceModelGeoRegionQuery::create()
+      ->orderByNameLatin()
+      ->useiceModelGeoCountryQuery()
+        ->filterByIso3166($country_iso3166)
       ->endUse()
-      ->addAscendingOrderByColumn(GeoRegionPeer::NAME_LATIN)
-      ->clearSelectColumns()
-      ->addSelectColumn(GeoRegionPeer::NAME_LATIN)
-      ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
-      ->find();
-    $result = array();
-    while ($row = $stmt->fetch())
-    {
-      $result[$row['NAME_LATIN']] = $row['NAME_LATIN'];
-    };
+      ->select(array('Id', 'NameLatin'))
+      ->find()
+      ->toKeyValue('Id', 'NameLatin');
 
-    return $result;
+    return $states;
   }
 }

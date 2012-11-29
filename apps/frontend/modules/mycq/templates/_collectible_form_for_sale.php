@@ -48,16 +48,16 @@
     <div class="control-group">
       <?= $form['tax']->renderLabel('Tax percentage'); ?>
       <div class="controls">
-            <div class="input-prepend">
-                <span class="add-on">%</span>
-              <?php
+        <div class="input-append">
+            <?php
               echo $form['tax']->render(array(
                 'class' => 'item-price text-center', 'required' => 'required'
               ));
-              ?>
-            </div>
-          <?= $form['tax']->renderError(); ?>
+            ?>
+          <span class="add-on">%</span>
         </div>
+        <?= $form['tax']->renderError(); ?>
+      </div>
     </div>
     <?= $form['condition']->renderRow(); ?>
 
@@ -198,6 +198,7 @@ $(document).ready(function()
     no_results_text: "No countries found for "
   });
   <?php endif; ?>
+
   var states_cache = {};
   $('#collectible_for_sale_tax_country').change(function()
   {
@@ -224,7 +225,7 @@ $(document).ready(function()
         $new_input.attr('id', $input.attr('id'));
         $.each(data, function(key, value) {
           $new_input.append($("<option></option>")
-              .attr("value", value).text(key));
+              .attr("value", key).text(value));
         });
         $new_input.val($input.val());
         $input.replaceWith($new_input);

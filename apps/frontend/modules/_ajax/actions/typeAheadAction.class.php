@@ -78,23 +78,15 @@ class typeAheadAction extends cqAjaxAction
 
   public function executeStatesLookup(sfWebRequest $request)
   {
-    /* @var $country_id string */
-    $country_id = $request->getParameter('c');
-    $stmt = GeoRegionQuery::create()
-      ->useGeoCountryQuery()
-      ->filterByIso3166($country_id)
+    $states = iceModelGeoRegionQuery::create()
+      ->orderByNameLatin()
+      ->useiceModelGeoCountryQuery()
+        ->filterByIso3166((string) $request->getParameter('c'))
       ->endUse()
-      ->addAscendingOrderByColumn(GeoRegionPeer::NAME_LATIN)
-      ->clearSelectColumns()
-      ->addSelectColumn(GeoRegionPeer::NAME_LATIN)
-      ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
-      ->find();
-    $result = array();
-    while ($row = $stmt->fetch())
-    {
-      $result[$row['NAME_LATIN']] = $row['NAME_LATIN'];
-    };
+      ->select(array('Id', 'NameLatin'))
+      ->find()
+      ->toKeyValue('Id', 'NameLatin');
 
-    return $this->renderText(json_encode($result));
+    return $this->renderText(json_encode($states));
   }
 }

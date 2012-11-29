@@ -230,24 +230,18 @@ class ShoppingOrderShippingForm extends BaseForm
     return $values;
   }
 
-  private function getStatesForCountry ($country_iso3166)
+  private function getStatesForCountry($country_iso3166)
   {
-    $stmt = GeoRegionQuery::create()
-      ->useGeoCountryQuery()
+    $states = iceModelGeoRegionQuery::create()
+      ->orderByNameLatin()
+      ->useiceModelGeoCountryQuery()
       ->filterByIso3166($country_iso3166)
       ->endUse()
-      ->addAscendingOrderByColumn(GeoRegionPeer::NAME_LATIN)
-      ->clearSelectColumns()
-      ->addSelectColumn(GeoRegionPeer::NAME_LATIN)
-      ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
-      ->find();
-    $result = array();
-    while ($row = $stmt->fetch())
-    {
-      $result[$row['NAME_LATIN']] = $row['NAME_LATIN'];
-    };
+      ->select(array('Id', 'NameLatin'))
+      ->find()
+      ->toKeyValue('Id', 'NameLatin');
 
-    return $result;
+    return $states;
   }
 
 }
