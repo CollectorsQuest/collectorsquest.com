@@ -1,8 +1,9 @@
 <?php
   /* @var $sf_user cqFrontendUser */
-  /* @var $form CollectibleForSaleEditForm */
-  /* @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm */
-  /* @var $form_shipping_zz SimpleShippingCollectorCollectibleInternationalForm */
+  /* @var $form CollectibleForSaleEditForm|sfFormField[] */
+  /* @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm|sfFormField[] */
+  /* @var $form_shipping_zz SimpleShippingCollectorCollectibleInternationalForm|sfFormField[] */
+  /* @var $sf_params sfParameterHolder */
 ?>
 
 <div class="control-group">
@@ -47,23 +48,20 @@
 
     <?= $form_shipping_us->renderHiddenFields(); ?>
     <div class="control-group form-inline">
-      <label class="control-label" for="">US shipping</label>
+      <label class="control-label">US shipping</label>
       <div class="controls flat-rate-controller">
         <label class="radio">
           <input name="shipping_rates_us[shipping_type]" type="radio"
-                 value="free_shipping"
-                 id="shipping_rates_us_shipping_type_free_shipping"
-                 <?php if ($form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+                 value="free_shipping" id="shipping_rates_us_shipping_type_free_shipping"
+                 <?= ($form_shipping_us->isShippingTypeFreeShipping()) ? 'checked="checked"' : null; ?>
 
           />Free shipping
         </label><br />
         <label class="radio">
           <input name="shipping_rates_us[shipping_type]"
-                 type="radio"
-                 value="flat_rate"
-                 class="flat-rate-checkbox"
+                 type="radio" value="flat_rate" class="flat-rate-checkbox"
                  id="shipping_rates_us_shipping_type_flat_rate"
-                 <?php if (!$form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+                 <?= (!$form_shipping_us->isShippingTypeFreeShipping()) ? 'checked="checked"' : null; ?>
           />Flat rate
         </label>
         <div class="input-prepend spacer-left-15 spacer-top-5">
@@ -78,20 +76,18 @@
 
     <?= $form_shipping_zz->renderHiddenFields(); ?>
     <div class="control-group form-inline">
-      <label class="control-label" for="">International shipping</label>
+      <label class="control-label">International shipping</label>
       <div class="controls flat-rate-controller">
         <label class="radio">
           <input name="shipping_rates_zz[shipping_type]" type="radio"
-                 value="no_shipping"
-                 id="shipping_rates_zz_shipping_type_no_shipping"
-                 <?php if ($form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
+                 value="no_shipping" id="shipping_rates_zz_shipping_type_no_shipping"
+                 <?= ($form_shipping_zz->isShippingTypeNoShipping()) ? 'checked="checked"' : null; ?>
           />Not available
         </label><br />
         <label class="radio">
           <input name="shipping_rates_zz[shipping_type]" type="radio"
-                 value="free_shipping"
-                 id="shipping_rates_zz_shipping_type_free_shipping"
-                 <?php if ($form_shipping_zz->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+                 value="free_shipping" id="shipping_rates_zz_shipping_type_free_shipping"
+                 <?= ($form_shipping_zz->isShippingTypeFreeShipping()) ? 'checked="checked"' : null; ?>
           />Free shipping
         </label><br />
         <label class="radio">
@@ -100,7 +96,7 @@
                  value="flat_rate"
                  class="flat-rate-checkbox"
                  id="shipping_rates_zz_shipping_type_flat_rate"
-                 <?php if (!($form_shipping_zz->isShippingTypeNoShipping() || $form_shipping_zz->isShippingTypeFreeShipping())) echo 'checked="checked"'; ?>
+                 <?= (!($form_shipping_zz->isShippingTypeNoShipping() || $form_shipping_zz->isShippingTypeFreeShipping())) ? 'checked="checked"' : null; ?>
           />Flat rate
         </label>
         <div class="input-prepend spacer-left-15 spacer-top-5">
@@ -116,7 +112,10 @@
       </div>
     </div>
 
-    <?php if (cqGateKeeper::open('collectible_tax')): ?>
+    <?php if (cqGateKeeper::open('shopping_collectible_tax')): ?>
+      <?php cq_section_title('Tax Information <small style="color: grey;">(optional)</small>'); ?>
+      <br/>
+
       <?= $form['tax_country']->renderRow(); ?>
       <?= $form['tax_state']->renderRow(array(), 'Tax  State / Province'); ?>
       <div class="control-group">
@@ -162,7 +161,9 @@ $(document).ready(function()
 {
   'use strict';
 
-  $('#collectible_for_sale_is_ready').change(function()
+  var $is_ready = $('#collectible_for_sale_is_ready');
+
+  $is_ready.change(function()
   {
     var checked = $(this).attr('checked') == 'checked';
     $('#form-collectible-for-sale').toggleClass(
@@ -173,11 +174,11 @@ $(document).ready(function()
   }).change();
 
   <?php if ($sf_params->get('available_for_sale') === 'yes'): ?>
-    $('#collectible_for_sale_is_ready').attr('checked', 'checked');
-    $('#collectible_for_sale_is_ready').change();
+    $is_ready.attr('checked', 'checked');
+    $is_ready.change();
   <?php elseif ($sf_params->get('available_for_sale') === 'no'): ?>
-    $('#collectible_for_sale_is_ready').removeAttr('checked');
-    $('#collectible_for_sale_is_ready').change();
+    $is_ready.removeAttr('checked');
+    $is_ready.change();
   <?php endif; ?>
 
   $('.flat-rate-controller').on('change', 'input[type=radio]', function() {
@@ -203,30 +204,30 @@ $(document).ready(function()
     var country_code = $(this).val();
     var update_states = function(data)
     {
-      var $input = $state;
       if (data.length == 0)
       {
-        if ($input[0].nodeName.toLowerCase() == 'select')
+        if ($state[0].nodeName.toLowerCase() == 'select')
         {
           var $new_input = $('<input type="text">')
-          $new_input.attr('name', $input.attr('name'));
-          $new_input.attr('id', $input.attr('id'));
-          $input.replaceWith($new_input);
+          $new_input.attr('name', $state.attr('name'));
+          $new_input.attr('id', $state.attr('id'));
+          $state.replaceWith($new_input);
         }
       }
       else
       {
         var $new_input = $('<select></select>')
-        $new_input.attr('name', $input.attr('name'));
-        $new_input.attr('id', $input.attr('id'));
+        $new_input.attr('name', $state.attr('name'));
+        $new_input.attr('id', $state.attr('id'));
         $.each(data, function(key, value) {
           $new_input.append($("<option></option>")
               .attr("value", key).text(value));
         });
-        $new_input.val($input.val());
-        $input.replaceWith($new_input);
+        $new_input.val($state.val());
+        $state.replaceWith($new_input);
       }
     };
+
     if ($(this).val() == '')
     {
       $state.attr('disabled', 'disabled').closest('.control-group').hide();

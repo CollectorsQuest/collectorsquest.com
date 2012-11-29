@@ -9,7 +9,7 @@ all:
   features:
     shopping_cart: true
     shopping_checkout_help: false
-    shopping_collectible_tax: true
+    shopping_collectible_tax: false
     mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false

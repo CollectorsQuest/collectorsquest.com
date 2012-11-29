@@ -99,8 +99,9 @@
 
   <?php if (0 != $collectible_for_sale->getTaxPercentage()): ?>
     <p>
-      <strong>Tax:</strong> <?= $collectible_for_sale->getTaxPercentage(); ?> %
-        for <?= $collectible_for_sale->getGeoCountry()->getName(); ?> <?= $collectible_for_sale->getTaxState(); ?>
+      <strong>Tax:</strong> <?= $collectible_for_sale->getTaxPercentage(); ?>%
+        for <?= $collectible_for_sale->getTaxState(); ?>
+        / <?= $collectible_for_sale->getIceModelGeoCountry()->getName(); ?>
     </p>
   <?php endif; ?>
 
