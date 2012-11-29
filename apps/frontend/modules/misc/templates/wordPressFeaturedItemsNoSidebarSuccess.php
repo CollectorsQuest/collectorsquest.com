@@ -1,11 +1,5 @@
 <?php
-/* @var $pager             PropelModelPager */
 /* @var $wp_post           wpPost           */
-/* @var $collectibles_2x2  array            */
-/* @var $collectibles_1x2  array            */
-/* @var $collectibles_2x1  array            */
-/* @var $layout            string           */
-/* @var $infinite_scroll   boolean          */
 /* @var $cq_layout         string           */
 ?>
 
@@ -25,34 +19,20 @@
 <div class="row" style="margin-left: -12px;">
   <?php
     include_component(
-      'misc', 'wordPressFeaturedItemsGrid',
-      array(
-        'collectibles_2x2' => $collectibles_2x2, 'collectibles_1x2' => $collectibles_1x2,
-        'collectibles_2x1' => $collectibles_2x1, 'pager' => $pager, 'infinite_scroll' => $infinite_scroll
-      )
+      'misc', 'wordPressFeaturedItems',
+      array('id' => $wp_post->getId())
     );
   ?>
-</div>
-
+<?php // div not closed intentionally because of pagination ?>
 <?php elseif ($cq_layout == 'pinterest'): ?>
 <div id="collectibles-holder" class="row thumbnails" style="margin-top: 10px;">
   <?php
     include_component(
-      'misc', 'wordPressFeaturedItemsPinterest',
-      array('pager' => $pager, 'infinite_scroll' => $infinite_scroll)
+      'misc', 'wordPressFeaturedItems',
+      array('id' => $wp_post->getId())
     );
   ?>
-</div>
-<?php endif; ?>
-
-<?php if ($infinite_scroll !== true): ?>
-<div class="row-fluid text-center clear">
-  <?php
-    include_component(
-    'global', 'pagination', array('pager' => $pager, 'page_param' => 'page')
-    );
-  ?>
-</div>
+<?php // div not closed intentionally because of pagination ?>
 <?php endif; ?>
 
 <script>
