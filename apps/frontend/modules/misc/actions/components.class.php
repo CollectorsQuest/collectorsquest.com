@@ -330,7 +330,7 @@ class miscComponents extends cqFrontendComponents
     );
 
     $pager = new PropelModelPager($q, $limit);
-    $page = $this->getRequest()->getParameter('page', 1);
+    $page = $this->getRequest()->getParameter('p', 1);
     $pager->setPage($page);
     $pager->init();
 

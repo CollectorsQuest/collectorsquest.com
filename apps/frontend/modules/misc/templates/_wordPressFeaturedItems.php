@@ -83,7 +83,7 @@
           'id' => 'collectibles-pagination',
           'url' => url_for('@ajax_misc?section=component&page=wordPressFeaturedItems&id=' . $post_id),
           'show_all' => true,
-          'page_param' => 'page',
+          'page_param' => 'p',
         )
       )
     );
@@ -114,7 +114,7 @@
         <?php if ($cq_layout == 'pinterest'): ?>
           itemSelector:'#collectibles .span4',
         <?php else: ?>
-          itemSelector:'#collectibles .span3',
+          itemSelector:'#collectibles .collectible_grid_view_square_small',
         <?php endif; ?>
         loading:{
           msgText:'',
@@ -146,7 +146,7 @@
 <div class="row-fluid text-center clear">
   <?php
     include_component(
-      'global', 'pagination', array('pager' => $pager, 'page_param' => 'page')
+      'global', 'pagination', array('pager' => $pager, 'options' => array('page_param' => 'p'))
     );
   ?>
 </div>
