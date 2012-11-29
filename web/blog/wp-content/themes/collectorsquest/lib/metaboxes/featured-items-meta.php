@@ -4,6 +4,21 @@
 
   <input name="<?php $mb->the_name(); ?>" value="<?php $mb->the_value(); ?>" /></label>
 
+  <label>Enable infinite scroll (default is disabled, type in 'true' to enable):
+    <?php $mb->the_field('cq_infinite_scroll'); ?>
+
+  <input name="<?php $mb->the_name(); ?>" value="<?php $mb->the_value(); ?>" /></label>
+
+  <label>Enable full page width image and no sidebar (default is disabled, type in 'true' to enable)
+    <?php $mb->the_field('cq_no_sidebar'); ?>
+
+  <input name="<?php $mb->the_name(); ?>" value="<?php $mb->the_value(); ?>" /></label>
+
+  <label>Layout (default is 'grid' you can skip it, the other option is 'pinterest')
+    <?php $mb->the_field('cq_layout'); ?>
+
+  <input name="<?php $mb->the_name(); ?>" value="<?php $mb->the_value(); ?>" /></label>
+
   <p>Enter comma separated ID numbers. (1,2,3)</p>
 
   <label>Homepage Collectible IDs<br>

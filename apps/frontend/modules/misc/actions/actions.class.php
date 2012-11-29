@@ -270,6 +270,25 @@ class miscActions extends cqFrontendActions
     // set the number of items on page
     $limit = !empty($values['cq_items_per_page']) ? (int) $values['cq_items_per_page'] : '20';
 
+    // is infinite scroll enabled?
+    $this->infinite_scroll = !empty($values['cq_infinite_scroll']) ? (boolean) $values['cq_infinite_scroll'] : false;
+
+    // do we exclude the sidebar and have full page width image?
+    $this->no_sidebar = !empty($values['cq_no_sidebar']) ? (boolean) $values['cq_no_sidebar'] : false;
+
+    // set template with no sidebar and full page width image
+    if ($this->no_sidebar === true)
+    {
+      $this->setTemplate('wordPressFeaturedItemsNoSidebar');
+    }
+
+    // what is the layout for the page - grid or pinterest
+    $this->cq_layout = !empty($values['cq_layout']) ? $values['cq_layout'] : 'grid';
+    if ($this->cq_layout != 'grid' && $this->cq_layout != 'pinterest')
+    {
+      $this->cq_layout = 'grid';
+    }
+
     if (!empty($values['cq_collection_ids']))
     {
       $collection_ids = cqFunctions::explode(',', $values['cq_collection_ids']);
