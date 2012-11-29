@@ -38,7 +38,8 @@
       include_partial(
         'collection/collectible_grid_view_' . $partial,
         array(
-          'collectible' => $collectible, 'i' => (int) $i
+          'collectible' => $collectible, 'i' => (int) $i,
+          'no_lazy_load' => true
         )
       );
     }
@@ -52,23 +53,25 @@
     /* @var $pager       PropelModelPager */
     foreach ($pager->getResults() as $i => $collectible)
     {
-      if ($collectible->isForSale())
-      {
-        include_partial(
-          'marketplace/collectible_for_sale_masonry_view_big',
-          array(
-            'collectible_for_sale' => $collectible->getCollectibleForSale(),
-            'url' => url_for_collectible($collectible),
-            'link_parameters' => array('class' => 'target zoom-zone')
-          )
-        );
-      }
+      include_partial(
+        'marketplace/collectible_for_sale_masonry_view_big',
+        array(
+          'collectible_for_sale' => $collectible->getCollectibleForSale(),
+          'url' => url_for_collectible($collectible),
+          'link_parameters' => array('class' => 'target zoom-zone')
+        )
+      );
     }
     ?>
   </div>
 <?php endif; ?>
 
-<?php // this div closes a div defined in misc/wordPressFeaturedItemsNoSidebarSuccess ?>
+<?php
+ /*
+  *  this div closes a div defined in misc/wordPressFeaturedItemsNoSidebarSuccess
+  *  and misc/wordPressFeaturedItemsSuccess
+  */
+?>
 </div>
 
 
@@ -95,18 +98,6 @@
     {
       var $container = $('#collectibles');
 
-      $container.imagesLoaded(function() {
-        $container.masonry({
-         <?php if ($cq_layout == 'pinterest'): ?>
-           itemSelector : '.brick',
-           columnWidth : 220, gutterWidth: 18
-         <?php else: ?>
-           itemSelector : '.collectible_grid_view_square_small',
-           columnWidth : 140, gutterWidth: 18
-         <?php endif; ?>
-        });
-      });
-
       $container.infinitescroll(
       {
         navSelector:'#collectibles-pagination',
@@ -114,11 +105,11 @@
         <?php if ($cq_layout == 'pinterest'): ?>
           itemSelector:'#collectibles .span4',
         <?php else: ?>
-          itemSelector:'#collectibles .collectible_grid_view_square_small',
+          itemSelector:'#collectibles .span3, #collectibles .span6',
         <?php endif; ?>
         loading:{
           msgText:'',
-          finishedMsg:'No more pages to load.',
+          finishedMsg:'No more items to load.',
           img:'<?= image_path('frontend/progress.gif'); ?>'
         },
         state: {
