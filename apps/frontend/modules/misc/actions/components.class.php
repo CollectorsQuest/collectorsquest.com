@@ -44,4 +44,56 @@ class miscComponents extends cqFrontendComponents
     return $this->wp_post ? sfView::SUCCESS : sfView::NONE;
   }
 
+  public function executeWordPressFeaturedItemsPinterest()
+  {
+    /* @var $page integer */
+    $page = (integer) $this->getRequestParameter('page', 1);
+
+    /* @var $pager cqPropelModelPager */
+    $pager = $this->getVar('pager');
+    $pager->setPage($page);
+    $pager->init();
+    $this->pager = $pager;
+
+    // if we are trying to get an out of bounds page
+    if ($page > 1 && $page > $pager->getLastPage())
+    {
+      // return empty response
+      return sfView::NONE;
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeWordPressFeaturedItemsGrid()
+  {
+    /* @var $page integer */
+    $page = (integer) $this->getRequestParameter('page', 1);
+
+    /* @var $pager cqPropelModelPager */
+    $pager = $this->getVar('pager');
+    $pager->setPage($page);
+    $pager->init();
+    $this->pager = $pager;
+
+    // if we are trying to get an out of bounds page
+    if ($page > 1 && $page > $pager->getLastPage())
+    {
+      // return empty response
+      return sfView::NONE;
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeWordPressFeaturedItemsSlot1()
+  {
+    if (!$this->wp_post = wpPostQuery::create()->findOneById($this->getRequestParameter('id')))
+    {
+      return sfView::NONE;
+    }
+
+    return sfView::SUCCESS;
+  }
+
 }

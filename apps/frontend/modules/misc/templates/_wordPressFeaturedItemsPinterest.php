@@ -1,5 +1,6 @@
 <?php
-/* @var $pager cqPropelModelPager */
+/* @var $pager           cqPropelModelPager */
+/* @var $infinite_scroll boolean */
 ?>
 
 <div id="collectibles" class="row thumbnails" style="margin-left: 0;">
@@ -8,36 +9,38 @@
     /* @var $pager       PropelModelPager */
     foreach ($pager->getResults() as $i => $collectible)
     {
-      include_partial(
-        'marketplace/collectible_for_sale_masonry_view_big',
-        array(
-          'collectible_for_sale' => $collectible->getCollectibleForSale(),
-          'url' => url_for_collectible($collectible),
-          'link_parameters' => array('class' => 'target zoom-zone')
-        )
-      );
+      if ($collectible->isForSale())
+      {
+        include_partial(
+          'marketplace/collectible_for_sale_masonry_view_big',
+          array(
+            'collectible_for_sale' => $collectible->getCollectibleForSale(),
+            'url' => url_for_collectible($collectible),
+            'link_parameters' => array('class' => 'target zoom-zone')
+          )
+        );
+      }
     }
   ?>
 </div>
 
-<?php if ($pager->getPage() === 1): ?>
-
-  <div class="row-fluid text-center hidden">
-    <?php
-      include_component(
-        'global', 'pagination',
-        array(
-          'pager' => $pager,
-          'options' => array(
-            'id' => 'collectibles-pagination',
-            'url' => url_for('@ajax_aetn?section=component&page=blackHistoryCollectiblesForSale'),
-            'show_all' => true,
-            'page_param' => 'p',
-          )
+<?php if ($infinite_scroll == true && $pager->getPage() === 1): ?>
+<div class="row-fluid text-center hidden">
+  <?php
+    include_component(
+      'global', 'pagination',
+      array(
+        'pager' => $pager,
+        'options' => array(
+          'id' => 'collectibles-pagination',
+          'url' => url_for('@ajax_misc?section=component&page=wordPressFeaturedItemsPinterest'),
+          'show_all' => true,
+          'page_param' => 'page',
         )
-      );
-    ?>
-  </div>
+      )
+    );
+  ?>
+</div>
 
 <script>
   $(document).ready(function()
