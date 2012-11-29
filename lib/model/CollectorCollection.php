@@ -141,7 +141,7 @@ class CollectorCollection extends BaseCollectorCollection
   }
 
   /**
-   * Proxy method for CollectionCategory::getPath()
+   * Proxy method for ContentCategory::getPath()
    *
    * @param  string  $glue
    * @param  string  $column
