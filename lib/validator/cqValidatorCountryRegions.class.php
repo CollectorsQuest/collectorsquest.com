@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Validates a state/region by country code.
- *
+ * Validates a state/region by country code and region name/id.
  */
 class cqValidatorCountryRegions extends sfValidatorBase
 {
@@ -31,43 +30,25 @@ class cqValidatorCountryRegions extends sfValidatorBase
     // only validate if country and region are both present
     if (isset($values[$this->getOption('country_field')]) && isset($values[$this->getOption('region_field')]))
     {
-      $country = $values[$this->getOption('country_field')];
+      $country_iso3166 = $values[$this->getOption('country_field')];
       $region = $values[$this->getOption('region_field')];
 
-      $states = $this->getStatesForCountry($country);
+      /* @var $q iceModelGeoRegionQuery */
+      $q = iceModelGeoRegionQuery::create()
+        ->useiceModelGeoCountryQuery()
+          ->filterByIso3166($country_iso3166)
+        ->endUse();
+
       // Validate only if ve have states for country at DB
-      if (count($states))
+      if ($q->count() && !$q->filterById((int) $region)->_or()->filterByNameLatin((string) $region)->count())
       {
-        if (!in_array($region, $states))
-        {
-          throw new sfValidatorErrorSchema($this, array(
-            $this->getOption('region_field') => new sfValidatorError($this, 'invalid'),
-          ));
-        }
+        throw new sfValidatorErrorSchema($this, array(
+          $this->getOption('region_field') => new sfValidatorError($this, 'invalid'),
+        ));
       }
     }
 
     // assume a required error has already been thrown, skip validation
     return $values;
-  }
-
-  /**
-   * Get list of region by country iso3166
-   *
-   * @param $country_iso3166
-   * @return array
-   */
-  private function getStatesForCountry($country_iso3166)
-  {
-    $states = iceModelGeoRegionQuery::create()
-      ->orderByNameLatin()
-      ->useiceModelGeoCountryQuery()
-        ->filterByIso3166($country_iso3166)
-      ->endUse()
-      ->select(array('Id', 'NameLatin'))
-      ->find()
-      ->toKeyValue('Id', 'NameLatin');
-
-    return $states;
   }
 }

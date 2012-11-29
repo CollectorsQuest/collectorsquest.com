@@ -23,9 +23,9 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
         'callback' => array($this, 'validatePaypalDetailsSet'),
       ), array(
         'invalid'  => sprintf(
-          'You must <a href="%s">setup your store settings</a>
-           before you can sell in the Market',
-          cqContext::getInstance()->getController()->genUrl('@mycq_marketplace_settings')),
+          'You must <a href="%s">setup your store settings</a> before you can sell in the Market',
+          cqContext::getInstance()->getController()->genUrl('@mycq_marketplace_settings')
+        ),
       )
     ));
 
@@ -42,7 +42,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
       'country_field' => 'tax_country',
       'region_field' => 'tax_state',
     ), array(
-      'invalid' => 'Sorry this State / Province is wrong',
+      'invalid' => 'This does not seem to be a valid state or province',
     )));
 
     $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
