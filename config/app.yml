@@ -109,42 +109,42 @@ all:
       debugMode: 1
 
       # Your company name
-      shipper: ''
+      shipper: 'Collectors Quest, Inc'
 
       # Key shipping contact individual at your company
-      shipContact: ""
+      shipContact: '' #"Liz Kressel"
 
-      shipAddr1: ''
-      shipAddr2: ''
-      shipCity: ''
+      shipAddr1: '' #'262 West 38th Street'
+      shipAddr2: '' #'RM 1701'
+      shipCity: '' #'New York'
 
       # the two-letter State or Province code
       # ex. MT: Montana, ON = Ontario
-      shipState: ''
+      shipState: '' #'NY'
 
       # The Zip or Postal code
-      shipCode: ''
+      shipCode: '' #'10018'
 
       # The two-letter country code
-      shipCountry: ''
+      shipCountry: '' #'US'
 
       # Phone number in this format: 1234567890
-      shipPhone: '1231231234'
-      toCountry: 'US'
+      shipPhone: '' #'1231231234'
+      toCountry: '' #'US'
 
 
     fedex:
       # Your FedEx developer key
-      key: ''
+      key: 'jHWKSawGAAFhewYK'
 
       # Your FedEx developer password
-      password: ''
+      password: 'a2WyOdzUt9bN32WsDdxzReDqu'
 
       # Your FedEx accountNumber
-      accountNumber: ''
+      accountNumber: '510087267'
 
       # Your FedEx meter number
-      meterNumber: ''
+      meterNumber: '118572867'
 
       # Allowed packaging types:
       # FEDEX_10KG_BOX
@@ -154,13 +154,13 @@ all:
       # FEDEX_PAK
       # FEDEX_TUBE
       # YOUR_PACKAGING
-      packagingType: ''
+      #packagingType: 'FEDEX_BOX'  GROUND rates will be not available with this value
 
       # The two possible weight units are LB and KG
-      weightUnit: ''
+      weightUnit: 'LB'
 
       # The two possible length units are IN and CM
-      lengthUnit: ''
+      lengthUnit: 'IN'
 
       # EUROPE_FIRST_INTERNATIONAL_PRIORITY
       # FEDEX_1_DAY_FREIGHT
@@ -181,7 +181,7 @@ all:
       # STANDARD_OVERNIGHT
       # FEDEX_FREIGHT
       # FEDEX_NATIONAL_FREIGHT
-      service: ''
+      service: 'FEDEX_GROUND'
 
       # REGULAR_PICKUP
       # REQUEST_COURIER
@@ -243,13 +243,13 @@ all:
     ups:
       # Your UPS Developer license
       # your UPS XML Access Key, we need to insert link to get one
-      license: ''
+      license: '0CA8B75174696050'
 
       # your UPS Developer username
-      username: ''
+      username: 'collectorsquest'
 
       # your ups Developer password
-      password: ''
+      password: 'Nrf2EhUEvGdn'
 
       # Make sure addresses are valid before label creation
       # validate, nonvalidate
@@ -292,13 +292,13 @@ all:
       # 11 - Suggested Retail Rates
       # 19 - Letter Center
       # 20 - Air Service Center
-      PickupType: ''
+      PickupType: '06'
 
       # LBS or KGS
-      weightUnit: ''
+      weightUnit: 'LBS'
 
       # IN, or CM
-      lengthUnit: ''
+      lengthUnit: 'IN'
 
       # See the ups manual for a list of all currency types
       insuredCurrency: 'USD'
@@ -324,7 +324,7 @@ all:
       # 54 - UPS Worldwide Express Plus
       # 59 - UPS Second Day Air AM
       # 65 - UPS Saver
-      service: ''
+      service: '03'
 
       # Options
       # 01 - UPS Letter
@@ -338,12 +338,12 @@ all:
       # 2a - Small Express Box
       # 2b - Medium Express Box
       # 2c - Large Express Box
-      packagingType: ''
+      packagingType: '02'
 
       packageDescription: ''
 
       # Set '0' for commercial '1' for residential
-      residentialAddressIndicator: '0'
+      residentialAddressIndicator: '1'
 
       # Set '0' for retail rates '1' for negotiated
       # You must turn this on with your UPS account rep
@@ -385,8 +385,8 @@ all:
       # Please note: the USPS test servers only respond to pre-defined requests.
       # For USPS rates you need to call USPS and have them move you to
       # the production servers.
-      userid: ''
-
+      userid: '811COLLE5779'
+      password: '199LD54UJ711'
       # USPS service type
       # FIRST CLASS
       # PRIORITY
@@ -404,16 +404,16 @@ all:
       # LIBRARY
       # ALL
       # ONLINE
-      service: ''
+      service: 'FIRST CLASS'
 
       # Values:
       # REGULAR
       # LARGE (Length + girth over 84in under 109in)
       # OVERSIZE (length + girth over 108 under 131)
-      size: ''
+      size: 'REGULAR'
 
       # FLAT
-      firstClassMailType: ''
+      firstClassMailType: 'FLAT'
 
 dev:
   domain_name: "collectorsquest.dev"
