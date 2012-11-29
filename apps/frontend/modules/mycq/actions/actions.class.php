@@ -589,10 +589,7 @@ class mycqActions extends cqFrontendActions
       $form->bind($taintedValues, $request->getFiles('collectible'));
       $for_sale = $form->getValue('for_sale');
 
-      if (
-        (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
-        && cqGateKeeper::open('collectible_shipping')
-      )
+      if (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
       {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
         $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));

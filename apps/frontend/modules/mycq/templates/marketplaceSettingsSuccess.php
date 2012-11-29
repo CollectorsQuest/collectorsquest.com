@@ -126,7 +126,6 @@
           <div class="control-group form-inline">
             <label class="control-label" for="">International shipping</label>
             <div class="controls flat-rate-controller">
-              <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?>
               <label class="radio">
                 <input name="shipping_rates_zz[shipping_type]" type="radio"
                        value="no_shipping"
@@ -134,7 +133,6 @@
                        <?php if ($form_shipping_zz->getDefault('shipping_type') == ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING) echo 'checked="checked"'; ?>
                 />Not available
               </label><br />
-              <?php endif; ?>
               <label class="radio">
                 <input name="shipping_rates_zz[shipping_type]" type="radio"
                        value="free_shipping"
@@ -159,10 +157,8 @@
                 <?= $form_shipping_zz['flat_rate']->renderError(); ?>
               <?php endif; ?>
               <br />
-              <?php if (cqGateKeeper::open('collectible_allow_no_shipping')): ?><br />
               <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
               <?= $form_shipping_zz['do_not_ship_to']->render(array('class'=>'input-xxlarge')); ?>
-              <?php endif; ?>
             </div>
           </div>
         </fieldset>
