@@ -87,6 +87,14 @@ prod_debug:
             file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
 
 
+stg:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+
+
 next:
   mailer:
     class: cqMailer

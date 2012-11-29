@@ -160,11 +160,7 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    if (cqGateKeeper::locked('aetn_franks_picks', 'page'))
-    {
-      $this->menu = array();
-    }
-    else
+    if (cqGateKeeper::open('aetn_franks_picks', 'page'))
     {
       $this->menu = array(
         0 => array(
@@ -174,6 +170,10 @@ class marketplaceComponents extends cqFrontendComponents
           'tags' => array()
         )
       );
+    }
+    else
+    {
+      $this->menu = array();
     }
 
     /* @var $q wpPostQuery */
@@ -314,7 +314,7 @@ class marketplaceComponents extends cqFrontendComponents
         $query['order']  = 'desc';
         $query['filters']['uint3'] = array();
 
-        // Add the descendant categories
+        /* @var $descendants array|PropelObjectCollection */
         if ($descendants = $content_category->getDescendants())
         {
           $query['filters']['uint3'] = array_values(

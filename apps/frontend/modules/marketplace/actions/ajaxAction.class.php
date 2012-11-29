@@ -11,7 +11,8 @@ class ajaxAction extends cqAjaxAction
   {
     /** @var $collectible_for_Sale CollectibleForSale */
     $collectible_for_sale = FrontendCollectibleForSaleQuery::create()
-      ->findOneByCollectibleId($request->getParameter('id'));
+      ->findOneByCollectibleId($request->getParameter('id')
+    );
 
     // Show 404 if there is no such collectible for sale
     $this->forward404Unless($collectible_for_sale instanceof CollectibleForsale);

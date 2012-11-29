@@ -87,7 +87,12 @@
       else if ($aetn_show['id'] === 'franks_picks')
       {
         echo link_to(
-          ice_image_tag_placeholder('620x67'),
+          cq_image_tag('headlines/20121125_franks_picks_620x67.jpg',
+            array(
+              'width' => '620', 'height' => '67',
+              'alt' => 'Check out items picked by Frank from American Pickers'
+            )
+          ),
           '@aetn_franks_picks?ref=collectible'
         );
       }

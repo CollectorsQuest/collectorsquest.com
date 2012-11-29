@@ -48,6 +48,22 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
   }
 
   /**
+   * @return CollectionCollectibleQuery
+   */
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  /**
+   * @return CollectionCollectibleQuery
+   */
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
+  }
+
+  /**
    * @param  string $v
    * @return CollectionCollectibleQuery
    */
