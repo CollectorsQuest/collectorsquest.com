@@ -1,9 +1,6 @@
 <?php
-  /* @var $pager             PropelModelPager */
-  /* @var $wp_post           wpPost           */
-  /* @var $collectibles_2x2  array            */
-  /* @var $collectibles_1x2  array            */
-  /* @var $collectibles_2x1  array            */
+/* @var $wp_post           wpPost           */
+/* @var $cq_layout         string           */
 
   cq_page_title(
     $wp_post->getPostTitle(), null,
@@ -24,52 +21,26 @@
   <?= nl2br($wp_post->getPostContent()); ?>
 </p>
 
-<br/>
+<?php if ($cq_layout == 'grid'): ?>
+<br>
 <div class="row" style="margin-left: -12px;">
-  <div id="collectibles" class="row-content">
   <?php
-    foreach ($pager->getResults() as $i => $collectible)
-    {
-      /* @var $collectible Collectible */
-      $id = $collectible->getId();
-
-      // which partial we want to show the Collectible with
-      $partial = '';
-      if (in_array($id, $collectibles_2x1))
-      {
-        $partial = 'wide';
-      }
-      else if (in_array($id, $collectibles_1x2))
-      {
-        $partial = 'tall';
-      }
-      else if (in_array($id, $collectibles_2x2))
-      {
-        $partial = 'square_big';
-      }
-      else
-      {
-        $partial = 'square_small';
-      }
-
-      include_partial(
-        'collection/collectible_grid_view_' . $partial,
-        array(
-          'collectible' => $collectible, 'i' => (int) $i
-        )
-      );
-    }
+    include_component(
+      'misc', 'wordPressFeaturedItems',
+      array('id' => $wp_post->getId())
+    );
   ?>
-  </div>
-</div>
-
-<div class="row-fluid text-center">
-<?php
-  include_component(
-    'global', 'pagination', array('pager' => $pager)
-  );
-?>
-</div>
+<?php // div not closed intentionally because of pagination ?>
+<?php elseif ($cq_layout == 'pinterest'): ?>
+<div id="collectibles-holder" class="row thumbnails" style="margin-top: 10px;">
+  <?php
+    include_component(
+      'misc', 'wordPressFeaturedItems',
+      array('id' => $wp_post->getId())
+    );
+  ?>
+<?php // div not closed intentionally because of pagination ?>
+<?php endif; ?>
 
 <script>
 $(document).ready(function ()
@@ -91,8 +62,13 @@ $(document).ready(function ()
   {
     $container.masonry(
       {
+      <?php if ($cq_layout == 'pinterest'): ?>
+        itemSelector : '.brick, .span4',
+        columnWidth : 220, gutterWidth: 18
+        <?php else: ?>
         itemSelector : '.span3, .span6',
         columnWidth : 140, gutterWidth: 15
+        <?php endif; ?>
       });
   });
 });
