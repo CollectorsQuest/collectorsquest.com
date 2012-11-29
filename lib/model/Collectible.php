@@ -334,7 +334,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     }
 
     // only add it if the **same** object is not already associated
-    if (!$this->collCollections->contains($collection, false))
+    if (!in_array($collection, $this->collCollections->getArrayCopy(), false))
     {
       $this->doAddCollection($collection);
       $this->collCollections[]= $collection;

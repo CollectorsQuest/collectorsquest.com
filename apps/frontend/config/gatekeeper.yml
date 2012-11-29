@@ -15,8 +15,8 @@ all:
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
-    expose_collection_categories: true
-    expose_market_categories: true
+    expose_collection_categories: false
+    expose_market_categories: false
 
 stg:
   pages:
@@ -41,8 +41,8 @@ next:
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
-    expose_collection_categories: true
-    expose_market_categories: true
+    expose_collection_categories: false
+    expose_market_categories: false
 
 dev:
   pages:
@@ -61,5 +61,5 @@ dev:
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
-    expose_collection_categories: true
-    expose_market_categories: true
+    expose_collection_categories: false
+    expose_market_categories: false

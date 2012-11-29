@@ -41,17 +41,17 @@ class SimpleShippingCollectorCollectibleInternationalForm extends SimpleShipping
 
   public function setupDoNotShipToField()
   {
-    $q = GeoCountryQuery::create()
+    $q = iceModelGeoCountryQuery::create()
       ->filterByIso3166('US', Criteria::NOT_EQUAL);
     $this->widgetSchema['do_not_ship_to'] = new sfWidgetFormPropelChoice(array(
-        'model' => 'GeoCountry',
+        'model' => 'iceModelGeoCountry',
         'multiple' => true,
         'key_method' => 'getIso3166',
         'criteria' => $q,
     ), array('data-placeholder' => 'Choose countries if applicable...'));
 
     $this->validatorSchema['do_not_ship_to'] = new sfValidatorPropelChoice(array(
-        'model' => 'GeoCountry',
+        'model' => 'iceModelGeoCountry',
         'column' => 'iso3166',
         'multiple' => true,
         'required' => false,

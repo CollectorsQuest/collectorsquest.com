@@ -491,7 +491,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setPassword($password)
   {
-    $this->setSha1Password(sha1($this->getSalt() . $password));
+    // Legacy
+    $this->setSha1Password('*');
+    // Generate the salt if empty
+    $this->getSalt();
+
+    /**
+     * Portable Password
+     * @since 2012-11-24
+     */
+    $this->setPortablePassword(Password::hash($password));
 
     return $this;
   }
@@ -504,7 +513,20 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function checkPassword($password)
   {
-    return sha1($this->getSalt() . $password) === $this->getSha1Password();
+    if ($this->getSha1Password() != '*')
+    {
+      if ($this->getSha1Password() === sha1($this->getSalt() . $password))
+      {
+        $this->setPassword($password);
+        $this->save();
+
+        return true;
+      }
+
+      return false;
+    }
+
+    return Password::check($password, $this->getPortablePassword());
   }
 
   public function setDisplayName($v)

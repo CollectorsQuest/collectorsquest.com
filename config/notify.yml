@@ -29,7 +29,6 @@ all:
       username: AKIAJXXQN5BYO3YM5AAQ
       password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
 
-
 dev:
   driver:
     class:   fpErrorNotifierDriverNull
