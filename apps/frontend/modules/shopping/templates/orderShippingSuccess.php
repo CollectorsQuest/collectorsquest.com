@@ -92,7 +92,7 @@
     {
       $(this).button('loading');
     });
-console.log($('#shopping_order_shipping_address_state_region option').length);
+
     if ($('#shopping_order_shipping_address_state_region option').length == 0)
     {
       $('#shopping_order_shipping_address_state_region').attr('disabled', 'disabled')
