@@ -21,7 +21,7 @@ ice_breadcrumbs:
     pawnStars: [{ name: 'As Seen on Pawn Stars' }]
     pickedOff: [{ name: 'As Seen on Picked Off' }]
     storageWars: [{ name: 'As Seen on Storage Wars' }]
-    franksPicks: [{ name: "As Seen on Frank's Picks" }]
+    franksPicks: [{ name: "Frank's Picks" }]
     blackHistory: [{ name: 'As Seen on Black History' }]
 
   collection:

@@ -47,6 +47,7 @@ all:
     american_pickers:
       collector: 6668
       collection: 2842
+      franks_picks: 4224
     american_restoration:
       collector: 14728
       collection: 3961
