@@ -43,10 +43,11 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
       /* @var $collectible_for_sale CollectibleForSale */
       $collectible_for_sale = $this->getObject()->getCollectibleForSale();
       // Show state field only if
-      // collectible with tax and country is same
+      // collectible with tax and country is same and tax_state definite
       if (
         !$collectible_for_sale->getTaxPercentage()
         || $collectible_for_sale->getTaxCountry() != $this->getObject()->getShippingCountryIso3166()
+        || !$collectible_for_sale->getTaxState()
       )
       {
         return;

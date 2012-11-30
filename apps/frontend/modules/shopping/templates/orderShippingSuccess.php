@@ -97,12 +97,13 @@
     $('#shopping_order_shipping_address_country_iso3166').change(function()
     {
       var $state = $('#shopping_order_shipping_address_state_region');
-      $state.val('');
+      $state.val('').closest('.controls').showLoading();
       var country_code = $(this).val();
 
-      $state.closest('.control-group').addClass('hide');
+
       var update_states = function(data)
       {
+        $state.removeAttr('disabled').closest('.controls').hideLoading();
         if (data.length != 0)
         {
           $state.find('option').remove();
@@ -110,7 +111,12 @@
             $state.append($("<option></option>")
                 .attr("value", key).text(value));
           });
+
           $state.closest('.control-group').removeClass('hide');
+        }
+        else
+        {
+          $state.attr('disabled', 'disabled').closest('.control-group').addClass('hide');
         }
       };
 
