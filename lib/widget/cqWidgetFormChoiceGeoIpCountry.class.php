@@ -66,7 +66,7 @@ class cqWidgetFormChoiceGeoIpCountry extends sfWidgetFormSelect
    */
   public function buildCountriesList()
   {
-    // get the countries array based on GeoCountry
+    // get the countries array based on iceModelGeoCountry
     $countries = iceModelGeoCountryQuery::create()
       ->_if(is_array($this->getOption('countries')))
         ->filterByIso3166($this->getOption('countries'), Criteria::IN)

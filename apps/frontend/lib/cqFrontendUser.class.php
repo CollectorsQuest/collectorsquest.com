@@ -521,9 +521,9 @@ class cqFrontendUser extends cqBaseUser
   {
     if ($uuid = $this->getCookieUuid())
     {
-      return
-        @$this->collectors_by_uuid[$uuid] ?:
-        $this->collectors_by_uuid[$uuid] = CollectorQuery::create()->filterByCookieUuid($uuid)->findOne();
+      return isset($this->collectors_by_uuid[$uuid])
+        ? $this->collectors_by_uuid[$uuid]
+        : $this->collectors_by_uuid[$uuid] = CollectorQuery::create()->filterByCookieUuid($uuid)->findOne();
     }
 
     return null;

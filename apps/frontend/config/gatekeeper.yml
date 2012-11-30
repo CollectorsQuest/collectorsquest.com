@@ -22,7 +22,7 @@ stg:
     aetn_franks_picks: true
     aetn_black_history: true
 
-  features: ~
+  features: []
 
 next:
   pages:

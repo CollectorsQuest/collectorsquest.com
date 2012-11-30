@@ -10,6 +10,9 @@
  */
 class CollectorCollection extends BaseCollectorCollection
 {
+  /* @var null|integer */
+  private $_graph_id = null;
+
   /** @var array */
   public $_multimedia = array();
 
@@ -30,24 +33,42 @@ class CollectorCollection extends BaseCollectorCollection
 
   public function getGraphId()
   {
-    $graph_id = null;
+    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
 
-    if (!$this->isNew() && (!$graph_id = parent::getGraphId()))
+    if (!$this->isNew() && $graph_id === null)
     {
       $client = cqStatic::getNeo4jClient();
 
-      $node = $client->makeNode();
-      $node->setProperty('model', 'Collection');
-      $node->setProperty('model_id', $this->getId());
-      $node->save();
+      try
+      {
+        $node = $client->makeNode();
+        $node->setProperty('model', 'Collection');
+        $node->setProperty('model_id', $this->getId());
+        $node->save();
 
-      $graph_id = $node->getId();
+        $this->_graph_id = $node->getId();
+      }
+      catch(Everyman\Neo4j\Exception $e)
+      {
+        $this->_graph_id = null;
+      }
 
-      $this->setGraphId($node->getId());
-      $this->save();
+      try
+      {
+        $this->setGraphId($this->_graph_id);
+        $this->save();
+      }
+      catch (PropelException $e)
+      {
+        $this->_graph_id = $graph_id;
+      }
+    }
+    else
+    {
+      $this->_graph_id = $graph_id;
     }
 
-    return $graph_id;
+    return $this->_graph_id;
   }
 
   /**

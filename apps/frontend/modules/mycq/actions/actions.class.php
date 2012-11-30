@@ -1074,7 +1074,7 @@ class mycqActions extends cqFrontendActions
 
     $collector = $this->getCollector();
 
-    $this->redirectUnless($collector->getGraphId() && substr($collector->getUsername(), 0, 3) == 'rpx', 'mycq_profile_account_info');
+    $this->redirectUnless(substr($collector->getUsername(), 0, 3) == 'rpx', 'mycq_profile_account_info');
 
     $collector_form = new CollectorCreatePasswordForm($this->getCollector());
 
