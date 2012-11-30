@@ -124,12 +124,6 @@ class searchActions extends cqFrontendActions
       $this->collectibles_for_sale = array();
     }
 
-    // if search page is reloaded make sure we show all collectibles by setting attribute to null
-    if ($page == 1)
-    {
-      $this->getUser()->setAttribute('displayed_collectible_ids', null, 'search');
-    }
-
     $pager = new cqSphinxPager(self::$_query, array(), 24);
     $pager->setPage($page);
     $pager->setStrictMode('all' === $request->getParameter('show'));
@@ -186,12 +180,6 @@ class searchActions extends cqFrontendActions
     /** @var $page integer */
     $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
 
-    // if search page is reloaded make sure we show all collectibles by setting attribute to null
-    if ($page == 1)
-    {
-      $this->getUser()->setAttribute('displayed_collectible_ids', null, 'search');
-    }
-
     $pager = new cqSphinxPager(self::$_query, array('collectibles'), 24);
     $pager->setPage($page);
     $pager->setStrictMode('all' === $request->getParameter('show'));
@@ -210,12 +198,6 @@ class searchActions extends cqFrontendActions
 
     /** @var $page integer */
     $page = (($page = (int) $request->getParameter('page', 1)) > 0) ? $page : 1;
-
-    // if search page is reloaded make sure we show all collectibles by setting attribute to null
-    if ($page == 1)
-    {
-      $this->getUser()->setAttribute('displayed_collectible_ids', null, 'search');
-    }
 
     $pager = new cqSphinxPager(self::$_query, array('collectibles'), 24);
     $pager->setPage($page);

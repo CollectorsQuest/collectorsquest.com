@@ -8,8 +8,7 @@ class cqSphinxPager extends sfPager
     $matches  = array(),
     $excerpts = array(),
     $sid      = null,
-    $offset   = null,
-    $shown_collectible_ids = array();
+    $offset   = null;
 
   /**
    * @var boolean
@@ -97,12 +96,6 @@ class cqSphinxPager extends sfPager
     $this->matches = isset($results['matches']) ? $results['matches'] : array();
     $this->words   = isset($results['words'])   ? $results['words']   : array();
     //$this->sid = SearchHistoryPeer::save($this->query, $total);
-
-    // check if there are Collectibles already shown
-    if ($displayed_collectible_ids = sfContext::getInstance()->getUser()->getAttribute('displayed_collectible_ids', null, 'search'))
-    {
-      $this->shown_collectible_ids = $displayed_collectible_ids;
-    }
 
     return $this->sid;
   }
@@ -244,21 +237,11 @@ class cqSphinxPager extends sfPager
 
       foreach ($collectibles as $collectible)
       {
-        // special check to avoid repeating Collectibles in search results
-        if (!in_array($collectible->getId(), $this->shown_collectible_ids))
+        if (false !== $key = array_search($collectible->getId() + 400000000, $objects, true))
         {
-          // add the Collectible as 'shown'
-          $this->shown_collectible_ids [] = $collectible->getId();
-
-          if (false !== $key = array_search($collectible->getId() + 400000000, $objects, true))
-          {
-            $objects[$key] = $collectible;
-            $contents[$key] = $collectible->getDescription('stripped');
-          }
+          $objects[$key] = $collectible;
+          $contents[$key] = $collectible->getDescription('stripped');
         }
-
-        // set the user attribute with all the 'shown' Collectibles
-        sfContext::getInstance()->getUser()->setAttribute('displayed_collectible_ids', $this->shown_collectible_ids, 'search');
       }
     }
 
