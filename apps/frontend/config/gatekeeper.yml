@@ -22,7 +22,7 @@ stg:
   pages:
     aetn_franks_picks: true
 
-  features: ~
+  features: []
 
 next:
   pages:
