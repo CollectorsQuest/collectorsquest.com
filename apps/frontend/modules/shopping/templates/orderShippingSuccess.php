@@ -92,6 +92,12 @@
     {
       $(this).button('loading');
     });
+console.log($('#shopping_order_shipping_address_state_region option').length);
+    if ($('#shopping_order_shipping_address_state_region option').length == 0)
+    {
+      $('#shopping_order_shipping_address_state_region').attr('disabled', 'disabled')
+          .closest('.control-group').addClass('hide');
+    }
 
     var states_cache = {};
     $('#shopping_order_shipping_address_country_iso3166').change(function()
@@ -99,7 +105,6 @@
       var $state = $('#shopping_order_shipping_address_state_region');
       $state.val('').closest('.controls').showLoading();
       var country_code = $(this).val();
-
 
       var update_states = function(data)
       {
