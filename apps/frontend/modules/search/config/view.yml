@@ -1,7 +1,7 @@
 all:
   stylesheets: [frontend/modules/search.css]
   components:
-    sidebar_160: [global, sidebar300]
+    sidebar_300: [global, sidebar300]
 
 indexSuccess:
   javascripts: [jquery/masonry.js, jquery/infinitescroll.js]

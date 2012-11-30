@@ -27,7 +27,7 @@
     )
   );
 ?>
-<h1 class="Chivo webfont">Blog Articles <small><?= $title; ?></small></h1>
+<h1 class="Chivo webfont">Blog Posts <small><?= $title; ?></small></h1>
 
 <div id="search-results">
   <div class="row-fluid">
