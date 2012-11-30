@@ -408,7 +408,9 @@ class ShoppingOrder extends BaseShoppingOrder
 
     $haveTax = false;
     if ($collectible_for_sale->getTaxCountry() == $this->getShippingCountryIso3166() &&
-      strtolower($collectible_for_sale->getTaxState()) == strtolower($this->getShippingStateRegion()))
+      (!$collectible_for_sale->getTaxState()
+        || $collectible_for_sale->getTaxState() == $this->getShippingStateRegion())
+    )
     {
       $haveTax = true;
     }

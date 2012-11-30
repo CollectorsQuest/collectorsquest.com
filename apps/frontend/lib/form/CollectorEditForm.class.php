@@ -562,10 +562,11 @@ class CollectorEditForm extends CollectorForm
   public function setupSellerSettingsTaxFields($required = false)
   {
     $this->widgetSchema['seller_settings_tax_country'] = new sfWidgetFormPropelChoice(
-      array('label' => 'Country', 'model' => 'GeoCountry', 'add_empty' => true, 'key_method' => 'getIso3166')
+      array('label' => 'Country', 'model' => 'iceModelGeoCountry',
+        'add_empty' => true, 'key_method' => 'getIso3166')
     );
     $this->validatorSchema['seller_settings_tax_country'] =  new sfValidatorPropelChoice(
-      array('model' => 'GeoCountry', 'column' => 'iso3166', 'required' => $required)
+      array('model' => 'iceModelGeoCountry', 'column' => 'iso3166', 'required' => $required)
     );
 
     $this->widgetSchema['seller_settings_tax_state'] = new sfWidgetFormInputText(

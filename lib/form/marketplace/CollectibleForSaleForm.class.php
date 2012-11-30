@@ -79,6 +79,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 
   public function setupTaxFields()
   {
+    $this->widgetSchema['tax_state'] = new sfWidgetFormPropelChoice(array('model' => 'iceModelGeoRegion'));
     $this->widgetSchema['tax'] = new sfWidgetFormInputText(array(), array('required' => 'false'));
     $this->validatorSchema['tax'] = new cqValidatorPrice(
       array('required' => false, 'max' => 50), array('max' => 'You cannot set Tax more than 50%',

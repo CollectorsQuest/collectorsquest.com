@@ -106,14 +106,13 @@ class ShoppingOrderShippingForm extends BaseForm
       'This email address does not seem to be valid format');
 
     $states = $this->getStatesForCountry($this->shopping_order->getShippingCountryIso3166());
-    if (count($states))
-    {
-      // Setup only widget and use post validator because country can be changed
-      $this->widgetSchema['shipping_address']['state_region'] =  new sfWidgetFormChoice(
-        array('choices' => $states, 'label' => $this->widgetSchema['shipping_address']['state_region']->getLabel()),
-        array('style' => 'width: 100%;')
-      );
-    }
+
+    // Setup only widget and use post validator because country can be changed
+    $this->widgetSchema['shipping_address']['state_region'] =  new sfWidgetFormChoice(
+      array('choices' => $states, 'label' => $this->widgetSchema['shipping_address']['state_region']->getLabel())
+
+    );
+
     $this->mergePostValidator(new sfValidatorCallback(array(
       'callback' => array($this, 'validateShippingCountryRegion'),
     ), array(
@@ -217,7 +216,7 @@ class ShoppingOrderShippingForm extends BaseForm
     if (count($states))
     {
       $state = $values['shipping_address']['state_region'];
-      if (!in_array($state, $states))
+      if (!in_array($state, array_keys($states)))
       {
         throw new sfValidatorErrorSchema($validator, array(
           'shipping_address' => new sfValidatorErrorSchema($validator, array(
