@@ -75,4 +75,18 @@ class typeAheadAction extends cqAjaxAction
 
     return $this->output($tags);
   }
+
+  public function executeStatesLookup(sfWebRequest $request)
+  {
+    $states = iceModelGeoRegionQuery::create()
+      ->orderByNameLatin()
+      ->useiceModelGeoCountryQuery()
+        ->filterByIso3166((string) $request->getParameter('c'))
+      ->endUse()
+      ->select(array('Id', 'NameLatin'))
+      ->find()
+      ->toKeyValue('Id', 'NameLatin');
+
+    return $this->renderText(json_encode($states));
+  }
 }

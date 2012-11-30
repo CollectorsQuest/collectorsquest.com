@@ -437,7 +437,7 @@ class mycqActions extends cqFrontendActions
         ->filterByCollectibleId($collectible->getId())
         ->joinShoppingPaymentRelatedByShoppingPaymentId()
         ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
-        ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
+          ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
         ->endUse()
         ->findOne();
 
@@ -589,10 +589,7 @@ class mycqActions extends cqFrontendActions
       $form->bind($taintedValues, $request->getFiles('collectible'));
       $for_sale = $form->getValue('for_sale');
 
-      if (
-        (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
-        && cqGateKeeper::open('collectible_shipping')
-      )
+      if (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
       {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
         $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
@@ -814,6 +811,9 @@ class mycqActions extends cqFrontendActions
       'seller_settings_refunds',
       'seller_settings_shipping',
       'seller_settings_store_header_image',
+      'seller_settings_tax_country',
+      'seller_settings_tax_state',
+      'seller_settings_tax_percentage',
     ));
 
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(

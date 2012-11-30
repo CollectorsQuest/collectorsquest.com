@@ -13,6 +13,9 @@ classes:
       collectible_id:       { type: integer, primaryKey: true, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
       price_amount:         { type: integer, required: true, default: 0 }
       price_currency:       { type: char, size: 3, required: true, default: 'USD' }
+      tax_country:          { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
+      tax_state:            { type: integer, required: false }
+      tax_percentage:       { type: integer, required: false }
       condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
       is_price_negotiable:  { type: boolean, default: false }
       is_shipping_free:     { type: boolean, default: false }
@@ -48,6 +51,7 @@ classes:
       price_currency:            { type: char, size: 3, required: true, default: 'USD' }
       tax_amount:                { type: integer, required: true, default: 0 }
       shipping_country_iso3166:  { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 }
+      shipping_state_region:     { type: integer, required: false }
       shipping_fee_amount:       { type: integer, required: false }
       # should always mirror shipping_reference.shipping_type
       shipping_type:             { type: enum,    required: false, valueSet: "no_shipping, local_pickup_only, flat_rate, calculated_shipping" }
