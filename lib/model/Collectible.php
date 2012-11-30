@@ -12,6 +12,9 @@ require 'lib/model/om/BaseCollectible.php';
  */
 class Collectible extends BaseCollectible implements ShippingReferencesInterface
 {
+  /* @var null|integer */
+  private $_graph_id = null;
+
   /** @var array */
   public $_multimedia = array();
 
@@ -40,9 +43,9 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
 
   public function getGraphId()
   {
-    $graph_id = null;
+    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
 
-    if (!$this->isNew() && (!$graph_id = parent::getGraphId()))
+    if (!$this->isNew() && $graph_id === null)
     {
       $client = cqStatic::getNeo4jClient();
 
@@ -53,25 +56,29 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         $node->setProperty('model_id', $this->getId());
         $node->save();
 
-        $graph_id = $node->getId();
+        $this->_graph_id = $node->getId();
       }
       catch(Everyman\Neo4j\Exception $e)
       {
-        $graph_id = null;
+        $this->_graph_id = null;
       }
 
       try
       {
-        $this->setGraphId($graph_id);
+        $this->setGraphId($this->_graph_id);
         $this->save();
       }
       catch (PropelException $e)
       {
-        $graph_id = parent::getGraphId();
+        $this->_graph_id = $graph_id;
       }
     }
+    else
+    {
+      $this->_graph_id = $graph_id;
+    }
 
-    return $graph_id;
+    return $this->_graph_id;
   }
 
   /**

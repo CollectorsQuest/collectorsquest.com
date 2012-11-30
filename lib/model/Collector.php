@@ -96,6 +96,9 @@
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
+  /* @var null|integer */
+  private $_graph_id = null;
+
   /** @var array */
   public $_multimedia = array();
 
@@ -368,31 +371,42 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
   public function getGraphId()
   {
-    $graph_id = parent::getGraphId();
+    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
 
-    if (!$this->isNew() && null === $graph_id)
+    if (!$this->isNew() && $graph_id === null)
     {
+      $client = cqStatic::getNeo4jClient();
+
       try
       {
-        $client = cqStatic::getNeo4jClient();
-
         $node = $client->makeNode();
         $node->setProperty('model', 'Collector');
         $node->setProperty('model_id', $this->getId());
         $node->save();
 
         $graph_id = $node->getId();
+      }
+      catch(Everyman\Neo4j\Exception $e)
+      {
+        $this->_graph_id = null;
+      }
 
-        $this->setGraphId($node->getId());
+      try
+      {
+        $this->setGraphId($this->_graph_id);
         $this->save();
       }
-      catch (Exception $e)
+      catch (PropelException $e)
       {
-        // Error when trying to create a new neo4j node
+        $this->_graph_id = $graph_id;
       }
     }
+    else
+    {
+      $this->_graph_id = $graph_id;
+    }
 
-    return $graph_id;
+    return $this->_graph_id;
   }
 
   public function getCollectorId()
