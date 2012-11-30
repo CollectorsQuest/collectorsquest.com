@@ -116,16 +116,16 @@
       <?php cq_section_title('Tax Information <small style="color: grey;">(optional)</small>'); ?>
       <br/>
 
-      <?= $form['tax_country']->renderRow(); ?>
-      <?= $form['tax_state']->renderRow(array(), 'Tax  State / Province'); ?>
+      <?= $form['tax_country']->renderRow(array(), 'Country'); ?>
+      <?= $form['tax_state']->renderRow(array(), 'State / Province'); ?>
       <div class="control-group">
-        <?= $form['tax']->renderLabel('Tax percentage'); ?>
+        <?= $form['tax']->renderLabel('Percentage'); ?>
         <div class="controls">
           <div class="input-append">
             <?php
-            echo $form['tax']->render(array(
-              'class' => 'item-price text-center', 'required' => 'required'
-            ));
+              echo $form['tax']->render(array(
+                'class' => 'item-price text-center', 'required' => 'required'
+              ));
             ?>
             <span class="add-on">%</span>
           </div>

@@ -561,13 +561,18 @@ class CollectorEditForm extends CollectorForm
 
   public function setupSellerSettingsTaxFields($required = false)
   {
-    $this->widgetSchema['seller_settings_tax_country'] = new sfWidgetFormPropelChoice(
-      array('label' => 'Country', 'model' => 'iceModelGeoCountry',
-        'add_empty' => true, 'key_method' => 'getIso3166')
-    );
-    $this->validatorSchema['seller_settings_tax_country'] =  new sfValidatorPropelChoice(
-      array('model' => 'iceModelGeoCountry', 'column' => 'iso3166', 'required' => $required)
-    );
+    $c = new Criteria();
+    // Restrict to "United States" only
+    $c->add(iceModelGeoCountryPeer::ID, 226);
+
+    $this->widgetSchema['seller_settings_tax_country'] = new sfWidgetFormPropelChoice(array(
+        'label' => 'Country', 'model' => 'iceModelGeoCountry', 'add_empty' => true,
+        'key_method' => 'getIso3166', 'criteria' => $c
+    ));
+    $this->validatorSchema['seller_settings_tax_country'] =  new sfValidatorPropelChoice(array(
+        'model' => 'iceModelGeoCountry', 'column' => 'iso3166',
+        'criteria' => $c, 'required' => $required
+    ));
 
     $this->widgetSchema['seller_settings_tax_state'] = new sfWidgetFormInputText(
       array('label' => 'State / Province')
