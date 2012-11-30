@@ -141,11 +141,6 @@ class searchActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeAdvanced()
-  {
-    return sfView::SUCCESS;
-  }
-
   public function executeCollections(sfWebRequest $request)
   {
     /** @var $page integer */

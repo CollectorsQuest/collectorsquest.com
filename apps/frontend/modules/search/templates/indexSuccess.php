@@ -1,3 +1,10 @@
+<?php
+/* @var $pager    cqSphinxPager */
+/* @var $url      string */
+/* @var $display  string */
+/* @var $collectibles_for_sale  CollectibleForSale[] */
+?>
+
 
 <?php if (!$pager->haveToPaginate() && ($suggestion = $pager->getDidYouMean($sf_params->get('q')))): ?>
 <p class="alert alert-info">
@@ -11,6 +18,7 @@
     array('url' => $url, 'display' => $display)
   );
 ?>
+
 
 <?php
   $title = sprintf(

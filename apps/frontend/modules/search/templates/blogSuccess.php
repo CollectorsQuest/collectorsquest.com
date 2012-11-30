@@ -1,4 +1,10 @@
 <?php
+/* @var $pager    cqSphinxPager */
+/* @var $url      string */
+/* @var $display  string */
+?>
+
+<?php
   slot('sidebar_300');
     include_component('search', 'sidebar', array('t' => 'wp_post'));
   end_slot();
