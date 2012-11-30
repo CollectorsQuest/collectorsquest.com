@@ -31,7 +31,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
         ->joinPackageTransactionCredit(null, Criteria::INNER_JOIN)
         ->addJoinCondition(
           'PackageTransactionCredit',
-          'PackageTransactionCredit.EXPIRY_DATE >= NOW()'
+          'package_transaction_credit.EXPIRY_DATE >= NOW()'
         )
       ->endUse();
   }

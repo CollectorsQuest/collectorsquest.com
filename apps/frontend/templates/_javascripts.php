@@ -11,9 +11,10 @@
     );
 
   }
-  if (document.getElementById('header_menu_<?= (string) SmartMenu::getSelected('header'); ?>') !== null)
+  if (document.getElementById('header_menu_<?= $active_menu_item =
+    (string) (SmartMenu::getSelected('header') ?: $sf_context->getModuleName()); ?>') !== null)
   {
-    document.getElementById('header_menu_<?= (string) SmartMenu::getSelected('header'); ?>').className = 'active';
+    document.getElementById('header_menu_<?= $active_menu_item; ?>').className = 'active';
   }
   if (document.getElementById('q') !== null)
   {

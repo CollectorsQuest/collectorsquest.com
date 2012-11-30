@@ -49,7 +49,8 @@ class collectionActions extends cqFrontendActions
     if (
       in_array($collection->getId(), array(
         $pawn_stars['collection'], $american_pickers['collection'],
-        $american_restoration['collection'], $picked_off['collection']
+        $american_restoration['collection'], $picked_off['collection'],
+        $american_pickers['franks_picks']
       ))
     )
     {
@@ -68,6 +69,10 @@ class collectionActions extends cqFrontendActions
       else if ($collection->getId() == $picked_off['collection'])
       {
         $this->redirect('@aetn_picked_off', 301);
+      }
+      else if ($collection->getId() == $american_pickers['franks_picks'])
+      {
+        $this->redirect('@aetn_franks_picks', 301);
       }
     }
 

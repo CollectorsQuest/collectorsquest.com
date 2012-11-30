@@ -669,7 +669,7 @@ var GENERAL = window.GENERAL = (function(){
           btnNext: '.button-carousel-next',
           btnPrev: '.button-carousel-previous',
           autoplay: true,
-          autoplayDuration: 6000,
+          autoplayDuration: 20000,
           autoplayPauseOnHover: true
         },function(){
           $roundaboutEl.fadeTo(1000, 1);

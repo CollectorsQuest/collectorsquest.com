@@ -62,13 +62,25 @@ class cqVisitorInfoFilter extends sfFilter
 
     foreach (self::$handlers_for_properties as $prop_name => $update_method)
     {
-      $visitor_info[$prop_name] = call_user_func(
-        array($this, $update_method),
-        $sf_user,
-        isset($visitor_info[$prop_name])
-          ? $visitor_info[$prop_name]
-          : null
-      );
+      try
+      {
+        $visitor_info[$prop_name] = call_user_func(
+          array($this, $update_method),
+          $sf_user,
+          isset($visitor_info[$prop_name])
+            ? $visitor_info[$prop_name]
+            : null
+        );
+      }
+      catch (RuntimeException $e)
+      {
+        // cqFrotendUser::getVisitorInfo() can throw a runtime exception;
+        // since all we are doing here is writing some statistics, it's mostly safe
+        // to just log these exceptions, and continue with the request execution
+        $this->context->getLogger()->alert(
+          'cqVisitorInfoFilter caught RuntimeException: ' . $e->getMessage()
+        );
+      }
     }
 
     $sf_user->setVisitorInfoArray($visitor_info);
@@ -111,7 +123,8 @@ class cqVisitorInfoFilter extends sfFilter
   protected function updatePropNumVisits(cqFrontendUser $sf_user, $current_val)
   {
     $last_visit_at = $sf_user->getVisitorInfo(
-      CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT);
+      CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT
+    );
 
     $then = new DateTime($last_visit_at);
     $interval = $then->diff(new DateTime());
