@@ -44,7 +44,7 @@
       }
       else if ($collector->getProfile()->getAboutMe())
       {
-        echo cqStatic::truncateText(strip_tags($collector->getProfile()->getAboutMe()), 140, '...', true);
+        echo cqStatic::truncateText(strip_tags($collector->getProfile()->getAboutMe()), 80, '...', true);
       }
     ?>
     </div>
