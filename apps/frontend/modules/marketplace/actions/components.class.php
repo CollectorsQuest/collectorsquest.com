@@ -395,7 +395,7 @@ class marketplaceComponents extends cqFrontendComponents
       );
 
       // variable used for displaying holiday promo banner
-      $this->rand = rand(0, 15);
+      $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
 
       return sfView::SUCCESS;
     }
