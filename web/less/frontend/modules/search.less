@@ -49,7 +49,8 @@
 }
 
 #items-for-sale {
-  padding: 8px 8px 8px 13px;
+  padding: 6px 6px 6px 11px;
+  margin: 0 -6px;
   margin-bottom: 0;
   background: #FFF5D5;
 
@@ -58,4 +59,50 @@
     margin-left: 10px;
     background: #fff;
   }
+}
+
+.span3 {
+  width: 140px;
+  margin-bottom: 15px;
+}
+.span6 {
+  width: 295px;
+  margin-bottom: 15px;
+}
+
+.masonry-blogpost {
+  position: relative;
+  .square(291px);
+  margin-bottom: 19px;
+
+  .link {
+    display: inline-block;
+    overflow: hidden;
+    z-index: 10;
+    .size(210px, 260px);
+    padding: 10px 15px 15px 15px;
+    text-decoration: none;
+    color: #125375;
+    zoom: 1;
+
+    p {
+      font-size: 18px;
+      line-height: 25px;
+    }
+
+    h3 {
+      color: #125375;
+      &:hover {
+        color: #0A82C2;
+      }
+    }
+  }
+}
+
+.yellow-background {
+  border: 2px solid #CFE0E9;
+}
+
+.blue-background {
+  background: #CFE0E9;
 }

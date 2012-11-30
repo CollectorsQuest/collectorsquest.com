@@ -739,8 +739,8 @@ var SEARCH = window.SEARCH = (function(){
 
       $container.imagesLoaded(function() {
         $container.masonry({
-          itemSelector : '.brick',
-          columnWidth : 196, gutterWidth: 15
+          itemSelector : '.brick, .span3, span4, .span6, .span8',
+          columnWidth : 140, gutterWidth: 15
         });
       });
 
@@ -748,7 +748,7 @@ var SEARCH = window.SEARCH = (function(){
         $container.infinitescroll({
             navSelector: '#search-pagination',
             nextSelector: '#search-pagination li.next a',
-            itemSelector: '.brick',
+            itemSelector: '.brick, .span3, span4, .span6, .span8',
             loading: {
               msgText: (settings.masonry.loading_text) ? settings.masonry.loading_text : 'Loading...',
               finishedMsg: 'No more pages to load.',
