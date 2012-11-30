@@ -96,7 +96,7 @@ class searchActions extends cqFrontendActions
 
     $query = array(
       'q' => self::$_query['q'],
-      'limits' => array(4 * (min($page, 250) - 1), 4),
+      'limits' => array(4 * (min($page, 250) - 1), 5),
       'filters' => array(
         'object_type' => 'collectible',
         'has_thumbnail' => 'yes',
@@ -114,7 +114,7 @@ class searchActions extends cqFrontendActions
 
       $this->collectibles_for_sale = FrontendCollectibleForSaleQuery::create()
         ->filterByCollectibleId($pks, Criteria::IN)
-        ->limit(4)
+        ->limit(5)
         ->find();
 
       self::$_query['filters']['id'] = array($this->collectibles_for_sale->getPrimaryKeys(), true);
@@ -138,11 +138,6 @@ class searchActions extends cqFrontendActions
       return 'NoResults';
     }
 
-    return sfView::SUCCESS;
-  }
-
-  public function executeAdvanced()
-  {
     return sfView::SUCCESS;
   }
 
