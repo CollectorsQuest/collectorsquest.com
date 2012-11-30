@@ -65,28 +65,7 @@
           <?= $form['seller_settings_shipping']->renderRow() ?>
         </fieldset>
 
-        <?php cq_section_title('Tax Details'); ?>
-
-          <fieldset class="form-container-center spacer-top-20">
-            <?= $form['seller_settings_tax_country']->renderRow() ?>
-            <?= $form['seller_settings_tax_state']->renderRow() ?>
-              <div class="control-group">
-                <?= $form['seller_settings_tax_percentage']->renderLabel(); ?>
-                  <div class="controls">
-                      <div class="input-prepend">
-                          <span class="add-on">%</span>
-                        <?php
-                        echo $form['seller_settings_tax_percentage']->render(array(
-                          'class' => 'input-small text-right'
-                        ));
-                        ?>
-                      </div>
-                    <?= $form['seller_settings_tax_percentage']->renderError(); ?>
-                  </div>
-              </div>
-          </fieldset>
-
-        <?php cq_section_title('Shipping & Handling') ?>
+        <?php cq_section_title('Default Shipping & Handling') ?>
 
         <?= $form_shipping_us->renderHiddenFields(); ?>
         <fieldset class="form-container-center spacer-top-20">
@@ -163,6 +142,28 @@
           </div>
         </fieldset>
 
+        <?php cq_section_title('Default Tax Information'); ?>
+
+        <fieldset class="form-container-center spacer-top-20">
+          <?= $form['seller_settings_tax_country']->renderRow(); ?>
+          <?= $form['seller_settings_tax_state']->renderRow(array(), 'State / Province'); ?>
+          <div class="control-group">
+            <?= $form['seller_settings_tax_percentage']->renderLabel('Percentage'); ?>
+            <div class="controls">
+              <div class="input-append">
+                <?php
+                  echo $form['seller_settings_tax_percentage']->render(array(
+                    'class' => 'item-price input-small text-right', 'required' => 'required'
+                  ));
+                ?>
+                <span class="add-on">%</span>
+              </div>
+              <?= $form['seller_settings_tax_percentage']->renderError(); ?>
+            </div>
+          </div>
+        </fieldset>
+
+        <br/><br/>
         <div class="form-actions">
           <input type="submit" class="btn btn-primary spacer-right-15"
                  name="save[and_add_new_items]" value="Save & Add Items for Sale" />

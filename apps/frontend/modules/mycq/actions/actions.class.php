@@ -437,7 +437,7 @@ class mycqActions extends cqFrontendActions
         ->filterByCollectibleId($collectible->getId())
         ->joinShoppingPaymentRelatedByShoppingPaymentId()
         ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
-        ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
+          ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
         ->endUse()
         ->findOne();
 

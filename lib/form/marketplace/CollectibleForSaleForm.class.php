@@ -79,6 +79,18 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 
   public function setupTaxFields()
   {
+    $c = new Criteria();
+    // Restrict to "United States" only
+    $c->add(iceModelGeoCountryPeer::ID, 226);
+
+    $this->widgetSchema['tax_country']= new sfWidgetFormPropelChoice(array(
+      'model' => 'iceModelGeoCountry', 'add_empty' => true, 'key_method' => 'getIso3166',
+      'criteria' => $c
+    ));
+    $this->validatorSchema['tax_country'] = new sfValidatorPropelChoice(array(
+      'model' => 'iceModelGeoCountry', 'column' => 'iso3166', 'required' => false
+    ));
+
     $this->widgetSchema['tax_state'] = new sfWidgetFormPropelChoice(array('model' => 'iceModelGeoRegion'));
     $this->widgetSchema['tax'] = new sfWidgetFormInputText(array(), array('required' => 'false'));
     $this->validatorSchema['tax'] = new cqValidatorPrice(
