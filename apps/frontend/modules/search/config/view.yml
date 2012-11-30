@@ -10,4 +10,4 @@ indexSuccess:
 
 indexNoResults:
   components:
-    sidebar_160: [search, sidebar]
+    sidebar_300: [search, sidebar]

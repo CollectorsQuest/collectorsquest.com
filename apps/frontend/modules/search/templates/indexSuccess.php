@@ -48,27 +48,12 @@
       {
         case 'wppost':
           include_partial('general/homepage_blogpost', array('blog_post' => $object));
-          /*echo '<div class="span8 brick fixed-height">';
-          include_partial(
-            '_blog/wp_post_'. $display .'_view',
-            array(
-              'wp_post' => $object, 'i' => $i,
-              'title' => link_to_blog_post($object, 'text', array('truncate' => 80)),
-              'excerpt' => $pager->getExcerpt($i))
-          );
-          echo '</div>';*/
           break;
         case 'collectible':
           include_partial(
             'collection/collectible_grid_view_square_small',
             array('collectible' => $object, 'i' => $i)
           );
-         /* echo '<div class="span4 brick fixed-height">';
-          include_partial(
-            'collection/collectible_'. $display .'_view',
-            array('collectible' => $object, 'i' => $i)
-          );
-          echo '</div>';*/
           break;
         case 'collection':
         case 'collectorcollection':
@@ -76,26 +61,12 @@
             'collection/collection_grid_view_square_small',
             array('collection' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
           );
-          /*echo '<div class="span4 brick fixed-height">';
-          include_partial(
-            'collection/collection_stack_'. $display .'_view',
-            array('collection' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
-          );
-          echo '</div>';*/
           break;
         case 'collector':
-          echo '<div class="span6 brick fixed-height">';
           include_partial(
             'collector/collector_grid_view_span6',
             array('collector' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
           );
-          echo '</div>';
-/*          echo '<div class="span8 brick fixed-height">';
-          include_partial(
-            'collector/collector_'. $display .'_view_span8',
-            array('collector' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
-          );
-          echo '</div>';*/
           break;
       }
     }

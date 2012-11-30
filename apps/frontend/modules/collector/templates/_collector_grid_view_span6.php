@@ -1,7 +1,7 @@
 <?php /** @var $collector Collector */ ?>
 
 <div id="collector_<?= $collector->getId(); ?>_grid_view"
-     data-id="<?= $collector->getId(); ?>" class="collector_grid_view">
+     data-id="<?= $collector->getId(); ?>" class="collector_grid_view span6 brick">
 
   <div class="row-fluid profile-info link">
     <div class="span3">
