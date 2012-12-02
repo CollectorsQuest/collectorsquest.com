@@ -174,7 +174,7 @@ else
       Edit other items in this collection:
     </div>
     <div class="span6">
-      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details'))?>"
+      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles'))?>"
          class="pull-right">
         See All Items &raquo;
       </a>
