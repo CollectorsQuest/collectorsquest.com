@@ -337,15 +337,15 @@ class CollectorEditForm extends CollectorForm
 
   protected function unsetFields()
   {
-    unset ($this['username']);
-    unset ($this['email']);
-    unset ($this['has_completed_registration']);
-    unset ($this['user_type']);
-    unset ($this['locale']);
-    unset ($this['is_spam']);
-    unset ($this['is_public']);
+    unset($this['username']);
+    unset($this['email']);
+    unset($this['has_completed_registration']);
+    unset($this['user_type']);
+    unset($this['locale']);
+    unset($this['is_spam']);
+    unset($this['is_public']);
     // merged from CollectorProfileEditForm
-    unset ($this['about_new_item_every']);
+    unset($this['about_new_item_every']);
 
     parent::unsetFields();
   }
