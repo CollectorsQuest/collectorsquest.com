@@ -220,13 +220,6 @@ classes:
     columns:
       collector_id:     { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
 
-    foreignKeys:
-      collection_collectible:
-        foreignClass: CollectionCollectible
-        skipSQL: true
-        references:
-          - { local: id, foreign: collection_id }
-
     propel_behaviors:
       concrete_inheritance: { extends: collection, copy_data_to_parent: true }
       archivable: { archive_class: CollectorCollectionArchive, archived_at_column: archived_at }
@@ -275,8 +268,8 @@ classes:
       created_at:    ~
 
     indexes:
-      private_message_I_1: [thread];
-      private_message_I_2: [receiver, sender];
+      private_message_I_1: [thread]
+      private_message_I_2: [receiver, sender]
 
     propel_behaviors:
       extra_properties: ~
