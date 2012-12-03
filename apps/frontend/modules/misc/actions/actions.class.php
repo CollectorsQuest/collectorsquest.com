@@ -367,7 +367,11 @@ class miscActions extends cqFrontendActions
     $status = $wp_post->getPostStatus();
     $_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache');
 
-    if (!$_collectible_ids || $status !== 'publish')
+    /*
+     * calculate collectible_ids if collectible_ids are not yet known OR
+     * wp post is NOT published OR cache is disabled
+     */
+    if (!$_collectible_ids || $status !== 'publish' || sfConfig::get('sf_cache', 'false'))
     {
       // add Collectibles based on Category IDs
       if (!empty($category_ids))

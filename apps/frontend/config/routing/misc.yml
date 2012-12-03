@@ -31,10 +31,6 @@ search_blog:
   url:   /search/blog
   param: { module: search, action: blog }
 
-search_advanced:
-  url:   /search/advanced
-  param: { module: search, action: advanced }
-
 search:
   url:   /search
   param: { module: search, action: index }

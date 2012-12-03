@@ -5,6 +5,21 @@ package: lib.model.legacy
 
 classes:
 
+  CollectorInterview:
+    columns:
+      id:  ~
+      collector_id:            { type: integer, required: false }
+      collection_category_id:  { type: integer, required: false }
+      content_category_id:     { type: integer, required: false }
+      collection_id:           { type: integer, required: false }
+      title:                   { type: varchar, size: 128, required: true, primaryString: true }
+      catch_phrase:            { type: varchar, size: 128, required: true }
+      is_active:               { type: boolean, default: false }
+      created_at:  ~
+
+    propel_behaviors:
+      symfony: { form: false, filter: false }
+
   InterviewQuestion:
     columns:
       id:  ~
@@ -12,6 +27,9 @@ classes:
       question:                { type: varchar, size: 128, required: true }
       answer:                  { type: longvarchar, required: true }
       photo:                   varchar(128)
+
+    propel_behaviors:
+      symfony: { form: false, filter: false }
 
   CollectionCategory:
     columns:
@@ -21,13 +39,20 @@ classes:
       slug:       { type: varchar, size: 64 }
       score:      { type: integer, default: 0 }
 
+    propel_behaviors:
+      symfony:    { form: false, filter: false }
+
   CollectionCategoryField:
     columns:
       id:  ~
       collection_category_id:  { type: integer, required: true, foreignClass: CollectionCategory, foreignReference: id, onDelete: cascade }
       custom_field_id:  ~
+
     uniques:
       collection_category_field: [collection_category_id, custom_field_id]
+
+    propel_behaviors:
+          symfony: { form: false, filter: false }
 
   CustomField:
     columns:
@@ -40,8 +65,8 @@ classes:
   CustomValue:
     columns:
       id:  ~
-      collection_id:    { type: integer, foreignClass: Collection, foreignReference: id, required: true, onDelete: cascade }
-      collectible_id:   { type: integer, foreignClass: Collectible, foreignReference: id, required: true, onDelete: cascade }
+      collection_id:    { type: integer, required: true }
+      collectible_id:   { type: integer, required: true }
       field_id:         { type: integer, required: true }
       value_text:       varchar(255)
       value_date:       date
@@ -50,6 +75,7 @@ classes:
 
     propel_behaviors:
       timestampable:  ~
+      symfony: { form: false, filter: false }
 
   Event:
     columns:
@@ -57,6 +83,9 @@ classes:
       title:        { type: varchar, size: 128, required: true }
       description:  { type: longvarchar, required: true }
       created_at:   ~
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
 
   EventVideo:
     columns:
@@ -70,6 +99,9 @@ classes:
       filename:     varchar(255)
       views:        integer
       created_at:   ~
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
 
   Video:
     columns:
@@ -87,6 +119,9 @@ classes:
       uploaded_at:   timestamp
       created_at:    ~
 
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
+
   VideoPlaylist:
     columns:
       id:  ~
@@ -94,12 +129,18 @@ classes:
       playlist_id:  ~
       position:     tinyint
 
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
   VideoCollectionCategory:
     columns:
       id:  ~
       video_id:  ~
       collection_category_id:  { type: integer, required: true, foreignClass: CollectionCategory, foreignReference: id, onDelete: cascade }
       created_at:  ~
+
+    propel_behaviors:
+      symfony:     { form: false, filter: false }
 
   Playlist:
     columns:
@@ -113,11 +154,17 @@ classes:
       published_at:  timestamp
       created_at:    ~
 
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
+
   Trivia:
     columns:
       id:  ~
       content:     { type: longvarchar, required: true }
       created_at:  ~
+
+    propel_behaviors:
+      symfony:     { form: false, filter: false }
 
   ResourceCategory:
     columns:
@@ -126,6 +173,9 @@ classes:
       slug:        varchar(128)
       thumbnail:   varchar(64)
       created_at:  ~
+
+    propel_behaviors:
+      symfony:     { form: false, filter: false }
 
   ResourceEntry:
     columns:
@@ -141,6 +191,9 @@ classes:
       blogger:      varchar(128)
       email:        varchar(128)
       created_at:   ~
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
 
   Featured:
     treeMode: NestedSet
@@ -158,8 +211,14 @@ classes:
       position:          { type: tinyint, default: 0 }
       is_active:         { type: boolean, default: true, required: true }
 
+    propel_behaviors:
+      symfony: { form: false, filter: false }
+
   NewsletterSignup:
     columns:
       id:  ~
       email:  { type: varchar, size: 255, required: true }
       name:   { type: varchar, size: 255, required: true }
+
+    propel_behaviors:
+      symfony: { form: false, filter: false }

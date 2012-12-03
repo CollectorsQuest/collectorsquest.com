@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var $collectible Collectible
+ * @var $shopping_order ShoppingOrder
+ */
+?>
 <div class="row-fluid">
   <div class="span8">
     <table class="table table-collectible-purchased">
@@ -55,12 +61,6 @@
           ?>
         </td>
       </tr>
-      <?php if ($v = $shopping_order->getShippingPhone()): ?>
-      <tr>
-        <td>Phone Number:</td>
-        <td><?= $v; ?></td>
-      </tr>
-      <?php endif; ?>
     </table>
   </div>
   <div class="span4">
@@ -158,6 +158,12 @@
         <td>Item Price:</td>
         <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
       </tr>
+      <?php if (($v = $shopping_order->getTaxAmount()) && 0 != (int) $v): ?>
+        <tr>
+          <td>Tax Fee:</td>
+          <td><?= money_format('%.2n', (float) $v); ?></td>
+        </tr>
+      <?php endif; ?>
       <tr>
         <td>Shipping Fee:</td>
         <td><?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()) ?></td>

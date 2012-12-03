@@ -64,7 +64,7 @@ class searchComponents extends cqFrontendComponents
         'route' => '@search_collectibles_for_sale?q='. $q
       ),
       'wp_post' => array(
-        'name' => 'Blog Articles',
+        'name' => 'Blog Posts',
         'count' => 0,
         'active' => in_array('wp_post', $types_selected),
         'route' => '@search_blog?q='. $q
@@ -77,15 +77,18 @@ class searchComponents extends cqFrontendComponents
       ),
     );
 
-    try
+    if (SF_ENV !== 'dev')
     {
-      $magnify = cqStatic::getMagnifyClient();
-      $results = $magnify->getContent()->find($q);
-      $this->types['video']['count'] = $results->getTotalResults();
-    }
-    catch (MagnifyException $e)
-    {
-      $this->types['video']['count'] = 0;
+      try
+      {
+        $magnify = cqStatic::getMagnifyClient();
+        $results = $magnify->getContent()->find($q);
+        $this->types['video']['count'] = $results->getTotalResults();
+      }
+      catch (MagnifyException $e)
+      {
+        $this->types['video']['count'] = 0;
+      }
     }
 
     /**
