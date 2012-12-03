@@ -62,6 +62,7 @@ classes:
       archivable: { archive_class: CollectorProfileArchive, archived_at_column: archived_at }
       extra_properties: ~
       timestampable:  ~
+      simple_calculations: { columns: [num_views] }
 
   CollectorEmail:
     columns:
@@ -186,6 +187,7 @@ classes:
     propel_behaviors:
       sluggable: { slug_pattern: "{Name}", permanent: false }
       ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
+      simple_calculations: { columns: [num_views] }
       timestampable:  ~
 
   ContentCategory:
@@ -255,6 +257,7 @@ classes:
     propel_behaviors:
       archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
       ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
+      simple_calculations: { columns: [num_views] }
       timestampable:  ~
 
   PrivateMessage:
@@ -275,8 +278,8 @@ classes:
       created_at:    ~
 
     indexes:
-      private_message_I_1: [thread];
-      private_message_I_2: [receiver, sender];
+      private_message_I_1: [thread]
+      private_message_I_2: [receiver, sender]
 
     propel_behaviors:
       extra_properties: ~
