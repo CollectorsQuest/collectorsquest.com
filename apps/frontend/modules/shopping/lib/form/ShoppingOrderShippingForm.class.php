@@ -107,11 +107,14 @@ class ShoppingOrderShippingForm extends BaseForm
 
     $states = $this->getStatesForCountry($this->shopping_order->getShippingCountryIso3166());
 
-    // Setup only widget and use post validator because country can be changed
-    $this->widgetSchema['shipping_address']['state_region'] =  new sfWidgetFormChoice(
-      array('choices' => $states, 'label' => $this->widgetSchema['shipping_address']['state_region']->getLabel())
+    if (count($states))
+    {
+      // Setup only widget and use post validator because country can be changed
+      $this->widgetSchema['shipping_address']['state_region'] =  new sfWidgetFormChoice(
+        array('choices' => $states, 'label' => $this->widgetSchema['shipping_address']['state_region']->getLabel())
 
-    );
+      );
+    }
 
     $this->mergePostValidator(new sfValidatorCallback(array(
       'callback' => array($this, 'validateShippingCountryRegion'),

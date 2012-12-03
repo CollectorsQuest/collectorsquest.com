@@ -93,35 +93,36 @@
       $(this).button('loading');
     });
 
-    if ($('#shopping_order_shipping_address_state_region option').length == 0)
-    {
-      $('#shopping_order_shipping_address_state_region').attr('disabled', 'disabled')
-          .closest('.control-group').addClass('hide');
-    }
-
     var states_cache = {};
     $('#shopping_order_shipping_address_country_iso3166').change(function()
     {
-      var $state = $('#shopping_order_shipping_address_state_region');
-      $state.val('').closest('.controls').showLoading();
-      var country_code = $(this).val();
 
+      var $state = $('#shopping_order_shipping_address_state_region');
+      var country_code = $(this).val();
       var update_states = function(data)
       {
-        $state.removeAttr('disabled').closest('.controls').hideLoading();
-        if (data.length != 0)
+        var $input = $state;
+        if (data.length == 0)
         {
-          $state.find('option').remove();
-          $.each(data, function(key, value) {
-            $state.append($("<option></option>")
-                .attr("value", key).text(value));
-          });
-
-          $state.closest('.control-group').removeClass('hide');
+          if ($input[0].nodeName.toLowerCase() == 'select')
+          {
+            var $new_input = $('<input type="text" />')
+            $new_input.attr('name', $input.attr('name'));
+            $new_input.attr('id', $input.attr('id'));
+            $input.replaceWith($new_input);
+          }
         }
         else
         {
-          $state.attr('disabled', 'disabled').closest('.control-group').addClass('hide');
+          var $new_input = $('<select></select>')
+          $new_input.attr('name', $input.attr('name'));
+          $new_input.attr('id', $input.attr('id'));
+          $.each(data, function(key, value) {
+            $new_input.append($("<option></option>")
+                .attr("value", key).text(value));
+          });
+          $new_input.val($input.val());
+          $input.replaceWith($new_input);
         }
       };
 
@@ -147,29 +148,30 @@
       }
 
     });
-      <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
-      // Update right bar when need include or exclude tax to total amount
-      $('#shopping_order_shipping_address_country_iso3166, #shopping_order_shipping_address_state_region')
-      .live('change', function()
-      {
+
+  <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+    // Update right bar when need include or exclude tax to total amount
+    $('#shopping_order_shipping_address_country_iso3166, #shopping_order_shipping_address_state_region')
+        .live('change', function()
+        {
           //Hide or show tax information
           if ($('#shopping_order_shipping_address_country_iso3166').val() == '<?=
-                    $shopping_order->getCollectibleForSale()->getTaxCountry(); ?>'
-              <?php if ($shopping_order->getCollectibleForSale()->getTaxState()): ?>
-                  && $('#shopping_order_shipping_address_state_region').val() == '<?=
-                    $shopping_order->getCollectibleForSale()->getTaxState(); ?>'
-              <?php endif ?>
+            $shopping_order->getCollectibleForSale()->getTaxCountry(); ?>'
+            <?php if ($shopping_order->getCollectibleForSale()->getTaxState()): ?>
+              && $('#shopping_order_shipping_address_state_region').val() == '<?=
+            $shopping_order->getCollectibleForSale()->getTaxState(); ?>'
+            <?php endif ?>
               )
           {
-              $('.with_tax').removeClass('hide');
-              $('.no_tax').addClass('hide');
+            $('.with_tax').removeClass('hide');
+            $('.no_tax').addClass('hide');
           }
           else
           {
-              $('.with_tax').addClass('hide');
-              $('.no_tax').removeClass('hide');
+            $('.with_tax').addClass('hide');
+            $('.no_tax').removeClass('hide');
           }
-      });
-      <?php endif; ?>
+        });
+    <?php endif; ?>
   });
 </script>
