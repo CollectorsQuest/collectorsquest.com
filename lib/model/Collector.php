@@ -1646,16 +1646,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       ->count();
   }
 
-  public function getSellerSettingsTaxPercentage()
-  {
-    return (float) bcdiv((string) parent::getSellerSettingsTaxPercentage(), 1000, 3);
-  }
-
-  public function setSellerSettingsTaxPercentage($v)
-  {
-    parent::setSellerSettingsTaxPercentage((int) bcmul($v, 1000, 3));
-  }
-
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));
