@@ -39,11 +39,7 @@ class ajaxAction extends cqAjaxAction
     /**
      * Increment the number of views
      */
-    if (!$this->getUser()->getCollector()->isOwnerOf($collectible))
-    {
-      $collectible->setNumViews($collectible->getNumViews() + 1);
-      $collectible->save();
-    }
+    $this->incrementCounter($collectible, 'NumViews');
 
     $this->aetn_show = null;
     $aetn_shows = sfConfig::get('app_aetn_shows');
