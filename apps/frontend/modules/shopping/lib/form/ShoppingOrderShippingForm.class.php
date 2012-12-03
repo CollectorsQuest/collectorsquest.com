@@ -104,6 +104,20 @@ class ShoppingOrderShippingForm extends BaseForm
 
     $this->validatorSchema['buyer_email']->setMessage('invalid',
       'This email address does not seem to be valid format');
+
+    $states = $this->getStatesForCountry($this->shopping_order->getShippingCountryIso3166());
+
+    // Setup only widget and use post validator because country can be changed
+    $this->widgetSchema['shipping_address']['state_region'] =  new sfWidgetFormChoice(
+      array('choices' => $states, 'label' => $this->widgetSchema['shipping_address']['state_region']->getLabel())
+
+    );
+
+    $this->mergePostValidator(new sfValidatorCallback(array(
+      'callback' => array($this, 'validateShippingCountryRegion'),
+    ), array(
+      'invalid' => 'Sorry this State / Province is wrong',
+    )));
   }
 
   public function save()
@@ -179,6 +193,54 @@ class ShoppingOrderShippingForm extends BaseForm
     }
 
     return $values;
+  }
+
+  /**
+   * Validate State/Region for country
+   *
+   * @param sfValidatorBase $validator
+   * @param $values
+   * @param array $arguments
+   *
+   * @throws    sfValidatorErrorSchema
+   * @return    array() validated values
+   */
+  public function validateShippingCountryRegion(sfValidatorBase $validator, $values, $arguments = array())
+  {
+    if (!isset($values['shipping_address']))
+    {
+      return $values;
+    }
+    $states = $this->getStatesForCountry($values['shipping_address']['country_iso3166']);
+    // Validate only if ve have states for country at DB
+    if (count($states))
+    {
+      $state = $values['shipping_address']['state_region'];
+      if (!in_array($state, array_keys($states)))
+      {
+        throw new sfValidatorErrorSchema($validator, array(
+          'shipping_address' => new sfValidatorErrorSchema($validator, array(
+            'state_region' => new sfValidatorError($validator, 'invalid'),
+          )),
+        ));
+      }
+    }
+
+    return $values;
+  }
+
+  private function getStatesForCountry($country_iso3166)
+  {
+    $states = iceModelGeoRegionQuery::create()
+      ->orderByNameLatin()
+      ->useiceModelGeoCountryQuery()
+      ->filterByIso3166($country_iso3166)
+      ->endUse()
+      ->select(array('Id', 'NameLatin'))
+      ->find()
+      ->toKeyValue('Id', 'NameLatin');
+
+    return $states;
   }
 
 }

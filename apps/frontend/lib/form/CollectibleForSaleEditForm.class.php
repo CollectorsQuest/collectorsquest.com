@@ -7,6 +7,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
     parent::configure();
 
     $this->setupPriceField();
+    $this->setupTaxFields();
     $this->setupConditionField();
 
     // add a post validator
@@ -22,17 +23,27 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
         'callback' => array($this, 'validatePaypalDetailsSet'),
       ), array(
         'invalid'  => sprintf(
-          'You must <a href="%s">setup your store settings</a>
-           before you can sell in the Market',
-          cqContext::getInstance()->getController()->genUrl('@mycq_marketplace_settings')),
+          'You must <a href="%s">setup your store settings</a> before you can sell in the Market',
+          cqContext::getInstance()->getController()->genUrl('@mycq_marketplace_settings')
+        ),
       )
     ));
 
     $this->useFields(array(
       'is_ready',
       'price',
-      'condition'
+      'condition',
+      'tax_country',
+      'tax_state',
+      'tax'
     ));
+
+    $this->mergePostValidator(new cqValidatorCountryRegions(array(
+      'country_field' => 'tax_country',
+      'region_field' => 'tax_state',
+    ), array(
+      'invalid' => 'This does not seem to be a valid state or province',
+    )));
 
     $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
     $this->getWidgetSchema()->setNameFormat('collectible_for_sale[%s]');

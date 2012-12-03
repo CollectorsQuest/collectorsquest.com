@@ -141,6 +141,10 @@ class shoppingActions extends cqFrontendActions
 
         $shipping_address = new CollectorAddress();
         $shipping_address->setCountryIso3166($values['country_iso3166']);
+        if (isset($values['state_region']))
+        {
+          $shipping_address->setStateRegion($values['state_region']);
+        }
 
         /** @var $collectible_for_sale CollectibleForSale */
         $collectible_for_sale = CollectibleForSaleQuery::create()

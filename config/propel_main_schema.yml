@@ -118,17 +118,6 @@ classes:
     propel_behaviors:
       symfony:       { form: false, filter: false }
 
-  CollectorInterview:
-    columns:
-      id:  ~
-      collector_id:            { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: setnull }
-      collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
-      content_category_id:     { type: integer, foreignClass: ContentCategory, foreignReference: id, onDelete: setnull }
-      collection_id:           { type: integer, foreignClass: Collection, foreignReference: id, onDelete: setnull }
-      title:                   { type: varchar, size: 128, required: true, primaryString: true }
-      catch_phrase:            { type: varchar, size: 128, required: true }
-      is_active:               { type: boolean, default: false }
-      created_at:  ~
 
   ###
   # NOTE: Make SURE to update also CollectorGeocacheArchive in archive.schema.yml
@@ -165,7 +154,7 @@ classes:
     columns:
       id:  ~
       graph_id:                { type: integer, required: false, index: unique }
-      collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      collection_category_id:  { type: integer, required: false }
       content_category_id:     { type: integer, foreignClass: ContentCategory, foreignReference: id, onDelete: setnull, required: false }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
@@ -191,7 +180,7 @@ classes:
   ContentCategory:
     columns:
       id: ~
-      collection_category_id: { type: integer, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      collection_category_id: { type: integer, required: false }
       name:          { type: varchar, size: 64, required: true, primaryString: true }
       name_singular: { type: varchar, size: 64, required: false }
       slug:          { type: varchar, size: 64, required: true }
