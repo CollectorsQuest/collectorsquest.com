@@ -552,6 +552,20 @@ class mycqActions extends cqFrontendActions
           $this->redirect($url);
 
           break;
+
+        case 'togglePublic':
+          $collectible->setIsPublic($collectible->getIsPublic());
+          $collectible->save();
+
+          $this->getUser()->setFlash(
+            'success', sprintf(
+              'Collectible "%s" changed to %s.',
+              $collectible->getName(), $collectible->getIsPublic() ? 'Public' : 'Private'
+            )
+          );
+
+          $this->redirect($request->getReferer());
+          break;
       }
     }
 
