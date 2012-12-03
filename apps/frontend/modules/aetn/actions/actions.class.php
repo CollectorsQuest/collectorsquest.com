@@ -190,6 +190,8 @@ class aetnActions extends cqFrontendActions
       $collection->save();
     }
 
+    $this->collection = $collection;
+
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
 
