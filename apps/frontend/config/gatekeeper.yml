@@ -27,7 +27,7 @@ stg:
 next:
   pages:
     aetn_black_history: true
-    aetn_franks_picks: false
+    aetn_franks_picks: true
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
