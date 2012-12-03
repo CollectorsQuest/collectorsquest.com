@@ -118,10 +118,11 @@ class generalActions extends cqFrontendActions
       }
     }
 
-    if ($this->getRequest()->isMobileBrowser() || $this->getRequest()->getBrowserWidth() < 1024)
+    if ($this->getRequest()->isScreenFitLayout())
     {
       $this->setTemplate('indexMobile');
     }
+
     return sfView::SUCCESS;
   }
 

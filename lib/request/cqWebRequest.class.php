@@ -158,4 +158,35 @@ class cqWebRequest extends sfWebRequest
     $this->setBrowserWidth(max($cookie_data[2], $cookie_data[3]));
   }
 
+  /**
+   * Check if the client is on a mobile device with a small screen
+   *
+   * @return boolean
+   */
+  public function isSmallScreen()
+  {
+    if ($this->isMobileBrowser() && $this->getBrowserWidth() < 1024)
+    {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Check if the client is on a mobile device with a screen smaller than 1024
+   * so it can fit the desktop website version
+   *
+   * @return boolean
+   */
+  public function isScreenFitLayout()
+  {
+    if ($this->isMobileBrowser() && $this->getBrowserWidth() < 1024)
+    {
+      return true;
+    }
+
+    return false;
+  }
+
 }
