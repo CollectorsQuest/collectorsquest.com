@@ -71,11 +71,28 @@ class SimpleCalculationsBehavior extends Behavior
         }
     }
 
+    public function staticAttributes($builder)
+    {
+      $script = '';
+
+      $script .= $this->renderTemplate('peerAttributes', array(
+          'columns' => $this->getTableColumns(),
+      ));
+      $script .= $this->renderTemplate('peerGetSimpleCalculationsColumns', array(
+          'peerClassName' => $builder->getStubPeerBuilder()->getClassname(),
+      ));
+
+      return $script;
+    }
+
     public function objectMethods($builder)
     {
         $script = '';
 
-        foreach ($this->getParameter('columns') as $column) {
+        $script .= $this->addObjectUpdateSimpleCalculationsColumn($builder);
+        $script .= $this->addObjectResetSimpleCalcuationsColumn($builder);
+
+        foreach ($this->getTableColumns() as $column) {
             $script .= $this->addObjectIncrementColumn($column);
             $script .= $this->addObjectDecrementColumn($column);
             $script .= $this->addObjectResetColumn($column);
@@ -84,29 +101,59 @@ class SimpleCalculationsBehavior extends Behavior
         return $script;
     }
 
-    public function addObjectIncrementColumn($column)
+    public function addObjectUpdateSimpleCalculationsColumn($builder)
+    {
+        return $this->renderTemplate('objectUpdateSimpleCalculationsColumn', array(
+            'objectClass' => $this->getTable()->getPhpName(),
+            'peerClassName' => $builder->getStubPeerBuilder()->getClassname(),
+            'columns' => $this->getTableColumns(),
+        ));
+    }
+
+    public function addObjectResetSimpleCalcuationsColumn($builder)
+    {
+        return $this->renderTemplate('objectResetSimpleCalculationsColumn', array(
+            'objectClass' => $this->getTable()->getPhpName(),
+            'peerClassName' => $builder->getStubPeerBuilder()->getClassname(),
+            'columns' => $this->getTableColumns(),
+        ));
+    }
+
+    public function addObjectIncrementColumn(Column $column)
     {
         return $this->renderTemplate('objectIncrementColumn', array(
-            'column' => $this->getTable()->getColumn($column),
+            'column' => $column,
             'objectClass' => $this->getTable()->getPhpName(),
         ));
     }
 
-    public function addObjectDecrementColumn($column)
+    public function addObjectDecrementColumn(Column $column)
     {
         return $this->renderTemplate('objectDecrementColumn', array(
-            'column' => $this->getTable()->getColumn($column),
+            'column' => $column,
             'objectClass' => $this->getTable()->getPhpName(),
         ));
     }
 
-    public function addObjectResetColumn($column)
+    public function addObjectResetColumn(Column $column)
     {
         return $this->renderTemplate('objectResetColumn', array(
-            'column' => $this->getTable()->getColumn($column),
+            'column' => $column,
             'objectClass' => $this->getTable()->getPhpName(),
         ));
     }
 
+    protected function getTableColumns()
+    {
+      if (!isset($this->table_columns))
+      {
+        foreach ($this->getParameter('columns') as $column_name)
+        {
+          $this->table_columns[] = $this->getTable()->getColumn($column_name);
+        }
+      }
+
+      return $this->table_columns;
+    }
 
 }
