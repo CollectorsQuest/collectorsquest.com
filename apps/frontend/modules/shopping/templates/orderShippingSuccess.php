@@ -101,31 +101,30 @@
       var country_code = $(this).val();
       var update_states = function(data)
       {
-        var $input = $state;
         if (data.length == 0)
         {
-          if ($input[0].nodeName.toLowerCase() == 'select')
+          if ($state[0].nodeName.toLowerCase() == 'select')
           {
             var $new_input = $('<input type="text" />')
-            $new_input.attr('name', $input.attr('name'));
-            $new_input.attr('id', $input.attr('id'));
-            $input.replaceWith($new_input);
+            $new_input.attr('name', $state.attr('name'));
+            $new_input.attr('id', $state.attr('id'));
+            $state.replaceWith($new_input);
           }
         }
         else
         {
           var $new_input = $('<select></select>')
-          $new_input.attr('name', $input.attr('name'));
-          $new_input.attr('id', $input.attr('id'));
+          $new_input.attr('name', $state.attr('name'));
+          $new_input.attr('id', $state.attr('id'));
           $.each(data, function(key, value) {
             $new_input.append($("<option></option>")
                 .attr("value", key).text(value));
           });
-          $new_input.val($input.val());
-          $input.replaceWith($new_input);
+          $new_input.val($state.val());
+          $state.replaceWith($new_input);
         }
       };
-
+      $state.find('option').remove();
       if (country_code in states_cache)
       {
         update_states(states_cache[country_code]);
@@ -172,6 +171,7 @@
             $('.no_tax').removeClass('hide');
           }
         });
+    $('#shopping_order_shipping_address_state_region').change();
     <?php endif; ?>
   });
 </script>
