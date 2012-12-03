@@ -6,7 +6,7 @@
 <div id="HolidayMarketHeader">
   <?php if ($show_holiday_adv): ?>
   <div class="holiday-marker-adv-dialog-below-menu" >
-    <a href="<?php echo url_for('@seller_signup?ref=marketplace_adv'); ?>" class="link" title="Sell You Stuff with Us"></a>
+    <a href="<?php echo url_for('@seller_signup?ref=mp_banner'); ?>" class="link" title="Sell You Stuff with Us"></a>
     <a class="icon-remove close-btn" title="close"></a>
   </div>
   <?php endif; ?>
