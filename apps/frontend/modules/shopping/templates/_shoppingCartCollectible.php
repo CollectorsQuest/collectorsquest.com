@@ -177,9 +177,9 @@
                 function()
                 {
                   $container.hideLoading();
-                  $container.find('tr.rainbow-dash')
-                      .animate( { backgroundColor: "#ffffcc" }, 1)
-                      .animate( { backgroundColor: "#f3f1f1" }, 1500);
+//                  $container.find('tr.rainbow-dash')
+//                      .animate( { backgroundColor: "#ffffcc" }, 1)
+//                      .animate( { backgroundColor: "#f3f1f1" }, 1500);
                 }
             );
           }
