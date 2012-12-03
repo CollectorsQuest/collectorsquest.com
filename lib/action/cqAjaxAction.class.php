@@ -11,6 +11,14 @@ abstract class cqAjaxAction extends IceAjaxAction
 {
 
   /**
+   * @return Collector
+   */
+  protected function getCollector()
+  {
+    return $this->getUser()->getCollector();
+  }
+
+  /**
    * Increments a counter column using SimpleCalculationsBehavior and iceLibsPlugin
    *
    * The column is incremented only if the currently logged in collector is not the
