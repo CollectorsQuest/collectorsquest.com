@@ -77,6 +77,35 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     $this->getObject()->setPrice($v);
   }
 
+  public function setupTaxFields()
+  {
+    $c = new Criteria();
+    // Restrict to "United States" only
+    $c->add(iceModelGeoCountryPeer::ID, 226);
+
+    $this->widgetSchema['tax_country']= new sfWidgetFormPropelChoice(array(
+      'model' => 'iceModelGeoCountry', 'add_empty' => true, 'key_method' => 'getIso3166',
+      'criteria' => $c
+    ));
+    $this->validatorSchema['tax_country'] = new sfValidatorPropelChoice(array(
+      'model' => 'iceModelGeoCountry', 'column' => 'iso3166', 'required' => false
+    ));
+
+    $this->widgetSchema['tax_state']->setOption('add_empty', true);
+
+    $this->widgetSchema['tax'] = new sfWidgetFormInputText(array(), array('required' => 'false'));
+    $this->validatorSchema['tax'] = new cqValidatorPrice(
+      array('required' => false, 'max' => 50), array('max' => 'You cannot set Tax more than 50%',
+        'invalid' => 'The tax percentage you have specified is not valid')
+    );
+    $this->setDefault('tax', sprintf('%01.2f', $this->getObject()->getTaxPercentage()));
+  }
+
+  public function updateTaxColumn($v)
+  {
+    $this->getObject()->setTaxPercentage($v);
+  }
+
   public function validatePriceField($validator, $values)
   {
     if (!empty($values['is_ready']))

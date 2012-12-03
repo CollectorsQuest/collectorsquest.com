@@ -56,6 +56,10 @@ class CollectibleEditForm extends BaseCollectibleForm
       if (!$collectibleForSale)
       {
         $collectibleForSale = new CollectibleForSale();
+        $collectibleForSale
+          ->setTaxCountry($collector->getSellerSettingsTaxCountry())
+          ->setTaxState($collector->getSellerSettingsTaxState())
+          ->setTaxPercentage($collector->getSellerSettingsTaxPercentage());
         $collectibleForSale->setCollectible($this->getObject());
       }
 

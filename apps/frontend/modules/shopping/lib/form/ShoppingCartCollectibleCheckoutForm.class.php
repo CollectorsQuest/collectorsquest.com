@@ -26,11 +26,74 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
       '_nonce_token'      => new IceValidatorNonceToken(array('action' => 'checkout', 'salt' => $_salt))
     ));
 
+    $this->setupStateField();
+
     // Default to United States
     $this->setDefault('country_iso3166', $this->getObject()->getShippingCountryIso3166());
 
     $this->widgetSchema->setNameFormat('checkout[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+  }
+
+  private function setupStateField()
+  {
+    if ($this->getObject()->getCollectible())
+    {
+
+      /* @var $collectible_for_sale CollectibleForSale */
+      $collectible_for_sale = $this->getObject()->getCollectibleForSale();
+      // Show state field only if
+      // collectible with tax and country is same and tax_state definite
+      if (
+        !$collectible_for_sale->getTaxPercentage()
+        || $collectible_for_sale->getTaxCountry() != $this->getObject()->getShippingCountryIso3166()
+        || !$collectible_for_sale->getTaxState()
+      )
+      {
+        return;
+      }
+      $states = $this->getStatesForCountry($this->getObject()->getShippingCountryIso3166());
+      if (count($states))
+      {
+        $this->widgetSchema['state_region'] =  new sfWidgetFormChoice(
+          array('choices' => $states), array('style' => 'width: 100%;')
+        );
+        $this->validatorSchema['state_region'] = new sfValidatorChoice(
+          array('choices' => $states, 'required' => true)
+        );
+      }
+      else
+      {
+        $this->widgetSchema['state_region'] =  new sfWidgetFormInputText(
+          array(), array('style' => 'width: 91%;')
+        );
+        $this->validatorSchema['state_region'] = new sfValidatorString(
+          array('max_length' => 100, 'required' => false)
+        );
+      }
+      $this->setDefault('state_region', $this->getObject()->getShippingStateRegion());
+    }
+    else
+    {
+      $this->widgetSchema['state_region'] =  new sfWidgetFormInputHidden();
+      $this->validatorSchema['state_region'] = new sfValidatorString(
+        array('max_length' => 100, 'required' => false)
+      );
+    }
+  }
+
+  private function getStatesForCountry($country_iso3166)
+  {
+    $states = iceModelGeoRegionQuery::create()
+      ->orderByNameLatin()
+      ->useiceModelGeoCountryQuery()
+        ->filterByIso3166($country_iso3166)
+      ->endUse()
+      ->select(array('Id', 'NameLatin'))
+      ->find()
+      ->toKeyValue('Id', 'NameLatin');
+
+    return $states;
   }
 
 }

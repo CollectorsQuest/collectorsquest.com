@@ -154,7 +154,8 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
         $obj->save();
       }
     }
-
+    /* @var $collector Collector */
+    $collector = $collectible->getCollector();
     if (!empty($values['is_ready']))
     {
       /** @var $collectible_for_sale CollectibleForSale */
@@ -172,6 +173,10 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
       $collectible_for_sale->setIsReady(false);
       $collectible_for_sale->setCondition(null);
       $collectible_for_sale->setQuantity(1);
+      $collectible_for_sale
+        ->setTaxCountry($collector->getSellerSettingsTaxCountry())
+        ->setTaxState($collector->getSellerSettingsTaxState())
+        ->setTaxPercentage($collector->getSellerSettingsTaxPercentage());
       $collectible_for_sale->save();
     }
 

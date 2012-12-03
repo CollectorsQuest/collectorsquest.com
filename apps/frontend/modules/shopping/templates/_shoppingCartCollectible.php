@@ -55,7 +55,17 @@
               )); ?>
             </td>
           </tr>
-          <tr>
+          <?php if (isset($form['state_region'])): ?>
+            <tr>
+                <td colspan="2">
+                    State:<br/>
+                  <?= $form['state_region']->render(array(
+                  'class' => 'collectible-state',
+                  'data-collectible-id' => $shopping_cart_collectible->getCollectibleId(),
+                )); ?>
+                </td>
+            </tr>
+          <?php endif; ?>
           <tr>
             <td>Price:</td>
             <td class="text-right">
@@ -63,6 +73,15 @@
               <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
             </td>
           </tr>
+          <?php if (0 != (int) $shopping_cart_collectible->getTaxAmount()): ?>
+            <tr>
+                <td>Tax (<?= $shopping_cart_collectible->getCollectibleForSale()->getTaxPercentage() ?> %):</td>
+                <td class="text-right">
+                  <?= money_format('%.2n', (float) $shopping_cart_collectible->getTaxAmount()); ?>
+                    <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+                </td>
+            </tr>
+          <?php endif; ?>
           <tr>
             <td>Shipping:</td>
             <td class="text-right">
@@ -99,41 +118,72 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function()
-{
-  'use strict';
-
-  var $container = $('#shopping_cart_collectible_<?= $shopping_cart_collectible->getCollectibleId(); ?>');
-
-  $container.find('.collectible-country').on('change', function()
+  $(document).ready(function()
   {
-    var $this = $(this);
+    'use strict';
 
-    $container.showLoading();
+    var $container = $('#shopping_cart_collectible_<?= $shopping_cart_collectible->getCollectibleId(); ?>');
 
-    // execute the JSON request only if a valid value is selected
-    $this.val() && $.getJSON(
-      '<?= url_for('ajax_shopping', array('section'=>'ShoppingCartCollectible', 'page' => 'UpdateCountry')) ?>',
-      {
-        collectible_id:  $this.data('collectible-id'),
-        country_iso3166: $this.val()
-      },
-      function (data)
-      {
-        $container
-          .load(
-            '<?= url_for('@ajax_shopping?section=component&page=shoppingCartCollectible&collectible_id='. $shopping_cart_collectible->getCollectibleId())?>',
-            function()
-            {
-              $container.hideLoading();
-              $container.find('tr.rainbow-dash')
-                .animate( { backgroundColor: "#ffffcc" }, 1)
-                .animate( { backgroundColor: "#f3f1f1" }, 1500);
-            }
-          );
-      }
-    ); // getJSON()
-  }); // on country change
+    $container.find('.collectible-country').on('change', function()
+    {
+      var $this = $(this);
 
-});
+      $container.showLoading();
+
+      // execute the JSON request only if a valid value is selected
+      $this.val() && $.getJSON(
+          '<?= url_for('ajax_shopping', array('section'=>'ShoppingCartCollectible', 'page' => 'UpdateCountry')) ?>',
+          {
+            collectible_id:  $this.data('collectible-id'),
+            country_iso3166: $this.val()
+          },
+          function (data)
+          {
+            $container
+                .load(
+                '<?= url_for('@ajax_shopping?section=component&page=shoppingCartCollectible&collectible_id='.
+                  $shopping_cart_collectible->getCollectibleId())?>',
+                function()
+                {
+                  $container.hideLoading();
+                  $container.find('tr.rainbow-dash')
+                      .animate( { backgroundColor: "#ffffcc" }, 1)
+                      .animate( { backgroundColor: "#f3f1f1" }, 1500);
+                }
+            );
+          }
+      ); // getJSON()
+    }); // on country change
+
+    $container.find('.collectible-state').on('change', function()
+    {
+      var $this = $(this);
+
+      $container.showLoading();
+
+      // execute the JSON request only if a valid value is selected
+      $this.val() && $.getJSON(
+          '<?= url_for('ajax_shopping', array('section'=>'ShoppingCartCollectible', 'page' => 'UpdateState')) ?>',
+          {
+            collectible_id:  $this.data('collectible-id'),
+            state: $this.val()
+          },
+          function (data)
+          {
+            $container
+                .load(
+                '<?= url_for('@ajax_shopping?section=component&page=shoppingCartCollectible&collectible_id=' .
+                  $shopping_cart_collectible->getCollectibleId())?>',
+                function()
+                {
+                  $container.hideLoading();
+                  $container.find('tr.rainbow-dash')
+                      .animate( { backgroundColor: "#ffffcc" }, 1)
+                      .animate( { backgroundColor: "#f3f1f1" }, 1500);
+                }
+            );
+          }
+      ); // getJSON()
+    }); // on country change
+  });
 </script>
