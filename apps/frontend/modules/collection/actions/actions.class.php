@@ -76,11 +76,7 @@ class collectionActions extends cqFrontendActions
       }
     }
 
-    if (!$this->getCollector()->isOwnerOf($collection))
-    {
-      $collection->setNumViews($collection->getNumViews() + 1);
-      $collection->save();
-    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
@@ -203,11 +199,7 @@ class collectionActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-    if (!$this->getCollector()->isOwnerOf($collectible))
-    {
-      $collectible->setNumViews($collectible->getNumViews() + 1);
-      $collectible->save();
-    }
+    $this->incrementCounter($collectible, 'NumViews');
 
     /**
      * Figure out the previous and the next item in the collection
