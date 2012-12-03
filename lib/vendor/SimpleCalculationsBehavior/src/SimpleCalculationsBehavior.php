@@ -77,6 +77,7 @@ class SimpleCalculationsBehavior extends Behavior
 
         foreach ($this->getParameter('columns') as $column) {
             $script .= $this->addObjectIncrementColumn($column);
+            $script .= $this->addObjectDecrementColumn($column);
             $script .= $this->addObjectResetColumn($column);
         }
 
@@ -86,6 +87,14 @@ class SimpleCalculationsBehavior extends Behavior
     public function addObjectIncrementColumn($column)
     {
         return $this->renderTemplate('objectIncrementColumn', array(
+            'column' => $this->getTable()->getColumn($column),
+            'objectClass' => $this->getTable()->getPhpName(),
+        ));
+    }
+
+    public function addObjectDecrementColumn($column)
+    {
+        return $this->renderTemplate('objectDecrementColumn', array(
             'column' => $this->getTable()->getColumn($column),
             'objectClass' => $this->getTable()->getPhpName(),
         ));
