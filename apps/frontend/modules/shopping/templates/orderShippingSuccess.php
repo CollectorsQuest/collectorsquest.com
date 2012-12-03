@@ -113,7 +113,7 @@
         }
         else
         {
-          var $new_input = $('<select></select>')
+          var $new_input = $('<select><option value="0"></option></select>')
           $new_input.attr('name', $state.attr('name'));
           $new_input.attr('id', $state.attr('id'));
           $.each(data, function(key, value) {

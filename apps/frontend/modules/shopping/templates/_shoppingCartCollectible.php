@@ -57,13 +57,13 @@
           </tr>
           <?php if (isset($form['state_region'])): ?>
             <tr>
-                <td colspan="2">
-                    State:<br/>
-                  <?= $form['state_region']->render(array(
+              <td colspan="2">
+                State: <small>(for tax calculation)</small><br/>
+                <?= $form['state_region']->render(array(
                   'class' => 'collectible-state',
                   'data-collectible-id' => $shopping_cart_collectible->getCollectibleId(),
                 )); ?>
-                </td>
+              </td>
             </tr>
           <?php endif; ?>
           <tr>
@@ -75,11 +75,11 @@
           </tr>
           <?php if (0 != (int) $shopping_cart_collectible->getTaxAmount()): ?>
             <tr>
-                <td>Tax (<?= $shopping_cart_collectible->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
-                <td class="text-right">
-                  <?= money_format('%.2n', (float) $shopping_cart_collectible->getTaxAmount()); ?>
-                    <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
-                </td>
+              <td>Tax (<?= $shopping_cart_collectible->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
+              <td class="text-right">
+                <?= money_format('%.2n', (float) $shopping_cart_collectible->getTaxAmount()); ?>
+                <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+              </td>
             </tr>
           <?php endif; ?>
           <tr>

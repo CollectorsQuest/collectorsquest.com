@@ -111,8 +111,10 @@ class ShoppingOrderShippingForm extends BaseForm
     {
       // Setup only widget and use post validator because country can be changed
       $this->widgetSchema['shipping_address']['state_region'] =  new sfWidgetFormChoice(
-        array('choices' => $states, 'label' => $this->widgetSchema['shipping_address']['state_region']->getLabel())
-
+        array(
+          'choices' => array(0 => null) + $states,
+          'label' => $this->widgetSchema['shipping_address']['state_region']->getLabel()
+        ), array('required' => 'required')
       );
     }
 
