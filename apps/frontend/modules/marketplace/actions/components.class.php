@@ -205,6 +205,17 @@ class marketplaceComponents extends cqFrontendComponents
       );
     }
 
+    $this->show_holiday_adv = true;
+    $user = $this->getUser();
+
+    if (
+      $user->getAttribute('closed_adv_dialog', false, 'marketplace') ||
+      ($user->getSeller() && $user->getSeller()->hasPackageCredits())
+    )
+    {
+      $this->show_holiday_adv = false;
+    }
+
     return sfView::SUCCESS;
   }
 
