@@ -2,11 +2,25 @@
 
 class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
 {
+  /* @var string */
   private $_salt_base = 'JpuD7HrhgYNMeem2nvsxLeddRMhWVJtP';
+
+  /* @var array */
+  private $_geo_data = array();
 
   public function setup()
   {
     parent::setup();
+
+    // Let's try to guess the
+    if (function_exists('geoip_region_by_name'))
+    {
+      $this->_geo_data = @geoip_region_by_name(cqStatic::getUserIpAddress());
+    }
+    else
+    {
+      $this->_geo_data = array('country' => 'US', 'region' => null);
+    }
 
     $_salt = $this->getObject()->getCollectibleId() .'-'. $this->_salt_base;
 
@@ -26,10 +40,10 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
       '_nonce_token'      => new IceValidatorNonceToken(array('action' => 'checkout', 'salt' => $_salt))
     ));
 
-    $this->setupStateField();
-
     // Default to United States
     $this->setDefault('country_iso3166', $this->getObject()->getShippingCountryIso3166());
+
+    $this->setupStateField();
 
     $this->widgetSchema->setNameFormat('checkout[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
@@ -39,9 +53,9 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
   {
     if ($this->getObject()->getCollectible())
     {
-
       /* @var $collectible_for_sale CollectibleForSale */
       $collectible_for_sale = $this->getObject()->getCollectibleForSale();
+
       // Show state field only if
       // collectible with tax and country is same and tax_state definite
       if (
@@ -52,14 +66,14 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
       {
         return;
       }
-      $states = $this->getStatesForCountry($this->getObject()->getShippingCountryIso3166());
-      if (count($states))
+
+      if ($states = $this->getStatesForCountry($this->getObject()->getShippingCountryIso3166()))
       {
         $this->widgetSchema['state_region'] =  new sfWidgetFormChoice(
-          array('choices' => $states), array('style' => 'width: 100%;')
+          array('choices' => $states + $states), array('style' => 'width: 100%;')
         );
         $this->validatorSchema['state_region'] = new sfValidatorChoice(
-          array('choices' => $states, 'required' => true)
+          array('choices' => array_keys($states), 'required' => true)
         );
       }
       else
@@ -71,7 +85,8 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
           array('max_length' => 100, 'required' => false)
         );
       }
-      $this->setDefault('state_region', $this->getObject()->getShippingStateRegion());
+
+      $this->setDefault('state_region', $this->getObject()->getShippingStateRegion() ?: $this->_geo_data['region']);
     }
     else
     {
