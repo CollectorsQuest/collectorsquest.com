@@ -5,22 +5,9 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
   /* @var string */
   private $_salt_base = 'JpuD7HrhgYNMeem2nvsxLeddRMhWVJtP';
 
-  /* @var array */
-  private $_geo_data = array();
-
   public function setup()
   {
     parent::setup();
-
-    // Let's try to guess the
-    if (function_exists('geoip_region_by_name'))
-    {
-      $this->_geo_data = @geoip_region_by_name(cqStatic::getUserIpAddress());
-    }
-    else
-    {
-      $this->_geo_data = array('country' => 'US', 'region' => null);
-    }
 
     $_salt = $this->getObject()->getCollectibleId() .'-'. $this->_salt_base;
 
@@ -70,7 +57,7 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
       if ($states = $this->getStatesForCountry($this->getObject()->getShippingCountryIso3166()))
       {
         $this->widgetSchema['state_region'] =  new sfWidgetFormChoice(
-          array('choices' => $states + $states), array('style' => 'width: 100%;')
+          array('choices' => array(0 => null) + $states), array('style' => 'width: 100%;')
         );
         $this->validatorSchema['state_region'] = new sfValidatorChoice(
           array('choices' => array_keys($states), 'required' => true)
@@ -86,7 +73,7 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
         );
       }
 
-      $this->setDefault('state_region', $this->getObject()->getShippingStateRegion() ?: $this->_geo_data['region']);
+      $this->setDefault('state_region', $this->getObject()->getShippingStateRegion());
     }
     else
     {
