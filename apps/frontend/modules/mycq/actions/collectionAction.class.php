@@ -221,7 +221,14 @@ class collectionAction extends cqFrontendAction
     );
     $con->exec($sql);
 
-    $this->collection = CollectionPeer::retrieveByPK($this->collection->getId());
+    $sql = sprintf(
+      'UPDATE %s SET %s = NOT %s WHERE %s = %d',
+      CollectorCollectionPeer::TABLE_NAME, CollectorCollectionPeer::IS_PUBLIC,
+      CollectorCollectionPeer::IS_PUBLIC, CollectorCollectionPeer::ID, $this->collection->getId()
+    );
+    $con->exec($sql);
+
+    $this->collection = CollectorCollectionPeer::retrieveByPK($this->collection->getId());
 
     $this->getUser()->setFlash(
       'success', sprintf(

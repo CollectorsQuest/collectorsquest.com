@@ -554,17 +554,8 @@ class mycqActions extends cqFrontendActions
           break;
 
         case 'togglePublic':
-          $collectible->setIsPublic($collectible->getIsPublic());
-          $collectible->save();
-
-          $this->getUser()->setFlash(
-            'success', sprintf(
-              'Collectible "%s" changed to %s.',
-              $collectible->getName(), $collectible->getIsPublic() ? 'Public' : 'Private'
-            )
-          );
-
-          $this->redirect($request->getReferer());
+          $this->collectible = $collectible;
+          return $this->executeCollectibleTogglePublic($request);
           break;
       }
     }
@@ -1115,6 +1106,40 @@ class mycqActions extends cqFrontendActions
     $this->collector = $collector;
     $this->collector_form = $collector_form;
 
+    return sfView::SUCCESS;
+  }
+
+
+  /**
+   * @param     sfWebRequest  $request
+   * @return    string
+   */
+  private function executeCollectibleTogglePublic(sfWebRequest $request)
+  {
+    if (!$this->getUser()->isAdmin())
+    {
+      $this->getResponse()->setStatusCode(403);
+      return sfView::ERROR;
+    }
+
+    $con = Propel::getConnection();
+    $sql = sprintf(
+      'UPDATE %s SET %s = NOT %s WHERE %s = %d',
+      CollectiblePeer::TABLE_NAME, CollectiblePeer::IS_PUBLIC, CollectiblePeer::IS_PUBLIC,
+      CollectiblePeer::ID, $this->collectible->getId()
+    );
+    $con->exec($sql);
+
+    $this->collectible = CollectiblePeer::retrieveByPK($this->collectible->getId());
+
+    $this->getUser()->setFlash(
+      'success', sprintf(
+        'Collectible "%s" changed to %s',
+        $this->collectible->getName(), $this->collectible->getIsPublic() ? 'Public' : 'Private'
+      )
+    );
+
+    $this->redirect($request->getReferer());
     return sfView::SUCCESS;
   }
 
