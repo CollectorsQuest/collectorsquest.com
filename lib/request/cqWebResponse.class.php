@@ -1,8 +1,11 @@
 <?php
 
-class cqWebResponse extends iceWebResponse
+class cqWebResponse extends IceWebResponse
 {
-  /** @var string */
+  /* @var string */
+  protected $_context = 'collectorsquest';
+
+  /* @var string */
   private $_canonical_url = null;
 
   /**
