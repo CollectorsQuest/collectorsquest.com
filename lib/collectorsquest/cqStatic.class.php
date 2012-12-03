@@ -26,7 +26,7 @@ class cqStatic extends IceStatic
       $servers = array_merge(
         array(
           'cq-memcached' => array(
-            'host' => 'ice-memcached', 'port' => 11211,
+            'host' => 'cache.e0sqlk.cfg.use1.cache.amazonaws.com', 'port' => 11211,
             'persistent' => true, 'weight' => 1
           )
         ),
