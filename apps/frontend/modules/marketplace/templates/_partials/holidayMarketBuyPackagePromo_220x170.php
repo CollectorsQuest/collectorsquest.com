@@ -8,9 +8,9 @@
     $rand = rand(1, 2);
 
     cq_ad_slot(
-      cq_image_tag('headlines/20121018_220x170_banner-' . $rand . '.png',
+      cq_image_tag('headlines/20121018_222x176_banner-' . $rand . '.png',
         array(
-          'width' => '222', 'height' => '175',
+          'width' => '222', 'height' => '176',
           'alt' => 'Sell you stuff in our market and make $$ for the holidays!'
         )
       ),
