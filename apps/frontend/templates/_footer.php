@@ -59,7 +59,7 @@
         <?php
           if (!$sf_user->isAuthenticated())
           {
-            if ($sf_request->isMobile() || $sf_request->getClientWidth() < 767)
+            if ($sf_request->isMobileBrowser() || $sf_request->getBrowserWidth() < 767)
             {
               cq_ad_slot(
                 cq_image_tag('headlines/2012-06-24_CQGuide_610x107.png',

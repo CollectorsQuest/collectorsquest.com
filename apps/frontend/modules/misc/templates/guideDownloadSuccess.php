@@ -25,7 +25,7 @@
               </a>
             </div>
           </div>
-          <?php if (!$sf_request->isMobile()): ?>
+          <?php if (!$sf_request->isMobileBrowser()): ?>
           <br/><br/><br/>
           <p>
             Share the "<?= link_to('The Essential Guide to Collecting', '@misc_guide_to_collecting') ?>"

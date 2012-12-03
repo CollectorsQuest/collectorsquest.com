@@ -7,13 +7,25 @@ class cqWebRequest extends sfWebRequest
    *
    * @var null|boolean
    */
-  protected $is_mobile = null;
+  protected $is_mobile_browser = null;
+
+  /*
+   * width of browser screen in pixels
+   * @var $browser_width integer
+   */
+  protected $browser_width = 0;
 
   /*
    * width of client screen in pixels
-   * @var $client_width integer
+   * @var $screen_width integer
    */
-  protected $client_width = 0;
+  protected $screen_width = 0;
+
+   /*
+   * height of client screen in pixels
+   * @var $screen_height integer
+   */
+  protected $screen_height = 0;
 
   /**
    * Return the request protocol
@@ -42,9 +54,9 @@ class cqWebRequest extends sfWebRequest
     }
   }
 
-  public function setIsMobile($value)
+  public function setIsMobileBrowser($value)
   {
-    $this->is_mobile = $value;
+    $this->is_mobile_browser = $value;
   }
 
   /**
@@ -52,10 +64,10 @@ class cqWebRequest extends sfWebRequest
    *
    * @return boolean
    */
-  public function isMobile()
+  public function isMobileBrowser()
   {
-    return $this->is_mobile !== null ?
-      (boolean) $this->is_mobile :
+    return $this->is_mobile_browser !== null ?
+      (boolean) $this->is_mobile_browser :
       (boolean) @$_SERVER['mobile'];
   }
 
@@ -70,12 +82,22 @@ class cqWebRequest extends sfWebRequest
    */
   public function isLazyLoadEnabled()
   {
-    return !$this->isMobile() && !$this->isXmlHttpRequest() && 'all' !== $this->getParameter('show');
+    return !$this->isMobileBrowser() && !$this->isXmlHttpRequest() && 'all' !== $this->getParameter('show');
   }
 
-  public function setClientWidth($value)
+  public function setBrowserWidth($value)
   {
-    $this->client_width = $value;
+    $this->browser_width = $value;
+  }
+
+  public function setScreenWidth($value)
+  {
+    $this->screen_width = $value;
+  }
+
+  public function setScreenHeight($value)
+  {
+    $this->screen_height = $value;
   }
 
   /**
@@ -83,9 +105,29 @@ class cqWebRequest extends sfWebRequest
    *
    * @return integer
    */
-  public function getClientWidth()
+  public function getBrowserWidth()
   {
-    return $this->client_width;
+    return $this->browser_width;
+  }
+
+  /**
+   * Get the width of client browser in pixels
+   *
+   * @return integer
+   */
+  public function getScreenWidth()
+  {
+    return $this->screen_width;
+  }
+
+  /**
+   * Get the height of client browser in pixels
+   *
+   * @return integer
+   */
+  public function getScreenHeight()
+  {
+    return $this->screen_height;
   }
 
 }

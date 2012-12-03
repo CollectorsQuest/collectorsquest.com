@@ -118,7 +118,7 @@ class generalActions extends cqFrontendActions
       }
     }
 
-    if ($this->getRequest()->isMobile() || $this->getRequest()->getClientWidth() < 1024)
+    if ($this->getRequest()->isMobileBrowser() || $this->getRequest()->getBrowserWidth() < 1024)
     {
       $this->setTemplate('indexMobile');
     }

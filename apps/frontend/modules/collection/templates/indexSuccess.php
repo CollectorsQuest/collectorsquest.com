@@ -45,7 +45,7 @@ $height_main_div->value = 116;
         </li>
       </ul>
     </div>
-    <?php if (!$sf_request->isMobile()): ?>
+    <?php if (!$sf_request->isMobileBrowser()): ?>
     <div id="social-sharing" class="pull-right share">
       <!-- AddThis Button BEGIN -->
       <a class="btn-lightblue btn-mini-social addthis_button_email">

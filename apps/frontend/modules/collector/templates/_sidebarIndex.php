@@ -25,7 +25,7 @@
         </li>
       </ul>
     </div>
-    <?php if (!$sf_request->isMobile()): ?>
+    <?php if (!$sf_request->isMobileBrowser()): ?>
     <div id="social-sharing" class="pull-right share">
       <?php // removing the addthis_button_email causes a JS error - no toolbar displayed ?>
       <a class="addthis_button_email" style="display: none;"></a>
