@@ -56,6 +56,10 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
 
       if ($states = $this->getStatesForCountry($this->getObject()->getShippingCountryIso3166()))
       {
+        if (!$this->getObject()->getShippingStateRegion())
+        {
+          $this->getObject()->setShippingStateRegion(key($states))->updateTaxAmount();
+        }
         $this->widgetSchema['state_region'] =  new sfWidgetFormChoice(
           array('choices' => array(0 => null) + $states), array('style' => 'width: 100%;')
         );
