@@ -20,7 +20,7 @@
     </tr>
     <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
       <tr class="with_tax<?= 0 == (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>">
-          <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage() ?> %):</td>
+          <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
           <td class="text-right">
               <?= money_format('%.2n', (float) $shopping_order->getTaxAmount('float',
             $shopping_order->getCollectibleForSale()->getTaxPercentage())); ?>

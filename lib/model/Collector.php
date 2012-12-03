@@ -1648,12 +1648,12 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
   public function getSellerSettingsTaxPercentage()
   {
-    return (float) bcdiv((string) parent::getSellerSettingsTaxPercentage(), 100, 2);
+    return (float) bcdiv((string) parent::getSellerSettingsTaxPercentage(), 1000, 3);
   }
 
   public function setSellerSettingsTaxPercentage($v)
   {
-    parent::setSellerSettingsTaxPercentage((int) bcmul($v, 100));
+    parent::setSellerSettingsTaxPercentage((int) bcmul($v, 1000, 3));
   }
 
 }

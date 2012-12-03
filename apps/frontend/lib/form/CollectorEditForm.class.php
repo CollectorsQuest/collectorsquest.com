@@ -282,8 +282,7 @@ class CollectorEditForm extends CollectorForm
     if (isset($this->widgetSchema['seller_settings_tax_percentage']))
     {
       $this->getObject()->setSellerSettingsTaxPercentage(
-        isset($values['seller_settings_tax_percentage'])
-          ? (integer) $values['seller_settings_tax_percentage'] : null
+        isset($values['seller_settings_tax_percentage']) ? $values['seller_settings_tax_percentage'] : null
       );
     }
 
@@ -357,7 +356,7 @@ class CollectorEditForm extends CollectorForm
       'seller_settings_additional_policies'   => $this->getObject()->getSellerSettingsAdditionalPolicies(),
       'seller_settings_tax_country'           => $this->getObject()->getSellerSettingsTaxCountry(),
       'seller_settings_tax_state'             => $this->getObject()->getSellerSettingsTaxState(),
-      'seller_settings_tax_percentage'        => sprintf('%01.2f', $this->getObject()->getSellerSettingsTaxPercentage()),
+      'seller_settings_tax_percentage'        => sprintf('%01.3f', $this->getObject()->getSellerSettingsTaxPercentage()),
     )));
   }
 
@@ -587,8 +586,11 @@ class CollectorEditForm extends CollectorForm
       array('label' => 'Percentage'), array('required' => $required)
     );
     $this->validatorSchema['seller_settings_tax_percentage'] = new cqValidatorPrice(
-      array('required' => false, 'max' => 50), array('max' => 'You cannot set Tax more than 50%',
-        'invalid' => 'The tax percentage you have specified is not valid')
+      array('required' => false, 'max' => 50, 'scale' => 3),
+      array(
+        'max' => 'You cannot set Tax more than 50%',
+        'invalid' => 'The tax percentage you have specified is not valid'
+      )
     );
 
     $this->mergePostValidator(new cqValidatorCountryRegions(array(

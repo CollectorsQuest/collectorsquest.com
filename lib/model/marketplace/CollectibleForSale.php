@@ -67,12 +67,12 @@ class CollectibleForSale extends BaseCollectibleForSale
 
   public function getTaxPercentage()
   {
-    return (float) bcdiv((string) parent::getTaxPercentage(), 100, 2);
+    return (float) bcdiv((string) parent::getTaxPercentage(), 1000, 3);
   }
 
   public function setTaxPercentage($v)
   {
-    parent::setTaxPercentage((int) bcmul($v, 100));
+    parent::setTaxPercentage((int) bcmul($v, 1000, 3));
   }
 
   /**

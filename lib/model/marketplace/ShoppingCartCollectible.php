@@ -121,7 +121,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
   {
     if (!is_integer($v) && !ctype_digit($v))
     {
-      $v = bcmul(cqStatic::floatval($v, 2), 100);
+      $v = bcmul(cqStatic::floatval($v, 3), 100);
     }
 
     return parent::setTaxAmount($v);
@@ -131,7 +131,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
   {
     $amount = parent::getTaxAmount();
 
-    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 3);
   }
 
   public function setRawTaxAmount($v)
