@@ -215,6 +215,10 @@ class CollectorCollection extends BaseCollectorCollection
         $is_public = true;
       }
     }
+    else if ($is_public === true && !$this->getPrimaryImage(Propel::CONNECTION_WRITE))
+    {
+      $is_public = false;
+    }
 
     // Update only if there is a change of the public status
     if ($is_public !== $this->getIsPublic())
