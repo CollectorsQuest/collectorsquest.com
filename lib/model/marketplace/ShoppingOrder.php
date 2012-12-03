@@ -401,7 +401,7 @@ class ShoppingOrder extends BaseShoppingOrder
     return $hash;
   }
 
-  private function updateTaxAmount()
+  public function updateTaxAmount()
   {
     /* @var $collectible_for_sale CollectibleForSale */
     $collectible_for_sale = $this->getCollectibleForSale();

@@ -225,7 +225,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     return $this;
   }
 
-  private function updateTaxAmount()
+  public function updateTaxAmount()
   {
     $this->setTaxAmount(0);
     /* @var $collectible_for_sale CollectibleForSale */
