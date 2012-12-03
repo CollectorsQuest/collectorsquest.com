@@ -128,7 +128,8 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
     return $this
        ->useCollectionCollectibleQuery()
         ->isForSale()
-      ->endUse();
+      ->endUse()
+      ->groupById();
   }
 
 
