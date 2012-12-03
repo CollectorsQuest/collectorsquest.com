@@ -38,7 +38,7 @@ class PropelMigration_1354137771
         SET FOREIGN_KEY_CHECKS = 0;
 
         ALTER TABLE `collectible_for_sale` ADD `tax_country` CHAR(2) AFTER `price_currency`;
-        ALTER TABLE `collectible_for_sale` ADD `tax_state` VARCHAR(100) AFTER `tax_country`;
+        ALTER TABLE `collectible_for_sale` ADD `tax_state` INTEGER AFTER `tax_country`;
         ALTER TABLE `collectible_for_sale` ADD `tax_percentage` INTEGER AFTER `tax_state`;
 
         CREATE INDEX `collectible_for_sale_FI_2` ON `collectible_for_sale` (`tax_country`);
@@ -122,11 +122,17 @@ class PropelMigration_1354137771
           (50, 226, 'Wisconsin', 'Wisconsin', 'Wisconsin', 'Wisconsin', '', NULL, NULL, NULL),
           (51, 226, 'Wyoming', 'Wyoming', 'Wyoming', 'Wyoming', '', NULL, NULL, NULL);
 
+        CREATE INDEX `collectible_for_sale_FI_3` ON `collectible_for_sale` (`tax_state`);
+
+        ALTER TABLE `collectible_for_sale` ADD CONSTRAINT `collectible_for_sale_FK_3`
+          FOREIGN KEY (`tax_state`)
+          REFERENCES `geo_region` (`id`);
+
         ALTER TABLE `shopping_cart_collectible`
           ADD `shipping_state_region` VARCHAR(100) AFTER `shipping_country_iso3166`;
 
         ALTER TABLE `collectible_for_sale_archive` ADD `tax_country` CHAR(2) AFTER `price_currency`;
-        ALTER TABLE `collectible_for_sale_archive` ADD `tax_state` VARCHAR(100) AFTER `tax_country`;
+        ALTER TABLE `collectible_for_sale_archive` ADD `tax_state` INTEGER AFTER `tax_country`;
         ALTER TABLE `collectible_for_sale_archive` ADD `tax_percentage` INTEGER AFTER `tax_state`;
 
         SET FOREIGN_KEY_CHECKS = 1;
@@ -151,6 +157,8 @@ class PropelMigration_1354137771
         SET FOREIGN_KEY_CHECKS = 0;
 
         ALTER TABLE `collectible_for_sale` DROP FOREIGN KEY `collectible_for_sale_FK_2`;
+
+        ALTER TABLE `collectible_for_sale` DROP FOREIGN KEY `collectible_for_sale_FK_3` ;
 
         DROP INDEX `collectible_for_sale_FI_2` ON `collectible_for_sale`;
 

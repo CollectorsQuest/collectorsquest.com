@@ -197,6 +197,25 @@
       no_results_text: "No countries found for "
     });
 
+    $('#collector_seller_settings_tax_country').change(function()
+    {
+      if ($(this).val() == '')
+      {
+        $('#collector_seller_settings_tax_state')
+            .val('').closest('.control-group').addClass('hide');
+        $('#collector_seller_settings_tax_percentage')
+            .val('0.00').removeAttr('required').closest('.control-group').addClass('hide');
+      }
+      else
+      {
+        $('#collector_seller_settings_tax_state')
+            .closest('.control-group').removeClass('hide');
+        $('#collector_seller_settings_tax_percentage')
+            .attr('required', 'required').closest('.control-group').removeClass('hide');
+      }
+    }).change();
+<?php // Restrict to "United States" only
+/*
     var states_cache = {};
     $('#collector_seller_settings_tax_country').change(function()
     {
@@ -259,6 +278,7 @@
           });
         }
       }
-    }).change();
+    }).change(); */
+?>
   });
 </script>

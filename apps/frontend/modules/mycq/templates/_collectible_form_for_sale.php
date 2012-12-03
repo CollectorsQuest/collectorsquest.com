@@ -195,8 +195,25 @@ $(document).ready(function()
   $('#shipping_rates_zz_do_not_ship_to').chosen({
     no_results_text: "No countries found for "
   });
-
-  var states_cache = {};
+  $('#collectible_for_sale_tax_country').change(function()
+  {
+    if ($(this).val() == '')
+    {
+      $('#collectible_for_sale_tax_state')
+          .attr('disabled', 'disabled').closest('.control-group').addClass('hide');
+      $('#collectible_for_sale_tax')
+          .attr('disabled', 'disabled').closest('.control-group').addClass('hide');
+    }
+    else
+    {
+      $('#collectible_for_sale_tax_state')
+          .removeAttr('disabled').closest('.control-group').removeClass('hide');
+      $('#collectible_for_sale_tax')
+          .removeAttr('disabled').closest('.control-group').removeClass('hide');
+    }
+  }).change();
+<?php // Restrict to "United States" only
+/*  var states_cache = {};
   $('#collectible_for_sale_tax_country').change(function()
   {
     var $state = $('#collectible_for_sale_tax_state');
@@ -258,6 +275,7 @@ $(document).ready(function()
         });
       }
     }
-  }).change();
+  }).change(); */
+?>
 });
 </script>

@@ -265,23 +265,25 @@ class CollectorEditForm extends CollectorForm
       );
     }
 
-
-    if (isset($values['seller_settings_tax_country']))
+    if (isset($this->widgetSchema['seller_settings_tax_country']))
     {
       $this->getObject()->setSellerSettingsTaxCountry(
-        strip_tags($values['seller_settings_tax_country'])
+        isset($values['seller_settings_tax_country']) ? strip_tags($values['seller_settings_tax_country']) : null
       );
     }
-    if (isset($values['seller_settings_tax_state']))
+
+    if (isset($this->widgetSchema['seller_settings_tax_state']))
     {
       $this->getObject()->setSellerSettingsTaxState(
-        strip_tags($values['seller_settings_tax_state'])
+        isset($values['seller_settings_tax_state']) ? (integer) $values['seller_settings_tax_state'] : null
       );
     }
-    if (isset($values['seller_settings_tax_percentage']))
+
+    if (isset($this->widgetSchema['seller_settings_tax_percentage']))
     {
       $this->getObject()->setSellerSettingsTaxPercentage(
-        strip_tags($values['seller_settings_tax_percentage'])
+        isset($values['seller_settings_tax_percentage'])
+          ? (integer) $values['seller_settings_tax_percentage'] : null
       );
     }
 
@@ -574,12 +576,12 @@ class CollectorEditForm extends CollectorForm
         'criteria' => $c, 'required' => $required
     ));
 
-    $this->widgetSchema['seller_settings_tax_state'] = new sfWidgetFormInputText(
-      array('label' => 'State / Province')
-    );
-    $this->validatorSchema['seller_settings_tax_state'] = new sfValidatorString(
-      array('max_length' => 100, 'required' => $required)
-    );
+    $this->widgetSchema['seller_settings_tax_state']= new sfWidgetFormPropelChoice(array(
+      'model' => 'iceModelGeoRegion', 'add_empty' => true, 'label' => 'State / Province'
+    ));
+    $this->validatorSchema['seller_settings_tax_state'] = new sfValidatorPropelChoice(array(
+      'model' => 'iceModelGeoRegion', 'column' => 'id', 'required' => $required
+    ));
 
     $this->widgetSchema['seller_settings_tax_percentage'] = new sfWidgetFormInputText(
       array('label' => 'Percentage'), array('required' => $required)

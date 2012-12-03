@@ -91,7 +91,8 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       'model' => 'iceModelGeoCountry', 'column' => 'iso3166', 'required' => false
     ));
 
-    $this->widgetSchema['tax_state'] = new sfWidgetFormPropelChoice(array('model' => 'iceModelGeoRegion'));
+    $this->widgetSchema['tax_state']->setOption('add_empty', true);
+
     $this->widgetSchema['tax'] = new sfWidgetFormInputText(array(), array('required' => 'false'));
     $this->validatorSchema['tax'] = new cqValidatorPrice(
       array('required' => false, 'max' => 50), array('max' => 'You cannot set Tax more than 50%',

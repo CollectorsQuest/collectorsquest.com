@@ -14,7 +14,7 @@ classes:
       price_amount:         { type: integer, required: true, default: 0 }
       price_currency:       { type: char, size: 3, required: true, default: 'USD' }
       tax_country:          { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
-      tax_state:            { type: integer, required: false }
+      tax_state:            { type: integer, required: false, , foreignTable: geo_region, foreignReference: id }
       tax_percentage:       { type: integer, required: false }
       condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
       is_price_negotiable:  { type: boolean, default: false }
