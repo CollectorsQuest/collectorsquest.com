@@ -3,6 +3,10 @@
 ?>
 
 <div id="HolidayMarketHeader">
+  <div class="holiday-marker-adv-dialog-below-menu" >
+    <a href="#" class="link" title="Sell You Stuff with Us"></a>
+    <a class="icon-remove close-btn" title="close"></a>
+  </div>
   <!--
   <h1>Keep It<br>Classics</h1>
   <h2>for the holidays</h2>
