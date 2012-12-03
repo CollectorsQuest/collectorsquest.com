@@ -48,7 +48,7 @@ var APP = window.APP = {
       });
 
       // set cookie with the client width in pixels
-      document.cookie='resolution='+Math.max(screen.width,screen.height)+'; path=/';
+      document.cookie='resolution=' + screen.width + 'x' + screen.height + 'x' + $(window).width() + 'x' + $(window).height() + '; path=/';
 
       window.locale = {
         "fileupload": {

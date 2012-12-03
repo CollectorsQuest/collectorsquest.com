@@ -107,6 +107,11 @@ class cqWebRequest extends sfWebRequest
    */
   public function getBrowserWidth()
   {
+    if ($this->browser_width == 0)
+    {
+      $this->parseResolutionCookie();
+    }
+
     return $this->browser_width;
   }
 
@@ -117,6 +122,11 @@ class cqWebRequest extends sfWebRequest
    */
   public function getScreenWidth()
   {
+    if ($this->screen_width == 0)
+    {
+      $this->parseResolutionCookie();
+    }
+
     return $this->screen_width;
   }
 
@@ -127,7 +137,25 @@ class cqWebRequest extends sfWebRequest
    */
   public function getScreenHeight()
   {
+    if ($this->screen_height == 0)
+    {
+      $this->parseResolutionCookie();
+    }
+
     return $this->screen_height;
+  }
+
+  /**
+   * Parse the resolution cookie and set browser and screen sizes
+   */
+  public function parseResolutionCookie()
+  {
+    // in the cookie set in application.js we have 4 values divided by 'x'
+    $cookie_data   = explode('x', $_COOKIE['resolution']);
+
+    $this->setScreenWidth($cookie_data[0]);
+    $this->setScreenHeight($cookie_data[1]);
+    $this->setBrowserWidth(max($cookie_data[2], $cookie_data[3]));
   }
 
 }
