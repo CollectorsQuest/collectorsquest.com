@@ -6,13 +6,13 @@
   <?php cq_dart_slot('300x250', 'collections', 'americanrestoration', 'sidebar') ?>
 </div>
 
-<?php include_partial('marketplace/partials/holidayMarketPromo_300x90'); ?>
+<?php include_partial('aetn/partials/franksPicksPromo_300x90'); ?>
 
 <?php include_partial('aetn/partials/pawnStarsPromo_300x90'); ?>
 
 <?php include_partial('aetn/partials/americanPickersPromo_300x90'); ?>
 
-<?php include_partial('aetn/partials/franksPicksPromo_300x90'); ?>
+<?php include_partial('marketplace/partials/holidayMarketPromo_300x90'); ?>
 
 <?php
 include_component(

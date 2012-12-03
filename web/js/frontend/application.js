@@ -672,7 +672,7 @@ var GENERAL = window.GENERAL = (function(){
           btnNext: '.button-carousel-next',
           btnPrev: '.button-carousel-previous',
           autoplay: true,
-          autoplayDuration: 6000,
+          autoplayDuration: 20000,
           autoplayPauseOnHover: true
         },function(){
           $roundaboutEl.fadeTo(1000, 1);
@@ -742,8 +742,8 @@ var SEARCH = window.SEARCH = (function(){
 
       $container.imagesLoaded(function() {
         $container.masonry({
-          itemSelector : '.brick',
-          columnWidth : 196, gutterWidth: 15
+          itemSelector : '.brick, .collection_grid_view_square_small, .collectible_grid_view_square_small',
+          columnWidth : 140, gutterWidth: 15
         });
       });
 
@@ -751,7 +751,7 @@ var SEARCH = window.SEARCH = (function(){
         $container.infinitescroll({
             navSelector: '#search-pagination',
             nextSelector: '#search-pagination li.next a',
-            itemSelector: '.brick',
+            itemSelector: '.brick, .collection_grid_view_square_small, .collectible_grid_view_square_small',
             loading: {
               msgText: (settings.masonry.loading_text) ? settings.masonry.loading_text : 'Loading...',
               finishedMsg: 'No more pages to load.',

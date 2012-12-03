@@ -49,7 +49,8 @@ class collectionActions extends cqFrontendActions
     if (
       in_array($collection->getId(), array(
         $pawn_stars['collection'], $american_pickers['collection'],
-        $american_restoration['collection'], $picked_off['collection']
+        $american_restoration['collection'], $picked_off['collection'],
+        $american_pickers['franks_picks']
       ))
     )
     {
@@ -69,13 +70,17 @@ class collectionActions extends cqFrontendActions
       {
         $this->redirect('@aetn_picked_off', 301);
       }
+      else if ($collection->getId() == $american_pickers['franks_picks'])
+      {
+        $this->redirect('@aetn_franks_picks', 301);
+      }
     }
 
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
 
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
@@ -198,11 +203,11 @@ class collectionActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collectible))
-//    {
-//      $collectible->setNumViews($collectible->getNumViews() + 1);
-//      $collectible->save();
-//    }
+    if (!$this->getCollector()->isOwnerOf($collectible))
+    {
+      $collectible->setNumViews($collectible->getNumViews() + 1);
+      $collectible->save();
+    }
 
     /**
      * Figure out the previous and the next item in the collection
@@ -332,7 +337,6 @@ class collectionActions extends cqFrontendActions
       if (isset ($show['franks_picks']) && $collection->getId() === $show['franks_picks'])
       {
         $this->aetn_show = $show;
-        $this->aetn_show['name'] = 'Frank\'s Picks';
         $this->aetn_show['collection'] = $show['franks_picks'];
         $this->aetn_show['id'] = 'franks_picks';
 

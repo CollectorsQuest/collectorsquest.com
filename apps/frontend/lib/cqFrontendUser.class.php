@@ -142,7 +142,7 @@ class cqFrontendUser extends cqBaseUser
       $country_code = $this->getCountryCode();
     }
 
-    return GeoCountryQuery::create()
+    return iceModelGeoCountryQuery::create()
       ->filterByIso3166($country_code)
       ->select('Name')
       ->findOne() ?: false;
@@ -521,9 +521,9 @@ class cqFrontendUser extends cqBaseUser
   {
     if ($uuid = $this->getCookieUuid())
     {
-      return
-        @$this->collectors_by_uuid[$uuid] ?:
-        $this->collectors_by_uuid[$uuid] = CollectorQuery::create()->filterByCookieUuid($uuid)->findOne();
+      return isset($this->collectors_by_uuid[$uuid])
+        ? $this->collectors_by_uuid[$uuid]
+        : $this->collectors_by_uuid[$uuid] = CollectorQuery::create()->filterByCookieUuid($uuid)->findOne();
     }
 
     return null;

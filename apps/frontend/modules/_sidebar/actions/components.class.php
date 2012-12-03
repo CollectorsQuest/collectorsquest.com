@@ -39,7 +39,6 @@ class _sidebarComponents extends cqFrontendComponents
     $q = ContentCategoryQuery::create()
       ->filterByTreeLevel($level)
       ->hasCollectionsWithCollectibles()
-      ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
       ->groupById()
       ->limit($this->limit);
