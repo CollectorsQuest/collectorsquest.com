@@ -68,4 +68,12 @@ class ajaxAction extends cqAjaxAction
 
     return $template;
   }
+
+  // user closes adv dialog - we don't want to show it anymore
+  public function executeCloseAdvDialog()
+  {
+    $this->getUser()->setAttribute('closed_adv_dialog', true, 'marketplace');
+
+    return sfView::NONE;
+  }
 }
