@@ -53,6 +53,8 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
     $zone1, $zone1, $zone2, $test, $pos, $size
   );
 
+  // fix for add banners to be center aligned when responsive design
+  echo '<div class="optimize-mobile-300 center">';
   include_partial(
     'global/js/dart_slot',
     array(
@@ -60,6 +62,7 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
       'width' => (int) $width, 'height' => (int) $height
     )
   );
+  echo '</div>';
 }
 
 function cq_javascript_tag()
