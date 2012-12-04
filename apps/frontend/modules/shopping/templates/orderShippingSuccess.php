@@ -17,10 +17,12 @@
     <div class="control-group span8 spacer-left-reset <?= $form->isError('buyer_email') ? 'error' : '' ?>">
       <?= $form['buyer_email']->renderLabel(null, array('class' => 'control-label')); ?>
       <div class="controls">
-        <div class="input-prepend with-required-token">
-          <span class="add-on"><i class="icon-envelope"></i></span>
+        <div class="with-required-token">
           <span class="required-token">*</span>
-          <?= $form['buyer_email']->render(array('class' => 'span4', 'style' => 'margin-left: -4px;')) ?>
+          <div class="input-prepend ">
+            <span class="add-on"><i class="icon-envelope"></i></span>
+            <?= $form['buyer_email']->render(array('class' => 'span4', 'style' => 'margin-left: -4px;')) ?>
+          </div>
         </div>
         <?= $form['buyer_email']->renderError() ?>
       </div>
