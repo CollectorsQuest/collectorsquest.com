@@ -1,5 +1,5 @@
 all:
-  stylesheets: [frontend/modules/collection.css]
+  stylesheets: [frontend/modules/collection.css, frontend/responsive.css]
 
 indexSuccess:
   javascripts:

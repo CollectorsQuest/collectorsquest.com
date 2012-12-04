@@ -1,5 +1,5 @@
 all:
-  stylesheets: [frontend/modules/general.css]
+  stylesheets: [frontend/modules/general.css, frontend/responsive.css]
 
 indexSuccess:
   stylesheets: [frontend/modules/homepage.css]
