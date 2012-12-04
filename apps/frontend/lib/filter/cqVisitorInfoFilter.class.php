@@ -182,5 +182,4 @@ class cqVisitorInfoFilter extends sfFilter
     });
   }
 
-
 }
