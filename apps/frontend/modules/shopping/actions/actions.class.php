@@ -790,37 +790,36 @@ class shoppingActions extends cqFrontendActions
     if (!$shopping_order->getIsBuyerNotified())
     {
       $cqEmail = new cqEmail($this->getMailer());
-      $shopping_order->setIsBuyerNotified(
-        $cqEmail->send('Shopping/buyer_order_confirmation', array(
-          'to' => $shopping_order->getBuyerEmail(),
-          'params' => array(
-            'buyer_name'  => $shopping_order->getShippingFullName(),
-            'oSeller' => $shopping_order->getSeller(),
-            'oCollectible' => $shopping_order->getCollectible(),
-            'oShoppingOrder' => $shopping_order
-          )
-        )));
+      $is_sent = $cqEmail->send('Shopping/buyer_order_confirmation', array(
+        'to' => $shopping_order->getBuyerEmail(),
+        'params' => array(
+          'buyer_name'  => $shopping_order->getShippingFullName(),
+          'oSeller' => $shopping_order->getSeller(),
+          'oCollectible' => $shopping_order->getCollectible(),
+          'oShoppingOrder' => $shopping_order
+        )
+      ));
+
+      $shopping_order->setIsBuyerNotified($is_sent);
     }
 
     if (!$shopping_order->getIsSellerNotified())
     {
       $cqEmail = new cqEmail($this->getMailer());
-      $shopping_order->setIsSellerNotified(
-        $cqEmail->send('Shopping/seller_order_notification', array(
-          'to' => $shopping_order->getSeller()->getEmail(),
-          'params' => array(
-            'buyer_name'  => $shopping_order->getShippingFullName(),
-            'oSeller' => $shopping_order->getSeller(),
-            'oCollectible' => $shopping_order->getCollectible(),
-            'oShoppingOrder' => $shopping_order
-          )
-        )));
+      $is_sent = $cqEmail->send('Shopping/seller_order_notification', array(
+        'to' => $shopping_order->getSeller()->getEmail(),
+        'params' => array(
+          'buyer_name'  => $shopping_order->getShippingFullName(),
+          'oSeller' => $shopping_order->getSeller(),
+          'oCollectible' => $shopping_order->getCollectible(),
+          'oShoppingOrder' => $shopping_order
+        )
+      ));
+
+      $shopping_order->setIsSellerNotified($is_sent);
     }
-    if ($shopping_order->isColumnModified(ShoppingOrderPeer::IS_BUYER_NOTIFIED)
-      || $shopping_order->isColumnModified(ShoppingOrderPeer::IS_SELLER_NOTIFIED))
-    {
-      $shopping_order->save();
-    }
+
+    $shopping_order->save();
   }
 
   /**
