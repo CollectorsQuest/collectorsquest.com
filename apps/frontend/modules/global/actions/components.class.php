@@ -121,7 +121,7 @@ class globalComponents extends cqFrontendComponents
 
   public function executeAdminBar()
   {
-    if (!$this->getUser()->isAdmin() || $this->getRequest()->isMobileBrowserFitLayout())
+    if (!$this->getUser()->isAdmin() || $this->getRequest()->isDesktopLayout())
     {
       return sfView::NONE;
     }

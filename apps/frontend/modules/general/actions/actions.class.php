@@ -118,7 +118,7 @@ class generalActions extends cqFrontendActions
       }
     }
 
-    if ($this->getRequest()->isMobileBrowserFitLayout())
+    if ($this->getRequest()->isDesktopLayout())
     {
       $this->setTemplate('indexMobile');
     }
