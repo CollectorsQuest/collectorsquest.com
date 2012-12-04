@@ -11,7 +11,7 @@ if (cqGateKeeper::open('expose_collection_categories'))
     cq_ad_slot(
       cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png',
         array(
-          'width' => '300', 'height' => '90',
+          'width' => '300', 'height' => '90', 'class' => 'optimize-mobile-300 center',
           'alt' => 'Quest Your Best: The Essential Guide to Collecting'
         )
       ),
