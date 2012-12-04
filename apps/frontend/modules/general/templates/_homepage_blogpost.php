@@ -3,16 +3,20 @@
     <a href="<?= $blog_post->getPostUrl(); ?>" class="link">
       <div class="blog-img">
         <?php
-          if ($thumbnail = $blog_post->getPostThumbnail('homepage'))
+          // special check for search results page - we don't want to display image
+          if (!isset($no_image))
           {
-            echo cq_image_tag($thumbnail, array('width' => 270, 'height' => 270, 'alt' => $blog_post->getPostTitle()));
-          }
-          else
-          {
-            echo image_tag_multimedia(
-              $blog_post->getPrimaryImage(), '270x270',
-              array('alt_title' => $blog_post->getPostTitle())
-            );
+            if ($thumbnail = $blog_post->getPostThumbnail('homepage'))
+            {
+              echo cq_image_tag($thumbnail, array('width' => 270, 'height' => 270, 'alt' => $blog_post->getPostTitle()));
+            }
+            else
+            {
+              echo image_tag_multimedia(
+                $blog_post->getPrimaryImage(), '270x270',
+                array('alt_title' => $blog_post->getPostTitle())
+              );
+            }
           }
         ?>
       </div>
