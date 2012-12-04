@@ -20,16 +20,19 @@ pickedOffSuccess:
     sidebar_300: [aetn, sidebarPickedOff]
 
 franksPicksSuccess:
+  stylesheets: [-frontend/responsive.css]
   javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
   components:
     footer: []
 
 mwbaSuccess:
+  stylesheets: [-frontend/responsive.css]
   components:
     breadcrumbs: []
     footer: []
 
 mwbaPetrolianaSuccess:
+  stylesheets: [-frontend/responsive.css]
   javascripts:
     - jquery/masonry.js
   components:
@@ -38,6 +41,7 @@ mwbaPetrolianaSuccess:
     footer: []
 
 mwbaRooseveltianaSuccess:
+  stylesheets: [-frontend/responsive.css]
   javascripts:
     - jquery/masonry.js
   components:
@@ -46,6 +50,7 @@ mwbaRooseveltianaSuccess:
     footer: []
 
 mwbaRailroadianaSuccess:
+  stylesheets: [-frontend/responsive.css]
   javascripts:
     - jquery/masonry.js
   components:

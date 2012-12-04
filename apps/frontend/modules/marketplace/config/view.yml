@@ -8,6 +8,7 @@ indexSuccess:
     slot2: [marketplace, indexSlot2]
 
 holidaySuccess:
+  stylesheets: [-frontend/responsive.css]
   javascripts:
     - jquery/autoajax.js
     - jquery/infinitescroll.js
