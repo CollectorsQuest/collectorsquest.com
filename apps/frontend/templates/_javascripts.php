@@ -87,6 +87,7 @@ if (document.getElementById('social-sharing') !== null)
   })(document, 'script');
 
   $(window).load(function() {
+    addthis.init();
     addthis.toolbox('#social-sharing');
   });
 }

@@ -239,7 +239,7 @@ class ShoppingOrderShippingForm extends BaseForm
     $states = iceModelGeoRegionQuery::create()
       ->orderByNameLatin()
       ->useiceModelGeoCountryQuery()
-      ->filterByIso3166($country_iso3166)
+        ->filterByIso3166($country_iso3166)
       ->endUse()
       ->select(array('Id', 'NameLatin'))
       ->find()

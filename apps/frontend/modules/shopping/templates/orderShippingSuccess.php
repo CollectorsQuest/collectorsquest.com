@@ -1,4 +1,7 @@
 <?php
+  /* @var $form ShoppingOrderShippingForm */
+?>
+<?php
   include_partial(
     'global/wizard_bar',
     array('steps' => array(1 => __('Shipping & Handling'), __('Payment'), __('Review')) , 'active' => 1)
@@ -11,25 +14,25 @@
 
   <fieldset>
     <legend>Contact Details</legend>
-    <div class="control-group">
+    <div class="control-group span8 spacer-left-reset <?= $form->isError('buyer_email') ? 'error' : '' ?>">
       <?= $form['buyer_email']->renderLabel(null, array('class' => 'control-label')); ?>
       <div class="controls">
         <div class="input-prepend with-required-token">
           <span class="add-on"><i class="icon-envelope"></i></span>
           <span class="required-token">*</span>
           <?= $form['buyer_email']->render(array('class' => 'span4', 'style' => 'margin-left: -4px;')) ?>
-          <?= $form['buyer_email']->renderError() ?>
         </div>
+        <?= $form['buyer_email']->renderError() ?>
       </div>
     </div>
-    <div class="control-group">
+    <div class="control-group span8 spacer-left-reset <?= $form->isError('buyer_phone') ? 'error' : '' ?>">
       <?= $form['buyer_phone']->renderLabel(null, array('class' => 'control-label')); ?>
       <div class="controls">
         <div class="input-prepend">
           <span class="add-on"><i class="icon-phone"></i></span>
           <?= $form['buyer_phone']->render(array('class' => 'span4', 'style' => 'margin-left: -4px;')) ?>
-          <?= $form['buyer_phone']->renderError() ?>
         </div>
+        <?= $form['buyer_phone']->renderError() ?>
       </div>
     </div>
   </fieldset>

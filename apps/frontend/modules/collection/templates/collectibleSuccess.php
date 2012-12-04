@@ -249,16 +249,16 @@
     </div>
     <?php if (!$sf_request->isMobileBrowser()): ?>
     <div id="social-sharing" class="pull-right share">
-      <!-- AddThis Button BEGIN -->
-      <a class="btn-lightblue btn-mini-social addthis_button_email">
-        <i class="mail-icon-mini"></i> Email
-      </a>
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"
-         pi:pinit:media="<?= src_tag_collectible($collectible, 'original'); ?>"></a>
-      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
-      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
-      <!-- AddThis Button END -->
+      <?php
+        include_partial(
+          'global/addthis',
+          array(
+            'image' => src_tag_collectible($collectible, 'original'),
+            'text' => $collectible->getName(),
+            'url' => url_for_collectible($collectible, true)
+          )
+        );
+      ?>
     </div>
      <?php endif; ?>
   </div>
