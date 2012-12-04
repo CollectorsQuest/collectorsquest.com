@@ -257,7 +257,7 @@ class cqSphinxPager extends sfPager
     $sphinx = self::getSphinxClient();
 
     $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
-    $env = str_replace('_debug', '', $env);
+    $env = str_replace(array('stg', '_debug'), array('prod', ''), $env);
     $index = sprintf('%1$s_blog_normalized', $env);
 
     $keys = array_keys($contents);
@@ -546,7 +546,7 @@ class cqSphinxPager extends sfPager
     ));
 
     $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
-    $env = str_replace('_debug', '', $env);
+    $env = str_replace(array('stg', '_debug'), array('prod', ''), $env);
 
     $indexes = array();
     foreach ($types as $type)
@@ -632,7 +632,7 @@ class cqSphinxPager extends sfPager
     // $res = $sphinx->Query($query, 'did_you_mean', 0, TOP_COUNT);
 
     $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
-    $env = str_replace('_debug', '', $env);
+    $env = str_replace(array('stg', '_debug'), array('prod', ''), $env);
 
     /** @var $results array */
     $results = $sphinx->Query($query, sprintf('%s_did_you_mean', $env), 0, 10);

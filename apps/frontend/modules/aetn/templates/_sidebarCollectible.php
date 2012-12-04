@@ -90,7 +90,8 @@ if (cqGateKeeper::open('aetn_franks_picks', 'page') && $aetn_show['id'] != 'fran
   $height->value -= 120;
 }
 
-if (!$collectible->isForSale())
+// we are already displaying this widget on Frank's Picks show
+if (!$collectible->isForSale() && $aetn_show['id'] != 'franks_picks')
 {
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',

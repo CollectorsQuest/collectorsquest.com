@@ -54,7 +54,7 @@ class ShoppingPayment extends BaseShoppingPayment
     $this->setAmountTotal($shopping_order->getTotalAmount('integer'));
     $this->setAmountShippingFee($shopping_order->getShippingFeeAmount('integer'));
     $this->setAmountCollectibles($shopping_order->getCollectiblesAmount('integer'));
-    $this->setAmountTax(0);
+    $this->setAmountTax($shopping_order->getTaxAmount('integer'));
   }
 
   public function getAmountCollectibles($return = 'float')

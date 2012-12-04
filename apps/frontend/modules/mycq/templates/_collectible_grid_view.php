@@ -1,4 +1,6 @@
 <?php
+  /* @var $collectible Collectible */
+
   // default case for return_to
   if (!isset($return_to))
   {
@@ -20,7 +22,9 @@
     ?>
 
     <?php if ($collectible->isSold()): ?>
-      <span class="sold">SOLD</span>
+      <span class="sold"><?= $collectible->getCollectibleForSale()->getShoppingOrder()->getShippingTrackingNumber()
+        ? 'SHIPPED'
+        : 'SOLD'; ?></span>
     <?php elseif ($collectible->isForSale()): ?>
       <span class="for-sale">FOR SALE</span>
     <?php endif; ?>

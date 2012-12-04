@@ -14,11 +14,7 @@ class collectorActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-    if (!$this->getCollector()->isOwnerOf($collector))
-    {
-      $profile->setNumViews($profile->getNumViews() + 1);
-      $profile->save();
-    }
+    $this->incrementCounter($collector, 'NumViews');
 
     $this->collector = $collector;
     $this->profile   = $profile;

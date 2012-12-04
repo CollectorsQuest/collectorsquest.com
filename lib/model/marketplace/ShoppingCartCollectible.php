@@ -33,6 +33,15 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       $this->updateShippingTypeFromCountryCode();
     }
 
+    // if the shipping country iso 3166 and region has been changed
+    // update tax amount
+    if (
+      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) ||
+      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_STATE_REGION)
+    ) {
+      $this->updateTaxAmount();
+    }
+
     return parent::preSave($con);
   }
 
@@ -106,22 +115,23 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   /**
    * @param integer|float|double $v
+   *
    */
   public function setTaxAmount($v)
   {
     if (!is_integer($v) && !ctype_digit($v))
     {
-      $v = bcmul(cqStatic::floatval($v, 2), 100);
+      $v = bcmul(cqStatic::floatval($v, 3), 100);
     }
 
-    parent::setTaxAmount($v);
+    return parent::setTaxAmount($v);
   }
 
   public function getTaxAmount($return = 'float')
   {
     $amount = parent::getTaxAmount();
 
-    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 3);
   }
 
   public function setRawTaxAmount($v)
@@ -134,9 +144,9 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     return parent::getTaxAmount();
   }
 
-
   /**
    * @param integer|float|double $v
+   * @return    ShoppingCartCollectible
    */
   public function setShippingFeeAmount($v)
   {
@@ -213,6 +223,21 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     }
 
     return $this;
+  }
+
+  public function updateTaxAmount()
+  {
+    $this->setTaxAmount(0);
+    /* @var $collectible_for_sale CollectibleForSale */
+    $collectible_for_sale = $this->getCollectibleForSale();
+
+    if ($collectible_for_sale->getTaxCountry() == $this->getShippingCountryIso3166() &&
+      (!$collectible_for_sale->getTaxState()
+        || $collectible_for_sale->getTaxState() == $this->getShippingStateRegion())
+    )
+    {
+      $this->setTaxAmount(round(($this->getPriceAmount() / 100) * $collectible_for_sale->getTaxPercentage(), 2));
+    }
   }
 
   /**

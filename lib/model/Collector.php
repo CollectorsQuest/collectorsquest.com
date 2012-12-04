@@ -1,5 +1,7 @@
 <?php
 
+require 'lib/model/om/BaseCollector.php';
+
 /**
  * @method     int getSingupNumCompletedSteps() Return the number of completed signup steps
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
@@ -23,6 +25,13 @@
  *
  * @method     Collector setSellerSettingsPaypalLastName(string $v)
  * @method     string    getSellerSettingsPaypalLastName()
+ *
+ *
+ * @method     Collector setSellerSettingsTaxCountry(string $v)
+ * @method     string    getSellerSettingsTaxCountry()
+ *
+ * @method     Collector setSellerSettingsTaxState(string $v)
+ * @method     string    getSellerSettingsTaxState()
  *
  *
  * @method     Collector setSellerSettingsPhoneCode(string $v)
@@ -111,9 +120,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   /** @var Collector */
   protected $seller;
 
-  /** @var ShippingReference[] */
-  protected $shipping_references = null;
-
   /**
    * Register extra properties to allow magic getters/setters to be used
    *
@@ -146,6 +152,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_REFUNDS);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_COUNTRY);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_STATE);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_PERCENTAGE);
 
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT);
@@ -659,7 +669,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   /**
    * Returns the multimedia object for the collector profile photo
    *
-   * @return Multimedia
+   * @return iceModelMultimedia
    */
   public function getPhoto()
   {
@@ -1409,14 +1419,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getShippingReferencesByCountryCode(PropelPDO $con = null)
   {
-    if (null === $this->shipping_references)
-    {
-      $this->shipping_references = ShippingReferenceQuery::create()
-        ->filterByCollector($this)
-        ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166');
-    }
-
-    return $this->shipping_references;
+    return ShippingReferenceQuery::create()
+      ->filterByCollector($this)
+      ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166');
   }
 
   /**
@@ -1429,23 +1434,14 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getShippingReferenceForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    // get all shiping references, indexed by country code
-    $shipping_references = $this->getShippingReferencesByCountryCode($con);
-
-    // if we have a shipping reference for the specified country code, return it
-    if (isset($shipping_references[$coutry_code]))
-    {
-      return $shipping_references[$coutry_code];
-    }
-
-    // otherwize if we have a ZZ code (international), return it instead
-    if (isset($shipping_references['ZZ']))
-    {
-      return $shipping_references['ZZ'];
-    }
-
-    // otherwize return null
-    return null;
+    return ShippingReferenceQuery::create()
+      ->filterByCollector($this)
+      ->filterByCountryIso3166($coutry_code)
+      ->findOne($con)
+    ?: ShippingReferenceQuery::create()
+      ->filterByCollector($this)
+      ->filterByCountryIso3166('ZZ') // international
+      ->findOne($con);
   }
 
   /**
@@ -1457,17 +1453,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function getShippingReferenceDomestic(PropelPDO $con = null)
   {
     return $this->getShippingReferenceForCountryCode(
-      $this->getProfile($con)->getCountryIso3166(),
-      $con
-    );
-  }
-
-  /**
-   * @return    void
-   */
-  public function clearShippingReferences()
-  {
-    $this->shipping_references = null;
+      $this->getProfile($con)->getCountryIso3166(), $con);
   }
 
   /**

@@ -92,5 +92,86 @@
     {
       $(this).button('loading');
     });
+
+    var states_cache = {};
+    $('#shopping_order_shipping_address_country_iso3166').change(function()
+    {
+
+      var $state = $('#shopping_order_shipping_address_state_region');
+      var country_code = $(this).val();
+      var update_states = function(data)
+      {
+        if (data.length == 0)
+        {
+          if ($state[0].nodeName.toLowerCase() == 'select')
+          {
+            var $new_input = $('<input type="text" />')
+            $new_input.attr('name', $state.attr('name'));
+            $new_input.attr('id', $state.attr('id'));
+            $state.replaceWith($new_input);
+          }
+        }
+        else
+        {
+          var $new_input = $('<select><option value="0"></option></select>')
+          $new_input.attr('name', $state.attr('name'));
+          $new_input.attr('id', $state.attr('id'));
+          $.each(data, function(key, value) {
+            $new_input.append($("<option></option>")
+                .attr("value", key).text(value));
+          });
+          $new_input.val($state.val());
+          $state.replaceWith($new_input);
+        }
+      };
+      $state.find('option').remove();
+      if (country_code in states_cache)
+      {
+        update_states(states_cache[country_code]);
+      }
+      else
+      {
+        $.ajax({
+          url: '<?= url_for('@ajax?section=states&page=lookup'); ?>',
+          type: 'GET',
+          data: {
+            c: country_code
+          },
+          dataType: 'json',
+          success: function(responce)
+          {
+            states_cache[country_code] = responce;
+            update_states(states_cache[country_code]);
+          }
+        });
+      }
+
+    });
+
+  <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+    // Update right bar when need include or exclude tax to total amount
+    $('#shopping_order_shipping_address_country_iso3166, #shopping_order_shipping_address_state_region')
+        .live('change', function()
+        {
+          //Hide or show tax information
+          if ($('#shopping_order_shipping_address_country_iso3166').val() == '<?=
+            $shopping_order->getCollectibleForSale()->getTaxCountry(); ?>'
+            <?php if ($shopping_order->getCollectibleForSale()->getTaxState()): ?>
+              && $('#shopping_order_shipping_address_state_region').val() == '<?=
+            $shopping_order->getCollectibleForSale()->getTaxState(); ?>'
+            <?php endif ?>
+              )
+          {
+            $('.with_tax').removeClass('hide');
+            $('.no_tax').addClass('hide');
+          }
+          else
+          {
+            $('.with_tax').addClass('hide');
+            $('.no_tax').removeClass('hide');
+          }
+        });
+    $('#shopping_order_shipping_address_state_region').change();
+    <?php endif; ?>
   });
 </script>
