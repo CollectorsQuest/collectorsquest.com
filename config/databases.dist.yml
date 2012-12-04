@@ -17,14 +17,10 @@ all:
             enabled: true
           slow:
             enabled: true
-            threshold: 0.01
-          memdelta:
-            enabled: true
-          mempeak:
-            enabled: true
-          method:
-            enabled: true
+            threshold: 0.02
           mem:
+            enabled: false
+          method:
             enabled: true
           querycount:
             enabled: true

@@ -1,0 +1,25 @@
+autoload:
+  # project
+  project:
+    name:           project
+    path:           %SF_LIB_DIR%
+    recursive:      true
+    exclude:        [model, symfony, vendor, legacy]
+
+  project_model:
+    name:           project model
+    path:           %SF_LIB_DIR%/model
+    recursive:      true
+    exclude:        [legacy, migration]
+
+  # application
+  application:
+    name:           application
+    path:           %SF_APP_LIB_DIR%
+    recursive:      true
+
+  modules:
+    name:           module
+    path:           %SF_APP_DIR%/modules/*/lib
+    prefix:         1
+    recursive:      true

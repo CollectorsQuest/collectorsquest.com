@@ -556,6 +556,11 @@ class mycqActions extends cqFrontendActions
           $this->redirect($url);
 
           break;
+
+        case 'togglePublic':
+          $this->collectible = $collectible;
+          return $this->executeCollectibleTogglePublic($request);
+          break;
       }
     }
 
@@ -593,10 +598,7 @@ class mycqActions extends cqFrontendActions
       $form->bind($taintedValues, $request->getFiles('collectible'));
       $for_sale = $form->getValue('for_sale');
 
-      if (
-        (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
-        && cqGateKeeper::open('collectible_shipping')
-      )
+      if (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
       {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
         $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
@@ -864,8 +866,10 @@ class mycqActions extends cqFrontendActions
 
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
-    $form = new CollectorEditForm($this->getCollector(), array(
-      'seller_settings_show' => true,
+    $collector = $this->getCollector(true);
+
+    $form = new CollectorEditForm($collector, array(
+      'seller_settings_show'     => true,
       'seller_settings_required' => false,
     ));
 
@@ -879,12 +883,33 @@ class mycqActions extends cqFrontendActions
       'seller_settings_refunds',
       'seller_settings_shipping',
       'seller_settings_store_header_image',
+      'seller_settings_tax_country',
+      'seller_settings_tax_state',
+      'seller_settings_tax_percentage',
     ));
+
+    $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
+      $collector,
+      'US',
+      $request->getParameter('shipping_rates_us')
+    );
+    $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
+      $collector,
+      $request->getParameter('shipping_rates_zz')
+    );
 
     if (sfRequest::POST == $request->getMethod())
     {
-      if ($form->bindAndSave($request->getParameter($form->getName()), $request->getFiles($form->getName())))
+      $form_shipping_us->bind($request->getParameter($form_shipping_us->getName()));
+      $form_shipping_zz->bind($request->getParameter($form_shipping_zz->getName()));
+
+      if ($form->bindAndSave($request->getParameter($form->getName()), $request->getFiles($form->getName()))
+      && $form_shipping_us->isValid() && $form_shipping_zz->isValid()
+      )
       {
+        $form_shipping_us->save();
+        $form_shipping_zz->save();
+
         $this->getUser()->setFlash(
           'success', 'You have successfully updated your store settings.'
         );
@@ -906,8 +931,10 @@ class mycqActions extends cqFrontendActions
       }
     }
 
-    $this->collector = $this->getCollector(true);
+    $this->collector = $collector;
     $this->form = $form;
+    $this->form_shipping_us = $form_shipping_us;
+    $this->form_shipping_zz = $form_shipping_zz;
 
     return sfView::SUCCESS;
   }
@@ -980,6 +1007,12 @@ class mycqActions extends cqFrontendActions
       {
         $this->getUser()->setFlash(
           'error', 'You need to provide the tracking number in order to mark the item as shipped!'
+        );
+      }
+      else if (!$request->getParameter('carrier'))
+      {
+        $this->getUser()->setFlash(
+          'error', 'You need to provide the shipping carrier in order to mark the item as shipped!'
         );
       }
       else if ($shopping_order->getShippingTrackingNumber())
@@ -1113,7 +1146,7 @@ class mycqActions extends cqFrontendActions
 
     $collector = $this->getCollector();
 
-    $this->redirectUnless($collector->getGraphId() && substr($collector->getUsername(), 0, 3) == 'rpx', 'mycq_profile_account_info');
+    $this->redirectUnless(substr($collector->getUsername(), 0, 3) == 'rpx', 'mycq_profile_account_info');
 
     $collector_form = new CollectorCreatePasswordForm($this->getCollector());
 
@@ -1140,6 +1173,40 @@ class mycqActions extends cqFrontendActions
     $this->collector = $collector;
     $this->collector_form = $collector_form;
 
+    return sfView::SUCCESS;
+  }
+
+
+  /**
+   * @param     sfWebRequest  $request
+   * @return    string
+   */
+  private function executeCollectibleTogglePublic(sfWebRequest $request)
+  {
+    if (!$this->getUser()->isAdmin())
+    {
+      $this->getResponse()->setStatusCode(403);
+      return sfView::ERROR;
+    }
+
+    $con = Propel::getConnection();
+    $sql = sprintf(
+      'UPDATE %s SET %s = NOT %s WHERE %s = %d',
+      CollectiblePeer::TABLE_NAME, CollectiblePeer::IS_PUBLIC, CollectiblePeer::IS_PUBLIC,
+      CollectiblePeer::ID, $this->collectible->getId()
+    );
+    $con->exec($sql);
+
+    $this->collectible = CollectiblePeer::retrieveByPK($this->collectible->getId());
+
+    $this->getUser()->setFlash(
+      'success', sprintf(
+        'Collectible "%s" changed to %s',
+        $this->collectible->getName(), $this->collectible->getIsPublic() ? 'Public' : 'Private'
+      )
+    );
+
+    $this->redirect($request->getReferer());
     return sfView::SUCCESS;
   }
 

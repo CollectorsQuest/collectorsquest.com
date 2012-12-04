@@ -10,21 +10,21 @@
 ?>
 
 <?php
-if ($collectible->getMultimediaCount('image') > 0)
-{
-  slot(
-    'mycq_dropbox_info_message',
-    'To add another view of this item, drag an image
-     into the "Alternate View" boxes below your main image.'
-  );
-}
-else
-{
-  slot(
-    'mycq_dropbox_info_message',
-    'Drag a photo below to set it as the "Main Image" for this item.'
-  );
-}
+  if ($collectible->getMultimediaCount('image') > 0)
+  {
+    slot(
+      'mycq_dropbox_info_message',
+      'To add another view of this item, drag an image
+       into the "Alternate View" boxes below your main image.'
+    );
+  }
+  else
+  {
+    slot(
+      'mycq_dropbox_info_message',
+      'Drag a photo below to set it as the "Main Image" for this item.'
+    );
+  }
 ?>
 
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
@@ -46,7 +46,7 @@ else
   ?>
 
   <?php
-    cq_sidebar_title(
+    cq_section_title(
       sprintf('%s <small>(%s)</small>', $collectible->getName() ?: 'Untitled', $collection->getName()), null,
       array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
     );
@@ -175,7 +175,7 @@ else
       Edit other items in this collection:
     </div>
     <div class="span6">
-      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details'))?>"
+      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles'))?>"
          class="pull-right">
         See All Items &raquo;
       </a>

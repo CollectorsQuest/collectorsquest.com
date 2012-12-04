@@ -31,10 +31,12 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
     if ($active_credit)
     {
       return $this
-        ->useCollectibleQuery('collectible_check_credit_alias')
-          ->usePackageTransactionCreditQuery()
-            ->notExpired()
-          ->endUse()
+        ->useCollectibleQuery('collectible_check_credit_alias', Criteria::INNER_JOIN)
+          ->joinPackageTransactionCredit(null, Criteria::INNER_JOIN)
+          ->addJoinCondition(
+            'PackageTransactionCredit',
+            'package_transaction_credit.EXPIRY_DATE >= NOW()'
+          )
         ->endUse();
     }
     else
@@ -74,7 +76,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   {
     return $this
       ->useCollectibleQuery()
-      ->isPartOfCollection()
+        ->isPartOfCollection()
       ->endUse();
   }
 

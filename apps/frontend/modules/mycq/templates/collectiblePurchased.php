@@ -10,7 +10,7 @@ $link = link_to(
   'Back to Purchases &raquo;', '@mycq_marketplace_purchased',
   array('class' => 'text-v-middle link-align')
 );
-cq_sidebar_title(
+cq_section_title(
   'Order Information', $link,
   array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
 );
@@ -81,6 +81,20 @@ cq_sidebar_title(
           </span>
           </td>
         </tr>
+        <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
+          <tr>
+            <td>
+            <span class="f-14">
+              Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage(); ?>%):
+            </span>
+            </td>
+            <td>
+            <span class="f-14">
+              <?= money_format('%.2n', (float) $shopping_order->getTaxAmount()) ?>
+            </span>
+            </td>
+          </tr>
+        <?php endif; ?>
         <tr>
           <td>
           <span class="f-14">
@@ -113,7 +127,7 @@ cq_sidebar_title(
 
 
 <?php
-  cq_sidebar_title(
+  cq_section_title(
     $collectible->getName(), null,
     array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title')
   );
@@ -158,7 +172,7 @@ cq_sidebar_title(
 
 
 <?php
-cq_sidebar_title(
+cq_section_title(
   'Seller Information', null,
   array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title')
 );

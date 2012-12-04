@@ -1,43 +1,61 @@
-shopping_order:
-  class: sfPropelORMRouteCollection
-  options:
-    model:                ShoppingOrder
-    module:               shoppingOrder
-    prefix_path:          /shoppingOrder
-    column:               id
-    with_wildcard_routes: true
-
-shopping_order_export:
-  url: /ShoppingOrder/export
-  param: { module: ShoppingOrder, action: export }
-
 ajax_typeahead:
   url:   /ajax/typeahead/:section/:page
   param: { module: ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
-wp_post:
+object_rating:
+  url:   /ajax/set-rating/:class/:id
+  param: { module: adminbar, action: rating }
+  requirements: { class: "[^/]+", id: '\d+' }
+
+ajax_object_rating:
+  url:   /object/set-rating/:dimension/:class/:id
+  param: { module: adminbar, action: rating }
+  requirements: {dimension: "[^/]+", class: "[^/]+", id: '\d+' }
+
+object_machine_tags:
+  url:   /ajax/machine-tags/:class/:id
+  param: { module: adminbar, action: machinetags }
+  requirements: { class: "[^/]+", id: '\d+' }
+
+
+### MARKETPLACE
+
+shopping_order:
   class: sfPropelORMRouteCollection
   options:
-    model:                wpPost
-    module:               wpPost
-    prefix_path:          /wpPost
+    model:                ShoppingOrder
+    module:               shoppingOrder
+    prefix_path:          /shopping-order
     column:               id
     with_wildcard_routes: true
-    actions:              [list]
 
-featured_weeks:
+shopping_order_view:
+  url: /shopping-order/:id/view
+  class: sfPropelORMRoute
+  options:
+    model: ShoppingOrder
+    type: object
+    column: id
+  param: { module: ShoppingOrder, action: view }
+
+shopping_order_export:
+  url: /shopping-order/:id/export
+  class: sfPropelORMRoute
+  options:
+    model: ShoppingOrder
+    type: object
+    column: id
+  param: { module: ShoppingOrder, action: export }
+
+shopping_cart_collectible:
   class: sfPropelORMRouteCollection
   options:
-    model:                Featured
-    module:               featuredWeeks
-    prefix_path:          /featuredWeeks
-    column:               id
+    model:                ShoppingCartCollectible
+    module:               shoppingCartCollectible
+    prefix_path:          /shoppingCartCollectible
+    column:               shopping_cart_id
     with_wildcard_routes: true
-
-collectible_for_sale_export:
-  url: /collectibleForSale/export
-  param: { module: collectibleForSale, action: export }
 
 collectible_for_sale:
   class: icePropelRouteCollection
@@ -48,19 +66,9 @@ collectible_for_sale:
     column:               id
     with_wildcard_routes: true
 
-comment:
-  class: sfPropelORMRouteCollection
-  options:
-    model:                Comment
-    module:               comments
-    prefix_path:          /comments
-    column:               id
-    with_wildcard_routes: true
-
-comment_ajax_update_content:
-  url: /comments/update_content
-  param: { module: comments, action: updateContent }
-  requirements: { sf_method: [POST], sf_format: json }
+collectible_for_sale_export:
+  url: /collectibleForSale/export
+  param: { module: collectibleForSale, action: export }
 
 promotion_transaction:
   class: sfPropelORMRouteCollection
@@ -99,7 +107,6 @@ package_transaction_add_extra_credits:
   param:                  { module: packageTransaction, action: addExtraCredits }
   requirements:           { sf_method: [get, post] }
 
-
 package:
   class: sfPropelORMRouteCollection
   options:
@@ -109,14 +116,53 @@ package:
     column:               id
     with_wildcard_routes: true
 
-playlist:
+marketplace:
+  url:   /marketplace
+  param: { module: collectibleForSale, action: index }
+
+
+### COMMUNITY
+
+collectible:
   class: icePropelRouteCollection
   options:
-    model:                Playlist
-    module:               playlists
-    prefix_path:          /playlists
+    model:                Collectible
+    module:               collectibles
+    prefix_path:          /collectibles
     column:               id
     with_wildcard_routes: true
+
+collection:
+  class: icePropelRouteCollection
+  options:
+    model:                CollectorCollection
+    module:               collections
+    prefix_path:          /collections
+    column:               id
+    with_wildcard_routes: true
+
+collector:
+  class: icePropelRouteCollection
+  options:
+    model:                Collector
+    module:               collectors
+    prefix_path:          /collectors
+    column:               id
+    with_wildcard_routes: true
+
+comment:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                Comment
+    module:               comments
+    prefix_path:          /comments
+    column:               id
+    with_wildcard_routes: true
+
+comment_ajax_update_content:
+  url: /comments/update_content
+  param: { module: comments, action: updateContent }
+  requirements: { sf_method: [POST], sf_format: json }
 
 private_message:
   class: icePropelRouteCollection
@@ -154,73 +200,19 @@ collection_category:
     column:               id
     with_wildcard_routes: true
 
-video_playlist:
-  class: icePropelRouteCollection
+
+### WORDPRESS
+
+wp_post:
+  class: sfPropelORMRouteCollection
   options:
-    model:                VideoPlaylist
-    module:               videoPlaylists
-    prefix_path:          /videoPlaylists
+    model:                wpPost
+    module:               wpPost
+    prefix_path:          /wpPost
     column:               id
     with_wildcard_routes: true
+    actions:              [list]
 
-video:
-  class: icePropelRouteCollection
-  options:
-    model:                Video
-    module:               videos
-    prefix_path:          /videos
-    column:               id
-    with_wildcard_routes: true
-
-collectible:
-  class: icePropelRouteCollection
-  options:
-    model:                Collectible
-    module:               collectibles
-    prefix_path:          /collectibles
-    column:               id
-    with_wildcard_routes: true
-
-collection:
-  class: icePropelRouteCollection
-  options:
-    model:                CollectorCollection
-    module:               collections
-    prefix_path:          /collections
-    column:               id
-    with_wildcard_routes: true
-
-collector:
-  class: icePropelRouteCollection
-  options:
-    model:                Collector
-    module:               collectors
-    prefix_path:          /collectors
-    column:               id
-    with_wildcard_routes: true
-
-marketplace:
-  url:   /marketplace
-  param: { module: collectibleForSale, action: index }
-
-item_offers:
-  url:   /item/offers
-  param: { module: collectibleForSale, action: itemOffers }
-
-object_rating:
-  url:   /ajax/set-rating/:class/:id
-  param: { module: adminbar, action: rating }
-  requirements: { class: "[^/]+", id: '\d+' }
-
-ajax_object_rating:
-  url:   /object/set-rating/:dimension/:class/:id
-  param: { module: adminbar, action: rating }
-  requirements: {dimension: "[^/]+", class: "[^/]+", id: '\d+' }
-
-object_machine_tags:
-  url:   /ajax/machine-tags/:class/:id
-  param: { module: adminbar, action: machinetags }
-  requirements: { class: "[^/]+", id: '\d+' }
 
 # default rules
 

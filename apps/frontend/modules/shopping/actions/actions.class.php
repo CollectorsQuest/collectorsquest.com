@@ -141,6 +141,10 @@ class shoppingActions extends cqFrontendActions
 
         $shipping_address = new CollectorAddress();
         $shipping_address->setCountryIso3166($values['country_iso3166']);
+        if (isset($values['state_region']))
+        {
+          $shipping_address->setStateRegion($values['state_region']);
+        }
 
         /** @var $collectible_for_sale CollectibleForSale */
         $collectible_for_sale = CollectibleForSaleQuery::create()
@@ -222,6 +226,15 @@ class shoppingActions extends cqFrontendActions
   {
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
+
+    /**
+     * Set the apropriate progress step of the ShoppingOrder
+     */
+    if ($shopping_order->getProgress() < ShoppingOrderPeer::PROGRESS_STEP1)
+    {
+      $shopping_order->setProgress(ShoppingOrderPeer::PROGRESS_STEP1);
+      $shopping_order->save();
+    }
 
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
@@ -311,6 +324,15 @@ class shoppingActions extends cqFrontendActions
   {
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
+
+    /**
+     * Set the apropriate progress step of the ShoppingOrder
+     */
+    if ($shopping_order->getProgress() < ShoppingOrderPeer::PROGRESS_STEP2)
+    {
+      $shopping_order->setProgress(ShoppingOrderPeer::PROGRESS_STEP2);
+      $shopping_order->save();
+    }
 
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
@@ -472,6 +494,15 @@ class shoppingActions extends cqFrontendActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
+    /**
+     * Set the apropriate progress step of the ShoppingOrder
+     */
+    if ($shopping_order->getProgress() < ShoppingOrderPeer::PROGRESS_STEP3)
+    {
+      $shopping_order->setProgress(ShoppingOrderPeer::PROGRESS_STEP3);
+      $shopping_order->save();
+    }
+
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
 
@@ -497,13 +528,6 @@ class shoppingActions extends cqFrontendActions
           'sf_subject' => $shopping_order,
           'encrypt' => 1, 'lifetime' => 3600
         )
-      );
-    }
-    else if ($shopping_payment->getStatus() === ShoppingPaymentPeer::STATUS_CONFIRMED)
-    {
-      $this->getUser()->setFlash(
-        'highlight', '<strong>NOTICE:</strong> Your payment has been confirmed but not yet COMPLETE!
-                      The seller will wait until the payment has cleared in their account before shipping the item.'
       );
     }
 
@@ -734,6 +758,15 @@ class shoppingActions extends cqFrontendActions
    */
   private function orderComplete(ShoppingOrder $shopping_order)
   {
+    /**
+     * Set the apropriate progress step of the ShoppingOrder
+     */
+    if ($shopping_order->getProgress() < ShoppingOrderPeer::PROGRESS_STEP3)
+    {
+      $shopping_order->setProgress(ShoppingOrderPeer::PROGRESS_STEP3);
+      $shopping_order->save();
+    }
+
     $shopping_payment = $shopping_order->getShoppingPayment();
     $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
     $shopping_payment->save();
@@ -754,27 +787,39 @@ class shoppingActions extends cqFrontendActions
     /**
      * Send emails to both the seller and the buyer
      */
-    $cqEmail = new cqEmail($this->getMailer());
-    $cqEmail->send('Shopping/buyer_order_confirmation', array(
-      'to' => $shopping_order->getBuyerEmail(),
-      'params' => array(
-        'buyer_name'  => $shopping_order->getShippingFullName(),
-        'oSeller' => $shopping_order->getSeller(),
-        'oCollectible' => $shopping_order->getCollectible(),
-        'oShoppingOrder' => $shopping_order
-      )
-    ));
+    if (!$shopping_order->getIsBuyerNotified())
+    {
+      $cqEmail = new cqEmail($this->getMailer());
+      $is_sent = $cqEmail->send('Shopping/buyer_order_confirmation', array(
+        'to' => $shopping_order->getBuyerEmail(),
+        'params' => array(
+          'buyer_name'  => $shopping_order->getShippingFullName(),
+          'oSeller' => $shopping_order->getSeller(),
+          'oCollectible' => $shopping_order->getCollectible(),
+          'oShoppingOrder' => $shopping_order
+        )
+      ));
 
-    $cqEmail = new cqEmail($this->getMailer());
-    $cqEmail->send('Shopping/seller_order_notification', array(
-      'to' => $shopping_order->getSeller()->getEmail(),
-      'params' => array(
-        'buyer_name'  => $shopping_order->getShippingFullName(),
-        'oSeller' => $shopping_order->getSeller(),
-        'oCollectible' => $shopping_order->getCollectible(),
-        'oShoppingOrder' => $shopping_order
-      )
-    ));
+      $shopping_order->setIsBuyerNotified($is_sent);
+    }
+
+    if (!$shopping_order->getIsSellerNotified())
+    {
+      $cqEmail = new cqEmail($this->getMailer());
+      $is_sent = $cqEmail->send('Shopping/seller_order_notification', array(
+        'to' => $shopping_order->getSeller()->getEmail(),
+        'params' => array(
+          'buyer_name'  => $shopping_order->getShippingFullName(),
+          'oSeller' => $shopping_order->getSeller(),
+          'oCollectible' => $shopping_order->getCollectible(),
+          'oShoppingOrder' => $shopping_order
+        )
+      ));
+
+      $shopping_order->setIsSellerNotified($is_sent);
+    }
+
+    $shopping_order->save();
   }
 
   /**

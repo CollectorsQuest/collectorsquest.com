@@ -28,6 +28,14 @@ class sellerActions extends cqFrontendActions
       $this->redirect('collector_by_slug', $collector, 301);
     }
 
+    /* @var $aetn_shows array */
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
+    $aetn_collector_id = $aetn_shows['american_pickers']['collector'];
+    if ($collector->getId() == $aetn_collector_id)
+    {
+      $this->redirect('@aetn_franks_picks', 301);
+    }
+
     $for_sale_ids = FrontendCollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale()
@@ -177,13 +185,13 @@ class sellerActions extends cqFrontendActions
 
             $this->return_url = $this->generateUrl(
               'seller_payment_paypal',
-              array('id' => $transaction->getId(), 'cmd' => 'return', 'encrypt' => true),
+              array('id' => $transaction->getId(), 'cmd' => 'return', 'encrypt' => true, 'lifetime' => 86400),
               true
             );
 
             $this->cancel_return_url = $this->generateUrl(
               'seller_payment_paypal',
-              array('id' => $transaction->getId(), 'cmd' => 'cancel', 'encrypt' => true),
+              array('id' => $transaction->getId(), 'cmd' => 'cancel', 'encrypt' => true, 'lifetime' => 86400),
               true
             );
 
@@ -191,7 +199,7 @@ class sellerActions extends cqFrontendActions
             {
               $this->notify_url = $domain . $this->generateUrl(
                 'seller_payment_paypal',
-                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true),
+                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true, 'lifetime' => 0),
                 false
               );
             }
@@ -199,7 +207,7 @@ class sellerActions extends cqFrontendActions
             {
               $this->notify_url = $this->generateUrl(
                 'seller_payment_paypal',
-                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true),
+                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true, 'lifetime' => 0),
                 true
               );
             }

@@ -30,7 +30,7 @@ $height_main_div->value = 116;
           <?php
             echo format_number_choice(
               '[0] no items yet|[1] 1 Item|(1,+Inf] %1% Items',
-              array('%1%' => number_format($collection->getNumItems())), $collection->getNumItems()
+              array('%1%' => number_format($collection->getNumPublicItems())), $collection->getNumPublicItems()
             );
           ?>
         </li>
@@ -45,15 +45,16 @@ $height_main_div->value = 116;
       </ul>
     </div>
     <div id="social-sharing" class="pull-right share">
-      <!-- AddThis Button BEGIN -->
-      <a class="btn-lightblue btn-mini-social addthis_button_email">
-        <i class="mail-icon-mini"></i> Email
-      </a>
-      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= src_tag_collection($collection, 'original'); ?>" pi:pinit:layout="horizontal"></a>
-      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
-      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
-      <!-- AddThis Button END -->
+      <?php
+        include_partial(
+          'global/addthis',
+          array(
+            'image' => src_tag_collection($collection, 'original'),
+            'text' => $collection->getName(),
+            'url' => url_for_collection($collection, true)
+          )
+        );
+      ?>
     </div>
   </div>
 </div>

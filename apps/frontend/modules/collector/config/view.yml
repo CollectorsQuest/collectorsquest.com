@@ -2,6 +2,7 @@ all:
   stylesheets: [frontend/modules/collector.css]
 
 indexSuccess:
+  javascripts: [jquery/expander.js]
   components:
     sidebar_300: [collector, sidebarIndex]
 
