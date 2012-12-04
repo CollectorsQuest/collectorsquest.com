@@ -9,20 +9,30 @@ class cqWebRequest extends sfWebRequest
    */
   protected $is_mobile_browser = null;
 
-  /*
-   * width of browser screen in pixels
+  /**
+   * Width of browser screen in pixels
+   *
    * @var $browser_width integer
    */
   protected $browser_width = 0;
 
-  /*
-   * width of client screen in pixels
+  /**
+   * Width of browser screen in pixels
+   *
+   * @var $browser_width integer
+   */
+  protected $browser_height = 0;
+
+  /**
+   * Width of client screen in pixels
+   *
    * @var $screen_width integer
    */
   protected $screen_width = 0;
 
-   /*
-   * height of client screen in pixels
+   /**
+   * Height of client screen in pixels
+   *
    * @var $screen_height integer
    */
   protected $screen_height = 0;
@@ -47,9 +57,12 @@ class cqWebRequest extends sfWebRequest
    */
   public function getRemoteAddress()
   {
-    if (null !== $proxy_forwards = $this->getForwardedFor()) {
+    if (null !== $proxy_forwards = $this->getForwardedFor())
+    {
       return $proxy_forwards[0]; // in a non-anonymous proxy, this is the real IP
-    } else {
+    }
+    else
+    {
       return parent::getRemoteAddress();
     }
   }
@@ -87,17 +100,22 @@ class cqWebRequest extends sfWebRequest
 
   public function setBrowserWidth($value)
   {
-    $this->browser_width = $value;
+    $this->browser_width = (int) $value;
+  }
+
+  public function setBrowserHeight($value)
+  {
+    $this->browser_height = (int) $value;
   }
 
   public function setScreenWidth($value)
   {
-    $this->screen_width = $value;
+    $this->screen_width = (int) $value;
   }
 
   public function setScreenHeight($value)
   {
-    $this->screen_height = $value;
+    $this->screen_height = (int) $value;
   }
 
   /**
@@ -151,11 +169,13 @@ class cqWebRequest extends sfWebRequest
   public function parseResolutionCookie()
   {
     // in the cookie set in application.js we have 4 values divided by 'x'
-    $cookie_data   = explode('x', $_COOKIE['resolution']);
+    $cookie_data = explode('x', $_COOKIE['cq_resolution']);
 
-    $this->setScreenWidth($cookie_data[0]);
-    $this->setScreenHeight($cookie_data[1]);
-    $this->setBrowserWidth(max($cookie_data[2], $cookie_data[3]));
+    $this->setScreenWidth(isset($cookie_data[0]) ? $cookie_data[0] : 1024);
+    $this->setScreenHeight(isset($cookie_data[1]) ? $cookie_data[1] : 768);
+
+    $this->setBrowserWidth(isset($cookie_data[2]) ? $cookie_data[2] : 1024);
+    $this->setBrowserHeight(isset($cookie_data[3]) ? $cookie_data[3] : 696);
   }
 
   /**
@@ -163,14 +183,9 @@ class cqWebRequest extends sfWebRequest
    *
    * @return boolean
    */
-  public function isSmallScreen()
+  public function isMobileLayout()
   {
-    if ($this->isMobileBrowser() && $this->getBrowserWidth() < 1024)
-    {
-      return true;
-    }
-
-    return false;
+    return $this->isMobileBrowser() && $this->getBrowserWidth() < 1024;
   }
 
   /**
@@ -181,12 +196,7 @@ class cqWebRequest extends sfWebRequest
    */
   public function isDesktopLayout()
   {
-    if ($this->isMobileBrowser() && $this->getBrowserWidth() > 1024)
-    {
-      return true;
-    }
-
-    return false;
+    return $this->isMobileBrowser() && $this->getBrowserWidth() > 1024;
   }
 
 }
