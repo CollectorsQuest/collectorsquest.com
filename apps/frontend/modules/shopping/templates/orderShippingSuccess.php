@@ -14,7 +14,7 @@
 
   <fieldset>
     <legend>Contact Details</legend>
-    <div class="control-group span8 spacer-left-reset <?= $form->isError('buyer_email') ? 'error' : '' ?>" style="">
+    <div class="control-group span8 spacer-left-reset <?= $form->isError('buyer_email') ? 'error' : '' ?>">
       <?= $form['buyer_email']->renderLabel(null, array('class' => 'control-label')); ?>
       <div class="controls">
         <div class="input-prepend with-required-token">
