@@ -106,10 +106,14 @@
 
   //CONTAINERS & SIDEBAR
   header, nav, footer, #footer-links,
-  .slots-container, .shadow,
+  .slots-container, .shadow, .container-fluid.without-column,
   #slot1, #slot2  {
     width: 646px;
     .margin-auto();
+  }
+
+  .container-fluid.without-column, .container.without-column {
+    padding-right: 0;
   }
 
   .shadow {
@@ -363,6 +367,25 @@
   .main-collectible-container .next-zone .next-btn {
     display: block;
   }
+
+
+  //categories
+  #all-categories {
+    margin-left: 0;
+
+    .span4 {
+      width: 90% !important;
+      margin: 20px 0 10px 0;
+      padding-right: 5%;
+      padding-left: 5%;
+
+      > .spacer-top-35 {
+        margin-top: 0!important;
+      }
+    }
+  }
+
+
 }
 
 
