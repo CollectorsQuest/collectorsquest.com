@@ -248,7 +248,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileAddressesEdit(sfWebRequest $request)
   {
-    /** @var $address CollectorAddress */
+    /* @var $address CollectorAddress */
     $address = $this->getRoute()->getObject();
 
     $this->forward404Unless($this->getCollector()->isOwnerOf($address));
@@ -273,7 +273,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileAddressesDelete(sfWebRequest $request)
   {
-    /** @var $address CollectorAddress */
+    /* @var $address CollectorAddress */
     $address = $this->getRoute()->getObject();
 
     $this->forward404Unless($this->getUser()->isOwnerOf($address));
@@ -308,7 +308,7 @@ class mycqActions extends cqFrontendActions
         );
         $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
 
-        /** @var $collectibles Collectible[] */
+        /* @var $collectibles Collectible[] */
         if ($collectibles = CollectiblePeer::doSelect($c))
         {
           foreach ($collectibles as $collectible)
@@ -367,7 +367,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
-    /** @var $collection CollectorCollection */
+    /* @var $collection CollectorCollection */
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
 
@@ -376,7 +376,7 @@ class mycqActions extends cqFrontendActions
       '@mycq_collections'
     );
 
-    /** @var $collectible Collectible */
+    /* @var $collectible Collectible */
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
 
@@ -417,15 +417,13 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollectible(sfWebRequest $request)
   {
-    /** @var $collectible Collectible */
+    /* @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
 
-    /** @var $collection CollectorCollection */
+    /* @var $collection CollectorCollection */
     $collection = $collectible->getCollectorCollection();
 
-    /**
-     * Handle sold/purchased Collectibles
-     */
+    // Handle sold/purchased Collectibles
     if ($collectible->isWasForSale() && $collectible->getCollectibleForSale()->getIsSold())
     {
       SmartMenu::setSelected('mycq_menu', 'marketplace');
@@ -480,7 +478,7 @@ class mycqActions extends cqFrontendActions
       '@mycq_collections'
     );
 
-    /** @var $collection CollectorCollection */
+    /* @var $collection CollectorCollection */
     $collection = $collectible->getCollectorCollection();
 
     if ($request->getParameter('cmd'))
@@ -499,11 +497,9 @@ class mycqActions extends cqFrontendActions
 
           try
           {
-            /**
-             * If the Collectible has Multimedia associated with it, let's just
-             * delete the CollectionCollectible references so that it can return
-             * to the Dropbox
-             */
+            // If the Collectible has Multimedia associated with it, let's just
+            // delete the CollectionCollectible references so that it can return
+            // to the Dropbox
             $default = $collectible->getMultimediaCount() > 0 ? 'collections' : 'collectible';
 
             switch ($request->getParameter('scope', $default))
@@ -989,7 +985,7 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
-    /** @var $shopping_order ShoppingOrder */
+    /* @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
     $collectible = $shopping_order->getCollectible();
@@ -998,7 +994,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeShoppingOrderTracking(sfWebRequest $request)
   {
-    /** @var $shopping_order ShoppingOrder */
+    /* @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
     if ($request->isMethod('post') && $this->getUser()->isOwnerOf($shopping_order))
