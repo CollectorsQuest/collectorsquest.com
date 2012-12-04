@@ -11,7 +11,7 @@ $_height = 0;
 <?php cq_sidebar_title('Collections of Interest') ?>
 <?php $_height -= 63; ?>
 
-<div class="optimize-mobile-300">
+<div class="mobile-optimized-300">
   <?php if (false) foreach ($collections as $collection): ?>
   <div class="thumbnails-box-1x4-sidebar bgyellow-noborder">
     <div class="inner-thumbnails-box">

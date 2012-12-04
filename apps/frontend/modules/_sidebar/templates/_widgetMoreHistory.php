@@ -7,7 +7,7 @@
 $_height = 0;
 
 ?>
-<div class="optimize-mobile-300 center">
+<div class="mobile-optimized-300 center">
   <?php
     cq_sidebar_title('More HISTORY');
     $_height -= 63;

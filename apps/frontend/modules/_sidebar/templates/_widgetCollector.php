@@ -72,7 +72,7 @@ $_height = 0;
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
-  <div class="optimize-mobile-300 center">
+  <div class="mobile-optimized-300 center">
     <div class="row-fluid min-height-13 spacer-top cf">
       <div class="span9 text-word-wrap">
         <?= $collector; ?>'s Collections:

@@ -11,7 +11,7 @@
     cq_ad_slot(
       cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png',
         array(
-          'width' => '300', 'height' => '90', 'class' => 'spacer-top-20 optimize-mobile-300 center',
+          'width' => '300', 'height' => '90', 'class' => 'spacer-top-20 mobile-optimized-300 center',
           'alt' => 'Quest Your Best: The Essential Guide to Collecting'
         )
       ),
