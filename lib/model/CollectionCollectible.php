@@ -4,6 +4,8 @@ require 'lib/model/om/BaseCollectionCollectible.php';
 
 class CollectionCollectible extends BaseCollectionCollectible
 {
+  /* @var null|CollectorCollection */
+  private $singleCollectorCollection = null;
 
   public function preSave(PropelPDO $con = null)
   {
