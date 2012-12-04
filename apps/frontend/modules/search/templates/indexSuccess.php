@@ -47,7 +47,14 @@
       switch (strtolower(get_class($object)))
       {
         case 'wppost':
-          include_partial('general/homepage_blogpost', array('blog_post' => $object, 'no_image' => true));
+          include_partial(
+            'general/homepage_blogpost',
+            array(
+              'blog_post' => $object, 'i' => $i,
+              'excerpt' => $pager->getExcerpt($i),
+              'image' => false
+            )
+          );
           break;
         case 'collectible':
           include_partial(
