@@ -169,7 +169,7 @@ class cqWebRequest extends sfWebRequest
   public function parseResolutionCookie()
   {
     // in the cookie set in application.js we have 4 values divided by 'x'
-    $cookie_data = explode('x', $_COOKIE['cq_resolution']);
+    $cookie_data = explode('x', $this->getCookie('cq_resolution'));
 
     $this->setScreenWidth(isset($cookie_data[0]) ? $cookie_data[0] : 1024);
     $this->setScreenHeight(isset($cookie_data[1]) ? $cookie_data[1] : 768);
