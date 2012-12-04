@@ -77,11 +77,16 @@
       </ul>
     </div>
     <div id="social-sharing" class="pull-right share">
-      <?php // removing the addthis_button_email causes a JS error - no toolbar displayed ?>
-      <a class="addthis_button_email" style="display: none;"></a>
-      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
-      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
+      <?php
+        include_partial(
+          'global/addthis',
+          array(
+            'providers' => array('email', 'google+', 'facebook'),
+            'image' => src_tag_collector($collector, 'original'),
+            'url' => url_for('seller_store', $collector, true)
+          )
+        );
+      ?>
     </div>
   </div>
 </div>
