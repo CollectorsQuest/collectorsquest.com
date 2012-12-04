@@ -816,11 +816,9 @@ class shoppingActions extends cqFrontendActions
           )
         )));
     }
-    if ($shopping_order->isColumnModified(ShoppingOrderPeer::IS_BUYER_NOTIFIED)
-      || $shopping_order->isColumnModified(ShoppingOrderPeer::IS_SELLER_NOTIFIED))
-    {
-      $shopping_order->save();
-    }
+
+    $shopping_order->save();
+
   }
 
   /**
