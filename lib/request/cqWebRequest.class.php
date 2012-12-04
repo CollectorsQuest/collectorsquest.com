@@ -181,7 +181,7 @@ class cqWebRequest extends sfWebRequest
    */
   public function isMobileBrowserFitLayout()
   {
-    if ($this->isMobileBrowser() && $this->getBrowserWidth() < 1024)
+    if ($this->isMobileBrowser() && $this->getBrowserWidth() > 1024)
     {
       return true;
     }
