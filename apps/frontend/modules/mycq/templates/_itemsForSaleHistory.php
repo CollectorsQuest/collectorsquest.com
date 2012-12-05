@@ -23,23 +23,18 @@
         <?php /* @var $collectible_for_sale CollectibleForSale */ ?>
         <tr>
           <td>
-            <div class="row-fluid items">
-              <div class="span2">
-                <a href="" class="thumb">
-                  <?php
-                    echo link_to(
-                      image_tag_collectible(
-                        $collectible_for_sale->getCollectible(), '75x75',
-                        array('width' => 75, 'height' => 75)
-                      ),
-                      'mycq_collectible_by_slug',
-                      array('sf_subject' => $collectible_for_sale->getCollectible(), 'return_to' => 'market'),
-                      array('target' => '_blank')
-                    );
-                  ?>
-                </a>
-              </div>
-              <div class="span10">
+              <?php
+                echo link_to(
+                  image_tag_collectible(
+                    $collectible_for_sale->getCollectible(), '75x75',
+                    array('width' => 75, 'height' => 75)
+                  ),
+                  'mycq_collectible_by_slug',
+                  array('sf_subject' => $collectible_for_sale->getCollectible(), 'return_to' => 'market'),
+                  array('target' => '_blank', 'class' => 'thumb pull-left')
+                );
+              ?>
+              <div class="pull-left">
                 <span class="title">
                   <?php
                     echo link_to_collectible(
