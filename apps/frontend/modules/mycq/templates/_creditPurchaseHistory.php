@@ -6,7 +6,7 @@
   */
 ?>
 
-<?php if ($seller->getCreditsLeft() <= 5): ?>
+<?php if (!$seller->getCreditsLeft()): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
   <p class="spacer-top">
