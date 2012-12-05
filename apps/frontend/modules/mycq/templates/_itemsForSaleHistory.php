@@ -167,12 +167,14 @@
 
       if (confirm($this.data('confirm')) || 'Are you sure?')
       {
-        $this.parent().parent().showLoading();
-        $this.parent().load(
+        $this.parents('tr').showLoading();
+        $this.parents('td').load(
           '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=deactivate&id=') ?>' + $this.data('id'),
           function() {
-            $this.parent().parent().hideLoading();
-            $this.parent().find('td.status').html('Inactive');
+            // we need the actual TD here, so we use $(this) instead of
+            // $this, which points to an anchor tag
+            $(this).parents('tr').hideLoading()
+                                 .find('td.status').html('Inactive');
           }
         );
       }
@@ -187,12 +189,14 @@
 
       if (confirm($this.data('confirm') || 'Are you sure?'))
       {
-        $this.parent().parent().showLoading();
-        $this.parent().load(
+        $this.parents('tr').showLoading();
+        $this.parents('td').load(
           '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=relist&id=') ?>' + $this.data('id'),
           function() {
-            $this.parent().parent().hideLoading();
-            $this.parent().find('td.status').html('Active');
+            // we need the actual TD here, so we use $(this) instead of
+            // $this, which points to an anchor tag
+            $(this).parents('tr').hideLoading()
+                                 .find('td.status').html('Active');
           }
         );
       }
