@@ -256,7 +256,7 @@
     );
 
     $('#fileupload-c').fileupload('option', {
-      maxFileSize: 10000000,
+      maxFileSize: <?= cqStatic::getActualMaxUploadFilesize() // php file upload limit ?>,
       acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
     });
 
