@@ -21,6 +21,11 @@ aetn_franks_picks:
   param: { module: aetn, action: franksPicks }
   requirements: { sf_method: [GET] }
 
+aetn_franks_picks_alternative:
+  url: /franks-picks
+  param: { module: aetn, action: franksPicks }
+  requirements: { sf_method: [GET] }
+
 aetn_pawn_stars:
   url: /history/pawn-stars
   param: { module: aetn, action: pawnStars }
