@@ -77,7 +77,7 @@
             <?php elseif ($collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()) : ?>
               <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
                  class="deactivate btn btn-mini"
-                 onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
+                 data-confirm="Are you sure you sure you want to deactivate this item?">
                 <i class="icon-minus-sign"></i>&nbsp;Deactivate
               </a>
             <?php elseif (!$seller->hasPackageCredits()) : ?>
@@ -87,7 +87,7 @@
             <?php else: ?>
             <a data-id="<?= $collectible_for_sale->getCollectible()->getId(); ?>"
                class="relist btn btn-mini"
-               onclick="return confirm('Are you sure you sure you want to re-list this item?')">
+               data-confirm="Are you sure you sure you want to re-list this item?">
               <i class="icon-undo"></i>&nbsp;Re-list
             </a>
             <?php endif; ?>
@@ -136,7 +136,7 @@
     var $url = '<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory', true) ?>';
     var $form = $('#form-mycq-collectibles-for-sale');
 
-    $('#collectibles-for-sale-pagination a').click(function(e)
+    $('#collectibles-for-sale-pagination a').on('click', function(e)
     {
       e.preventDefault();
       var page = $(this).data('page');
@@ -157,34 +157,45 @@
       return false;
     });
 
-    $('a.deactivate').click(function(e)
-    {
-      e.preventDefault();
-      $(this).parent().parent().showLoading();
+    var $items_for_sale = $('#items-for-sale');
 
-      $(this).parent().load(
-        '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=deactivate&id=') ?>' + $(this).data('id'),
-        function() {
-          $(this).parent().parent().hideLoading();
-          $(this).parent().find('td.status').html('Inactive');
-        }
-      );
+    // attach a live click event for item deactivation
+    $items_for_sale.on('click', 'a.deactivate', function(e)
+    {
+      var $this = $(this);
+      e.preventDefault();
+
+      if (confirm($this.data('confirm')) || 'Are you sure?')
+      {
+        $this.parent().parent().showLoading();
+        $this.parent().load(
+          '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=deactivate&id=') ?>' + $this.data('id'),
+          function() {
+            $this.parent().parent().hideLoading();
+            $this.parent().find('td.status').html('Inactive');
+          }
+        );
+      }
 
       return false;
-    });
-
-    $('a.relist').click(function(e)
+    })
+    // and one for relist
+    .on('click', 'a.relist', function(e)
     {
+      var $this = $(this);
       e.preventDefault();
-      $(this).parent().parent().showLoading();
 
-      $(this).parent().load(
-        '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=relist&id=') ?>' + $(this).data('id'),
-        function() {
-          $(this).parent().parent().hideLoading();
-          $(this).parent().find('td.status').html('Active');
-        }
-      );
+      if (confirm($this.data('confirm') || 'Are you sure?'))
+      {
+        $this.parent().parent().showLoading();
+        $this.parent().load(
+          '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=relist&id=') ?>' + $this.data('id'),
+          function() {
+            $this.parent().parent().hideLoading();
+            $this.parent().find('td.status').html('Active');
+          }
+        );
+      }
 
       return false;
     });
