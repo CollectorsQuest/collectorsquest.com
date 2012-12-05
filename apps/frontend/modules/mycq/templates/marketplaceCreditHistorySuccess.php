@@ -21,8 +21,6 @@
 
         <?php include_component('mycq', 'creditPurchaseHistory'); ?>
 
-        <br class="cf"/>
-
         <!-- Items listing history -->
         <div id="items-for-sale-history" class="row-fluid sidebar-title spacer-top-20" style="margin-bottom: 0;">
           <div class="span8">
@@ -30,7 +28,7 @@
           </div>
         </div><!-- /.sidebar-title -->
 
-        <div class="row-fluid messages-row gray-well cf">
+        <div class="row-fluid gray-well spacer-inner-right-reset">
           <div class="span8">
             <div class="filter-container">
                 <span class="show-all-text pull-left">
@@ -76,8 +74,8 @@
           </div>
 
           <div class="span4">
-            <div class="mini-input-append-search">
-              <div class="input-append pull-right">
+            <div class="mini-input-append-search pull-right spacer-right-5">
+              <div class="input-append">
                 <form action="<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory') ?>"
                       id="form-mycq-collectibles-for-sale" method="post">
                   <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
