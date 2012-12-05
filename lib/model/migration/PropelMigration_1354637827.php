@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Data object containing the SQL and PHP code to migrate the database
- * up to version 1354637827.
- * Generated on 2012-12-04 11:17:07 by root
+ * add is_buyer_notified and is_seller_notified flags to shopping order
  */
 class PropelMigration_1354637827
 {
@@ -15,7 +13,21 @@ class PropelMigration_1354637827
 
   public function postUp($manager)
   {
-    // add the post-migration code here
+    // Get items by payment status
+    /* @var $shopping_orders ShoppingOrder[] */
+    $shopping_orders = ShoppingOrderQuery::create()
+      ->addJoin(ShoppingOrderPeer::ID, ShoppingPaymentPeer::SHOPPING_ORDER_ID, Criteria::LEFT_JOIN)
+      ->add(ShoppingPaymentPeer::STATUS, 5)
+      ->find();
+
+    foreach ($shopping_orders as $shopping_order)
+    {
+      $shopping_order
+        ->setIsBuyerNotified(true)
+        ->setIsSellerNotified(true)
+        ->save();
+    }
+
   }
 
   public function preDown($manager)
@@ -41,12 +53,12 @@ class PropelMigration_1354637827
       SET FOREIGN_KEY_CHECKS = 0;
 
       ALTER TABLE `shopping_order`
-          ADD `is_buyer_notified` TINYINT(1) AFTER `progress`,
-          ADD `is_seller_notified` TINYINT(1) AFTER `is_buyer_notified`;
+          ADD `is_buyer_notified` TINYINT(1) DEFAULT 0 AFTER `progress`,
+          ADD `is_seller_notified` TINYINT(1) DEFAULT 0 AFTER `is_buyer_notified`;
 
       ALTER TABLE `shopping_order_archive`
-          ADD `is_buyer_notified` TINYINT(1) AFTER `progress`,
-          ADD `is_seller_notified` TINYINT(1) AFTER `is_buyer_notified`;
+          ADD `is_buyer_notified` TINYINT(1) DEFAULT 0 AFTER `progress`,
+          ADD `is_seller_notified` TINYINT(1) DEFAULT 0 AFTER `is_buyer_notified`;
 
       SET FOREIGN_KEY_CHECKS = 1;
 ',
