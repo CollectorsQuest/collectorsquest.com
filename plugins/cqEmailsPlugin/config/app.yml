@@ -68,7 +68,7 @@ all:
         subject: "Congratulations! You’ve made a purchase on Collectors Quest!"
         required_params: [ oSeller, oShoppingOrder, oCollectible ]
       seller_order_notification:
-        subject: "Congratulations! You’ve sold on Collectors Quest!"
+        subject: "Congratulations! You've sold your {{ oCollectible }} on Collectors Quest!"
         required_params: [ oSeller, oShoppingOrder, oCollectible ]
       buyer_order_failed:
         subject: "Your PayPal transaction could not be processed on Collectors Quest"

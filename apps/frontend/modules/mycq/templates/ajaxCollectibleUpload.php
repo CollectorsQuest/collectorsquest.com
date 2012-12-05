@@ -187,7 +187,7 @@
     // Initialize the jQuery File Upload widget:
     $('#fileupload-c').fileupload({stop:function(){}});
     $('#fileupload-c').fileupload('option', 'autoUpload', true);
-    $('#fileupload-c').fileupload('option', 'dropZone', $('#dropzone-c'));
+    $('#fileupload-c').fileupload('option', 'dropZone', $('body'));
     $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);
     $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1);
     $('#fileupload-c').fileupload('option', 'uploadTemplateId', 'template-upload-c');
@@ -226,15 +226,25 @@
       })
       .bind('fileuploadcompleted', function (e, data)
         {
-          // Destroy file upload and show dialog with next step
-          var options = {
-            modal: true
-          };
-          options.content = data.result[0].redirect;
-          $('#fileupload-c').stop();
-          $('#fileupload-c').fileupload('destroy');
-          $('.modal-body.opened').dialog2('close');
-          $("<div></div>").dialog2(options);
+          // check for upload error
+          if (data.result[0].error)
+          {
+            // and display it
+            data.context.text(data.result[0].error);
+          }
+          // if no error
+          else
+          {
+            // destroy file upload and show dialog with next step
+            var options = {
+              modal: true
+            };
+            options.content = data.result[0].redirect;
+            $('#fileupload-c').stop();
+            $('#fileupload-c').fileupload('destroy');
+            $('.modal-body.opened').dialog2('close');
+            $("<div></div>").dialog2(options);
+          }
         });
 
     // Enable iframe cross-domain access via redirect option:
@@ -246,7 +256,7 @@
     );
 
     $('#fileupload-c').fileupload('option', {
-      maxFileSize: 10000000,
+      maxFileSize: <?= cqStatic::getActualMaxUploadFilesize() // php file upload limit ?>,
       acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
     });
 

@@ -22,8 +22,7 @@ class CollectiblePeer extends BaseCollectiblePeer
       $q = CollectionCollectibleQuery::create()
          ->filterByCollectibleId($parameters['id'])
          ->filterByCollectionId((int) $m[1])
-         ->joinWith('Collectible')
-         ->joinWith('CollectorCollection');
+         ->joinWith('Collectible');
 
       $collectible = $q->findOne();
     }
