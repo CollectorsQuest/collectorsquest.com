@@ -98,27 +98,30 @@
 <script>
   $(document).ready(function()
   {
+    var $items_for_sale = $('#items-for-sale');
     var $url = '<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory', true) ?>';
     var $form = $('#form-mycq-collectibles-for-sale');
 
     $form.submit(function()
     {
-        var filter_by = $('.btn-filter.active').attr('id').replace('filter-items-', '');
-        $('#items-for-sale')
-          .showLoading()
-          .load(
-        $url + '?p=1', $form.serialize(),
-        function(data) {
-          $('#items-for-sale').hideLoading();
-        }
-      );
+      var filter_by = $('.btn-filter.active').attr('id')
+          .replace('filter-items-', '');
+
+      $items_for_sale
+        .showLoading()
+        .load(
+          $url + '?p=1', $form.serialize(),
+          function(data) {
+            $('#items-for-sale').hideLoading();
+          }
+        );
 
       $.scrollTo('#items-for-sale-history');
 
       return false;
     });
 
-    $('.btn-filter').click(function()
+    $('.btn-filter').on('click', function()
     {
       $('.btn-filter-all .active').removeClass('active');
       $(this).addClass('active');
@@ -146,5 +149,78 @@
 
       $.scrollTo('#items-for-sale-history');
     }
+
+    /*
+    var $url = '<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory', true) ?>';
+    var $form = $('#form-mycq-collectibles-for-sale');
+
+    /* */
+    $items_for_sale.on('click', '#collectibles-for-sale-pagination a', function(e)
+    {
+      e.preventDefault();
+      var page = $(this).data('page');
+
+      $('#items-for-sale').showLoading();
+      var filter_by = $('.btn-filter.active').attr('id').replace('filter-items-', '');
+
+      $('#items-for-sale').load(
+        $url + '?p='+ page + '&filter_by=' + filter_by, $form.serialize(),
+        function(data) {
+          $('#items-for-sale').hideLoading();
+        }
+      );
+
+      // Scroll to #items-for-sale-history so that we can see the first row of results
+      $.scrollTo('#items-for-sale-history');
+
+      return false;
+    });
+    /* */
+
+
+    // attach a live click event for item deactivation
+    $items_for_sale.on('click', 'a.deactivate', function(e)
+    {
+      var $this = $(this);
+      e.preventDefault();
+
+      if (confirm($this.data('confirm')) || 'Are you sure?')
+      {
+        $this.parents('tr').showLoading();
+        $this.parents('td').load(
+          '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=deactivate&id=') ?>' + $this.data('id'),
+          function() {
+            // we need the actual TD here, so we use $(this) instead of
+            // $this, which points to an anchor tag
+            $(this).parents('tr').hideLoading()
+                                 .find('td.status').html('Inactive');
+          }
+        );
+      }
+
+      return false;
+    })
+    // and one for relist
+    .on('click', 'a.relist', function(e)
+    {
+      var $this = $(this);
+      e.preventDefault();
+
+      if (confirm($this.data('confirm') || 'Are you sure?'))
+      {
+        $this.parents('tr').showLoading();
+        $this.parents('td').load(
+          '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=relist&id=') ?>' + $this.data('id'),
+          function() {
+            // we need the actual TD here, so we use $(this) instead of
+            // $this, which points to an anchor tag
+            $(this).parents('tr').hideLoading()
+                                 .find('td.status').html('Active');
+          }
+        );
+      }
+
+      return false;
+    });
   });
 </script>
