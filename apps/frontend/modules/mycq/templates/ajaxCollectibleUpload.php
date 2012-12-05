@@ -187,7 +187,7 @@
     // Initialize the jQuery File Upload widget:
     $('#fileupload-c').fileupload({stop:function(){}});
     $('#fileupload-c').fileupload('option', 'autoUpload', true);
-    $('#fileupload-c').fileupload('option', 'dropZone', $('#dropzone-c'));
+    $('#fileupload-c').fileupload('option', 'dropZone', $('body'));
     $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);
     $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1);
     $('#fileupload-c').fileupload('option', 'uploadTemplateId', 'template-upload-c');
