@@ -11,7 +11,7 @@
     <table class="table table-striped table-items-for-sale-history">
       <thead>
         <tr>
-          <th class="items-column">&nbsp;</th>
+          <th class="items-column">Listing</th>
           <th>Expires</th>
           <th>Status</th>
           <th>Actions</th>

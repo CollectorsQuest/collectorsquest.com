@@ -30,4 +30,13 @@ class PackageTransaction extends BasePackageTransaction
 
     return $this;
   }
+
+  /**
+   * @return    integer
+   */
+  public function getCreditsRemaining()
+  {
+    return $this->getCredits() - $this->getCreditsUsed();
+  }
+
 }

@@ -46,7 +46,7 @@
   <tr>
     <th>Package</th>
     <th>Credits Purchased</th>
-    <th>Credits Used</th>
+    <th>Credits Remaining</th>
     <th>Purchased On</th>
     <th>Expires On</th>
     <th>Status</th>
@@ -56,6 +56,7 @@
   <?php if (count($package_transactions)): ?>
   <?php foreach ($package_transactions as $package_transaction): ?>
     <?php
+      /* @var $package_transaction PackageTransaction */
       switch ($package_transaction->getPaymentStatus())
       {
         case PackageTransactionPeer::PAYMENT_STATUS_PAID :
@@ -83,7 +84,7 @@
     <td><?= $package_transaction->getCredits() < 9999
       ? $package_transaction->getCredits()
       : 'unlimited'; ?></td>
-    <td><?= $package_transaction->getCreditsUsed(); ?></td>
+    <td><?= $package_transaction->getCreditsRemaining(); ?></td>
     <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
     <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
     <td>

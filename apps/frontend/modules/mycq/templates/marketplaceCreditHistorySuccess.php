@@ -150,11 +150,6 @@
       $.scrollTo('#items-for-sale-history');
     }
 
-    /*
-    var $url = '<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory', true) ?>';
-    var $form = $('#form-mycq-collectibles-for-sale');
-
-    /* */
     $items_for_sale.on('click', '#collectibles-for-sale-pagination a', function(e)
     {
       e.preventDefault();
@@ -175,8 +170,6 @@
 
       return false;
     });
-    /* */
-
 
     // attach a live click event for item deactivation
     $items_for_sale.on('click', 'a.deactivate', function(e)
