@@ -115,7 +115,8 @@
         'pager' => $pager,
         'options' => array(
           'id' => 'collectibles-for-sale-pagination',
-          'show_all' => false
+          'show_all' => false,
+          'page_param' => 'p',
         )
       )
     );
