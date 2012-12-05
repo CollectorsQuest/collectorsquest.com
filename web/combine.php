@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ .'/../config/bootstrap.php';
+
 $webdir   = __DIR__;
 $cssdir   = __DIR__ . '/css';
 $lessdir  = __DIR__ . '/less';
