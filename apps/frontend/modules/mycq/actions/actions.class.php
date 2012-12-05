@@ -811,7 +811,7 @@ class mycqActions extends cqFrontendActions
     $this->package_transactions = PackageTransactionQuery::create()
       ->filterByCollector($this->getCollector())
       ->_if('dev' != sfConfig::get('sf_environment'))
-      ->paidFor()
+        ->paidFor()
       ->_endif()
       ->find();
 
@@ -830,30 +830,6 @@ class mycqActions extends cqFrontendActions
     }
 
     return sfView::SUCCESS;
-  }
-
-  public function executeItemActions(sfWebRequest $request)
-  {
-    // possible keys: activate, deactivate, re-list
-    $action = $request->getParameter('action');
-
-    /*
-     * @todo add proper actions for activate, deactivate, re-list
-     */
-
-    if ($request->isXmlHttpRequest())
-    {
-      // if ajax request, simply forward the rendering to mycq/marketplace_credit_history
-      return $this->forward('mycq', 'marketplace_credit_history');
-    }
-    else
-    {
-      // if a normal request, do a proper redirect to marketplace_credit_history
-      return $this->redirect('marketplace_credit_history', array(
-        'filter_by' => $request->getParameter('filter_by') ?: null,
-        'search' => $request->getParameter('search') ?: null,
-      ));
-    }
   }
 
   public function executeMarketplaceSettings(sfWebRequest $request)
