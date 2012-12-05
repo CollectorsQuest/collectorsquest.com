@@ -226,15 +226,25 @@
       })
       .bind('fileuploadcompleted', function (e, data)
         {
-          // Destroy file upload and show dialog with next step
-          var options = {
-            modal: true
-          };
-          options.content = data.result[0].redirect;
-          $('#fileupload-c').stop();
-          $('#fileupload-c').fileupload('destroy');
-          $('.modal-body.opened').dialog2('close');
-          $("<div></div>").dialog2(options);
+          // check for upload error
+          if (data.result[0].error)
+          {
+            // and display it
+            data.context.text(data.result[0].error);
+          }
+          // if no error
+          else
+          {
+            // destroy file upload and show dialog with next step
+            var options = {
+              modal: true
+            };
+            options.content = data.result[0].redirect;
+            $('#fileupload-c').stop();
+            $('#fileupload-c').fileupload('destroy');
+            $('.modal-body.opened').dialog2('close');
+            $("<div></div>").dialog2(options);
+          }
         });
 
     // Enable iframe cross-domain access via redirect option:
