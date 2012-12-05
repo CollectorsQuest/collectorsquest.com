@@ -6,16 +6,15 @@
   */
 ?>
 
-<?php if (!$seller->getCreditsLeft() <= 5): ?>
+<?php if ($seller->getCreditsLeft() <= 5): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
   <p class="spacer-top">
-    Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
-      lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+    If you'd like to list more items, please click the link below to purchase more credits:
   </p>
   <br/>
   <a class="btn btn-primary" href="<?php echo url_for('@seller_packages') ?>">Buy Credits</a>
-  <button type="button" class="btn" data-dismiss="alert">Ok</button>
+  <button type="button" class="btn" data-dismiss="alert">Close</button>
 </div>
 <?php endif; ?>
 
