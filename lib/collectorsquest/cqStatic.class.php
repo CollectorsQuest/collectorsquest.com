@@ -387,4 +387,43 @@ class cqStatic extends IceStatic
 
     return false;
   }
+
+  /**
+   * Return the bytes equivalent of an php_ini setting (like "upload_max_filesize")
+   *
+   * @param     string $val
+   * @return    int
+   *
+   * @see       http://php.net/manual/en/function.ini-get.php for implementation
+   */
+  public static function returnBytes($val)
+  {
+    $val = trim($val);
+    $last = strtolower($val[strlen($val)-1]);
+    switch($last)
+    {
+      // The 'G' modifier is available since PHP 5.1.0
+      case 'g':
+          $val *= 1024;
+      case 'm':
+          $val *= 1024;
+      case 'k':
+          $val *= 1024;
+    }
+
+    return $val;
+  }
+
+  /**
+   * Return the actual allowed max upload filesize, based on current php ini settings
+   *
+   * @return    integer
+   */
+  public static function getPHPMaxUploadFileSize()
+  {
+    return min(
+      self::returnBytes(ini_get('upload_max_filesize')),
+      self::returnBytes(ini_get('post_max_size'))
+    );
+  }
 }

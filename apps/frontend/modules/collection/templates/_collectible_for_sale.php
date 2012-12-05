@@ -97,7 +97,7 @@
     )
   ); ?></p>
 
-  <?php if (0 != $collectible_for_sale->getTaxPercentage()): ?>
+  <?php if (false && 0 != $collectible_for_sale->getTaxPercentage()): ?>
     <p>
       <strong>Tax:</strong> <?= $collectible_for_sale->getTaxPercentage(); ?>%
         for <?= $collectible_for_sale->getTaxState()

@@ -564,6 +564,15 @@ class ajaxAction extends cqAjaxAction
 
         return $this->renderText(json_encode($output));
       }
+      else
+      {
+        $output = array();
+        $output[] = array(
+            'error' => $form->getErrorSchema()->getMessage()
+        );
+
+        return $this->renderText(json_encode($output));
+      }
     }
 
     $this->form = $form;

@@ -86,8 +86,8 @@ classes:
 
       note_to_seller:       { type: varchar, size: 255 }
       progress:             { type: enum, valueSet: "step1, step2, step3", default: step1, required: true }
-      is_buyer_notified:         { type: boolean }
-      is_seller_notified:        { type: boolean }
+      is_buyer_notified:         { type: boolean, default: false }
+      is_seller_notified:        { type: boolean, default: false }
 
     uniques:
       shopping_order_U_1: [shopping_cart_id, collectible_id]

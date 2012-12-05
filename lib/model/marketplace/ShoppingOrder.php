@@ -223,6 +223,16 @@ class ShoppingOrder extends BaseShoppingOrder
       : '';
   }
 
+  public function getShippingStateRegionName()
+  {
+    $region = iceModelGeoRegionQuery::create()
+      ->findOneById($this->getShippingStateRegion());
+
+    return $region
+      ? $region->getName()
+      : '';
+  }
+
   public function getPaypalPayRequestFields()
   {
     $PayRequestFields = array(
