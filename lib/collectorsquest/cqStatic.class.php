@@ -419,7 +419,7 @@ class cqStatic extends IceStatic
    *
    * @return    integer
    */
-  public static function getActualMaxUploadFilesize()
+  public static function getPHPMaxUploadFileSize()
   {
     return min(
       self::returnBytes(ini_get('upload_max_filesize')),
