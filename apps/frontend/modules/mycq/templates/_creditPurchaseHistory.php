@@ -8,7 +8,9 @@
 
 <?php if (!$seller->getCreditsLeft()): ?>
 <div class="alert alert-block alert-notice in">
-  <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
+  <h4 class="alert-heading">
+    Oh snap! You are out of credits for listing items for sale!
+  </h4>
   <p class="spacer-top">
     If you'd like to list more items, please click the link below to purchase more credits:
   </p>
@@ -17,29 +19,6 @@
   <button type="button" class="btn" data-dismiss="alert">Close</button>
 </div>
 <?php endif; ?>
-
-<!-- Credit purchase history -->
-<div class="row-fluid sidebar-title spacer-top">
-  <div class="span8">
-    <h3 class="Chivo webfont">Credit History</h3>
-  </div>
-  <?php /*
-  are we going to use those??
-  <div class="span4 text-right">
-    <span class="show-all-text">
-      Show: &nbsp;
-    </span>
-    <div class="control-group pull-right">
-      <div class="btn-filter-all btn-group">
-        <a id="filter-paid" class="btn btn-mini btn-filter active" href="#">Paid</a>
-        <a id="filter-processing" class="btn btn-mini btn-filter" href="#">Processing</a>
-        <a id="filter-expiring" class="btn btn-mini btn-filter " href="#">Expiring</a>
-        <a id="filter-expired" class="btn btn-mini btn-filter " href="#">Expired</a>
-      </div>
-    </div>
-  </div>
-  */ ?>
-</div><!-- /.sidebar-title -->
 
 <table class="table table-credit-history">
   <thead>
