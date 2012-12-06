@@ -32,6 +32,36 @@
 
         <?php cq_sidebar_title('Social accounts') ?>
 
+        <div class="already-connected">
+          Already connected
+          <i class="facebook-big-icon"></i>
+        </div>
+
+
+        <div class="connect-to-social-wrapper">
+          <fieldset>
+            <legend>Connect your account to</legend>
+            <div class="icon-container">
+              <a class="facebook-big-icon" href="#" rel="tooltip" data-placement="bottom" onclick="return false"
+                 data-original-title="Connect your account to Facebook">
+                <i class="hide-text">Sign up using Facebook</i>
+              </a>
+              <a class="twitter-big-icon" href="#" rel="tooltip" data-placement="bottom" onclick="return false"
+                 data-original-title="Connect your account to Twitter">
+                <i class="hide-text">Sign up using Twitter</i>
+              </a>
+              <a class="google-big-icon" href="#" rel="tooltip" data-placement="bottom" onclick="return false"
+                 data-original-title="Connect your account to Google+">
+                <i class="hide-text">Sign up using Google+</i>
+              </a>
+              <a class="live-id-big-icon" href="#" rel="tooltip" data-placement="bottom" onclick="return false"
+                 data-original-title="Connect your account to Windows Live ID">
+                <i class="hide-text">Sign up using Windows Live</i>
+              </a>
+            </div>
+          </fieldset>
+        </div>
+
         <?php include_component('misc', 'guide_social_login', array('action'=>'sign up')); ?>
 
         <?php cq_sidebar_title('Change Your Email Address'); ?>
