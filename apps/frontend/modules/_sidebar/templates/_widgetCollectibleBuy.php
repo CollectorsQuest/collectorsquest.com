@@ -18,7 +18,6 @@ $_height = 0;
           for <span itemprop="price"><?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?></span>
         </small>
       </p>
-      Quantity sold: 1
     </div>
     <?php $_height -= 59; ?>
   <?php elseif ($collectible_for_sale->isForSale()): ?>
