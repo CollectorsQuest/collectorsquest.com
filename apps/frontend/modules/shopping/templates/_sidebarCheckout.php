@@ -18,6 +18,15 @@
         1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?>
       </td>
     </tr>
+    <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+      <tr class="with_tax<?= 0 == (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>">
+          <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
+          <td class="text-right">
+              <?= money_format('%.2n', (float) $shopping_order->getTaxAmount('float',
+            $shopping_order->getCollectibleForSale()->getTaxPercentage())); ?>
+          </td>
+      </tr>
+    <?php endif; ?>
     <tr>
       <td style="vertical-align: top;">Shipping:</td>
       <td class="text-right">
@@ -37,14 +46,28 @@
     <tfoot style="font-weight: bold; font-size: 130%;">
       <tr>
         <td style="font-variant: small-caps;">Total:</td>
-        <td style="text-align: right;"><?= money_format('%.2n', (float) $shopping_order->getTotalAmount()); ?></td>
+        <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+          <td class="with_tax<?= 0 == (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>"
+              style="text-align: right;">
+            <?= money_format('%.2n', (float) $shopping_order->getTotalAmount('float',
+            $shopping_order->getCollectibleForSale()->getTaxPercentage())); ?>
+          </td>
+          <td class="no_tax<?= 0 != (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>"
+              style="text-align: right;">
+            <?= money_format('%.2n', (float) $shopping_order->getTotalAmount('float', 0)); ?>
+          </td>
+        <?php else: ?>
+          <td style="text-align: right;">
+            <?= money_format('%.2n', (float) $shopping_order->getTotalAmount()); ?>
+          </td>
+        <?php endif ?>
       </tr>
     </tfoot>
   </table>
 </div>
 <?php endif; ?>
 
-<?php if (IceGateKeeper::open('shopping_checkout_help')): ?>
+<?php if (cqGateKeeper::open('shopping_checkout_help')): ?>
 
   <?php cq_sidebar_title('Checkout Help', null, array('style' => 'margin-top: 0;')); ?>
   <div style="padding: 10px;">

@@ -30,6 +30,13 @@ seo:
         Check out these collectors items from the American Pickers collection.
         CollectorsQuest.com gives you an inside look at the American Pickers collectibles.
 
+    franksPicks:
+      title: American Pickers: Frank's Picks | Collectors Quest
+      description: |
+        Enter the private collection of Frank Fritz, host of HISTORY's American Pickers!
+        Shop from items seen on TV and Frank's personal picks, exclusively on Collectors Quest.
+        Check back for new items being added often!
+
     americanRestoration:
       title: American Restoration | TV Show Collectibles | Collectors Quest
       description: |
@@ -41,6 +48,12 @@ seo:
       description: |
         Check out these collectors items from the Picked Off collection.
         CollectorsQuest.com gives you an inside look at the Picked Off collectibles.
+
+    blackHistory:
+      title: Black History | TV Show Collectibles | Collectors Quest
+      description: |
+        Check out these collectors items from the Black History collection.
+        CollectorsQuest.com gives you an inside look at the Black History collectibles.
 
     mwba:
       title: The Men Who Built America | Collectors Quest
@@ -172,13 +185,15 @@ seo:
         Find the collectible, vintage or antique item you’ve been looking for from trusted
         sellers in the Collectors Quest marketplace.
 
-  collectibles:
-    collectorList:
+  seller:
+    store:
       model: true
       title:
-       - %ShopTitle%
-       - %ShopTitle% | Collectors Quest
-       - %ShopTitle% by %DisplayName% | Collectors Quest
+        - %StoreTitle%
+        - %StoreTitle% | Collectors Quest
+        - %StoreTitle% by %DisplayName% | Collectors Quest
+      description:
+        - %StoreDescription%
 
   misc:
     guideToCollecting:

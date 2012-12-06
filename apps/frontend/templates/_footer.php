@@ -3,7 +3,7 @@
     <div class="row-fluid">
       <div class="span4">
         <div class="aboutus-footer-inner">
-          <h2 class="Chivo webfont">About Collectors Quest</h2>
+          <h3 class="Chivo webfont">About Collectors Quest</h3>
 
           <p class="about-us">
             Collectors Quest is here to help you get the most out of your
@@ -105,7 +105,7 @@
           <li>
             <i class="big-box-icon"></i>
             <div class="info-box-text">
-              <h2 class="Chivo webfont">Show Off</h2>
+              <h3 class="Chivo webfont">Show Off</h3>
               <p>
                 Show your collections to the world! Upload and organize your stuff here.<br />
                 <?php if (!$sf_user->isAuthenticated()) : ?>
@@ -120,7 +120,7 @@
           <li>
             <i class="big-piggy-bank-icon"></i>
             <div class="info-box-text">
-              <h2 class="Chivo webfont">Get Paid</h2>
+              <h3 class="Chivo webfont">Get Paid</h3>
               <p>
                 Do you have something you'd like to sell?
                 It's easy! Become a member of Collectors Quest and get started.<br/>
@@ -132,7 +132,7 @@
           <li>
             <i class="big-question-icon"></i>
             <div class="info-box-text">
-              <h2 class="Chivo webfont">Help / FAQ</h2>
+              <h3 class="Chivo webfont">Help / FAQ</h3>
               <p>
                 Have a question or a concern? Having trouble figuring something out?
                 Get the most out of the site by checking out our FAQs.<br />

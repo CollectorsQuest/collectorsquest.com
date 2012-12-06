@@ -25,7 +25,7 @@
             'Return to manage address book &raquo;', '@mycq_profile_addresses',
             array('class' => 'text-v-middle link-align')
           );
-          cq_sidebar_title('Add a new address', $link, array('left' => 8, 'right' => 4));
+          cq_section_title('Add a new address', $link, array('left' => 8, 'right' => 4));
         ?>
 
         <?= form_tag('@mycq_profile_addresses_new', array('class' => 'form-horizontal')); ?>

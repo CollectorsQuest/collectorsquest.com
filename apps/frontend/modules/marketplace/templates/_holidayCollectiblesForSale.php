@@ -1,5 +1,6 @@
 <?php
 /* @var $pager cqPropelModelPager */
+/* @var $rand  integer */
 ?>
 
 <div id="collectibles" class="row thumbnails" style="margin-left: 0;">
@@ -8,6 +9,12 @@
   /* @var $pager       PropelModelPager */
   foreach ($pager->getResults() as $i => $collectible)
   {
+    // special case to include holiday promo banner
+    if ($rand == $i)
+    {
+      include_partial('marketplace/partials/holidayMarketBuyPackagePromo_220x170');
+    }
+
     // set the link to open modal dialog
     $url = url_for('ajax_marketplace',
       array(
@@ -22,7 +29,7 @@
       array(
         'collectible_for_sale' => $collectible->getCollectibleForSale(),
         'url' => $url,
-        'link_parameters' => array('class' => 'target zoom-zone', 'onclick' => 'return false;')
+        'link_parameters' => array('class' => 'open-modal zoom-zone', 'onclick' => 'return false;')
       )
     );
   }
@@ -90,7 +97,7 @@
             // add the search params from the form
             path = path + '&' + $form.serialize();
 
-            return path.match(/^(.*?)2(.*?$)/).slice(1);
+            return path.match(/^(.*?[\?|&]p=)2(.*?$)/).slice(1);
           },
           bufferPx:150
         },
@@ -103,7 +110,7 @@
           $bricks.imagesLoaded(function() {
             // show bricks now that they're ready
             $bricks.animate({opacity: 1});
-            $('#collectibles').masonry('appended', $bricks, true);
+            $container.masonry('appended', $bricks, true);
           });
         });
 

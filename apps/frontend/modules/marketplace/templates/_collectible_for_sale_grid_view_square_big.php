@@ -4,13 +4,8 @@
 /* @var $sf_request cqWebRequest */
 /* @var $sf_params sfParameterHolder */
 
-/**
- * We do not want to use lazy image loading when we have:
- *  1) infinite scroll
- *  2) an Ajax request
- */
 $lazy_image = !isset($lazy_image) || $lazy_image;
-$lazy_image = $lazy_image && !$sf_request->isXmlHttpRequest() && 'all' !== $sf_params->get('show');
+$lazy_image = $lazy_image && $sf_request->isLazyLoadEnabled();
 
 /* @var $url string */
 $url = !empty($url) ? $url : url_for_collectible($collectible_for_sale->getCollectible());
@@ -26,7 +21,10 @@ $url = !empty($url) ? $url : url_for_collectible($collectible_for_sale->getColle
       <div style="padding: 10px;">
         <?= $collectible_for_sale->getCollectible()->getName(); ?><br/>
         <span class="price">
-          <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+          <?php // @todo remove this once we have all items for sale ready in Frank's Picks ?>
+          <?php if ($collectible_for_sale->isForSale()): ?>
+            <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+          <?php endif; ?>
         </span>
       </div>
     </div>

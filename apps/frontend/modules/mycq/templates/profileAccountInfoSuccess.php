@@ -66,7 +66,7 @@
 
         <?php include_component('misc', 'guide_social_login', array('action'=>'sign up')); ?>
 
-        <?php cq_sidebar_title('Change Your Email Address'); ?>
+        <?php cq_section_title('Change Your Email Address'); ?>
         <form action="<?= url_for('@mycq_profile_account_info'); ?>"
               class="form-horizontal" method="post">
           <?= $email_form->renderHiddenFields(); ?>
@@ -99,7 +99,7 @@
           </fieldset>
         </form> <!-- CollectorEmailChangeForm -->
 
-        <?php cq_sidebar_title('Change Your Account Password'); ?>
+        <?php cq_section_title('Change Your Account Password'); ?>
         <form action="<?= url_for('@mycq_profile_account_info') ?>"
               method="post" class="form-horizontal">
           <?= $collector_form->renderHiddenFields(); ?>
@@ -125,7 +125,7 @@
           </fieldset>
         </form> <!-- CollectorEditForm -->
 
-        <?php cq_sidebar_title('Delete Account'); ?>
+        <?php cq_section_title('Delete Account'); ?>
 
         <div class="alert alert-block alert-error">
           <p>

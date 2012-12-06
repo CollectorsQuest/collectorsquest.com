@@ -1,23 +1,35 @@
 <div class="span6 brick masonry-blogpost">
   <div class="masonry-blogpost yellow-background">
     <a href="<?= $blog_post->getPostUrl(); ?>" class="link">
+      <?php if (!isset($image) || $image === true): ?>
       <div class="blog-img">
         <?php
           if ($thumbnail = $blog_post->getPostThumbnail('homepage'))
           {
-            echo cq_image_tag($thumbnail, array('width' => 270, 'height' => 270, 'alt' => $blog_post->getPostTitle()));
+            echo cq_image_tag(
+              $thumbnail, array('width' => 270, 'height' => 270, 'alt' => $blog_post->getPostTitle())
+            );
           }
           else
           {
             echo image_tag_multimedia(
               $blog_post->getPrimaryImage(), '270x270',
-              array('alt_title' => $blog_post->getPostTitle())
+              array('width' => 270, 'height' => 270, 'alt_title' => $blog_post->getPostTitle())
             );
           }
         ?>
       </div>
-      <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_post->getPostTitle(); ?></h3>
-      <p><?= cqStatic::truncateText($blog_post->getPlainPostContent(), 160, '...', true); ?></p>
+      <?php endif; ?>
+      <h3 class="Chivo webfont" style="line-height: 26px;">
+        <?= isset($title) ? $title : $blog_post->getPostTitle(); ?>
+      </h3>
+      <p>
+        <?php
+          echo isset($excerpt) ?
+            $excerpt :
+            cqStatic::truncateText($blog_post->getPlainPostContent(), 160, '...', true);
+        ?>
+      </p>
     </a>
     <div class="masonry-blogpost-author">
       <p>

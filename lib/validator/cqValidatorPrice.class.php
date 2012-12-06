@@ -34,6 +34,7 @@ class cqValidatorPrice extends sfValidatorBase
 
     $this->addOption('min', 0);
     $this->addOption('max', 1000000);
+    $this->addOption('scale', 2);
     $this->addOption('integer', false);
 
     $this->addMessage('max', '"%value%" must be at most %max%.');
@@ -45,7 +46,7 @@ class cqValidatorPrice extends sfValidatorBase
   protected function doClean($value)
   {
     $clean = str_ireplace(array('o', 'о'), '0', (string) $value);
-    $price = cqStatic::floatval($clean, 2);
+    $price = cqStatic::floatval($clean, $this->getOption('scale'));
 
     if ($this->getOption('integer') == true)
     {

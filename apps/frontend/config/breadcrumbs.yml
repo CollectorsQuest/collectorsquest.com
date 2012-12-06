@@ -21,6 +21,8 @@ ice_breadcrumbs:
     pawnStars: [{ name: 'As Seen on Pawn Stars' }]
     pickedOff: [{ name: 'As Seen on Picked Off' }]
     storageWars: [{ name: 'As Seen on Storage Wars' }]
+    franksPicks: [{ name: "Frank's Picks" }]
+    blackHistory: [{ name: 'As Seen on Black History' }]
 
   collection:
     index:
@@ -44,11 +46,6 @@ ice_breadcrumbs:
       - { name: 'Collectors', route: collectors }
       - { name: 'Signup' }
 
-  collectibles:
-    collectorList:
-      - { name: 'Collectors', route: collectors }
-      - { name: '%DisplayName%', route: collector_by_slug, model: true, subobject: Collector, title: 'Collector: %DisplayName%' }
-
   collectors:
     index: [{ name: 'Collectors' }]
 
@@ -62,25 +59,18 @@ ice_breadcrumbs:
       - { name: '%Name%', model: true }
 
   search:
-    index: [{ name: 'Search Results' }]
     collections:
-      - { name: 'Search', route: search }
-      - { name: 'Collections' }
+      - { name: 'Collections', route: collections }
     collectors:
-      - { name: 'Search', route: search }
-      - { name: 'Collectors' }
+      - { name: 'Collectors', route: collectors }
     collectibles:
-      - { name: 'Search', route: search }
       - { name: 'Collectibles' }
     collectiblesForSale:
-      - { name: 'Search', route: search }
-      - { name: 'Collectibles For Sale' }
+      - { name: 'Collectibles For Sale', route: marketplace }
     blog:
-      - { name: 'Search', route: search }
-      - { name: 'Blog Articles' }
+      - { name: 'Blog Articles', route: blog }
     videos:
-      - { name: 'Search', route: search }
-      - { name: 'Video' }
+      - { name: 'Video', route: video }
 
   categories:
     index: [{ name: 'Categories' }]
@@ -148,10 +138,11 @@ ice_breadcrumbs:
       - { name: 'Read message' }
 
   seller:
-    _prepend:
-      - { name: 'My Account', route: mycq }
     packages:
+      - { name: 'My Account', route: mycq }
       - { name: 'Seller packages' }
+    store:
+      - { name: '%DisplayName%', route: collector_by_slug, model: true, subobject: Collector, title: 'Collector: %DisplayName%' }
 
   shopping:
     _prepend:

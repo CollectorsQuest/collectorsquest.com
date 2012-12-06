@@ -13,7 +13,7 @@ all:
     domain: "d2y8496azcwpd6.cloudfront.net"
 
   ice_multimedia:
-    default_adapter: GD
+    default_adapter: ImageMagick
 
   aetn:
     shows:
@@ -42,11 +42,16 @@ all:
         name: Storage Wars™
         collector: -1
         collection: -1
+      franks_picks:
+        name: Frank's Picks
+        collection: 4224
+        collectibles: [97093, 97001, 96979, 96820, 96783, 96689, 96747, 96916, 97007, 97027, 96738, 97053, 96760, 96733, 96798]
 
     # Leave this for now for BC
     american_pickers:
       collector: 6668
       collection: 2842
+      franks_picks: 4224
     american_restoration:
       collector: 14728
       collection: 3961
@@ -414,7 +419,6 @@ all:
 
       # FLAT
       firstClassMailType: ''
-
 
 dev:
   domain_name: "collectorsquest.dev"

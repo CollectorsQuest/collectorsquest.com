@@ -39,11 +39,7 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($american_pickers['collection'])
@@ -72,11 +68,7 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollection($collection)
@@ -109,11 +101,7 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($pawn_stars['collection'])
@@ -144,11 +132,7 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($picked_off['collection'])
@@ -174,33 +158,19 @@ class aetnActions extends cqFrontendActions
   public function executeFranksPicks(sfWebRequest $request)
   {
     // Check if the page is publicly available yet
-    $this->forward404Unless(IceGateKeeper::open('aetn_franks_picks', 'page'));
+    $this->forward404Unless(cqGateKeeper::open('aetn_franks_picks', 'page'));
 
-    /* @var $franks_picks array */
-    $franks_picks = sfConfig::get('app_aetn_franks_picks', array());
-
-    $collection = CollectorCollectionQuery::create()->findOneById($franks_picks['collection']);
+    /* @var $aetn_shows array */
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
+    $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
     $this->forward404Unless($collection instanceof CollectorCollection);
 
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
-    $q = FrontendCollectionCollectibleQuery::create()
-      ->filterByCollectionId($franks_picks['collection'])
-      ->isForSale()
-      ->orderByPosition(Criteria::ASC)
-      ->orderByUpdatedAt(Criteria::ASC);
-
-    $pager = new PropelModelPager($q, 12);
-    $pager->setPage($request->getParameter('page', 1));
-    $pager->init();
-    $this->pager = $pager;
+    $this->collection = $collection;
 
     $this->collection = $collection;
 
@@ -288,6 +258,14 @@ class aetnActions extends cqFrontendActions
       ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
     $this->collectibles = $q->find();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeBlackHistory()
+  {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(cqGateKeeper::open('aetn_black_history', 'page'));
 
     return sfView::SUCCESS;
   }

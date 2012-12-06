@@ -93,6 +93,12 @@ class ComposePrivateMessageForm extends PrivateMessageForm
    */
   public function forceSkipSpamCheck()
   {
+    if ($this->sf_user->isAdmin())
+    {
+      // if the user is logged in the backend as admin, skip spam check
+      return true;
+    }
+
     if ( $collector = $this->sf_user->getCollector($strict = true) )
     {
       // skip if current user is one of the predefined skip spam users
@@ -123,6 +129,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
             'page' => 'compose'
         )),
         'submit_on_enter' => false,
+        'min_activation_chars' => 3,
       ));
     }
 

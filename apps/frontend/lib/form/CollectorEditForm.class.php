@@ -108,6 +108,7 @@ class CollectorEditForm extends CollectorForm
     $this->setupSellerSettingsShippingField($required);
     $this->setupSellerSettingStoreHeaderImageField();
     $this->setupSellerSettingsAdditionalPoliciesField($required);
+    $this->setupSellerSettingsTaxFields($required);
 
     $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(
       array('required' => $required)
@@ -264,6 +265,27 @@ class CollectorEditForm extends CollectorForm
       );
     }
 
+    if (isset($this->widgetSchema['seller_settings_tax_country']))
+    {
+      $this->getObject()->setSellerSettingsTaxCountry(
+        isset($values['seller_settings_tax_country']) ? strip_tags($values['seller_settings_tax_country']) : null
+      );
+    }
+
+    if (isset($this->widgetSchema['seller_settings_tax_state']))
+    {
+      $this->getObject()->setSellerSettingsTaxState(
+        isset($values['seller_settings_tax_state']) ? (integer) $values['seller_settings_tax_state'] : null
+      );
+    }
+
+    if (isset($this->widgetSchema['seller_settings_tax_percentage']))
+    {
+      $this->getObject()->setSellerSettingsTaxPercentage(
+        isset($values['seller_settings_tax_percentage']) ? $values['seller_settings_tax_percentage'] : null
+      );
+    }
+
     // if user selected the delete widget remove the old header image
     if (isset($values['seller_settings_store_header_image_delete']) &&
         $values['seller_settings_store_header_image_delete'])
@@ -332,20 +354,23 @@ class CollectorEditForm extends CollectorForm
       'seller_settings_shipping'              => $this->getObject()->getSellerSettingsShipping(),
       'seller_settings_refunds'               => $this->getObject()->getSellerSettingsRefunds(),
       'seller_settings_additional_policies'   => $this->getObject()->getSellerSettingsAdditionalPolicies(),
+      'seller_settings_tax_country'           => $this->getObject()->getSellerSettingsTaxCountry(),
+      'seller_settings_tax_state'             => $this->getObject()->getSellerSettingsTaxState(),
+      'seller_settings_tax_percentage'        => sprintf('%01.3f', $this->getObject()->getSellerSettingsTaxPercentage()),
     )));
   }
 
   protected function unsetFields()
   {
-    unset ($this['username']);
-    unset ($this['email']);
-    unset ($this['has_completed_registration']);
-    unset ($this['user_type']);
-    unset ($this['locale']);
-    unset ($this['is_spam']);
-    unset ($this['is_public']);
+    unset($this['username']);
+    unset($this['email']);
+    unset($this['has_completed_registration']);
+    unset($this['user_type']);
+    unset($this['locale']);
+    unset($this['is_spam']);
+    unset($this['is_public']);
     // merged from CollectorProfileEditForm
-    unset ($this['about_new_item_every']);
+    unset($this['about_new_item_every']);
 
     parent::unsetFields();
   }
@@ -533,6 +558,47 @@ class CollectorEditForm extends CollectorForm
     $this->validatorSchema['seller_settings_additional_policies'] = new sfValidatorString(
       array('required' => $required)
     );
+  }
+
+  public function setupSellerSettingsTaxFields($required = false)
+  {
+    $c = new Criteria();
+    // Restrict to "United States" only
+    $c->add(iceModelGeoCountryPeer::ID, 226);
+
+    $this->widgetSchema['seller_settings_tax_country'] = new sfWidgetFormPropelChoice(array(
+        'label' => 'Country', 'model' => 'iceModelGeoCountry', 'add_empty' => true,
+        'key_method' => 'getIso3166', 'criteria' => $c
+    ));
+    $this->validatorSchema['seller_settings_tax_country'] =  new sfValidatorPropelChoice(array(
+        'model' => 'iceModelGeoCountry', 'column' => 'iso3166',
+        'criteria' => $c, 'required' => $required
+    ));
+
+    $this->widgetSchema['seller_settings_tax_state']= new sfWidgetFormPropelChoice(array(
+      'model' => 'iceModelGeoRegion', 'add_empty' => true, 'label' => 'State / Province'
+    ));
+    $this->validatorSchema['seller_settings_tax_state'] = new sfValidatorPropelChoice(array(
+      'model' => 'iceModelGeoRegion', 'column' => 'id', 'required' => $required
+    ));
+
+    $this->widgetSchema['seller_settings_tax_percentage'] = new sfWidgetFormInputText(
+      array('label' => 'Percentage'), array('required' => $required)
+    );
+    $this->validatorSchema['seller_settings_tax_percentage'] = new cqValidatorPrice(
+      array('required' => false, 'max' => 50, 'scale' => 3),
+      array(
+        'max' => 'You cannot set Tax more than 50%',
+        'invalid' => 'The tax percentage you have specified is not valid'
+      )
+    );
+
+    $this->mergePostValidator(new cqValidatorCountryRegions(array(
+      'country_field' => 'seller_settings_tax_country',
+      'region_field' => 'seller_settings_tax_state',
+    ), array(
+      'invalid' => 'Sorry this State / Province is wrong',
+    )));
   }
 
   public function validateSellerSettingsPayPal($validator, $values)

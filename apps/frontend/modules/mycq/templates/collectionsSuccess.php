@@ -7,7 +7,7 @@
  */
 ?>
 
-<?php if ($incomplete_collections && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+<?php if ($incomplete_collections && cqGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">
     Some <?= $incomplete_collectibles ? 'items' : 'collections' ?> need your attention!
@@ -32,7 +32,7 @@
     array('class' => 'text-v-middle link-align')
   );
 
-  cq_sidebar_title(
+  cq_section_title(
     'My Collections (' . $total . ')', null,
     array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid')
   );

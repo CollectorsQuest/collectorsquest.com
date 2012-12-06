@@ -1,0 +1,224 @@
+connection: propel
+noXsd: false
+defaultIdMethod: native
+package: lib.model.legacy
+
+classes:
+
+  CollectorInterview:
+    columns:
+      id:  ~
+      collector_id:            { type: integer, required: false }
+      collection_category_id:  { type: integer, required: false }
+      content_category_id:     { type: integer, required: false }
+      collection_id:           { type: integer, required: false }
+      title:                   { type: varchar, size: 128, required: true, primaryString: true }
+      catch_phrase:            { type: varchar, size: 128, required: true }
+      is_active:               { type: boolean, default: false }
+      created_at:  ~
+
+    propel_behaviors:
+      symfony: { form: false, filter: false }
+
+  InterviewQuestion:
+    columns:
+      id:  ~
+      collector_interview_id:  { type: integer, foreignClass: CollectorInterview, foreignReference: id, required: true, onDelete: cascade }
+      question:                { type: varchar, size: 128, required: true }
+      answer:                  { type: longvarchar, required: true }
+      photo:                   varchar(128)
+
+    propel_behaviors:
+      symfony: { form: false, filter: false }
+
+  CollectionCategory:
+    columns:
+      id:  ~
+      parent_id:  { type: integer, default: 0 }
+      name:       { type: varchar, size: 64, required: true, primaryString: true }
+      slug:       { type: varchar, size: 64 }
+      score:      { type: integer, default: 0 }
+
+    propel_behaviors:
+      symfony:    { form: false, filter: false }
+
+  CollectionCategoryField:
+    columns:
+      id:  ~
+      collection_category_id:  { type: integer, required: true, foreignClass: CollectionCategory, foreignReference: id, onDelete: cascade }
+      custom_field_id:  ~
+
+    uniques:
+      collection_category_field: [collection_category_id, custom_field_id]
+
+    propel_behaviors:
+          symfony: { form: false, filter: false }
+
+  CustomField:
+    columns:
+      id:  ~
+      name:        { type: varchar, size: 64, required: true }
+      type:        { type: tinyint, required: true }
+      object:      longvarchar
+      validation:  longvarchar
+
+  CustomValue:
+    columns:
+      id:  ~
+      collection_id:    { type: integer, required: true }
+      collectible_id:   { type: integer, required: true }
+      field_id:         { type: integer, required: true }
+      value_text:       varchar(255)
+      value_date:       date
+      value_numeric:    float
+      value_bool:       { type: boolean, default: false }
+
+    propel_behaviors:
+      timestampable:  ~
+      symfony: { form: false, filter: false }
+
+  Event:
+    columns:
+      id:  ~
+      title:        { type: varchar, size: 128, required: true }
+      description:  { type: longvarchar, required: true }
+      created_at:   ~
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+  EventVideo:
+    columns:
+      id:  ~
+      event_id:  ~
+      title:        { type: varchar, size: 128, required: true }
+      description:  { type: longvarchar, required: true }
+      lenght:       integer
+      thumb_small:  varchar(255)
+      thumb_large:  varchar(255)
+      filename:     varchar(255)
+      views:        integer
+      created_at:   ~
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+  Video:
+    columns:
+      id:  ~
+      title:         { type: varchar, size: 64, required: true }
+      slug:          { type: varchar, size: 64 }
+      description:   { type: longvarchar, required: true }
+      type:          { type: varchar, size: 64, required: true }
+      length:        integer
+      filename:      varchar(128)
+      thumb_small:   varchar(128)
+      thumb_large:   varchar(128)
+      is_published:  boolean
+      published_at:  timestamp
+      uploaded_at:   timestamp
+      created_at:    ~
+
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
+
+  VideoPlaylist:
+    columns:
+      id:  ~
+      video_id:  ~
+      playlist_id:  ~
+      position:     tinyint
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+  VideoCollectionCategory:
+    columns:
+      id:  ~
+      video_id:  ~
+      collection_category_id:  { type: integer, required: true, foreignClass: CollectionCategory, foreignReference: id, onDelete: cascade }
+      created_at:  ~
+
+    propel_behaviors:
+      symfony:     { form: false, filter: false }
+
+  Playlist:
+    columns:
+      id:  ~
+      title:         { type: varchar, size: 64, required: true }
+      slug:          { type: varchar, size: 64 }
+      description:   { type: longvarchar, required: true }
+      type:          { type: varchar, size: 64, required: true }
+      length:        integer
+      is_published:  boolean
+      published_at:  timestamp
+      created_at:    ~
+
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
+
+  Trivia:
+    columns:
+      id:  ~
+      content:     { type: longvarchar, required: true }
+      created_at:  ~
+
+    propel_behaviors:
+      symfony:     { form: false, filter: false }
+
+  ResourceCategory:
+    columns:
+      id:          ~
+      name:        { type: varchar, size: 128, required: true }
+      slug:        varchar(128)
+      thumbnail:   varchar(64)
+      created_at:  ~
+
+    propel_behaviors:
+      symfony:     { form: false, filter: false }
+
+  ResourceEntry:
+    columns:
+      id:  ~
+      category_id:  { type: integer, required: true, foreignClass: ResourceCategory, foreignReference: id }
+      type:         { type: varchar, size: 24, required: true, default: Blog }
+      name:         { type: varchar, size: 128, required: true }
+      slug:         varchar(128)
+      description:  { type: longvarchar, required: true }
+      url:          { type: varchar, size: 255, required: true }
+      rss:          { type: varchar, size: 255, required: true }
+      thumbnail:    varchar(64)
+      blogger:      varchar(128)
+      email:        varchar(128)
+      created_at:   ~
+
+    propel_behaviors:
+      symfony:      { form: false, filter: false }
+
+  Featured:
+    treeMode: NestedSet
+    columns:
+      id:  ~
+      featured_type_id:  { type: tinyint, required: true }
+      featured_model:    { type: varchar, size: 64, required: true }
+      featured_id:       { type: integer }
+      tree_left:         { type: integer, required: true, default: 0, nestedSetLeftKey: true }
+      tree_right:        { type: integer, required: true, default: 0, nestedSetRightKey: true }
+      tree_scope:        { type: integer, required: true, default: 0, treeScopeKey: true }
+      eblob:             { type: longvarchar }
+      start_date:        { type: date }
+      end_date:          { type: date }
+      position:          { type: tinyint, default: 0 }
+      is_active:         { type: boolean, default: true, required: true }
+
+    propel_behaviors:
+      symfony: { form: false, filter: false }
+
+  NewsletterSignup:
+    columns:
+      id:  ~
+      email:  { type: varchar, size: 255, required: true }
+      name:   { type: varchar, size: 255, required: true }
+
+    propel_behaviors:
+      symfony: { form: false, filter: false }

@@ -149,6 +149,9 @@
     // include the html for modal confirmation
     include_partial('global/modal_confirm');
 
+    // include the html for modal alerts
+    include_partial('global/modal_alert');
+
     // Include the global javascripts
     include_partial('global/javascripts');
 

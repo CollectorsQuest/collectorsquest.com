@@ -20,7 +20,7 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
-        <?php cq_sidebar_title('Create your password'); ?>
+        <?php cq_section_title('Create your password'); ?>
         <form action="<?= url_for('@mycq_profile_create_password'); ?>"
               class="form-horizontal" method="post">
           <?= $collector_form->renderHiddenFields(); ?>

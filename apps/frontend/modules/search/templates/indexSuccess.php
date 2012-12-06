@@ -1,3 +1,10 @@
+<?php
+/* @var $pager    cqSphinxPager */
+/* @var $url      string */
+/* @var $display  string */
+/* @var $collectibles_for_sale  CollectibleForSale[] */
+?>
+
 
 <?php if (!$pager->haveToPaginate() && ($suggestion = $pager->getDidYouMean($sf_params->get('q')))): ?>
 <p class="alert alert-info">
@@ -11,6 +18,7 @@
     array('url' => $url, 'display' => $display)
   );
 ?>
+
 
 <?php
   $title = sprintf(
@@ -31,7 +39,7 @@
   );
 ?>
 
-<div class="row" style="margin-left: -10px;">
+<div class="row" style="margin-left: -15px;">
   <div id="search-results" class="row-content">
   <?php
     foreach ($pager->getResults() as $i => $object)
@@ -39,40 +47,33 @@
       switch (strtolower(get_class($object)))
       {
         case 'wppost':
-          echo '<div class="span8 brick fixed-height">';
           include_partial(
-            '_blog/wp_post_'. $display .'_view',
+            'general/homepage_blogpost',
             array(
-              'wp_post' => $object, 'i' => $i,
-              'title' => link_to_blog_post($object, 'text', array('truncate' => 80)),
-              'excerpt' => $pager->getExcerpt($i))
+              'blog_post' => $object, 'i' => $i,
+              'excerpt' => $pager->getExcerpt($i),
+              'image' => false
+            )
           );
-          echo '</div>';
           break;
         case 'collectible':
-          echo '<div class="span4 brick fixed-height">';
           include_partial(
-            'collection/collectible_'. $display .'_view',
+            'collection/collectible_grid_view_square_small',
             array('collectible' => $object, 'i' => $i)
           );
-          echo '</div>';
           break;
         case 'collection':
         case 'collectorcollection':
-          echo '<div class="span4 brick fixed-height">';
           include_partial(
-            'collection/collection_stack_'. $display .'_view',
+            'collection/collection_grid_view_square_small',
             array('collection' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
           );
-          echo '</div>';
           break;
         case 'collector':
-          echo '<div class="span8 brick fixed-height">';
           include_partial(
-            'collector/collector_'. $display .'_view_span8',
+            'collector/collector_grid_view_span6',
             array('collector' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
           );
-          echo '</div>';
           break;
       }
     }

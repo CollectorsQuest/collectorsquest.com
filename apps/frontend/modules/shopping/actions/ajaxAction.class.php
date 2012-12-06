@@ -8,7 +8,7 @@ class ajaxAction extends cqAjaxAction
 
   public function preExecute()
   {
-    $this->forward404If(IceGateKeeper::locked('shopping_cart'));
+    $this->forward404If(cqGateKeeper::locked('shopping_cart'));
   }
 
   public function getObject(sfRequest $request)
@@ -27,6 +27,30 @@ class ajaxAction extends cqAjaxAction
     if (
       ($cart_collectible = $shopping_cart->getShoppingCartCollectibleById($id)) &&
        $cart_collectible->updateShippingFromCountryCode($country_code)
+    ) {
+      try
+      {
+        $cart_collectible->setShippingStateRegion(null);
+        $cart_collectible->save();
+        return $this->success();
+      }
+      catch (PropelException $e) { ; }
+    }
+
+    return $this->error('error', 'error');
+  }
+
+  public function executeShoppingCartCollectibleUpdateState(sfWebRequest $request)
+  {
+    $shopping_cart = $this->getUser()->getShoppingCart();
+    $this->forward404Unless($shopping_cart instanceof ShoppingCart);
+
+    $id = $request->getParameter('collectible_id');
+    $state = $request->getParameter('state');
+
+    if (
+      ($cart_collectible = $shopping_cart->getShoppingCartCollectibleById($id)) &&
+      $cart_collectible->setShippingStateRegion($state)
     ) {
       try
       {

@@ -1,8 +1,15 @@
 <?php
 /**
- * @var $collector      Collector
- * @var $collections    CollectorCollection[]
- * @var $collection_id  integer
+ * @var $collector                  Collector
+ * @var $collections                CollectorCollection[]
+ * @var $collection_id              integer
+ * @var $num_views                  integer
+ * @var $profile                    CollectorProfile
+ * @var $store_shipping             string
+ * @var $store_refunds              string
+ * @var $store_return_policy        string
+ * @var $store_additional_policies  string
+ * @var  $sf_user                   cqFrontendUser
  */
 ?>
 
@@ -55,13 +62,58 @@
   </ul>
 </div>
 
+<div class="blue-actions-panel spacer-bottom">
+  <div class="row-fluid">
+    <div class="pull-left">
+      <ul>
+        <li>
+          <?php
+            echo format_number_choice(
+              '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+              array('%1%' => number_format($num_views)), $num_views
+            );
+          ?>
+        </li>
+      </ul>
+    </div>
+    <div id="social-sharing" class="pull-right share">
+      <?php
+        include_partial(
+          'global/addthis',
+          array(
+            'providers' => array('email', 'google+', 'facebook'),
+            'image' => src_tag_collector($collector, 'original'),
+            'url' => url_for('seller_store', $collector, true)
+          )
+        );
+      ?>
+    </div>
+  </div>
+</div>
+
+
+<?php
+  if (!$sf_user->isOwnerOf($collector))
+  {
+    include_component(
+      '_sidebar', 'widgetCollector',
+      array(
+        'collector' => $collector,
+        'limit' => 0, 'message' => true, 'message_only' => true,
+        'title' => 'Contact the Seller',
+      )
+    );
+  }
+?>
+
 <?php
   include_partial(
     'collector/store_policy',
     array(
       'store_shipping' => $store_shipping, 'store_refunds' => $store_refunds,
       'store_return_policy' => $store_return_policy,
-      'store_additional_policies' => $store_additional_policies
+      'store_additional_policies' => $store_additional_policies,
+      'collector' => $collector
     )
   )
 ?>

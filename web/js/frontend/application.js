@@ -669,7 +669,7 @@ var GENERAL = window.GENERAL = (function(){
           btnNext: '.button-carousel-next',
           btnPrev: '.button-carousel-previous',
           autoplay: true,
-          autoplayDuration: 6000,
+          autoplayDuration: 20000,
           autoplayPauseOnHover: true
         },function(){
           $roundaboutEl.fadeTo(1000, 1);
@@ -739,8 +739,8 @@ var SEARCH = window.SEARCH = (function(){
 
       $container.imagesLoaded(function() {
         $container.masonry({
-          itemSelector : '.brick',
-          columnWidth : 196, gutterWidth: 15
+          itemSelector : '.brick, .collection_grid_view_square_small, .collectible_grid_view_square_small',
+          columnWidth : 140, gutterWidth: 15
         });
       });
 
@@ -748,7 +748,7 @@ var SEARCH = window.SEARCH = (function(){
         $container.infinitescroll({
             navSelector: '#search-pagination',
             nextSelector: '#search-pagination li.next a',
-            itemSelector: '.brick',
+            itemSelector: '.brick, .collection_grid_view_square_small, .collectible_grid_view_square_small',
             loading: {
               msgText: (settings.masonry.loading_text) ? settings.masonry.loading_text : 'Loading...',
               finishedMsg: 'No more pages to load.',
@@ -758,7 +758,6 @@ var SEARCH = window.SEARCH = (function(){
           },
           // trigger Masonry as a callback
           function(selector) {
-            $('.fade-white').mosaic();
             $('.collectible_grid_view').mosaic({
               animation: 'slide'
             });
@@ -775,6 +774,7 @@ var SEARCH = window.SEARCH = (function(){
               // show bricks now that they're ready
               $bricks.animate({opacity: 1});
               $container.masonry('appended', $bricks, true);
+              $('.fade-white').mosaic();
             });
           });
 
@@ -932,6 +932,27 @@ var MISC = window.MISC = (function(){
     },
     modalConfirmDestructive: function(title, text, target, return_callback) {
       return commonModalConfirm(true, title, text, target, return_callback);
+    },
+    modalAlert: function(title, text) {
+      var $modal = $('#alert-modal');
+      title = title || text || 'Alert';
+      text  = text || title;
+
+      if (!$modal.data('modal')) {
+        $modal.modal({
+          backdrop: true,
+          keyboard: true,
+          show: false
+        });
+
+        $modal.on('click', 'button.cancel', function() {
+          $modal.modal('hide');
+        });
+      }
+
+      $modal.find('.modal-header h3').html(title);
+      $modal.find('.modal-body p').html(text);
+      $modal.modal('show');
     }
   }; // MISC public interface object literal
 }()); // MISC

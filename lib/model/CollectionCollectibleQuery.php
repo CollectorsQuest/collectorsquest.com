@@ -22,6 +22,12 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
     ;
   }
 
+  /**
+   * @param  boolean $isPublic
+   * @param  null $comparison
+   *
+   * @return CollectionCollectibleQuery
+   */
   public function filterByIsPublic($isPublic = null, $comparison = null)
   {
     return $this
@@ -30,12 +36,31 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
       ->endUse();
   }
 
+  /**
+   * @return CollectionCollectibleQuery
+   */
   public function isForSale()
   {
     return $this
       ->useCollectibleQuery()
         ->isForSale()
       ->endUse();
+  }
+
+  /**
+   * @return CollectionCollectibleQuery
+   */
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  /**
+   * @return CollectionCollectibleQuery
+   */
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
   }
 
   /**

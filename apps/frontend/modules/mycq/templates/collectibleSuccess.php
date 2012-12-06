@@ -9,21 +9,21 @@
 ?>
 
 <?php
-if ($collectible->getMultimediaCount('image') > 0)
-{
-  slot(
-    'mycq_dropbox_info_message',
-    'To add another view of this item, drag an image
-     into the "Alternate View" boxes below your main image.'
-  );
-}
-else
-{
-  slot(
-    'mycq_dropbox_info_message',
-    'Drag a photo below to set it as the "Main Image" for this item.'
-  );
-}
+  if ($collectible->getMultimediaCount('image') > 0)
+  {
+    slot(
+      'mycq_dropbox_info_message',
+      'To add another view of this item, drag an image
+       into the "Alternate View" boxes below your main image.'
+    );
+  }
+  else
+  {
+    slot(
+      'mycq_dropbox_info_message',
+      'Drag a photo below to set it as the "Main Image" for this item.'
+    );
+  }
 ?>
 
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
@@ -45,7 +45,7 @@ else
   ?>
 
   <?php
-    cq_sidebar_title(
+    cq_section_title(
       sprintf('%s <small>(%s)</small>', $collectible->getName() ?: 'Untitled', $collection->getName()), null,
       array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
     );
@@ -107,11 +107,40 @@ else
         }
         else
         {
+      ?>
+          <div id="collectible_is_for_sale" class="control-group">
+            <label class="control-label">Available for Sale?</label>
+            <div class="controls switch">
+              <label class="cb-enable"><span>Yes</span></label>
+              <label class="cb-disable selected"><span>No</span></label>
+            </div>
+            <br style="clear: both;"/>
+          </div>
+
+          <script>
+            $(document).ready(function()
+            {
+              $('#collectible_is_for_sale').click(function()
+              {
+                if ($('.cb-enable').hasClass('selected')) {
+                  $('.cb-enable').removeClass('selected');
+                  $('.cb-disable').addClass('selected');
+                  $('#want-to-sell-banner').hide();
+                } else {
+                  $('.cb-enable').addClass('selected');
+                  $('.cb-disable').removeClass('selected');
+                  $('#want-to-sell-banner').show();
+                }
+              });
+            });
+          </script>
+      <?php
           cq_ad_slot(
             cq_image_tag('headlines/want-to-sell-this-item.png',
               array(
                 'width' => '530', 'height' => '71', 'align' => 'right',
-                'alt' => 'Want to sell this item?'
+                'alt' => 'Want to sell this item?', 'id' => 'want-to-sell-banner',
+                'class' => 'hide'
               )
             ),
             '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
@@ -145,7 +174,7 @@ else
       Edit other items in this collection:
     </div>
     <div class="span6">
-      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details'))?>"
+      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles'))?>"
          class="pull-right">
         See All Items &raquo;
       </a>

@@ -48,6 +48,11 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
   {
     parent::configure();
 
+    if (isset($this->object->isFakeNew))
+    {
+      $this->isNew = false;
+    }
+
     $this->setupShippingTypeField();
     $this->setupVisibleFieldsBasedOnShippingType();
 
@@ -190,6 +195,46 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
           array($this->object, 'setModelObject'),
           $this->related_object
         );
+      }
+
+      // if the shipping reference model does not match our current model,
+      // then it's a fallback shipping reference (the shipping reference attached
+      // to the Collector, ie the shipping defaults). In this case we want to create
+      // a new shipping reference based on that, which will point to the our current
+      // object, and populate it with the default data
+      if ($this->object->getModel() != get_class($this->related_object))
+      {
+        /* @var $new_shipping_reference ShippingReference */
+        $class = $this->getModelName();
+        $new_shipping_reference = new $class();
+        $new_shipping_reference->setCountryIso3166($this->country_code);
+        $new_shipping_reference->setShippingType($this->object->getShippingType());
+        call_user_func(
+          array($new_shipping_reference, 'setModelObject'),
+          $this->related_object
+        );
+
+        // We use this to set the form isNew variable later on
+        $new_shipping_reference->isFakeNew = true;
+
+        // add the shipping rates from the defaults shipping reference to the new one
+        $new_shipping_rates = new PropelCollection();
+        $new_shipping_rates->setModel('ShippingRate');
+        foreach ($this->object->getShippingRates() as $default_shipping_rate)
+        {
+          /* @var $default_shipping_rate ShippingRate */
+          $new_shipping_rate = new ShippingRate();
+          $new_shipping_rate->fromArray(array(
+              'ShippingCarrierServiceId' => $default_shipping_rate->getShippingCarrierServiceId(),
+              'FlatRateInCents' => $default_shipping_rate->getFlatRateInCents(),
+              'IsFreeShipping' => $default_shipping_rate->getIsFreeShipping(),
+
+          ));
+          $new_shipping_rates[] = $new_shipping_rate;
+        }
+
+        $new_shipping_reference->setShippingRates($new_shipping_rates);
+        $this->object = $new_shipping_reference;
       }
     }
 

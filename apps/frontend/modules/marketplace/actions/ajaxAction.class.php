@@ -11,7 +11,8 @@ class ajaxAction extends cqAjaxAction
   {
     /** @var $collectible_for_Sale CollectibleForSale */
     $collectible_for_sale = FrontendCollectibleForSaleQuery::create()
-      ->findOneByCollectibleId($request->getParameter('id'));
+      ->findOneByCollectibleId($request->getParameter('id')
+    );
 
     // Show 404 if there is no such collectible for sale
     $this->forward404Unless($collectible_for_sale instanceof CollectibleForsale);
@@ -39,11 +40,7 @@ class ajaxAction extends cqAjaxAction
     /**
      * Increment the number of views
      */
-//    if (!$this->getUser()->getCollector()->isOwnerOf($collectible))
-//    {
-//      $collectible->setNumViews($collectible->getNumViews() + 1);
-//      $collectible->save();
-//    }
+    $this->incrementCounter($collectible, 'NumViews');
 
     $this->aetn_show = null;
     $aetn_shows = sfConfig::get('app_aetn_shows');
@@ -66,5 +63,13 @@ class ajaxAction extends cqAjaxAction
     $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
 
     return $template;
+  }
+
+  // user closes adv dialog - we don't want to show it anymore
+  public function executeCloseAdvDialog()
+  {
+    $this->getUser()->setAttribute('closed_adv_dialog', true, 'marketplace');
+
+    return sfView::NONE;
   }
 }

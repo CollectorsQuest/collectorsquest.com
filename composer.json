@@ -63,11 +63,12 @@
             "type": "package",
             "package": {
                 "name": "lib/vendor/twig",
-                "version": "1.6.2",
+                "version": "1.11.1",
                 "source": {
                     "url":  "git://github.com/fabpot/Twig.git",
                     "type": "git",
-                    "reference": "v1.6.2"
+                    "reference": "v1.11.1"
+
                 }
             }
         },
@@ -88,7 +89,7 @@
         "plugins/sfGuardPlugin": "4.0.2",
         "lib/vendor/neo4jphp": "0.1.0",
         "lib/vendor/faker": "master-dev",
-        "lib/vendor/twig": "1.6.2",
+        "lib/vendor/twig": "1.11.1",
         "lib/vendor/magnify": "1.1"
     }
 }

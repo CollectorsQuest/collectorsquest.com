@@ -1,4 +1,7 @@
 <?php
 /** @var $ShoppingOrder ShoppingOrder */
 
-echo money_format('%.2n', (float) $ShoppingOrder->getTotalAmount());
+echo '<strong>', money_format('%.2n', (float) $ShoppingOrder->getCollectiblesAmount()), '</strong>',
+     (0 != (int) $ShoppingOrder->getTaxAmount()
+       ? '<br/>+&nbsp;' . money_format('%.2n', $ShoppingOrder->getTaxAmount()) . '&nbsp;Tax' : ''),
+     '<br/>+&nbsp;', money_format('%.2n', (float) $ShoppingOrder->getShippingFeeAmount()), '&nbsp;S&H';

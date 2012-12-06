@@ -21,7 +21,7 @@ class batchNewsletterConfirmationTask extends sfBaseTask
   {
     $_SERVER['HTTP_HOST'] = sfConfig::get('app_www_domain');
 
-    sfContext::createInstance($this->configuration);
+    cqContext::createInstance($this->configuration);
 
     // Database initialization
     new sfDatabaseManager($this->configuration);

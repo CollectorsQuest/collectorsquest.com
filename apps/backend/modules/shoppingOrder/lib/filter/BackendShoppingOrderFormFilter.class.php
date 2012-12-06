@@ -14,6 +14,7 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
     parent::configure();
 
     $this->setupCollectorSellerField();
+    $this->setupProgressField();
     $this->setupPaymentStatusField();
     $this->setupCreatedAtField();
 
@@ -33,23 +34,40 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
     $this->validatorSchema['collector_seller'] = new sfValidatorPass(array('required' => false));
   }
 
+  public function setupProgressField()
+  {
+    $choices = array(
+      '' => '',
+      0 => 'Shipping & Handling',
+      1 => 'Payment',
+      2 => 'Sale'
+    );
+    $this->widgetSchema['progress'] = new sfWidgetFormSelect(array(
+      'choices' => $choices,
+    ));
+    $this->validatorSchema['progress'] = new sfValidatorChoice(array(
+      'choices' => array_keys($choices),
+      'required' => false,
+    ));
+  }
+
   public function setupPaymentStatusField()
   {
     $choices = array(
-        '' => '',
-        ShoppingPaymentPeer::STATUS_INITIALIZED => 'Initialized',
-        ShoppingPaymentPeer::STATUS_INPROGRESS => 'Inprogress',
-        ShoppingPaymentPeer::STATUS_CONFIRMED => 'Confirmed',
-        ShoppingPaymentPeer::STATUS_CANCELLED => 'Cancelled',
-        ShoppingPaymentPeer::STATUS_FAILED => 'Failed',
-        ShoppingPaymentPeer::STATUS_COMPLETED => 'Completed',
+      '' => '',
+      ShoppingPaymentPeer::STATUS_INITIALIZED => 'Initialized',
+      ShoppingPaymentPeer::STATUS_INPROGRESS => 'Inprogress',
+      ShoppingPaymentPeer::STATUS_CONFIRMED => 'Confirmed',
+      ShoppingPaymentPeer::STATUS_CANCELLED => 'Cancelled',
+      ShoppingPaymentPeer::STATUS_FAILED => 'Failed',
+      ShoppingPaymentPeer::STATUS_COMPLETED => 'Completed',
     );
     $this->widgetSchema['payment_status'] = new sfWidgetFormSelect(array(
-        'choices' => $choices,
+      'choices' => $choices,
     ));
     $this->validatorSchema['payment_status'] = new sfValidatorChoice(array(
-        'choices' => array_keys($choices),
-        'required' => false,
+      'choices' => array_keys($choices),
+      'required' => false,
     ));
   }
 

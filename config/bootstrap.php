@@ -27,6 +27,24 @@ define('SF_DEBUG', $dbg);
 // Cleanup
 unset($app, $env, $dbg);
 
+/**
+ * Tell NewRelic about the current application and environment
+ */
+if (extension_loaded('newrelic'))
+{
+  if (trim($_SERVER['SCRIPT_NAME'], '/') !== 'index.php')
+  {
+    $script = '/'. trim($_SERVER['SCRIPT_NAME'], '/');
+    $script = preg_replace('/\\.[^.\\s]{3,4}$/', '', $script);
+  }
+  else
+  {
+    $script = null;
+  }
+
+  newrelic_set_appname('CollectorsQuest.'. (SF_ENV !== 'prod' ? SF_ENV : 'com') . $script);
+}
+
 if (!defined('GIT_REVISION'))
 {
   if (SF_ENV === 'prod')

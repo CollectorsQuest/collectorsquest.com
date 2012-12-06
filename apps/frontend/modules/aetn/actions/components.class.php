@@ -50,4 +50,74 @@ class aetnComponents extends cqFrontendComponents
   {
     return sfView::SUCCESS;
   }
+
+  public function executeFranksPicksCollectiblesForSale()
+  {
+    /* @var $aetn_shows array */
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
+
+    $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
+
+    /*
+     * Collectibles are not public right now, when the become public we should use FrontendQuery
+     *
+     * Do not add 'for sale' to this query as we want to display sold items as well
+     *
+     * $q = FrontendCollectionCollectibleQuery::create()
+     */
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollection($collection)
+      ->filterByCollectibleId($aetn_shows['franks_picks']['collectibles'])
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
+
+    /* @var $page integer */
+    $page = (integer) $this->getRequestParameter('p', 1);
+
+    $pager = new PropelModelPager($q, 32);
+    $pager->setPage($page);
+    $pager->init();
+    $this->pager = $pager;
+
+    $this->collection = $collection;
+
+    // if we are trying to get an out of bounds page
+    if ($page > 1 && $page > $pager->getLastPage())
+    {
+      // return empty response
+      return sfView::NONE;
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeBlackHistoryCollectiblesForSale()
+  {
+    // test Collectibles
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::ASC);
+
+    /* @var $page integer */
+    $page = (integer) $this->getRequestParameter('p', 1);
+
+    $pager = new PropelModelPager($q, 32);
+    $pager->setPage($page);
+    $pager->init();
+    $this->pager = $pager;
+
+    // if we are trying to get an out of bounds page
+    if ($page > 1 && $page > $pager->getLastPage())
+    {
+      // return empty response
+      return sfView::NONE;
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeBlackHistorySlot1()
+  {
+    return sfView::SUCCESS;
+  }
 }

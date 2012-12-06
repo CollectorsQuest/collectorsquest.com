@@ -96,9 +96,17 @@ all:
         sent:     { name: 'Sent Messages', icon: share-alt, uri: "messages_sent" }
         compose:  { name: 'Compose Message', icon: edit, uri: "messages_compose" }
 
-dev:
-
+stg:
   ssl_redirect:
+    # if insecure pages accesed with https should be rerouted to http
+    strict: false
+    # modules and actions that should be https
+    secure: ~
+
+dev:
+  ssl_redirect:
+    # if insecure pages accesed with https should be rerouted to http
+    strict: false
     # do not force SSL on collectorsquest.dev
     secure: ~
 

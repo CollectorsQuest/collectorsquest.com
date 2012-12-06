@@ -31,7 +31,7 @@ class commentsActions extends autoCommentsActions
     if ($ban_added)
     {
       $this->getUser()->setFlash(
-        'success',
+        'notice',
         sprintf('Blocked %s as spam', $comment->getIpAddress())
       );
     }
@@ -63,7 +63,7 @@ class commentsActions extends autoCommentsActions
     if ($ban_added)
     {
       $this->getUser()->setFlash(
-        'success',
+        'notice',
         sprintf('Blocked %s as spam', $comment->getAuthorEmail())
       );
     }
@@ -112,6 +112,40 @@ class commentsActions extends autoCommentsActions
     $comment->save();
 
     return $this->renderText(json_encode(array('status'=> 'success')));
+  }
+
+
+  public function executeBlockAndDelete(sfWebRequest $request)
+  {
+    $comment = CommentPeer::retrieveByPK($request->getParameter('id'));
+
+    if ($comment)
+    {
+      iceSpamControl::ban(
+        'email',
+        $comment->getAuthorEmail(),
+        $validate = false,
+        iceSpamControl::CREDENTIALS_COMMENT
+      );
+      iceSpamControl::ban(
+        'ip',
+        $comment->getIpAddress(),
+        $validate = true,
+        iceSpamControl::CREDENTIALS_COMMENT
+      );
+
+      $this->getUser()->setFlash(
+        'notice',
+        sprintf('Blocked %s (%s) as spam and deleted the comment',
+          $comment->getAuthorEmail(),
+          $comment->getIpAddress()
+        )
+      );
+
+      $comment->delete();
+    }
+
+    return $this->redirect('@comment');
   }
 
 }
