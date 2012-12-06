@@ -123,7 +123,6 @@
         for <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
       </small>
     </p>
-    Quantity sold: 1
   </div>
 <?php elseif ($collectible_for_sale->isForSale() && cqGateKeeper::open('shopping_cart')): ?>
   <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
