@@ -18,19 +18,20 @@ class CollectorForm extends BaseCollectorForm
 
   protected function unsetFields()
   {
-    unset ($this['graph_id']);
-    unset ($this['cookie_uuid']);
-    unset ($this['facebook_id']);
-    unset ($this['slug']);
-    unset ($this['sha1_password']);
-    unset ($this['salt']);
-    unset ($this['score']);
-    unset ($this['spam_score']);
-    unset ($this['session_id']);
-    unset ($this['last_seen_at']);
-    unset ($this['eblob']);
-    unset ($this['created_at']);
-    unset ($this['updated_at']);
+    unset($this['graph_id']);
+    unset($this['cookie_uuid']);
+    unset($this['facebook_id']);
+    unset($this['slug']);
+    unset($this['sha1_password']);
+    unset($this['portable_password']);
+    unset($this['salt']);
+    unset($this['score']);
+    unset($this['spam_score']);
+    unset($this['session_id']);
+    unset($this['last_seen_at']);
+    unset($this['eblob']);
+    unset($this['created_at']);
+    unset($this['updated_at']);
 
     parent::unsetFields();
   }

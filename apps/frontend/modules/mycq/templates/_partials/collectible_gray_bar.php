@@ -1,3 +1,6 @@
+<?php
+/* @var $collectible Collectible */
+?>
 <div class="gray-well cf">
   <div class="pull-left">
     <ul class="nav nav-pills spacer-bottom-reset">
@@ -35,6 +38,21 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
+          <?php if ($sf_user->isAdmin()): ?>
+            <li>
+                <a href="<?= url_for('mycq_collectible_by_slug', array(
+                  'sf_subject' => $collectible,
+                  'cmd' => 'togglePublic',
+                  'encrypt' => 1
+                )) ?>">
+                  <?php if ($collectible->getIsPublic()): ?>
+                    <i class="icon icon-eye-closed"></i> Make Private
+                  <?php else: ?>
+                    <i class="icon icon-eye-open"></i> Make Public
+                  <?php endif; ?>
+                </a>
+            </li>
+          <?php endif; ?>
           <li>
             <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
                onclick="return confirm('Are you sure you want to delete this Item?');">

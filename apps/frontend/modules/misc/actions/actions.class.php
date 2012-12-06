@@ -265,6 +265,10 @@ class miscActions extends cqFrontendActions
     // Initialize the arrays
     $collection_ids = $collectible_ids = $category_ids = $tags = $homepage_collectible_ids = array();
     $collection_ids_exclude = $collectible_ids_exclude = $category_ids_exclude = $tags_exclude = array();
+    $collectibles_2x2 = $collectibles_2x1 = $collectibles_1x2 = array();
+
+    // set the number of items on page
+    $limit = !empty($values['cq_items_per_page']) ? (int) $values['cq_items_per_page'] : '20';
 
     if (!empty($values['cq_collection_ids']))
     {
@@ -273,6 +277,33 @@ class miscActions extends cqFrontendActions
     if (!empty($values['cq_collectible_ids']))
     {
       $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
+
+      $parsed_collectible_ids = array();
+      foreach ($collectible_ids as $collectible_id)
+      {
+        if (strstr($collectible_id, ':'))
+        {
+          $parsed_value = explode(':', $collectible_id);
+          $parsed_collectible_ids[] = $parsed_value[0];
+          switch ($parsed_value[1]) {
+            case '2x2':
+              $collectibles_2x2[] = $parsed_value[0];
+              break;
+            case '2x1':
+              $collectibles_2x1[] = $parsed_value[0];
+              break;
+            case '1x2':
+              $collectibles_1x2[] = $parsed_value[0];
+              break;
+          }
+        }
+        else
+        {
+          $parsed_collectible_ids[] = $collectible_id;
+        }
+      }
+
+      $collectible_ids = $parsed_collectible_ids;
     }
     if (!empty($values['cq_category_ids']))
     {
@@ -285,6 +316,33 @@ class miscActions extends cqFrontendActions
     if (!empty($values['cq_homepage_collectible_ids']))
     {
       $homepage_collectible_ids = cqFunctions::explode(',', $values['cq_homepage_collectible_ids']);
+
+      $parsed_collectible_ids = array();
+      foreach ($homepage_collectible_ids as $collectible_id)
+      {
+        if (strstr($collectible_id, ':'))
+        {
+          $parsed_value = explode(':', $collectible_id);
+          $parsed_collectible_ids[] = $parsed_value[0];
+          switch ($parsed_value[1]) {
+            case '2x2':
+              $collectibles_2x2[] = $parsed_value[0];
+              break;
+            case '2x1':
+              $collectibles_2x1[] = $parsed_value[0];
+              break;
+            case '1x2':
+              $collectibles_1x2[] = $parsed_value[0];
+              break;
+          }
+        }
+        else
+        {
+          $parsed_collectible_ids[] = $collectible_id;
+        }
+      }
+
+      $homepage_collectible_ids = $parsed_collectible_ids;
       $collectible_ids = array_merge($homepage_collectible_ids, $collectible_ids);
     }
 
@@ -309,7 +367,11 @@ class miscActions extends cqFrontendActions
     $status = $wp_post->getPostStatus();
     $_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache');
 
-    if (!$_collectible_ids || $status !== 'publish')
+    /*
+     * calculate collectible_ids if collectible_ids are not yet known OR
+     * wp post is NOT published OR cache is disabled
+     */
+    if (!$_collectible_ids || $status !== 'publish' || sfConfig::get('sf_cache', 'false'))
     {
       // add Collectibles based on Category IDs
       if (!empty($category_ids))
@@ -465,12 +527,16 @@ class miscActions extends cqFrontendActions
         'FIELD(collectible.id, ' . implode(',', $_collectible_ids) . ')'
       );
 
-    $pager = new PropelModelPager($q, 20);
+    $pager = new PropelModelPager($q, $limit);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 
     $this->pager = $pager;
     $this->wp_post = $wp_post;
+
+    $this->collectibles_2x2 = $collectibles_2x2;
+    $this->collectibles_2x1 = $collectibles_2x1;
+    $this->collectibles_1x2 = $collectibles_1x2;
 
     $this->addBreadcrumb($wp_post->getPostTitle(), null);
 

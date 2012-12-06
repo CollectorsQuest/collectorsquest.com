@@ -21,6 +21,11 @@ aetn_franks_picks:
   param: { module: aetn, action: franksPicks }
   requirements: { sf_method: [GET] }
 
+aetn_franks_picks_alternative:
+  url: /franks-picks
+  param: { module: aetn, action: franksPicks }
+  requirements: { sf_method: [GET] }
+
 aetn_pawn_stars:
   url: /history/pawn-stars
   param: { module: aetn, action: pawnStars }
@@ -54,6 +59,11 @@ aetn_mwba_rooseveltiana:
 aetn_mwba_railroadiana:
   url: /history/mwba/cornelius-vanderbilt-railroadiana
   param: { module: aetn, action: mwbaRailroadiana }
+  requirements: { sf_method: [GET] }
+
+aetn_black_history:
+  url: /history/black-history
+  param: { module: aetn, action: blackHistory }
   requirements: { sf_method: [GET] }
 
 aetn_collectible_by_slug:

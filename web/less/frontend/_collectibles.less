@@ -46,8 +46,8 @@
 .collectible_grid_view_square_small {
   overflow: hidden;
   position: relative;
-  height: 140px;
-  margin-bottom: 16px;
+  .square(140px);
+  margin-bottom: 15px;
 
   .mosaic-backdrop {
     .square(100%);
@@ -70,7 +70,7 @@
 
 .collectible_grid_view_square_big {
   height: 295px;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
   overflow: hidden;
   position: relative;
 
@@ -97,7 +97,7 @@
   position: relative;
   overflow: hidden;
   height: 140px;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 
   .mosaic-backdrop {
     .size(140px, 295px);
@@ -120,16 +120,16 @@
 
 .collectible_grid_view_tall {
   height: 295px;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
   overflow: hidden;
   position: relative;
 
   .mosaic-backdrop {
-    .size(140px, 295px);
+    .size(295px, 140px);
   }
 
   .mosaic-overlay {
-    .size(140px, 295px);
+    .size(295px, 140px);
   }
 
   .mosaic-overlay .details {
@@ -138,7 +138,7 @@
 
     a {
       display: block;
-      .size(120px, 275px);
+      .size(275px,120px);
     }
   }
 }
@@ -273,6 +273,11 @@
       font-weight: bold;
       color: #fff;
     }
+    .open-modal.zoom-zone {
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
     span.price {
       display: block;
       margin-top: 3px;
@@ -300,6 +305,11 @@
   }
 }
 
+.collectible_for_sale_grid_view_masonry_big .collectible-info {
+  *filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#80000000', endColorstr = '#80000000', GradientType = 0);
+}
+
+
 .lt-ie9 .collectible_for_sale_grid_view_masonry_big,
 .lt-ie9 .collectible_for_sale_grid_view_square_big,
 {
@@ -311,7 +321,6 @@
     display: block;
   }
 }
-
 
 .collectible_for_sale_grid_view_square {
   margin-bottom: 15px;

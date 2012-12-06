@@ -97,12 +97,21 @@
     )
   ); ?></p>
 
+  <?php if (false && 0 != $collectible_for_sale->getTaxPercentage()): ?>
+    <p>
+      <strong>Tax:</strong> <?= $collectible_for_sale->getTaxPercentage(); ?>%
+        for <?= $collectible_for_sale->getTaxState()
+      ? iceModelGeoRegionPeer::retrieveByPK($collectible_for_sale->getTaxState())->getNameLatin() . ' /' : ''; ?>
+        <?= $collectible_for_sale->getIceModelGeoCountry()->getName(); ?>
+    </p>
+  <?php endif; ?>
+
   <?php if ($refunds_policy = $collector->getSellerSettingsRefunds()): ?>
     <p><strong>Refunds Policy:</strong> <?= $refunds_policy ?></p>
   <?php endif; ?>
 
   <?php if ($shipping_policy = $collector->getSellerSettingsShipping()): ?>
-    <p><strong>Shipping Policy:</strong> <?= $shipping_policy; ?></p>
+    <p class="truncate"><strong>Shipping Policy:</strong> <?= nl2br($shipping_policy); ?></p>
   <?php endif; ?>
 </div>
 
@@ -135,3 +144,21 @@
     <?= $buy_form->renderHiddenFields(); ?>
   </form>
 <?php endif; // if for sale ?>
+
+<?php if ($collector->getId() == 6668): ?>
+<script>
+  $(document).ready(function ()
+  {
+    $('.truncate').expander({
+      slicePoint: 250,
+      widow: 2,
+      expandEffect: 'show',
+      expandText: ' Read more >>',
+      expandPrefix: '',
+      userCollapseText: '[^]',
+      onSlice: function() { $(this).show(); }
+    })
+    .show();
+  });
+</script>
+<?php endif; ?>

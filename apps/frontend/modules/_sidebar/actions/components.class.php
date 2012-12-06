@@ -39,7 +39,6 @@ class _sidebarComponents extends cqFrontendComponents
     $q = ContentCategoryQuery::create()
       ->filterByTreeLevel($level)
       ->hasCollectionsWithCollectibles()
-      ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
       ->groupById()
       ->limit($this->limit);
@@ -561,20 +560,19 @@ class _sidebarComponents extends cqFrontendComponents
     {
       if ($this->limit > 0)
       {
-        $c = new Criteria();
-        $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
-        $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
-        $c->setLimit($this->limit);
+        $q = FrontendCollectorCollectionQuery::create()
+          ->orderBy('CreatedAt', Criteria::DESC)
+          ->limit($this->limit)
+          ->filterBy('CollectorId', $collector->getId());
 
         /** @var $collection CollectorCollection */
         $collection = $this->getVar('collection');
         if ($collection instanceof BaseObject)
         {
-          $c->add(CollectorCollectionPeer::ID, $collection->getId(), Criteria::NOT_EQUAL);
+          $q->filterBy('Id', $collection->getId(), CRITERIA::NOT_IN);
         }
-        $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
 
-        $this->collections = $collector->getCollectorCollections($c);
+        $this->collections = $q->find();
       }
 
       return sfView::SUCCESS;
@@ -722,13 +720,15 @@ class _sidebarComponents extends cqFrontendComponents
 
     // have random  Items on Frank's Picks pages
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
-    if ($this->getVar('collector') && $this->collector->getId() != $aetn_shows['american_pickers']['collector'])
+
+    if ($this->getVar('collector') && $this->collector->getId() == $aetn_shows['american_pickers']['collector'])
     {
-      $q->orderBy('UpdatedAt', Criteria::DESC);
+      $q->filterByCollectibleId($aetn_shows['franks_picks']['collectibles'])
+        ->addAscendingOrderByColumn('RAND()');
     }
     else
     {
-      $q->addAscendingOrderByColumn('RAND()');;
+      $q->orderBy('UpdatedAt', Criteria::DESC);
     }
 
     // See if we need to filter by CollectibleId first
@@ -1009,7 +1009,6 @@ class _sidebarComponents extends cqFrontendComponents
     {
       /* @var $q CollectibleForSaleQuery */
       $q = FrontendCollectibleForSaleQuery::create()
-        ->hasActiveCredit()
         ->isForSale()
         ->addAscendingOrderByColumn('RAND()');
 

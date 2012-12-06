@@ -21,11 +21,11 @@
               );
             ?>
             <button class="btn btn-large append-search-button" type="submit">Search</button>
+            <?= $form->renderHiddenFields(); ?>
           </form>
         </div>
       </div>
       <div class="span4 right-section-header">
-
 
         <a href="<?= url_for('shopping_cart', array('ref' => cq_link_ref('header')), true); ?>"
            class="link-cart" id="shopping-cart-count-link">
@@ -34,7 +34,6 @@
           </span>
         </a>
         <span class="nav-divider"></span>
-
 
         <?php if ($sf_user->isAuthenticated()): ?>
           &nbsp;

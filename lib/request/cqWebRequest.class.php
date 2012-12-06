@@ -2,6 +2,12 @@
 
 class cqWebRequest extends sfWebRequest
 {
+  /**
+   * Tracks if the request comes from a mobile device
+   *
+   * @var null|boolean
+   */
+  protected $is_mobile = null;
 
   /**
    * Return the request protocol
@@ -28,6 +34,37 @@ class cqWebRequest extends sfWebRequest
     } else {
       return parent::getRemoteAddress();
     }
+  }
+
+  public function setIsMobile($value)
+  {
+    $this->is_mobile = $value;
+  }
+
+  /**
+   * Check if the request comes from a mobile device
+   *
+   * @return boolean
+   */
+  public function isMobile()
+  {
+    return $this->is_mobile !== null ?
+      (boolean) $this->is_mobile :
+      (boolean) @$_SERVER['mobile'];
+  }
+
+  /*
+   * Check if Lazy Load (JAIL) can be used
+   * We do not want to use lazy image loading when we have:
+   *  1) infinite scroll
+   *  2) an Ajax request
+   *  3) request comes from a mobile device
+   *
+   * @return boolean
+   */
+  public function isLazyLoadEnabled()
+  {
+    return !$this->isMobile() && !$this->isXmlHttpRequest() && 'all' !== $this->getParameter('show');
   }
 
 }

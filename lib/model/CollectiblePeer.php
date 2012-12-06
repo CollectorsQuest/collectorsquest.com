@@ -18,14 +18,16 @@ class CollectiblePeer extends BaseCollectiblePeer
 
     if (preg_match('/-c(\d+)$/i', $parameters['slug'], $m))
     {
+      /* @var $q CollectionCollectibleQuery */
       $q = CollectionCollectibleQuery::create()
          ->filterByCollectibleId($parameters['id'])
-         ->filterByCollectionId((int) $m[1]);
+         ->filterByCollectionId((int) $m[1])
+         ->joinWith('Collectible');
 
       $collectible = $q->findOne();
     }
 
-    return $collectible ? $collectible : self::retrieveByPk($parameters['id']);
+    return $collectible ?: CollectibleQuery::create()->joinCollector('Collector')->findOneById($parameters['id']);
   }
 
   public static function getLatest($limit = 18)

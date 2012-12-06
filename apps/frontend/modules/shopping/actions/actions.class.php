@@ -141,6 +141,10 @@ class shoppingActions extends cqFrontendActions
 
         $shipping_address = new CollectorAddress();
         $shipping_address->setCountryIso3166($values['country_iso3166']);
+        if (isset($values['state_region']))
+        {
+          $shipping_address->setStateRegion($values['state_region']);
+        }
 
         /** @var $collectible_for_sale CollectibleForSale */
         $collectible_for_sale = CollectibleForSaleQuery::create()
@@ -526,13 +530,6 @@ class shoppingActions extends cqFrontendActions
         )
       );
     }
-    else if ($shopping_payment->getStatus() === ShoppingPaymentPeer::STATUS_CONFIRMED)
-    {
-      $this->getUser()->setFlash(
-        'highlight', '<strong>NOTICE:</strong> Your payment has been confirmed but not yet COMPLETE!
-                      The seller will wait until the payment has cleared in their account before shipping the item.'
-      );
-    }
 
     $this->shopping_order   = $shopping_order;
     $this->shopping_payment = $shopping_payment;
@@ -792,27 +789,39 @@ class shoppingActions extends cqFrontendActions
     /**
      * Send emails to both the seller and the buyer
      */
-    $cqEmail = new cqEmail($this->getMailer());
-    $cqEmail->send('Shopping/buyer_order_confirmation', array(
-      'to' => $shopping_order->getBuyerEmail(),
-      'params' => array(
-        'buyer_name'  => $shopping_order->getShippingFullName(),
-        'oSeller' => $shopping_order->getSeller(),
-        'oCollectible' => $shopping_order->getCollectible(),
-        'oShoppingOrder' => $shopping_order
-      )
-    ));
+    if (!$shopping_order->getIsBuyerNotified())
+    {
+      $cqEmail = new cqEmail($this->getMailer());
+      $is_sent = $cqEmail->send('Shopping/buyer_order_confirmation', array(
+        'to' => $shopping_order->getBuyerEmail(),
+        'params' => array(
+          'buyer_name'  => $shopping_order->getShippingFullName(),
+          'oSeller' => $shopping_order->getSeller(),
+          'oCollectible' => $shopping_order->getCollectible(),
+          'oShoppingOrder' => $shopping_order
+        )
+      ));
 
-    $cqEmail = new cqEmail($this->getMailer());
-    $cqEmail->send('Shopping/seller_order_notification', array(
-      'to' => $shopping_order->getSeller()->getEmail(),
-      'params' => array(
-        'buyer_name'  => $shopping_order->getShippingFullName(),
-        'oSeller' => $shopping_order->getSeller(),
-        'oCollectible' => $shopping_order->getCollectible(),
-        'oShoppingOrder' => $shopping_order
-      )
-    ));
+      $shopping_order->setIsBuyerNotified($is_sent);
+    }
+
+    if (!$shopping_order->getIsSellerNotified())
+    {
+      $cqEmail = new cqEmail($this->getMailer());
+      $is_sent = $cqEmail->send('Shopping/seller_order_notification', array(
+        'to' => $shopping_order->getSeller()->getEmail(),
+        'params' => array(
+          'buyer_name'  => $shopping_order->getShippingFullName(),
+          'oSeller' => $shopping_order->getSeller(),
+          'oCollectible' => $shopping_order->getCollectible(),
+          'oShoppingOrder' => $shopping_order
+        )
+      ));
+
+      $shopping_order->setIsSellerNotified($is_sent);
+    }
+
+    $shopping_order->save();
   }
 
   /**

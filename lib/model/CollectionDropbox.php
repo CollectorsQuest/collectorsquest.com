@@ -43,9 +43,14 @@ class CollectionDropbox extends CollectorCollection
     $this->_collector_id = $id;
   }
 
-  public function getCollector(PropelPDO $con = null)
+  public function getCollector(PropelPDO $con = null, $doQuery = true)
   {
-    return CollectorQuery::create()->filterById($this->getCollectorId())->findOne($con);
+    if ($this->aCollector === null && ($this->collector_id !== null) && $doQuery)
+    {
+      $this->aCollector = CollectorQuery::create()->findPk($this->getCollectorId, $con);
+    }
+
+    return $this->aCollector;
   }
 
   public function getName()

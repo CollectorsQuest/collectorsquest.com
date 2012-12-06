@@ -67,6 +67,7 @@ class aetnComponents extends cqFrontendComponents
      */
     $q = CollectionCollectibleQuery::create()
       ->filterByCollection($collection)
+      ->filterByCollectibleId($aetn_shows['franks_picks']['collectibles'])
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
@@ -87,6 +88,36 @@ class aetnComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
+    return sfView::SUCCESS;
+  }
+
+  public function executeBlackHistoryCollectiblesForSale()
+  {
+    // test Collectibles
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::ASC);
+
+    /* @var $page integer */
+    $page = (integer) $this->getRequestParameter('p', 1);
+
+    $pager = new PropelModelPager($q, 32);
+    $pager->setPage($page);
+    $pager->init();
+    $this->pager = $pager;
+
+    // if we are trying to get an out of bounds page
+    if ($page > 1 && $page > $pager->getLastPage())
+    {
+      // return empty response
+      return sfView::NONE;
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeBlackHistorySlot1()
+  {
     return sfView::SUCCESS;
   }
 }

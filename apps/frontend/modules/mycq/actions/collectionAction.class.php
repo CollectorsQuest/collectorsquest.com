@@ -84,6 +84,9 @@ class collectionAction extends cqFrontendAction
       case 'reorder':
         return $this->executeCollectiblesReorder($request);
         break;
+      case 'togglePublic':
+        return $this->executeCollectionTogglePublic($request);
+        break;
       case 'collectibles':
       default:
         return $this->executeCollectionCollectibles($request);
@@ -193,5 +196,48 @@ class collectionAction extends cqFrontendAction
     $this->collectibles = $this->collection->getCollectibles($c);
 
     return 'CollectiblesReorder';
+  }
+
+  /**
+   * Action CollectionTogglePublic
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  private function executeCollectionTogglePublic(sfWebRequest $request)
+  {
+    if (!$this->getUser()->isAdmin())
+    {
+      $this->getResponse()->setStatusCode(403);
+      return sfView::ERROR;
+    }
+
+    $con = Propel::getConnection();
+    $sql = sprintf(
+      'UPDATE %s SET %s = NOT %s WHERE %s = %d',
+      CollectionPeer::TABLE_NAME, CollectionPeer::IS_PUBLIC, CollectionPeer::IS_PUBLIC,
+      CollectionPeer::ID, $this->collection->getId()
+    );
+    $con->exec($sql);
+
+    $sql = sprintf(
+      'UPDATE %s SET %s = NOT %s WHERE %s = %d',
+      CollectorCollectionPeer::TABLE_NAME, CollectorCollectionPeer::IS_PUBLIC,
+      CollectorCollectionPeer::IS_PUBLIC, CollectorCollectionPeer::ID, $this->collection->getId()
+    );
+    $con->exec($sql);
+
+    $this->collection = CollectorCollectionPeer::retrieveByPK($this->collection->getId());
+
+    $this->getUser()->setFlash(
+      'success', sprintf(
+        'Collection "%s" changed to %s.',
+        $this->collection->getName(), $this->collection->getIsPublic() ? 'Public' : 'Private'
+      )
+    );
+
+    $this->redirect($request->getReferer());
+    return sfView::SUCCESS;
   }
 }

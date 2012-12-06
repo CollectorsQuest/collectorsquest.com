@@ -1,4 +1,13 @@
 index:
   enabled:     true
   with_layout: false
-  lifetime:    300
+  lifetime:    600
+
+holiday:
+  enabled:     true
+  with_layout: false
+  lifetime:    600
+
+_holidaySlot1:
+  enabled:     true
+  lifetime:    600

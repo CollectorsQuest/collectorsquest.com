@@ -18,13 +18,9 @@ if (in_array($type, array('image', 'video')))
 
   $databases = sfYaml::load(__DIR__ .'/../config/databases.yml');
 
-  if (empty($databases['prod']))
+  if (empty($databases[SF_ENV]))
   {
-    $databases['prod'] = $databases['all'];
-  }
-  if (empty($databases['dev']))
-  {
-    $databases['dev']  = $databases['all'];
+    $databases[SF_ENV] = $databases['all'];
   }
 
   $dbh = new PDO(

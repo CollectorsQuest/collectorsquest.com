@@ -11,7 +11,7 @@
       array('width' => 130, 'height' => 130)
     ), '@mycq_shopping_order?uuid=' . $shopping_order->getUuid());
   ?>
-  <span class="sold">SOLD</span>
+  <span class="sold"><?= $shopping_order->getShippingTrackingNumber() ? 'SHIPPED' : 'SOLD' ?></span>
   <p>
     <?php
       echo link_to(

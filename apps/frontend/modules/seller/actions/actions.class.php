@@ -185,13 +185,13 @@ class sellerActions extends cqFrontendActions
 
             $this->return_url = $this->generateUrl(
               'seller_payment_paypal',
-              array('id' => $transaction->getId(), 'cmd' => 'return', 'encrypt' => true),
+              array('id' => $transaction->getId(), 'cmd' => 'return', 'encrypt' => true, 'lifetime' => 86400),
               true
             );
 
             $this->cancel_return_url = $this->generateUrl(
               'seller_payment_paypal',
-              array('id' => $transaction->getId(), 'cmd' => 'cancel', 'encrypt' => true),
+              array('id' => $transaction->getId(), 'cmd' => 'cancel', 'encrypt' => true, 'lifetime' => 86400),
               true
             );
 
@@ -199,7 +199,7 @@ class sellerActions extends cqFrontendActions
             {
               $this->notify_url = $domain . $this->generateUrl(
                 'seller_payment_paypal',
-                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true),
+                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true, 'lifetime' => 0),
                 false
               );
             }
@@ -207,7 +207,7 @@ class sellerActions extends cqFrontendActions
             {
               $this->notify_url = $this->generateUrl(
                 'seller_payment_paypal',
-                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true),
+                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true, 'lifetime' => 0),
                 true
               );
             }

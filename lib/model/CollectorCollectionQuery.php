@@ -6,6 +6,11 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
 {
 
   /**
+   * @var boolean Have we modified the CollectorCollection table map
+   */
+  protected static $table_map_modified = false;
+
+  /**
    * @param  array   $tags
    * @param  string  $comparison
    *
@@ -18,9 +23,9 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
 
     $where = sprintf("
         CollectorCollection.Id IN (
-          SELECT tagging.taggable_id
-            FROM tagging INNER JOIN tag ON (tag.id = tagging.tag_id AND tag.slug %s ('%s'))
-           WHERE taggable_model = 'CollectorCollection'
+          SELECT tagging.taggable_id from (
+            SELECT tag.id from tag WHERE tag.is_triple = 0 AND tag.slug %s ('%s')
+          ) res INNER JOIN tagging ON (res.id = tag_id AND taggable_model = 'CollectorCollection')
         )
       ",
       $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
@@ -48,14 +53,14 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
 
     $where = sprintf("
         collector_collection.ID IN (
-          SELECT tagging.taggable_id
-            FROM tagging INNER JOIN tag ON (
-              tag.id = tagging.tag_id AND tag.is_triple = 1 AND
+          SELECT tagging.taggable_id FROM (
+            SELECT tag.id from tag
+             WHERE
+              tag.is_triple = 1 AND
               tag.triple_value %s ('%s') AND
               tag.triple_namespace = '%s' AND
               tag.triple_key IN ('%s')
-            )
-           WHERE taggable_model = 'CollectorCollection'
+          ) res INNER JOIN tagging ON (res.id = tag_id AND taggable_model = 'CollectorCollection')
         )
       ",
       $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
@@ -128,7 +133,51 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
     return $this
        ->useCollectionCollectibleQuery()
         ->isForSale()
-      ->endUse();
+      ->endUse()
+      ->groupById();
+  }
+
+
+  /**
+   * @return CollectorCollectionQuery
+   */
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  /**
+   * @return CollectorCollectionQuery
+   */
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function useCollectionCollectibleQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+  {
+    $this->prepareExtraRelations();
+
+    return parent::useCollectionCollectibleQuery($relationAlias, $joinType);
+  }
+
+  /**
+   * @return CollectorCollectionQuery
+   */
+  public function prepareExtraRelations()
+  {
+    // if we have not modified the table map yet
+    if (false === self::$table_map_modified)
+    {
+      $table_map = CollectorCollectionPeer::getTableMap();
+      // add a noSQL relation between CollectorCollection and CollectionCollectible
+      $table_map->addRelation('CollectionCollectible', 'CollectionCollectible', RelationMap::MANY_TO_ONE, array('id' => 'collection_id', ), 'SET NULL', null);
+    }
+
+    return $this;
   }
 
 }

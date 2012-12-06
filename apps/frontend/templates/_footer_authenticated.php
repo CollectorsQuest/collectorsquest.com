@@ -7,9 +7,9 @@ $collector = $sf_user->getCollector();
 $unread_messages = $collector->getUnreadMessagesCount();
 ?>
 
-<h2 class="Chivo webfont no-margin-bottom">
+<h3 class="Chivo webfont no-margin-bottom">
   Welcome back, <?= $collector->getDisplayName() ?>!
-</h2>
+</h3>
 <ul class="footer-profile-box cf">
   <li class="footer-pm-box">
     <span class="big-email-icon">
