@@ -26,9 +26,9 @@
   </thead>
   <tbody>
 
-  <?php if (count($collectible->getShippingReferencesByCountryCode())):
-    foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference):
-      if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
+  <?php if (count($collectible->getShippingReferencesByCountryCode())): ?>
+    <?php foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference): ?>
+      <?php if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
 
         <?php ob_start(); ?>
         <tr>

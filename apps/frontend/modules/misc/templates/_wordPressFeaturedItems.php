@@ -123,6 +123,20 @@
     {
       var $container = $('#collectibles');
 
+      $container.imagesLoaded(function()
+      {
+        $container.masonry(
+          {
+            <?php if ($cq_layout == 'pinterest'): ?>
+            itemSelector : '.brick, .span4',
+            columnWidth : 220, gutterWidth: 18
+            <?php else: ?>
+            itemSelector : '.span3, .span6, .span9',
+            columnWidth : 140, gutterWidth: 15
+            <?php endif; ?>
+          });
+      });
+
       $container.infinitescroll(
       {
         navSelector:'#collectibles-pagination',
@@ -152,6 +166,12 @@
           // show bricks now that they're ready
           $bricks.animate({opacity: 1});
           $container.masonry('appended', $bricks, true);
+
+          $('.fade-white').mosaic();
+          $("a.target").bigTarget({
+            hoverClass: 'over',
+            clickZone : 'div.link'
+          });
         });
       });
     });
