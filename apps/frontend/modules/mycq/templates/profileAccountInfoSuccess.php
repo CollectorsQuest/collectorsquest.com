@@ -35,6 +35,7 @@
         <div class="already-connected">
           Already connected
           <i class="facebook-big-icon"></i>
+          <i class="icon icon-remove-sign"></i>
         </div>
 
 

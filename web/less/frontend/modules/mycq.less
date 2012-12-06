@@ -2256,6 +2256,7 @@ div.wpfaqask {
 //Profile - Social accounts
 
 .already-connected {
+  position: relative;
   .size(46px, 178px);
   float: left;
   padding: 10px 4px 10px 8px;
@@ -2267,6 +2268,14 @@ div.wpfaqask {
   .facebook-big-icon, .twitter-big-icon, .google-big-icon, .live-id-big-icon {
     display: inline-block;
     margin: 0 10px;
+  }
+  .icon-remove-sign {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+  }
+  &:hover .icon-remove-sign {
+    display: block;
   }
 }
 
@@ -2282,8 +2291,8 @@ div.wpfaqask {
       padding: 0 4px;
       margin: 0 auto; //IE fix
       font-size: @baseFontSize + 1;
-      color: @brown;
       text-align: center;
+      color: @brown;
       border: none;
     }
   }
