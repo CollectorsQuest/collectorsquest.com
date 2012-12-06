@@ -22,8 +22,8 @@
   <p>Enter comma separated ID numbers. (1,2,3)</p>
 
   <label>Homepage Collectible IDs<br>
-         You can enter size formats like this - ID:size, example: 1111:2x1,2222:2x2,3333:1x2.<br>
-         Possible sizes are 2x2, 1x2 and 2x1, default size is 1x1
+         You can enter size formats like this - ID:size, example: 1111:2x1,2222:2x2,3333:1x2,444:3x1<br>
+         Possible sizes are 2x2, 1x2,2x1, 1x3, 2x3, 3x3, 3x2 and 3x1 default size is 1x1
   <?php $mb->the_field('cq_homepage_collectible_ids'); ?>
 
   <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
@@ -39,8 +39,8 @@
   <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
   <label>Collectible IDs<br>
-    You can enter size formats like this - ID:size, example: 1111:2x1,2222:2x2,3333:1x2.<br>
-    Possible sizes are 2x2, 1x2 and 2x1, default size is 1x1
+    You can enter size formats like this - ID:size, example: 1111:2x1,2222:2x2,3333:1x2,444:3x1<br>
+    Possible sizes are 2x2, 1x2,2x1, 1x3, 2x3, 3x3, 3x2 and 3x1 default size is 1x1
     <?php $mb->the_field('cq_collectible_ids'); ?>
 
     <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
