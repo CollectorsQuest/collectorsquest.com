@@ -52,7 +52,7 @@ all:
         subject: "You've Sent a Message on Collectors Quest!"
         required_params: [oSender, sReceiver, sMessageBody]
       relay_message_to_unregistered_user:
-        subject: "You have a new message from {{ oSender.displayName }} on Collectors Quest!"
+        subject: "You have a new message from {{ oSender.displayName | raw }} on Collectors Quest!"
         required_params: [oSender, sMessageBody ]
 
     Comments:
@@ -60,7 +60,7 @@ all:
         subject: "Someone responded to your comment on Collectors Quest!"
         required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
       new_comment_on_owned_item_notification:
-        subject: "Someone posted a new comment about your {{ oModelObject }} on Collectors Quest!"
+        subject: "Someone posted a new comment about your {{ oModelObject | raw }} on Collectors Quest!"
         required_params: [ oModelObject, oNewComment, sThreadUrl, sCommentRemoveUrl, sCommentReportSpamUrl ]
 
     Shopping:
@@ -68,7 +68,7 @@ all:
         subject: "Congratulations! You’ve made a purchase on Collectors Quest!"
         required_params: [ oSeller, oShoppingOrder, oCollectible ]
       seller_order_notification:
-        subject: "Congratulations! You've sold your {{ oCollectible }} on Collectors Quest!"
+        subject: "Congratulations! You've sold your {{ oCollectible | raw }} on Collectors Quest!"
         required_params: [ oSeller, oShoppingOrder, oCollectible ]
       buyer_order_failed:
         subject: "Your PayPal transaction could not be processed on Collectors Quest"
@@ -79,11 +79,11 @@ all:
 
     internal:
       spam_notification_comment:
-        subject: "Comment spam reported by {{ oReporterCollector }} on {{ oModelObject }}"
+        subject: "Comment spam reported by {{ oReporterCollector | raw }} on {{ oModelObject | raw }}"
         to: info@collectorsquest.com
         required_params: [ oReporterCollector, oModelObject, oComment ]
       spam_notification_pm:
-        subject: "Private message spam reported by {{ oReporterCollector }}"
+        subject: "Private message spam reported by {{ oReporterCollector | raw }}"
         to: info@collectorsquest.com
         required_params: [ oReporterCollector, rqMessages ]
       feedback:
