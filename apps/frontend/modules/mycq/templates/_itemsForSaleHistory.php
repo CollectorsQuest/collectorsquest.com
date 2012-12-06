@@ -43,9 +43,9 @@
                     );
                   ?>
                 </span>
-                <span class="description">
-                  <?= $collectible_for_sale->getCollectible()->getDescription('stripped') ?>
-                </span>
+                <p class="description">
+                  <?= Utf8::truncateHtmlKeepWordsWhole($collectible_for_sale->getCollectible()->getDescription('stripped'), 100); ?>
+                </p>
                 <span class="price">
                   <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
                 </span>
