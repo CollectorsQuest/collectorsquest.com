@@ -40,11 +40,7 @@ class ajaxAction extends cqAjaxAction
     /**
      * Increment the number of views
      */
-    if (!$this->getUser()->getCollector()->isOwnerOf($collectible))
-    {
-      $collectible->setNumViews($collectible->getNumViews() + 1);
-      $collectible->save();
-    }
+    $this->incrementCounter($collectible, 'NumViews');
 
     $this->aetn_show = null;
     $aetn_shows = sfConfig::get('app_aetn_shows');
@@ -67,5 +63,13 @@ class ajaxAction extends cqAjaxAction
     $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
 
     return $template;
+  }
+
+  // user closes adv dialog - we don't want to show it anymore
+  public function executeCloseAdvDialog()
+  {
+    $this->getUser()->setAttribute('closed_adv_dialog', true, 'marketplace');
+
+    return sfView::NONE;
   }
 }

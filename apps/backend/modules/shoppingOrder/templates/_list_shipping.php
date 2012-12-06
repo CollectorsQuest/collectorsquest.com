@@ -12,7 +12,7 @@
          <?= $ShoppingOrder->getShippingAddressLine2(); ?><br />
          <?= $ShoppingOrder->getShippingZipPostcode()
           .' '.$ShoppingOrder->getShippingCity()
-          .' '.$ShoppingOrder->getShippingStateRegion(); ?><br />
+          .' '.$ShoppingOrder->getShippingStateRegionName(); ?><br />
          <?= $ShoppingOrder->getShippingCountryName(); ?><br />
 
          <?php if ($ShoppingOrder->getShippingCarrier()): ?>

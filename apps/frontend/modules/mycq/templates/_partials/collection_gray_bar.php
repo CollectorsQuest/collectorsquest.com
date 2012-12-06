@@ -32,6 +32,16 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
+              <?php if ($sf_user->isAdmin()): ?>
+            <li>
+                <a href="<?= url_for('mycq_collection_by_section', array(
+                  'id' => $collection->getId(), 'section' => 'togglePublic'
+                )) ?>">
+                    <i class="icon icon-refresh"></i>
+                  <?php echo ($collection->getIsPublic() ? 'Make Not Public' : 'Make Public') ?>
+                </a>
+            </li>
+            <?php endif; ?>
             <li>
               <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'reorder')); ?>">
                 <i class="icon icon-move"></i>

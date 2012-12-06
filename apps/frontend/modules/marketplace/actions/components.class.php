@@ -205,6 +205,17 @@ class marketplaceComponents extends cqFrontendComponents
       );
     }
 
+    $this->show_holiday_adv = true;
+    $user = $this->getUser();
+
+    if (
+      $user->getAttribute('closed_adv_dialog', false, 'marketplace') ||
+      ($user->getSeller() && $user->getSeller()->hasPackageCredits())
+    )
+    {
+      $this->show_holiday_adv = false;
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -225,6 +236,7 @@ class marketplaceComponents extends cqFrontendComponents
       $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollection($collection)
         ->isForSale()
+        ->filterByCollectibleId($aetn_shows['franks_picks']['collectibles'])
         ->orderByPosition(Criteria::ASC)
         ->orderByUpdatedAt(Criteria::ASC);
 
@@ -350,7 +362,7 @@ class marketplaceComponents extends cqFrontendComponents
           break;
       }
 
-      $pager = new cqSphinxPager($query, array('collectibles'), 16);
+      $pager = new cqSphinxPager($query, array('collectibles'), 15);
       $pager->setJoinWith(array('collectible' => array('CollectibleForSale')));
     }
     else
@@ -371,7 +383,7 @@ class marketplaceComponents extends cqFrontendComponents
       $query->orderByAverageRating(Criteria::DESC);
       $query->orderByUpdatedAt(Criteria::DESC);
 
-      $pager = new cqPropelModelPager($query, 16);
+      $pager = new cqPropelModelPager($query, 15);
       $pager->setNbResults(count($pks));
     }
 
@@ -393,6 +405,9 @@ class marketplaceComponents extends cqFrontendComponents
         '@search_collectibles_for_sale?q=%s&s1=%s&s2&page=%d',
         $q, $s1, $s2, $pager->getNextPage()
       );
+
+      // variable used for displaying holiday promo banner
+      $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
 
       return sfView::SUCCESS;
     }

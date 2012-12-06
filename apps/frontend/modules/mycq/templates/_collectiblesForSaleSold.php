@@ -11,7 +11,7 @@
       array('width' => 130, 'height' => 130)
     ), 'mycq_collectible_by_slug', $shopping_order->getCollectible());
   ?>
-  <span class="sold">SOLD</span>
+  <span class="sold"><?= $shopping_order->getShippingTrackingNumber() ? 'SHIPPED' : 'SOLD' ?></span>
   <p>
     <?php
       echo link_to(

@@ -126,8 +126,18 @@
         </table>
 
         <div id="information-box">
+          <?php
+            if ($collector->getId() == 6668)
+            {
+              $send_text = 'Send a message to the folks at HISTORY here »';
+            }
+            else
+            {
+              $send_text = sprintf('Send a message to %s »', $collector->getDisplayName());
+            }
+          ?>
           <p>Have a question about shipping? <?= cq_link_to(
-            sprintf('Send a message to %s »', $collector->getDisplayName()),
+            $send_text,
             'messages_compose',
             array(
               'to' => $collector->getUsername(),

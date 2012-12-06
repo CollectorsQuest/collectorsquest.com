@@ -52,6 +52,9 @@ class batchGenerateSitemapsTask extends sfBaseTask
     // Load the Links helper
     $this->configuration->loadHelpers('cqLinks');
 
+    // Make sure the sitemaps/ directory exists
+    mkdir(sfConfig::get('sf_web_dir').'/sitemaps', 0755);
+
     // we can easily process the first 2 in one iteration and just add a check it is done
     $this->_landing_pages();
     $this->_content_categories($connection);
