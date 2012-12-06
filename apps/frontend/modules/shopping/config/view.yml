@@ -11,7 +11,7 @@ orderShippingSuccess:
     header:  [global, headerStripped]
     footer:  []
     breadcrumbs: []
-    slot1:   [shopping, slot1Shipping]
+    # slot1:   [shopping, slot1Shipping]
     sidebar_300: [shopping, sidebarCheckout]
 
 orderPaySuccess:
