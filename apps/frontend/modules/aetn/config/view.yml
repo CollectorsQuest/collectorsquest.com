@@ -53,17 +53,6 @@ mwbaRailroadianaSuccess:
     breadcrumbs: []
     footer: []
 
-blackHistorySuccess:
-  javascripts:
-    - jquery/expander.js
-    - jquery/autoajax.js
-    - jquery/infinitescroll.js
-    - jquery/masonry.js
-  components:
-    slot1: [aetn, blackHistorySlot1]
-    breadcrumbs: []
-    footer: []
-
 storageWarsSuccess:
   components:
     sidebar_300: [aetn, sidebarStorageWars]

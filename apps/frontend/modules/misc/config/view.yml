@@ -1,3 +1,7 @@
+all:
+  stylesheets:
+    - frontend/modules/misc.css
+
 guideToCollectingSuccess:
   stylesheets: [frontend/modules/splash.css]
   components:
@@ -18,6 +22,21 @@ guideDownloadAlert:
 
 
 wordPressFeaturedItemsSuccess:
-  javascripts: [jquery/expander.js, jquery/masonry.js]
+  javascripts:
+    - jquery/expander.js
+    - jquery/autoajax.js
+    - jquery/infinitescroll.js
+    - jquery/masonry.js
   components:
     sidebar_300:  [misc, sidebarWordPressFeaturedItems]
+
+wordPressFeaturedItemsNoSidebarSuccess:
+  javascripts:
+    - jquery/expander.js
+    - jquery/autoajax.js
+    - jquery/infinitescroll.js
+    - jquery/masonry.js
+  components:
+    slot1: [misc, wordPressFeaturedItemsSlot1]
+    breadcrumbs: []
+    footer: []
