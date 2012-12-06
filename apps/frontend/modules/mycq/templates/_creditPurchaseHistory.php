@@ -39,38 +39,45 @@
       switch ($package_transaction->getPaymentStatus())
       {
         case PackageTransactionPeer::PAYMENT_STATUS_PAID :
-          $class = '';
-          if ($package_transaction->getCredits() - $package_transaction->getCreditsUsed() <= 5)
+          $class = 'paid';
+          if ($package_transaction->getCreditsRemaining() <= 5)
           {
             $class = 'alert';
           }
-          if (strtotime('-5 days', $package_transaction->getExpiryDate('U')) < time())
+          if ($package_transaction->isExpired('5 days'))
           {
             $class = 'alert';
           }
-          if ($package_transaction->getExpiryDate('YmdHis') < date('YmdHis'))
+          if ($package_transaction->isExpired())
           {
             $class = 'expired';
           }
           break;
-        case PackageTransactionPeer::PAYMENT_STATUS_PROCESSING :
-          $class = 'processing';
-          break;
+        default:
+          $class = $package_transaction->getPaymentStatus();
       }
     ?>
   <tr class=" <?= $class ?>">
     <td><?= $package_transaction->getPackage()->getPackageName(); ?></td>
-    <td><?= $package_transaction->getCredits() < 9999
-      ? $package_transaction->getCredits()
-      : 'unlimited'; ?></td>
-    <td><?= $package_transaction->getCreditsRemaining(); ?></td>
+    <td><?= PackagePeer::PACKAGE_ID_UNLIMITED == $package_transaction->getPackageId()
+      ? 'unlimited'
+      : $package_transaction->getCredits(); ?></td>
+    <td><?= PackagePeer::PACKAGE_ID_UNLIMITED == $package_transaction->getPackageId()
+      ? 'unlimited'
+      : $package_transaction->getCreditsRemaining(); ?></td>
     <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
     <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
     <td>
       <?php
       switch ($class) {
-        case '' :
+        case 'pending' :
+          echo '<span class="red">payment<br>pending</span>';
+          break;
+        case 'paid' :
           echo 'paid';
+          break;
+        case 'cancelled' :
+          echo 'payment<br>cancelled';
           break;
         case 'processing' :
           echo '<span class="red">processing<br>payment</span>';
@@ -81,6 +88,8 @@
         case 'expired' :
           echo 'expired';
           break;
+        default:
+          echo $class;
       }
       ?>
     </td>
