@@ -27,7 +27,7 @@ class CollectorSignupStep1FormValidatorSchema extends sfValidatorSchema
         ->count()
     )
     {
-      // If we have a duplicate, andomize the display name a little;
+      // If we have a duplicate, randomize the display name a little;
       // For display names with space in it "Kiril Angov",
       // it will do "Kiril Angov 54", otherwise "KirilAngov54"
       $values['display_name'] .= stripos(trim($values['display_name']), ' ')
