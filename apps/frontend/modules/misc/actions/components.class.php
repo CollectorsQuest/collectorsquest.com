@@ -59,7 +59,8 @@ class miscComponents extends cqFrontendComponents
     // Initialize the arrays
     $collection_ids = $collectible_ids = $category_ids = $tags = $homepage_collectible_ids = array();
     $collection_ids_exclude = $collectible_ids_exclude = $category_ids_exclude = $tags_exclude = array();
-    $collectibles_2x2 = $collectibles_2x1 = $collectibles_1x2 = array();
+    $collectibles_2x2 = $collectibles_2x1 = $collectibles_1x2 = $collectibles_1x3 = array();
+    $collectibles_2x3 = $collectibles_3x3 = $collectibles_3x2 = $collectibles_3x1 = array();
 
     // set the number of items on page
     $limit = !empty($values['cq_items_per_page']) ? (int) $values['cq_items_per_page'] : '20';
@@ -99,6 +100,23 @@ class miscComponents extends cqFrontendComponents
             case '1x2':
               $collectibles_1x2[] = $parsed_value[0];
               break;
+            case '1x3':
+              $collectibles_1x3[] = $parsed_value[0];
+              break;
+            case '2x3':
+              $collectibles_2x3[] = $parsed_value[0];
+              break;
+            case '3x3':
+              $collectibles_3x3[] = $parsed_value[0];
+              break;
+            case '3x2':
+              $collectibles_3x2[] = $parsed_value[0];
+              break;
+            case '3x1':
+              $collectibles_3x1[] = $parsed_value[0];
+              break;
+            default:
+              break;
           }
         }
         else
@@ -137,6 +155,23 @@ class miscComponents extends cqFrontendComponents
               break;
             case '1x2':
               $collectibles_1x2[] = $parsed_value[0];
+              break;
+            case '1x3':
+              $collectibles_1x3[] = $parsed_value[0];
+              break;
+            case '2x3':
+              $collectibles_2x3[] = $parsed_value[0];
+              break;
+            case '3x3':
+              $collectibles_3x3[] = $parsed_value[0];
+              break;
+            case '3x2':
+              $collectibles_3x2[] = $parsed_value[0];
+              break;
+            case '3x1':
+              $collectibles_3x1[] = $parsed_value[0];
+              break;
+            default:
               break;
           }
         }
@@ -349,6 +384,11 @@ class miscComponents extends cqFrontendComponents
     $this->collectibles_2x2 = $collectibles_2x2;
     $this->collectibles_2x1 = $collectibles_2x1;
     $this->collectibles_1x2 = $collectibles_1x2;
+    $this->collectibles_1x3 = $collectibles_1x3;
+    $this->collectibles_2x3 = $collectibles_2x3;
+    $this->collectibles_3x3 = $collectibles_3x3;
+    $this->collectibles_3x2 = $collectibles_3x2;
+    $this->collectibles_3x1 = $collectibles_3x1;
 
     // if we are trying to get an out of bounds page
     if ($page > 1 && $page > $pager->getLastPage())

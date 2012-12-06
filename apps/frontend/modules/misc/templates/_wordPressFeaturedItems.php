@@ -4,6 +4,11 @@
 /* @var $collectibles_2x2  array              */
 /* @var $collectibles_1x2  array              */
 /* @var $collectibles_2x1  array              */
+/* @var $collectibles_1x3  array              */
+/* @var $collectibles_2x3  array              */
+/* @var $collectibles_3x3  array              */
+/* @var $collectibles_3x2  array              */
+/* @var $collectibles_3x1  array              */
 /* @var $post_id           integer            */
 /* @var $cq_layout         string             */
 ?>
@@ -29,6 +34,26 @@
       else if (in_array($id, $collectibles_2x2))
       {
         $partial = 'square_big';
+      }
+      else if (in_array($id, $collectibles_1x3))
+      {
+        $partial = '1x3';
+      }
+      else if (in_array($id, $collectibles_2x3))
+      {
+        $partial = '2x3';
+      }
+      else if (in_array($id, $collectibles_3x3))
+      {
+        $partial = '3x3';
+      }
+      else if (in_array($id, $collectibles_3x2))
+      {
+        $partial = '3x2';
+      }
+      else if (in_array($id, $collectibles_3x1))
+      {
+        $partial = '3x1';
       }
       else
       {
@@ -105,7 +130,7 @@
         <?php if ($cq_layout == 'pinterest'): ?>
           itemSelector:'#collectibles .span4',
         <?php else: ?>
-          itemSelector:'#collectibles .span3, #collectibles .span6',
+          itemSelector:'#collectibles .span3, #collectibles .span6, #collectibles .span9',
         <?php endif; ?>
         loading:{
           msgText:'',

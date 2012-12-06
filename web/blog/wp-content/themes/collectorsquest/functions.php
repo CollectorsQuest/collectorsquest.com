@@ -1158,6 +1158,11 @@ function validate_collectible_ids_helper($meta)
         case '2x1': break;
         case '1x2': break;
         case '1x1': break;
+        case '1x3': break;
+        case '2x3': break;
+        case '3x3': break;
+        case '3x2': break;
+        case '3x1': break;
         default:
           return false;
       }
