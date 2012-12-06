@@ -16,58 +16,58 @@
 <?php if ($cq_layout == 'grid'): ?>
   <div id="collectibles" class="row-content">
     <?php
-    foreach ($pager->getResults() as $i => $collectible)
-    {
-      /* @var $collectible Collectible */
-      $id = $collectible->getId();
+      foreach ($pager->getResults() as $i => $collectible)
+      {
+        /* @var $collectible Collectible */
+        $id = $collectible->getId();
 
-      // which partial we want to show the Collectible with
-      $partial = '';
-      if (in_array($id, $collectibles_2x1))
-      {
-        $partial = 'wide';
-      }
-      else if (in_array($id, $collectibles_1x2))
-      {
-        $partial = 'tall';
-      }
-      else if (in_array($id, $collectibles_2x2))
-      {
-        $partial = 'square_big';
-      }
-      else if (in_array($id, $collectibles_1x3))
-      {
-        $partial = '1x3';
-      }
-      else if (in_array($id, $collectibles_2x3))
-      {
-        $partial = '2x3';
-      }
-      else if (in_array($id, $collectibles_3x3))
-      {
-        $partial = '3x3';
-      }
-      else if (in_array($id, $collectibles_3x2))
-      {
-        $partial = '3x2';
-      }
-      else if (in_array($id, $collectibles_3x1))
-      {
-        $partial = '3x1';
-      }
-      else
-      {
-        $partial = 'square_small';
-      }
+        // which partial we want to show the Collectible with
+        $partial = '';
+        if (in_array($id, $collectibles_2x1))
+        {
+          $partial = 'wide';
+        }
+        else if (in_array($id, $collectibles_1x2))
+        {
+          $partial = 'tall';
+        }
+        else if (in_array($id, $collectibles_2x2))
+        {
+          $partial = 'square_big';
+        }
+        else if (in_array($id, $collectibles_1x3))
+        {
+          $partial = '1x3';
+        }
+        else if (in_array($id, $collectibles_2x3))
+        {
+          $partial = '2x3';
+        }
+        else if (in_array($id, $collectibles_3x3))
+        {
+          $partial = '3x3';
+        }
+        else if (in_array($id, $collectibles_3x2))
+        {
+          $partial = '3x2';
+        }
+        else if (in_array($id, $collectibles_3x1))
+        {
+          $partial = '3x1';
+        }
+        else
+        {
+          $partial = 'square_small';
+        }
 
-      include_partial(
-        'collection/collectible_grid_view_' . $partial,
-        array(
-          'collectible' => $collectible, 'i' => (int) $i,
-          'no_lazy_load' => true
-        )
-      );
-    }
+        include_partial(
+          'collection/collectible_grid_view_' . $partial,
+          array(
+            'collectible' => $collectible, 'i' => (int) $i,
+            'lazy_image' => false
+          )
+        );
+      }
     ?>
   </div>
 

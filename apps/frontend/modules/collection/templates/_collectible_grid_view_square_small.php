@@ -6,10 +6,6 @@
 
 $lazy_image = !isset($lazy_image) || $lazy_image;
 $lazy_image = $lazy_image && $sf_request->isLazyLoadEnabled();
-if (isset($no_lazy_load))
-{
-  $lazy_image = false;
-}
 
 ?>
 
