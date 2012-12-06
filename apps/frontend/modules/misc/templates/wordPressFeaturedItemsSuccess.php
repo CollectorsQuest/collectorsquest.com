@@ -66,7 +66,7 @@ $(document).ready(function ()
         itemSelector : '.brick, .span4',
         columnWidth : 220, gutterWidth: 18
         <?php else: ?>
-        itemSelector : '.span3, .span6',
+        itemSelector : '.span3, .span6, .span9',
         columnWidth : 140, gutterWidth: 15
         <?php endif; ?>
       });
