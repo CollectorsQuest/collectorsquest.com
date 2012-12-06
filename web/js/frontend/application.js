@@ -494,7 +494,7 @@ var COMMON = window.COMMON = (function(){
                 // if the user manually fixes the problem, hide the suggestion
                 var $suggestion = $el.siblings('div.email-suggestion');
                 $suggestion.hide();
-                $form.addClass('mailcheck-has-suggestion');
+                $form.removeClass('mailcheck-has-suggestion');
               }
             });
           };
