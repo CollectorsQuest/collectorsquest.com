@@ -22,13 +22,13 @@
     <input type="radio" name="<?php $mb->the_name(); ?>" value="false" <?= ($mb->get_the_value() != 'true') ? 'checked' : null; ?>> &nbsp;No
   </label>
 
-  <label>Layout (default is 'grid' you can skip it, the other option is 'pinterest')
+  <label>Layout
     <?php $mb->the_field('cq_layout'); ?>
 
     &nbsp; &nbsp;
-    <input type="radio" name="<?php $mb->the_name(); ?>" value="true" <?= ($mb->get_the_value() == 'pinterest') ? 'checked' : null; ?>> &nbsp;Pinterest
+    <input type="radio" name="<?php $mb->the_name(); ?>" value="pinterest" <?= ($mb->get_the_value() == 'pinterest') ? 'checked' : null; ?>> &nbsp;Pinterest
     &nbsp;
-    <input type="radio" name="<?php $mb->the_name(); ?>" value="false" <?= ($mb->get_the_value() != 'pinterest') ? 'checked' : null; ?>> &nbsp;Grid
+    <input type="radio" name="<?php $mb->the_name(); ?>" value="grid" <?= ($mb->get_the_value() != 'pinterest') ? 'checked' : null; ?>> &nbsp;Grid
   </label>
 
   <label>Homepage Collectible IDs:<br>
