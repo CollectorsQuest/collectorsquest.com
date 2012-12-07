@@ -632,7 +632,7 @@ var GENERAL = window.GENERAL = (function(){
       var $roundaboutEl = $('#sample-roundabout'),
           originalHtml = $roundaboutEl.html(),
           childInFocus = 0,
-          switchResolutions = [];
+          switchResolutions = [767];
 
       /**
        * Find the current resolution index, 0 based, from switchResolutions
