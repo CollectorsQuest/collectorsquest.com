@@ -40,7 +40,7 @@ cq_section_title(
             <?= $shopping_order->getShippingAddressLine1(); ?>
             <p>
               <?= $shopping_order->getShippingCity(); ?>,
-              <?= $shopping_order->getShippingStateRegion(); ?>
+              <?= $shopping_order->getShippingStateRegionName(); ?>
               <?= $shopping_order->getShippingZipPostcode(); ?>
             </p>
             <p class="text-bold"><?= $shopping_order->getShippingCountryName(); ?></p>

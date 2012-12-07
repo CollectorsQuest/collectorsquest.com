@@ -14,7 +14,7 @@ classes:
       price_amount:         { type: integer, required: true, default: 0 }
       price_currency:       { type: char, size: 3, required: true, default: 'USD' }
       tax_country:          { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
-      tax_state:            { type: integer, required: false, , foreignTable: geo_region, foreignReference: id }
+      tax_state:            { type: integer, required: false, foreignTable: geo_region, foreignReference: id }
       tax_percentage:       { type: integer, required: false }
       condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
       is_price_negotiable:  { type: boolean, default: false }
@@ -86,8 +86,8 @@ classes:
 
       note_to_seller:       { type: varchar, size: 255 }
       progress:             { type: enum, valueSet: "step1, step2, step3", default: step1, required: true }
-      is_buyer_notified:         { type: boolean }
-      is_seller_notified:        { type: boolean }
+      is_buyer_notified:         { type: boolean, default: false }
+      is_seller_notified:        { type: boolean, default: false }
 
     uniques:
       shopping_order_U_1: [shopping_cart_id, collectible_id]

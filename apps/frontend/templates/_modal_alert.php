@@ -1,4 +1,4 @@
-<div id="confirmation-modal" class="modal hide">
+<div id="alert-modal" class="modal hide">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <h3></h3>
@@ -7,7 +7,6 @@
       <p></p>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary proceed">Yes</button>
-      <button class="btn btn-secondary cancel">No</button>
+      <button class="btn btn-secondary cancel">Close</button>
     </div>
 </div>

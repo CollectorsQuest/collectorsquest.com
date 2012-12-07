@@ -26,9 +26,9 @@
   </thead>
   <tbody>
 
-  <?php if (count($collectible->getShippingReferencesByCountryCode())):
-    foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference):
-      if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
+  <?php if (count($collectible->getShippingReferencesByCountryCode())): ?>
+    <?php foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference): ?>
+      <?php if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
 
         <?php ob_start(); ?>
         <tr>
@@ -97,7 +97,7 @@
     )
   ); ?></p>
 
-  <?php if (0 != $collectible_for_sale->getTaxPercentage()): ?>
+  <?php if (false && 0 != $collectible_for_sale->getTaxPercentage()): ?>
     <p>
       <strong>Tax:</strong> <?= $collectible_for_sale->getTaxPercentage(); ?>%
         for <?= $collectible_for_sale->getTaxState()
@@ -123,7 +123,6 @@
         for <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
       </small>
     </p>
-    Quantity sold: 1
   </div>
 <?php elseif ($collectible_for_sale->isForSale() && cqGateKeeper::open('shopping_cart')): ?>
   <form action="<?= url_for('@shopping_cart', true); ?>" method="post">

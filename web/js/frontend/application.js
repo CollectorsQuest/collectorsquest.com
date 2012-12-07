@@ -494,7 +494,7 @@ var COMMON = window.COMMON = (function(){
                 // if the user manually fixes the problem, hide the suggestion
                 var $suggestion = $el.siblings('div.email-suggestion');
                 $suggestion.hide();
-                $form.addClass('mailcheck-has-suggestion');
+                $form.removeClass('mailcheck-has-suggestion');
               }
             });
           };
@@ -932,6 +932,27 @@ var MISC = window.MISC = (function(){
     },
     modalConfirmDestructive: function(title, text, target, return_callback) {
       return commonModalConfirm(true, title, text, target, return_callback);
+    },
+    modalAlert: function(title, text) {
+      var $modal = $('#alert-modal');
+      title = title || text || 'Alert';
+      text  = text || title;
+
+      if (!$modal.data('modal')) {
+        $modal.modal({
+          backdrop: true,
+          keyboard: true,
+          show: false
+        });
+
+        $modal.on('click', 'button.cancel', function() {
+          $modal.modal('hide');
+        });
+      }
+
+      $modal.find('.modal-header h3').html(title);
+      $modal.find('.modal-body p').html(text);
+      $modal.modal('show');
     }
   }; // MISC public interface object literal
 }()); // MISC

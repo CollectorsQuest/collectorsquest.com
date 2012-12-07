@@ -334,32 +334,8 @@ class CollectorPeer extends BaseCollectorPeer
       ? $data['collector_type']
       : 'casual');
 
-    try
-    {
-      $collector->save();
-      $collector_profile->save();
-    }
-    catch (PropelException $e)
-    {
-      if (stripos($e->getMessage(), 'collector_U_4'))
-      {
-        /**
-         * Randomize a little the display name
-         *
-         * For display names with space in it "Kiril Angov", it will do "Kiril Angov 54",
-         * otherwise "KirilAngov54"
-         */
-        $display_name .= stripos(trim($display_name), ' ') ? ' '. rand(10, 99) : rand(10, 99);
-
-        $collector->setDisplayName($display_name);
-        $collector->save();
-        $collector_profile->save();
-      }
-      else
-      {
-        throw $e;
-      }
-    }
+    $collector->save();
+    $collector_profile->save();
 
     if (!empty($data['email']))
     {

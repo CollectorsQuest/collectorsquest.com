@@ -426,7 +426,7 @@ class mycqActions extends cqFrontendActions
     /**
      * Handle sold/purchased Collectibles
      */
-    if ($collectible->isWasForSale() && $collectible->getCollectibleForSale()->getIsSold())
+    if ($collectible->isWasForSale() && $collectible->isSold())
     {
       SmartMenu::setSelected('mycq_menu', 'marketplace');
 
@@ -471,8 +471,6 @@ class mycqActions extends cqFrontendActions
           return 'Purchased';
         }
       }
-
-      $this->forward404();
     }
 
     $this->redirectUnless(
@@ -518,7 +516,7 @@ class mycqActions extends cqFrontendActions
                   ->delete();
 
                 $this->getUser()->setFlash(
-                  'success', sprintf('Item "%s" was removed from this Collection!', $name)
+                  'success', sprintf('Item "%s" was removed from this Collection!', $name), true
                 );
                 break;
               case 'collections':
@@ -529,18 +527,19 @@ class mycqActions extends cqFrontendActions
                   ->delete();
 
                 $this->getUser()->setFlash(
-                  'success', sprintf('Item "%s" was removed from all Collections!', $name)
+                  'success', sprintf('Item "%s" was removed from all Collections!', $name), true
                 );
                 break;
             }
-          } catch (PropelException $e)
+          }
+          catch (PropelException $e)
           {
             if (stripos($e->getMessage(), 'a foreign key constraint fails'))
             {
               $this->getUser()->setFlash(
-                'error', sprintf(
-                  'Collectible "%s" cannot be deleted.
-                   Please, try to archive it instead.', $name)
+                'error',
+                sprintf('Collectible "%s" cannot be deleted. Please, try to archive it instead.', $name),
+                true
               );
 
               $url = $this->generateUrl(
@@ -556,6 +555,18 @@ class mycqActions extends cqFrontendActions
         case 'togglePublic':
           $this->collectible = $collectible;
           return $this->executeCollectibleTogglePublic($request);
+          break;
+
+        case 'markAsSold':
+          $collectible->getCollectibleForSale()->setIsSold(true);
+          $collectible->getCollectibleForSale()->setIsReady(false);
+          $collectible->getCollectibleForSale()->save();
+
+          $this->getUser()->setFlash(
+            'success', sprintf('Item "%s" was marked as sold!', $collectible->getName()), true
+          );
+
+          return $this->redirect('mycq_collectible_by_slug', array('sf_subject' => $collectible));
           break;
       }
     }

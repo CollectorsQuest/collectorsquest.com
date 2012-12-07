@@ -97,7 +97,6 @@ else{indicatorID=jQuery(this).attr('id');}
 // Notes: Tooltip code from fitted.js - http://www.trovster.com/lab/plugins/fitted/
 (function(e){function t(){if(window.getSelection)return window.getSelection().toString();else if(document.getSelection)return document.getSelection();else if(document.selection)return document.selection.createRange().text}e.fn.bigTarget=function(n){var r=e.extend({},e.fn.bigTarget.defaults,n);return this.each(function(){var n=e(this),i=n.attr("href"),s=n.attr("title"),o=e.meta?e.extend({},r,n.data()):r;n.parents(o.clickZone).hover(function(){$h=e(this);$h.addClass(o.hoverClass);typeof o.title!="undefined"&&o.title===true&&s!=""&&$h.attr("title",s)},function(){$h=e(this);$h.removeClass(o.hoverClass);typeof o.title!="undefined"&&o.title===true&&s!=""&&$h.removeAttr("title")}).on("click mouseup",function(e){if(t()=="")if(n.is("[rel*=external]")||2==e.which){window.open(i);return false}else if(1==e.which){window.location=i}})})};e.fn.bigTarget.defaults={hoverClass:"hover",clickZone:"li:eq(0)",title:true}})(jQuery);
 
-
 /*
  Color animation jQuery-plugin
  http://www.bitstorm.org/jquery/color-animation/
