@@ -359,41 +359,45 @@ var COMMON = window.COMMON = (function(){
       setupModalLoginRegistrationDialogFooterTabs($holder);
       setupModalLoginRegistrationDialogFormSubmission($holder);
 
-      $('.requires-login').on('click', function(e) {
-        var $this = $(this);
-        // execute the modal JS if not already executed
-        if (undefined === $holder.data('modal')) {
-          $holder.modal({
-            backdrop: true,
-            keyboard: true,
-            show: false
-          });
-        }
+      // add the requires-login modal only when not on mobile device
+      if (!window.cq.is_mobile) {
+        $('.requires-login').on('click', function(e) {
 
-        // if the modal is not available or we are inside an iframe
-        // execute a normal click
-        if (!$holder.length || Modernizr.insideiframe) {
+          var $this = $(this);
+          // execute the modal JS if not already executed
+          if (undefined === $holder.data('modal')) {
+            $holder.modal({
+              backdrop: true,
+              keyboard: true,
+              show: false
+            });
+          }
+
+          // if the modal is not available or we are inside an iframe
+          // execute a normal click
+          if (!$holder.length || Modernizr.insideiframe) {
+            return true;
+          }
+
+          if (!window.cq.authenticated) {
+            $holder.modal('show');
+
+            if (undefined !== $this.data('loginTitle')) {
+              $holder.find('#modal-login-username-pane h3').html($this.data('loginTitle'));
+            }
+
+            if (undefined !== $this.data('signupTitle')) {
+              $holder.find('#modal-sign-up-pane h3').html($this.data('signupTitle'));
+            }
+
+            $holder.find('input:visible').first().focus();
+            e.preventDefault();
+            return false;
+          }
+
           return true;
-        }
-
-        if (!window.cq.authenticated) {
-          $holder.modal('show');
-
-          if (undefined !== $this.data('loginTitle')) {
-            $holder.find('#modal-login-username-pane h3').html($this.data('loginTitle'));
-          }
-
-          if (undefined !== $this.data('signupTitle')) {
-            $holder.find('#modal-sign-up-pane h3').html($this.data('signupTitle'));
-          }
-
-          $holder.find('input:visible').first().focus();
-          e.preventDefault();
-          return false;
-        }
-
-        return true;
-      });
+        });
+      }
     }, // setupModalLoginRegistrationDialog
     setupComments: function() {
       // setup adding a new comment

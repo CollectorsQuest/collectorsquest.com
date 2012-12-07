@@ -52,6 +52,7 @@
     window.cq = {
       ENV: '<?= sfConfig::get('sf_environment') ?>',
       authenticated: <?= $sf_user->isAuthenticated() ? 'true' : 'false'; ?>,
+      is_mobile: '<?= $sf_request->isMobileLayout(); ?>',
       page_load_start: new Date(),
       server_load_time: 0,
       cookies: {
