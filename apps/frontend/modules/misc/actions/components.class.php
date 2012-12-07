@@ -368,11 +368,6 @@ class miscComponents extends cqFrontendComponents
       'FIELD(collectible.id, ' . implode(',', $_collectible_ids) . ')'
     );
 
-    if ($this->cq_layout == 'pinterest')
-    {
-      $q->isForSale();
-    }
-
     $pager = new PropelModelPager($q, $limit);
     $page = $this->getRequest()->getParameter('p', 1);
     $pager->setPage($page);
