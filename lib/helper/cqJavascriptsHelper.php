@@ -40,6 +40,12 @@ function cq_ad_slot($image, $link_to)
 
 function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
 {
+  // We do not want any ads on mobile devices
+  if (sfContext::getInstance()->getRequest()->isMobileLayout())
+  {
+    return;
+  }
+
   list($width, $height) = explode('x', $size);
 
   $test = isset($_GET['test']) && $_GET['test'] === 'on' ? 'on' : null;
