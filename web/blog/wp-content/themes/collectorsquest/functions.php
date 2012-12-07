@@ -322,6 +322,32 @@ function cq_custom_post_type_init()
     'taxonomies'      => array('post_tag'),
     'supports'        => array('title', 'editor', 'tags', 'thumbnail')
   ));
+
+  register_post_type('search_result', array(
+    'labels' => array(
+      'name'               => _x('Search Results', 'post type general name'),
+      'singular_name'      => _x('Search Result', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Search Result'),
+      'add_new_item'       => __('Add New Search Result'),
+      'edit_item'          => __('Edit Search Result'),
+      'new_item'           => __('New Search Result'),
+      'view_item'          => __('View Search Result'),
+      'search_items'       => __('Search Search Results'),
+      'not_found'          => __('No Search Result found'),
+      'not_found_in_trash' => __('No Search Result found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'taxonomies'      => array('post_tag'),
+    'supports'        => array('title', 'editor', 'tags', 'thumbnail')
+  ));
 }
 
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
