@@ -102,10 +102,20 @@
           </div>
         <?php else: ?>
           <?php
-            echo link_to(
-              'Sign In', 'login', array('ref' => cq_link_ref('header')),
-              array('class' => 'requires-login bold-links padding-signup', 'absolute' => true)
-            );
+            if ($sf_request->isMobileLayout())
+            {
+              echo link_to(
+                'Sign In', 'login', array('ref' => cq_link_ref('header')),
+                array('class' => 'bold-links padding-signup', 'absolute' => true)
+              );
+            }
+            else
+            {
+              echo link_to(
+                'Sign In', 'login', array('ref' => cq_link_ref('header')),
+                array('class' => 'requires-login bold-links padding-signup', 'absolute' => true)
+              );
+            }
           ?>
           &nbsp;or&nbsp;
           <?php

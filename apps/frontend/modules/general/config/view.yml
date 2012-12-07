@@ -15,7 +15,7 @@ indexSuccess:
     slot1: [general, indexCarousel]
     sidebar_160: [general, sidebarIndex]
 
-indexMobileSuccess:
+indexMobile:
   stylesheets: [frontend/modules/homepage.css]
   javascripts:
     - jquery/masonry.js
