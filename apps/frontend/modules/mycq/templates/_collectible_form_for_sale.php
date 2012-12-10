@@ -17,6 +17,18 @@
     <div class="visuallyhidden">
       <?= $form['is_ready']->render(array('class' => 'checkbox', 'tabindex'=>'-1')); ?>
     </div>
+
+    <?php if ($sf_user->isAdmin() && !$collectible->getCollectibleForSale()->isForSale() && !$collectible->getCollectibleForSale()->getIsSold() && $collectible->getCollectibleForSale()->hasActiveCredit()): ?>
+    <div style="float: left; margin-left: 20px; padding-top: 7px;">
+      <a href="<?= url_for('mycq_collectible_by_slug', array(
+        'sf_subject' => $collectible,
+        'cmd' => 'markAsSold',
+        'encrypt' => 1
+      )) ?>">
+        <i class="icon icon-money"></i>&nbsp;&nbsp;Mark as Sold
+      </a>
+    </div>
+    <?php endif; ?>
   </div>
   <br style="clear: both;"/>
   <?= $form['is_ready']->renderError(); ?>

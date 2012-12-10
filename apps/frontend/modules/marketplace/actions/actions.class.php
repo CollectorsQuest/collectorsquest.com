@@ -68,6 +68,8 @@ class marketplaceActions extends cqFrontendActions
       $this->wp_post = $wp_post;
     }
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('marketplace'));
 
     return sfView::SUCCESS;
   }
@@ -79,6 +81,9 @@ class marketplaceActions extends cqFrontendActions
       ->hasCollectiblesForSale()
       ->orderByName(Criteria::ASC)
       ->find();
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('marketplace'));
 
     return sfView::SUCCESS;
   }

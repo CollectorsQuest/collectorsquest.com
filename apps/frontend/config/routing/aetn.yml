@@ -61,11 +61,6 @@ aetn_mwba_railroadiana:
   param: { module: aetn, action: mwbaRailroadiana }
   requirements: { sf_method: [GET] }
 
-aetn_black_history:
-  url: /history/black-history
-  param: { module: aetn, action: blackHistory }
-  requirements: { sf_method: [GET] }
-
 aetn_collectible_by_slug:
   url:  /aetn/collectible/:id/:slug
   class: cqPropelRoute

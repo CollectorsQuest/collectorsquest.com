@@ -1,31 +1,57 @@
 <div class="my_meta_control">
-  <label>Items per page (if blank default is 20):
-  <?php $mb->the_field('cq_items_per_page'); ?>
+  <label>Items per page:
+    <?php $mb->the_field('cq_items_per_page'); ?>
+    <input name="<?php $mb->the_name(); ?>" value="<?= $mb->get_the_value() ?: 24; ?>" size="3" style="text-align: center;" />
+  </label>
 
-  <input name="<?php $mb->the_name(); ?>" value="<?php $mb->the_value(); ?>" /></label>
+  <label>Enable infinite scroll:
+    <?php $mb->the_field('cq_infinite_scroll'); ?>
 
-  <p>Enter comma separated ID numbers. (1,2,3)</p>
+    &nbsp; &nbsp;
+    <input type="radio" name="<?php $mb->the_name(); ?>" value="true" <?= ($mb->get_the_value() == 'true') ? 'checked' : null; ?>> &nbsp;Yes
+    &nbsp;
+    <input type="radio" name="<?php $mb->the_name(); ?>" value="false" <?= ($mb->get_the_value() != 'true') ? 'checked' : null; ?>> &nbsp;No
+  </label>
 
-  <label>Homepage Collectible IDs<br>
-         You can enter size formats like this - ID:size, example: 1111:2x1,2222:2x2,3333:1x2.<br>
-         Possible sizes are 2x2, 1x2 and 2x1, default size is 1x1
+  <label>Enable full page width image and no sidebar:
+    <?php $mb->the_field('cq_no_sidebar'); ?>
+
+    &nbsp; &nbsp;
+    <input type="radio" name="<?php $mb->the_name(); ?>" value="true" <?= ($mb->get_the_value() == 'true') ? 'checked' : null; ?>> &nbsp;Yes
+    &nbsp;
+    <input type="radio" name="<?php $mb->the_name(); ?>" value="false" <?= ($mb->get_the_value() != 'true') ? 'checked' : null; ?>> &nbsp;No
+  </label>
+
+  <label>Layout
+    <?php $mb->the_field('cq_layout'); ?>
+
+    &nbsp; &nbsp;
+    <input type="radio" name="<?php $mb->the_name(); ?>" value="pinterest" <?= ($mb->get_the_value() == 'pinterest') ? 'checked' : null; ?>> &nbsp;Pinterest
+    &nbsp;
+    <input type="radio" name="<?php $mb->the_name(); ?>" value="grid" <?= ($mb->get_the_value() != 'pinterest') ? 'checked' : null; ?>> &nbsp;Grid
+  </label>
+
+  <label>Homepage Collectible IDs:<br>
+  <span style="color: gray;">
+    (You can enter size formats like this - ID:size, example: 1111:2x1, 2222:2x2, 3333:1x2, 444:3x1<br/>
+    Possible sizes are 2x2, 1x2, 2x1, 1x3, 2x3, 3x3, 3x2 and 3x1. Default size is 1x1)
+  </span>
   <?php $mb->the_field('cq_homepage_collectible_ids'); ?>
-
   <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
   <label>Collection IDs:
   <?php $mb->the_field('cq_collection_ids'); ?>
-
   <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
   <label>Category IDs:
   <?php $mb->the_field('cq_category_ids'); ?>
-
   <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
   <label>Collectible IDs<br>
-    You can enter size formats like this - ID:size, example: 1111:2x1,2222:2x2,3333:1x2.<br>
-    Possible sizes are 2x2, 1x2 and 2x1, default size is 1x1
+    <span style="color: gray;">
+      You can enter size formats like this - ID:size, example: 1111:2x1, 2222:2x2, 3333:1x2, 444:3x1<br/>
+      Possible sizes are 2x2, 1x2, 2x1, 1x3, 2x3, 3x3, 3x2 and 3x1. Default size is 1x1)
+    </span>
     <?php $mb->the_field('cq_collectible_ids'); ?>
 
     <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
@@ -40,17 +66,12 @@
 
     <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
-  <p>Enter comma separated tags. (banner,basketball,NBA)</p>
-
-  <label>Tags:
+  <label>Enter comma separated tags. (banner, basketball, NBA):
     <?php $mb->the_field('cq_tags'); ?>
+    <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea>
+  </label>
 
-    <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
-
-  <p>
-    <b>All of the following fields are for EXCLUDING the relevant models</b>
-  </p>
-  <p>Enter comma separated ID numbers. (1,2,3)</p>
+  <h2>All of the following fields are for EXCLUDING content!</h2>
 
   <label>Collection IDs:
   <?php $mb->the_field('cq_collection_ids_exclude'); ?>
@@ -67,12 +88,11 @@
 
     <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
 
-  <p>Enter comma separated tags. (banner,basketball,NBA)</p>
-
-  <label>Tags:
+  <label>
+    Enter comma separated tags. (banner, basketball, NBA):
     <?php $mb->the_field('cq_tags_exclude'); ?>
-
-    <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea></label>
+    <textarea name="<?php $mb->the_name(); ?>" cols="5" rows="3"><?php $mb->the_value(); ?></textarea>
+  </label>
 
   <?php $mb->the_field('cq_post_publish_status'); ?>
   <?php $id = $_GET['post'] ?>
