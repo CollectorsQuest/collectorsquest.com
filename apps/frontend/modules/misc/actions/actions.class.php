@@ -21,7 +21,7 @@ class miscActions extends cqFrontendActions
 
   public function executeGuideToCollectingShortcut()
   {
-    $this->redirect('@misc_guide_to_collecting');
+    $this->redirect('@misc_guide_to_collecting', 301);
   }
 
   /**
