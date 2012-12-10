@@ -53,6 +53,9 @@ class aetnActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_american_pickers'));
+
     return sfView::SUCCESS;
   }
 
@@ -88,6 +91,9 @@ class aetnActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_american_restoration'));
+
     return sfView::SUCCESS;
   }
 
@@ -118,6 +124,9 @@ class aetnActions extends cqFrontendActions
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_pawn_stars'));
 
     return sfView::SUCCESS;
   }
@@ -152,6 +161,9 @@ class aetnActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_picked_off'));
+
     return sfView::SUCCESS;
   }
 
@@ -177,11 +189,17 @@ class aetnActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_franks_picks'));
+
     return sfView::SUCCESS;
   }
 
   public function executeMwba()
   {
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba'));
+
     return sfView::SUCCESS;
   }
 
@@ -205,6 +223,9 @@ class aetnActions extends cqFrontendActions
       ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
     $this->collectibles = $q->find();
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_petroliana'));
 
     return sfView::SUCCESS;
   }
@@ -232,6 +253,9 @@ class aetnActions extends cqFrontendActions
 
     $this->collectibles = $q->find();
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_rooseveltiana'));
+
     return sfView::SUCCESS;
   }
 
@@ -258,6 +282,9 @@ class aetnActions extends cqFrontendActions
       ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
     $this->collectibles = $q->find();
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_railroadiana'));
 
     return sfView::SUCCESS;
   }
