@@ -31,7 +31,7 @@
       <?= $form->renderHiddenFields(); ?>
       <?= '</form>' ?>
     </div>
-    <div class="span5">
+    <div class="span5 rpxnow-wrapper">
       <fieldset class="rpxnow-login clearfix" id="rpx-login">
         <iframe
           src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
