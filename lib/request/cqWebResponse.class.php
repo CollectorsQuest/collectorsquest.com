@@ -64,7 +64,7 @@ class cqWebResponse extends IceWebResponse
     $this->addMeta('og:'. $name, $value, false, $escape);
   }
 
-  public function addOpenGraphMetaFor(BaseObject $object, $custom_routing = null)
+  public function addOpenGraphMetaFor(BaseObject $object, $options = array())
   {
     /** @var cqApplicationConfiguration $configuration */
     $configuration = sfProjectConfiguration::getActive();
@@ -99,9 +99,11 @@ class cqWebResponse extends IceWebResponse
         $this->addOpenGraphMeta('title', (string) $object .' | Collectors Quest');
 
         // if we have set a custom URL for this collection like in the aetn module
-        if ($custom_routing)
+        if (isset($options['route']))
         {
-          $this->addOpenGraphMeta('url', sfContext::getInstance()->getRouting()->generate($custom_routing, array(), true));
+          $this->addOpenGraphMeta('url', sfContext::getInstance()->getRouting()->generate(
+            $options['route'], array('sf_subject' => $object), true
+          ));
         }
         else
         {

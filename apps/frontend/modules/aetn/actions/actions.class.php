@@ -51,7 +51,7 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarAmericanPickers');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection, $custom_routing = 'aetn_american_pickers');
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_american_pickers'));
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_american_pickers'));
@@ -89,7 +89,7 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarAmericanRestoration');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection, $custom_routing = 'aetn_american_restoration');
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_american_restoration'));
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_american_restoration'));
@@ -123,7 +123,7 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarPawnStars');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection, $custom_routing = 'aetn_pawn_stars');
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_pawn_stars'));
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_pawn_stars'));
@@ -159,7 +159,7 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarPickedOff');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection, $custom_routing = 'aetn_picked_off');
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_picked_off'));
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_picked_off'));
@@ -177,17 +177,15 @@ class aetnActions extends cqFrontendActions
     $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
     $this->forward404Unless($collection instanceof CollectorCollection);
 
+    $this->collection = $collection;
+
     /**
      * Increment the number of views
      */
     $this->incrementCounter($collection, 'NumViews');
 
-    $this->collection = $collection;
-
-    $this->collection = $collection;
-
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection, $custom_routing = 'aetn_franks_picks');
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_franks_picks'));
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_franks_picks'));
@@ -296,4 +294,5 @@ class aetnActions extends cqFrontendActions
 
     return sfView::SUCCESS;
   }
+
 }
