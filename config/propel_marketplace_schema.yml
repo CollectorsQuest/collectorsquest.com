@@ -49,6 +49,8 @@ classes:
       collectible_id:            { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
       price_amount:              { type: integer, required: true, default: 0 }
       price_currency:            { type: char, size: 3, required: true, default: 'USD' }
+      seller_promotion_id:       { type: integer, required: false }
+      promotion_amount:          { type: integer, required: false, default: 0 }
       tax_amount:                { type: integer, required: true, default: 0 }
       shipping_country_iso3166:  { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 }
       shipping_state_region:     { type: integer, required: false }
@@ -122,6 +124,8 @@ classes:
       amount_collectibles: { type: integer, required: true, default: 0 }
       amount_shipping_fee: { type: integer, required: true, default: 0 }
       amount_tax:          { type: integer, required: true, default: 0 }
+      seller_promotion_id: { type: integer, foreignClass: SellerPromotion, foreignReference: id, required: false, onDelete: setnull }
+      amount_promotion:    { type: integer, required: false, default: 0 }
 
     propel_behaviors:
       extra_properties: ~
@@ -220,3 +224,20 @@ classes:
       amount:        { type: float }
       amount_type:   { type: varchar, default: pending, size: 255 }
       created_at:  ~
+
+  SellerPromotion:
+    columns:
+      id:  ~
+      seller_id:        { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      promotion_code:   { type: varchar, size: 255, required: true }
+      promotion_name:   { type: varchar, size: 255, required: true, primaryString: true }
+      promotion_desc:   { type: longvarchar }
+      amount:           { type: float }
+      amount_type:      { type: char, sqlType: "ENUM('Fix','Percentage','Free shipping')", default: Fix, required: true }
+      no_of_time_used:  { type: integer }
+      expiry_date:      { type: timestamp }
+      collector_id:     { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      collectible_id:   { type: integer, required: false, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+
+    propel_behaviors:
+      timestampable:  ~
