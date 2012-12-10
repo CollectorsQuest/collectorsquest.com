@@ -66,7 +66,7 @@ class miscComponents extends cqFrontendComponents
     $limit = !empty($values['cq_items_per_page']) ? (int) $values['cq_items_per_page'] : '20';
 
     // is infinite scroll enabled?
-    $this->infinite_scroll = !empty($values['cq_infinite_scroll']) ? (boolean) $values['cq_infinite_scroll'] : false;
+    $this->infinite_scroll = !empty($values['cq_infinite_scroll']) ? $values['cq_infinite_scroll'] : false;
 
     // what is the layout for the page - grid or pinterest
     $this->cq_layout = !empty($values['cq_layout']) ? $values['cq_layout'] : 'grid';
