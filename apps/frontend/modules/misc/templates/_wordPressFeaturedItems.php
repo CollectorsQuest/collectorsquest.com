@@ -1,6 +1,6 @@
 <?php
 /* @var $pager             cqPropelModelPager */
-/* @var $infinite_scroll   string             */
+/* @var $infinite_scroll   boolean            */
 /* @var $collectibles_2x2  array              */
 /* @var $collectibles_1x2  array              */
 /* @var $collectibles_2x1  array              */
@@ -113,7 +113,8 @@
 ?>
 </div>
 
-<?php if ($infinite_scroll == 'true' && $pager->getPage() === 1): ?>
+
+<?php if ($infinite_scroll == true && $pager->getPage() === 1): ?>
   <div class="row-fluid text-center hidden">
     <?php
     include_component(
@@ -191,7 +192,7 @@
   </script>
 <?php endif; ?>
 
-<?php if ($infinite_scroll !== 'true'): ?>
+<?php if ($infinite_scroll !== true): ?>
 <div class="row-fluid text-center clear">
   <?php
     include_component(
