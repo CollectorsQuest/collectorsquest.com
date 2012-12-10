@@ -113,6 +113,25 @@
 ?>
 </div>
 
+<script>
+$(document).ready(function()
+{
+  var $container = $('#collectibles');
+  $container.imagesLoaded(function()
+  {
+    $container.masonry(
+    {
+      <?php if ($cq_layout == 'pinterest'): ?>
+      itemSelector : '.brick, .span4',
+      columnWidth : 220, gutterWidth: 18
+      <?php else: ?>
+      itemSelector : '.span3, .span6, .span9',
+      columnWidth : 140, gutterWidth: 15
+      <?php endif; ?>
+    });
+  });
+});
+</script>
 
 <?php if ($infinite_scroll == true && $pager->getPage() === 1): ?>
   <div class="row-fluid text-center hidden">
@@ -136,20 +155,6 @@
     $(document).ready(function()
     {
       var $container = $('#collectibles');
-
-      $container.imagesLoaded(function()
-      {
-        $container.masonry(
-          {
-            <?php if ($cq_layout == 'pinterest'): ?>
-            itemSelector : '.brick, .span4',
-            columnWidth : 220, gutterWidth: 18
-            <?php else: ?>
-            itemSelector : '.span3, .span6, .span9',
-            columnWidth : 140, gutterWidth: 15
-            <?php endif; ?>
-          });
-      });
 
       $container.infinitescroll(
       {
@@ -190,14 +195,12 @@
       });
     });
   </script>
-<?php endif; ?>
-
-<?php if ($infinite_scroll !== true): ?>
-<div class="row-fluid text-center clear">
-  <?php
-    include_component(
-      'global', 'pagination', array('pager' => $pager, 'options' => array('page_param' => 'p'))
-    );
-  ?>
-</div>
+<?php elseif ($infinite_scroll !== true): ?>
+  <div class="row-fluid text-center clear">
+    <?php
+      include_component(
+        'global', 'pagination', array('pager' => $pager, 'options' => array('page_param' => 'p'))
+      );
+    ?>
+  </div>
 <?php endif; ?>
