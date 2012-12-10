@@ -110,6 +110,9 @@ class miscActions extends cqFrontendActions
     $this->login_form = $loginForm;
     $request->setParameter('display', $display);
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('misc_guide_to_collecting'));
+
     return sfView::SUCCESS;
   }
 
@@ -210,6 +213,8 @@ class miscActions extends cqFrontendActions
        beginning to acquire treasures or you're a dedicated hunter looking for the next,
        perfect addition to your display case."
     );
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('misc_guide_download'));
 
     $this->redirectIf(
       $request->getRequestFormat() && $request->getRequestFormat() !== 'html',
