@@ -718,6 +718,13 @@ class _sidebarComponents extends cqFrontendComponents
     $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale();
 
+    // ignore Collectible IDs already displayed in soldRelatedItems component
+    $displayed_collectible_ids = $this->getUser()->getFlash('displayed_collectible_ids', null, 'collectible_page');
+    if ($displayed_collectible_ids)
+    {
+      $q->filterByCollectibleId($displayed_collectible_ids, Criteria::NOT_IN);
+    }
+
     // have random  Items on Frank's Picks pages
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
 

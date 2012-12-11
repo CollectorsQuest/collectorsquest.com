@@ -133,7 +133,12 @@ class collectionComponents extends cqFrontendComponents
       }
     }
 
-    //@todo figure out a way to not repeat items here and in widgetCollectiblesForSale
+    // do not display the same Collectible IDs in From the Market widget
+    $this->getUser()->setFlash(
+      'displayed_collectible_ids',
+      $this->collectibles_for_sale->toKeyValue('CollectibleId', 'CollectibleId'),
+      $persist = false, 'collectible_page'
+    );
 
     $this->collector = $collector;
 
