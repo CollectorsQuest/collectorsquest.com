@@ -47,7 +47,7 @@ classes:
     columns:
       shopping_cart_id:          { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
       collectible_id:            { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
-      seller_promotion_id:       { type: integer, foreignClass: SellerPromotion, foreignReference: id, required: false, onDelete: setnull }
+      seller_promotion_id:       { type: integer, required: false}
       price_amount:              { type: integer, required: true, default: 0 }
       price_currency:            { type: char, size: 3, required: true, default: 'USD' }
       promotion_amount:          { type: integer, required: false, default: 0 }
@@ -234,21 +234,10 @@ classes:
       promotion_code:   { type: varchar, size: 255, required: true }
       promotion_name:   { type: varchar, size: 255, required: true, primaryString: true }
       promotion_desc:   { type: longvarchar }
-      amount:           { type: float }
+      amount:           { type: integer, required: true, default: 0  }
       amount_type:      { type: char, sqlType: "ENUM('Fixed','Percentage','Free Shipping')", default: Fixed, required: true }
+      quantity:         { type: integer, default: 0  }
       expiry_date:      { type: timestamp }
-
-    propel_behaviors:
-      timestampable:  ~
-
-  SellerPromotionTransaction:
-    isCrossRef: true
-    columns:
-      id:  ~
-      promotion_id:       { type: integer, required: true, foreignClass: SellerPromotion, foreignReference: id, onDelete: restrict, primaryKey: true }
-      shopping_order_id:  { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: restrict, primaryKey: true }
-      amount:             { type: float }
-      amount_type:        { type: varchar, default: pending, size: 255 }
 
     propel_behaviors:
       timestampable:  ~
