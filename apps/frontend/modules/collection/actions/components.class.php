@@ -64,17 +64,19 @@ class collectionComponents extends cqFrontendComponents
 
   public function executeSoldRelatedItems()
   {
-    // Either get the Collector from the parameter holder or try to find it by ID
-    $collector = $this->getVar('collector') ?: CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
+    /** @var $collectible Collectible|CollectionCollectible */
+    $collectible = CollectiblePeer::retrieveByPk($this->getRequestParameter('id'));
 
-    // We cannot continue without a valid Collector
-    if (!$collector)
+    $collector = $collectible->getCollector();
+
+    // We cannot continue if Collectible is not sold
+    if (!$collectible->isSold())
     {
       return sfView::NONE;
     }
 
     // Set the limit of Collectibles For Sale to show
-    $limit = (int) $this->getVar('limit') ?: 4;
+    $limit = 6;
 
     /* @var $q FrontendCollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create()
@@ -90,20 +92,20 @@ class collectionComponents extends cqFrontendComponents
 
     $number_of_items = $q->count();
     /*
-     * we want to always display 4 (or $limit) items
+     * we want to always display 6 (or $limit) items
      * if Collector does not have enough Items we add random
      */
     if ($number_of_items > 0)
     {
       $this->collectibles_for_sale = $q->find();
-      $this->title = $this->getVar('title') ?: "Item is Sold! See more from " . $collector->getDisplayName();
+      $this->title = $this->getVar('title') ?: "This Item is Sold! Here are some more Items from " . $collector->getDisplayName();
       // we want to display link to seller store
       $this->display_store_link = true;
     }
     else
     {
       $this->collectibles_for_sale = array();
-      $this->title = $this->getVar('title') ?: "Item is Sold! See more unique Items for Sale!";
+      $this->title = $this->getVar('title') ?: "This Item is Sold! See more unique Items for Sale!";
       // we don't want to display link to seller store as it should be empty
       $this->display_store_link = false;
     }

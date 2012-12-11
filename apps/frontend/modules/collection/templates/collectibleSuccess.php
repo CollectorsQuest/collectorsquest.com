@@ -33,18 +33,6 @@
   <?php end_slot(); ?>
 <?php endif; ?>
 
-<?php
-  if ($collectible->isSold())
-  {
-    include_component('collection', 'soldRelatedItems',
-      array(
-        'collector' => $collector, 'collectible' => $collectible->getCollectible(),
-        'height' => &$height_main_div
-      )
-    );
-  }
-?>
-
 <?php if (!empty($aetn_show)): ?>
   <div class="banners-620 spacer-bottom-20">
     <?php

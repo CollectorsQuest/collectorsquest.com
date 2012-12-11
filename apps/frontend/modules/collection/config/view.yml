@@ -15,4 +15,5 @@ indexNoCollectibles:
 collectibleSuccess:
   javascripts: [jquery/rcarousel.js, jwplayer.js, jquery/expander.js]
   components:
+    slot1:       [collection, soldRelatedItems]
     sidebar_300: [collection, sidebarCollectible]
