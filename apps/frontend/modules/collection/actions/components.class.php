@@ -62,6 +62,84 @@ class collectionComponents extends cqFrontendComponents
     return sfView::NONE;
   }
 
+  public function executeSoldRelatedItems()
+  {
+    // Either get the Collector from the parameter holder or try to find it by ID
+    $collector = $this->getVar('collector') ?: CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
+
+    // We cannot continue without a valid Collector
+    if (!$collector)
+    {
+      return sfView::NONE;
+    }
+
+    // Set the limit of Collectibles For Sale to show
+    $limit = (int) $this->getVar('limit') ?: 4;
+
+    /* @var $q FrontendCollectibleForSaleQuery */
+    $q = FrontendCollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC)
+      ->limit($limit);
+
+    if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
+    {
+      $q->filterByCollectibleId($collectible->getId(), Criteria::NOT_EQUAL);
+    }
+
+    $number_of_items = $q->count();
+    /*
+     * we want to always display 4 (or $limit) items
+     * if Collector does not have enough Items we add random
+     */
+    if ($number_of_items > 0)
+    {
+      $this->collectibles_for_sale = $q->find();
+      $this->title = $this->getVar('title') ?: "Item is Sold! See more from " . $collector->getDisplayName();
+      // we want to display link to seller store
+      $this->display_store_link = true;
+    }
+    else
+    {
+      $this->collectibles_for_sale = array();
+      $this->title = $this->getVar('title') ?: "Item is Sold! See more unique Items for Sale!";
+      // we don't want to display link to seller store as it should be empty
+      $this->display_store_link = false;
+    }
+
+    if ($number_of_items < $limit)
+    {
+      /* @var $random_query FrontendCollectibleForSaleQuery */
+      $random_query = FrontendCollectibleForSaleQuery::create()
+        ->addAscendingOrderByColumn('RAND()')
+        ->isForSale()
+        ->limit($limit - $number_of_items);
+
+      $random_collectibles_for_sale = $random_query->find();
+
+      // do we have any Items for Sale from this Collector?
+      if (!empty($this->collectibles_for_sale))
+      {
+        // add more items for sale to those of the Collector
+        $this->collectibles_for_sale->exchangeArray(
+          array_merge($this->collectibles_for_sale->getArrayCopy(), $random_collectibles_for_sale->getArrayCopy())
+        );
+      }
+      else
+      {
+        // display only random Items
+        $this->collectibles_for_sale = $random_collectibles_for_sale;
+      }
+    }
+
+    //@todo figure out a way to not repeat items here and in widgetCollectiblesForSale
+
+    $this->collector = $collector;
+
+    return sfView::SUCCESS;
+  }
+
   private function _get_collection()
   {
     $collection = null;
