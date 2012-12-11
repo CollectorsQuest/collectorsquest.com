@@ -85,7 +85,7 @@ switch ($aetn_show['id'])
 // height of add + 2 promo banners and all margins
 $height->value -= 530;
 
-if (cqGateKeeper::open('aetn_franks_picks', 'page') && $aetn_show['id'] != 'franks_picks')
+if ($aetn_show['id'] != 'franks_picks')
 {
   $height->value -= 120;
 }
