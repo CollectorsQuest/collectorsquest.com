@@ -21,9 +21,28 @@ class searchActions extends cqFrontendActions
       $request->setParameter('q', str_replace('-', ' ', $tag));
     }
 
-    self::$_query['q'] = $request->getParameter('q');
+    self::$_query['q'] = trim($request->getParameter('q'));
 
-    if (!empty(self::$_query['q']))
+    if (empty(self::$_query['q']))
+    {
+      switch (strtolower($request->getParameter('only', $this->getActionName())))
+      {
+        case 'collectors':
+          return $this->redirect('@collectors');
+          break;
+        case 'collections':
+        case 'collectibles':
+          return $this->redirect('@collections');
+          break;
+        case 'videos':
+          return $this->redirect('@video');
+          break;
+        default:
+          return $this->redirect('@homepage');
+          break;
+      }
+    }
+    else
     {
       $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());
       $breadcrumbs->addItem(sprintf('Search results for "%s"', self::$_query['q']));
