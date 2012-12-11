@@ -7,20 +7,15 @@
 ?>
 
 <div class="slot_1_padding">
-  <?php
-    if ($display_store_link)
-    {
-      $link = link_to('Visit the store &raquo;', 'seller_store', $collector, array('class' => 'text-v-middle link-align'));
-    }
-    else
-    {
-      $link = link_to('Visit our marketplace &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
-    }
-
-    cq_section_title($title, $link, $options = array('left'=> 9, 'right' => 3, 'style' => 'margin-top: 0px;'));
-  ?>
-
   <div id="items-for-sale" class="well spacer-top">
+    <h2 style="text-align: center; line-height: 24px;">
+      This item is already sold!<br/>
+      <small>
+        Here are some more items for sale from
+        <?= link_to($collector->getDisplayName(), 'seller_store', $collector); ?>
+      </small>
+    </h2>
+    <br/>
     <div class="row thumbnails">
       <?php
         foreach ($collectibles_for_sale as $i => $collectible_for_sale)
@@ -34,4 +29,3 @@
     </div>
   </div>
 </div>
-
