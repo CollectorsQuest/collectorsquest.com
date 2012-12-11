@@ -15,6 +15,7 @@ all:
     mycq_profile_addresses: false
     expose_collection_categories: false
     expose_market_categories: false
+    collectible_for_sale_related: false
 
 stg:
   pages:
@@ -39,6 +40,7 @@ next:
     mycq_profile_addresses: false
     expose_collection_categories: false
     expose_market_categories: false
+    collectible_for_sale_related: true
 
 dev:
   pages:
@@ -57,3 +59,4 @@ dev:
     mycq_profile_addresses: false
     expose_collection_categories: false
     expose_market_categories: false
+    collectible_for_sale_related: true
