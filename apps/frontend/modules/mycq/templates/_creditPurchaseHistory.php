@@ -103,3 +103,7 @@
     <?php endif; ?>
   </tbody>
 </table>
+
+<?= link_to('<i class="icon-plus"></i> Buy Listings', '@seller_packages', array(
+    'class' => 'btn btn-large btn-primary pull-right spacer-top-5',
+)) ?>
