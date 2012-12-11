@@ -106,7 +106,7 @@
   header, nav, footer, #footer-links,
   .slots-container, .shadow, .container-fluid.without-column,
   #slot1, #slot2  {
-    width: 646px;
+    width: 640px;
     .margin-auto();
   }
 
@@ -118,16 +118,12 @@
     .box-shadow(none);
   }
 
-  .container-fluid.fixed-right-300 {
-    width: 96%;
-    margin-left: 2%;
-    margin-right: 2%;
+  .container-fluid.fixed-right-300, #breadcrumbs  {
+    width: 620px;
+    margin-left: 10px;
+    margin-left: 10px;
   }
 
-  #breadcrumbs {
-    width: 96%;
-    margin-left: 2%;
-  }
 
   /*
    * move the search field and the cart/signup section a to the left
@@ -139,11 +135,7 @@
   }
 
   .fixed-right-300 > #sidebar {
-    width: 620px;
-    margin: 0;
-    padding: 0 !important;
   }
-
   #content, .navbar, #breadcrumbs {
     border: none;
   }
@@ -456,25 +448,3 @@
 }
 
 
-@media (max-width: 630px) {
-
-  header, nav, footer, #footer-links,
-   .slots-container, .shadow,
-   #slot1, #slot2  {
-     width: 640px;
-     .margin-auto();
-   }
-
-  .container-fluid.fixed-right-300, #breadcrumbs {
-    width: 620px;
-    margin-left: 10px;
-    margin-left: 10px;
-  }
-
-  .fixed-right-300 > #sidebar {
-    width: 620px;
-    .margin-auto();
-    padding: 0 10px;
-  }
-
-}
