@@ -54,7 +54,7 @@
         </tr>
         <tr>
           <td style="vertical-align: top;" valign="top">Description:</td>
-          <td>{{ oCollectible.getDescription() | striptags }}</td>
+          <td>{{ oCollectible.getDescription() | striptags | raw }}</td>
         </tr>
         <tr>
           <td>Price:</td>

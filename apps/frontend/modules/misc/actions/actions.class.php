@@ -21,7 +21,7 @@ class miscActions extends cqFrontendActions
 
   public function executeGuideToCollectingShortcut()
   {
-    $this->redirect('@misc_guide_to_collecting');
+    $this->redirect('@misc_guide_to_collecting', 301);
   }
 
   /**
@@ -109,6 +109,9 @@ class miscActions extends cqFrontendActions
     $this->signup_form = $signupForm;
     $this->login_form = $loginForm;
     $request->setParameter('display', $display);
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('misc_guide_to_collecting'));
 
     return sfView::SUCCESS;
   }
@@ -210,6 +213,8 @@ class miscActions extends cqFrontendActions
        beginning to acquire treasures or you're a dedicated hunter looking for the next,
        perfect addition to your display case."
     );
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('misc_guide_download'));
 
     $this->redirectIf(
       $request->getRequestFormat() && $request->getRequestFormat() !== 'html',
@@ -263,7 +268,7 @@ class miscActions extends cqFrontendActions
     $this->infinite_scroll = !empty($values['cq_infinite_scroll']) ? (boolean) $values['cq_infinite_scroll'] : false;
 
     // do we exclude the sidebar and have full page width image?
-    $this->no_sidebar = !empty($values['cq_no_sidebar']) ? (boolean) $values['cq_no_sidebar'] : false;
+    $this->no_sidebar = !empty($values['cq_no_sidebar']) ? $values['cq_no_sidebar'] === 'true' : false;
 
     // set template with no sidebar and full page width image
     if ($this->no_sidebar === true)

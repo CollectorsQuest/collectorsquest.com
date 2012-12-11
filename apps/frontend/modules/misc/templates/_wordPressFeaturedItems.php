@@ -78,14 +78,28 @@
     /* @var $pager       PropelModelPager */
     foreach ($pager->getResults() as $i => $collectible)
     {
-      include_partial(
-        'marketplace/collectible_for_sale_masonry_view_big',
-        array(
-          'collectible_for_sale' => $collectible->getCollectibleForSale(),
-          'url' => url_for_collectible($collectible),
-          'link_parameters' => array('class' => 'target zoom-zone')
-        )
-      );
+      if ($collectible->isForSale())
+      {
+        include_partial(
+          'marketplace/collectible_for_sale_masonry_view_big',
+          array(
+            'collectible_for_sale' => $collectible->getCollectibleForSale(),
+            'url' => url_for_collectible($collectible),
+            'link_parameters' => array('class' => 'target zoom-zone')
+          )
+        );
+      }
+      else
+      {
+        include_partial(
+          'collection/collectible_masonry_view_big',
+          array(
+            'collectible' => $collectible,
+            'url' => url_for_collectible($collectible),
+            'link_parameters' => array('class' => 'target zoom-zone')
+          )
+        );
+      }
     }
     ?>
   </div>
@@ -99,6 +113,25 @@
 ?>
 </div>
 
+<script>
+$(document).ready(function()
+{
+  var $container = $('#collectibles');
+  $container.imagesLoaded(function()
+  {
+    $container.masonry(
+    {
+      <?php if ($cq_layout == 'pinterest'): ?>
+      itemSelector : '.brick, .span4',
+      columnWidth : 220, gutterWidth: 18
+      <?php else: ?>
+      itemSelector : '.span3, .span6, .span9',
+      columnWidth : 140, gutterWidth: 15
+      <?php endif; ?>
+    });
+  });
+});
+</script>
 
 <?php if ($infinite_scroll == true && $pager->getPage() === 1): ?>
   <div class="row-fluid text-center hidden">
@@ -122,20 +155,6 @@
     $(document).ready(function()
     {
       var $container = $('#collectibles');
-
-      $container.imagesLoaded(function()
-      {
-        $container.masonry(
-          {
-            <?php if ($cq_layout == 'pinterest'): ?>
-            itemSelector : '.brick, .span4',
-            columnWidth : 220, gutterWidth: 18
-            <?php else: ?>
-            itemSelector : '.span3, .span6, .span9',
-            columnWidth : 140, gutterWidth: 15
-            <?php endif; ?>
-          });
-      });
 
       $container.infinitescroll(
       {
@@ -176,14 +195,12 @@
       });
     });
   </script>
-<?php endif; ?>
-
-<?php if ($infinite_scroll !== true): ?>
-<div class="row-fluid text-center clear">
-  <?php
-    include_component(
-      'global', 'pagination', array('pager' => $pager, 'options' => array('page_param' => 'p'))
-    );
-  ?>
-</div>
+<?php elseif ($infinite_scroll !== true): ?>
+  <div class="row-fluid text-center clear">
+    <?php
+      include_component(
+        'global', 'pagination', array('pager' => $pager, 'options' => array('page_param' => 'p'))
+      );
+    ?>
+  </div>
 <?php endif; ?>
