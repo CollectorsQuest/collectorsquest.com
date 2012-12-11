@@ -10,10 +10,7 @@
   <div id="items-for-sale" class="well spacer-top">
     <h2 style="text-align: center; line-height: 24px;">
       This item is already sold!<br/>
-      <small>
-        Here are some more items for sale from
-        <?= link_to($collector->getDisplayName(), 'seller_store', $collector); ?>
-      </small>
+      <small><?= $title ?></small>
     </h2>
     <br/>
     <div class="row thumbnails">
