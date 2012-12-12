@@ -17,7 +17,6 @@ Collection:
     rating_on: '1'
     created_at: '2007-09-15 22:38:42'
     updated_at: '2012-10-15 19:33:30'
-    descendant_class: CollectorCollection
   Collection_616:
     graph_id: '11622'
     collection_category_id: CollectionCategory_10
@@ -36,7 +35,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-06-24 17:17:53'
     updated_at: '2012-10-27 12:15:36'
-    descendant_class: CollectorCollection
   Collection_618:
     graph_id: '10871'
     collection_category_id: CollectionCategory_6
@@ -55,7 +53,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-06-25 16:15:32'
     updated_at: '2012-10-29 16:27:41'
-    descendant_class: CollectorCollection
   Collection_619:
     graph_id: '10347'
     collection_category_id: CollectionCategory_6
@@ -74,7 +71,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-06-25 21:56:38'
     updated_at: '2012-10-29 08:36:14'
-    descendant_class: CollectorCollection
   Collection_643:
     graph_id: '11596'
     collection_category_id: CollectionCategory_6
@@ -93,7 +89,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-07-10 16:18:10'
     updated_at: '2012-10-30 11:00:48'
-    descendant_class: CollectorCollection
   Collection_876:
     graph_id: '11962'
     collection_category_id: CollectionCategory_50
@@ -112,7 +107,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-12-12 16:16:47'
     updated_at: '2012-10-29 08:47:34'
-    descendant_class: CollectorCollection
   Collection_877:
     graph_id: '11133'
     collection_category_id: CollectionCategory_50
@@ -131,7 +125,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-12-12 16:36:22'
     updated_at: '2012-10-29 16:28:45'
-    descendant_class: CollectorCollection
   Collection_879:
     graph_id: '12153'
     collection_category_id: CollectionCategory_50
@@ -150,7 +143,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-12-13 11:39:30'
     updated_at: '2012-10-28 14:07:38'
-    descendant_class: CollectorCollection
   Collection_880:
     graph_id: '10328'
     collection_category_id: CollectionCategory_50
@@ -169,7 +161,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-12-13 12:52:44'
     updated_at: '2012-10-30 17:28:47'
-    descendant_class: CollectorCollection
   Collection_882:
     graph_id: '11380'
     collection_category_id: CollectionCategory_50
@@ -188,7 +179,6 @@ Collection:
     rating_on: '1'
     created_at: '2008-12-13 13:56:00'
     updated_at: '2012-10-30 19:06:34'
-    descendant_class: CollectorCollection
   Collection_1021:
     graph_id: '11849'
     collection_category_id: CollectionCategory_757
@@ -207,7 +197,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-02-05 22:09:17'
     updated_at: '2012-10-30 15:25:27'
-    descendant_class: CollectorCollection
   Collection_1290:
     graph_id: '11743'
     collection_category_id: CollectionCategory_330
@@ -226,7 +215,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-03 19:28:40'
     updated_at: '2012-10-29 22:53:35'
-    descendant_class: CollectorCollection
   Collection_1299:
     graph_id: '11894'
     collection_category_id: CollectionCategory_115
@@ -245,7 +233,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-04 20:07:13'
     updated_at: '2012-10-30 17:45:03'
-    descendant_class: CollectorCollection
   Collection_1300:
     graph_id: '12076'
     collection_category_id: CollectionCategory_250
@@ -264,7 +251,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-04 20:24:47'
     updated_at: '2012-10-30 15:40:30'
-    descendant_class: CollectorCollection
   Collection_1301:
     graph_id: '11703'
     collection_category_id: CollectionCategory_52
@@ -283,7 +269,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-04 20:59:35'
     updated_at: '2012-10-30 15:40:50'
-    descendant_class: CollectorCollection
   Collection_1302:
     graph_id: '10820'
     collection_category_id: CollectionCategory_15
@@ -302,7 +287,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-04 20:46:56'
     updated_at: '2012-10-30 15:41:11'
-    descendant_class: CollectorCollection
   Collection_1372:
     graph_id: '11706'
     collection_category_id: CollectionCategory_2
@@ -321,7 +305,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-24 23:45:06'
     updated_at: '2012-10-30 15:47:51'
-    descendant_class: CollectorCollection
   Collection_1383:
     graph_id: '10903'
     collection_category_id: CollectionCategory_16
@@ -340,7 +323,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-29 00:08:26'
     updated_at: '2012-10-29 13:55:01'
-    descendant_class: CollectorCollection
   Collection_1395:
     graph_id: '11308'
     collection_category_id: CollectionCategory_2
@@ -359,7 +341,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-30 11:07:21'
     updated_at: '2012-10-30 16:27:05'
-    descendant_class: CollectorCollection
   Collection_1402:
     graph_id: '11161'
     collection_category_id: CollectionCategory_2
@@ -378,7 +359,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-31 17:06:15'
     updated_at: '2012-10-30 15:08:21'
-    descendant_class: CollectorCollection
   Collection_1452:
     graph_id: '10601'
     collection_category_id: CollectionCategory_2
@@ -397,7 +377,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-06-14 14:29:32'
     updated_at: '2012-10-30 18:38:20'
-    descendant_class: CollectorCollection
   Collection_1506:
     graph_id: '11786'
     collection_category_id: CollectionCategory_250
@@ -416,7 +395,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-06-22 18:16:18'
     updated_at: '2012-10-30 16:01:09'
-    descendant_class: CollectorCollection
   Collection_1507:
     graph_id: '11895'
     collection_category_id: CollectionCategory_16
@@ -435,7 +413,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-06-22 18:10:16'
     updated_at: '2012-10-26 04:20:44'
-    descendant_class: CollectorCollection
   Collection_1534:
     graph_id: '11691'
     collection_category_id: CollectionCategory_768
@@ -454,7 +431,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-07-23 21:45:53'
     updated_at: '2012-10-30 16:02:33'
-    descendant_class: CollectorCollection
   Collection_1554:
     graph_id: '11360'
     collection_category_id: CollectionCategory_115
@@ -473,7 +449,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-07-11 18:34:26'
     updated_at: '2012-10-30 11:30:18'
-    descendant_class: CollectorCollection
   Collection_1598:
     graph_id: '11976'
     collection_category_id: CollectionCategory_23
@@ -492,7 +467,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-07-23 22:34:33'
     updated_at: '2012-10-30 17:45:11'
-    descendant_class: CollectorCollection
   Collection_1681:
     graph_id: '10478'
     collection_category_id: CollectionCategory_250
@@ -511,7 +485,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-08-22 11:17:46'
     updated_at: '2012-10-29 21:19:31'
-    descendant_class: CollectorCollection
   Collection_1683:
     graph_id: '10295'
     collection_category_id: CollectionCategory_250
@@ -530,7 +503,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-08-22 11:45:33'
     updated_at: '2012-10-25 20:25:44'
-    descendant_class: CollectorCollection
   Collection_1710:
     graph_id: '11654'
     collection_category_id: CollectionCategory_115
@@ -549,7 +521,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-08-26 10:28:03'
     updated_at: '2012-10-26 06:30:31'
-    descendant_class: CollectorCollection
   Collection_1839:
     graph_id: '11171'
     collection_category_id: CollectionCategory_115
@@ -568,7 +539,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-11-28 20:42:09'
     updated_at: '2012-10-26 07:15:39'
-    descendant_class: CollectorCollection
   Collection_1870:
     graph_id: '10495'
     collection_category_id: CollectionCategory_115
@@ -587,7 +557,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-11-28 21:08:52'
     updated_at: '2012-10-26 12:39:53'
-    descendant_class: CollectorCollection
   Collection_1892:
     graph_id: '11276'
     collection_category_id: CollectionCategory_115
@@ -606,7 +575,6 @@ Collection:
     rating_on: '1'
     created_at: '2009-12-07 20:50:51'
     updated_at: '2012-10-30 10:08:51'
-    descendant_class: CollectorCollection
   Collection_2373:
     graph_id: '11929'
     collection_category_id: CollectionCategory_42
@@ -625,7 +593,6 @@ Collection:
     rating_on: '1'
     created_at: '2010-09-12 12:15:51'
     updated_at: '2012-10-29 22:47:20'
-    descendant_class: CollectorCollection
   Collection_2395:
     graph_id: '12301'
     collection_category_id: CollectionCategory_677
@@ -644,7 +611,6 @@ Collection:
     rating_on: '1'
     created_at: '2010-09-28 21:01:24'
     updated_at: '2012-10-26 19:27:42'
-    descendant_class: CollectorCollection
   Collection_2973:
     graph_id: '12244'
     collection_category_id: CollectionCategory_551
@@ -663,7 +629,6 @@ Collection:
     rating_on: '1'
     created_at: '2011-08-24 20:06:13'
     updated_at: '2012-10-30 17:04:08'
-    descendant_class: CollectorCollection
   Collection_3329:
     graph_id: '22316'
     content_category_id: ContentCategory_1138
@@ -681,7 +646,6 @@ Collection:
     rating_on: '1'
     created_at: '2012-07-06 10:13:09'
     updated_at: '2012-10-26 23:55:05'
-    descendant_class: CollectorCollection
   Collection_3330:
     graph_id: '22346'
     content_category_id: ContentCategory_521
@@ -699,7 +663,6 @@ Collection:
     rating_on: '1'
     created_at: '2012-07-06 11:12:04'
     updated_at: '2012-10-30 17:18:37'
-    descendant_class: CollectorCollection
   Collection_3930:
     graph_id: '48211'
     content_category_id: ContentCategory_402
@@ -717,7 +680,6 @@ Collection:
     rating_on: '1'
     created_at: '2012-09-10 04:33:23'
     updated_at: '2012-10-30 18:59:28'
-    descendant_class: CollectorCollection
   Collection_4046:
     graph_id: '50617'
     content_category_id: ContentCategory_1427
@@ -735,7 +697,6 @@ Collection:
     rating_on: '1'
     created_at: '2012-09-19 18:46:31'
     updated_at: '2012-10-30 13:05:17'
-    descendant_class: CollectorCollection
   Collection_4047:
     graph_id: '50621'
     content_category_id: ContentCategory_1427
@@ -753,4 +714,3 @@ Collection:
     rating_on: '1'
     created_at: '2012-09-19 18:56:21'
     updated_at: '2012-10-30 14:33:54'
-    descendant_class: CollectorCollection
