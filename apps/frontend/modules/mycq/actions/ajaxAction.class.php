@@ -972,7 +972,7 @@ class ajaxAction extends cqAjaxAction
       if ($this->form->isValid())
       {
         $this->form->save();
-        $this->getUser()->getFlash(
+        $this->getUser()->setFlash(
           'success', 'New Promotion code was added successfully.',
           true
         );
