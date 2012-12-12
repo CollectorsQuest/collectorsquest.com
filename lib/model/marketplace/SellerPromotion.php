@@ -17,4 +17,13 @@ require 'lib/model/marketplace/om/BaseSellerPromotion.php';
  */
 class SellerPromotion extends BaseSellerPromotion
 {
+  public function getAmount()
+  {
+    return (float) bcdiv((string) parent::getAmount(), 1000, 3);
+  }
+
+  public function setAmount($v)
+  {
+    parent::setAmount((int) bcmul($v, 1000, 3));
+  }
 }
