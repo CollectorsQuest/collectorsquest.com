@@ -34,5 +34,7 @@ default:
     jquery_header: ~
     jquery_footer: [global, jquery]
 
+  stylesheets: [frontend/responsive.css]
+
   has_layout:     true
   layout:         layout

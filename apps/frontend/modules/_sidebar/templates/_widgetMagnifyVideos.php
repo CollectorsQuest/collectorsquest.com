@@ -20,7 +20,7 @@ $_height = 0;
 
 <?php foreach ($videos as $video): ?>
 <div class="row-fluid spacer-bottom">
-  <div class="span5">
+  <div class="span5 sidebar-video-image">
     <div class="clip-inner">
       <a href="<?= $video->getPlayUrl() ?>" title="<?= $video->getTitle() ?>">
         <img src="<?= $video->getThumbnail() ?>" alt="<?= $video->getTitle() ?>" width="120" />

@@ -10,7 +10,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 340);
   }
 
   /**
@@ -21,7 +21,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 370);
   }
 
   /**
@@ -188,7 +188,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = $this->getVar('limit') ?: 5;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 66), $this->limit);
     }
@@ -305,7 +306,6 @@ class _sidebarComponents extends cqFrontendComponents
         $tag_query->filterByTags($machine_tags, Criteria::IN);
       }
 
-
       $q->filterByTags($tags, Criteria::IN);
 
       /** @var $category ContentCategory */
@@ -387,7 +387,7 @@ class _sidebarComponents extends cqFrontendComponents
     $total = count($this->collections);
 
     return $this->_sidebar_if(
-      $total > 0 && (!empty($height) ? $height->value >= ($total * 66 + 63) : true)
+      $total > 0, !empty($height) ? $height->value >= ($total * 66 + 63) : true
     );
   }
 
@@ -427,7 +427,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 5;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 100), $this->limit);
     }
@@ -650,7 +651,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 161), $this->limit);
     }
@@ -702,7 +704,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 4;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobileBrowser())
     {
       // one row is 142px in height, fits 2 collectibles
       $this->limit = min(floor(($height->value - 63) / 142 * round($this->limit / 2)), $this->limit);
@@ -1042,7 +1045,8 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 3;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+    if (!$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 120), $this->limit);
     }
@@ -1069,7 +1073,7 @@ class _sidebarComponents extends cqFrontendComponents
     $total = count($this->wp_posts);
 
     return $this->_sidebar_if(
-      $total > 0 && (!empty($height) ? $height->value >= ($total * 120 + 63) : true)
+      $total > 0, !empty($height) ? $height->value >= ($total * 120 + 63) : true
     );
   }
 
@@ -1156,16 +1160,17 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 190);
   }
 
-  private function _sidebar_if($condition = false)
+  private function _sidebar_if($condition = false, $condition2 = true)
   {
-    if ($condition)
+    if ($condition && ($condition2 || $this->getRequest()->isMobileBrowser()))
     {
       return sfView::SUCCESS;
     }
     else if (
+      ($condition2 || $this->getRequest()->isMobileBrowser()) &&
       $this->fallback && is_string($this->fallback) &&
       method_exists($this, 'execute' . $this->fallback)
     )
@@ -1173,6 +1178,7 @@ class _sidebarComponents extends cqFrontendComponents
       echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
     }
     else if (
+      ($condition2 || $this->getRequest()->isMobileBrowser()) &&
       $this->fallback && count($this->fallback) === 2 &&
       function_exists($this->fallback[0])
     )

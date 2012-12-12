@@ -29,6 +29,8 @@
       $i++;
     }
 
+    //3 columns for mobile devices, 4 columns for desktop
+    echo ($i % 3 == 0) ? '<br class="clearfix three-col">' : null;
     echo ($i % 4 == 0) ? '<br class="clearfix">' : null;
   }
 ?>

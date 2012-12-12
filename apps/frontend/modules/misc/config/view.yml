@@ -3,19 +3,19 @@ all:
     - frontend/modules/misc.css
 
 guideToCollectingSuccess:
-  stylesheets: [frontend/modules/splash.css]
+  stylesheets: [frontend/modules/splash.css, -frontend/responsive.css]
   components:
     footer:  []
     breadcrumbs: []
 
 guideDownloadSuccess:
-  stylesheets: [frontend/modules/splash.css]
+  stylesheets: [frontend/modules/splash.css, -frontend/responsive.css]
   components:
     footer:  []
     breadcrumbs: []
 
 guideDownloadAlert:
-  stylesheets: [frontend/modules/splash.css]
+  stylesheets: [frontend/modules/splash.css, -frontend/responsive.css]
   components:
     footer:  []
     breadcrumbs: []
