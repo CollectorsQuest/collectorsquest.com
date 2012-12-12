@@ -64,7 +64,8 @@
           </div>
         </div>
 
-        <?php include_component('misc', 'guide_social_login', array('action'=>'sign up')); ?>
+        <?php cq_sidebar_title('Social Accounts') ?>
+        <?php include_partial('mycq', 'collectorSocialAccounts'); ?>
 
         <?php cq_section_title('Change Your Email Address'); ?>
         <form action="<?= url_for('@mycq_profile_account_info'); ?>"

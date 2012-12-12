@@ -3,7 +3,7 @@
 /**
  * Migration to automatic set rating & machine tags for collectibles from predefined collections
  */
-class PropelMigration_1354806903
+class PropelMigration_1355326653
 {
 
   public function preUp()
