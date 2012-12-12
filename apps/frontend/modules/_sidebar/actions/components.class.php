@@ -721,6 +721,12 @@ class _sidebarComponents extends cqFrontendComponents
     $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale();
 
+    // Ignore Collectible IDs already displayed in slot1SoldCollectibleRelated component
+    if ($exclude_collectible_ids = $this->getVar('exclude_collectible_ids', array()))
+    {
+      $q->filterByCollectibleId($exclude_collectible_ids, Criteria::NOT_IN);
+    }
+
     // have random  Items on Frank's Picks pages
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
 

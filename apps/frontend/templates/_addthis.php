@@ -36,6 +36,7 @@ $url = isset($url) ? $url : null;
 
   <?php if ($provider === 'google+'): ?>
   <a class="addthis_button_google_plusone" g:plusone:size="medium"
+     addthis:url="<?= $url ?>" addthis:title="<?= addcslashes($text, '"') ?>"
      g:plusone:annotation="none" g:plusone:count="false" g:plusone:expandTo="bottom,left,top,right"></a>
   <?php endif; ?>
 

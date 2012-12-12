@@ -1,7 +1,6 @@
 all:
   pages:
     aetn_black_history: false
-    aetn_franks_picks: true
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
@@ -16,10 +15,10 @@ all:
     mycq_profile_addresses: false
     expose_collection_categories: false
     expose_market_categories: false
+    collectible_for_sale_related: false
 
 stg:
   pages:
-    aetn_franks_picks: true
     aetn_black_history: true
 
   features: []
@@ -27,7 +26,6 @@ stg:
 next:
   pages:
     aetn_black_history: true
-    aetn_franks_picks: true
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
@@ -42,11 +40,11 @@ next:
     mycq_profile_addresses: false
     expose_collection_categories: false
     expose_market_categories: false
+    collectible_for_sale_related: true
 
 dev:
   pages:
     aetn_black_history: true
-    aetn_franks_picks: true
     holiday_marketplace: true
     marketplace_categories: true
     mycq_incomplete: true
@@ -61,3 +59,4 @@ dev:
     mycq_profile_addresses: false
     expose_collection_categories: false
     expose_market_categories: false
+    collectible_for_sale_related: true
