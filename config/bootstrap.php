@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Avoid direct calls to the load blanancer's web address
+ */
+if (
+  in_array(
+    $_SERVER['HTTP_HOST'],
+    array('web-471984672.us-east-1.elb.amazonaws.com', 'd2y8496azcwpd6.cloudfront.net')
+  ) && empty($_SERVER['HTTP_X_FORWARDED_FOR'])
+)
+{
+  header('Location: http://www.collectorsquest.com'. $_SERVER['REQUEST_URI']);
+  exit;
+}
+
 // Set the correct timezone and do not rely on php.ini settings
 date_default_timezone_set('America/New_York');
 

@@ -27,6 +27,11 @@
     <?php
       foreach ($types as $key => $params)
       {
+        if (empty($params['route']) || empty($params['name']))
+        {
+          continue;
+        }
+
         $name = $params['name'];
 
         if ($params['count'] >= 0)

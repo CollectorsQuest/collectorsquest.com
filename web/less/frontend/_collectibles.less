@@ -93,6 +93,131 @@
   }
 }
 
+.collectible_grid_view_3x3 {
+  height: 450px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  position: relative;
+
+  .mosaic-backdrop {
+    .square(450px);
+  }
+
+  .mosaic-overlay {
+    .square(450px);
+  }
+
+  .mosaic-overlay .details {
+    padding: 10px;
+    font-size: 130%;
+
+    a {
+      display: block;
+      .square(430px);
+    }
+  }
+}
+
+.collectible_grid_view_3x2 {
+  position: relative;
+  overflow: hidden;
+  height: 295px;
+  margin-bottom: 15px;
+
+  .mosaic-backdrop {
+    .size(295px, 450px);
+  }
+
+  .mosaic-overlay {
+    .size(295px, 450px);
+  }
+
+  .mosaic-overlay .details {
+    padding: 10px;
+    font-size: 130%;
+
+    a {
+      display: block;
+      .size(275px, 430px);
+    }
+  }
+}
+
+.collectible_grid_view_3x1 {
+  position: relative;
+  overflow: hidden;
+  height: 140px;
+  margin-bottom: 15px;
+
+  .mosaic-backdrop {
+    .size(140px, 450px);
+  }
+
+  .mosaic-overlay {
+    .size(140px, 450px);
+  }
+
+  .mosaic-overlay .details {
+    padding: 10px;
+    font-size: 130%;
+
+    a {
+      display: block;
+      .size(120px, 430px);
+    }
+  }
+}
+
+.collectible_grid_view_1x3 {
+  height: 450px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  position: relative;
+
+  .mosaic-backdrop {
+    .size(450px, 140px);
+  }
+
+  .mosaic-overlay {
+    .size(450px, 140px);
+  }
+
+  .mosaic-overlay .details {
+    padding: 10px;
+    font-size: 130%;
+
+    a {
+      display: block;
+      .size(430px,120px);
+    }
+  }
+}
+
+.collectible_grid_view_2x3 {
+  height: 450px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  position: relative;
+
+  .mosaic-backdrop {
+    .size(450px, 295px);
+  }
+
+  .mosaic-overlay {
+    .size(450px, 295px);
+  }
+
+  .mosaic-overlay .details {
+    padding: 10px;
+    font-size: 130%;
+
+    a {
+      display: block;
+      .size(430px,275px);
+    }
+  }
+}
+
 .collectible_grid_view_wide {
   position: relative;
   overflow: hidden;
@@ -305,6 +430,11 @@
   }
 }
 
+.collectible_for_sale_grid_view_masonry_big .collectible-info {
+  *filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#80000000', endColorstr = '#80000000', GradientType = 0);
+}
+
+
 .lt-ie9 .collectible_for_sale_grid_view_masonry_big,
 .lt-ie9 .collectible_for_sale_grid_view_square_big,
 {
@@ -316,7 +446,6 @@
     display: block;
   }
 }
-
 
 .collectible_for_sale_grid_view_square {
   margin-bottom: 15px;
