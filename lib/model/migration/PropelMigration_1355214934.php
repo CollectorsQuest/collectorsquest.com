@@ -42,16 +42,14 @@ class PropelMigration_1355214934
             ADD `seller_promotion_id` INTEGER AFTER `collectible_id`,
             ADD `promotion_amount` INTEGER DEFAULT 0 AFTER `price_currency`;
 
+        CREATE INDEX `shopping_cart_collectible_I_1` ON `shopping_cart_collectible` (`seller_promotion_id`);
+
         ALTER TABLE `shopping_payment`
             ADD `seller_promotion_id` INTEGER AFTER `amount_tax`,
             ADD `amount_promotion` INTEGER DEFAULT 0 AFTER `seller_promotion_id`;
 
-        CREATE INDEX `shopping_payment_FI_2` ON `shopping_payment` (`seller_promotion_id`);
+        CREATE INDEX `shopping_payment_I_1` ON `shopping_payment` (`seller_promotion_id`);
 
-        ALTER TABLE `shopping_payment` ADD CONSTRAINT `shopping_payment_FK_2`
-            FOREIGN KEY (`seller_promotion_id`)
-            REFERENCES `seller_promotion` (`id`)
-            ON DELETE SET NULL;
 
         CREATE TABLE `seller_promotion`
         (
@@ -59,16 +57,18 @@ class PropelMigration_1355214934
             `seller_id` INTEGER NOT NULL,
             `collector_id` INTEGER,
             `collectible_id` INTEGER,
-            `promotion_code` VARCHAR(255) NOT NULL,
+            `promotion_code` VARCHAR(100) NOT NULL,
             `promotion_name` VARCHAR(255) NOT NULL,
             `promotion_desc` TEXT,
-            `amount` INTEGER DEFAULT 0 NOT NULL,
-            `amount_type` ENUM(\'Fixed\',\'Percentage\',\'Free Shipping\') DEFAULT \'Fixed\' NOT NULL,
+            `amount` INTEGER DEFAULT 0,
+            `amount_type` TINYINT NOT NULL,
             `quantity` INTEGER DEFAULT 0,
             `expiry_date` DATETIME,
+            `is_expired` TINYINT(1) DEFAULT 0,
             `created_at` DATETIME,
             `updated_at` DATETIME,
             PRIMARY KEY (`id`),
+            INDEX `seller_promotion_I_1` (`promotion_code`),
             INDEX `seller_promotion_FI_1` (`seller_id`),
             INDEX `seller_promotion_FI_2` (`collector_id`),
             INDEX `seller_promotion_FI_3` (`collectible_id`),
@@ -94,6 +94,37 @@ class PropelMigration_1355214934
 ',
       'archive' => '
         SET FOREIGN_KEY_CHECKS = 0;
+
+        ALTER TABLE `shopping_payment_archive`
+            ADD `seller_promotion_id` INTEGER AFTER `amount_tax`,
+            ADD `amount_promotion` INTEGER DEFAULT 0 AFTER `seller_promotion_id`;
+
+        CREATE INDEX `shopping_payment_archive_I_1` ON `shopping_payment_archive` (`seller_promotion_id`);
+
+        CREATE TABLE `seller_promotion_archive`
+        (
+            `id` INTEGER NOT NULL,
+            `seller_id` INTEGER,
+            `collector_id` INTEGER,
+            `collectible_id` INTEGER,
+            `promotion_code` VARCHAR(100) NOT NULL,
+            `promotion_name` VARCHAR(255) NOT NULL,
+            `promotion_desc` TEXT,
+            `amount` INTEGER DEFAULT 0,
+            `amount_type` TINYINT NOT NULL,
+            `quantity` INTEGER DEFAULT 0,
+            `expiry_date` DATETIME,
+            `is_expired` TINYINT(1) DEFAULT 0,
+            `updated_at` DATETIME,
+            `created_at` DATETIME,
+            `archived_at` DATETIME,
+            PRIMARY KEY (`id`),
+            INDEX `seller_promotion_archive_I_1` (`seller_id`),
+            INDEX `seller_promotion_archive_I_2` (`collector_id`),
+            INDEX `seller_promotion_archive_I_3` (`collectible_id`),
+            INDEX `seller_promotion_archive_I_4` (`promotion_code`)
+        ) ENGINE=InnoDB;
+
         SET FOREIGN_KEY_CHECKS = 1;
 ',
     );
@@ -113,16 +144,16 @@ class PropelMigration_1355214934
 
         DROP TABLE IF EXISTS `seller_promotion`;
 
+        DROP INDEX `shopping_cart_collectible_I_1` ON `shopping_cart_collectible`;
+
         ALTER TABLE `shopping_cart_collectible` DROP `seller_promotion_id`;
 
         ALTER TABLE `shopping_cart_collectible` DROP `promotion_amount`;
 
-        ALTER TABLE `shopping_payment` DROP FOREIGN KEY `shopping_payment_FK_2`;
-
-        DROP INDEX `shopping_payment_FI_2` ON `shopping_payment`;
+        DROP INDEX `shopping_payment_I_1` ON `shopping_payment`;
 
         ALTER TABLE `shopping_payment` DROP `seller_promotion_id`;
-        
+
         ALTER TABLE `shopping_payment` DROP `amount_promotion`;
 
         SET FOREIGN_KEY_CHECKS = 1;
@@ -133,6 +164,15 @@ class PropelMigration_1355214934
 ',
       'archive' => '
         SET FOREIGN_KEY_CHECKS = 0;
+
+        DROP TABLE IF EXISTS `seller_promotion_archive`;
+
+        DROP INDEX `shopping_payment_archive_I_1` ON `shopping_payment_archive`;
+
+        ALTER TABLE `shopping_payment_archive` DROP `seller_promotion_id`;
+
+        ALTER TABLE `shopping_payment_archive` DROP `amount_promotion`;
+
         SET FOREIGN_KEY_CHECKS = 1;
 ',
     );
