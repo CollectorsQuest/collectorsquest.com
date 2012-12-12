@@ -55,19 +55,21 @@ class aetnComponents extends cqFrontendComponents
   {
     /* @var $aetn_shows array */
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
-
     $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
+
+    // We cannot continue without the collection
+    if (!$collection)
+    {
+      return sfView::NONE;
+    }
 
     /*
      * Collectibles are not public right now, when the become public we should use FrontendQuery
      *
      * Do not add 'for sale' to this query as we want to display sold items as well
-     *
-     * $q = FrontendCollectionCollectibleQuery::create()
      */
-    $q = CollectionCollectibleQuery::create()
+    $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollection($collection)
-      ->filterByCollectibleId($aetn_shows['franks_picks']['collectibles'])
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
