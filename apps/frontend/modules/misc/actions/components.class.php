@@ -405,4 +405,21 @@ class miscComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+    /**
+     * Action GuideSocialLogin
+     *
+     * @param sfWebRequest $request
+     *
+     * @return string
+     */
+    public function executeGuide_social_login(sfWebRequest $request)
+    {
+        $providers = CollectorIdentifierQuery::create()
+            ->filterByCollector($this->getCollector())
+            ->find()
+            ->toKeyValue('Id', 'Provider');
+
+        $this->setVar('excludeProviders', $providers);
+    }
+
 }
