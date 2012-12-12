@@ -729,8 +729,7 @@ class _sidebarComponents extends cqFrontendComponents
 
     if ($this->getVar('collector') && $this->collector->getId() == $aetn_shows['american_pickers']['collector'])
     {
-      $q->filterByCollectibleId($aetn_shows['franks_picks']['collectibles'])
-        ->addAscendingOrderByColumn('RAND()');
+      $q->addAscendingOrderByColumn('RAND()');
     }
     else
     {
