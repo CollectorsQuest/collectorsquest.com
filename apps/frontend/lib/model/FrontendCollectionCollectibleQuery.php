@@ -8,7 +8,7 @@ class FrontendCollectionCollectibleQuery extends CollectionCollectibleQuery
     {
       return $criteria
         ->joinWith('Collectible')
-        ->_if(SF_ENV === 'prod')
+        ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
           ->isComplete()
         ->_endif();
     }
@@ -26,7 +26,7 @@ class FrontendCollectionCollectibleQuery extends CollectionCollectibleQuery
     // By default we want to only show public Collections
     $query
       ->joinWith('Collectible')
-      ->_if(SF_ENV === 'prod')
+      ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
         ->isComplete()
       ->_endif();
 
