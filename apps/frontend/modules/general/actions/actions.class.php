@@ -218,7 +218,24 @@ class generalActions extends cqFrontendActions
     {
       $new_collector = false;
       $profile = $auth_info_array['profile'];
-      $collector = CollectorPeer::retrieveByIdentifier($profile['identifier']);
+
+      if ($this->getUser()->isAuthenticated())
+      {
+        $collector = $this->getCollector();
+
+        /** @var $q CollectorIdentifierQuery */
+        $q = CollectorIdentifierQuery::create()
+           ->filterByIdentifier($profile['identifier']);
+
+        $collector_identifier = $q->findOneOrCreate();
+        $collector_identifier->setCollector($collector);
+        $collector_identifier->setProvider($collector_identifier->getProviderFromIdentifier());
+        $collector_identifier->save();
+      }
+      else
+      {
+        $collector = CollectorPeer::retrieveByIdentifier($profile['identifier']);
+      }
 
       if (!$collector)
       {
