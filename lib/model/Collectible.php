@@ -741,6 +741,95 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   }
 
   /**
+   * A deep copy that copies the following relationships:
+   *  - CollectionCollectible
+   *  - CollectibleForSale
+   *  - CollectibleRating
+   *  - ShippingReference
+   *  - Multimedia
+   *
+   * @param     PropelPDO $con
+   * @return    Collectible
+   */
+  public function customDeepCopy(PropelPDO $con = null)
+  {
+    // we use get_class(), because this might be a subclass
+    $clazz = get_class($this);
+    $copyObj = new $clazz();
+
+    // we copy the normal fields with the ready function, but cannot use deep copy
+    // because we need to handle some custom relations, and there are some relations
+    // we want to forgoe in a copy
+    $this->copyInto($copyObj, $deepCopy = false);
+
+    // important: temporarily setNew(false) because this affects the behavior of
+    // the getter/setter methods for fkey referrer objects.
+    $copyObj->setNew(false);
+    // store object hash to prevent cycle
+    $this->startCopy = true;
+
+    // CollectionCollectible
+    foreach($this->getCollectionCollectibles() as $relObj)
+    {
+      if ($relObj !== $this)
+      {
+        // ensure that we don't try to copy a reference to ourselves
+        $copyObj->addCollectionCollectible($relObj->copy($deepCopy = false));
+      }
+    }
+
+    // CollectibleForSale
+    $relObj = $this->getCollectibleForSale();
+    if ($relObj)
+    {
+      $copyObj->setCollectibleForSale($relObj->copy($deepCopy = false));
+    }
+
+    // CollectibleRating
+    foreach($this->getCollectibleRatings() as $relObj)
+    {
+      if ($relObj !== $this)
+      {
+        // ensure that we don't try to copy a reference to ourselves
+        $copyObj->addCollectibleRating($relObj->copy($deepCopy = false));
+      }
+    }
+
+    // unflag object copy
+    $this->startCopy = false;
+
+    // the next relations require this object to have a proper PK,
+    // so we perform a save now
+    $copyObj->setNew(true);
+    $copyObj->setId(NULL);
+    $copyObj->save($con);
+
+    // Special relations
+
+    // ShippingReference
+    $shipping_references = ShippingReferenceQuery::create()
+      ->filterByCollectible($this)
+      ->find($con);
+    foreach ($shipping_references as $shipping_reference)
+    {
+      $new_shipping_reference = $shipping_reference->copy($deepCopy = true);
+      $new_shipping_reference->setModelObject($copyObj);
+      $new_shipping_reference->save($con);
+    }
+
+    // Multimedia
+    $multimedia_items = $this->getMultimedia();
+    foreach ($multimedia_items as $multimedia)
+    {
+      $new_multimedia = $multimedia->copy($deepCopy = false);
+      $new_multimedia->setModel($copyObj);
+      $new_multimedia->save($con);
+    }
+
+    return $copyObj;
+  }
+
+  /**
    * @param  null|PropelPDO  $con
    * @return boolean
    */
