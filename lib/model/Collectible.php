@@ -121,6 +121,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         $v, false,
         'p, b, u, i, em, strong, h3, h4, h5, h6, div, span, ul, ol, li, blockquote, br'
       );
+      $v = str_replace('&nbsp;', ' ', $v);
     }
 
     return parent::setDescription($v);
