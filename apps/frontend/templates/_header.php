@@ -10,24 +10,24 @@
 
   <div class="header-inner">
     <?php
-    if (sfConfig::get('sf_environment') === 'dev')
-    {
-      $class = 'cq-logo logo-development';
-    }
-    else if (sfConfig::get('sf_environment') === 'next')
-    {
-      $class = 'cq-logo logo-staging';
-    }
-    else
-    {
-      $class = 'cq-logo logo';
-    }
+      if (sfConfig::get('sf_environment') === 'dev')
+      {
+        $class = 'cq-logo logo-development';
+      }
+      else if (sfConfig::get('sf_environment') === 'next')
+      {
+        $class = 'cq-logo logo-staging';
+      }
+      else
+      {
+        $class = 'cq-logo logo';
+      }
 
-    echo link_to(
-      'Collectors Quest', 'homepage',
-      array('ref' => cq_link_ref('logo')),
-      array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
-    );
+      echo link_to(
+        'Collectors Quest', 'homepage',
+        array('ref' => cq_link_ref('logo')),
+        array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
+      );
     ?>
     <div class="row-fluid">
       <div class="span4 right-section-header">
