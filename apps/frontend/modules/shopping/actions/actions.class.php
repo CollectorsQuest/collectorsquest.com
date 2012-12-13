@@ -160,7 +160,7 @@ class shoppingActions extends cqFrontendActions
       $this->getUser()->setFlash('error',
         count($notices) == 1
           ? sprintf('%s <br /> Please check this item at your cart.', $notices[0])
-          : sprintf('%s <br /> Please check this items at your cart.', implode($notices, "<br />")), false
+          : sprintf('%s <br /> Please check this items at your cart.', implode($notices, '<br />')), false
       );
     }
     $this->shopping_cart = $shopping_cart;
