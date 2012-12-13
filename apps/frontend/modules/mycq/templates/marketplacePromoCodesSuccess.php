@@ -1,8 +1,9 @@
 <?php
-  /* @var $package_transactions PackageTransaction[] */
-  /* @var $package_transaction  PackageTransaction   */
+/**
+ * @var $seller_promotion SellerPromotion
+  */
 
-  SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
+SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
 ?>
 
 <div id="mycq-tabs">
@@ -17,22 +18,46 @@
 
 
 
-        <table>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Amount Type</th>
+              <th>Amount</th>
+              <th>Expire Date</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
           <tbody>
           <?php if (!$pager->isEmpty()): ?>
             <?php foreach ($pager->getResults() as $seller_promotion): ?>
             <tr>
               <td>
-                <?= $seller_promotion ?>
+                <?= $seller_promotion; ?>
               </td>
               <td>
-                <?= $seller_promotion->getPromotionCode() ?>
+                <?= $seller_promotion->getPromotionCode(); ?>
               </td>
               <td>
-                <?= $seller_promotion->getAmountType() ?>
+                <?= $seller_promotion->getAmountType(); ?>
               </td>
               <td>
-                <?= $seller_promotion->getAmount() ?>
+                <?php if ($seller_promotion->getAmountType() != SellerPromotionPeer::AMOUNT_TYPE_FREE_SHIPPING): ?>
+                <?php
+                echo $seller_promotion->getAmountType() == SellerPromotionPeer::AMOUNT_TYPE_FIXED ? '$' : '';
+                echo  sprintf('%01.2f', (float) $seller_promotion->getAmount());
+                echo $seller_promotion->getAmountType() == SellerPromotionPeer::AMOUNT_TYPE_PERCENTAGE? '%' : '';
+                ?>
+                <?php else: ?>
+                &nbsp;
+                <?php endif; ?>
+              </td>
+              <td>
+                <?= $seller_promotion->getExpiryDate('d M Y'); ?>
+              </td>
+              <td>
+                <?= $seller_promotion->getQuantity() != 0 ?  $seller_promotion->getQuantity() : ''; ?>
               </td>
             </tr>
               <?php endforeach; ?>
