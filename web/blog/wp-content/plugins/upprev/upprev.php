@@ -3,7 +3,7 @@
 Plugin Name: upPrev
 Plugin URI: http://iworks.pl/upprev/
 Description: When scrolling post down upPrev will display a flyout box with a link to the previous post from the same category. Based on upPrev Previous Post Animated Notification by Jason Pelker, Grzegorz Krzyminski
-Version: 3.3.9
+Version: 3.3.12
 Author: Marcin Pietrzak
 Author URI: http://iworks.pl/
 License: GPLv2 or later
@@ -15,7 +15,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright 2011-2012 Marcin Pietrzak (marcin@iworks.pl)
 
 this program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as
+it under the terms of the GNU General Public License, version 2, as 
 published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful,
@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * static options
  */
-define( 'IWORKS_UPPREV_VERSION', '3.3.9' );
+define( 'IWORKS_UPPREV_VERSION', '3.3.12' );
 define( 'IWORKS_UPPREV_PREFIX',  'iworks_upprev_' );
 
 /**
@@ -288,13 +288,17 @@ function iworks_upprev_box()
     }
     if ( $compare == 'yarpp' ) {
         if ( defined( 'YARPP_VERSION' ) && version_compare( YARPP_VERSION, '3.3' ) > -1 ) {
-            $a = array();
-            if ( array_key_exists( 'post', $post_type ) && array_key_exists( 'page', $post_type ) ) {
-                $yarpp_posts = related_entries( $a, $post->ID, false );
-            } else if ( array_key_exists( 'post', $post_type ) ) {
-                $yarpp_posts = related_posts( $a, $post->ID, false );
-            } else if ( array_key_exists( 'page', $post_type ) ) {
-                $yarpp_posts = related_pages( $a, $post->ID, false );
+            if ( version_compare( YARPP_VERSION, '4.0' ) > -1 ) {
+                $yarpp_posts = yarpp_related( array( 'limit' => $number_of_posts ), $post->ID, false );
+            } else {
+                $a = array();
+                if ( array_key_exists( 'post', $post_type ) && array_key_exists( 'page', $post_type ) ) {
+                    $yarpp_posts = related_entries( $a, $post->ID, false );
+                } else if ( array_key_exists( 'post', $post_type ) ) {
+                    $yarpp_posts = related_posts( $a, $post->ID, false );
+                } else if ( array_key_exists( 'page', $post_type ) ) {
+                    $yarpp_posts = related_pages( $a, $post->ID, false );
+                }
             }
             if ( !$yarpp_posts ) {
                 return;
@@ -323,14 +327,14 @@ function iworks_upprev_box()
         case 'tag':
             $count_args = array ( 'taxonomy' => 'post_tag' );
             $tags = get_the_tags();
-            $max = count( $tags );
-            if ( $max < 1 ) {
-                break;
-            }
-            if ( $taxonomy_limit > 0 && $taxonomy_limit > $max ) {
-                $max = $taxonomy_limit;
-            }
-            if ( count( $tags ) ) {
+            if ( is_array( $tags ) && count( $tags ) ) {
+                $max = count( $tags );
+                if ( $max < 1 ) {
+                    break;
+                }
+                if ( $taxonomy_limit > 0 && $taxonomy_limit > $max ) {
+                    $max = $taxonomy_limit;
+                }
                 $ids = array();
                 $i = 1;
                 foreach( $tags as $tag ) {
@@ -381,7 +385,7 @@ function iworks_upprev_box()
                 $value .= sprintf ( '%s ', __('More in', 'upprev' ) );
                 $a = array();
                 foreach ( $siblings as $url => $name ) {
-                    $a[] = sprintf( '<a href="%s?ref=bp_flybox" rel="%s">%s</a>', $url, $current_post_title, $name );
+                    $a[] = sprintf( '<a href="%s" rel="%s">%s</a>', $url, $current_post_title, $name );
                 }
                 $value .= implode( ', ', $a);
             } else if ( $compare == 'random' ) {
@@ -410,16 +414,15 @@ function iworks_upprev_box()
                 get_permalink(),
                 $url_sufix
             );
-            if (true || current_theme_supports('post-thumbnails') && $show_thumb && has_post_thumbnail( get_the_ID() ) ) {
+            if ( current_theme_supports('post-thumbnails') && $show_thumb && has_post_thumbnail( get_the_ID() ) ) {
                 $item_class .= ' upprev_thumbnail';
                 $image = sprintf(
-                    '<a href="%s?ref=bp_flybox" title="%s" class="upprev_thumbnail"%s rel="%s">%s</a>',
+                    '<a href="%s" title="%s" class="upprev_thumbnail"%s rel="%s">%s</a>',
                     $permalink,
                     wptexturize(get_the_title()),
                     $ga_click_track,
                     $current_post_title,
-                    '<img src=' . get_post_image_url('thumbnail') . ' alt="' . get_the_title() . '" width="80" height="80">'
-                    /*apply_filters(
+                    apply_filters(
                         'iworks_upprev_get_the_post_thumbnail', get_the_post_thumbnail(
                             get_the_ID(),
                             array(
@@ -431,7 +434,7 @@ function iworks_upprev_box()
                                 'class'=>'iworks_upprev_thumb'
                             )
                         )
-                    )*/
+                    )
                 );
             } else {
                 ob_start();
@@ -440,7 +443,7 @@ function iworks_upprev_box()
             }
             $item .= sprintf( '<div class="%s">%s', $item_class, $image );
             $item .= sprintf(
-                '<h5><a href="%s?ref=bp_flybox"%s rel="%s">%s</a></h5>',
+                '<h5><a href="%s"%s rel="%s">%s</a></h5>',
                 $permalink,
                 $ga_click_track,
                 $current_post_title,

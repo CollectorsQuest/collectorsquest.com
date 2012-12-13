@@ -1,0 +1,641 @@
+# Copyright (C) 2010 upPrev
+# This file is distributed under the same license as the upPrev package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Ramón\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/upprev\n"
+"POT-Creation-Date: 2012-12-13 10:58:18+00:00\n"
+"PO-Revision-Date: 2012-11-13 19:35+0100\n"
+"Last-Translator: Ramon <marketing@apasionados.es>\n"
+"Language-Team: Apasionados del Marketing <info@apasionados.es>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. #-#-#-#-#  upprev.pot (upPrev branch/3.3)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: admin/index.php:3 upprev.php:212 upprev.php:213 upprev.php:528
+msgid "upPrev"
+msgstr "upPrev"
+
+#: admin/index.php:7
+msgid "upPrev options saved."
+msgstr "Opciones de upPrev guardadas."
+
+#: admin/index.php:24
+msgid "Loved this Plugin?"
+msgstr "¿Te gusta este plugin?"
+
+#: admin/index.php:26
+msgid "Below are some links to help spread this plugin to other users"
+msgstr ""
+"Debajo hay algunos enlaces para distribuir este plugin a otros usuarios"
+
+#: admin/index.php:28
+msgid "Give it a 5 star on Wordpress.org"
+msgstr "Dale una puntuación de 5 en Wordpress.org"
+
+#: admin/index.php:29
+msgid "Link to it so others can easily find it"
+msgstr "Enlázalo para que otros lo puedan encontrar"
+
+#: admin/index.php:34
+msgid "Need Assistance?"
+msgstr "Necesitas ayuda?"
+
+#: admin/index.php:36
+msgid "Problems? The links bellow can be very helpful to you"
+msgstr "¿Problemas? Los enlaces abajo pueden ser muy útiles."
+
+#: admin/index.php:38
+#, fuzzy
+msgid "http://wordpress.org/tags/upprev"
+msgstr "http://iworks.pl/upprev/"
+
+#: admin/index.php:38
+msgid "Wordpress Help Forum"
+msgstr "Ayuda de Wordpress"
+
+#: includes/common.php:18
+msgid ""
+"<p>upPrev settings allows you to set the proprites of user notification "
+"showed when reader scroll down the page.</p>"
+msgstr ""
+"<p>Las opciones de upPrev permiten establecer las propiedades de la "
+"notificación a los usuarios cuando van haciendo scroll hacia abajo en la "
+"entrada.</p>"
+
+#: includes/show_thubnail_on_admin_post_list.php:5
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+#: includes/show_thubnail_on_admin_post_list.php:19
+msgid "None"
+msgstr "Ninguno"
+
+#: includes/iworks.options.class.php:58
+msgid "An error occurred while getting the configuration."
+msgstr "Ha habido un error al cargar la configuración"
+
+#: includes/iworks.options.class.php:309
+msgid "Save Changes"
+msgstr "Guardar cambios"
+
+#: includes/options.php:27 includes/options.php:43
+msgid "Apperance"
+msgstr "Aspecto"
+
+#: includes/options.php:33
+msgid "Schema"
+msgstr ""
+
+#: includes/options.php:36 includes/options.php:52
+msgid "flyout"
+msgstr "Emergente"
+
+#: includes/options.php:37 includes/options.php:53
+msgid "fade in/out"
+msgstr "Desvanecer entrada/salida"
+
+#: includes/options.php:49
+msgid "Animation style"
+msgstr "Estilo de animación"
+
+#: includes/options.php:60
+msgid "Position"
+msgstr "Posición"
+
+#: includes/options.php:63
+#, fuzzy
+msgid "right"
+msgstr "arriba a la derecha"
+
+#: includes/options.php:64
+#, fuzzy
+msgid "left"
+msgstr "arriba a la izquierda"
+
+#: includes/options.php:72
+msgid "Margin bottom"
+msgstr "Margen inferior"
+
+#: includes/options.php:73 includes/options.php:82 includes/options.php:92
+msgid "px"
+msgstr "px"
+
+#: includes/options.php:81
+msgid "Margin side"
+msgstr "Margen lateral"
+
+#: includes/options.php:83
+msgid "Left or right depending on position."
+msgstr "Izquierda o derecha dependiendo de la posición."
+
+#: includes/options.php:91
+msgid "Box width"
+msgstr "Ancho caja"
+
+#: includes/options.php:100
+msgid "Offset"
+msgstr "Distancia"
+
+#: includes/options.php:101
+msgid "%"
+msgstr "%"
+
+#: includes/options.php:102
+msgid "Percentage of the page required to be scrolled to display a box."
+msgstr ""
+"Porcentaje de la página que hay que hacer scroll hacia abajo antes de "
+"mostrar la caja."
+
+#: includes/options.php:110
+msgid "Before HTML element."
+msgstr "Antes del elemento HTML"
+
+#: includes/options.php:111
+msgid ""
+"If empty, all page length is taken for calculation. If not empty, make sure "
+"to use the ID or class of an existing element. Put # \"hash\" before the ID, "
+"or . \"dot\" before a class name."
+msgstr ""
+"Si está vacío, toda la extensión de la página se usa para el cálculo. Si no "
+"está vacío, hay que asegurarse de suar el ID o clase de un elemento "
+"existente.  Usa # \"hash\" delante de un ID, o . \"dot\" delante de un "
+"nombre de una clase."
+
+#: includes/options.php:118
+msgid "Box header"
+msgstr "Encabezado de la caja"
+
+#: includes/options.php:119
+msgid "Show box header."
+msgstr "Mostrar encabezado de la caja."
+
+#: includes/options.php:126
+msgid "Close button"
+msgstr "Botón CERRAR"
+
+#: includes/options.php:127
+msgid "Show close button."
+msgstr "Mostrar botón CERRAR."
+
+#: includes/options.php:135
+msgid "Custom CSS"
+msgstr "CSS personalizado"
+
+#: includes/options.php:166
+msgid "Content"
+msgstr "Contenido"
+
+#: includes/options.php:173
+msgid "Number of posts to show "
+msgstr "Número de entradas a mostrar"
+
+#: includes/options.php:174
+#, fuzzy
+msgid ""
+"Not affected if using YARPP as choose method and YARPP version is lower than "
+"4.0."
+msgstr ""
+"No tenido en cuenta si se ha seleccionado YARPP cómo método de selección."
+
+#: includes/options.php:181
+msgid "Content filters"
+msgstr "Filtros de contenidos"
+
+#: includes/options.php:182
+msgid "Remove all filters."
+msgstr "Quitar todos los filtros"
+
+#: includes/options.php:183
+msgid ""
+"Untick this if you have some strange things in upPrev box, but unticked have "
+"a lot of chances breaks your layout."
+msgstr ""
+"Desmarca esta casilla si aparecen contenidos raros en la caja de upPrev; "
+"pero si la desmarcas, probablemente se romperá el diseño."
+
+#: includes/options.php:190
+msgid "Previous entry choose method"
+msgstr "Método de selección de la entrada anterior"
+
+#: includes/options.php:193
+msgid "Just previous."
+msgstr "Solo el anterior."
+
+#: includes/options.php:194
+msgid "Previous in category."
+msgstr "Anterior en la misma categoría."
+
+#: includes/options.php:195
+msgid "Previous in tag."
+msgstr "Anterior en la misma etiqueta."
+
+#: includes/options.php:196
+msgid "Random entry."
+msgstr "Entrada aleatoria."
+
+#: includes/options.php:205
+msgid "Taxonomy limit"
+msgstr "Límite de taxonomías"
+
+#: includes/options.php:206
+msgid "Number of taxonomies (tags or categories) to show."
+msgstr "Número de taxonomías (etiquetas o categorías) a mostrar."
+
+#: includes/options.php:207
+msgid "Default value: 0 (no limit)."
+msgstr "Valor por defecto: 0 (sin límite)."
+
+#: includes/options.php:214
+msgid "Match post type"
+msgstr "Coincidencia de tipo de entrada"
+
+#: includes/options.php:215
+msgid "Display only for selected post types."
+msgstr "Solo mostrar para los tipos de entradas seleccionados."
+
+#: includes/options.php:222
+msgid "Select post types"
+msgstr "Seleccionar tipos de entradas."
+
+#: includes/options.php:223
+msgid "Show posts."
+msgstr "Mostrar entradas."
+
+#: includes/options.php:224
+msgid "If not any, then default value is \"post\"."
+msgstr "Si no hay, el valor por defecto es  \"post\"."
+
+#: includes/options.php:227
+msgid "Posts."
+msgstr "Entradas."
+
+#: includes/options.php:228
+msgid "Pages."
+msgstr "Páginas."
+
+#: includes/options.php:229
+msgid "Any post type (include custom post types)."
+msgstr "Cualquier tipo de entrada (incluyendo entradas personalizadas)."
+
+#: includes/options.php:239
+msgid "Sticky posts"
+msgstr "Entradas fijas en la parte superior de la página de inicio."
+
+#: includes/options.php:240
+msgid "Ignore sticky posts."
+msgstr "Ignorar entradas fijas en la parte superior de la página de inicio"
+
+#: includes/options.php:250
+msgid "Excerpt"
+msgstr "Extracto"
+
+#: includes/options.php:251
+msgid "Show excerpt."
+msgstr "Mostrar extracto."
+
+#: includes/options.php:260
+msgid "Number of words to show."
+msgstr "Número de palabras a mostrar."
+
+#: includes/options.php:269
+msgid "Featured image"
+msgstr "Imágen destacada."
+
+#: includes/options.php:270
+msgid "Show featured image."
+msgstr "Mostrar imagen destacada."
+
+#: includes/options.php:279
+msgid "Featured image width."
+msgstr "Ancho de la imagen destacada."
+
+#: includes/options.php:289
+msgid "Links"
+msgstr "Enlaces"
+
+#: includes/options.php:295
+msgid "URL prefix"
+msgstr "Prefijo de la URL"
+
+#: includes/options.php:297
+msgid "Will be added before link."
+msgstr "Se añadirá antes del enlace."
+
+#: includes/options.php:304
+msgid "URL sufix"
+msgstr "Sufijo de la URL"
+
+#: includes/options.php:306
+msgid "Will be added after link."
+msgstr "Se añadirá después del enlace."
+
+#: includes/options.php:313
+msgid "Open link"
+msgstr "Abrir enlace."
+
+#: includes/options.php:314
+msgid "Open link in new window."
+msgstr "Abrir enlace en una nueva ventana."
+
+#: includes/options.php:315
+msgid "Not recomended!"
+msgstr "No recomendado!"
+
+#: includes/options.php:322
+#, fuzzy
+msgid "Google Analitics"
+msgstr "Google Analytics"
+
+#: includes/options.php:323
+msgid "I don't have GA tracking on site."
+msgstr "No tengo seguimiento con Google Analytics en esta web."
+
+#: includes/options.php:324 includes/options.php:350
+msgid "Turn it on if you don't use any other GA tracking plugin."
+msgstr "Actívalo si no usas otro plugin de seguimiento de Google Analytics."
+
+#: includes/options.php:331
+#, fuzzy
+msgid "Google Analitics Account"
+msgstr "Cuenta de Google Analytics"
+
+#: includes/options.php:332
+msgid "Replace UA-XXXXX-X with your web property ID."
+msgstr "Reemplaza UA-XXXXX-X con tu código personal de Google Analytics."
+
+#: includes/options.php:341
+msgid "Track views"
+msgstr "Seguir visitas"
+
+#: includes/options.php:342
+msgid "Track showing of upPrev box."
+msgstr "Seguir cada vez que se muestra upPrev box."
+
+#: includes/options.php:349
+msgid "Track clicks"
+msgstr "Seguir clicks"
+
+#: includes/options.php:357
+msgid "Prevent bounce-rate"
+msgstr "Prevenir tasa de rebote"
+
+#: includes/options.php:358
+msgid ""
+"Turn it on to indicate that the event hit will not be used in bounce-rate "
+"calculation."
+msgstr ""
+"Actívalo para indicar que el evento \"hit\" no se va a usar en el cálculo de "
+"la tasa de rebote."
+
+#: includes/options.php:367 includes/options.php:373
+msgid "Cache"
+msgstr "Caché"
+
+#: includes/options.php:374
+msgid "Use Transient Cache."
+msgstr "Usar caché."
+
+#: includes/options.php:375
+msgid "Using on large site (more than 1000 posts) may crash website."
+msgstr "Utilizarlo en webs con más de 1000 entradas puede colgar la web."
+
+#: includes/options.php:382
+msgid "Transients Cache Lifetime."
+msgstr "Duración de la caché."
+
+#: includes/options.php:383
+msgid "In seconds, default one hour (3600s)."
+msgstr "En segundos, por defecto 1 hora (3600s)."
+
+#: includes/options.php:392 includes/options.php:398
+msgid "Mobile devices"
+msgstr "Dispositivos móviles"
+
+#: includes/options.php:399
+msgid "Hide for mobile devices."
+msgstr "No mostrar en dispositivos móviles."
+
+#: includes/options.php:406
+msgid "Tablets"
+msgstr "Tabletas"
+
+#: includes/options.php:407
+msgid "Hide for tablets too."
+msgstr "No mostrar tampco para tabletas."
+
+#: includes/options.php:408
+msgid "Works only when hidding for mobile devices is turn on."
+msgstr "Solo funciona si no mostrar en dispositivos móviles está activo."
+
+#: includes/options.php:417
+msgid "Other"
+msgstr "Otro"
+
+#: includes/options.php:422
+msgid "Promote"
+msgstr "Promocionar"
+
+#: includes/options.php:423
+msgid "Help promote upPrev plugin?"
+msgstr "¿Quieres ayudar a promocionar el plugin upPrev?"
+
+#: includes/options.php:424
+msgid ""
+"This option will add the code <code>Previous posts box brought to you by &lt;"
+"a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev "
+"plugin&lt;/a&gt;.</code>. Try turning it on, updating your options, and see "
+"the code in the code example to the right. These links and donations are "
+"greatly appreciated.</span>"
+msgstr ""
+"Esta opción añadirá el código <code>Las entradas previas se muestran por "
+"gentileza de &lt;a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/"
+"en/'&gt;upPrev plugin&lt;/a&gt;.</code>. Prueba activarlo, actualizar las "
+"opciones y ver el código de ejemplo a la derecha. Estos enlaces y donaciones "
+"son muy apreciados.</span>"
+
+#: includes/options.php:430 upprev.php:515
+msgid "Donate"
+msgstr "Donar"
+
+#: includes/options.php:431
+msgid ""
+"You can buy me some special coffees if you appreciate my work, thank you! <a "
+"href=\"http://iworks.pl/donate/upprev.php\">Donate to this plugin.</a>"
+msgstr ""
+"Puedes comprarme unos cuantos cafés especiales si te gusta mi trabajo, "
+"¡gracias! <a href=\"http://iworks.pl/donate/upprev.php\">Donar para este "
+"plugin.</a>"
+
+#: includes/options.php:446
+msgid "Custom post type: "
+msgstr "Tipo de entrada personalizado"
+
+#: includes/options.php:457 includes/options.php:460
+msgid "Related Posts (YARPP)"
+msgstr "Entradas relacionas (YARPP)"
+
+#: includes/options.php:458
+msgid ". Works only with post and/or pages."
+msgstr ". Solo funciona con entradsa y/o páginas."
+
+#: upprev.php:385
+msgid "More in"
+msgstr "Más en"
+
+#: upprev.php:392
+msgid "Read more:"
+msgstr "Leer más"
+
+#: upprev.php:394
+msgid "Read previous post:"
+msgstr "Leer entrada anterior"
+
+#: upprev.php:464
+msgid "Close"
+msgstr "Cerrar"
+
+#: upprev.php:467
+msgid ""
+"Previous posts box brought to you by <a href=\"http://iworks.pl/produkty/"
+"wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
+msgstr ""
+"La caja con las entradas anteriores es gentileza del <a href=\"http://iworks."
+"pl/produkty/wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
+
+#: upprev.php:513
+msgid "Settings"
+msgstr "Opciones"
+
+#. Plugin URI of the plugin/theme
+msgid "http://iworks.pl/upprev/"
+msgstr "http://iworks.pl/upprev/"
+
+#. Description of the plugin/theme
+#, fuzzy
+msgid ""
+"When scrolling post down upPrev will display a flyout box with a link to the "
+"previous post from the same category. Based on upPrev Previous Post Animated "
+"Notification by Jason Pelker, Grzegorz Krzyminski"
+msgstr ""
+"Al hacer scroll hacia abajo en una entrada upPrev muestra una caja emergente "
+"con un enlace a una entrada según la configuración."
+
+#. Author of the plugin/theme
+msgid "Marcin Pietrzak"
+msgstr "Marcin Pietrzak"
+
+#. Author URI of the plugin/theme
+msgid "http://iworks.pl/"
+msgstr "http://iworks.pl/"
+
+#~ msgid "Layout"
+#~ msgstr "Diseño"
+
+#~ msgid "bottom right"
+#~ msgstr "abajo a la derecha"
+
+#~ msgid "bottom left"
+#~ msgstr "abajo a la izquierda"
+
+#~ msgid "bottom"
+#~ msgstr "abajo"
+
+#~ msgid "top"
+#~ msgstr "arriba"
+
+#~ msgid "middle right"
+#~ msgstr "mitad a la derecha"
+
+#~ msgid "middle left"
+#~ msgstr "mitad a la izquierda"
+
+#~ msgid "Header tekst."
+#~ msgstr "Texto de encabezado"
+
+#~ msgid "Leave blank to allow plugin set the heading text."
+#~ msgstr ""
+#~ "Déjalo en blanco para que el plugin configure el texto del encabezado."
+
+#~ msgid "Colors"
+#~ msgstr "Colores"
+
+#~ msgid "Set custom colors"
+#~ msgstr "Seleccionar colores personalizados"
+
+#~ msgid "Turn on custom colors."
+#~ msgstr "Activar colores personalizados."
+
+#~ msgid "Text"
+#~ msgstr "Texto"
+
+#~ msgid "Background"
+#~ msgstr "Fondo"
+
+#~ msgid "Border"
+#~ msgstr "Borde"
+
+#~ msgid "Excludes"
+#~ msgstr "Excluir"
+
+#~ msgid "Categories"
+#~ msgstr "Categorías"
+
+#~ msgid "Buy PRO!"
+#~ msgstr "Comprar PRO!"
+
+#~ msgid "Choose configuration mode"
+#~ msgstr "Seleccionar modo de configuración"
+
+#~ msgid "simple"
+#~ msgstr "simple"
+
+#~ msgid "advance"
+#~ msgstr "avanzado"
+
+#~ msgid "Default simple layout"
+#~ msgstr "Diseño simple por defecto"
+
+#~ msgid "Vertical Three"
+#~ msgstr "Vertical Three"
+
+#~ msgid "\"Bloginity\" style"
+#~ msgstr "estilo \"Bloginity\""
+
+#~ msgid "Overview"
+#~ msgstr "Resumen"
+
+#~ msgid "For more information:"
+#~ msgstr "Para más información:"
+
+#~ msgid ""
+#~ "<a href=\"http://wordpress.org/extend/plugins/upprev/\" target=\"_blank"
+#~ "\">Plugin Homepage</a>"
+#~ msgstr ""
+#~ "<a href=\"http://wordpress.org/extend/plugins/upprev/\" target=\"_blank"
+#~ "\">Página principal del Plugin</a>"
+
+#~ msgid ""
+#~ "<a href=\"http://wordpress.org/tags/upprev\" target=\"_blank\">Support "
+#~ "Forums</a>"
+#~ msgstr ""
+#~ "<a href=\"http://wordpress.org/tags/upprev\" target=\"_blank\">Foro de "
+#~ "Soporte</a>"
+
+#~ msgid "<a href=\"http://iworks.pl/en/\" target=\"_blank\">break the web</a>"
+#~ msgstr ""
+#~ "<a href=\"http://iworks.pl/en/\" target=\"_blank\">break the web</a>"
+
+#~ msgid "All positions are available in PRO version!"
+#~ msgstr "¡Todas las posiciones están disponibles en la versión PRO!"
+
+#~ msgid "Colors setup is available in PRO version!"
+#~ msgstr "¡La elección de colores está disponible en la versión PRO!"
+
+#~ msgid "Exlude categories available in PRO version!"
+#~ msgstr "¡La opción de excluir categorías está disponible en la versión PRO!"
