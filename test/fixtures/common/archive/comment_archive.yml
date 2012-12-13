@@ -715,6 +715,94 @@ CommentArchive:
     subject: ''
     body: 'Awesome! I just got brochures for this place!'
     created_at: '2008-11-09 09:17:46'
+  CommentArchive_583:
+    id: '583'
+    collection_id: '817'
+    collector_id: '59'
+    model: ''
+    model_id: '0'
+    author_name: Poptart
+    author_email: Deanna.Pop.Tart@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'Awesome!  I want to see more!'
+    created_at: '2008-11-11 15:56:47'
+  CommentArchive_584:
+    id: '584'
+    collection_id: '817'
+    collector_id: '791'
+    model: ''
+    model_id: '0'
+    author_name: Jazzejunqueinc
+    author_email: cookejarlayde@aol.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'Thanks~ I will be adding more soon.'
+    created_at: '2008-11-11 16:14:15'
+  CommentArchive_585:
+    id: '585'
+    collection_id: '817'
+    collectible_id: '12989'
+    collector_id: '791'
+    model: ''
+    model_id: '0'
+    author_name: Jazzejunqueinc
+    author_email: cookejarlayde@aol.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: Pyrex
+    created_at: '2008-11-13 12:32:01'
+  CommentArchive_610:
+    id: '610'
+    collection_id: '817'
+    collectible_id: '12981'
+    collector_id: '832'
+    model: ''
+    model_id: '0'
+    author_name: Robert
+    author_email: gonzalezrobert@att.net
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: "Very nice~\r\n\r\nI think I have a happy face cup somewhere~"
+    created_at: '2008-12-09 20:28:05'
+  CommentArchive_611:
+    id: '611'
+    collection_id: '817'
+    collectible_id: '12978'
+    collector_id: '832'
+    model: ''
+    model_id: '0'
+    author_name: Robert
+    author_email: gonzalezrobert@att.net
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: "I love Pyrex kitchenware~\r\n\r\nWe still use ours!"
+    created_at: '2008-12-09 20:29:09'
+  CommentArchive_612:
+    id: '612'
+    collection_id: '817'
+    collectible_id: '12975'
+    collector_id: '832'
+    model: ''
+    model_id: '0'
+    author_name: Robert
+    author_email: gonzalezrobert@att.net
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'Nice pieces~'
+    created_at: '2008-12-09 20:29:54'
   CommentArchive_613:
     id: '613'
     collection_id: '872'
@@ -763,6 +851,20 @@ CommentArchive:
     subject: ''
     body: "Yes, you know about three more than I did. Thanks for the information.\r\n\r\nDon"
     created_at: '2008-12-16 00:32:16'
+  CommentArchive_621:
+    id: '621'
+    collection_id: '885'
+    collector_id: '2'
+    model: ''
+    model_id: '0'
+    author_name: 'Kiril (Angov)'
+    author_email: kiril.angov@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: "REALLY impressive! \r\n\r\nSo how does it feel to be a Guinness record holder? :)"
+    created_at: '2008-12-21 05:56:14'
   CommentArchive_624:
     id: '624'
     collection_id: '905'
@@ -799,6 +901,20 @@ CommentArchive:
     subject: ''
     body: 'I''ve always wanted one of these, but the steep prices & similar fears of damaging it have kept a lucite purse with compact just a dream.'
     created_at: '2008-12-22 22:36:48'
+  CommentArchive_643:
+    id: '643'
+    collection_id: '885'
+    collector_id: '453'
+    model: ''
+    model_id: '0'
+    author_name: Anyango
+    author_email: fur_foot+453@hotmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'I''m very impressed! GREAT collection!  I really enjoyed looking at your collection! ^.^ It''s amazing!'
+    created_at: '2008-12-29 16:55:33'
   CommentArchive_647:
     id: '647'
     collection_id: '767'
@@ -1039,6 +1155,20 @@ CommentArchive:
     subject: ''
     body: 'She is one of my icons...what a combination of beauty, talent and intelligence.  There will never be another Marilyn!'
     created_at: '2009-01-13 11:04:15'
+  CommentArchive_702:
+    id: '702'
+    collection_id: '970'
+    collector_id: '822'
+    model: ''
+    model_id: '0'
+    author_name: Smhead
+    author_email: smhead@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'Very nice, some of these bronzes are stunning, and all are exceptional! Great photos too.'
+    created_at: '2009-01-27 18:20:43'
   CommentArchive_709:
     id: '709'
     collection_id: '2'
@@ -1053,6 +1183,20 @@ CommentArchive:
     subject: ''
     body: 'Nice, been wanting a Lubitel but they are artificially priced right now with the Lomography craze. That 4x5 is beautiful!'
     created_at: '2009-01-29 12:37:57'
+  CommentArchive_718:
+    id: '718'
+    collection_id: '970'
+    collector_id: '926'
+    model: ''
+    model_id: '0'
+    author_name: Hady
+    author_email: hadychemaly@hotmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'very very nice collection '
+    created_at: '2009-02-02 15:05:30'
   CommentArchive_726:
     id: '726'
     collection_id: '925'
@@ -1178,6 +1322,19 @@ CommentArchive:
     subject: ''
     body: 'Zorro is there-he''s just incognito as a plain yellow duck.'
     created_at: '2009-04-22 10:13:41'
+  CommentArchive_942:
+    id: '942'
+    collection_id: '885'
+    model: ''
+    model_id: '0'
+    author_name: dominika
+    author_email: dominika.sevcikova@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'I missed my words...this is something wonderful...I am collector too, but I have only 31 in this time...so I must do my best to get collection like this...'
+    created_at: '2009-04-23 07:50:37'
   CommentArchive_980:
     id: '980'
     collection_id: '1144'
@@ -1584,6 +1741,19 @@ CommentArchive:
     subject: ''
     body: 'I found this label in a 1902 biblical characters book I have'
     created_at: '2009-07-05 21:01:01'
+  CommentArchive_1323:
+    id: '1323'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: 'dj acid burn'
+    author_email: dj_acidburn30@yahoo.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'LOVE your collections,here''s mind: myspace.com/tmntworld'
+    created_at: '2009-07-06 23:37:51'
   CommentArchive_1326:
     id: '1326'
     collection_id: '1083'
@@ -2051,6 +2221,20 @@ CommentArchive:
     subject: ''
     body: 'I HAVE BEEN COLLECTING GARBAGE PAIL KIDS FOR 25 YEARS NOW. FROM LOOKING OVER YOUR CARDS YOU HAVE A MIXTURE OF SERIES 2 THROUGH SERIES 4.SERIES 2 CARDS IF THEY ARE IN MINT CONDITION GO FOR A PRICE OF ABOUT 2.50 A CARD,SERIES 3 FOR ABOUT .75 A CARD,AND SERIES 4 FOR ABOUT .70 A CARD.IF THEY ARE ALL IN MINT CONDITION.SERIES 1 AND 2 AND 10 THROUGH 15 ARE THE MORE VALUBLE CARDS.YOUR SET OF 102 CARDS COULD MAYBE FETCH 30.00 FOR ALL.ONLY IF THEY ARE IN MINT CONDITION.I WOULD BE WILLING TO PAY 25.00 FOR ALL.'
     created_at: '2009-08-18 11:49:28'
+  CommentArchive_1741:
+    id: '1741'
+    collection_id: '1247'
+    collectible_id: '19830'
+    model: ''
+    model_id: '0'
+    author_name: 'Patrick Clements'
+    author_email: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'Where would I get the next mutation toys from? Can''t find them anywhere>'
+    created_at: '2009-08-18 16:25:46'
   CommentArchive_1747:
     id: '1747'
     collection_id: '1524'
@@ -2450,6 +2634,20 @@ CommentArchive:
     subject: ''
     body: 'Thanks :)'
     created_at: '2009-09-02 06:50:24'
+  CommentArchive_1935:
+    id: '1935'
+    collection_id: '1575'
+    collectible_id: '25677'
+    model: ''
+    model_id: '0'
+    author_name: 'Tammy Wollschlager'
+    author_email: tamchu@sstel.net
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'do you know the value of this Howdy Doodie cookie jar?  my mother has one. '
+    created_at: '2009-09-02 22:31:24'
   CommentArchive_1952:
     id: '1952'
     collection_id: '1686'
@@ -2649,6 +2847,51 @@ CommentArchive:
     subject: ''
     body: 'I m going to buy this Musk Ox. Even it cost me US24.00 to get it. Thanks for putting it up.'
     created_at: '2009-09-24 23:13:46'
+  CommentArchive_2213:
+    id: '2213'
+    collection_id: '1575'
+    collectible_id: '25688'
+    collector_id: '59'
+    model: ''
+    model_id: '0'
+    author_name: Poptart
+    author_email: Deanna.Pop.Tart@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'Love this!  The display is awesome!  My favorite is the one with "red diamonds" on it (the green mixer beneath it).'
+    created_at: '2009-09-27 04:23:10'
+  CommentArchive_2231:
+    id: '2231'
+    collection_id: '1247'
+    collectible_id: '19841'
+    collector_id: '1505'
+    model: ''
+    model_id: '0'
+    author_name: Acidburn101
+    author_email: dj_acidburn30@yahoo.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: "where do you get the shelves..i would like this for my tmnt collection\r\n"
+    created_at: '2009-09-30 23:50:50'
+  CommentArchive_2232:
+    id: '2232'
+    collection_id: '1247'
+    collectible_id: '19820'
+    collector_id: '1505'
+    model: ''
+    model_id: '0'
+    author_name: Acidburn101
+    author_email: dj_acidburn30@yahoo.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'i been dying to own them! :(('
+    created_at: '2009-09-30 23:54:21'
   CommentArchive_2270:
     id: '2270'
     collection_id: '1695'
@@ -3295,6 +3538,20 @@ CommentArchive:
     subject: ''
     body: 'Additional scans in my Collectors'' Quest blog post: http://www.collectorsquest.com/blog/2009/11/12/the-see-em-walk-dog-takes-me-on-an-ephemera-hunt/'
     created_at: '2009-11-16 18:43:06'
+  CommentArchive_2647:
+    id: '2647'
+    collection_id: '1575'
+    collectible_id: '25677'
+    model: ''
+    model_id: '0'
+    author_name: mark
+    author_email: mfallon@sunsetmortgageco.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'I have one also.  did you get any answers?'
+    created_at: '2009-11-19 16:58:41'
   CommentArchive_2648:
     id: '2648'
     collection_id: '638'
@@ -4255,6 +4512,19 @@ CommentArchive:
     subject: ''
     body: 'You have to go to JUSTDUCKS.COM. They have tons of these Bud Ducks!'
     created_at: '2010-01-15 18:54:19'
+  CommentArchive_3278:
+    id: '3278'
+    collection_id: '885'
+    model: ''
+    model_id: '0'
+    author_name: sunny
+    author_email: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    subject: ''
+    body: 'I have around 120...and I thought that''s a lot already!'
+    created_at: '2010-01-16 03:00:53'
   CommentArchive_3293:
     id: '3293'
     collection_id: '260'
@@ -4728,6 +4998,51 @@ CommentArchive:
     subject: ''
     body: 'I have this book I was wondering if it had any $$$$$value to it ?'
     created_at: '2010-02-24 17:48:28'
+  CommentArchive_4098:
+    id: '4098'
+    disqus_id: '38135978'
+    collection_id: '1247'
+    collectible_id: '19829'
+    model: ''
+    model_id: '0'
+    author_name: chad
+    author_email: saiyant@hotmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'i have original cels of rapheal signed by rob paulsen for sale let me know if your intrested '
+    ip_address: 68.146.214.220
+    created_at: '2010-03-05 12:37:00'
+  CommentArchive_4099:
+    id: '4099'
+    disqus_id: '37812088'
+    collection_id: '1247'
+    collectible_id: '19829'
+    model: ''
+    model_id: '0'
+    author_name: 'dj acid burn'
+    author_email: dj_acidburn30@yahoo.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'LOVE your collections,here''s mind: myspace.com/tmntworld'
+    ip_address: 255.255.255.255
+    created_at: '2009-07-06 23:37:00'
+  CommentArchive_4104:
+    id: '4104'
+    disqus_id: '38879835'
+    collection_id: '1247'
+    collectible_id: '19829'
+    model: ''
+    model_id: '0'
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'hey how tall are your giant ones on the top shelf?  i have a set of those with all the weapons and i have never seen them anywhere else.'
+    ip_address: 166.70.142.12
+    created_at: '2010-03-10 17:47:00'
   CommentArchive_4169:
     id: '4169'
     disqus_id: '39532216'
@@ -5307,6 +5622,21 @@ CommentArchive:
     body: 'McCalls 1927 magazine and Modern Women 1905...what would these be worth?'
     ip_address: 71.209.227.123
     created_at: '2010-07-09 18:57:19'
+  CommentArchive_4701:
+    id: '4701'
+    collection_id: '885'
+    collectible_id: '14406'
+    model: ''
+    model_id: '0'
+    author_name: Julie
+    author_email: jules9772@gmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "Your collection is truly amazing!! I'm looking to \r\nbuy about 4 from the princess collection. I had \r\nthem back in 2003 and they got broke in an accident.\r\nI've been looking to replace them and it's been so \r\nhard to find them! Do you sell anything from your collection? If not, do you know where I can get what I'm looking for? I hope you can help me! \r\nThanks so much!\r\n\r\nJulie."
+    ip_address: 70.119.212.111
+    created_at: '2010-07-10 12:39:06'
   CommentArchive_4716:
     id: '4716'
     collection_id: '1524'
@@ -5707,6 +6037,20 @@ CommentArchive:
     body: 'Sorry my Stone Cold collection isn''t for sale. That t-shirt I got from Stone Cold himself. You may check eBay. I''m only looking to sell my Bret Hart stuff.'
     ip_address: 173.31.80.157
     created_at: '2010-08-31 17:42:55'
+  CommentArchive_4984:
+    id: '4984'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: KevO
+    author_email: ItalianArmy00@gmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "This is amazing! I started my own TMNT collection about a year ago and i have 98% of the original characters 4turtles, Splinter Shredder BEPOP AND ROCKSTEADY April O'Neil Casey Jones... you name it! still in their boxes! The giant figures are 13\" tall. i have them in the box (all 4) and im waiting on my 13\" Bebop and Rocksteady next. \r\n\r\nBREAKING NEWS! the 13\" bebop came today! WIN! its beautiful!! w/ weapon and all!!"
+    ip_address: 12.24.2.194
+    created_at: '2010-08-31 20:32:56'
   CommentArchive_4992:
     id: '4992'
     collection_id: '1220'
@@ -5736,6 +6080,126 @@ CommentArchive:
     body: "Looking to buy the plastic pig cookie jar. There is no information on the page. Can you please send me the info to e-mail?\r\n\r\ngabriel_s777@yahoo.com\r\n\r\nThank you ,\r\nGabriel"
     ip_address: 99.6.97.141
     created_at: '2010-09-05 13:33:04'
+  CommentArchive_5004:
+    id: '5004'
+    collection_id: '1182'
+    collectible_id: '18773'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Nice design'
+    ip_address: 122.169.216.72
+    created_at: '2010-09-07 03:09:51'
+  CommentArchive_5005:
+    id: '5005'
+    collection_id: '1182'
+    collectible_id: '18766'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I like it'
+    ip_address: 122.169.216.72
+    created_at: '2010-09-07 03:10:52'
+  CommentArchive_5006:
+    id: '5006'
+    collection_id: '1182'
+    collectible_id: '18768'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Nice design'
+    ip_address: 122.169.216.72
+    created_at: '2010-09-07 03:12:28'
+  CommentArchive_5007:
+    id: '5007'
+    collection_id: '1182'
+    collectible_id: '18764'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'simply superb!!'
+    ip_address: 122.169.216.72
+    created_at: '2010-09-07 03:12:59'
+  CommentArchive_5008:
+    id: '5008'
+    collection_id: '1182'
+    collectible_id: '18760'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'What a thought'
+    ip_address: 122.169.216.72
+    created_at: '2010-09-07 03:13:52'
+  CommentArchive_5009:
+    id: '5009'
+    collection_id: '1182'
+    collectible_id: '18790'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I would like that one!!'
+    ip_address: 122.169.216.72
+    created_at: '2010-09-07 03:15:07'
+  CommentArchive_5010:
+    id: '5010'
+    collection_id: '1182'
+    collectible_id: '18792'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Great design'
+    ip_address: 122.169.216.72
+    created_at: '2010-09-07 03:15:43'
+  CommentArchive_5011:
+    id: '5011'
+    collection_id: '1182'
+    collectible_id: '18799'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I like it so...........'
+    ip_address: 122.169.216.72
+    created_at: '2010-09-07 03:16:51'
   CommentArchive_5021:
     id: '5021'
     collection_id: '1524'
@@ -5988,6 +6452,20 @@ CommentArchive:
     body: 'Part 7'
     ip_address: 75.80.13.205
     created_at: '2010-09-28 23:37:18'
+  CommentArchive_5215:
+    id: '5215'
+    collection_id: '885'
+    collector_id: '4310'
+    model: ''
+    model_id: '0'
+    author_name: ladyinthewater
+    author_email: echaterry@yahoo.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'your snowglobe collection is so friggin awesome! can''t wait for your snowglobe museum, I''ll definitely go there :D'
+    ip_address: 110.138.92.143
+    created_at: '2010-09-30 10:11:30'
   CommentArchive_5228:
     id: '5228'
     collection_id: '1824'
@@ -6566,6 +7044,48 @@ CommentArchive:
     body: "Does anyone know where to purchase this toy?\r\n\r\nThank you!"
     ip_address: 148.177.1.211
     created_at: '2010-12-28 15:58:31'
+  CommentArchive_5927:
+    id: '5927'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: 'rene h'
+    author_email: ''
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'i have all 4 original "worlds first talking mutants" collection...includes rapheal, michealangelo.donatelo, and leonardo..they are in perfect condition...never opened, some small marks on packaging...but other than that ...perfect...they sre going up for sale...are you interested??'
+    ip_address: 24.175.172.192
+    created_at: '2010-12-28 18:55:27'
+  CommentArchive_5928:
+    id: '5928'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: 'rene h'
+    author_email: ''
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'i have all 4 original "worlds first talking mutants" collection...includes rapheal, michealangelo.donatelo, and leonardo..they are in perfect condition...never opened, some small marks on packaging...but other than that ...perfect...they sre going up for sale...are you interested??'
+    ip_address: 24.175.172.192
+    created_at: '2010-12-28 18:56:01'
+  CommentArchive_5929:
+    id: '5929'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: 'rene h'
+    author_email: ''
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'by the way...these were made in 1990'
+    ip_address: 24.175.172.192
+    created_at: '2010-12-28 18:59:12'
   CommentArchive_5937:
     id: '5937'
     collection_id: '521'
@@ -6759,6 +7279,20 @@ CommentArchive:
     body: exciting.......
     ip_address: 119.252.163.242
     created_at: '2011-01-19 21:26:42'
+  CommentArchive_6148:
+    id: '6148'
+    collection_id: '1248'
+    model: ''
+    model_id: '0'
+    author_name: Andrew
+    author_email: Stephenandrews82@gmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I have several TMNT collection toys that could be worth something (TNMT Van,zepplin,sewer dragster, duelin'' dudes, and over 30 action figures)  I''d like to sell them, but I''m really not sure where to go.  I would like to sell them to a collector.  All of the items are from mid and late 80''s.'
+    ip_address: 70.118.4.69
+    created_at: '2011-01-27 16:48:09'
   CommentArchive_6153:
     id: '6153'
     collection_id: '1272'
@@ -6853,6 +7387,21 @@ CommentArchive:
     body: "These look amazing. hahahah nice photo (naughty)\r\n\r\nBUT Id love to buy a Dimetrodon, Triceratops and Tyrannosaurus by Miller's."
     ip_address: 125.237.98.162
     created_at: '2011-02-10 14:32:23'
+  CommentArchive_6272:
+    id: '6272'
+    collection_id: '970'
+    collectible_id: '15784'
+    model: ''
+    model_id: '0'
+    author_name: 'gary wilson'
+    author_email: wilsons27@comcast.net
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'i have this same  Roman coin, Augustus Dupondius Thunderbolt, any idea what it might be worth. Mine is in less condition as this one.'
+    ip_address: 98.248.55.201
+    created_at: '2011-02-13 14:50:05'
   CommentArchive_6297:
     id: '6297'
     collection_id: '767'
@@ -7433,6 +7982,36 @@ CommentArchive:
     body: 'Where can I find 40 of these blue devils ducks ?'
     ip_address: 68.125.99.116
     created_at: '2011-03-23 20:27:16'
+  CommentArchive_6573:
+    id: '6573'
+    collection_id: '2091'
+    collectible_id: '36657'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: nice
+    ip_address: 122.169.162.59
+    created_at: '2011-03-28 06:05:09'
+  CommentArchive_6574:
+    id: '6574'
+    collection_id: '974'
+    collectible_id: '16247'
+    collector_id: '4111'
+    model: ''
+    model_id: '0'
+    author_name: JohnReen
+    author_email: johni.rees@rediffmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'jackson looking different'
+    ip_address: 122.169.162.59
+    created_at: '2011-03-28 06:08:13'
   CommentArchive_6578:
     id: '6578'
     collection_id: '1272'
@@ -8217,6 +8796,20 @@ CommentArchive:
     body: 'Have these been sold yet? '
     ip_address: 50.9.59.94
     created_at: '2011-06-14 12:59:45'
+  CommentArchive_9938:
+    id: '9938'
+    collection_id: '885'
+    model: ''
+    model_id: '0'
+    author_name: Tara
+    author_email: tjolley90@yahoo.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'are these for sale?'
+    ip_address: 50.9.59.94
+    created_at: '2011-06-14 13:02:13'
   CommentArchive_12026:
     id: '12026'
     collection_id: '2724'
@@ -8984,6 +9577,51 @@ CommentArchive:
     body: 'I''ll keep an eye out for the Strawberry Fuz Duck. If I come across one, I''ll let you know!'
     ip_address: 208.120.229.21
     created_at: '2011-08-12 21:00:21'
+  CommentArchive_12685:
+    id: '12685'
+    collection_id: '885'
+    collectible_id: '14407'
+    model: ''
+    model_id: '0'
+    author_name: 'sonam dorji'
+    author_email: s.doling555@yahoo.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "i am working in Royal Bhutanese Embassy, Thailand and my mobile no. 0856616841. i just want to order snow Glove balls for my King Jigme's weeding as souvenir for guest during Royal weeding ceremony which will be in October this year. therefore, if could kindly contract me by email or i can come and meet u in ur office.\r\n\r\nAwaiting for ur respond soon.\r\n\r\nSonam Dorji  "
+    ip_address: 124.120.217.108
+    created_at: '2011-08-13 01:35:03'
+  CommentArchive_12688:
+    id: '12688'
+    collection_id: '885'
+    collectible_id: '14353'
+    collector_id: '7607'
+    model: ''
+    model_id: '0'
+    author_name: faunaboys
+    author_email: faunaboys@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'i love dumbo!'
+    ip_address: 175.145.229.214
+    created_at: '2011-08-13 04:21:24'
+  CommentArchive_12690:
+    id: '12690'
+    collection_id: '885'
+    collectible_id: '14407'
+    model: ''
+    model_id: '0'
+    author_name: 'Wendy Suen '
+    author_email: wendywysuen@hotmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "Hi Hon. Sonam\r\n\r\nThanks for writing to me, and congratulations to the wedding of King Jigme's wedding of Bhutan in October. I am a Snowglobe collector, and the snow globes that you see in my collections are collected from different countries that I have visited and I don't make them. I believe you are looking for tailor made snow globes for this wedding right? There are Snowglobe manufacturers in china that design and produce them. If you are interested, I can help you source some manufacturers. Please kindly give me your email and I can send you the details. You can reach me at 86 1368 188 3660 or email me at wendywysuen@hotmail.com. \r\n\r\nThanks, \r\n\r\nWendy Suen "
+    ip_address: 182.151.198.129
+    created_at: '2011-08-13 11:37:25'
   CommentArchive_12699:
     id: '12699'
     collection_id: '91'
@@ -8998,6 +9636,20 @@ CommentArchive:
     body: ''
     ip_address: 188.165.254.157
     created_at: '2011-08-15 19:16:45'
+  CommentArchive_12702:
+    id: '12702'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: ashley
+    author_email: ''
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Hello just wondering where wuld i sell. The tmnt that a man gave to my father they are all still packaged theres alot from 1988 but cant fina any where to sell them? '
+    ip_address: 166.216.194.168
+    created_at: '2011-08-15 22:34:59'
   CommentArchive_12704:
     id: '12704'
     collection_id: '2595'
@@ -10126,6 +10778,20 @@ CommentArchive:
     body: 'aww. thanks. still growing.'
     ip_address: 99.171.161.126
     created_at: '2011-12-29 11:09:44'
+  CommentArchive_14028:
+    id: '14028'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: Wayne
+    author_email: waynecanepa@gmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "I work for a consignment store in Hayes, VA, and one of our employees found a Remco 110 TMNT talking camera. It's brand new in the package, still says \"Cowabunga, Smile!\" when you push the button, etc. It's orange, and imprints a color image of Michaelangelo in the lower right corner, according to the package.\r\n\r\nAfte searching online, all I can find is that they originally retailed for ~$15 when new, but I cannot find a guide that lists what they'd be worth for resale now. Any suggestions?\r\n\r\n-Wayne"
+    ip_address: 70.183.140.92
+    created_at: '2012-01-09 11:26:24'
   CommentArchive_14071:
     id: '14071'
     collection_id: '2433'
@@ -10243,6 +10909,21 @@ CommentArchive:
     body: 'I have a cowboy 8" tall stamped "future products" and also stamped maybe "S. Lawson" any information would be appreciated. thanks! joe'
     ip_address: 65.19.247.157
     created_at: '2012-01-24 18:17:10'
+  CommentArchive_14170:
+    id: '14170'
+    collection_id: '885'
+    collectible_id: '14330'
+    model: ''
+    model_id: '0'
+    author_name: bhe
+    author_email: ''
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'how much is this???..'
+    ip_address: 49.145.108.221
+    created_at: '2012-01-27 03:42:15'
   CommentArchive_14174:
     id: '14174'
     collection_id: '1272'
@@ -10271,6 +10952,21 @@ CommentArchive:
     body: 'I have the same cutie, minus the ribbon.  After spending all afternoon checking out similar "toys", I sure would ask more then $30.00.  You can start high $ and always come down:)'
     ip_address: 75.200.153.25
     created_at: '2012-01-28 15:25:33'
+  CommentArchive_14193:
+    id: '14193'
+    collection_id: '1248'
+    collectible_id: '19859'
+    model: ''
+    model_id: '0'
+    author_name: 'Jeff C'
+    author_email: weepel@hotmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Very cool! I have some of the wax sculpts that match your first shots. General Tragg, mondo gecko, wingnut etc.'
+    ip_address: 74.124.173.84
+    created_at: '2012-01-30 21:41:45'
   CommentArchive_14213:
     id: '14213'
     collection_id: '1214'
@@ -10325,6 +11021,20 @@ CommentArchive:
     body: "\r\nI purchased 2 cartons of molasses with a Grandma Melasse Recettes Favorites as a promotional gift at Costco. Unfortunately I only speak English, and I am very much interested in trying these recepes. If you have an English copy of this favorite recipes booklet, I would appreciate you sending that to me, or if you can tell me where to find it.  Thanking you,\r\nLaurine Branker"
     ip_address: 76.68.174.195
     created_at: '2012-02-06 14:32:48'
+  CommentArchive_14339:
+    id: '14339'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: Chris
+    author_email: chris@goodvibesforyou.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I have a single cell from signed by Fred Wolf. Are you interested in it? '
+    ip_address: 101.171.173.82
+    created_at: '2012-02-20 00:34:36'
   CommentArchive_14367:
     id: '14367'
     collection_id: '3012'
@@ -10884,6 +11594,21 @@ CommentArchive:
     body: "Ow, there are already to much bids XD \r\nI think they will going out for much more as £30 :)\r\nGood luck selling!!"
     ip_address: 85.177.95.105
     created_at: '2012-04-12 13:30:04'
+  CommentArchive_14765:
+    id: '14765'
+    collection_id: '885'
+    collectible_id: '14377'
+    model: ''
+    model_id: '0'
+    author_name: 'John Roll'
+    author_email: herb.roll@gmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Great collection! Looks like these are all released in Japan. If anyone has any of these for sale, I would be happy to discuss. I have only seen two of them on eBay.'
+    ip_address: 69.128.156.208
+    created_at: '2012-04-15 15:41:12'
   CommentArchive_14775:
     id: '14775'
     collection_id: '478'
@@ -11179,6 +11904,21 @@ CommentArchive:
     body: 'I actually just won a set on ebay not long ago! I was the only bidder! I love them so much! ^.^'
     ip_address: 108.1.239.136
     created_at: '2012-04-28 21:12:51'
+  CommentArchive_14897:
+    id: '14897'
+    collection_id: '817'
+    collectible_id: '24129'
+    model: ''
+    model_id: '0'
+    author_name: Cindy
+    author_email: ''
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I have this exact collection. It was left behind in an old camp and consists of a service of 10 or more with a lot of accessories. Any idea of the value or history?'
+    ip_address: 67.253.116.180
+    created_at: '2012-04-29 19:12:49'
   CommentArchive_14921:
     id: '14921'
     collection_id: '3178'
@@ -11260,6 +12000,21 @@ CommentArchive:
     body: 'Do you still have these. Email is gutterdirect@ymail.com'
     ip_address: 174.231.64.130
     created_at: '2012-05-06 17:15:11'
+  CommentArchive_14996:
+    id: '14996'
+    collection_id: '885'
+    collectible_id: '14353'
+    model: ''
+    model_id: '0'
+    author_name: Carla
+    author_email: carla_marinhas@hotmail.com
+    author_url: ''
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "Hello!\r\nI'm interested in buy the dumbo cristal snow, number two in the inferior line. If don't, can you tell me wher I could buy it? "
+    ip_address: 85.246.116.230
+    created_at: '2012-05-16 11:03:15'
   CommentArchive_15028:
     id: '15028'
     collection_id: '3120'
@@ -11709,6 +12464,19 @@ CommentArchive:
     is_spam: '0'
     body: 'Hey there, rbeas! Selling your stuff generally works a LOT better of you include images (and not just a generic, blurry baseball card image). Try a few shots of highlights from your collection, as well as some shots of the overall collection so people get a real idea of what they''re looking at / buying into! The more images you have, the better off you are!'
     created_at: '2012-07-03 03:49:23'
+  CommentArchive_15568:
+    id: '15568'
+    collection_id: '3308'
+    collector_id: '12'
+    model: ''
+    model_id: '0'
+    author_name: Robotbacon
+    author_email: collin@collectorsquest.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Hey there, rbeas! Selling your stuff generally works a LOT better of you include images (and not just a generic, blurry baseball card image). Try a few shots of highlights from your collection, as well as some shots of the overall collection so people get a real idea of what they''re looking at / buying into! The more images you have, the better off you are!'
+    created_at: '2012-07-03 03:53:48'
   CommentArchive_15572:
     id: '15572'
     collection_id: '2379'
@@ -12142,6 +12910,18 @@ CommentArchive:
     is_spam: '0'
     body: "The job involves discovering all always parts as well as putting these with one another.  Very 0bviouse. this way Precisely what exactly sets apart the item through the rest will be the quality through the info they provide.  this way They certainly begin to have the ability to discuss period it demands to create up the particular solar power panels, probabilities are they will mention the particular cost, probabilities are they are going to just type of drift away into offering to marketplace the merchandise!  \r\n \r\n \r\nWorld 4 Power provides you with detailed instructions about just how you save money using solar strength.  link"
     created_at: '2012-07-29 15:42:38'
+  CommentArchive_15870:
+    id: '15870'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: 'Dre'''
+    author_email: yaboidre24@gmail.com
+    is_notify: '1'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'The picture above the lower shelf and the mikey in the middle w/no belt I looking for the whole set of those kinda turtle could u plz email me'
+    created_at: '2012-08-05 13:00:39'
   CommentArchive_15874:
     id: '15874'
     collection_id: '889'
@@ -12226,6 +13006,30 @@ CommentArchive:
     is_spam: '0'
     body: 'buy ambien much does generic ambien cost - is it legal to order ambien online'
     created_at: '2012-08-09 19:48:11'
+  CommentArchive_15931:
+    id: '15931'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: 'B be'
+    author_email: busterman@live.nl
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "Hi I have a 22 year old teenage mutant HERO turtles mug in good condition.\r\nI can show pictures but here is a small description:\r\nIt's manufactorer is \"Ter Steege BV\" labeled -&gt; Mirage Inc. 1990\r\nthe mug is made of porcelain and the colors of the bandanas are only 2x Red and 2x Blue (like 2x Raphael 2x Leonardo) , Hero Turtles ARE ninja turtles but older. email for pictures"
+    created_at: '2012-08-12 05:57:07'
+  CommentArchive_15932:
+    id: '15932'
+    collection_id: '1247'
+    model: ''
+    model_id: '0'
+    author_name: 'b be'
+    author_email: busterman@live.nl
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "And btw I cannot find any simular mug looking like this one,\r\nI won't be expecting a lot of money (15$ seems fair?)"
+    created_at: '2012-08-12 06:02:18'
   CommentArchive_15971:
     id: '15971'
     collection_id: '230'
@@ -12752,6 +13556,20 @@ CommentArchive:
     body: 'In 2008, Air Jordan 18 Retro Stamp released Countdown Packages that included this colorway along with a  Air Jordan 19 Retro. Although the colorway was the nonetheless as this double, the state of health was discrete as sumptuously as missing the Nike Air logo on the behindhand (replaced with a Jumpman). To many Jordan enthusiasts it isn’t the verbatim at the same time making this version of the importance sober-sided more  Air Jordan 20 Retro.'
     ip_address: 65.49.70.72
     created_at: '2012-09-13 12:48:55'
+  CommentArchive_16283:
+    id: '16283'
+    collectible_id: '25664'
+    collector_id: '791'
+    model: ''
+    model_id: '0'
+    author_name: Jazzejunqueinc
+    author_email: cookejarlayde@aol.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: www.jazzejunque.com
+    ip_address: 71.194.118.179
+    created_at: '2012-09-13 19:22:22'
   CommentArchive_16290:
     id: '16290'
     collectible_id: '56495'
@@ -12765,6 +13583,20 @@ CommentArchive:
     body: "moncler gamme bleu spring 2012\r\n   is a company dependent in The usa and was proven in the yr 1960. The enterprise was started by a organization with a retail keep for Mountain climbers. Later on it obtained the identify as calvin klein online store\r\n. Later on on, equipments ended up produced for skiing and snowboarding.  North encounter sells a lot more than 30,000 designs, vogue garments, footwear, jackets, denims and purses. Later the plan of apparel was began by the company which was centered among the mountain climbers, endurance sports activities, skiers, hikers and snow boarders. Now, foot put on activity devices, outer dress in, sleeping bags, again packs and tents are created and sold by the business. North experience jackets have gained a lot of good results. They have obtained appreciation in the entire world for their styles and quality. There is availability of these jackets for equally ladies and guys. There is a different class for children as properly. The availability of these jackets is discovered in a variety of styles, variations and hues. \r\n \r\n \r\nThere are a variety of jackets that have the functionality of dealing with chilly. Some of them have successfully catered to extreme colds in snow. Some of them are put on as style equipment. Acquiring  The North Encounter Jackets On the web Acquire  on the web is also a great choice. They are typically totally free of taxes and shipping charges.  Ski equipment was extra into the line of items by the eighties. In the beginning, North confront jackets have been made only for wintertime. They had been really hefty and heat. There are some good north face  as nicely. They are named as Fleece jackets. Amazing materials are used by these jackets. They will preserve the folks snug by way of the months of winter months. It manufactures two zip pockets and water-resistant hoodies as effectively. This will help in trying to keep the physique quite heat and dry. \r\n \r\nThe durability of North Experience jackets is quite very good. Cleansing is usually accomplished in washing machines. These jackets can be washed with heat h2o as properly. The jackets of these businesses are not only dealing with cold but will also give safety from Ultra Violet Rays. Typically the sun emits these rays. Defense from these rays is needed by every person normally by hikers and mountain climbers.  By ordering on the web, North Confront jackets can be ordered at some great rates. After you buy it, the deal will be delivered appropriate to your homes.  The wilderness lifestyle in America was released by this firm. This is a trend craze which is revolving about the looks of climbers, mountaineers and hikers.  There are numerous renowned North Encounter thunder jackets that are used by professionals. Even considered the jacket is not eye-catching, it proves to be quite beneficial for the mountaineers and hikers. These merchandise can be discovered easily all more than The united states. By means of the website, North Encounter Jackets can be bought on-line.  There are a lot of well-liked web sites that have been supplying a variety of North Face Jackets. They outlets on-line are considered to be e-outlets that are much less high-priced.  North Encounter jackets are broadly offered all in excess of the United Kingdom. \r\n \r\n \r\n \r\nSell a lot more than 30,000 styles trend clothes, sneakers, jackets, sports activities, handbags, Denims and so on,Free Delivery, Cost-free Tax, and the package deal will be sent to your doorway. and we greatest offer in uk usa,  our north face   in good costs from our on the web retailer \r\n \r\n \r\nFrom the earlier childhood, we come about to be skilled to treatment after our planet. Women and boyswho enjoy and consider part in the parks and specifically exactly where they discover how you can regard the nature and our planet and to feel about using care of Nature. \r\n \r\nWho states North confront jackets are simply for douleur? Its north face   is genuinely a business which is an specialist in outside the house outfits and kit. It is a organization which sees that the romance for that outdoor start utilizing the youthful that is the result in why they've developed a line that is especially for kids. As effectively as, since several a for girls who reside be positively using part in outdoors activities, The group has moreover included a ladies line for that stylishly discerning sportswoman. \r\n \r\n \r\n \r\nJust like you require to maintain our corporel warm all by way of the chilly a number of weeks, it is considerably much more for people modest those that have significantly much less thermo managing capacity inside of their corporel. Tiny youngsters, particularly infants, do not be able of control by themselves temps successfully, as a result it's crucial that suitable outfits and kit be used in it to be in a position to halt incidents. Numerous from the exact all by means of the cold winter a number of weeks when temps will go decrease to extremes. By no implies be concerned basically due to the fact you will discover loads of outfit pieces inside the manufacturer line to select from for infants, and you'll uncover also goods which are distinct for females and boys. Toward the leading of their e-mail list could be the north face  as properly as the North Encounter Infant Reversible Perrito Jacket, that will are obtainable in numerous colours and nicely suited for keeping individuals youngsters heat and comfortable. Simply due to the fact the jackets are light-weight and waterproof, they give freedom of movement to make confident that these little bundles would not be discouraged from frolicking inside of the snow, developing an best snowman, or getting satisfying while it is raining. Evidently, it is also important that appropriate add-ons be utilized, for instance proper footwear, mitts or mittens, to make sure that wintertime may well be pleasant for the kids. \r\n \r\nIts Northern Border Face Women Denali Jacket was at the moment offered to higher than a million satisfied buyers worldwide for that reason which tends to make it the extremely greatest vendor for that women line. Its fleece lining brings about it to grow to be most probably probably the most comfortable ugg dakota\r\n obtainable, so aside from supplying warmth and defense from the solar and rain, additionally, it materials a relaxing actually really feel. High-class within the materials, furthermore, it's obtainable inside of a assortment of colors, as a result it could absolutely suit any woman wardrobe. In addition, it has parkas for girls preferring longer clothing. As nicely as, simply because these jackets are produced from recycled supplies, getting to be cautious from the ambiance does not essentially imply you cannot be fashionable, as properly as the modern woman can area on these feelings excellent about herself. \r\n \r\nThen when it involves outside location on, even however males choose from a number of garments and apparel, nevertheless women and kids alike north face could have their pick of stylish and functional clothing excellent for his or her requirements."
     ip_address: 27.159.213.18
     created_at: '2012-09-14 09:02:21'
+  CommentArchive_16332:
+    id: '16332'
+    collectible_id: '25684'
+    collector_id: '14764'
+    model: ''
+    model_id: '0'
+    author_name: skyler
+    author_email: mantique@me.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'cool washer :-)'
+    ip_address: 209.159.220.191
+    created_at: '2012-09-19 15:29:21'
   CommentArchive_16335:
     id: '16335'
     collectible_id: '86095'
@@ -12897,6 +13729,33 @@ CommentArchive:
     body: 'I am new, where are your prices or bids for your records?'
     ip_address: 68.49.251.75
     created_at: '2012-10-10 10:38:22'
+  CommentArchive_16458:
+    id: '16458'
+    collectible_id: '73794'
+    collector_id: '10282'
+    model: ''
+    model_id: '0'
+    author_name: OkieDokie
+    author_email: angie@collectorsquest.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Thank you for your interest, but this item is not for sale.  Good luck!'
+    ip_address: 184.96.72.131
+    created_at: '2012-10-10 13:21:34'
+  CommentArchive_16465:
+    id: '16465'
+    collectible_id: '62496'
+    model: ''
+    model_id: '0'
+    author_name: jazzejunqueinc
+    author_email: cookejarlayde@aol.com
+    is_notify: '1'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'UPS extra. Ill. res pay 9.50% Sales Tax. Chicago pick up. www.jazzejunque.com Paypal or postal money order.'
+    ip_address: 71.194.118.179
+    created_at: '2012-10-10 20:54:07'
   CommentArchive_16486:
     id: '16486'
     collectible_id: '16178'
@@ -13053,6 +13912,44 @@ CommentArchive:
     body: 彼らは本当に欲しい色合い、デザインとスタイル、外観、ロゴと1個の商品のコストのすべてを兼ね備えています。しかし、再び味が1つの特定の女性によって異なりますいくつかの他、また、時間の多様な点でまったく同じ女性のため。早くケアを撮影したとして、これらの仕様のすべては、人が常にある特定の女性の購入者を争うことができるように思わせる、1は、低コストのハンドバッグ、コーチの財布、カスタムメイドのハンドバッグに加えて、ハンドバッグの心の遠くなるようボリュームを採用するべきである。
     ip_address: 175.44.9.167
     created_at: '2012-10-19 23:32:44'
+  CommentArchive_16564:
+    id: '16564'
+    collector_id: '16065'
+    model: ''
+    model_id: '0'
+    author_name: Outar_Sniping
+    author_email: Outar.Sniping@yahoo.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: ''
+    created_at: '2012-10-23 20:45:00'
+  CommentArchive_16584:
+    id: '16584'
+    collectible_id: '7188'
+    model: ''
+    model_id: '0'
+    author_name: 'north face outerwear'
+    author_email: tyeoneyeowneieerit@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Pro north face outerwear Cartridge group clothing lighter north face uk, more wear-resistant, north face sale while the technology also reduces abrading heart the clothing, brand http://www.tnf-sale.co.uk/ athletes more stretching and relaxing.'
+    ip_address: 175.42.81.187
+    created_at: '2012-10-26 23:15:25'
+  CommentArchive_16587:
+    id: '16587'
+    collectible_id: '73185'
+    model: ''
+    model_id: '0'
+    author_name: vcafavhesap
+    author_email: krofeverail@gsmadil.com
+    is_notify: '0'
+    is_hidden: '1'
+    is_spam: '1'
+    body: "Deltasone cheap fed ex delivery   \r\n Cymbalta free fedex shipping   \r\n ultram buy cod   \r\n valtrex acyclovir famvir more effective   \r\n drug interaction atenolol   \r\n online purchase ambien   \r\n eb virus and amoxicillin   \r\n lasix hypertension   \r\n lisinopril ups cod delivery   \r\n cheap Cipro no prescription   \r\n history of acyclovir   \r\n Diflucan saturday delivery   \r\n prescription of ambien   \r\n clomid pregnancy symptom   \r\n cheap Acyclovir c.o.d.   \r\n define zithromax   \r\n Glucophage cheap overnight delivery   \r\n discount online Lasix   \r\n zithromax masturbation   \r\n alprazolam free fedex shipping"
+    ip_address: 119.36.138.131
+    created_at: '2012-10-28 00:28:18'
   CommentArchive_16600:
     id: '16600'
     collectible_id: '19923'
@@ -13067,3 +13964,200 @@ CommentArchive:
     body: 'this is not horizon blue'
     ip_address: 68.42.231.250
     created_at: '2012-10-28 22:52:54'
+  CommentArchive_16617:
+    id: '16617'
+    collection_id: '91'
+    model: ''
+    model_id: '0'
+    author_name: fewcutyb
+    author_email: mnbbss12@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'chargers jersey Well-made and spacious inside. Item just like described, might purchase from a person again.'
+    ip_address: 120.43.20.250
+    created_at: '2012-10-31 09:17:52'
+  CommentArchive_16621:
+    id: '16621'
+    collectible_id: '73185'
+    model: ''
+    model_id: '0'
+    author_name: eharvasapo
+    author_email: krofeverail@gsmadil.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "cheap Flagyl without rx   \r\n tramadol makes me sleepy   \r\n cheap Desyrel online   \r\n Avapro overnight   \r\n buy online pharmacy Tetracycline   \r\n buy cheap Zanaflex cod   \r\n information on tramadol 50mg   \r\n viagra drug test   \r\n online ordering Acyclovir   \r\n testemonies of accutane   \r\n buy lisinopril online overnight   \r\n Amoxil rx   \r\n doxycycline patient information"
+    ip_address: 173.45.112.57
+    created_at: '2012-10-31 17:56:25'
+  CommentArchive_16645:
+    id: '16645'
+    collectible_id: '71438'
+    model: ''
+    model_id: '0'
+    author_name: vhnxqwzvv
+    author_email: a1xrumer088@gmail.com
+    is_notify: '0'
+    is_hidden: '1'
+    is_spam: '1'
+    body: 'customized nfl jerseys  on www.nfltry.com'
+    ip_address: 175.44.21.157
+    created_at: '2012-11-04 05:54:32'
+  CommentArchive_16669:
+    id: '16669'
+    collectible_id: '42951'
+    model: ''
+    model_id: '0'
+    author_name: MaireFab
+    author_email: makenzie.be.ntover14@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'lfduhhldl celebrity sex tapes for free australian celebrity sex tapes kkuwvuoiu celebrity sex tapes exposed  free celebrity sex tapes online lzxcaluxr celebrity sex tapes free links newest celebrity sex tapes mjfkbipka 100% free celebrity sex tapes'
+    ip_address: 184.154.51.121
+    created_at: '2012-11-07 04:03:37'
+  CommentArchive_16673:
+    id: '16673'
+    collectible_id: '73185'
+    model: ''
+    model_id: '0'
+    author_name: favehesap
+    author_email: lopefeverail@gsmadil.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "trazodone safe during pregnancy   \r\n cialis columbus lawyer   \r\n valtrex herpes medication online   \r\n cortef vs prednisone   \r\n acyclovir and dosage   \r\n buy discount Doxycycline   \r\n doxycycline proctalgia fugax   \r\n no prescription tramadol sales   \r\n mix viagra and nitroglycerin   \r\n lasix eye surgery cost   \r\n Klonopin overnight no prescription   \r\n soma grille matthews   \r\n site about tramadol decayed   \r\n can jenday have amoxicillin   \r\n order online ativan   \r\n trazodone pliva 433"
+    ip_address: 68.36.33.220
+    created_at: '2012-11-07 16:54:32'
+  CommentArchive_16726:
+    id: '16726'
+    collectible_id: '73185'
+    model: ''
+    model_id: '0'
+    author_name: sevavahapo
+    author_email: refafeverail@gsmadil.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "buy discount xanax online   \r\n Colchicine online saturday delivery   \r\n Elavil saturday delivery   \r\n doctor shopping for Allopurinol prescription   \r\n cheap Diflucan overnight saturday delivery   \r\n buy no prescription Phenergan   \r\n adomet strattera   \r\n buy cheap Cipro cod   \r\n zithromax fedex cod   \r\n challenge clomid   \r\n accutane lawyers san diego   \r\n woman viagra danger   \r\n lisinopril prescriptions   \r\n doxycycline and iron   \r\n strattera as a generic"
+    ip_address: 71.80.18.122
+    created_at: '2012-11-13 16:30:43'
+  CommentArchive_16739:
+    id: '16739'
+    collectible_id: '75738'
+    model: ''
+    model_id: '0'
+    author_name: skyeanmhh
+    author_email: xr95271@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: "The Gucci replica handbag rules the world.\r\n \r\nOf course, the classic oversized Designer Sunglasses For Men as worn by Kylie Minogue, Lucy Liu and Gwyneth Paltrow are a firm favourite and again experiment with vibrant and beautiful colours such as blue, turquoise and violet - perfect for stepping into spring!  .http://www.marcusbiblioteket.com/list.php?id=2298 The reason for this is that they are not made to satisfy passing fashion whims but to look good on every woman while giving quality service..If you're hanging out in the local airport hoping for a glimpse of your favourite personality, you'll probably leave disappointed. \r\nThe discounted rates vary from bag to bag and also depend upon the popularity of design."
+    ip_address: 58.248.73.200
+    created_at: '2012-11-15 14:37:47'
+  CommentArchive_16759:
+    id: '16759'
+    collection_id: '970'
+    collector_id: '16660'
+    model: ''
+    model_id: '0'
+    author_name: DylanCamacho
+    author_email: dylancamacho9999@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Where did you get them?'
+    ip_address: 69.114.147.119
+    created_at: '2012-11-18 08:32:47'
+  CommentArchive_16760:
+    id: '16760'
+    collection_id: '984'
+    collector_id: '16660'
+    model: ''
+    model_id: '0'
+    author_name: DylanCamacho
+    author_email: dylancamacho9999@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Any idea about what it''s worth?'
+    ip_address: 69.114.147.119
+    created_at: '2012-11-18 08:43:16'
+  CommentArchive_16777:
+    id: '16777'
+    collectible_id: '85938'
+    model: ''
+    model_id: '0'
+    author_name: 'Doug Braveman'
+    author_email: dbraverman1609@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I have a ball for sale signed by all 3, Mantle, Mays and Snider with a Letter of Authencity. email me at dbraverman1609 at gmail dot com.'
+    ip_address: 71.52.102.103
+    created_at: '2012-11-19 22:17:26'
+  CommentArchive_16778:
+    id: '16778'
+    collectible_id: '85938'
+    model: ''
+    model_id: '0'
+    author_name: 'Doug Braveman'
+    author_email: dbraverman1609@gmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I have a ball for sale signed by all 3, Mantle, Mays and Snider with a Letter of Authencity. email me at dbraverman1609 at gmail dot com.'
+    ip_address: 71.52.102.103
+    created_at: '2012-11-19 22:17:33'
+  CommentArchive_16779:
+    id: '16779'
+    collectible_id: '85938'
+    model: ''
+    model_id: '0'
+    author_name: 'Doug Braveman'
+    author_email: dbraverman1609@gmail.com
+    is_notify: '1'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'I have a ball for sale signed by all 3, Mantle, Mays and Snider with a Letter of Authencity. email me at dbraverman1609 at gmail dot com.'
+    ip_address: 71.52.102.103
+    created_at: '2012-11-19 22:17:37'
+  CommentArchive_16801:
+    id: '16801'
+    collection_id: '885'
+    model: ''
+    model_id: '0'
+    author_name: Murray
+    author_email: mrsall@hotmail.com
+    is_notify: '1'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'Cool collection for sure, Have over 120 Globes myself , Picked up some today , Rubber Ball Xmas Gloes, so cool'
+    ip_address: 24.108.80.222
+    created_at: '2012-11-21 19:44:12'
+  CommentArchive_16862:
+    id: '16862'
+    collectible_id: '6163'
+    model: ''
+    model_id: '0'
+    author_name: Barimore
+    author_email: Tsirugi@gmail.com
+    is_notify: '0'
+    is_hidden: '1'
+    is_spam: '0'
+    body: 'uhhhhhh... that''s PETER not NATHAN!'
+    ip_address: 108.2.111.43
+    created_at: '2012-11-30 12:32:27'
+  CommentArchive_18439:
+    id: '18439'
+    collection_id: '3506'
+    model: ''
+    model_id: '0'
+    author_name: www.cheapfoamposite2012z.combO
+    author_email: jamonptl@hotmail.com
+    is_notify: '0'
+    is_hidden: '0'
+    is_spam: '0'
+    body: 'rpzpyrcpvo kobe 7 cheap kobes jyvxyysxfp nike foamposites sale foamposites for sale dczindfeuj jordan 4 bred jordan 4 black cement opfdxcqilp doudoune moncler pas cher moncler pas cher krjeakgrxn longchamp pas cher sac longchamp pas cher yynbyockgh sac lancel lancel bb eyvheofafz tiffany and co outlet cheap lebron 9 cheap lebron 10 rytrxdgheu jordan concord 11 jordan 11 concord jtpqiiirdl jordan concords jordan 11 concord thdneqtynf isabel marant sneakers isabel marant boots'
+    ip_address: 115.51.223.140
+    created_at: '2012-12-10 00:19:42'

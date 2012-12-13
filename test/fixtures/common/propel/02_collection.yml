@@ -1,13 +1,14 @@
 Collection:
   Collection_255:
     graph_id: '11410'
-    collection_category_id: CollectionCategory_15
+    collection_category_id: '15'
     content_category_id: ContentCategory_857
     name: 'Brooklyn Tokens'
     slug: brooklyn-tokens
     description: 'My collection focuses on 19th and 20th century merchant tokens issued in Brooklyn, New York.  Most of these were issued by retail stores as promotional items.  However, the collection includes an array of other Brooklyn tokens including tokens issued by the Brooklyn Navy Yard, the Brooklyn City Prison, Brooklyn mass transit organizations, and the YMCA.  The collection provides interesting and unusual snapshots of Brooklyn''s lost history.'
     num_items: '1'
-    num_views: '429'
+    num_public_items: '1'
+    num_views: '443'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -16,16 +17,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-09-15 22:38:42'
-    updated_at: '2012-10-15 19:33:30'
+    updated_at: '2012-12-07 08:34:39'
+    descendant_class: CollectorCollection
   Collection_616:
     graph_id: '11622'
-    collection_category_id: CollectionCategory_10
+    collection_category_id: '10'
     content_category_id: ContentCategory_367
     name: 'Continental Collection'
     slug: continental-collection
     description: 'I collect all things "Continental". '
     num_items: '7'
-    num_views: '1422'
+    num_public_items: '7'
+    num_views: '1440'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -34,16 +37,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-24 17:17:53'
-    updated_at: '2012-10-27 12:15:36'
+    updated_at: '2012-12-09 15:48:39'
+    descendant_class: CollectorCollection
   Collection_618:
     graph_id: '10871'
-    collection_category_id: CollectionCategory_6
+    collection_category_id: '6'
     content_category_id: ContentCategory_294
     name: 'Metal art'
     slug: metal-art
     description: 'Our collection is too large to post together so I''ve split it into Metal art, Ceramics, Glass and Graphic art.'
     num_items: '60'
-    num_views: '2662'
+    num_public_items: '60'
+    num_views: '2725'
     num_comments: '8'
     num_ratings: '0'
     score: '0'
@@ -52,16 +57,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-25 16:15:32'
-    updated_at: '2012-10-29 16:27:41'
+    updated_at: '2012-12-06 15:49:56'
+    descendant_class: CollectorCollection
   Collection_619:
     graph_id: '10347'
-    collection_category_id: CollectionCategory_6
+    collection_category_id: '6'
     content_category_id: ContentCategory_332
     name: 'Wood collection'
     slug: wood-collection
     description: 'Everything we collect has a high degree of difficulty. Our wood pieces are no exception.'
     num_items: '26'
-    num_views: '2906'
+    num_public_items: '26'
+    num_views: '2944'
     num_comments: '5'
     num_ratings: '0'
     score: '0'
@@ -70,16 +77,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-25 21:56:38'
-    updated_at: '2012-10-29 08:36:14'
+    updated_at: '2012-12-06 08:48:37'
+    descendant_class: CollectorCollection
   Collection_643:
     graph_id: '11596'
-    collection_category_id: CollectionCategory_6
+    collection_category_id: '6'
     content_category_id: ContentCategory_206
     name: 'Wall art, paintings, pencil drawings'
     slug: wall-art-paintings-pencil-drawings
     description: 'I really like photo-realism. I also like surrealism. Many of our pieces combine the two.'
     num_items: '44'
-    num_views: '2502'
+    num_public_items: '44'
+    num_views: '2549'
     num_comments: '5'
     num_ratings: '0'
     score: '0'
@@ -88,16 +97,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-07-10 16:18:10'
-    updated_at: '2012-10-30 11:00:48'
+    updated_at: '2012-12-10 03:37:47'
+    descendant_class: CollectorCollection
   Collection_876:
     graph_id: '11962'
-    collection_category_id: CollectionCategory_50
+    collection_category_id: '50'
     content_category_id: ContentCategory_1713
     name: 'nordstrom snowglobes'
     slug: nordstrom-snowglobes
     description: 'Little winter fairies'
     num_items: '7'
-    num_views: '1587'
+    num_public_items: '7'
+    num_views: '1680'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -106,16 +117,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-12 16:16:47'
-    updated_at: '2012-10-29 08:47:34'
+    updated_at: '2012-12-12 00:33:03'
+    descendant_class: CollectorCollection
   Collection_877:
     graph_id: '11133'
-    collection_category_id: CollectionCategory_50
+    collection_category_id: '50'
     content_category_id: ContentCategory_1658
     name: Christmas
     slug: christmas
     description: 'Christmas Snowglobes'
     num_items: '9'
-    num_views: '1323'
+    num_public_items: '9'
+    num_views: '1330'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -124,16 +137,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-12 16:36:22'
-    updated_at: '2012-10-29 16:28:45'
+    updated_at: '2012-12-01 00:38:18'
+    descendant_class: CollectorCollection
   Collection_879:
     graph_id: '12153'
-    collection_category_id: CollectionCategory_50
+    collection_category_id: '50'
     content_category_id: ContentCategory_3557
     name: 'Around the World'
     slug: around-the-world
     description: 'My friends love me! :)'
     num_items: '28'
-    num_views: '1468'
+    num_public_items: '28'
+    num_views: '1494'
     num_comments: '3'
     num_ratings: '0'
     score: '0'
@@ -142,16 +157,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-13 11:39:30'
-    updated_at: '2012-10-28 14:07:38'
+    updated_at: '2012-12-08 07:42:50'
+    descendant_class: CollectorCollection
   Collection_880:
     graph_id: '10328'
-    collection_category_id: CollectionCategory_50
+    collection_category_id: '50'
     content_category_id: ContentCategory_1713
     name: Miscellaneous
     slug: miscellaneous-1
     description: 'fairy, dancer, strange items...'
     num_items: '10'
-    num_views: '145716'
+    num_public_items: '10'
+    num_views: '145936'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -160,16 +177,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-13 12:52:44'
-    updated_at: '2012-10-30 17:28:47'
+    updated_at: '2012-12-12 12:52:03'
+    descendant_class: CollectorCollection
   Collection_882:
     graph_id: '11380'
-    collection_category_id: CollectionCategory_50
+    collection_category_id: '50'
     content_category_id: ContentCategory_1223
     name: 'Disney Snowglobes'
     slug: disney-snowglobes
     description: '...fairy tales...'
     num_items: '21'
-    num_views: '2392'
+    num_public_items: '21'
+    num_views: '2422'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -178,16 +197,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-13 13:56:00'
-    updated_at: '2012-10-30 19:06:34'
+    updated_at: '2012-12-09 17:45:24'
+    descendant_class: CollectorCollection
   Collection_1021:
     graph_id: '11849'
-    collection_category_id: CollectionCategory_757
+    collection_category_id: '757'
     content_category_id: ContentCategory_1622
     name: 'Theodore Roosevelt campaign items'
     slug: theodore-roosevelt-campaign-items
     description: 'Campaign buttons, ribbons, etc.'
     num_items: '57'
-    num_views: '4735'
+    num_public_items: '56'
+    num_views: '4896'
     num_comments: '4'
     num_ratings: '0'
     score: '0'
@@ -196,16 +217,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-02-05 22:09:17'
-    updated_at: '2012-10-30 15:25:27'
+    updated_at: '2012-12-12 08:27:55'
+    descendant_class: CollectorCollection
   Collection_1290:
     graph_id: '11743'
-    collection_category_id: CollectionCategory_330
+    collection_category_id: '330'
     content_category_id: ContentCategory_1255
     name: 'The Museum UnCut Funk Movie Poster  Collection'
     slug: the-museum-uncut-funk-movie-poster-collection
     description: 'The collection includes a small sample of Italian movie posters from the 1970''s Blaxploitation film genre. To view the entire collection of The Museum of Uncut Funk please visit www.museumofuncutfunk.com'
     num_items: '10'
-    num_views: '1878'
+    num_public_items: '10'
+    num_views: '1894'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -214,16 +237,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-03 19:28:40'
-    updated_at: '2012-10-29 22:53:35'
+    updated_at: '2012-12-08 21:52:53'
+    descendant_class: CollectorCollection
   Collection_1299:
     graph_id: '11894'
-    collection_category_id: CollectionCategory_115
+    collection_category_id: '115'
     content_category_id: ContentCategory_117
     name: 'Black Animation'
     slug: black-animation
     description: 'The Museum of UnCut Funk Collection includes original production drawings and cels and limited edition cels from the 1970’s,1980’s and 1990’s. Please visit The Museum of UnCut Funk to see more of our collection of Black animation and read our animation blogs.'
     num_items: '3'
-    num_views: '1176'
+    num_public_items: '3'
+    num_views: '1184'
     num_comments: '2'
     num_ratings: '0'
     score: '0'
@@ -232,16 +257,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:07:13'
-    updated_at: '2012-10-30 17:45:03'
+    updated_at: '2012-12-02 11:31:18'
+    descendant_class: CollectorCollection
   Collection_1300:
     graph_id: '12076'
-    collection_category_id: CollectionCategory_250
+    collection_category_id: '250'
     content_category_id: ContentCategory_521
     name: 'Black Comic Books and Graphic Novels'
     slug: black-comic-books-and-graphic-novels
     description: 'The Museum of UnCut Funk Collection includes Luke Cage, Storm and other comic books from the 1960‘s, 1970’s and early 1980’s. Please visit to see more of our collection at The Museum of UnCut Funk. www.museumofuncutfunk.com'
     num_items: '3'
-    num_views: '1026'
+    num_public_items: '3'
+    num_views: '1032'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -250,16 +277,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:24:47'
-    updated_at: '2012-10-30 15:40:30'
+    updated_at: '2012-11-30 23:51:05'
+    descendant_class: CollectorCollection
   Collection_1301:
     graph_id: '11703'
-    collection_category_id: CollectionCategory_52
+    collection_category_id: '52'
     content_category_id: ContentCategory_882
     name: 'Blacks on Stamps '
     slug: blacks-on-stamps
     description: 'The Museum of UnCut Funk Collection includes The Black Heritage Series from the USPS and other stamps featuring Blacks on them. Please visit The Museum of UnCut Funk to read our stamp collecting blog.'
     num_items: '1'
-    num_views: '655'
+    num_public_items: '1'
+    num_views: '667'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -268,16 +297,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:59:35'
-    updated_at: '2012-10-30 15:40:50'
+    updated_at: '2012-12-07 14:29:04'
+    descendant_class: CollectorCollection
   Collection_1302:
     graph_id: '10820'
-    collection_category_id: CollectionCategory_15
+    collection_category_id: '15'
     content_category_id: ContentCategory_778
     name: 'Blacks on Currency and Gold Medals'
     slug: blacks-on-currency-and-gold-medals
     description: 'The Museum of UnCut Funk Collection includes a collection of gold coin and medal featuring Blacks. Please visit The Museum of UnCut Funk at www.museumofuncutfunk.com to read our blogs about our collection. '
     num_items: '3'
-    num_views: '1040'
+    num_public_items: '3'
+    num_views: '1049'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -286,16 +317,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:46:56'
-    updated_at: '2012-10-30 15:41:11'
+    updated_at: '2012-12-02 03:30:12'
+    descendant_class: CollectorCollection
   Collection_1372:
     graph_id: '11706'
-    collection_category_id: CollectionCategory_2
+    collection_category_id: '2'
     content_category_id: ContentCategory_57
     name: 'Blacks on Crate Labels'
     slug: blacks-on-crate-labels
     description: "I collect crate labels from the pre-civil rights era. While these labels are racist and offensive, I appreciate them for their artwork. I also believe that they are important historical artifacts to preserve as a reminder that this type of product labeling should never be tolerated again.\r\n\r\nBelow is a small sampling of the Original Black Crate Labels that are a part of The Museum of UnCut Funk Collection."
     num_items: '6'
-    num_views: '941'
+    num_public_items: '6'
+    num_views: '946'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -304,16 +337,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-24 23:45:06'
-    updated_at: '2012-10-30 15:47:51'
+    updated_at: '2012-12-01 22:21:59'
+    descendant_class: CollectorCollection
   Collection_1383:
     graph_id: '10903'
-    collection_category_id: CollectionCategory_16
+    collection_category_id: '16'
     content_category_id: ContentCategory_117
     name: 'Golden Legacy Series of Black History Comic Books'
     slug: golden-legacy-series-of-black-history-comic-books
     description: 'Bertram A Fitzgerald is the publisher of the Golden Legacy Series of Black History Comic Books. During the decade between 1966 and 1976 he acted as editor and publisher for the series and wrote almost half the books. To read more about the series please visit The Museum of UnCut Funk blog Can''t Get Enough...Og That Funky Stuff at www.museumofuncutfunk.com'
     num_items: '16'
-    num_views: '3028'
+    num_public_items: '16'
+    num_views: '3112'
     num_comments: '9'
     num_ratings: '0'
     score: '0'
@@ -322,16 +357,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-29 00:08:26'
-    updated_at: '2012-10-29 13:55:01'
+    updated_at: '2012-12-12 01:45:55'
+    descendant_class: CollectorCollection
   Collection_1395:
     graph_id: '11308'
-    collection_category_id: CollectionCategory_2
+    collection_category_id: '2'
     content_category_id: ContentCategory_55
     name: 'Black Fashion Ads'
     slug: black-fashion-ads
     description: 'From the archives of The Museum of UnCut Funk Flagg Brothers Couture. For a trip down memory lane in funky mens fashion please visit www.museumofuncutfunk.com and read our Can''t Get Enough of That Funky Stuff blog.'
     num_items: '7'
-    num_views: '4339'
+    num_public_items: '7'
+    num_views: '4435'
     num_comments: '24'
     num_ratings: '0'
     score: '0'
@@ -340,16 +377,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-30 11:07:21'
-    updated_at: '2012-10-30 16:27:05'
+    updated_at: '2012-12-11 20:23:03'
+    descendant_class: CollectorCollection
   Collection_1402:
     graph_id: '11161'
-    collection_category_id: CollectionCategory_2
+    collection_category_id: '2'
     content_category_id: ContentCategory_1856
     name: 'Broadway in Black'
     slug: broadway-in-black
     description: "Please visit www.museumofuncutfunk.com and read our Can't Get Enough of That Funky Stuff blog on Broadway in Black.\r\n\r\n"
     num_items: '5'
-    num_views: '1211'
+    num_public_items: '5'
+    num_views: '1230'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -358,16 +397,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-31 17:06:15'
-    updated_at: '2012-10-30 15:08:21'
+    updated_at: '2012-12-11 04:31:50'
+    descendant_class: CollectorCollection
   Collection_1452:
     graph_id: '10601'
-    collection_category_id: CollectionCategory_2
+    collection_category_id: '2'
     content_category_id: ContentCategory_2369
     name: 'Vintage Rhum Labels'
     slug: vintage-rhum-labels
     description: "The Museum of UnCut Funk has a small collection of vintage rum labels. The Curators favorite labels are the old French Rhum labels from the early nineteen hundreds. These often have Black people of West Indian or African descent, usually accompanied by poorly spelt English words translated from French.\r\n\r\nTo see more of the Curators collection please visit The Museum of UnCut Funk at www.museumofuncutfunk.com"
     num_items: '5'
-    num_views: '1638'
+    num_public_items: '5'
+    num_views: '1670'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -376,16 +417,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-06-14 14:29:32'
-    updated_at: '2012-10-30 18:38:20'
+    updated_at: '2012-12-07 03:35:16'
+    descendant_class: CollectorCollection
   Collection_1506:
     graph_id: '11786'
-    collection_category_id: CollectionCategory_250
+    collection_category_id: '250'
     content_category_id: ContentCategory_521
     name: 'Spoof Comics Presents Soul Trek'
     slug: spoof-comics-presents-soul-trek
     description: "Spoof Comics presents SoulTrek, a combination of Soul Train and Star Trek. Say What??? Okay, maybe not the best comic, but what a brilliant idea for Spoof comic book fans. \r\n\r\nPlease visit The Museum of UnCut Funk and read our Can't Get Enough of That Funky Stuff Blog for more of Spoof Comics.\r\nwww.funkystuffblog.com\r\n\r\nPlease visit The Museum of UnCut Funk and read our Can't Get Enough of That Funky Stuff Blog for more of Spoof Comics.\r\nwww.funkystuffblog.com"
     num_items: '2'
-    num_views: '870'
+    num_public_items: '2'
+    num_views: '881'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -394,16 +437,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-06-22 18:16:18'
-    updated_at: '2012-10-30 16:01:09'
+    updated_at: '2012-12-09 17:27:55'
+    descendant_class: CollectorCollection
   Collection_1507:
     graph_id: '11895'
-    collection_category_id: CollectionCategory_16
+    collection_category_id: '16'
     content_category_id: ContentCategory_521
     name: 'GunHawks Vol 1 -7'
     slug: gunhawks-vol-1-7
     description: "The Gunhawks were Kid Cassidy and Reno Jones. As introduced in Gunhawks #1 (1972), Cassidy was the son of a plantation-owning family in the antebellum American South, and Jones was a Black employee of the family who was friends with Cassidy.\r\n\r\nPlease visit The Museum of UnCut Funk and read our Can't Get Enough of That Funky Stuff Blog to see our western comic book collection and read more about racism in the old west. www.funkystuffblog.com"
     num_items: '7'
-    num_views: '864'
+    num_public_items: '7'
+    num_views: '877'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -412,16 +457,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-06-22 18:10:16'
-    updated_at: '2012-10-26 04:20:44'
+    updated_at: '2012-12-08 01:52:03'
+    descendant_class: CollectorCollection
   Collection_1534:
     graph_id: '11691'
-    collection_category_id: CollectionCategory_768
+    collection_category_id: '768'
     content_category_id: ContentCategory_521
     name: 'A Comic Tribute to Michael Jackson '
     slug: a-comic-tribute-to-michael-jackson
     description: "The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator.\r\n\r\nPlease visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com."
     num_items: '12'
-    num_views: '1507'
+    num_public_items: '12'
+    num_views: '1529'
     num_comments: '3'
     num_ratings: '0'
     score: '0'
@@ -430,16 +477,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-23 21:45:53'
-    updated_at: '2012-10-30 16:02:33'
+    updated_at: '2012-12-12 14:48:10'
+    descendant_class: CollectorCollection
   Collection_1554:
     graph_id: '11360'
-    collection_category_id: CollectionCategory_115
+    collection_category_id: '115'
     content_category_id: ContentCategory_120
     name: 'Jackson Five Animation'
     slug: jackson-five-animation
     description: 'The Museum of UnCut Funk Collection includes original production drawings and cels and limited edition cels from the 1970’s,1980’s and 1990’s. The Curator''s collection includes original production cels from The Jackson Five cartoon series. '
     num_items: '5'
-    num_views: '2233'
+    num_public_items: '5'
+    num_views: '2261'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -448,16 +497,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-11 18:34:26'
-    updated_at: '2012-10-30 11:30:18'
+    updated_at: '2012-12-11 13:31:39'
+    descendant_class: CollectorCollection
   Collection_1598:
     graph_id: '11976'
-    collection_category_id: CollectionCategory_23
+    collection_category_id: '23'
     content_category_id: ContentCategory_3431
     name: 'UnCut Funk Board Games'
     slug: uncut-funk-board-games
     description: 'The Museum of UnCut Funk has a unique collection of 1970''s and 80''s  board games featuring Black characters such as the Harlem Globetrotters, The Jackson Five, Fat Albert and The A-Team. Please visit Can''t Get Enough of That Funky Stuff blog to read more. www.funkystuffblog.com'
     num_items: '3'
-    num_views: '1103'
+    num_public_items: '3'
+    num_views: '1110'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -466,16 +517,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-23 22:34:33'
-    updated_at: '2012-10-30 17:45:11'
+    updated_at: '2012-11-28 18:55:48'
+    descendant_class: CollectorCollection
   Collection_1681:
     graph_id: '10478'
-    collection_category_id: CollectionCategory_250
+    collection_category_id: '250'
     content_category_id: ContentCategory_665
     name: 'Crazy Magazine '
     slug: crazy-magazine
     description: "For a short time in the early 1970's, Crazy magazine, a competitor of Mad and Cracked magazines was published by Marvel Comics. During this period Crazy magazine payed tribute to many Black celebrities in the area of film, music and television.\r\nPlease visit The Museum of UnCut Funk blog Can't Get Enough of That Funky Stuff blog to read more. www.funkystuffblog.com.\r\n"
     num_items: '2'
-    num_views: '765'
+    num_public_items: '2'
+    num_views: '770'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -484,16 +537,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-08-22 11:17:46'
-    updated_at: '2012-10-29 21:19:31'
+    updated_at: '2012-12-03 17:34:48'
+    descendant_class: CollectorCollection
   Collection_1683:
     graph_id: '10295'
-    collection_category_id: CollectionCategory_250
+    collection_category_id: '250'
     content_category_id: ContentCategory_576
     name: 'Lois Lane #106'
     slug: lois-lane-106
     description: '?I am Curious (Black)” the first story in Superman’s Girlfriend Lois Lane #106. The Museum of UnCut Funk has acquired this comic book to our comic book collection. Please visit the Can''t Get Enough of that Stuff blog to read more. www.funkystuffblog.com'
     num_items: '2'
-    num_views: '1035'
+    num_public_items: '2'
+    num_views: '1048'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -502,16 +557,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-08-22 11:45:33'
-    updated_at: '2012-10-25 20:25:44'
+    updated_at: '2012-12-03 08:11:04'
+    descendant_class: CollectorCollection
   Collection_1710:
     graph_id: '11654'
-    collection_category_id: CollectionCategory_115
+    collection_category_id: '115'
     content_category_id: ContentCategory_117
     name: 'The Censored Eleven at The Museum of UnCut Funk'
     slug: the-censored-eleven-at-the-museum-of-uncut-funk
     description: 'The Museum of UnCut Funk has a unique collection of Black animation. Within that collection we have acquired Publicity Stills from the "Censored Eleven" cartoons. '
     num_items: '2'
-    num_views: '896'
+    num_public_items: '2'
+    num_views: '900'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -520,16 +577,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-08-26 10:28:03'
-    updated_at: '2012-10-26 06:30:31'
+    updated_at: '2012-11-28 21:04:41'
+    descendant_class: CollectorCollection
   Collection_1839:
     graph_id: '11171'
-    collection_category_id: CollectionCategory_115
+    collection_category_id: '115'
     content_category_id: ContentCategory_117
     name: 'Robert Balser and The Museum of UnCut Funk'
     slug: robert-balser-and-the-museum-of-uncut-funk
     description: 'The Museum Of UnCut Funk presents our interview with Robert Balser, Supervising Director of The Jackson Five Cartoon. Bob talks to us about his illustrious career, and in particular his involvement with The Jackson Five Cartoon and how important it was to create a positive animated series for Black children during the 1970''s.'
     num_items: '5'
-    num_views: '666'
+    num_public_items: '5'
+    num_views: '679'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -538,16 +597,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-11-28 20:42:09'
-    updated_at: '2012-10-26 07:15:39'
+    updated_at: '2012-12-10 00:27:58'
+    descendant_class: CollectorCollection
   Collection_1870:
     graph_id: '10495'
-    collection_category_id: CollectionCategory_115
+    collection_category_id: '115'
     content_category_id: ContentCategory_117
     name: 'The Museum of UnCut Funk Collection '
     slug: the-museum-of-uncut-funk-collection
     description: 'The Museum of UnCut Funk Collection includes original production cels and drawings and limited edition cels from a turning point in cartoon history where Black and White animators created positive Black characters and Black stories for all to enjoy, including: Fat Albert And The Cosby Kids; The Jackson 5ive; The Harlem Globetrotters; Valerie – Josie and The Pussy Cats; Lt. Uhuru – Star Trek Animated Series; Muhammad Ali – I Am The Greatest; Billy Jo Jive – Sesame Street; Verb: That’s What’s Happening – School House Rock and Franklin – Peanuts. Please visit www.museumofuncutfunk.com to view the film on black animation and the collection.'
     num_items: '4'
-    num_views: '774'
+    num_public_items: '4'
+    num_views: '778'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -556,16 +617,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-11-28 21:08:52'
-    updated_at: '2012-10-26 12:39:53'
+    updated_at: '2012-11-29 01:20:25'
+    descendant_class: CollectorCollection
   Collection_1892:
     graph_id: '11276'
-    collection_category_id: CollectionCategory_115
+    collection_category_id: '115'
     content_category_id: ContentCategory_120
     name: 'Jackson Five Model Sheets'
     slug: jackson-five-model-sheets
     description: 'Original Jack Davis art from The Jackson Five series, shared with The Museum of UnCut Funk by Robert Balser from his collection.'
     num_items: '6'
-    num_views: '1676'
+    num_public_items: '6'
+    num_views: '1694'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -574,16 +637,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-12-07 20:50:51'
-    updated_at: '2012-10-30 10:08:51'
+    updated_at: '2012-12-11 13:30:51'
+    descendant_class: CollectorCollection
   Collection_2373:
     graph_id: '11929'
-    collection_category_id: CollectionCategory_42
+    collection_category_id: '42'
     content_category_id: ContentCategory_243
     name: 'Houston Freeburg Collection'
     slug: houston-freeburg-collection
     description: 'Original sixties rock concert posters and vintage black light posters from the psychedelic era. Includes complete sets of Bill Graham Fillmore West and Chet Helms'' Family Dog, as well as Art of Rock, Grande Ballroom, Neon Rose, Hapshash, and others. Also, probably the world''s largest private collection of vintage black light posters. Hundreds and hundreds of quality pieces which will take you on a trip back in time. Other memorabilia include signed LP albums by Jimi Hendrix, the Beatles, and the Rolling Stones, original movie promotional one sheets, concert photos, autographs, and more. Check it out.'
     num_items: '139'
-    num_views: '1967'
+    num_public_items: '139'
+    num_views: '2026'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -592,16 +657,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-09-12 12:15:51'
-    updated_at: '2012-10-29 22:47:20'
+    updated_at: '2012-12-11 08:49:16'
+    descendant_class: CollectorCollection
   Collection_2395:
     graph_id: '12301'
-    collection_category_id: CollectionCategory_677
+    collection_category_id: '677'
     content_category_id: ContentCategory_3502
     name: 'My Many Rubber Ducks'
     slug: my-many-rubber-ducks
     description: 'These are the pictures of my many rubber friends, I hope you love them as much as I do.'
     num_items: '10'
-    num_views: '502'
+    num_public_items: '10'
+    num_views: '503'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -610,16 +677,18 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-09-28 21:01:24'
-    updated_at: '2012-10-26 19:27:42'
+    updated_at: '2012-11-26 17:32:13'
+    descendant_class: CollectorCollection
   Collection_2973:
     graph_id: '12244'
-    collection_category_id: CollectionCategory_551
+    collection_category_id: '551'
     content_category_id: ContentCategory_1435
     name: 'Vintage Hull Magnolia Matte Double Handle Vase 12 1/2'
     slug: vintage-hull-magnolia-matte-double-handle-vase-12-1-2
     description: "Vintage Hull Magnolia Matte Finish Double Handle Vase\n\nMaker: Hull 17-121\n\nMeasures: 5 1/2 x 5 x 12 1/2 inches....widest part is 8 inches\n\nOriginal Black Label is on the inside of the Vase...\n\nCondition: Near MINT...there is a TINY chip in the glaze on the left side of the vase handle at the bottom tip... wouldn't notice until i would point it out to you... fine amount of crazing found... beautiful colors... pink, blue and yellow..\n\n "
     num_items: '1'
-    num_views: '312'
+    num_public_items: '1'
+    num_views: '354'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -628,7 +697,8 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2011-08-24 20:06:13'
-    updated_at: '2012-10-30 17:04:08'
+    updated_at: '2012-12-11 11:14:23'
+    descendant_class: CollectorCollection
   Collection_3329:
     graph_id: '22316'
     content_category_id: ContentCategory_1138
@@ -636,7 +706,8 @@ Collection:
     slug: black-animation-1
     description: ''
     num_items: '16'
-    num_views: '68'
+    num_public_items: '16'
+    num_views: '83'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -645,7 +716,8 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-07-06 10:13:09'
-    updated_at: '2012-10-26 23:55:05'
+    updated_at: '2012-12-11 13:30:31'
+    descendant_class: CollectorCollection
   Collection_3330:
     graph_id: '22346'
     content_category_id: ContentCategory_521
@@ -653,7 +725,8 @@ Collection:
     slug: barack-obama-comic-book-collection
     description: '<span>I am pleased to announce that The Museum of UnCut Funk is doing it’s part to collect, archive and preserve (however tactful or tasteless they are) the comic book history of the first Black President of the United States.<br />http://museumofuncutfunk.com/2011/10/06/barack-obama-comic-book-exhibition/</span>'
     num_items: '7'
-    num_views: '143'
+    num_public_items: '7'
+    num_views: '184'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -662,32 +735,36 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-07-06 11:12:04'
-    updated_at: '2012-10-30 17:18:37'
+    updated_at: '2012-12-10 00:03:25'
+    descendant_class: CollectorCollection
   Collection_3930:
     graph_id: '48211'
     content_category_id: ContentCategory_402
     name: 'Poptart''s Items for Sale'
     slug: poptarts-items-for-sale
-    description: ''
-    num_items: '3'
-    num_views: '55'
+    description: 'Items for sale.<br />'
+    num_items: '4'
+    num_public_items: '4'
+    num_views: '76'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
-    is_public: '0'
+    is_public: '1'
     is_featured: '0'
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-09-10 04:33:23'
-    updated_at: '2012-10-30 18:59:28'
+    updated_at: '2012-12-06 17:49:46'
+    descendant_class: CollectorCollection
   Collection_4046:
     graph_id: '50617'
     content_category_id: ContentCategory_1427
     name: 'Kistchy Vintage Animals With Bowties'
     slug: kistchy-vintage-animals-with-bowties
     description: 'Vintage ceramic animal figurines -- each wearing red bowties with white polka dots!<br />'
-    num_items: '2'
-    num_views: '60'
+    num_items: '3'
+    num_public_items: '3'
+    num_views: '92'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -696,7 +773,8 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-09-19 18:46:31'
-    updated_at: '2012-10-30 13:05:17'
+    updated_at: '2012-12-11 17:39:55'
+    descendant_class: CollectorCollection
   Collection_4047:
     graph_id: '50621'
     content_category_id: ContentCategory_1427
@@ -704,7 +782,8 @@ Collection:
     slug: kitschy-animals-with-fur
     description: 'Vintage ceramic animals with fur.<br />'
     num_items: '5'
-    num_views: '56'
+    num_public_items: '5'
+    num_views: '91'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -713,4 +792,62 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-09-19 18:56:21'
-    updated_at: '2012-10-30 14:33:54'
+    updated_at: '2012-12-12 03:43:13'
+    descendant_class: CollectorCollection
+  Collection_4400:
+    graph_id: '58352'
+    content_category_id: ContentCategory_3503
+    name: 'Vintage Rubber Squeaky Toys'
+    slug: vintage-rubber-squeaky-toys
+    description: 'Vintage and retro rubber squeaker toys.<br />'
+    num_items: '5'
+    num_public_items: '5'
+    num_views: '70'
+    num_comments: '0'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    created_at: '2012-11-05 04:29:14'
+    updated_at: '2012-12-09 04:16:38'
+    descendant_class: CollectorCollection
+  Collection_4401:
+    graph_id: '58382'
+    content_category_id: ContentCategory_3411
+    name: 'Vintage Rubber Faced - Headed Stuffed Animals'
+    slug: vintage-rubber-faced-headed-stuffed-animals
+    description: 'Vintage and retro stuffed animals with rubber heads and/or rubber masked faces.<br />'
+    num_items: '2'
+    num_public_items: '2'
+    num_views: '66'
+    num_comments: '0'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    created_at: '2012-11-05 06:05:55'
+    updated_at: '2012-12-10 11:39:22'
+    descendant_class: CollectorCollection
+  Collection_4402:
+    graph_id: '58386'
+    content_category_id: ContentCategory_3411
+    name: 'Vintage Stuffed Animal Toys'
+    slug: vintage-stuffed-animal-toys
+    description: 'Traditional, cute and kitschy vintage and retro stuffed animals.<br /><br />'
+    num_items: '2'
+    num_public_items: '2'
+    num_views: '58'
+    num_comments: '0'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    created_at: '2012-11-05 06:15:05'
+    updated_at: '2012-12-08 21:53:26'
+    descendant_class: CollectorCollection

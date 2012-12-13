@@ -199,3 +199,107 @@ iceModelSpamControl:
     is_throttled: '0'
     created_at: '2012-10-19 15:28:37'
     updated_at: '2012-10-19 15:28:37'
+  iceModelSpamControl_45:
+    field: '2'
+    value: 173.45.112.57
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-03 19:31:16'
+    updated_at: '2012-11-03 19:31:16'
+  iceModelSpamControl_46:
+    field: '2'
+    value: 120.43.20.250
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-03 19:31:36'
+    updated_at: '2012-11-03 19:31:36'
+  iceModelSpamControl_47:
+    field: '2'
+    value: 119.36.138.131
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-03 19:32:50'
+    updated_at: '2012-11-03 19:32:50'
+  iceModelSpamControl_48:
+    field: '2'
+    value: 175.42.81.187
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-03 19:33:05'
+    updated_at: '2012-11-03 19:33:05'
+  iceModelSpamControl_49:
+    field: '2'
+    value: 68.36.33.220
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-09 13:44:01'
+    updated_at: '2012-11-09 13:44:01'
+  iceModelSpamControl_50:
+    field: '2'
+    value: 184.154.51.121
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-09 13:44:38'
+    updated_at: '2012-11-09 13:44:38'
+  iceModelSpamControl_51:
+    field: '2'
+    value: 175.44.21.157
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-09 13:45:40'
+    updated_at: '2012-11-09 13:45:40'
+  iceModelSpamControl_52:
+    field: '2'
+    value: 58.248.73.200
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-15 17:29:58'
+    updated_at: '2012-11-15 17:29:58'
+  iceModelSpamControl_53:
+    field: '0'
+    value: xr95271@gmail.com
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-15 17:30:05'
+    updated_at: '2012-11-15 17:30:05'
+  iceModelSpamControl_55:
+    field: '0'
+    value: refafeverail@gsmadil.com
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-15 17:30:21'
+    updated_at: '2012-11-15 17:30:21'
+  iceModelSpamControl_56:
+    field: '2'
+    value: 71.80.18.122
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-11-15 17:30:21'
+    updated_at: '2012-11-15 17:30:21'
+  iceModelSpamControl_57:
+    field: '0'
+    value: jamonptl@hotmail.com
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-12-10 13:03:21'
+    updated_at: '2012-12-10 13:03:21'
+  iceModelSpamControl_58:
+    field: '2'
+    value: 115.51.223.140
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-12-10 13:03:21'
+    updated_at: '2012-12-10 13:03:21'

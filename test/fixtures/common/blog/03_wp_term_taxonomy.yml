@@ -16,7 +16,7 @@ wpTermTaxonomy:
     taxonomy: category
     description: ''
     parent: '0'
-    count: '1295'
+    count: '1299'
   wpTermTaxonomy_7:
     term_id: wpTerm_7
     taxonomy: category
@@ -34,19 +34,19 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '121'
+    count: '125'
   wpTermTaxonomy_32:
     term_id: wpTerm_32
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '154'
+    count: '155'
   wpTermTaxonomy_59:
     term_id: wpTerm_59
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '49'
+    count: '50'
   wpTermTaxonomy_143:
     term_id: wpTerm_143
     taxonomy: post_tag
@@ -58,19 +58,19 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '38'
+    count: '40'
   wpTermTaxonomy_213:
     term_id: wpTerm_213
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '99'
+    count: '103'
   wpTermTaxonomy_276:
     term_id: wpTerm_276
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '71'
+    count: '73'
   wpTermTaxonomy_436:
     term_id: wpTerm_436
     taxonomy: post_tag
@@ -88,19 +88,19 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '7'
+    count: '8'
   wpTermTaxonomy_667:
     term_id: wpTerm_667
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '38'
+    count: '40'
   wpTermTaxonomy_672:
     term_id: wpTerm_672
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '12'
+    count: '13'
   wpTermTaxonomy_691:
     term_id: wpTerm_691
     taxonomy: post_tag
@@ -118,7 +118,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '10'
+    count: '12'
   wpTermTaxonomy_1344:
     term_id: wpTerm_1343
     taxonomy: post_tag
@@ -148,13 +148,13 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '10'
+    count: '11'
   wpTermTaxonomy_1796:
     term_id: wpTerm_1795
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '114'
+    count: '117'
   wpTermTaxonomy_1831:
     term_id: wpTerm_1830
     taxonomy: post_tag
@@ -184,7 +184,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '15'
+    count: '17'
   wpTermTaxonomy_2662:
     term_id: wpTerm_2660
     taxonomy: post_tag
@@ -238,7 +238,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '18'
+    count: '19'
   wpTermTaxonomy_3922:
     term_id: wpTerm_3918
     taxonomy: post_tag
@@ -274,13 +274,13 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '10'
+    count: '11'
   wpTermTaxonomy_4658:
     term_id: wpTerm_4653
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '16'
+    count: '17'
   wpTermTaxonomy_4869:
     term_id: wpTerm_4864
     taxonomy: category
@@ -298,13 +298,13 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '5'
+    count: '6'
   wpTermTaxonomy_5133:
     term_id: wpTerm_5128
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '4'
+    count: '5'
   wpTermTaxonomy_5161:
     term_id: wpTerm_5156
     taxonomy: post_tag
@@ -340,7 +340,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '23'
+    count: '25'
   wpTermTaxonomy_5167:
     term_id: wpTerm_5162
     taxonomy: post_tag
@@ -400,13 +400,13 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '23'
+    count: '25'
   wpTermTaxonomy_5177:
     term_id: wpTerm_5172
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '16'
+    count: '19'
   wpTermTaxonomy_5178:
     term_id: wpTerm_5173
     taxonomy: post_tag
@@ -424,7 +424,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '24'
+    count: '28'
   wpTermTaxonomy_5181:
     term_id: wpTerm_5176
     taxonomy: post_tag

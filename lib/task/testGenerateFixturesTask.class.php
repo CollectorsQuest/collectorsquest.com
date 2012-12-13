@@ -198,7 +198,14 @@ class testGenerateFixturesTask extends sfBaseTask
       $class = sfInflector::classify($table);
       $skip_classes = array(
         'Crontab', 'JobQueue', 'JobRun', 'CollectibleForSale',
-        'PropelMigration', 'Xhprof', 'Queue', 'Message', 'iceModelGeoCountry'
+        'PropelMigration', 'Xhprof', 'Queue', 'Message',
+
+        // Legacy classes
+        'CollectionCategory', 'CollectionCategoryField', 'CollectorInterview',
+        'CustomValue', 'CustomField', 'Featured', 'InterviewQuestion',
+        'NewsletterSignup', 'Playlist', 'ResourceCategory', 'ResourceEntry',
+        'Trivia', 'Video', 'VideoCollectionCategory', 'VideoPlaylist',
+        ''
       );
 
       // Temporary skip these tables
@@ -233,6 +240,15 @@ class testGenerateFixturesTask extends sfBaseTask
         case 'SpamControl':
           $class = 'iceModelSpamControl';
           break;
+        case 'GeoCountry':
+          $class = 'iceModelGeoCountry';
+          break;
+        case 'GeoRegion':
+          $class = 'iceModelGeoRegion';
+          break;
+        case 'Multimedia':
+          $class = 'iceModelMultimedia';
+          break;
       }
 
       $this->logSection('propel', 'Dumping table '. $table .'...');
@@ -262,6 +278,13 @@ class testGenerateFixturesTask extends sfBaseTask
       if (in_array($class, $skip_classes))
       {
         continue;
+      }
+
+      switch ($class)
+      {
+        case 'MultimediaArchive':
+          $class = 'iceModelMultimediaArchive';
+          break;
       }
 
       // Exception for multimedia_archive table
@@ -305,13 +328,10 @@ class testGenerateFixturesTask extends sfBaseTask
      */
     $renames = array(
       'collector' => '01_collector',
-      'collection_category' => '01_collection_category',
       'content_category' => '01_content_category',
       'collection' => '02_collection',
       'collector_collection' => '03_collector_collection',
       'collectible' => '04_collectible',
-      'custom_field' => '05_custom_field',
-      'custom_value' => '05_custom_value',
       'sf_guard_user' => '06_sf_guard_user',
       'sf_guard_group' => '06_sf_guard_group',
       'promotion' => '08_promotion',

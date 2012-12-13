@@ -37,15 +37,15 @@ CollectorExtraProperty:
     collector_id: Collector_59
   CollectorExtraProperty_3113:
     property_name: VISITOR_INFO_LAST_VISIT_AT
-    property_value: '2012-10-28 13:46:00'
+    property_value: '2012-12-11 20:13:14'
     collector_id: Collector_59
   CollectorExtraProperty_3114:
     property_name: VISITOR_INFO_NUM_VISITS
-    property_value: '105493911890'
+    property_value: '421975647583'
     collector_id: Collector_59
   CollectorExtraProperty_3115:
     property_name: VISITOR_INFO_NUM_PAGE_VIEWS
-    property_value: '5205614065908'
+    property_value: '20822456264075'
     collector_id: Collector_59
   CollectorExtraProperty_18281:
     property_name: PREFERENCES_SHOW_AGE
@@ -257,7 +257,7 @@ CollectorExtraProperty:
     collector_id: Collector_4295
   CollectorExtraProperty_41888:
     property_name: PREFERENCES_NEWSLETTER
-    property_value: '1'
+    property_value: ''
     collector_id: Collector_4295
   CollectorExtraProperty_41889:
     property_name: NOTIFICATIONS_COMMENT
@@ -395,3 +395,19 @@ CollectorExtraProperty:
     property_name: VISITOR_INFO_LAST_VISIT_AT
     property_value: '2012-10-12 14:20:59'
     collector_id: Collector_4208
+  CollectorExtraProperty_120371:
+    property_name: VISITOR_INFO_FIRST_VISIT_AT
+    property_value: '2012-11-18 12:26:51'
+    collector_id: Collector_644
+  CollectorExtraProperty_120372:
+    property_name: VISITOR_INFO_NUM_VISITS
+    property_value: '4'
+    collector_id: Collector_644
+  CollectorExtraProperty_120373:
+    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
+    property_value: '10'
+    collector_id: Collector_644
+  CollectorExtraProperty_120374:
+    property_name: VISITOR_INFO_LAST_VISIT_AT
+    property_value: '2012-11-18 12:29:50'
+    collector_id: Collector_644

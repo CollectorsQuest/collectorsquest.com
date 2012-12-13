@@ -6950,3 +6950,33 @@ CollectibleArchive:
     is_public: '0'
     updated_at: '2012-10-08 05:09:31'
     created_at: '2012-10-08 05:09:11'
+  CollectibleArchive_96092:
+    id: '96092'
+    graph_id: '58335'
+    collector_id: '59'
+    name: Isisbackcover
+    slug: isisbackcover
+    description: ''
+    batch_hash: 1635eaa192bda0a4d57fceba98967853
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-11-05 01:38:43'
+    created_at: '2012-11-05 01:38:29'
+  CollectibleArchive_96147:
+    id: '96147'
+    graph_id: '58389'
+    collector_id: '59'
+    name: Vintaehingedstuffedblackpoodle
+    slug: vintaehingedstuffedblackpoodle
+    description: ''
+    batch_hash: af76e3dbb9b647809d8e5d42e3762317
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-11-05 07:50:26'
+    created_at: '2012-11-05 07:50:16'
