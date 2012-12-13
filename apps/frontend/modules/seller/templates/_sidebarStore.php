@@ -9,7 +9,8 @@
  * @var $store_refunds              string
  * @var $store_return_policy        string
  * @var $store_additional_policies  string
- * @var  $sf_user                   cqFrontendUser
+ * @var $sf_user                    cqFrontendUser
+ * @var $sf_request                 cqWebRequest
  */
 ?>
 
@@ -76,6 +77,7 @@
         </li>
       </ul>
     </div>
+    <?php if (!$sf_request->isMobileBrowser()): ?>
     <div id="social-sharing" class="pull-right share">
       <?php
         include_partial(
@@ -88,6 +90,7 @@
         );
       ?>
     </div>
+    <?php endif; ?>
   </div>
 </div>
 

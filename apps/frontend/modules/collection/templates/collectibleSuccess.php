@@ -1,6 +1,7 @@
 <?php
 /**
- * @var  $sf_user  cqFrontendUser
+ * @var  $sf_user      cqFrontendUser
+ * @var  $sf_request   cqWebRequest
  *
  * @var  $collector    Collector
  * @var  $collection   Collection
@@ -246,6 +247,7 @@
         //-->
       </ul>
     </div>
+    <?php if (!$sf_request->isMobileBrowser()): ?>
     <div id="social-sharing" class="pull-right share">
       <?php
         include_partial(
@@ -258,6 +260,7 @@
         );
       ?>
     </div>
+     <?php endif; ?>
   </div>
 </div>
 

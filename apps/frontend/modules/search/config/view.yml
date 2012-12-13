@@ -1,5 +1,5 @@
 all:
-  stylesheets: [frontend/modules/search.css]
+  stylesheets: [frontend/modules/search.css, -frontend/responsive.css]
   components:
     sidebar_300: [global, sidebar300]
 
