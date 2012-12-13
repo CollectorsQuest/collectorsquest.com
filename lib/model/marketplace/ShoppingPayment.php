@@ -4,6 +4,9 @@ require 'lib/model/marketplace/om/BaseShoppingPayment.php';
 
 class ShoppingPayment extends BaseShoppingPayment
 {
+  /* @var SellerPromotion */
+  protected $aSellerPromotion;
+
   /**
    * @return null|string
    */
@@ -55,6 +58,8 @@ class ShoppingPayment extends BaseShoppingPayment
     $this->setAmountShippingFee($shopping_order->getShippingFeeAmount('integer'));
     $this->setAmountCollectibles($shopping_order->getCollectiblesAmount('integer'));
     $this->setAmountTax($shopping_order->getTaxAmount('integer'));
+    $this->setAmountPromotion($shopping_order->getPromotionAmount());
+    $this->setSellerPromotionId($shopping_order->getSellerPromotionId());
   }
 
   public function getAmountCollectibles($return = 'float')
@@ -113,5 +118,39 @@ class ShoppingPayment extends BaseShoppingPayment
       }
     }
     return $result;
+  }
+
+  public function setAmountPromotion($v)
+  {
+    if (!is_integer($v) && !ctype_digit($v))
+    {
+      $v = bcmul(cqStatic::floatval($v, 3), 100);
+    }
+
+    return parent::setAmountPromotion($v);
+  }
+
+  public function getAmountPromotion($return = 'float')
+  {
+    $amount = parent::getAmountPromotion();
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 3);
+  }
+
+  /**
+   * Get SellerPromotion
+   *
+   * @return SellerPromotion|null
+   */
+  public function getSellerPromotion()
+  {
+    if ($this->aSellerPromotion === null && $this->getSellerPromotionId() != null)
+    {
+      return $this->aSellerPromotion = SellerPromotionQuery::create()->findOneById($this->getSellerPromotionId());
+    }
+    else
+    {
+      return $this->aSellerPromotion;
+    }
   }
 }

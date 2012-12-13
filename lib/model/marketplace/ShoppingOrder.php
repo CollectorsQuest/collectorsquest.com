@@ -119,7 +119,7 @@ class ShoppingOrder extends BaseShoppingOrder
     if ($return === 'integer')
     {
       return array_sum(array(
-        $this->getCollectiblesAmount('integer'),
+        ($this->getCollectiblesAmount('integer') - $this->getPromotionAmount('integer')),
         $this->getTaxAmount('integer', $percentage),
         $this->getShippingFeeAmount('integer')
       ));
@@ -127,8 +127,8 @@ class ShoppingOrder extends BaseShoppingOrder
     else
     {
       return bcadd(
-        bcadd($this->getCollectiblesAmount(), $this->getTaxAmount($return, $percentage), 2),
-        $this->getShippingFeeAmount(), 2
+        bcadd(bcsub($this->getCollectiblesAmount(), $this->getPromotionAmount(), 2),
+        $this->getTaxAmount($return, $percentage), 2), $this->getShippingFeeAmount(), 2
       );
     }
   }
@@ -137,7 +137,7 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     if ($percentage !== null)
     {
-      return round(($this->getCollectiblesAmount($return) / 100) * $percentage, 2);
+      return round((($this->getCollectiblesAmount($return) - $this->getPromotionAmount()) / 100) * $percentage, 2);
     }
     if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
     {
@@ -146,6 +146,48 @@ class ShoppingOrder extends BaseShoppingOrder
     else if ($collectible = $this->getShoppingCartCollectible())
     {
       return $collectible->getTaxAmount($return);
+    }
+
+    return null;
+  }
+
+  public function getPromotionAmount($return = 'float')
+  {
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getAmountPromotion($return);
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getPromotionAmount($return);
+    }
+
+    return null;
+  }
+
+  public function getSellerPromotionId()
+  {
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getSellerPromotionId();
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getSellerPromotionId();
+    }
+
+    return null;
+  }
+
+  public function getSellerPromotion()
+  {
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getSellerPromotion();
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getSellerPromotion();
     }
 
     return null;
@@ -424,24 +466,26 @@ class ShoppingOrder extends BaseShoppingOrder
     {
       $haveTax = true;
     }
-      if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      $tax = $haveTax ? (round((($payment->getAmountCollectibles() - $payment->getAmountPromotion() ) / 100)
+        * $collectible_for_sale->getTaxPercentage(), 2)) : 0;
+      if (!is_integer($tax) && !ctype_digit($tax))
       {
-        $tax = $haveTax ? (round(($payment->getAmountCollectibles() / 100) * $collectible_for_sale->getTaxPercentage(), 2)) : 0;
-        if (!is_integer($tax) && !ctype_digit($tax))
-        {
-          $tax = bcmul(cqStatic::floatval($tax, 2), 100);
-        }
-        $payment
-          ->setAmountTax($tax)
-          ->save();
+        $tax = bcmul(cqStatic::floatval($tax, 2), 100);
       }
-      else if ($cart = $this->getShoppingCartCollectible())
-      {
-        $tax = $haveTax ? (round(($cart->getPriceAmount() / 100) * $collectible_for_sale->getTaxPercentage(), 2)) : 0;
-        $cart
-          ->setTaxAmount($tax)
-          ->save();
-      }
+      $payment
+        ->setAmountTax($tax)
+        ->save();
+    }
+    else if ($cart = $this->getShoppingCartCollectible())
+    {
+      $tax = $haveTax ? (round((($cart->getPriceAmount() - $cart->getPromotionAmount()) / 100)
+        * $collectible_for_sale->getTaxPercentage(), 2)) : 0;
+      $cart
+        ->setTaxAmount($tax)
+        ->save();
+    }
 
   }
 
