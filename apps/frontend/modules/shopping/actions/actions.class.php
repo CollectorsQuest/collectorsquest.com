@@ -118,38 +118,54 @@ class shoppingActions extends cqFrontendActions
     {
       return 'Empty';
     }
+
     /* @var $shopping_cart_collectibles ShoppingCartCollectible[] */
     $shopping_cart_collectibles = $shopping_cart->getShoppingCartCollectibles();
+
     $notices = array();
     foreach ($shopping_cart_collectibles as $shopping_cart_collectible)
     {
       $old_cc = clone $shopping_cart_collectible;
+
       $collectible_for_sale = $shopping_cart_collectible->getCollectibleForSale();
       $shopping_cart_collectible->setPriceAmount($collectible_for_sale->getPriceAmount());
       $shopping_cart_collectible->updateShippingFeeAmountFromCountryCode();
       $shopping_cart_collectible->updateShippingTypeFromCountryCode();
       $shopping_cart_collectible->updateTaxAmount();
+
       if ($old_cc->getPriceAmount() != $shopping_cart_collectible->getPriceAmount())
       {
-        $notices[] = sprintf('We are sorry but the price for "%s" was changed since your last visit!',
-          $shopping_cart_collectible->getName());
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the price for item <strong>"%s"</strong>
+           has changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
         $shopping_cart_collectible->save();
+
         continue;
       }
-      $save = false;
+
       if ($old_cc->getTaxAmount() != $shopping_cart_collectible->getTaxAmount())
       {
-        $notices[] = sprintf('We are sorry but the tax terms for "%s" was changed since your last visit!',
-          $shopping_cart_collectible->getName());
-        $save = true;
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the tax terms for item <strong>"%s"</strong>
+           have changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
       }
       if ($old_cc->getShippingFeeAmount() !== $shopping_cart_collectible->getShippingFeeAmount())
       {
-        $notices[] = sprintf('We are sorry but the shipping terms for "%s" was changed since your last visit!',
-          $shopping_cart_collectible->getName());
-        $save = true;
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the shipping terms for item <strong>"%s"</strong>
+           have changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
       }
-      if ($save)
+
+      if ($shopping_cart_collectible->isModified())
       {
         $shopping_cart_collectible->save();
       }
@@ -157,12 +173,9 @@ class shoppingActions extends cqFrontendActions
 
     if (count($notices))
     {
-      $this->getUser()->setFlash('error',
-        count($notices) == 1
-          ? sprintf('%s <br /> Please check this item at your cart.', $notices[0])
-          : sprintf('%s <br /> Please check this items at your cart.', implode($notices, '<br />')), false
-      );
+      $this->getUser()->setFlash('highlight', implode('<br />', $notices), false);
     }
+
     $this->shopping_cart = $shopping_cart;
     $this->shopping_cart_collectibles = $shopping_cart_collectibles;
 
