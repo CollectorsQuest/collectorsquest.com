@@ -67,7 +67,7 @@
       </div></div>
 
       <div class="hidden" id="promo-options-collector">
-        <?= $form['collector_id']->renderRow(); ?>
+        <?= $form['collector_email']->renderRow(); ?>
       </div>
       <div class="hidden" id="promo-options-expire">
         <?= $form['expire_days']->renderRow(array('class' => 'input-small')); ?>

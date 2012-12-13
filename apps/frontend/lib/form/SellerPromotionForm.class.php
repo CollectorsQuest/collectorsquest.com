@@ -13,7 +13,7 @@ class SellerPromotionForm extends BaseSellerPromotionForm
   {
     $this->useFields(array(
       'promotion_name', 'promotion_code', 'amount_type', 'promotion_desc',
-      'amount', 'quantity', 'collectible_id', 'collector_id',
+      'amount', 'quantity', 'collectible_id',
     ));
 
     $this->validatorSchema['amount'] = new cqValidatorPrice(
@@ -35,9 +35,10 @@ class SellerPromotionForm extends BaseSellerPromotionForm
     $this->widgetSchema['collectible_id']->setOption('criteria', $q);
     $this->validatorSchema['collectible_id']->setOption('criteria', $q);
 
-    $this->widgetSchema['collector_id'] = new sfWidgetFormInput();
-    $this->validatorSchema['collector_id']->setOption('column', 'email');
-    $this->validatorSchema['collector_id']->setOption('required', false);
+    $this->widgetSchema['collector_email'] = new sfWidgetFormInput();
+    $this->validatorSchema['collector_email'] = new sfValidatorPropelChoice(
+      array('model' => 'Collector', 'column' => 'email', 'required' => false)
+    );
 
     $this->widgetSchema['expire_days'] = new sfWidgetFormChoice(
       array('choices' => array('' => 'Unlimited', 1 => 1, 7 => 7, 30 => 30))
@@ -54,7 +55,7 @@ class SellerPromotionForm extends BaseSellerPromotionForm
       'amount' => 'Amount',
       'collectible_id' => 'Collectible',
       'quantity' => 'Propositions quantity',
-      'collector_id' => 'Collector email',
+      'collector_email' => 'Collector email',
     ));
 
     $this->widgetSchema->setHelps(array(
@@ -87,6 +88,16 @@ class SellerPromotionForm extends BaseSellerPromotionForm
     {
       $this->getObject()->setExpiryDate(null);
     }
+  }
+
+  public function updateCollectorEmail($v)
+  {
+    $collector = null;
+    if ($v)
+    {
+      $collector = CollectorQuery::create()->findOneByEmail($v);
+    }
+    $this->getObject()->setCollectorRelatedByCollectorId($collector);
   }
 
   public function validateAmount($validator, $values)
