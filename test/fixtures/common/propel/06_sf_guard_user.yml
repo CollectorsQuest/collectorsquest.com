@@ -1,5 +1,5 @@
-SfGuardUser:
-  SfGuardUser_3:
+sfGuardUser:
+  sfGuardUser_3:
     username: 'http://collectorsquest.com/openid?id=113242502488094107765'
     algorithm: sha1
     salt: b9092afa31afecabe82ff58f5e06a0e2
@@ -8,7 +8,7 @@ SfGuardUser:
     last_login: '2012-12-12 11:24:05'
     is_active: '1'
     is_super_admin: '0'
-  SfGuardUser_4:
+  sfGuardUser_4:
     username: 'http://collectorsquest.com/openid?id=103439943196298811318'
     algorithm: sha1
     salt: e5a2bf53d50b124b938583f91977bcda
@@ -17,7 +17,7 @@ SfGuardUser:
     last_login: '2012-12-12 06:07:56'
     is_active: '1'
     is_super_admin: '0'
-  SfGuardUser_5:
+  sfGuardUser_5:
     username: 'http://collectorsquest.com/openid?id=110524575889695516643'
     algorithm: sha1
     salt: f10aa6f43983466abf6fbf567b4b75da
@@ -26,7 +26,7 @@ SfGuardUser:
     last_login: '2012-12-11 21:11:20'
     is_active: '1'
     is_super_admin: '0'
-  SfGuardUser_6:
+  sfGuardUser_6:
     username: 'http://collectorsquest.com/openid?id=116864780517068238415'
     algorithm: sha1
     salt: 62e978b64789a12fa6729420213bb0f4
@@ -35,7 +35,7 @@ SfGuardUser:
     last_login: '2012-10-26 10:41:35'
     is_active: '1'
     is_super_admin: '0'
-  SfGuardUser_7:
+  sfGuardUser_7:
     username: 'http://collectorsquest.com/openid?id=101412284622327656684'
     algorithm: sha1
     salt: 62e978b64789a12fa6729420213bb0f4
@@ -44,7 +44,7 @@ SfGuardUser:
     last_login: '2012-12-06 13:19:57'
     is_active: '1'
     is_super_admin: '1'
-  SfGuardUser_8:
+  sfGuardUser_8:
     username: 'http://collectorsquest.com/openid?id=102011923512754723415'
     algorithm: sha1
     salt: 62e978b64789a12fa6729420213bb0f4
@@ -53,7 +53,7 @@ SfGuardUser:
     last_login: '2012-12-12 09:55:09'
     is_active: '1'
     is_super_admin: '0'
-  SfGuardUser_9:
+  sfGuardUser_9:
     username: 'http://collectorsquest.com/openid?id=110582688955294065685'
     algorithm: sha1
     salt: 62e978b64789a12fa6729420213bb0f4
@@ -62,7 +62,7 @@ SfGuardUser:
     last_login: '2012-09-12 18:17:18'
     is_active: '1'
     is_super_admin: '0'
-  SfGuardUser_10:
+  sfGuardUser_10:
     username: 'http://collectorsquest.com/openid?id=100175398779143646792'
     algorithm: sha1
     salt: 62e978b64789a12fa6729420213bb0f4
@@ -71,7 +71,7 @@ SfGuardUser:
     last_login: '2012-11-05 17:10:16'
     is_active: '1'
     is_super_admin: '0'
-  SfGuardUser_11:
+  sfGuardUser_11:
     username: 'http://collectorsquest.com/openid?id=102385841247379149019'
     algorithm: sha1
     salt: 62e978b64789a12fa6729420213bb0f4
@@ -80,7 +80,7 @@ SfGuardUser:
     last_login: '2012-10-01 04:05:47'
     is_active: '1'
     is_super_admin: '0'
-  SfGuardUser_12:
+  sfGuardUser_12:
     username: 'http://collectorsquest.com/openid?id=110311156909900099009'
     algorithm: sha1
     salt: 62e978b64789a12fa6729420213bb0f4

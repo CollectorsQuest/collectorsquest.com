@@ -100,6 +100,14 @@ class testGenerateFixturesTask extends sfBaseTask
       'DELETE FROM shopping_order WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM shopping_cart WHERE collector_id NOT IN (SELECT id FROM collector);',
 
+      "DELETE FROM shipping_reference WHERE model = 'Collector' AND model_id NOT IN (SELECT id FROM collector);",
+      "DELETE FROM shipping_reference WHERE model = 'Collectible' AND model_id NOT IN (SELECT id FROM collectible);",
+      "DELETE FROM shipping_rate WHERE shipping_reference_id NOT IN (SELECT id FROM shipping_reference);",
+
+      // For now we need to delete all shipping_references
+      // because they link to country_is3160 instead of the primary key
+      "DELETE FROM shipping_reference",
+
       'UPDATE collector SET eblob = NULL WHERE 1',
       'UPDATE collector_archive SET eblob = NULL WHERE 1',
       'UPDATE collector_collection SET eblob = NULL WHERE 1',
@@ -334,6 +342,8 @@ class testGenerateFixturesTask extends sfBaseTask
       'collectible' => '04_collectible',
       'sf_guard_user' => '06_sf_guard_user',
       'sf_guard_group' => '06_sf_guard_group',
+      'geo_country' => '07_geo_country',
+      'geo_region' => '07_geo_region',
       'promotion' => '08_promotion',
       'promotion_transaction' => '08_promotion_transaction',
       'package' => '09_package',
