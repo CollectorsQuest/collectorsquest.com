@@ -65,6 +65,7 @@ class Walker_Nav_Menu extends Walker {
 	 * @param object $args
 	 */
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+		global $wp_query;
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
 		$class_names = $value = '';
@@ -155,7 +156,7 @@ function wp_nav_menu( $args = array() ) {
 	if ( ! $menu && !$args->theme_location ) {
 		$menus = wp_get_nav_menus();
 		foreach ( $menus as $menu_maybe ) {
-			if ( $menu_items = wp_get_nav_menu_items( $menu_maybe->term_id, array( 'update_post_term_cache' => false ) ) ) {
+			if ( $menu_items = wp_get_nav_menu_items($menu_maybe->term_id) ) {
 				$menu = $menu_maybe;
 				break;
 			}
@@ -164,21 +165,15 @@ function wp_nav_menu( $args = array() ) {
 
 	// If the menu exists, get its items.
 	if ( $menu && ! is_wp_error($menu) && !isset($menu_items) )
-		$menu_items = wp_get_nav_menu_items( $menu->term_id, array( 'update_post_term_cache' => false ) );
+		$menu_items = wp_get_nav_menu_items( $menu->term_id );
 
-	/*
-	 * If no menu was found:
-	 *  - Fallback (if one was specified), or bail.
-	 *
-	 * If no menu items were found:
-	 *  - Fallback, but only if no theme location was specified.
-	 *  - Otherwise, bail.
-	 */
+	// If no menu was found or if the menu has no items and no location was requested, call the fallback_cb if it exists
 	if ( ( !$menu || is_wp_error($menu) || ( isset($menu_items) && empty($menu_items) && !$args->theme_location ) )
 		&& $args->fallback_cb && is_callable( $args->fallback_cb ) )
 			return call_user_func( $args->fallback_cb, (array) $args );
 
-	if ( !$menu || is_wp_error( $menu ) || empty( $menu_items ) )
+	// If no fallback function was specified and the menu doesn't exists, bail.
+	if ( !$menu || is_wp_error($menu) )
 		return false;
 
 	$nav_menu = $items = '';
@@ -292,6 +287,8 @@ function _wp_menu_item_classes_by_context( &$menu_items ) {
 				}
 			}
 		}
+	} elseif ( ! empty( $queried_object->post_type ) && is_post_type_hierarchical( $queried_object->post_type ) ) {
+		_get_post_ancestors( $queried_object );
 	} elseif ( ! empty( $queried_object->taxonomy ) && is_taxonomy_hierarchical( $queried_object->taxonomy ) ) {
 		$term_hierarchy = _get_term_hierarchy( $queried_object->taxonomy );
 		$term_to_ancestor = array();
@@ -337,7 +334,7 @@ function _wp_menu_item_classes_by_context( &$menu_items ) {
 			(
 				( ! empty( $home_page_id ) && 'post_type' == $menu_item->type && $wp_query->is_home && $home_page_id == $menu_item->object_id ) ||
 				( 'post_type' == $menu_item->type && $wp_query->is_singular ) ||
-				( 'taxonomy' == $menu_item->type && ( $wp_query->is_category || $wp_query->is_tag || $wp_query->is_tax ) && $queried_object->taxonomy == $menu_item->object )
+				( 'taxonomy' == $menu_item->type && ( $wp_query->is_category || $wp_query->is_tag || $wp_query->is_tax ) )
 			)
 		) {
 			$classes[] = 'current-menu-item';
@@ -364,7 +361,7 @@ function _wp_menu_item_classes_by_context( &$menu_items ) {
 		// if the menu item corresponds to the currently-requested URL
 		} elseif ( 'custom' == $menu_item->object ) {
 			$_root_relative_current = untrailingslashit( $_SERVER['REQUEST_URI'] );
-			$current_url = set_url_scheme( 'http://' . $_SERVER['HTTP_HOST'] . $_root_relative_current );
+			$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_root_relative_current;
 			$raw_item_url = strpos( $menu_item->url, '#' ) ? substr( $menu_item->url, 0, strpos( $menu_item->url, '#' ) ) : $menu_item->url;
 			$item_url = untrailingslashit( $raw_item_url );
 			$_indexless_current = untrailingslashit( preg_replace( '/index.php$/', '', $current_url ) );
@@ -475,7 +472,7 @@ function walk_nav_menu_tree( $items, $depth, $r ) {
 	$walker = ( empty($r->walker) ) ? new Walker_Nav_Menu : $r->walker;
 	$args = array( $items, $depth, $r );
 
-	return call_user_func_array( array($walker, 'walk'), $args );
+	return call_user_func_array( array(&$walker, 'walk'), $args );
 }
 
 /**

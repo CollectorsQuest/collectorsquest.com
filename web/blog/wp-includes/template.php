@@ -59,11 +59,11 @@ function get_404_template() {
  * @return string
  */
 function get_archive_template() {
-	$post_types = get_query_var( 'post_type' );
+	$post_type = get_query_var( 'post_type' );
 
 	$templates = array();
 
-	foreach ( (array) $post_types as $post_type )
+	if ( $post_type )
 		$templates[] = "archive-{$post_type}.php";
 	$templates[] = 'archive.php';
 
@@ -82,10 +82,8 @@ function get_author_template() {
 
 	$templates = array();
 
-	if ( $author ) {
-		$templates[] = "author-{$author->user_nicename}.php";
-		$templates[] = "author-{$author->ID}.php";
-	}
+	$templates[] = "author-{$author->user_nicename}.php";
+	$templates[] = "author-{$author->ID}.php";
 	$templates[] = 'author.php';
 
 	return get_query_template( 'author', $templates );
@@ -108,10 +106,8 @@ function get_category_template() {
 
 	$templates = array();
 
-	if ( $category ) {
-		$templates[] = "category-{$category->slug}.php";
-		$templates[] = "category-{$category->term_id}.php";
-	}
+	$templates[] = "category-{$category->slug}.php";
+	$templates[] = "category-{$category->term_id}.php";
 	$templates[] = 'category.php';
 
 	return get_query_template( 'category', $templates );
@@ -134,10 +130,8 @@ function get_tag_template() {
 
 	$templates = array();
 
-	if ( $tag ) {
-		$templates[] = "tag-{$tag->slug}.php";
-		$templates[] = "tag-{$tag->term_id}.php";
-	}
+	$templates[] = "tag-{$tag->slug}.php";
+	$templates[] = "tag-{$tag->term_id}.php";
 	$templates[] = 'tag.php';
 
 	return get_query_template( 'tag', $templates );
@@ -162,14 +156,12 @@ function get_tag_template() {
  */
 function get_taxonomy_template() {
 	$term = get_queried_object();
+	$taxonomy = $term->taxonomy;
 
 	$templates = array();
 
-	if ( $term ) {
-		$taxonomy = $term->taxonomy;
-		$templates[] = "taxonomy-$taxonomy-{$term->slug}.php";
-		$templates[] = "taxonomy-$taxonomy.php";
-	}
+	$templates[] = "taxonomy-$taxonomy-{$term->slug}.php";
+	$templates[] = "taxonomy-$taxonomy.php";
 	$templates[] = 'taxonomy.php';
 
 	return get_query_template( 'taxonomy', $templates );
@@ -288,8 +280,7 @@ function get_single_template() {
 
 	$templates = array();
 
-	if ( $object )
-		$templates[] = "single-{$object->post_type}.php";
+	$templates[] = "single-{$object->post_type}.php";
 	$templates[] = "single.php";
 
 	return get_query_template( 'single', $templates );
@@ -312,21 +303,15 @@ function get_single_template() {
  */
 function get_attachment_template() {
 	global $posts;
-
-	if ( ! empty( $posts ) && isset( $posts[0]->post_mime_type ) ) {
-		$type = explode( '/', $posts[0]->post_mime_type );
-
-		if ( ! empty( $type ) ) {
-			if ( $template = get_query_template( $type[0] ) )
-				return $template;
-			elseif ( $template = get_query_template( $type[1] ) )
-				return $template;
-			elseif ( $template = get_query_template( "$type[0]_$type[1]" ) )
-				return $template;
-		}
-	}
-
-	return get_query_template( 'attachment' );
+	$type = explode('/', $posts[0]->post_mime_type);
+	if ( $template = get_query_template($type[0]) )
+		return $template;
+	elseif ( $template = get_query_template($type[1]) )
+		return $template;
+	elseif ( $template = get_query_template("$type[0]_$type[1]") )
+		return $template;
+	else
+		return get_query_template('attachment');
 }
 
 /**

@@ -6,55 +6,25 @@
 			var t = this;
 
 			t.url = url;
-			t.editor = ed;
 			t._createButtons();
 
 			// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('...');
 			ed.addCommand('WP_Gallery', function() {
-				if ( tinymce.isIE )
-					ed.selection.moveToBookmark( ed.wpGalleryBookmark );
+				var el = ed.selection.getNode(), post_id, vp = tinymce.DOM.getViewPort(),
+					H = vp.h - 80, W = ( 640 < vp.w ) ? 640 : vp.w;
 
-				var el = ed.selection.getNode(),
-					gallery = wp.media.gallery,
-					frame;
+				if ( el.nodeName != 'IMG' ) return;
+				if ( ed.dom.getAttrib(el, 'class').indexOf('wpGallery') == -1 )	return;
 
-				// Check if the `wp.media.gallery` API exists.
-				if ( typeof wp === 'undefined' || ! wp.media || ! wp.media.gallery )
-					return;
+				post_id = tinymce.DOM.get('post_ID').value;
+				tb_show('', tinymce.documentBaseURL + 'media-upload.php?post_id='+post_id+'&tab=gallery&TB_iframe=true&width='+W+'&height='+H);
 
-				// Make sure we've selected a gallery node.
-				if ( el.nodeName != 'IMG' || ed.dom.getAttrib(el, 'class').indexOf('wpGallery') == -1 )
-					return;
-
-				frame = gallery.edit( '[' + ed.dom.getAttrib( el, 'title' ) + ']' );
-
-				frame.state('gallery-edit').on( 'update', function( selection ) {
-					var shortcode = gallery.shortcode( selection ).string().slice( 1, -1 );
-					ed.dom.setAttrib( el, 'title', shortcode );
-				});
-			});
-
-			ed.onInit.add(function(ed) {
-				// iOS6 doesn't show the buttons properly on click, show them on 'touchstart'
-				if ( 'ontouchstart' in window ) {
-					ed.dom.events.add(ed.getBody(), 'touchstart', function(e){
-						var target = e.target;
-
-						if ( target.nodeName == 'IMG' && ed.dom.hasClass(target, 'wpGallery') ) {
-							ed.selection.select(target);
-							ed.dom.events.cancel(e);
-							ed.plugins.wordpress._hideButtons();
-							ed.plugins.wordpress._showButtons(target, 'wp_gallerybtns');
-						}
-					});
-				}
+				tinymce.DOM.setStyle( ['TB_overlay','TB_window','TB_load'], 'z-index', '999999' );
 			});
 
 			ed.onMouseDown.add(function(ed, e) {
-				if ( e.target.nodeName == 'IMG' && ed.dom.hasClass(e.target, 'wpGallery') ) {
-					ed.plugins.wordpress._hideButtons();
+				if ( e.target.nodeName == 'IMG' && ed.dom.hasClass(e.target, 'wpGallery') )
 					ed.plugins.wordpress._showButtons(e.target, 'wp_gallerybtns');
-				}
 			});
 
 			ed.onBeforeSetContent.add(function(ed, o) {
@@ -91,13 +61,9 @@
 		},
 
 		_createButtons : function() {
-			var t = this, ed = tinymce.activeEditor, DOM = tinymce.DOM, editButton, dellButton, isRetina;
+			var t = this, ed = tinyMCE.activeEditor, DOM = tinymce.DOM, editButton, dellButton;
 
-			if ( DOM.get('wp_gallerybtns') )
-				return;
-
-			isRetina = ( window.devicePixelRatio && window.devicePixelRatio > 1 ) || // WebKit, Opera
-				( window.matchMedia && window.matchMedia('(min-resolution:130dpi)').matches ); // Firefox, IE10, Opera
+			DOM.remove('wp_gallerybtns');
 
 			DOM.add(document.body, 'div', {
 				id : 'wp_gallerybtns',
@@ -105,7 +71,7 @@
 			});
 
 			editButton = DOM.add('wp_gallerybtns', 'img', {
-				src : isRetina ? t.url+'/img/edit-2x.png' : t.url+'/img/edit.png',
+				src : t.url+'/img/edit.png',
 				id : 'wp_editgallery',
 				width : '24',
 				height : '24',
@@ -113,14 +79,13 @@
 			});
 
 			tinymce.dom.Event.add(editButton, 'mousedown', function(e) {
-				var ed = tinymce.activeEditor;
-				ed.wpGalleryBookmark = ed.selection.getBookmark('simple');
+				var ed = tinyMCE.activeEditor;
+				ed.windowManager.bookmark = ed.selection.getBookmark('simple');
 				ed.execCommand("WP_Gallery");
-				ed.plugins.wordpress._hideButtons();
 			});
 
 			dellButton = DOM.add('wp_gallerybtns', 'img', {
-				src : isRetina ? t.url+'/img/delete-2x.png' : t.url+'/img/delete.png',
+				src : t.url+'/img/delete.png',
 				id : 'wp_delgallery',
 				width : '24',
 				height : '24',
@@ -128,16 +93,14 @@
 			});
 
 			tinymce.dom.Event.add(dellButton, 'mousedown', function(e) {
-				var ed = tinymce.activeEditor, el = ed.selection.getNode();
+				var ed = tinyMCE.activeEditor, el = ed.selection.getNode();
 
 				if ( el.nodeName == 'IMG' && ed.dom.hasClass(el, 'wpGallery') ) {
 					ed.dom.remove(el);
 
 					ed.execCommand('mceRepaint');
-					ed.dom.events.cancel(e);
+					return false;
 				}
-
-				ed.plugins.wordpress._hideButtons();
 			});
 		},
 

@@ -11,50 +11,36 @@
 			t.editor = ed;
 			t._createButtons();
 
-			ed.addCommand('WP_EditImage', t._editImage);
+			// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('...');
+			ed.addCommand('WP_EditImage', function() {
+				var el = ed.selection.getNode(), vp, H, W, cls = ed.dom.getAttrib(el, 'class');
+
+				if ( cls.indexOf('mceItem') != -1 || cls.indexOf('wpGallery') != -1 || el.nodeName != 'IMG' )
+					return;
+
+				vp = tinymce.DOM.getViewPort();
+				H = 680 < (vp.h - 70) ? 680 : vp.h - 70;
+				W = 650 < vp.w ? 650 : vp.w;
+
+				ed.windowManager.open({
+					file: url + '/editimage.html',
+					width: W+'px',
+					height: H+'px',
+					inline: true
+				});
+			});
 
 			ed.onInit.add(function(ed) {
-				ed.dom.events.add(ed.getBody(), 'mousedown', function(e) {
+				ed.dom.events.add(ed.getBody(), 'dragstart', function(e) {
 					var parent;
 
 					if ( e.target.nodeName == 'IMG' && ( parent = ed.dom.getParent(e.target, 'div.mceTemp') ) ) {
-						if ( tinymce.isGecko )
-							ed.selection.select(parent);
-						else if ( tinymce.isWebKit )
-							ed.dom.events.prevent(e);
+						ed.selection.select(parent);
 					}
 				});
-
-				// when pressing Return inside a caption move the caret to a new parapraph under it
-				ed.dom.events.add(ed.getBody(), 'keydown', function(e) {
-					var n, DL, DIV, P, content;
-
-					if ( e.keyCode == 13 ) {
-						n = ed.selection.getNode();
-						DL = ed.dom.getParent(n, 'dl.wp-caption');
-
-						if ( DL )
-							DIV = ed.dom.getParent(DL, 'div.mceTemp');
-
-						if ( DIV ) {
-							ed.dom.events.cancel(e);
-							P = ed.dom.create('p', {}, '\uFEFF');
-							ed.dom.insertAfter( P, DIV );
-							ed.selection.setCursorLocation(P, 0);
-							return false;
-						}
-					}
-				});
-
-				// iOS6 doesn't show the buttons properly on click, show them on 'touchstart'
-				if ( 'ontouchstart' in window ) {
-					ed.dom.events.add(ed.getBody(), 'touchstart', function(e){
-						t._showButtons(e);
-					});
-				}
 			});
 
-			// resize the caption <dl> when the image is soft-resized by the user
+			// resize the caption <dl> when the image is soft-resized by the user (only possible in Firefox and IE)
 			ed.onMouseUp.add(function(ed, e) {
 				if ( tinymce.isWebKit || tinymce.isOpera )
 					return;
@@ -82,8 +68,55 @@
 			});
 
 			// show editimage buttons
-			ed.onMouseDown.add(function(ed, e){
-				t._showButtons(e);
+			ed.onMouseDown.add(function(ed, e) {
+				var target = e.target;
+
+				if ( target.nodeName != 'IMG' ) {
+					if ( target.firstChild && target.firstChild.nodeName == 'IMG' && target.childNodes.length == 1 )
+						target = target.firstChild;
+					else
+						return;
+				}
+
+				if ( ed.dom.getAttrib(target, 'class').indexOf('mceItem') == -1 ) {
+					mouse = {
+						x: e.clientX,
+						y: e.clientY,
+						img_w: target.clientWidth,
+						img_h: target.clientHeight
+					};
+
+					ed.plugins.wordpress._showButtons(target, 'wp_editbtns');
+				}
+			});
+
+			// when pressing Return inside a caption move the caret to a new parapraph under it
+			ed.onKeyPress.add(function(ed, e) {
+				var n, DL, DIV, P;
+
+				if ( e.keyCode == 13 ) {
+					n = ed.selection.getNode();
+					DL = ed.dom.getParent(n, 'dl.wp-caption');
+
+					if ( DL )
+						DIV = ed.dom.getParent(DL, 'div.mceTemp');
+
+					if ( DIV ) {
+						P = ed.dom.create('p', {}, '<br>');
+						ed.dom.insertAfter( P, DIV );
+						ed.selection.select(P.firstChild);
+
+						if ( tinymce.isIE ) {
+							ed.selection.setContent('');
+						} else {
+							ed.selection.setContent('<br _moz_dirty="">');
+							ed.selection.setCursorLocation(P, 0);
+						}
+
+						ed.dom.events.cancel(e);
+						return false;
+					}
+				}
 			});
 
 			ed.onBeforeSetContent.add(function(ed, o) {
@@ -102,23 +135,6 @@
 			ed.wpGetImgCaption = function(content) {
 				return t._get_shcode(content);
 			};
-
-			// When inserting content, if the caret is inside a caption create new paragraph under
-			// and move the caret there
-			ed.onBeforeExecCommand.add(function(ed, cmd, ui, val) {
-				var node, p;
-
-				if ( cmd == 'mceInsertContent' ) {
-					node = ed.dom.getParent(ed.selection.getNode(), 'div.mceTemp');
-
-					if ( !node )
-						return;
-
-					p = ed.dom.create('p');
-					ed.dom.insertAfter( p, node );
-					ed.selection.setCursorLocation(p, 0);
-				}
-			});
 		},
 
 		_do_shcode : function(content) {
@@ -205,13 +221,9 @@
 		},
 
 		_createButtons : function() {
-			var t = this, ed = tinymce.activeEditor, DOM = tinymce.DOM, editButton, dellButton, isRetina;
+			var t = this, ed = tinyMCE.activeEditor, DOM = tinymce.DOM, editButton, dellButton;
 
-			if ( DOM.get('wp_editbtns') )
-				return;
-
-			isRetina = ( window.devicePixelRatio && window.devicePixelRatio > 1 ) || // WebKit, Opera
-				( window.matchMedia && window.matchMedia('(min-resolution:130dpi)').matches ); // Firefox, IE10, Opera
+			DOM.remove('wp_editbtns');
 
 			DOM.add(document.body, 'div', {
 				id : 'wp_editbtns',
@@ -219,7 +231,7 @@
 			});
 
 			editButton = DOM.add('wp_editbtns', 'img', {
-				src : isRetina ? t.url+'/img/image-2x.png' : t.url+'/img/image.png',
+				src : t.url+'/img/image.png',
 				id : 'wp_editimgbtn',
 				width : '24',
 				height : '24',
@@ -227,12 +239,13 @@
 			});
 
 			tinymce.dom.Event.add(editButton, 'mousedown', function(e) {
-				t._editImage();
-				ed.plugins.wordpress._hideButtons();
+				var ed = tinyMCE.activeEditor;
+				ed.windowManager.bookmark = ed.selection.getBookmark('simple');
+				ed.execCommand("WP_EditImage");
 			});
 
 			dellButton = DOM.add('wp_editbtns', 'img', {
-				src : isRetina ? t.url+'/img/delete-2x.png' : t.url+'/img/delete.png',
+				src : t.url+'/img/delete.png',
 				id : 'wp_delimgbtn',
 				width : '24',
 				height : '24',
@@ -240,74 +253,20 @@
 			});
 
 			tinymce.dom.Event.add(dellButton, 'mousedown', function(e) {
-				var ed = tinymce.activeEditor, el = ed.selection.getNode(), parent;
+				var ed = tinyMCE.activeEditor, el = ed.selection.getNode(), p;
 
 				if ( el.nodeName == 'IMG' && ed.dom.getAttrib(el, 'class').indexOf('mceItem') == -1 ) {
-					if ( (parent = ed.dom.getParent(el, 'div')) && ed.dom.hasClass(parent, 'mceTemp') ) {
-						ed.dom.remove(parent);
-					} else {
-						if ( el.parentNode.nodeName == 'A' && el.parentNode.childNodes.length == 1 )
-							el = el.parentNode;
-
-						if ( el.parentNode.nodeName == 'P' && el.parentNode.childNodes.length == 1 )
-							el = el.parentNode;
-
+					if ( (p = ed.dom.getParent(el, 'div')) && ed.dom.hasClass(p, 'mceTemp') )
+						ed.dom.remove(p);
+					else if ( (p = ed.dom.getParent(el, 'A')) && p.childNodes.length == 1 )
+						ed.dom.remove(p);
+					else
 						ed.dom.remove(el);
-					}
 
 					ed.execCommand('mceRepaint');
 					return false;
 				}
-				ed.plugins.wordpress._hideButtons();
 			});
-		},
-		
-		_editImage : function() {
-			var ed = tinymce.activeEditor, url = this.url, el = ed.selection.getNode(), vp, H, W, cls = el.className;
-
-			if ( cls.indexOf('mceItem') != -1 || cls.indexOf('wpGallery') != -1 || el.nodeName != 'IMG' )
-				return;
-
-			vp = tinymce.DOM.getViewPort();
-			H = 680 < (vp.h - 70) ? 680 : vp.h - 70;
-			W = 650 < vp.w ? 650 : vp.w;
-
-			ed.windowManager.open({
-				file: url + '/editimage.html',
-				width: W+'px',
-				height: H+'px',
-				inline: true
-			});
-		},
-
-		_showButtons : function(e) {
-			var ed = this.editor, target = e.target;
-
-			if ( target.nodeName != 'IMG' ) {
-				if ( target.firstChild && target.firstChild.nodeName == 'IMG' && target.childNodes.length == 1 ) {
-					target = target.firstChild;
-				} else {
-					ed.plugins.wordpress._hideButtons();
-					return;
-				}
-			}
-
-			if ( ed.dom.getAttrib(target, 'class').indexOf('mceItem') == -1 ) {
-				mouse = {
-					x: e.clientX,
-					y: e.clientY,
-					img_w: target.clientWidth,
-					img_h: target.clientHeight
-				};
-
-				if ( e.type == 'touchstart' ) {
-					ed.selection.select(target);
-					ed.dom.events.cancel(e);
-				}
-
-				ed.plugins.wordpress._hideButtons();
-				ed.plugins.wordpress._showButtons(target, 'wp_editbtns');
-			}
 		},
 
 		getInfo : function() {
