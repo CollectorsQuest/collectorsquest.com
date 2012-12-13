@@ -829,7 +829,7 @@ class ajaxAction extends cqAjaxAction
         {
           return $this->errors(array(
               'error' => array(
-                  'message' => 'Cannot activate collectible',
+                  'message' => 'Cannot activate already active collectible',
               ),
           ));
         }
@@ -847,28 +847,22 @@ class ajaxAction extends cqAjaxAction
         {
           return $this->errors(array(
               'error' => array(
-                 'message' => 'Cannot deactivate collectible',
+                 'message' => 'Cannot deactivate already deactivated collectible',
               ),
           ));
         }
       break;
 
       case 'relist':
-        if (( $collectible_for_sale = CollectibleForSalePeer::relist($collectible_for_sale) ))
-        {
-          return $this->renderPartial(
-            'mycq/partials/item_for_sale_history_table_row',
-            array('collectible_for_sale' => $collectible_for_sale)
-          );
-        }
-        else
-        {
-          return $this->errors(array(
-              'error' => array(
-                 'message' => 'Cannot relist collectible',
-              ),
-          ));
-        }
+        $new_collectible_for_sale = CollectibleForSalePeer::relist($collectible_for_sale);
+        // if the relist was unsuccessful, this means we ran out of credits
+        // while relisting multiple items on the same page - in this case display
+        // the partial again, and the "re-list" button will be replaced with a
+        // "buy listings" button
+        return $this->renderPartial(
+          'mycq/partials/item_for_sale_history_table_row',
+          array('collectible_for_sale' => $new_collectible_for_sale ?: $collectible_for_sale)
+        );
     }
 
     return $template;
