@@ -1,5 +1,6 @@
 all:
   stylesheets:
+    - -frontend/responsive.css
     - frontend/modules/mycq.css
     - frontend/modules/seller.css
 

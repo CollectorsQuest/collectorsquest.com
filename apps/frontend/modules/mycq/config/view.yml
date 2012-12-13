@@ -1,6 +1,5 @@
 all:
-  stylesheets:
-    - frontend/modules/mycq.css
+  stylesheets: [frontend/modules/mycq.css, -frontend/responsive.css]
 
   javascripts:
     - /assets/js/wysihtml5.js
