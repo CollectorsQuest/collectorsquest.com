@@ -63,4 +63,54 @@ class ajaxAction extends cqAjaxAction
     return $this->error('error', 'error');
   }
 
+  public function executeShoppingCartCollectibleUpdatePromoCode(sfWebRequest $request)
+  {
+    $shopping_cart = $this->getUser()->getShoppingCart();
+    $this->forward404Unless($shopping_cart instanceof ShoppingCart);
+
+    $id = $request->getParameter('collectible_id');
+    $code = $request->getParameter('code');
+
+
+    if ($cart_collectible = $shopping_cart->getShoppingCartCollectibleById($id))
+    {
+      if (trim($code) == '')
+      {
+        // Reset code
+        $cart_collectible->setSellerPromotion(null);
+      }
+      else
+      {
+        /* @var $q SellerPromotionQuery */
+        $q = SellerPromotionQuery::create()
+          ->filterBySellerId($cart_collectible->getCollectible()->getCollectorId())
+          ->filterByIsExpired(false)
+          ->add(BaseSellerPromotionPeer::PROMOTION_CODE, $code);
+
+        if ($seller_promotion = $q->findOne() )
+        {
+          if ($seller_promotion->isValid($this->getUser()->getCollector(), $cart_collectible->getCollectible()))
+          {
+            $cart_collectible->setSellerPromotion($seller_promotion);
+          }
+          else
+          {
+            return $this->output(array('error'=>'Sorry, your code is wrong'));
+          }
+        }
+        else
+        {
+          return $this->output(array('error'=>'Sorry, your code is wrong'));
+        }
+      }
+      try
+      {
+        $cart_collectible->save();
+        return $this->success();
+      }
+      catch (PropelException $e) { ; }
+    }
+
+    return $this->error('error', 'error');
+  }
 }
