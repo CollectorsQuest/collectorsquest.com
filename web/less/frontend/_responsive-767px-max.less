@@ -9,11 +9,6 @@
     padding: 40px 0 25px 0;
   }
 
-  #slot1 .slot1-inner
-  {
-
-  }
-
   // Padding to set content in a bit
     body {
       padding-right: 0;
@@ -120,10 +115,28 @@
 
   .container-fluid.fixed-right-300, #breadcrumbs  {
     width: 620px;
-    margin-left: 10px;
-    margin-left: 10px;
+    margin: 0 10px;
   }
 
+  #breadcrumbs {
+    margin-bottom: 8px;
+
+    .pull-right {
+      float: left;
+    }
+
+    .breadcrumbs-inner {
+      padding: 15px 5px 32px 5px;
+    }
+  }
+
+  #content, .navbar, #breadcrumbs {
+    border: none;
+  }
+
+  #content {
+    padding-top: 0;
+  }
 
   /*
    * move the search field and the cart/signup section a to the left
@@ -134,18 +147,16 @@
     padding-right: 15px;
   }
 
+  // homepage sidebar
+  #body-general-index #sidebar {
+    display: none;
+  }
+
+  // sidebar to display properly without taking extra space on the right
   .fixed-right-300 > #sidebar {
-  }
-  #content, .navbar, #breadcrumbs {
-    border: none;
-  }
-
-  #breadcrumbs {
-    margin-bottom: 8px;
-  }
-
-  #content {
-    padding-top: 0;
+    width: 620px;
+    margin: 0;
+    padding: 0 !important;
   }
 
   // banners in sidebar
@@ -201,6 +212,7 @@
     margin-top: 20px;
   }
 
+  // used for (center) aligned sidebar widgets NOT on full width
   .mobile-optimized-300 {
     width: 300px;
     display: block;
@@ -246,8 +258,6 @@
       background-size: 229% auto;
     }
   }
-
-
 
   header {
 
@@ -349,6 +359,7 @@
     width: 50%;
     margin: 20px 0;
   }
+
   .footer-social-icons {
     width: 250px;
     float: left;
@@ -375,8 +386,6 @@
     }
   }
 
-
-
   //PAGES
   #sidebar #price-container {
     display: none;
@@ -394,6 +403,16 @@
   .rpxnow-wrapper {
     text-align: center;
     margin: auto;
+  }
+
+  .login-form-wrapper {
+    .row-fluid [class*="span"] {
+      float: none;
+      display: block;
+      width: 100%;
+      margin-left: 0;
+      .box-sizing(border-box);
+    }
   }
 
   //categories
@@ -417,32 +436,6 @@
     .three-col {
       display: block !important;
     }
-  }
-
-  //login
-  .login-form-wrapper {
-    .row-fluid [class*="span"] {
-      float: none;
-      display: block;
-      width: 100%;
-      margin-left: 0;
-      .box-sizing(border-box);
-    }
-  }
-
-  #breadcrumbs {
-    .pull-right {
-      float: left;
-    }
-
-    .breadcrumbs-inner {
-      padding: 15px 5px 32px 5px;
-    }
-  }
-
-  // homepage sidebar
-  #body-general-index #sidebar {
-    display: none;
   }
 
 }
