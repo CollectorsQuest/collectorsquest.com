@@ -407,21 +407,40 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       switch ($seller_promotion->getAmountType())
       {
         case SellerPromotionPeer::AMOUNT_TYPE_FREE_SHIPPING:
-          $this->setPromotionAmount($this->getRawShippingFeeAmount());
+          $this->setPromotionAmount(0);
+          $this->setRawShippingFeeAmount(0);
           break;
         case SellerPromotionPeer::AMOUNT_TYPE_FIXED:
           $this->setPromotionAmount($seller_promotion->getAmount());
+          if ($this->getRawShippingFeeAmount() == 0)
+          {
+            // Need restore shipping if we change code for free shipping
+            $this->updateShippingFeeAmountFromCountryCode();
+            $this->updateShippingTypeFromCountryCode();
+          }
           break;
         case SellerPromotionPeer::AMOUNT_TYPE_PERCENTAGE:
           $this->setPromotionAmount(
             round(($this->getPriceAmount() / 100) * $seller_promotion->getAmount(), 2 )
           );
+          if ($this->getRawShippingFeeAmount() == 0)
+          {
+            // Need restore shipping if we change code for free shipping
+            $this->updateShippingFeeAmountFromCountryCode();
+            $this->updateShippingTypeFromCountryCode();
+          }
           break;
       }
     }
     else
     {
       $this->setPromotionAmount(0);
+      if ($this->getRawShippingFeeAmount() == 0)
+      {
+        // Need restore shiping if we remove code for free shipping
+        $this->updateShippingFeeAmountFromCountryCode();
+        $this->updateShippingTypeFromCountryCode();
+      }
     }
     $this->updateTaxAmount();
 

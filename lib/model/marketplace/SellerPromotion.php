@@ -63,7 +63,8 @@ class SellerPromotion extends BaseSellerPromotion
     {
       $q = ShoppingPaymentQuery::create()
         ->filterBySellerPromotionId($this->getId());
-      if ($this->getQuantity() >= $q->count())
+
+      if ($this->getQuantity() <= $q->count())
       {
         return false;
       }

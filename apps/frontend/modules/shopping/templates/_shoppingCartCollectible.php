@@ -77,8 +77,10 @@
             <tr>
               <td><?= $promotion->getPromotionName() ?></td>
               <td class="text-right">
-                - <?= money_format('%.2n', (float) $shopping_cart_collectible->getPromotionAmount()); ?>
-                <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+                <?php if (0 != (int) $promotion->getAmount()): ?>
+                  - <?= money_format('%.2n', (float) $shopping_cart_collectible->getPromotionAmount()); ?>
+                  <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+                <?php endif ?>
               </td>
             </tr>
           <?php endif; ?>
