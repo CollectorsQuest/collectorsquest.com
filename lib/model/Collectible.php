@@ -782,7 +782,12 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     $relObj = $this->getCollectibleForSale();
     if ($relObj)
     {
-      $copyObj->setCollectibleForSale($relObj->copy($deepCopy = false));
+      $new_collectible_for_sale = $relObj->copy($deepCopy = false);
+      if ($new_collectible_for_sale->getIsReady())
+      {
+        $new_collectible_for_sale->setMarkedForSaleAt(time());
+      }
+      $copyObj->setCollectibleForSale($new_collectible_for_sale);
     }
 
     // CollectibleRating
@@ -802,6 +807,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     // so we perform a save now
     $copyObj->setNew(true);
     $copyObj->setId(NULL);
+    $copyObj->setGraphId(NULL);
     $copyObj->save($con);
 
     // Special relations
@@ -825,6 +831,10 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       $new_multimedia->setModel($copyObj);
       $new_multimedia->save($con);
     }
+
+    // Tags
+    $copyObj->setTags($this->getTags());
+    $copyObj->save($con);
 
     return $copyObj;
   }

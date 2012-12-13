@@ -126,6 +126,8 @@ class CollectibleForSalePeer extends BaseCollectibleForSalePeer
         // set the collectible for sale to is ready
         $collectible_copy->getCollectibleForSale()
           ->setIsReady(true)
+          ->setIsSold(false)
+          ->setQuantity(1)
           ->save($con);
 
         // commit everything to the database

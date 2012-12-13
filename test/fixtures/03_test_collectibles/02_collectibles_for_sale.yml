@@ -33,6 +33,7 @@ CollectibleForSale:
     collectible_id: sold
     price: 10
     condition: excellent
+    quantity: 0
     is_sold: true
     is_ready: true
 

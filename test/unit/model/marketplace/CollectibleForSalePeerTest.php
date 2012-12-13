@@ -4,7 +4,7 @@ include(__DIR__.'/../../../bootstrap/model.php');
 include(__DIR__.'/CollectibleForSaleTestHelper.php');
 require_once dirname(__FILE__).'/../../../../lib/model/marketplace/CollectibleForSalePeer.php';
 
-$t = new lime_test(26, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(30, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 $t->diag('Testing lib/model/marketplace/CollectibleForSalePeer.php');
 
@@ -53,11 +53,15 @@ $t->diag('::relist()');
   $t->isa_ok($returnedExpired = CollectibleForSalePeer::relist($expired), 'CollectibleForSale');
   $t->ok($returnedExpired->equals($expired));
   $t->ok($returnedExpired->hasActiveCredit());
+  $t->ok($returnedExpired->isForSale());
 
   $t->ok($sold->hasActiveCredit());
   $t->isa_ok($returnedSold = CollectibleForSalePeer::relist($sold), 'CollectibleForSale');
   $t->ok(!$returnedSold->equals($sold));
   $t->ok($returnedSold->hasActiveCredit());
+  $t->ok(!$returnedSold->getIsSold());
+  $t->ok($returnedSold->getQuantity());
+  $t->ok($returnedSold->isForSale());
 
   // no credits left, so null returned
   $t->isa_ok(CollectibleForSalePeer::relist($second_sold), 'NULL');
