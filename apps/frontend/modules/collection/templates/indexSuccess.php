@@ -5,6 +5,7 @@
  * @var  $collection         Collection
  * @var  $pager              sfPropelPager
  * @var  $collectible_rows   integer
+ * @var  $sf_request         cqWebRequest
  */
 $height_main_div = new stdClass;
 $height_main_div->value = 116;
@@ -44,6 +45,7 @@ $height_main_div->value = 116;
         </li>
       </ul>
     </div>
+    <?php if (!$sf_request->isMobileBrowser()): ?>
     <div id="social-sharing" class="pull-right share">
       <?php
         include_partial(
@@ -56,6 +58,7 @@ $height_main_div->value = 116;
         );
       ?>
     </div>
+    <?php endif; ?>
   </div>
 </div>
 

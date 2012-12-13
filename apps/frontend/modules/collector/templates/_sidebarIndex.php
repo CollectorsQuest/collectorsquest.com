@@ -3,6 +3,7 @@
  * @var  $collector  Collector
  * @var  $profile    CollectorProfile
  * @var  $sf_user    cqFrontendUser
+ * @var  $sf_request cqWebRequest
  */
 
   $has_sidebar_text = $about_me || $about_collections || $about_interests ||
@@ -24,6 +25,7 @@
         </li>
       </ul>
     </div>
+    <?php if (!$sf_request->isMobileBrowser()): ?>
     <div id="social-sharing" class="pull-right share">
       <?php
         include_partial(
@@ -36,6 +38,7 @@
         );
       ?>
     </div>
+    <?php endif; ?>
   </div>
 </div>
 

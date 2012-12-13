@@ -7,5 +7,6 @@ indexSuccess:
     sidebar_300: [collector, sidebarIndex]
 
 signupSuccess:
+  stylesheets: [-frontend/responsive.css]
   components:
     footer: []
