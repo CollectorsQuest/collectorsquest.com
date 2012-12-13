@@ -1,6 +1,10 @@
 <?php
-  /* @var $package_transactions PackageTransaction[] */
-  /* @var $package_transaction  PackageTransaction   */
+/*
+ * @var $package_transactions PackageTransaction[]
+ * @var $package_transaction  PackageTransaction
+ * @var $has_no_credits       boolean
+ * @var $filter_by            string
+ */
 
   SmartMenu::setSelected('mycq_marketplace_tabs', 'packages');
 ?>
@@ -15,338 +19,183 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
-      <?php /*
-      <div class="alert alert-block alert-notice in">
-        <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
-        <p class="spacer-top">
-          Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
-        </p>
-        <br/>
-        <a class="btn btn-primary" href="#">Buy Credits</a>
-        <button type="button" class="btn" data-dismiss="alert">Ok</button>
-      </div>
-
-        <!-- Credit purchase history -->
-        <div class="row-fluid sidebar-title spacer-top">
-          <div class="span8">
-            <h3 class="Chivo webfont">Credit History</h3>
-          </div>
-          <!--
-          <div class="span4 text-right">
-            <span class="show-all-text">
-              Show: &nbsp;
-            </span>
-            <div class="control-group pull-right">
-              <div class="btn-filter-all btn-group">
-                <a id="filter-paid" class="btn btn-mini btn-filter active" href="#">Paid</a>
-                <a id="filter-processing" class="btn btn-mini btn-filter" href="#">Processing</a>
-                <a id="filter-expiring" class="btn btn-mini btn-filter " href="#">Expiring</a>
-                <a id="filter-expired" class="btn btn-mini btn-filter " href="#">Expired</a>
-              </div>
-            </div>
-          </div>
-          //-->
-        </div><!-- /.sidebar-title -->
-
-        <table class="table table-credit-history">
-          <thead>
-          <tr>
-            <th>Package</th>
-            <th>Credits Purchased</th>
-            <th>Purchased On</th>
-            <th>Expires On</th>
-            <th>Status</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr class=" processing">
-            <td>unlimited</td>
-            <td>unlimited</td>
-            <td>August 18, 2012</td>
-            <td>
-              -
-            </td>
-            <td>
-              <span class="red">
-                processing<br>payment
-              </span>
-            </td>
-          </tr><tr>
-            <td>100 credits</td>
-            <td>100</td>
-            <td>August 18, 2012</td>
-            <td>August 18, 2013</td>
-            <td>paid</td>
-          </tr>
-          <tr class="alert">
-            <td>100 credits</td>
-            <td>1</td>
-            <td>August 18, 2011</td>
-            <td><strong>August 18, 2012</strong></td>
-            <td>
-              expiring<br>soon
-            </td>
-          </tr>
-          <tr class="expired">
-            <td>100 credits</td>
-            <td>0</td>
-            <td>2012-06-17 15:57:11</td>
-            <td>2012-06-19 12:57:11</td>
-            <td>expired</td>
-          </tr>
-          </tbody>
-        </table>
-        <br class="cf"/>
+        <?php include_component('mycq', 'creditPurchaseHistory'); ?>
 
         <!-- Items listing history -->
-        <div class="row-fluid sidebar-title spacer-top-20" style="margin-bottom: 0;">
+        <div id="items-for-sale-history" class="row-fluid sidebar-title spacer-top-20" style="margin-bottom: 0;">
           <div class="span8">
             <h3 class="Chivo webfont">Items for Sale History</h3>
           </div>
         </div><!-- /.sidebar-title -->
-        <div class="row-fluid messages-row gray-well cf">
+
+        <div class="row-fluid gray-well spacer-inner-right-reset">
           <div class="span8">
             <div class="filter-container">
-              <span class="show-all-text pull-left">
-                Show: &nbsp;
-              </span>
+                <span class="show-all-text pull-left">
+                  Show: &nbsp;
+                </span>
               <div class="control-group">
                 <div class="btn-filter-all btn-group">
-                  <a id="filter-items-all" class="btn btn-mini btn-filter active" href="#">All</a>
-                  <a id="filter-items-active" class="btn btn-mini btn-filter" href="#">Active</a>
-                  <a id="filter-items-inactive" class="btn btn-mini btn-filter" href="#">Inactive</a>
-                  <a id="filter-items-sold" class="btn btn-mini btn-filter" href="#">Sold</a>
-                  <a id="filter-items-expired" class="btn btn-mini btn-filter" href="#">Expired</a>
+                  <?php
+                    echo link_to('All', '@mycq_marketplace_credit_history?filter_by=all',
+                      array(
+                        'id' => 'filter-items-all',
+                        'class' => 'btn btn-mini btn-filter '.('all' == $filter_by ? 'active' : '')
+                      )
+                    );
+                    echo link_to('Active', '@mycq_marketplace_credit_history?filter_by=active',
+                      array(
+                        'id' => 'filter-items-active',
+                        'class' => 'btn btn-mini btn-filter '.('active' == $filter_by ? 'active' : '')
+                      )
+                    );
+                    echo link_to('Inactive', '@mycq_marketplace_credit_history?filter_by=inactive',
+                      array(
+                        'id' => 'filter-items-inactive',
+                        'class' => 'btn btn-mini btn-filter '.('inactive' == $filter_by ? 'active' : '')
+                      )
+                    );
+                    echo link_to('Sold', '@mycq_marketplace_credit_history?filter_by=sold',
+                      array(
+                        'id' => 'filter-items-sold',
+                        'class' => 'btn btn-mini btn-filter '.('sold' == $filter_by ? 'active' : '')
+                      )
+                    );
+                    echo link_to('Expired', '@mycq_marketplace_credit_history?filter_by=expired',
+                      array(
+                        'id' => 'filter-items-expired',
+                        'class' => 'btn btn-mini btn-filter '.('expired' == $filter_by ? 'active' : '')
+                      )
+                    );
+                  ?>
                 </div>
               </div> <!-- /.control-group -->
             </div>
           </div>
 
           <div class="span4">
-            <div class="mini-input-append-search">
-              <div class="input-append pull-right">
-                <input type="text" class="input-sort-by" id="search-input" name="search" value=""><button class="btn gray-button" id="search-button" type="submit"><strong>Search</strong></button>
-                <input type="hidden" name="filter" id="filter-hidden" value="all">
+            <div class="mini-input-append-search pull-right spacer-right-5">
+              <div class="input-append">
+                <form action="<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory') ?>"
+                      id="form-mycq-collectibles-for-sale" method="post">
+                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
+                  <!-- keep INPUT and BUTTON elements in same line, if you break to two lines, you will see the "gap" between the text box and button -->
+                  <input type="hidden" value="most-recent" id="sortByValue" name="s">
+                  <input type="hidden" name="filter_by" id="filter-hidden" value="<?= $filter_by; ?>">
+                </form>
               </div>
             </div>
           </div>
-
         </div>
 
-        <table class="table table-striped table-items-for-sale-history">
-          <thead>
-          <tr>
-            <th class="items-column">&nbsp;</th>
-            <th>Expires</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>
-              <div class="row-fluid items">
-                <div class="span2">
-                  <a href="" class="thumb">
-                    <img src="http://placehold.it/75x75" alt="">
-                  </a>
-                </div>
-                <div class="span10">
-                  <span class="title">
-                    <a href="">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </a>
-                  </span>
-                  <span class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  </span>
-                  <span class="price">
-                    $ 9,999,999.00
-                  </span>
-                  </div>
-                </div>
-            </td>
-            <td>
-              August 25, 2012
-            </td>
-            <td>
-              Active
-            </td>
-            <td>
-              <button class="btn btn-mini" type="button">
-                <i class="icon-minus-sign"></i>&nbsp;Deactivate
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="row-fluid items">
-                <div class="span2">
-                  <a href="#" class="thumb">
-                    <img src="http://placehold.it/75x75" alt="">
-                  </a>
-                </div>
-                <div class="span10">
-                  <span class="title">
-                    <a href="">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </a>
-                  </span>
-                  <span class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  </span>
-                  <span class="price">
-                    $ 9,999,999.00
-                  </span>
-                </div>
-              </div>
-            </td>
-            <td>
-              August 25, 2012
-            </td>
-            <td>
-              Inactive
-            </td>
-            <td>
-              <button class="btn btn-mini" type="button">
-                <i class="icon-ok"></i>&nbsp;Activate
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="row-fluid items">
-                <div class="span2">
-                  <a href="#" class="thumb">
-                    <img src="http://placehold.it/75x75" alt="">
-                  </a>
-                </div>
-                <div class="span10">
-                  <span class="title">
-                    <a href="">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </a>
-                  </span>
-                  <span class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  </span>
-                  <span class="price">
-                    $ 9,999,999.00
-                  </span>
-                </div>
-              </div>
-            </td>
-            <td>
-              August 25, 2012
-            </td>
-            <td>
-              Sold \(-_-)/
-            </td>
-            <td>
-              -
-              <!--<button class="btn btn-mini" type="button">
-                <i class="icon-undo"></i>&nbsp;Re-list
-              </button> -->
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="row-fluid items">
-                <div class="span2">
-                  <a href="#" class="thumb">
-                    <img src="http://placehold.it/75x75" alt="">
-                  </a>
-                </div>
-                <div class="span10">
-                  <span class="title">
-                    <a href="">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </a>
-                  </span>
-                  <span class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  </span>
-                  <span class="price">
-                    $ 9,999,999.00
-                  </span>
-                </div>
-              </div>
-            </td>
-            <td>
-              August 25, 2012
-            </td>
-            <td>
-              Expired
-            </td>
-            <td>
-              <button class="btn btn-mini" type="button">
-                <i class="icon-undo"></i>&nbsp;Re-list
-              </button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-
-      <div class="row-fluid pagination-wrapper">
-
-        <div class="pagination spacer-top-reset">
-          <ul>
-            <li class="disabled"><a href="javascript:void(0);"> ← </a></li>
-            <li class="active"><a href="javascript:void(0);">1</a></li>
-            <li>
-              <a data-page="2" title="Go to page 2" href="#">2</a>      </li>
-            <li>
-              <a data-page="3" title="Go to page 3" href="#">3</a>      </li>
-            <li>
-              <a data-page="4" title="Go to page 4" href="#">4</a>      </li>
-            <li class="next">
-              <a data-page="2" title="Go to page 2" href="#"> → </a>    </li>
-
-          </ul>
-        </div>
-
-
-      </div>
-      */ ?>
-
-
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Package</th>
-              <th>Credits Purchased</th>
-              <th>Credits Used</th>
-              <th>Purchased On</th>
-              <th>Expires On</th>
-              <?php if ('dev' == sfConfig::get('sf_environment')): ?>
-              <th>Payment Status</th>
-              <?php endif; ?>
-            </tr>
-          </thead>
-          <tbody>
-          <?php if (count($package_transactions)): foreach ($package_transactions as $package_transaction): ?>
-            <tr>
-              <td><?= $package_transaction->getPackage()->getPackageName(); ?></td>
-              <td><?= $package_transaction->getCredits(); ?></td>
-              <td><?= $package_transaction->getCreditsUsed(); ?></td>
-              <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
-              <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
-              <?php if ('dev' == sfConfig::get('sf_environment')): ?>
-              <td><?= $package_transaction->getPaymentStatus(); ?></td>
-              <?php endif; ?>
-            </tr>
-          <?php endforeach; else: ?>
-            <tr>
-              <td colspan="<?= 'dev' == sfConfig::get('sf_environment') ? 6 : 5 ?>">
-                You have not purchased any packages yet.
-              </td>
-            </tr>
-          <?php endif; ?>
-          </tbody>
-        </table>
+        <?php include_component('mycq', 'itemsForSaleHistory', array('filter_by' => $filter_by)); ?>
 
       </div> <!-- .tab-content-inner.spacer -->
     </div> <!-- .tab-pane.active -->
   </div> <!-- .tab-content -->
 </div> <!-- #mycq-tabs -->
 
+<script>
+  $(document).ready(function()
+  {
+    var $items_for_sale = $('#items-for-sale');
+    var $url = '<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory', true) ?>';
+    var $form = $('#form-mycq-collectibles-for-sale');
+
+    $form.submit(function()
+    {
+      var filter_by = $('.btn-filter.active').attr('id')
+          .replace('filter-items-', '');
+
+      $items_for_sale
+        .showLoading()
+        .load(
+          $url + '?p=1', $form.serialize(),
+          function(data) {
+            $('#items-for-sale').hideLoading();
+          }
+        );
+
+      $.scrollTo('#items-for-sale-history');
+
+      return false;
+    });
+
+    $('.btn-filter').on('click', function()
+    {
+      $('.btn-filter-all .active').removeClass('active');
+      $(this).addClass('active');
+      $('#filter-hidden').val($(this).attr('id').replace('filter-items-', ''));
+      loadingTable();
+
+      return false;
+    });
+
+    // @todo optimize function an use it more than once
+    function loadingTable()
+    {
+      var $url = '<?= url_for('@ajax_mycq?section=component&page=itemsForSaleHistory', true) ?>';
+      var $form = $('#form-mycq-collectibles-for-sale');
+
+      $('#items-for-sale').parent().showLoading();
+      var filter_by = $('.btn-filter.active').attr('id').replace('filter-items-', '');
+
+      $('#items-for-sale').load(
+        $url + '?p=1&filter_by=' + filter_by, $form.serialize(),
+        function(data) {
+          $('#items-for-sale').parent().hideLoading();
+        }
+      );
+
+      $.scrollTo('#items-for-sale-history');
+    }
+
+    $items_for_sale.on('click', '#collectibles-for-sale-pagination a', function(e)
+    {
+      e.preventDefault();
+      var page = $(this).data('page');
+
+      $('#items-for-sale').showLoading();
+      var filter_by = $('.btn-filter.active').attr('id').replace('filter-items-', '');
+
+      $('#items-for-sale').load(
+        $url + '?p='+ page + '&filter_by=' + filter_by, $form.serialize(),
+        function(data) {
+          $('#items-for-sale').hideLoading();
+        }
+      );
+
+      // Scroll to #items-for-sale-history so that we can see the first row of results
+      $.scrollTo('#items-for-sale-history');
+
+      return false;
+    });
+
+    // attach a live click event for item actions
+    $items_for_sale.on('click', 'a.collectible-action', function(e)
+    {
+      var $this = $(this);
+      e.preventDefault();
+
+      if (confirm($this.data('confirm')) || 'Are you sure?')
+      {
+        $this.parents('tr').showLoading();
+        $this.parents('tr').load(
+          '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=updateStatus') ?>',
+          {
+            id: $this.data('id'),
+            execute: $this.data('action')
+          },
+          function() {
+            // we need the actual TD here, so we use $(this) instead of
+            // $this, which points to an anchor tag
+            $(this).parents('tr').hideLoading();
+          }
+        );
+      }
+
+      return false;
+    })
+
+  });
+</script>
