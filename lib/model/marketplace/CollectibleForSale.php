@@ -138,6 +138,15 @@ class CollectibleForSale extends BaseCollectibleForSale
   }
 
   /**
+   * @param     PropelPDO $con
+   * @return    Seller
+   */
+  public function getSeller(PropelPDO $con = null)
+  {
+    return $this->getCollector($con)->getSeller();
+  }
+
+  /**
    * Proxy method to Collectible::getCollector()
    *
    * @param  null|PropelPDO  $con
@@ -180,6 +189,29 @@ class CollectibleForSale extends BaseCollectibleForSale
     }
 
     return true;
+  }
+
+  /**
+   * @return    CollectibleForSalePeer::STATUS_SOLD/STATUS_ACTIVE/STATUS_EXPIRED/STATUS_INACTIVE
+   */
+  public function getStatus()
+  {
+    if ($this->getIsSold())
+    {
+      return CollectibleForSalePeer::STATUS_SOLD;
+    }
+    elseif ($this->isForSale() && $this->hasActiveCredit())
+    {
+      return CollectibleForSalePeer::STATUS_ACTIVE;
+    }
+    elseif ($this->isForSale() && !$this->hasActiveCredit())
+    {
+      return CollectibleForSalePeer::STATUS_EXPIRED;
+    }
+    else
+    {
+      return CollectibleForSalePeer::STATUS_INACTIVE;
+    }
   }
 
   /**

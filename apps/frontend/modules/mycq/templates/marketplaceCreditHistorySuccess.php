@@ -171,8 +171,8 @@
       return false;
     });
 
-    // attach a live click event for item deactivation
-    $items_for_sale.on('click', 'a.deactivate', function(e)
+    // attach a live click event for item actions
+    $items_for_sale.on('click', 'a.collectible-action', function(e)
     {
       var $this = $(this);
       e.preventDefault();
@@ -180,40 +180,22 @@
       if (confirm($this.data('confirm')) || 'Are you sure?')
       {
         $this.parents('tr').showLoading();
-        $this.parents('td').load(
-          '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=deactivate&id=') ?>' + $this.data('id'),
+        $this.parents('tr').load(
+          '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=updateStatus') ?>',
+          {
+            id: $this.data('id'),
+            execute: $this.data('action')
+          },
           function() {
             // we need the actual TD here, so we use $(this) instead of
             // $this, which points to an anchor tag
-            $(this).parents('tr').hideLoading()
-                                 .find('td.status').html('Inactive');
+            $(this).parents('tr').hideLoading();
           }
         );
       }
 
       return false;
     })
-    // and one for relist
-    .on('click', 'a.relist', function(e)
-    {
-      var $this = $(this);
-      e.preventDefault();
 
-      if (confirm($this.data('confirm') || 'Are you sure?'))
-      {
-        $this.parents('tr').showLoading();
-        $this.parents('td').load(
-          '<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=relist&id=') ?>' + $this.data('id'),
-          function() {
-            // we need the actual TD here, so we use $(this) instead of
-            // $this, which points to an anchor tag
-            $(this).parents('tr').hideLoading()
-                                 .find('td.status').html('Active');
-          }
-        );
-      }
-
-      return false;
-    });
   });
 </script>

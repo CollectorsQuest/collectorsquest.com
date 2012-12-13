@@ -4,6 +4,13 @@ require 'lib/model/marketplace/om/BaseCollectibleForSalePeer.php';
 
 class CollectibleForSalePeer extends BaseCollectibleForSalePeer
 {
+
+  // Possible statuses based on if is for sale is sold and has active credit
+  const STATUS_SOLD = 'sold';
+  const STATUS_ACTIVE = 'active';
+  const STATUS_INACTIVE = 'inactive';
+  const STATUS_EXPIRED= 'expired';
+
   public static $conditions = array(
     '' => 'Any', 'excellent' => 'Excellent', 'very good' => 'Very Good',
     'good' => 'Good', 'fair' => 'Fair', 'poor' => 'Poor'

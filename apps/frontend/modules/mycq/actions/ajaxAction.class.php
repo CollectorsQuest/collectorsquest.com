@@ -336,13 +336,14 @@ class ajaxAction extends cqAjaxAction
     /** @var $collectible Collectible */
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
-    $this->forward404Unless($collectible instanceof Collectible);
+    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible));
 
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
 
-    if ($collection && $collection instanceof Collection)
+    if ($collection instanceof Collection)
     {
+      $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
       $q = CollectionCollectibleQuery::create()
         ->filterByCollectionId($this->collection->getId())
         ->filterByCollectibleId($this->collectible->getId());
@@ -795,48 +796,80 @@ class ajaxAction extends cqAjaxAction
   /**
    * section: collectibleForSale
    * page: deactivate
-   * params: id
+   * params: id, execute
    */
-  public function executeCollectibleForSaleDeactivate(sfWebRequest $request, $template)
+  public function executeCollectibleForSaleUpdateStatus(sfWebRequest $request, $template)
   {
-    /* @var $collectible CollectibleForSale */
-    $collectible_for_sale = CollectibleForSaleQuery::create()
-     ->findOneByCollectibleId($request->getParameter('id'));
-
-    $collectible_for_sale->setIsReady(false);
-    $collectible_for_sale->save();
-
-    $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
-
-    return $template;
-  }
-
-  /**
-   * section: collectibleForSale
-   * page: relist
-   * params: id
-   */
-  public function executeCollectibleForSaleRelist(sfWebRequest $request, $template)
-  {
-    /* @var $collectible CollectibleForSale */
-    $collectible_for_sale = CollectibleForSaleQuery::create()
-      ->findOneByCollectibleId($request->getParameter('id'));
-
-    try
+    $action = $request->getParameter('execute');
+    if (!in_array($action, array('activate', 'deactivate', 'relist')))
     {
-      // try to create a transaction credit for this collectible
-      PackageTransactionCreditPeer::findActiveOrCreateForCollectible($collectible_for_sale->getCollectible());
-    }
-    catch (CollectorHasNoCreditsAvailableException $e)
-    {
-      // and if for some reason there were no available credits
-      return 'No credits available!';
+      $this->errors(array(
+          'error'=> array(
+              'message' => sprintf('%s is not allowed as action', $action),
+          ),
+      ));
     }
 
-    $collectible_for_sale->setIsReady(true);
-    $collectible_for_sale->save();
+    $collectible_for_sale = CollectibleForSalePeer::retrieveByPK(
+      $request->getParameter('id')
+    );
+    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible_for_sale));
 
-    $this->collectible_id = $collectible_for_sale->getCollectible()->getId();
+    switch ($action)
+    {
+      case 'activate':
+        if (CollectibleForSalePeer::activate($collectible_for_sale))
+        {
+          return $this->renderPartial(
+            'mycq/partials/item_for_sale_history_table_row',
+            array('collectible_for_sale' => $collectible_for_sale)
+          );
+        }
+        else
+        {
+          return $this->errors(array(
+              'error' => array(
+                  'message' => 'Cannot activate collectible',
+              ),
+          ));
+        }
+      break;
+
+      case 'deactivate':
+        if (CollectibleForSalePeer::deactivate($collectible_for_sale))
+        {
+          return $this->renderPartial(
+            'mycq/partials/item_for_sale_history_table_row',
+            array('collectible_for_sale' => $collectible_for_sale)
+          );
+        }
+        else
+        {
+          return $this->errors(array(
+              'error' => array(
+                 'message' => 'Cannot deactivate collectible',
+              ),
+          ));
+        }
+      break;
+
+      case 'relist':
+        if (( $collectible_for_sale = CollectibleForSalePeer::relist($collectible_for_sale) ))
+        {
+          return $this->renderPartial(
+            'mycq/partials/item_for_sale_history_table_row',
+            array('collectible_for_sale' => $collectible_for_sale)
+          );
+        }
+        else
+        {
+          return $this->errors(array(
+              'error' => array(
+                 'message' => 'Cannot relist collectible',
+              ),
+          ));
+        }
+    }
 
     return $template;
   }
