@@ -9,6 +9,11 @@ class ShoppingOrder extends BaseShoppingOrder
   protected $aShippingReference;
 
   /**
+   * @var        Collectible
+   */
+  protected $aCollectible;
+
+  /**
    * Pre save hook
    *
    * @param     PropelPDO $con
@@ -409,6 +414,100 @@ class ShoppingOrder extends BaseShoppingOrder
     }
 
     return $hash;
+  }
+
+  public function setCollectible(Collectible $v = null)
+  {
+    if ($v === null)
+    {
+      $this->setCollectibleId(null);
+    }
+    else
+    {
+      $this->setCollectibleId($v->getId());
+    }
+
+    $this->aCollectible = $v;
+
+    // Add binding for other direction of this n:n relationship.
+    // If this object has already been added to the Collectible object, it will not be re-added.
+    if ($v !== null)
+    {
+      $v->addShoppingOrder($this);
+    }
+
+    return $this;
+  }
+
+
+  /**
+   * Get Collectible object related by collectible ID
+   *
+   * @param      PropelPDO Optional Connection object.
+   * @return     Collectible The associated Collectible object.
+   * @throws     PropelException
+   */
+  public function getCollectible(PropelPDO $con = null)
+  {
+    if ($this->aCollectible === null && ($this->collectible_id !== null))
+    {
+      $collectible = CollectibleQuery::create()->findPk($this->collectible_id, $con);
+
+      if (!$collectible)
+      {
+        $collectible_archive = CollectibleArchiveQuery::create()->findPk($this->collectible_id, $con);
+        if ($collectible_archive)
+        {
+          $collectible = new Collectible();
+          $collectible->populateFromArchive($collectible_archive, true);
+          $collectible
+            ->setReadOnly(true)
+            ->isArchive = true;
+
+          // Load multimedia
+          $m_archive = iceModelMultimediaArchiveQuery::create()
+            ->filterByModel(get_class($collectible))
+            ->filterByModelId($this->collectible_id)
+            ->find();
+          if ($m_archive->count())
+          {
+            $multimedia = new PropelObjectCollection();
+            $multimedia->setModel('iceModelMultimedia');
+            foreach ($m_archive as $m)
+            {
+              $ma = new iceModelMultimedia();
+              $ma->populateFromArchive($m, true);
+              $multimedia[] = $ma;
+            }
+            $collectible->setEblobElement('multimedia', $multimedia->toXML(true));
+
+            // Set isArchive flag for multimedia objects
+            foreach ($collectible->getMultimedia() as $m)
+            {
+              $m->isArchive = true;
+            }
+            $collectible->getPrimaryImage()->isArchive = true;
+
+          }
+
+          $collectible_for_sale_archive =
+            CollectibleForSaleArchiveQuery::create()->findPk($this->collectible_id, $con);
+
+          if ($collectible_for_sale_archive)
+          {
+            $collectible_for_sale = new CollectibleForSale();
+            $collectible_for_sale->populateFromArchive($collectible_for_sale_archive, true);
+            $collectible_for_sale
+              ->setReadOnly(true)
+              ->setCollectible($collectible);
+          }
+        }
+      }
+
+      $this->aCollectible = $collectible;
+    }
+
+    return $this->aCollectible;
   }
 
   public function updateTaxAmount()

@@ -170,56 +170,57 @@ cq_section_title(
   </div>
 </div>
 
+<?php if ($shopping_order->getSeller()): ?>
 
-<?php
-cq_section_title(
-  'Seller Information', null,
-  array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title')
-);
-?>
+  <?php
+  cq_section_title(
+    'Seller Information', null,
+    array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title')
+  );
+  ?>
 
-<div class="row-fluid">
-  <div class="span8">
-    <table class="table table-collectible-purchased">
-      <tr>
-        <td>Name:</td>
-        <td>
-          <?= $shopping_order->getSeller(); ?>
-          <a href="<?= url_for_collector($shopping_order->getSeller()); ?>">
-            (View Profile)
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Email Address:</td>
-        <td>
-          <?php
-          echo mail_to(
-            $shopping_order->getSeller()->getEmail(),
-            $shopping_order->getSeller()->getEmail()
-          );
-          ?>
-        </td>
-      </tr>
-      <?php if ($v = $shopping_order->getShippingPhone()): ?>
-      <tr>
-        <td>Phone Number:</td>
-        <td><?= $v; ?></td>
-      </tr>
-      <?php endif; ?>
-    </table>
+  <div class="row-fluid">
+    <div class="span8">
+      <table class="table table-collectible-purchased">
+        <tr>
+          <td>Name:</td>
+          <td>
+            <?= $shopping_order->getSeller(); ?>
+            <a href="<?= url_for_collector($shopping_order->getSeller()); ?>">
+              (View Profile)
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Email Address:</td>
+          <td>
+            <?php
+            echo mail_to(
+              $shopping_order->getSeller()->getEmail(),
+              $shopping_order->getSeller()->getEmail()
+            );
+            ?>
+          </td>
+        </tr>
+        <?php if ($v = $shopping_order->getShippingPhone()): ?>
+        <tr>
+          <td>Phone Number:</td>
+          <td><?= $v; ?></td>
+        </tr>
+        <?php endif; ?>
+      </table>
+    </div>
+    <div class="span4">
+      <div class="send-pm cf">
+        <?= form_tag('@messages_compose'); ?>
+        <?= $pm_form->renderHiddenFields(); ?>
+        <?= $pm_form['body']->render(); ?>
+        <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
+          <i class="mail-icon-mini"></i> &nbsp;Send message
+        </button>
+        <?= '</form>'; ?>
+      </div> <!-- ./send-pm -->
+    </div>
   </div>
-  <div class="span4">
-    <div class="send-pm cf">
-      <?= form_tag('@messages_compose'); ?>
-      <?= $pm_form->renderHiddenFields(); ?>
-      <?= $pm_form['body']->render(); ?>
-      <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
-        <i class="mail-icon-mini"></i> &nbsp;Send message
-      </button>
-      <?= '</form>'; ?>
-    </div> <!-- ./send-pm -->
-  </div>
-</div>
 
-
+<?php endif; ?>

@@ -38,6 +38,17 @@ if (in_array($type, array('image', 'video')))
     if ($stmt->execute(array($m[1], $type)))
     {
       $row = $stmt->fetch(PDO::FETCH_NAMED);
+
+      if (!$row && isset($_GET['archive']))
+      {
+        $stmt = $dbh->prepare('SELECT * FROM `multimedia_archive` WHERE `id` = ? AND `type` = ? LIMIT 1');
+        if ($stmt->execute(array($m[1], $type)))
+        {
+          $row = $stmt->fetch(PDO::FETCH_NAMED);
+        }
+
+      }
+
       $created_at = new DateTime($row['created_at']);
 
       $path  = '/uploads/'. $row['model'] .'/'. date_format($created_at, 'Y/m/d');

@@ -21,6 +21,34 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   /** @var array */
   public $_counts = array();
 
+
+  /* @var boolean  if true object will not be saved on save()*/
+  protected $read_only = false;
+
+  /**
+   * @var        array ShoppingOrder[] Collection to store aggregation of ShoppingOrder objects.
+   */
+  protected $collShoppingOrders;
+
+  /**
+   * Code to be run before persisting the object
+   * @param PropelPDO $con
+   * @return bloolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    if ($this->read_only)
+    {
+      return false;
+    }
+
+    return parent::preSave($con);
+  }
+
+  /**
+   * Code to be run after persisting the object
+   * @param PropelPDO $con
+   */
   /** @var ShippingReference[] */
   protected $shipping_references = null;
 
@@ -753,16 +781,9 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
 
     // Deleting collectibles for sale
     $collectible_for_sale = $this->getCollectibleForSale();
-    if (!empty($collectibles_for_sale))
+    if (!empty($collectible_for_sale))
     {
       $collectible_for_sale->delete($con);
-    }
-
-    /* @var $shopping_orders ShoppingOrder[] */
-    $shopping_orders = $this->getShoppingOrders();
-    foreach ($shopping_orders as $shopping_order)
-    {
-      $shopping_order->delete($con);
     }
 
     CommentQuery::create()
@@ -770,6 +791,186 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       ->delete($con);
 
     return parent::preDelete($con);
+  }
+
+  /**
+   * Clears out the collShoppingOrders collection
+   *
+   * This does not modify the database; however, it will remove any associated objects, causing
+   * them to be refetched by subsequent calls to accessor method.
+   *
+   * @return     void
+   * @see        addShoppingOrders()
+   */
+  public function clearShoppingOrders()
+  {
+    $this->collShoppingOrders = null; // important to set this to NULL since that means it is uninitialized
+  }
+
+  /**
+   * Initializes the collShoppingOrders collection.
+   *
+   * By default this just sets the collShoppingOrders collection to an empty array (like clearcollShoppingOrders());
+   * however, you may wish to override this method in your stub class to provide setting appropriate
+   * to your application -- for example, setting the initial array to the values stored in database.
+   *
+   * @param      boolean $overrideExisting If set to true, the method call initializes
+   *                                        the collection even if it is not empty
+   *
+   * @return     void
+   */
+  public function initShoppingOrders($overrideExisting = true)
+  {
+    if (null !== $this->collShoppingOrders && !$overrideExisting)
+    {
+      return;
+    }
+    $this->collShoppingOrders = new PropelObjectCollection();
+    $this->collShoppingOrders->setModel('ShoppingOrder');
+  }
+
+  /**
+   * Gets an array of ShoppingOrder objects which contain a foreign key that references this object.
+   *
+   * If the $criteria is not null, it is used to always fetch the results from the database.
+   * Otherwise the results are fetched from the database the first time, then cached.
+   * Next time the same method is called without $criteria, the cached collection is returned.
+   * If this Collectible is new, it will return
+   * an empty collection or the current collection; the criteria is ignored on a new object.
+   *
+   * @param      Criteria $criteria optional Criteria object to narrow the query
+   * @param      PropelPDO $con optional connection object
+   * @return     PropelCollection|array ShoppingOrder[] List of ShoppingOrder objects
+   * @throws     PropelException
+   */
+  public function getShoppingOrders($criteria = null, PropelPDO $con = null)
+  {
+    if (null === $this->collShoppingOrders || null !== $criteria)
+    {
+      if ($this->isNew() && null === $this->collShoppingOrders)
+      {
+        // return empty collection
+        $this->initShoppingOrders();
+      }
+      else
+      {
+        $collShoppingOrders = ShoppingOrderQuery::create(null, $criteria)
+          ->filterByCollectibleId($this->getId())
+          ->find($con);
+        if (null !== $criteria)
+        {
+          return $collShoppingOrders;
+        }
+        $this->collShoppingOrders = $collShoppingOrders;
+      }
+    }
+    return $this->collShoppingOrders;
+  }
+
+  /**
+   * Sets a collection of ShoppingOrder objects related by a one-to-many relationship
+   * to the current object.
+   * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+   * and new objects from the given Propel collection.
+   *
+   * @param      PropelCollection $shoppingOrders A Propel collection.
+   * @param      PropelPDO $con Optional connection object
+   */
+  public function setShoppingOrders(PropelCollection $shoppingOrders, PropelPDO $con = null)
+  {
+    $this->shoppingOrdersScheduledForDeletion
+      = $this->getShoppingOrders(new Criteria(), $con)->diff($shoppingOrders, false);
+
+    foreach ($shoppingOrders as $shoppingOrder)
+    {
+      // Fix issue with collection modified by reference
+      if ($shoppingOrder->isNew())
+      {
+        $shoppingOrder->setCollectible($this);
+      }
+      $this->addShoppingOrder($shoppingOrder);
+    }
+
+    $this->collShoppingOrders = $shoppingOrders;
+  }
+
+  /**
+   * Returns the number of related ShoppingOrder objects.
+   *
+   * @param      Criteria $criteria
+   * @param      boolean $distinct
+   * @param      PropelPDO $con
+   * @return     int Count of related ShoppingOrder objects.
+   * @throws     PropelException
+   */
+  public function countShoppingOrders(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+  {
+    if (null === $this->collShoppingOrders || null !== $criteria)
+    {
+      if ($this->isNew() && null === $this->collShoppingOrders)
+      {
+        return 0;
+      }
+      else
+      {
+        $query = ShoppingOrderQuery::create(null, $criteria);
+        if ($distinct)
+        {
+          $query->distinct();
+        }
+        return $query
+          ->filterByCollectible($this)
+          ->count($con);
+      }
+    }
+    else
+    {
+      return count($this->collShoppingOrders);
+    }
+  }
+
+  /**
+   * Method called to associate a ShoppingOrder object to this object
+   * through the ShoppingOrder foreign key attribute.
+   *
+   * @param      ShoppingOrder $l ShoppingOrder
+   * @return     Collectible The current object (for fluent API support)
+   */
+  public function addShoppingOrder(ShoppingOrder $l)
+  {
+    if ($this->collShoppingOrders === null)
+    {
+      $this->initShoppingOrders();
+    }
+    if (!$this->collShoppingOrders->contains($l))
+    {
+      // only add it if the **same** object is not already associated
+      $this->doAddShoppingOrder($l);
+    }
+
+    return $this;
+  }
+
+  /**
+   * @param  ShoppingOrder $shoppingOrder The shoppingOrder object to add.
+   */
+  protected function doAddShoppingOrder($shoppingOrder)
+  {
+    $this->collShoppingOrders[]= $shoppingOrder;
+    $shoppingOrder->setCollectible($this);
+  }
+
+  /**
+   * Set Read only flag, if true object will not be saved on save()
+   *
+   * @param $read_only
+   * @return Collectible
+   */
+  public function setReadOnly($read_only)
+  {
+    $this->read_only = (boolean) $read_only;
+
+    return $this;
   }
 
 }

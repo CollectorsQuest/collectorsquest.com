@@ -248,6 +248,13 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         'column' => 'id',
     ));
 
+    $this->widgetSchema['archive_collectible_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['archive_collectible_id'] = new sfValidatorPropelChoice(array(
+      'required' => false,
+      'model' =>  'CollectibleArchive',
+      'column' => 'id',
+    ));
+
     // if we have an attach option passed to the form
     if ($this->getOption('attach'))
     {
@@ -261,7 +268,14 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
         if ($object instanceof Collectible)
         {
-          $this->setDefault('collectible_id', $object->getPrimaryKey());
+          if (isset($object->isArchive))
+          {
+            $this->setDefault('archive_collectible_id', $object->getPrimaryKey());
+          }
+          else
+          {
+            $this->setDefault('collectible_id', $object->getPrimaryKey());
+          }
         }
       }
     }
