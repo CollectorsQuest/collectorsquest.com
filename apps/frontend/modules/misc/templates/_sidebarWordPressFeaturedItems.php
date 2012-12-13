@@ -5,7 +5,7 @@
 <?php
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('ids' => $collectibles_for_sale_ids, 'limit' => 8)
+    array('wp_post' => $wp_post, 'limit' => 8)
   );
 ?>
 

@@ -123,10 +123,10 @@
       return false;
     };
 
-    <?php /* The click() does not work for new elements, on() does not work for current?!? */ ?>
-    $('a.zoom-zone').click(zoom_zone);
-    $('#items-for-sale').on('click', 'a.zoom-zone', zoom_zone);
-    $('#holiday-market-body').on('click', 'a.zoom-zone', zoom_zone);
+    // add zoom zone only if not on mobile
+    if (!window.cq.is_mobile) {
+      $(document).on('click', 'a.zoom-zone', zoom_zone);
+    }
 
     var fixadent = $("#fixed-filter-bar"), pos = fixadent.offset();
     $(window).scroll(function()

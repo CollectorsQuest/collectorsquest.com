@@ -9,22 +9,27 @@
 <header>
 
   <div class="header-inner">
+    <?php
+      if (sfConfig::get('sf_environment') === 'dev')
+      {
+        $class = 'cq-logo logo-development';
+      }
+      else if (sfConfig::get('sf_environment') === 'next')
+      {
+        $class = 'cq-logo logo-staging';
+      }
+      else
+      {
+        $class = 'cq-logo logo';
+      }
+
+      echo link_to(
+        'Collectors Quest', 'homepage',
+        array('ref' => cq_link_ref('logo')),
+        array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
+      );
+    ?>
     <div class="row-fluid">
-      <div class="span2">&nbsp;</div>
-      <div class="span6">
-        <div class="input-append search-header pull-right">
-          <form action="<?= url_for('@search', true) ?>" method="get">
-            <?php
-              echo $form['q']->render(array(
-                'autocomplete' => 'off', 'required' => 'required',
-                'placeholder' => 'Find collectibles, blog posts, videos and more...')
-              );
-            ?>
-            <button class="btn btn-large append-search-button" type="submit">Search</button>
-            <?= $form->renderHiddenFields(); ?>
-          </form>
-        </div>
-      </div>
       <div class="span4 right-section-header">
 
         <a href="<?= url_for('shopping_cart', array('ref' => cq_link_ref('header')), true); ?>"
@@ -34,6 +39,7 @@
           </span>
         </a>
         <span class="nav-divider"></span>
+
 
         <?php if ($sf_user->isAuthenticated()): ?>
           &nbsp;
@@ -96,10 +102,20 @@
           </div>
         <?php else: ?>
           <?php
-            echo link_to(
-              'Sign In', 'login', array('ref' => cq_link_ref('header')),
-              array('class' => 'requires-login bold-links padding-signup', 'absolute' => true)
-            );
+            if ($sf_request->isMobileLayout())
+            {
+              echo link_to(
+                'Sign In', 'login', array('ref' => cq_link_ref('header')),
+                array('class' => 'bold-links padding-signup', 'absolute' => true)
+              );
+            }
+            else
+            {
+              echo link_to(
+                'Sign In', 'login', array('ref' => cq_link_ref('header')),
+                array('class' => 'requires-login bold-links padding-signup', 'absolute' => true)
+              );
+            }
           ?>
           &nbsp;or&nbsp;
           <?php
@@ -111,32 +127,26 @@
           ?>
         <?php endif; ?>
       </div>
+
+      <div class="span8 search-header"><!-- Search box -->
+        <div class="input-append pull-right">
+          <form action="<?= url_for('@search', true) ?>" method="get">
+            <?php
+              echo $form['q']->render(array(
+                'autocomplete' => 'off', 'required' => 'required',
+                'placeholder' => 'Find collectibles, blog posts, videos and more...')
+              );
+            ?>
+            <button class="btn btn-large append-search-button" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div><!-- /navbar-inner -->
 
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container dark-bg">
-        <?php
-          if (sfConfig::get('sf_environment') === 'dev')
-          {
-            $class = 'cq-logo logo-development';
-          }
-          else if (sfConfig::get('sf_environment') === 'next')
-          {
-            $class = 'cq-logo logo-staging';
-          }
-          else
-          {
-            $class = 'cq-logo logo';
-          }
-
-          echo link_to(
-            'Collectors Quest', 'homepage',
-            array('ref' => cq_link_ref('logo')),
-            array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
-          );
-        ?>
         <ul class="nav">
           <?= SmartMenu::generate('header', array()); ?>
         </ul>
