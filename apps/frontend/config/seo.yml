@@ -17,6 +17,12 @@ seo:
         Join Collectors Quest to buy, sell, trade & show off your amazing collections,
         from antiques to collectibles, vintage to modern. See what other people collect!
 
+    recoverPassword:
+      title: Forgot your username and/or password? | Collectors Quest
+
+    login:
+      title: Sign in to Collectors Quest | Use Facebook Twitter Google WordPress
+
   aetn:
     pawnStars:
       title: Pawn Stars | TV Show Collectibles | Collectors Quest
@@ -166,6 +172,12 @@ seo:
         Browse our amazing collections of antique, vintage & collectible items
         from passionate collectors around the world.
 
+    holiday:
+      title: Buy & Sell Antiques, Collectibles & Vintage Items | Collectors Quest
+      description: |
+        Browse our amazing collections of antique, vintage & collectible items
+        from passionate collectors around the world.
+
     browse:
       model: true
       title:
@@ -195,6 +207,12 @@ seo:
       description:
         - %StoreDescription%
 
+    signup:
+      title: Sell on Collectors Quest | Which package is right for you?
+      description: |
+        Broader Exposure, Flat Rate with No Transaction Fees, List for Six Months!
+        Sign up now!
+
   misc:
     guideToCollecting:
       title: The Essential Guide to Collecting - Free Download | Collectors Quest
@@ -207,3 +225,7 @@ seo:
       description: |
         Our Essential Guide to Collecting has tips for everyone, whether you're a new collector or
         an experienced hunter looking for the next item for your collection.
+
+  search:
+    index:
+      title: Search for Collectibles, Collections, Blog Posts, Videos and more!
