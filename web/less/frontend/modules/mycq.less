@@ -2261,22 +2261,19 @@ div.wpfaqask {
   }
 }
 
-//Profile - Social accounts
-.connect-to-social-wrapper {
-  .sidebar-title {
-    margin-top: 0;
-  }
-}
-
 .already-connected {
   position: relative;
-  .size(46px, 178px);
+  .size(46px, 128px);
   float: left;
   padding: 10px 4px 10px 8px;
   margin: 30px 20px 30px 20px;
   background-color: @yellowBackground;
   border: 1px solid #d9d2cc;
   color: @brown;
+
+  span {
+    float: left;
+  }
 
   .facebook-big-icon, .twitter-big-icon, .google-big-icon, .live-id-big-icon {
     display: inline-block;
@@ -2286,6 +2283,7 @@ div.wpfaqask {
     position: absolute;
     top: -10px;
     right: -10px;
+    display: none;
   }
   &:hover .icon-remove-sign {
     display: block;

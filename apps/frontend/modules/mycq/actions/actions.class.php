@@ -161,6 +161,18 @@ class mycqActions extends cqFrontendActions
     $this->email_form = $email_form;
     $this->collector_form = $collector_form;
 
+    // delete provider if variable set
+    if ($remove_provider = $this->getRequestParameter('remove_provider', null))
+    {
+      $provider = CollectorIdentifierQuery::create()
+        ->filterByCollector($this->getCollector())
+        ->filterByIdentifier($remove_provider)
+        ->find();
+
+      // not sure how to remove this provider
+      $provider->delete();
+    }
+
     return sfView::SUCCESS;
   }
 

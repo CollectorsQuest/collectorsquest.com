@@ -30,42 +30,7 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
-        <div class="connect-to-social-wrapper row-fluid">
-          <?php cq_sidebar_title('Social accounts') ?>
-          <div class="already-connected">
-            Already connected
-            <i class="facebook-big-icon"></i>
-            <i class="icon icon-remove-sign"></i>
-          </div>
-
-
-          <div class="connect-to-social-icons">
-            <fieldset>
-              <legend>Connect your account to</legend>
-              <div class="icon-container">
-                <a class="facebook-big-icon" href="#" rel="tooltip" data-placement="bottom" onclick="return false"
-                   data-original-title="Connect your account to Facebook">
-                  <i class="hide-text">Sign up using Facebook</i>
-                </a>
-                <a class="twitter-big-icon" href="#" rel="tooltip" data-placement="bottom" onclick="return false"
-                   data-original-title="Connect your account to Twitter">
-                  <i class="hide-text">Sign up using Twitter</i>
-                </a>
-                <a class="google-big-icon" href="#" rel="tooltip" data-placement="bottom" onclick="return false"
-                   data-original-title="Connect your account to Google+">
-                  <i class="hide-text">Sign up using Google+</i>
-                </a>
-                <a class="live-id-big-icon" href="#" rel="tooltip" data-placement="bottom" onclick="return false"
-                   data-original-title="Connect your account to Windows Live ID">
-                  <i class="hide-text">Sign up using Windows Live</i>
-                </a>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <?php cq_sidebar_title('Social Accounts') ?>
-        <?php include_partial('mycq', 'collectorSocialAccounts'); ?>
+        <?php include_component('mycq', 'collectorSocialAccounts'); ?>
 
         <?php cq_section_title('Change Your Email Address'); ?>
         <form action="<?= url_for('@mycq_profile_account_info'); ?>"
