@@ -29,7 +29,7 @@
       array(
         'collectible_for_sale' => $collectible->getCollectibleForSale(),
         'url' => $url,
-        'link_parameters' => array('class' => 'open-modal zoom-zone', 'onclick' => 'return false;')
+        'link_parameters' => array('class' => 'open-modal zoom-zone')
       )
     );
   }
