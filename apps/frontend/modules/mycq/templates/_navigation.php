@@ -41,25 +41,23 @@ has_component_slot('mycq_upload_photos') ? $spans = array(10, 2) : $spans = arra
     <?php endif; ?>
   </div>
 
-  <?php if ($spans[1] > 0 && has_component_slot('mycq_dropbox')): ?>
-
-  <?php include_component_slot('mycq_dropbox'); ?>
-
-  <div class="row-fluid">
-    <div class="span10 upload-items-wrapper-l"></div>
-    <div class="span2 upload-items-wrapper-r">
-      <a href="javascript:void(0)" class="dropzone-container-slide pull-right <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>">
-        <span class="open-dropzone">
-          Open Uploaded Photos <i class="icon-caret-down"></i>
-        </span>
-        <span class="close-dropzone">
-          Close Uploaded Photos <i class="icon-caret-up"></i>
-        </span>
-      </a>
+  <?php if ($spans[1] > 0 && ($slot = has_component_slot('mycq_dropbox'))): ?>
+    <?= $slot; ?>
+    <div class="row-fluid">
+      <div class="span10 upload-items-wrapper-l"></div>
+      <div class="span2 upload-items-wrapper-r">
+        <a href="javascript:void(0)" class="dropzone-container-slide pull-right <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>">
+          <span class="open-dropzone">
+            Open Uploaded Photos <i class="icon-caret-down"></i>
+          </span>
+          <span class="close-dropzone">
+            Close Uploaded Photos <i class="icon-caret-up"></i>
+          </span>
+        </a>
+      </div>
     </div>
-  </div>
   <?php elseif ($spans[1] > 0): ?>
-  <br><br>
+    <br><br>
   <?php endif; ?>
 </div>
 
