@@ -224,12 +224,8 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
         {
           /* @var $default_shipping_rate ShippingRate */
           $new_shipping_rate = new ShippingRate();
-          $new_shipping_rate->fromArray(array(
-              'ShippingCarrierServiceId' => $default_shipping_rate->getShippingCarrierServiceId(),
-              'FlatRateInCents' => $default_shipping_rate->getFlatRateInCents(),
-              'IsFreeShipping' => $default_shipping_rate->getIsFreeShipping(),
-
-          ));
+          $new_shipping_rate->fromArray($default_shipping_rate->toArray());
+          $new_shipping_rate->setId(null);
           $new_shipping_rates[] = $new_shipping_rate;
         }
 

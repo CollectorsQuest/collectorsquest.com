@@ -22,13 +22,23 @@
             <div class="collector-addresses">
 
             <?php foreach ($collector_addresses as $key => $address): ?>
-              <div class="address-row">
-                <span><?= $key+1 ?>.</span>
-                <div class="address-data">
-                  <?php include_partial('collector_address',
-                     array('collector_address' => $address)); ?>
+              <div class="address-row ">
+                <span class=""><?= $key+1 ?>.</span>
+                <div class="address-data clearfix">
+                  <?php
+                    include_partial('mycq/partials/collector_address', array(
+                        'collector_address' => $address,
+                    ));
+                  ?>
 
-                  <fieldset class="form-container-center">
+                  <fieldset class="pull-right form-container-center">
+                    <span>
+                      <?php if ($address->getIsPrimary()): ?>
+                      <strong class="text-success">This your primary address</strong>
+                      <?php else: ?>
+                      <?= link_to('Click here', 'mycq_profile_addresses_make_primary', $address); ?> to make this your primary address.
+                      <?php endif; ?>
+                    </span>
                     <div class="form-actions">
                       <?php
                         echo link_to('Edit Address',
@@ -36,7 +46,7 @@
                             'sf_route' => 'mycq_profile_addresses_edit',
                             'sf_subject' => $address
                           ),
-                          array('class' => 'btn btn-primary spacer-left')
+                          array('class' => 'btn btn-warning spacer-left')
                         );
                       ?>
                       <?php
@@ -63,6 +73,8 @@
             </p>
           <?php endif; ?>
           <a class="btn btn-primary" href="<?= url_for('@mycq_profile_addresses_new') ?>">Enter a new address</a>
+          <br />
+          <br />
         </div> <!-- .collector-address-holder -->
 
       </div> <!-- .tab-content-inner.spacer -->

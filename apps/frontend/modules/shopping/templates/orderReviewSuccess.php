@@ -46,6 +46,41 @@
       array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
   ?>
+
+  <?php foreach ($shopping_order->getShoppingOrderCollectibles() as $shopping_order_collectible): ?>
+  <div class="row-fluid">
+    <div class="span8 spacer-left-reset">
+      <table class="table table-collectible-purchased">
+        <tr>
+          <td>Item Name:</td>
+          <td><?= $shopping_order_collectible->getCollectible()->getName(); ?></td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td><?= $shopping_order_collectible->getCollectible()->getDescription(); ?></td>
+        </tr>
+        <tr>
+          <td>Price:</td>
+          <td><?= money_format('%.2n', (float) $shopping_order_collectible->getPriceAmount()); ?></td>
+        </tr>
+        <tr>
+          <td>Condition:</td>
+          <td><?= $shopping_order_collectible->getCondition(); ?></td>
+        </tr>
+      </table>
+    </div><!-- ./span8 -->
+    <div class="span4">
+      <div class="thumbnail">
+        <?php
+        echo image_tag_multimedia(
+          $shopping_order_collectible->getCollectible()->getPrimaryImage(), '190x190'
+        );
+        ?>
+      </div>
+    </div><!-- ./span4 -->
+  </div>
+  <?php endforeach ?>
+
   <div class="span7 spacer-left-reset">
     <table class="table table-collectible-purchased">
       <tr>

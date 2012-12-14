@@ -51,6 +51,7 @@ dev:
     mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false
+    mycq_seller_pay: true
     mycq_profile_addresses: false
     expose_collection_categories: false
     expose_market_categories: false

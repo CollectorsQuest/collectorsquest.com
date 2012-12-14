@@ -148,4 +148,37 @@ class ShoppingOrderPeer extends BaseShoppingOrderPeer
 
     return $array;
   }
+
+  /**
+   * build grouped array of ShoppingOrder|ShoppingCartCollectible
+   *
+   * @param ShoppingCart $shopping_cart
+   * @param bool $return_cart_collectibles
+   * @return ShoppingOrder[]|ShoppingCartCollectible[]
+   */
+  public static function cartToOrders(ShoppingCart $shopping_cart, $return_cart_collectibles = false)
+  {
+    $shopping_orders = array();
+    foreach ($shopping_cart->getShoppingCartCollectibles() as $cart_collectible)
+    {
+      /** @var $shopping_order_collectible ShoppingOrderCollectible */
+      $shopping_order_collectible = $cart_collectible->getShoppingOrderCollectible();
+      $key = $shopping_order_collectible->getGroupKey();
+      if ($return_cart_collectibles)
+      {
+        $shopping_orders[$key][] = $cart_collectible;
+      }
+      else
+      {
+        if (!isset($shopping_orders[$key]))
+        {
+          $shopping_orders[$key] = new ShoppingOrder();
+          $shopping_orders[$key]->setShippingCountryIso3166($cart_collectible->getShippingCountryIso3166());
+        }
+        $shopping_orders[$key]->addShoppingOrderCollectible($shopping_order_collectible);
+      }
+
+    }
+    return $shopping_orders;
+  }
 }

@@ -43,6 +43,13 @@ mycq_profile_addresses_delete:
   options:  { model: CollectorAddress, type: object }
   requirements: { id: '\d+', sf_method: [get, delete] }
 
+mycq_profile_addresses_make_primary:
+  url:      /mycq/profile/addresses/:id/make-primary
+  class:    sfPropelORMRoute
+  param:    { module: mycq, action: profileAddressesMakePrimary }
+  options:  { model: CollectorAddress, type: object }
+  requirements: { id: '\d+', sf_method: [get] }
+
 mycq_dropbox:
   url:   /mycq/dropbox
   param: { module: mycq, action: dropbox }
@@ -149,9 +156,9 @@ mycq_collector_address_delete:
   requirements: { id: '\d+', sf_method: [get, delete] }
 
 mycq_shopping_order_tracking:
-  url:   /mycq/order/:uuid/tracking
+  url:   /mycq/order/:id/tracking
   class: sfPropelRoute
-  options: { model: ShoppingOrder, type: object }
+  options: { model: ShoppingOrderCollectible, type: object }
   param: { module: mycq, action: shoppingOrderTracking }
   requirements: { sf_method: [get, post] }
 

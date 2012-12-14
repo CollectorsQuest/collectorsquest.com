@@ -55,10 +55,10 @@ cq_section_title(
         <tr>
           <td>Tracking Number:</td>
           <td>
-            <?php if ($shopping_order->getShippingTrackingNumber()): ?>
-            <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order->getShippingCarrier()) ?>/<?= $shopping_order->getShippingTrackingNumber() ?>"
+            <?php if ($shopping_order_collectible->getShippingTrackingNumber()): ?>
+            <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order_collectible->getShippingCarrier()) ?>/<?= $shopping_order_collectible->getShippingTrackingNumber() ?>"
                target="_blank">
-              <?= $shopping_order->getShippingTrackingNumber() ?>
+              <?= $shopping_order_collectible->getShippingTrackingNumber() ?>
             </a>
             <?php else: ?>
             N/A
@@ -77,7 +77,7 @@ cq_section_title(
           </td>
           <td>
           <span class="f-14">
-            1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?>
+            1 × <?= money_format('%.2n', (float) $shopping_order_collectible->getPriceAmount()) ?>
           </span>
           </td>
         </tr>
@@ -103,7 +103,7 @@ cq_section_title(
           </td>
           <td>
           <span class="f-14">
-            <?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()) ?>
+            <?= money_format('%.2n', (float) $shopping_order_collectible->getShippingFeeAmount()) ?>
           </span>
           </td>
         </tr>
@@ -115,7 +115,7 @@ cq_section_title(
           </td>
           <td>
           <span class="f-20">
-            <?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?>
+            <?= money_format('%.2n', (float) $shopping_order_collectible->getTotalAmount()) ?>
           </span>
           </td>
         </tr>

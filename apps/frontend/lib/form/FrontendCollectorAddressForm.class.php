@@ -42,4 +42,22 @@ class FrontendCollectorAddressForm extends CollectorAddressForm
     return null;
   }
 
+  /**
+   * @param     PropelPDO $con
+   */
+  protected function doSave($con = null)
+  {
+    parent::doSave($con);
+
+    // if possible, check if this is the only collector address and make it
+    // primary if it is
+    if (( $collector = $this->getObject()->getCollector($con) ))
+    {
+      if (1 == $collector->countCollectorAddresses(new Criteria(), $distinct = false, $con))
+      {
+        $this->getObject()->setIsPrimary(true)->save($con);
+      }
+    }
+  }
+
 }

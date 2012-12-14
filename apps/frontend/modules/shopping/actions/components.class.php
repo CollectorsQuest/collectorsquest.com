@@ -70,7 +70,8 @@ class shoppingComponents extends cqFrontendComponents
     }
 
     // We cannot do anything without a ShoppingCart Collectible
-    if (!$shopping_cart_collectible) {
+    if (!$shopping_cart_collectible)
+    {
       return sfView::NONE;
     }
 
@@ -86,6 +87,41 @@ class shoppingComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeShoppingOrder(sfWebRequest $request)
+  {
+
+    /** @var $shopping_order ShoppingOrder */
+    if (!$shopping_order = $this->getVar('shopping_order') )
+    {
+      if ($group_key = $request->getParameter('group_key'))
+      {
+        /**
+         * Getting all, then find the right by group_key
+         */
+        /** @var $shopping_orders  ShoppingOrder[] */
+        $shopping_orders = ShoppingOrderPeer::cartToOrders($this->getUser()->getShoppingCart());
+        if (isset($shopping_orders[$group_key]))
+        {
+          $shopping_order = $shopping_orders[$group_key];
+        }
+
+      }
+    }
+
+    // We cannot do anything without a ShoppingCart Collectible
+    if (!$shopping_order)
+    {
+      return sfView::NONE;
+    }
+
+    // Get the form
+    $this->form = new ShoppingOrderCheckoutForm($shopping_order);
+    $this->shopping_order = $shopping_order;
+
+    return sfView::SUCCESS;
+  }
+
 
   public function executeSlot1Shipping()
   {

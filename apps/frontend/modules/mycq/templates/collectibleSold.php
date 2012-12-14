@@ -107,14 +107,14 @@
       <tr>
         <td>Tracking Number:</td>
         <td>
-          <?php if ($shopping_order->getShippingTrackingNumber()): ?>
-            <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order->getShippingCarrier()) ?>/<?= $shopping_order->getShippingTrackingNumber() ?>"
+          <?php if ($shopping_order_collectible->getShippingTrackingNumber()): ?>
+            <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order_collectible->getShippingCarrier()) ?>/<?= $shopping_order_collectible->getShippingTrackingNumber() ?>"
                target="_blank">
-              <?= $shopping_order->getShippingTrackingNumber() ?>
+              <?= $shopping_order_collectible->getShippingTrackingNumber() ?>
             </a>
           <?php else: ?>
             <div class="row-fluid">
-            <form action="<?= url_for('mycq_shopping_order_tracking', $shopping_order); ?>" method="post">
+            <form action="<?= url_for('mycq_shopping_order_tracking', $shopping_order_collectible); ?>" method="post">
               <div class="span4 spacer-left-reset">
                 <select name="carrier" style="width: 100px;">
                   <option value="">Courier</option>

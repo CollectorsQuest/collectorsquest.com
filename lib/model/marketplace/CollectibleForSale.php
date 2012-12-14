@@ -114,11 +114,12 @@ class CollectibleForSale extends BaseCollectibleForSale
    *
    * @param     boolean|string $country_code
    * @param     string $return "float|integer"
+   * @param     boolean $combined_shipping Whether we want the price for combined items
    * @param     null|PropelPDO $con
    *
    * @return    mixed A float amount in USD, 0 if free shipping or FALSE if no shipping
    */
-  public function getShippingAmountForCountry($country_code = false, $return = 'float',  PropelPDO $con = null)
+  public function getShippingAmountForCountry($country_code = false, $return = 'float', $combined_shipping = false, PropelPDO $con = null)
   {
     if (false === $country_code)
     {
@@ -134,7 +135,7 @@ class CollectibleForSale extends BaseCollectibleForSale
       return 0;
     }
 
-    return $shipping_refenrence->getSimpleShippingAmount($return);
+    return $shipping_refenrence->getSimpleShippingAmount($return, $combined_shipping);
   }
 
   /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $shopping_cart ShoppingCart
+ * @var $shopping_orders ShoppingOrder[]
  * @var $shopping_cart_collectibles ShoppingCartCollectible[]
  */
 ?>
@@ -11,22 +11,24 @@
     array('%1%' => count($shopping_cart_collectibles)), count($shopping_cart_collectibles)
   )
 ?>
-<h1 class="Chivo webfont" style="font-size: 24px; font-weight: normal;">Shopping Cart <small> - <?= $title; ?></small></h1>
+<h1 class="Chivo webfont" style="font-size: 24px; font-weight: normal;">
+  Shopping Cart <small> - <?= $title; ?></small>
+</h1>
 <br/>
 
 <div id="shopping_cart_collectibles">
 <?php
-  foreach ($shopping_cart_collectibles as $shopping_cart_collectible)
-  {
-    echo sprintf(
-      '<div class="shopping-cart-container-item" id="shopping_cart_collectible_%d">',
-      $shopping_cart_collectible->getCollectibleId()
+foreach ($shopping_orders as $group_key => $shopping_order)
+{
+  echo sprintf(
+      '<div class="shopping-cart-container-items" id="shopping_order_%s">',
+      $group_key
     );
-    include_component(
-      'shopping', 'shoppingCartCollectible',
-      array('shopping_cart_collectible' => $shopping_cart_collectible)
+  include_component(
+      'shopping', 'shoppingOrder',
+      array('shopping_order' => $shopping_order)
     );
-    echo '</div>';
-  }
+  echo '</div>';
+}
 ?>
 </div>

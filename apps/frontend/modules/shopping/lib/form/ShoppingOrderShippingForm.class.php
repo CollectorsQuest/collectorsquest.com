@@ -142,10 +142,17 @@ class ShoppingOrderShippingForm extends BaseForm
 
     // update shopping cart collectible shipping based on new
     // shipping address country
-    $this->shopping_order->getShoppingCartCollectible()
-      ->setShippingCountryIso3166($shipping_address['country_iso3166'])
-      ->updateShippingFeeAmountFromCountryCode()
-      ->save();
+    foreach ($this->shopping_order->getShoppingOrderCollectibles() as $shopping_order_collectible)
+    {
+      /** @var $shopping_cart_collectible ShoppingCartCollectible */
+      $shopping_cart_collectible = ShoppingCartCollectiblePeer::retrieveByPK(
+        $this->shopping_order->getShoppingCartId(), $shopping_order_collectible->getCollectibleId()
+      );
+      $shopping_cart_collectible
+        ->setShippingCountryIso3166($shipping_address['country_iso3166'])
+        ->updateShippingFeeAmountFromCountryCode()
+        ->save();
+    }
 
     try
     {
@@ -186,15 +193,20 @@ class ShoppingOrderShippingForm extends BaseForm
     }
 
     $country_code = $values['shipping_address']['country_iso3166'];
-    $shipping_refenrece = $this->shopping_order->getShippingReference($country_code);
-
-    if ($shipping_refenrece && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_refenrece->getShippingType())
+    foreach ($this->shopping_order->getShoppingOrderCollectibles() as $shopping_order_collectible)
     {
-      throw new sfValidatorErrorSchema($validator, array(
+      $shipping_reference = $shopping_order_collectible->getShippingReference($country_code);
+
+      if ($shipping_reference &&
+        ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_reference->getShippingType())
+      {
+        throw new sfValidatorErrorSchema($validator, array(
           'shipping_address' => new sfValidatorErrorSchema($validator, array(
-              'country_iso3166' => new sfValidatorError($validator, 'invalid'),
-           )),
-      ));
+            'country_iso3166' => new sfValidatorError($validator, 'invalid'),
+          )),
+        ));
+      }
+
     }
 
     return $values;

@@ -10,6 +10,7 @@ class shoppingActions extends cqFrontendActions
 
   public function executeCart(sfWebRequest $request)
   {
+
     /** @var $shopping_cart ShoppingCart */
     $shopping_cart = $this->getUser()->getShoppingCart();
     $this->forward404Unless($shopping_cart instanceof ShoppingCart);
@@ -119,6 +120,8 @@ class shoppingActions extends cqFrontendActions
       return 'Empty';
     }
 
+    $this->shopping_orders = ShoppingOrderPeer::cartToOrders($shopping_cart);
+    $this->shopping_cart_collectibles = $shopping_cart->getShoppingCartCollectibles();
     /* @var $shopping_cart_collectibles ShoppingCartCollectible[] */
     $shopping_cart_collectibles = $shopping_cart->getShoppingCartCollectibles();
 
@@ -189,13 +192,11 @@ class shoppingActions extends cqFrontendActions
 
     if ($request->isMethod('post'))
     {
-      $form = new ShoppingCartCollectibleCheckoutForm();
-      $form->bind($request->getParameter('checkout'));
-
+      $form = new ShoppingOrderCheckoutForm();
+      $form->bind($request->getParameter($form->getName()));
       if ($form->isValid())
       {
         $values = $form->getValues();
-
         $shipping_address = new CollectorAddress();
         $shipping_address->setCountryIso3166($values['country_iso3166']);
         if (isset($values['state_region']))
@@ -235,29 +236,75 @@ class shoppingActions extends cqFrontendActions
         /** @var $q ShoppingOrderQuery */
         $q = ShoppingOrderQuery::create()
            ->filterByShoppingCart($shopping_cart)
-           ->filterByCollectibleId($collectible_for_sale->getCollectibleId());
+           ->filterByGroupKey($values['group_key']);
 
         /** @var $shopping_order ShoppingOrder */
-        $shopping_order = $q->findOneOrCreate();
+        $shopping_order = $q->findOneOrCreate()->deleteShoppingOrderCollectibles();
 
-        try
+        // Getting cart items by ids from form
+        $q = ShoppingCartCollectibleQuery::create()
+          ->filterByShoppingCart($shopping_cart)
+          ->add(ShoppingCartCollectiblePeer::COLLECTIBLE_ID, $values['collectibles'], Criteria::IN);
+
+        /** @var $shopping_cart_collectible ShoppingCartCollectible[] */
+        $shopping_cart_collectibles = $q->find();
+
+        if (count($shopping_cart_collectibles))
         {
-          $shopping_order->setSellerId($collectible_for_sale->getCollectorId());
-          $shopping_order->setCollectorId($this->getCollector()->getId());
-          $shopping_order->setShippingAddress($shipping_address);
-          $shopping_order->setNoteToSeller($values['note_to_seller']);
-          $shopping_order->save();
+          /** @var $isForSale boolean */
+          $isForSale = true;
+          foreach ($shopping_cart_collectibles as $shopping_cart_collectible)
+          {
+            /** @var $collectible_for_sale BaseCollectibleForSale */
+            $collectible_for_sale = $shopping_cart_collectible->getCollectibleForSale();
+            if (!$collectible_for_sale->isForSale())
+            {
+              $isForSale = false;
+              $q = ShoppingCartCollectibleQuery::create()
+                ->filterByCollectible($collectible_for_sale->getCollectible())
+                ->filterByShoppingCart($shopping_cart);
+              $q->delete();
+            }
+            if ($this->getCollector(false)->isOwnerOf($collectible_for_sale))
+            {
+              $this->getUser()->setFlash(
+                'error', 'Sorry, you cannot buy your own items!'
+              );
+              $this->redirect('@shopping_cart');
+            };
 
-          $this->redirect('@shopping_order_shipping?uuid='. $shopping_order->getUuid());
+            //Adding collectible to order
+            $shopping_order->addShoppingOrderCollectible(
+              $shopping_cart_collectible->getShoppingOrderCollectible()
+            );
+          }
+          if (!$isForSale)
+          {
+            $this->getUser()->setFlash(
+              'error', 'There was a problem processing the request
+                      and we have removed the item from your cart.
+                      Most probably this item has already been sold
+                      or no longer available for purchase.'
+            );
+            $this->redirect('@shopping_cart');
+          }
         }
-        catch (Exception $e)
+        else
         {
-          //  $this->getUser()->setFlash(
-          //    'error', 'There was an error proceeding to the checkout screen'
-          //  );
-
-           return sfView::ERROR;
+           $this->getUser()->setFlash(
+              'error', 'There was an error proceeding to the checkout screen'
+           );
+          $this->redirect('@shopping_cart');
         }
+
+        $shopping_order
+          ->setShoppingCart($shopping_cart)
+          ->setCollectorId($this->getCollector()->getId())
+          ->setShippingAddress($shipping_address)
+          ->setNoteToSeller($values['note_to_seller'])
+          ->save();
+
+        return $this->redirect('@shopping_order_shipping?uuid='. $shopping_order->getUuid());
       }
       else
       {
@@ -401,7 +448,7 @@ class shoppingActions extends cqFrontendActions
       $this->redirect('shopping_order', $shopping_order);
     }
 
-    if (null === $shopping_order->getShippingFeeAmount())
+    if ($shopping_order->isCannotShip())
     {
       // cannot be shipped to selected country, abort
       $this->getUser()->setFlash(
@@ -492,7 +539,7 @@ class shoppingActions extends cqFrontendActions
 
           $InvoiceData = array(
             // Total tax associated with the payment.
-            'TotalTax' => $shopping_order->getTaxAmount(),
+            'TotalTax' => $shopping_order->getTaxAmount(), #TO DO
             // Total shipping associated with the payment.
             'TotalShipping' => $shopping_order->getShippingFeeAmount('float'),
           );
@@ -591,7 +638,6 @@ class shoppingActions extends cqFrontendActions
     $this->shopping_order   = $shopping_order;
     $this->shopping_payment = $shopping_payment;
 
-    $this->collectible = $shopping_order->getCollectible();
     $this->seller = $shopping_order->getSeller();
 
     return sfView::SUCCESS;
@@ -630,12 +676,14 @@ class shoppingActions extends cqFrontendActions
       if (
         $this->getUser()->isAuthenticated() &&
         (
-          $this->getUser()->getId() === $shopping_order->getSellerId() ||
+          $this->getUser()->getId() === $shopping_order->getSeller()->getId() ||
           $this->getUser()->getId() === $shopping_order->getCollectorId()
         )
       )
       {
-        $this->redirect('mycq_collectible_by_slug', $shopping_order->getCollectible());
+        //TO DO Here should be mycq order preview page
+        //$this->redirect('mycq_collectible_by_slug', $shopping_order->getCollectible());
+        $this->redirect('mycq_marketplace_purchased');
       }
       else if ($shopping_order->equals($_shopping_order))
       {
@@ -649,7 +697,9 @@ class shoppingActions extends cqFrontendActions
       }
     }
 
-    $this->redirect('collectible_by_slug', $shopping_order->getCollectible());
+    //TO DO Here should be mycq order preview page
+    //$this->redirect('collectible_by_slug', $shopping_order->getCollectible());
+    $this->redirect('mycq_marketplace_purchased');
   }
 
   public function executePaypal(sfWebRequest $request)
@@ -695,11 +745,19 @@ class shoppingActions extends cqFrontendActions
           $shopping_payment->save();
         }
 
+        // Prevent rewriting this object at executeCheckout
+        $shopping_order->setGroupKey(
+          $shopping_order->getGroupKey().'_'.ShoppingPaymentPeer::STATUS_COMPLETED
+        )->save();
+
         // Remove the CollectibleForSale from the shopping cart
-        $q = ShoppingCartCollectibleQuery::create()
-           ->filterByCollectible($shopping_order->getCollectible())
-           ->filterByShoppingCart($shopping_order->getShoppingCart());
-        $q->delete();
+        foreach ($shopping_order->getShoppingOrderCollectibles() as $shopping_order_collectible)
+        {
+          $q = ShoppingCartCollectibleQuery::create()
+            ->filterByCollectible($shopping_order_collectible->getCollectible())
+            ->filterByShoppingCart($shopping_order->getShoppingCart());
+          $q->delete();
+        }
 
         // Add this order to the session if it's a guest checkout
         if (!$this->getUser()->isAuthenticated())
@@ -828,18 +886,20 @@ class shoppingActions extends cqFrontendActions
     $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
     $shopping_payment->save();
 
-    // Remove the CollectibleForSale from the shopping cart
-    $q = ShoppingCartCollectibleQuery::create()
-      ->filterByCollectible($shopping_order->getCollectible())
-      ->filterByShoppingCart($shopping_order->getShoppingCart());
-    $q->delete();
+    // Remove the CollectibleForSale items from the shopping cart
+    foreach ($shopping_order->getShoppingOrderCollectibles() as $shopping_order_collectible)
+    {
+      $q = ShoppingCartCollectibleQuery::create()
+        ->filterByCollectible($shopping_order_collectible->getCollectible())
+        ->filterByShoppingCart($shopping_order->getShoppingCart());
+      $q->delete();
 
-    // The Collectible has sold, so decrease the quantity (make zero)
-    $shopping_order->getCollectibleForSale()->setQuantity(0);
-
-    // The Collectible has sold, mark it as sold (legacy)
-    $shopping_order->getCollectibleForSale()->setIsSold(true);
-    $shopping_order->getCollectibleForSale()->save();
+      // The Collectible has sold, so decrease the quantity (make zero)
+      $shopping_order_collectible->getCollectibleForSale()->setQuantity(0);
+      // The Collectible has sold, mark it as sold (legacy)
+      $shopping_order_collectible->getCollectibleForSale()->setIsSold(true);
+      $shopping_order_collectible->getCollectibleForSale()->save();
+    }
 
     /**
      * Send emails to both the seller and the buyer
@@ -890,12 +950,15 @@ class shoppingActions extends cqFrontendActions
     $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
     $shopping_payment->save();
 
-    // The Collectible should go back for sale, so make the quantity 1
-    $shopping_order->getCollectibleForSale()->setQuantity(1);
-
-    // The Collectible should go back for sale, mark it as not sold (legacy)
-    $shopping_order->getCollectibleForSale()->setIsSold(false);
-    $shopping_order->getCollectibleForSale()->save();
+    // Return the collectibles back for sale
+    foreach ($shopping_order->getShoppingOrderCollectibles() as $shopping_order_collectible)
+    {
+      // The Collectible should go back for sale, so make the quantity 1
+      $shopping_order_collectible->getCollectibleForSale()->setQuantity(1);
+      // The Collectible should go back for sale, mark it as not sold (legacy)
+      $shopping_order_collectible->getCollectibleForSale()->setIsSold(false);
+      $shopping_order_collectible->getCollectibleForSale()->save();
+    }
 
     $cqEmail = new cqEmail($this->getMailer());
     $cqEmail->send('Shopping/buyer_order_failed', array(
@@ -920,12 +983,15 @@ class shoppingActions extends cqFrontendActions
     $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CANCELLED);
     $shopping_payment->save();
 
-    // The Collectible should go back for sale, so make the quantity 1
-    $shopping_order->getCollectibleForSale()->setQuantity(1);
-
-    // The Collectible should go back for sale, mark it as not sold (legacy)
-    $shopping_order->getCollectibleForSale()->setIsSold(false);
-    $shopping_order->getCollectibleForSale()->save();
+    // Return the collectibles back for sale
+    foreach ($shopping_order->getShoppingOrderCollectibles() as $shopping_order_collectible)
+    {
+      // The Collectible should go back for sale, so make the quantity 1
+      $shopping_order_collectible->getCollectibleForSale()->setQuantity(1);
+      // The Collectible should go back for sale, mark it as not sold (legacy)
+      $shopping_order_collectible->getCollectibleForSale()->setIsSold(false);
+      $shopping_order_collectible->getCollectibleForSale()->save();
+    }
 
     $cqEmail = new cqEmail($this->getMailer());
     $cqEmail->send('Shopping/buyer_order_refunded', array(

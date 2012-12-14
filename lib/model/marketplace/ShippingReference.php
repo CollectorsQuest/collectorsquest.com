@@ -67,11 +67,12 @@ class ShippingReference extends BaseShippingReference
    * Return a simple value for the shipping reference amount
    *
    * @param     string $return "float|integer"
+   * @param     boolean $combined_shipping Whether we want the price for combined items
    *
    * @return    mixed A float if shipping amount set, 0 for free shipping and FALSE for No shipping
    * @throws    Exception when the shipping refenrence does not conform to the expected simple format
    */
-  public function getSimpleShippingAmount($return = 'float')
+  public function getSimpleShippingAmount($return = 'float', $combined_shipping = false)
   {
     if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getShippingType())
     {
@@ -93,9 +94,18 @@ class ShippingReference extends BaseShippingReference
       }
       else
       {
-        return 'integer' === $return
-          ? $shipping_rate->getFlatRateInCents()
-          : $shipping_rate->getFlatRateInUSD();
+        if ($combined_shipping)
+        {
+          return 'integer' === $return
+            ? $shipping_rate->getCombinedFlatRateInCents()
+            : $shipping_rate->getCombinedFlatRateInUSD();
+        }
+        else
+        {
+          return 'integer' === $return
+            ? $shipping_rate->getFlatRateInCents()
+            : $shipping_rate->getFlatRateInUSD();
+        }
       }
     }
     else

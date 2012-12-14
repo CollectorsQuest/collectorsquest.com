@@ -1,0 +1,29 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hey, {{ buyer_name }}!
+</p>
+
+<p>
+  Congratulations! You’ve agreed to purchase
+  {{ oSeller.displayName }}’s collectible(s)!
+</p>
+
+<p>
+  {{ oSeller.displayName }} has been notified of your purchase and will be in
+  contact with you soon to finalize any outstanding details.
+</p>
+
+<p>Here are your transaction details:</p>
+{% include 'shoppingnew/_order_details.html.twig' %}
+
+<p>
+  Click on the address below to access your order details:
+</p>
+<p>
+  {{ url_for('shopping_order_with_hash', oShoppingOrder, {absolute: true}) }}
+</p>
+
+{% endblock %}

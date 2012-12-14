@@ -23,15 +23,22 @@
 }
 
 /* Checkout success */
-.shopping-cart-container-item {
+.shopping-cart-container-items {
   background-color: #f3f1f1;
   padding: 10px;
   margin: 0 auto 25px auto;
   .border-radius(8px);
 
-  tr.rainbow-dash td {
-    border-top: 1px solid #deddda;
-    padding-bottom: 10px;
+  .shopping-cart-item {
+    border-top: 1px solid #c7c7c7;
+    margin: 8px 0 5px 0;
+    padding-top: 10px;
+
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
   }
 
   input, select, input, select, textarea.simple-textarea {
@@ -87,6 +94,7 @@
     border-top: 1px solid #afbec6;
   }
   .line-under-title {
+    background: url("@{baseUrl}/gray-dotted-line.png") repeat-x bottom;
     margin-bottom: 10px;
     border-bottom: 1px solid #DEDDDA;
 
@@ -173,6 +181,6 @@
   }
 }
 
-.shopping-cart-container-item:hover .line-under-title .close-button {
-  background-color: darken(#D4D3CE, 10%);
+.shopping-cart-container-items:hover .pull-right .close-button {
+  background-color: darken(#D4D3CE, 7%);
 }

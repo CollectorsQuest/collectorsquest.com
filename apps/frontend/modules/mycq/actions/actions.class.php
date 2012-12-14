@@ -236,9 +236,10 @@ class mycqActions extends cqFrontendActions
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
         $this->getUser()->setFlash('success',
-          'You have successfully added a new address.');
+          'You have successfully added a new address.'
+        );
 
-        $this->redirect('@mycq_profile_addresses');
+        return $this->redirect('@mycq_profile_addresses');
       }
     }
     $this->form = $form;
@@ -260,9 +261,10 @@ class mycqActions extends cqFrontendActions
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
         $this->getUser()->setFlash('success',
-          'You have successfully edited your address.');
+          'You have successfully edited your address.'
+        );
 
-        $this->redirect('@mycq_profile_addresses');
+        return $this->redirect('@mycq_profile_addresses');
       }
     }
 
@@ -282,14 +284,38 @@ class mycqActions extends cqFrontendActions
     {
       $address->delete();
       $this->getUser()->setFlash('success',
-        $this->__('You have successfully removed an address from your account.'));
+        'You have successfully removed an address from your account.'
+      );
 
-      $this->redirect('@mycq_profile_addresses');
+      return $this->redirect('@mycq_profile_addresses');
     }
 
     $this->collector_address = $address;
 
     return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesMakePrimary(cqWebRequest $request)
+  {
+    /* @var $address CollectorAddress */
+    $address = $this->getRoute()->getObject();
+
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    // unmark the old primary address
+    CollectorAddressQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->filterByIsPrimary(true)
+      ->update(array('IsPrimary' => false));
+
+    // and set the new one
+    $address->setIsPrimary(true)->save();
+
+    $this->getUser()->setFlash('success',
+      'You have successfully changed your primary address'
+    );
+
+    return $this->redirect('@mycq_profile_addresses');
   }
 
   public function executeDropbox(sfWebRequest $request)
@@ -434,14 +460,22 @@ class mycqActions extends cqFrontendActions
       $this->multimedia = $collectible->getMultimedia(0, 'image', false);
 
       $this->shopping_order = ShoppingOrderQuery::create()
-        ->filterByCollectibleId($collectible->getId())
+        ->useShoppingOrderCollectibleQuery()
+          ->filterByCollectibleId($collectible->getId())
+        ->endUse()
         ->joinShoppingPaymentRelatedByShoppingPaymentId()
         ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
           ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
         ->endUse()
         ->findOne();
 
-      if ($this->shopping_order instanceof ShoppingOrder)
+      $this->shopping_order_collectible = ShoppingOrderCollectibleQuery::create()
+        ->filterByShoppingOrder($this->shopping_order)
+        ->filterByCollectibleId($collectible->getId())
+        ->findOne();
+
+      if ($this->shopping_order instanceof ShoppingOrder &&
+        $this->shopping_order_collectible instanceof ShoppingOrderCollectible)
       {
         $this->shopping_payment = $this->shopping_order->getShoppingPayment();
 
@@ -691,6 +725,9 @@ class mycqActions extends cqFrontendActions
             'error', 'There was a problem saving your information'
           );
         }
+
+        // after a successful form save we should alway perform a redirect!
+        return $this->redirect($request->getUri());
       }
       else
       {
@@ -740,10 +777,12 @@ class mycqActions extends cqFrontendActions
       ->isForSale();
     $this->total = $q->count();
 
-    $q = ShoppingOrderQuery::create()
-      ->isPaid()
-      ->filterBySellerId($collector->getId());
-    $this->sold_total = $q->count();
+    $this->sold_total = ShoppingOrderCollectibleQuery::create()
+      ->filterBySellerId($collector->getId())
+      ->useShoppingOrderQuery()
+        ->isPaid()
+      ->endUse()
+      ->count();
 
     // Make the seller available to the template
     $this->seller = $seller;
@@ -936,14 +975,17 @@ class mycqActions extends cqFrontendActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
-    $collectible = $shopping_order->getCollectible();
-    $this->redirect('mycq_collectible_by_slug', $collectible);
+   // $collectible = $shopping_order->getFirstShoppingOrderCollectible()->getCollectible();
+   // $this->redirect('mycq_collectible_by_slug', $collectible);
+    $this->redirect('mycq_marketplace_purchased');
   }
 
   public function executeShoppingOrderTracking(sfWebRequest $request)
   {
+    /** @var $shopping_order_collectible ShoppingOrderCollectible */
+    $shopping_order_collectible = $this->getRoute()->getObject();
     /** @var $shopping_order ShoppingOrder */
-    $shopping_order = $this->getRoute()->getObject();
+    $shopping_order = $shopping_order_collectible->getShoppingOrder();
 
     if ($request->isMethod('post') && $this->getUser()->isOwnerOf($shopping_order))
     {
@@ -959,7 +1001,7 @@ class mycqActions extends cqFrontendActions
           'error', 'You need to provide the shipping carrier in order to mark the item as shipped!'
         );
       }
-      else if ($shopping_order->getShippingTrackingNumber())
+      else if ($shopping_order_collectible->getShippingTrackingNumber())
       {
         $this->getUser()->setFlash(
           'error', 'You have already provided the tracking number for this order!'
@@ -967,9 +1009,9 @@ class mycqActions extends cqFrontendActions
       }
       else
       {
-        $shopping_order->setShippingCarrier($request->getParameter('carrier'));
-        $shopping_order->setShippingTrackingNumber($request->getParameter('tracking_number'));
-        $shopping_order->save();
+        $shopping_order_collectible->setShippingCarrier($request->getParameter('carrier'));
+        $shopping_order_collectible->setShippingTrackingNumber($request->getParameter('tracking_number'));
+        $shopping_order_collectible->save();
 
         $cqEmail = new cqEmail($this->getMailer());
         $cqEmail->send('shopping/buyer_order_shipped', array(
@@ -989,7 +1031,7 @@ class mycqActions extends cqFrontendActions
         ));
       }
 
-      $this->redirect('mycq_collectible_by_slug', $shopping_order->getCollectible());
+      $this->redirect('mycq_collectible_by_slug', $shopping_order_collectible->getCollectible());
     }
 
     return sfView::SUCCESS;

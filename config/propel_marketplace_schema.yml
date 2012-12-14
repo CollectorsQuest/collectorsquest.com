@@ -63,14 +63,13 @@ classes:
     columns:
       id:  ~
       uuid:                 { type: varchar, size: 8 }
-      seller_id:            { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
       collector_id:         { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
-      shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
-      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
       shopping_payment_id:  { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
-      buyer_email:          { type: varchar, size: 128, index: true }
-
+      shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
       shipping_address_id:       { type: integer, required: false, foreignClass: CollectorAddress, foreignReference: id, onDelete: setnull }
+      group_key:            { type: varchar, size: 128 }
+
+      buyer_email:          { type: varchar, size: 128, index: true }
       shipping_full_name:        { type: varchar(255), required: true  }
       shipping_phone:            { type: varchar(50),  required: false }
       shipping_address_line_1:   { type: varchar(255), required: true  }
@@ -80,16 +79,30 @@ classes:
       shipping_zip_postcode:     { type: varchar(50),  required: true }
       shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
 
-      shipping_carrier:          { type: enum, required: false, valueSet: "FedEx, UPS, USPS, DHL" }
-      shipping_tracking_number:  { type: varchar(64), required: false }
-
       note_to_seller:       { type: varchar, size: 255 }
       progress:             { type: enum, valueSet: "step1, step2, step3", default: step1, required: true }
       is_buyer_notified:         { type: boolean, default: false }
       is_seller_notified:        { type: boolean, default: false }
 
-    uniques:
-      shopping_order_U_1: [shopping_cart_id, collectible_id]
+    propel_behaviors:
+      timestampable:  ~
+
+  ShoppingOrderCollectible:
+    columns:
+      id: ~
+      shopping_order_id:  { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: cascade }
+      seller_id:          { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
+      collectible_id:     { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
+
+      shipping_carrier:          { type: enum, required: false, valueSet: "FedEx, UPS, USPS, DHL" }
+      shipping_tracking_number:  { type: varchar(64), required: false }
+
+      price_amount:              { type: integer, required: true, default: 0 }
+      price_currency:            { type: char, size: 3, required: true, default: 'USD' }
+      tax_amount:                { type: integer, required: true, default: 0 }
+      shipping_fee_amount:       { type: integer, required: false }
+      # should always mirror shipping_reference.shipping_type
+      shipping_type:             { type: enum,    required: false, valueSet: "no_shipping, local_pickup_only, flat_rate, calculated_shipping" }
 
     propel_behaviors:
       timestampable:  ~
@@ -141,10 +154,11 @@ classes:
   ShippingRate:
     columns:
       id:                   ~
-      shipping_reference_id: { type: integer, required: true, foreignClass: ShippingReference, foreignReference: id, onDelete: cascade }
-      shipping_carrier_service_id: { type: integer, required: false, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade }
-      flat_rate_in_cents:   { type: integer, required: false }
-      is_free_shipping:     { type: boolean, required: true, default: false }
+      shipping_reference_id:        { type: integer, required: true, foreignClass: ShippingReference, foreignReference: id, onDelete: cascade }
+      shipping_carrier_service_id:  { type: integer, required: false, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade }
+      flat_rate_in_cents:           { type: integer, required: false }
+      combined_flat_rate_in_cents:  { type: integer, required: false }
+      is_free_shipping:             { type: boolean, required: true, default: false }
 
   ShippingCarrierService:
     columns:
