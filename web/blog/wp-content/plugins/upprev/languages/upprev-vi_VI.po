@@ -4,23 +4,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: upPrev\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/upprev\n"
-"POT-Creation-Date: 2012-02-17 15:48:07+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2012-12-13 10:58:18+00:00\n"
 "PO-Revision-Date: 2012-02-20 10:00+0100\n"
 "Last-Translator: Marcin Pietrzak <marcin@iworks.pl>\n"
 "Language-Team: Xman <admin@user.vn>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Vietnamese\n"
 "X-Poedit-Country: VIET NAM\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#. #-#-#-#-#  upprev.pot (upPrev trunk)  #-#-#-#-#
+#. #-#-#-#-#  upprev.pot (upPrev branch/3.3)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin/index.php:3
-#: upprev.php:214
-#: upprev.php:215
-#: upprev.php:526
+#: admin/index.php:3 upprev.php:212 upprev.php:213 upprev.php:528
 msgid "upPrev"
 msgstr "upPrev"
 
@@ -28,9 +26,46 @@ msgstr "upPrev"
 msgid "upPrev options saved."
 msgstr "Lựa chọn upPrev đã được lưu"
 
+#: admin/index.php:24
+msgid "Loved this Plugin?"
+msgstr ""
+
+#: admin/index.php:26
+msgid "Below are some links to help spread this plugin to other users"
+msgstr ""
+
+#: admin/index.php:28
+msgid "Give it a 5 star on Wordpress.org"
+msgstr ""
+
+#: admin/index.php:29
+msgid "Link to it so others can easily find it"
+msgstr ""
+
+#: admin/index.php:34
+msgid "Need Assistance?"
+msgstr ""
+
+#: admin/index.php:36
+msgid "Problems? The links bellow can be very helpful to you"
+msgstr ""
+
+#: admin/index.php:38
+#, fuzzy
+msgid "http://wordpress.org/tags/upprev"
+msgstr "http://iworks.pl/upprev/"
+
+#: admin/index.php:38
+msgid "Wordpress Help Forum"
+msgstr ""
+
 #: includes/common.php:18
-msgid "<p>upPrev settings allows you to set the proprites of user notification showed when reader scroll down the page.</p>"
-msgstr "<p>Thiết lập upPrev cho phép bạn đặt thuộc tính hiển thị thông báo đến người dùng khi họ cuộn trang website xuống.</p>"
+msgid ""
+"<p>upPrev settings allows you to set the proprites of user notification "
+"showed when reader scroll down the page.</p>"
+msgstr ""
+"<p>Thiết lập upPrev cho phép bạn đặt thuộc tính hiển thị thông báo đến người "
+"dùng khi họ cuộn trang website xuống.</p>"
 
 #: includes/show_thubnail_on_admin_post_list.php:5
 msgid "Thumbnail"
@@ -44,394 +79,429 @@ msgstr "Không"
 msgid "An error occurred while getting the configuration."
 msgstr "Lỗi phát sinh trong khi lấy thông tin cấu hình"
 
-#: includes/iworks.options.class.php:291
+#: includes/iworks.options.class.php:309
 msgid "Save Changes"
 msgstr "Lưu thay đổi"
 
-#: includes/options.php:15
+#: includes/options.php:27 includes/options.php:43
 msgid "Apperance"
 msgstr "Giao diện"
 
-#: includes/options.php:27
-msgid "Animation style"
-msgstr "Kiểu dáng động"
+#: includes/options.php:33
+msgid "Schema"
+msgstr ""
 
-#: includes/options.php:30
+#: includes/options.php:36 includes/options.php:52
 msgid "flyout"
 msgstr "bay ra"
 
-#: includes/options.php:31
+#: includes/options.php:37 includes/options.php:53
 msgid "fade in/out"
 msgstr "rõ dần/mờ dần"
 
-#: includes/options.php:38
+#: includes/options.php:49
+msgid "Animation style"
+msgstr "Kiểu dáng động"
+
+#: includes/options.php:60
 msgid "Position"
 msgstr "Vị trí"
 
-#: includes/options.php:41
+#: includes/options.php:63
 msgid "right"
 msgstr "phải"
 
-#: includes/options.php:42
+#: includes/options.php:64
 msgid "left"
 msgstr "trái"
 
-#: includes/options.php:50
+#: includes/options.php:72
 msgid "Margin bottom"
 msgstr "Canh dưới"
 
-#: includes/options.php:51
-#: includes/options.php:60
-#: includes/options.php:70
+#: includes/options.php:73 includes/options.php:82 includes/options.php:92
 msgid "px"
 msgstr "px"
 
-#: includes/options.php:59
+#: includes/options.php:81
 msgid "Margin side"
 msgstr "Phần canh"
 
-#: includes/options.php:61
+#: includes/options.php:83
 msgid "Left or right depending on position."
 msgstr "Trái hoặc phải dựa vào vị trí"
 
-#: includes/options.php:69
+#: includes/options.php:91
 msgid "Box width"
 msgstr "Độ rộng của hộp"
 
-#: includes/options.php:78
+#: includes/options.php:100
 msgid "Offset"
 msgstr "Offset"
 
-#: includes/options.php:79
+#: includes/options.php:101
 msgid "%"
 msgstr "%"
 
-#: includes/options.php:80
+#: includes/options.php:102
 msgid "Percentage of the page required to be scrolled to display a box."
 msgstr "Phần trăm của trang yêu cầu phải được cuộn đến để hiển thị hộp"
 
-#: includes/options.php:88
+#: includes/options.php:110
 msgid "Before HTML element."
 msgstr "Trước thẻ HTML"
 
-#: includes/options.php:89
-msgid "If empty, all page length is taken for calculation. If not empty, make sure to use the ID or class of an existing element. Put # \"hash\" before the ID, or . \"dot\" before a class name."
-msgstr "Nếu trống, tất cả chiều dài của trang sẽ được tính toán. Nếu không trống, hãy chắn chắn rằng dùng ID hoặc class của một thẻ html có đã có trên trang. Đặt # \"dấu thăng\" đăng trước ID, hoặc . \"dấu chấm\" đằng trước tên class."
+#: includes/options.php:111
+msgid ""
+"If empty, all page length is taken for calculation. If not empty, make sure "
+"to use the ID or class of an existing element. Put # \"hash\" before the ID, "
+"or . \"dot\" before a class name."
+msgstr ""
+"Nếu trống, tất cả chiều dài của trang sẽ được tính toán. Nếu không trống, "
+"hãy chắn chắn rằng dùng ID hoặc class của một thẻ html có đã có trên trang. "
+"Đặt # \"dấu thăng\" đăng trước ID, hoặc . \"dấu chấm\" đằng trước tên class."
 
-#: includes/options.php:96
+#: includes/options.php:118
 msgid "Box header"
 msgstr "Phần đầu của hộp"
 
-#: includes/options.php:97
+#: includes/options.php:119
 msgid "Show box header."
 msgstr "Hiển thị phần đầu của hộp"
 
-#: includes/options.php:104
+#: includes/options.php:126
 msgid "Close button"
 msgstr "Nút đóng"
 
-#: includes/options.php:105
+#: includes/options.php:127
 msgid "Show close button."
 msgstr "Hiển thị nút đóng"
 
-#: includes/options.php:113
+#: includes/options.php:135
 msgid "Custom CSS"
 msgstr "Tùy chỉnh CSS"
 
-#: includes/options.php:144
+#: includes/options.php:166
 msgid "Content"
 msgstr "Nội dung"
 
-#: includes/options.php:150
+#: includes/options.php:173
 msgid "Number of posts to show "
 msgstr "Số bài viết để hiển thị"
 
-#: includes/options.php:151
-msgid "Not affected if using YARPP as choose method."
+#: includes/options.php:174
+#, fuzzy
+msgid ""
+"Not affected if using YARPP as choose method and YARPP version is lower than "
+"4.0."
 msgstr "Không ảnh hưởng nếu sử dụng YARPP như phương thức đã chọn"
 
-#: includes/options.php:158
+#: includes/options.php:181
 msgid "Content filters"
 msgstr "Lọc nội dung"
 
-#: includes/options.php:159
+#: includes/options.php:182
 msgid "Remove all filters."
 msgstr "Bỏ tất các lọc nội dung"
 
-#: includes/options.php:160
-msgid "Untick this if you have some strange things in upPrev box, but unticked have a lot of chances breaks your layout."
-msgstr "Bỏ đánh dấu nếu bạn còn lạ lẫm với UpPrex, nhưng bỏ đánh dấu sẽ có rất nhiều thứ thay đổi giao diện của bạn"
+#: includes/options.php:183
+msgid ""
+"Untick this if you have some strange things in upPrev box, but unticked have "
+"a lot of chances breaks your layout."
+msgstr ""
+"Bỏ đánh dấu nếu bạn còn lạ lẫm với UpPrex, nhưng bỏ đánh dấu sẽ có rất nhiều "
+"thứ thay đổi giao diện của bạn"
 
-#: includes/options.php:167
+#: includes/options.php:190
 msgid "Previous entry choose method"
 msgstr "Phương thức chọn Bài viết trước "
 
-#: includes/options.php:170
+#: includes/options.php:193
 msgid "Just previous."
 msgstr "Chỉ bài viết trước"
 
-#: includes/options.php:171
+#: includes/options.php:194
 msgid "Previous in category."
 msgstr "Bài viết trước trong chủ đề"
 
-#: includes/options.php:172
+#: includes/options.php:195
 msgid "Previous in tag."
 msgstr "Bài viết trước trong thẻ đánh dấu"
 
-#: includes/options.php:173
+#: includes/options.php:196
 msgid "Random entry."
 msgstr "Bài viết ngẫu nhiên"
 
-#: includes/options.php:182
+#: includes/options.php:205
 msgid "Taxonomy limit"
 msgstr "Giới hạn Taxonomy "
 
-#: includes/options.php:183
+#: includes/options.php:206
 msgid "Number of taxonomies (tags or categories) to show."
 msgstr "Số taxonomy (thẻ đánh dấu và chủ đề) để hiển thị"
 
-#: includes/options.php:184
+#: includes/options.php:207
 msgid "Default value: 0 (no limit)."
 msgstr "Gía trị mặc định: 0 (không giới hạn)"
 
-#: includes/options.php:191
+#: includes/options.php:214
 msgid "Match post type"
 msgstr "Giống với kiểu bài viết"
 
-#: includes/options.php:192
+#: includes/options.php:215
 msgid "Display only for selected post types."
 msgstr "Chỉ hiển thị cho các dạng bài viết đã chọn"
 
-#: includes/options.php:199
+#: includes/options.php:222
 msgid "Select post types"
 msgstr "Chọn dạng bài viết"
 
-#: includes/options.php:200
+#: includes/options.php:223
 msgid "Show posts."
 msgstr "Hiển thị bài viết"
 
-#: includes/options.php:201
+#: includes/options.php:224
 msgid "If not any, then default value is \"post\"."
 msgstr "Nếu không cái nào, thì giá trị mặc định là \"bài viết\"."
 
-#: includes/options.php:204
+#: includes/options.php:227
 msgid "Posts."
 msgstr "Bài viết"
 
-#: includes/options.php:205
+#: includes/options.php:228
 msgid "Pages."
 msgstr "Các trang"
 
-#: includes/options.php:206
+#: includes/options.php:229
 msgid "Any post type (include custom post types)."
 msgstr "Bất kỳ dạng bài viết (bao gồm cả các dạng bài viết tùy ý)"
 
-#: includes/options.php:216
+#: includes/options.php:239
 msgid "Sticky posts"
 msgstr "Các bài viết ưu tiên"
 
-#: includes/options.php:217
+#: includes/options.php:240
 msgid "Ignore sticky posts."
 msgstr "Bỏ qua các bài viết ưu tiên"
 
-#: includes/options.php:227
+#: includes/options.php:250
 msgid "Excerpt"
 msgstr "Tóm tắt"
 
-#: includes/options.php:228
+#: includes/options.php:251
 msgid "Show excerpt."
 msgstr "Hiển thị tóm tắt"
 
-#: includes/options.php:237
+#: includes/options.php:260
 msgid "Number of words to show."
 msgstr "Số từ để hiển thị"
 
-#: includes/options.php:246
+#: includes/options.php:269
 msgid "Featured image"
 msgstr "Ảnh đại diện"
 
-#: includes/options.php:247
+#: includes/options.php:270
 msgid "Show featured image."
 msgstr "Hiển thị ảnh đại diện"
 
-#: includes/options.php:256
+#: includes/options.php:279
 msgid "Featured image width."
 msgstr "Độ rộng ảnh đại diện"
 
-#: includes/options.php:266
+#: includes/options.php:289
 msgid "Links"
 msgstr "Liên kết"
 
-#: includes/options.php:271
+#: includes/options.php:295
 msgid "URL prefix"
 msgstr "Phần trước URL"
 
-#: includes/options.php:273
+#: includes/options.php:297
 msgid "Will be added before link."
 msgstr "Sẽ được thêm vào trước liên kết"
 
-#: includes/options.php:280
+#: includes/options.php:304
 msgid "URL sufix"
 msgstr "Phần sau URL"
 
-#: includes/options.php:282
+#: includes/options.php:306
 msgid "Will be added after link."
 msgstr "Sẽ được thêm vào sau liên kết"
 
-#: includes/options.php:289
+#: includes/options.php:313
 msgid "Open link"
 msgstr "Mở liên kết"
 
-#: includes/options.php:290
+#: includes/options.php:314
 msgid "Open link in new window."
 msgstr "Mở liên kết trong cửa sổ mới"
 
-#: includes/options.php:291
+#: includes/options.php:315
 msgid "Not recomended!"
 msgstr "Không khuyến khích !"
 
-#: includes/options.php:298
+#: includes/options.php:322
 msgid "Google Analitics"
 msgstr "Google Analitics"
 
-#: includes/options.php:299
+#: includes/options.php:323
 msgid "I don't have GA tracking on site."
 msgstr "Tôi không có GA trên website"
 
-#: includes/options.php:300
-#: includes/options.php:326
+#: includes/options.php:324 includes/options.php:350
 msgid "Turn it on if you don't use any other GA tracking plugin."
 msgstr "Hãy bật nếu bạn không sử dụng bất kỳ GA plugin nào khác"
 
-#: includes/options.php:307
+#: includes/options.php:331
 msgid "Google Analitics Account"
 msgstr "Tài khoản Google Analitics"
 
-#: includes/options.php:308
+#: includes/options.php:332
 msgid "Replace UA-XXXXX-X with your web property ID."
 msgstr "Thay thế UA-XXXXX-X bằng ID của bạn"
 
-#: includes/options.php:317
+#: includes/options.php:341
 msgid "Track views"
 msgstr "Theo diễn lượt xem"
 
-#: includes/options.php:318
+#: includes/options.php:342
 msgid "Track showing of upPrev box."
 msgstr "Hiển thị theo dõi của hộp UpPrev"
 
-#: includes/options.php:325
+#: includes/options.php:349
 msgid "Track clicks"
 msgstr "Theo dõi số lần nhấn nhuột"
 
-#: includes/options.php:333
+#: includes/options.php:357
 msgid "Prevent bounce-rate"
 msgstr "Ngăn chặn tỉ lệ trả lại"
 
-#: includes/options.php:334
-msgid "Turn it on to indicate that the event hit will not be used in bounce-rate calculation."
-msgstr "Hãy bật để xác định sự kiện nhấn sẽ không được sử dụng trong việc tính toán tỉ lệ trả lại"
+#: includes/options.php:358
+msgid ""
+"Turn it on to indicate that the event hit will not be used in bounce-rate "
+"calculation."
+msgstr ""
+"Hãy bật để xác định sự kiện nhấn sẽ không được sử dụng trong việc tính toán "
+"tỉ lệ trả lại"
 
-#: includes/options.php:343
-#: includes/options.php:348
+#: includes/options.php:367 includes/options.php:373
 msgid "Cache"
 msgstr "Cache"
 
-#: includes/options.php:349
+#: includes/options.php:374
 msgid "Use Transient Cache."
 msgstr "Sử dụng Cache tạm thời"
 
-#: includes/options.php:350
+#: includes/options.php:375
 msgid "Using on large site (more than 1000 posts) may crash website."
-msgstr "Việc sử dụng trên một website lớn (hơn 1000 bài viết) sẽ có thể gây treo website"
+msgstr ""
+"Việc sử dụng trên một website lớn (hơn 1000 bài viết) sẽ có thể gây treo "
+"website"
 
-#: includes/options.php:357
+#: includes/options.php:382
 msgid "Transients Cache Lifetime."
 msgstr "Thời gian sống của Cache tạm thời"
 
-#: includes/options.php:358
+#: includes/options.php:383
 msgid "In seconds, default one hour (3600s)."
 msgstr "Giây, mặc định là 1 giờ (3600 giây)"
 
-#: includes/options.php:367
-#: includes/options.php:372
+#: includes/options.php:392 includes/options.php:398
 msgid "Mobile devices"
 msgstr "Thiết bị di động"
 
-#: includes/options.php:373
+#: includes/options.php:399
 msgid "Hide for mobile devices."
 msgstr "Ẩn dành cho thiết bị di động"
 
-#: includes/options.php:380
+#: includes/options.php:406
 msgid "Tablets"
 msgstr "Máy tính Bảng"
 
-#: includes/options.php:381
+#: includes/options.php:407
 msgid "Hide for tablets too."
 msgstr "Ẩn với máy tính Bảng"
 
-#: includes/options.php:382
+#: includes/options.php:408
 msgid "Works only when hidding for mobile devices is turn on."
 msgstr "Chỉ làm việc khi ẩn cho máy tính bảng đang bật"
 
-#: includes/options.php:391
+#: includes/options.php:417
 msgid "Other"
 msgstr "Khác"
 
-#: includes/options.php:396
+#: includes/options.php:422
 msgid "Promote"
 msgstr "Giới thiệu"
 
-#: includes/options.php:397
+#: includes/options.php:423
 msgid "Help promote upPrev plugin?"
 msgstr "Giúp giới thiệu UpPrev?"
 
-#: includes/options.php:398
-msgid "This option will add the code <code>Previous posts box brought to you by &lt;a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev plugin&lt;/a&gt;.</code>. Try turning it on, updating your options, and see the code in the code example to the right. These links and donations are greatly appreciated.</span>"
-msgstr "Lựa chọn này sẽ thêm mã <code>Hộp các bài viết trước cho bạn bằng  &lt;a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev plugin&lt;/a&gt;.</code>. Hãy thử bật nó lên, cập nhật lựa chọn của bạn và thấy mã trong phần mã mẫu bên phải. Những liên kết và đóng góp được đánh giá rất cao.</span>"
+#: includes/options.php:424
+msgid ""
+"This option will add the code <code>Previous posts box brought to you by &lt;"
+"a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev "
+"plugin&lt;/a&gt;.</code>. Try turning it on, updating your options, and see "
+"the code in the code example to the right. These links and donations are "
+"greatly appreciated.</span>"
+msgstr ""
+"Lựa chọn này sẽ thêm mã <code>Hộp các bài viết trước cho bạn bằng  &lt;a "
+"href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev "
+"plugin&lt;/a&gt;.</code>. Hãy thử bật nó lên, cập nhật lựa chọn của bạn và "
+"thấy mã trong phần mã mẫu bên phải. Những liên kết và đóng góp được đánh giá "
+"rất cao.</span>"
 
-#: includes/options.php:404
-#: upprev.php:513
+#: includes/options.php:430 upprev.php:515
 msgid "Donate"
 msgstr "Đóng góp"
 
-#: includes/options.php:405
-msgid "You can buy me some special coffees if you appreciate my work, thank you! <a href=\"http://iworks.pl/donate/upprev.php\">Donate to this plugin.</a>"
-msgstr "Bạn có thể mua cho tôi những tách cafe đặc biệt nếu bạn đánh giá cao công việc của tôi, cảm ơn!  <a href=\"http://iworks.pl/donate/upprev.php\">Đóng góp cho plugin này.</a>"
+#: includes/options.php:431
+msgid ""
+"You can buy me some special coffees if you appreciate my work, thank you! <a "
+"href=\"http://iworks.pl/donate/upprev.php\">Donate to this plugin.</a>"
+msgstr ""
+"Bạn có thể mua cho tôi những tách cafe đặc biệt nếu bạn đánh giá cao công "
+"việc của tôi, cảm ơn!  <a href=\"http://iworks.pl/donate/upprev.php\">Đóng "
+"góp cho plugin này.</a>"
 
-#: includes/options.php:420
+#: includes/options.php:446
 msgid "Custom post type: "
 msgstr "Tùy chỉnh dạng bài viết:"
 
-#: includes/options.php:431
-#: includes/options.php:434
+#: includes/options.php:457 includes/options.php:460
 msgid "Related Posts (YARPP)"
 msgstr "Các bài viết liên quan (YARPP)"
 
-#: includes/options.php:432
+#: includes/options.php:458
 msgid ". Works only with post and/or pages."
 msgstr ". Chỉ làm việc với bài viết và/hoặc trang"
 
-#: upprev.php:383
+#: upprev.php:385
 msgid "More in"
 msgstr "Thêm trong"
 
-#: upprev.php:390
+#: upprev.php:392
 msgid "Read more:"
 msgstr "Đọc thêm:"
 
-#: upprev.php:392
+#: upprev.php:394
 msgid "Read previous post:"
 msgstr "Đọc bài viết trước"
 
-#: upprev.php:462
+#: upprev.php:464
 msgid "Close"
 msgstr "Đóng"
 
-#: upprev.php:465
-msgid "Previous posts box brought to you by <a href=\"http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
-msgstr "Hộp bài viết trước đang dùng bởi <a href=\"http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
+#: upprev.php:467
+msgid ""
+"Previous posts box brought to you by <a href=\"http://iworks.pl/produkty/"
+"wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
+msgstr ""
+"Hộp bài viết trước đang dùng bởi <a href=\"http://iworks.pl/produkty/"
+"wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
 
-#: upprev.php:511
+#: upprev.php:513
 msgid "Settings"
 msgstr "Thiết lập"
 
@@ -440,8 +510,14 @@ msgid "http://iworks.pl/upprev/"
 msgstr "http://iworks.pl/upprev/"
 
 #. Description of the plugin/theme
-msgid "When scrolling post down upPrev will display a flyout box with a link to the previous post from the same category. Based on upPrev Previous Post Animated Notification by Jason Pelker, Grzegorz Krzyminski"
-msgstr "Khi cuộn bài viết xuống dưới UpPrev sẽ hiển thị một hộp bay ra với một liên kết đến bài viết trước trong cùng một chủ đề. Dựa trên upPrev Previous Post Animated Notification bởi Jason Pelker, Grzegorz Krzyminski"
+msgid ""
+"When scrolling post down upPrev will display a flyout box with a link to the "
+"previous post from the same category. Based on upPrev Previous Post Animated "
+"Notification by Jason Pelker, Grzegorz Krzyminski"
+msgstr ""
+"Khi cuộn bài viết xuống dưới UpPrev sẽ hiển thị một hộp bay ra với một liên "
+"kết đến bài viết trước trong cùng một chủ đề. Dựa trên upPrev Previous Post "
+"Animated Notification bởi Jason Pelker, Grzegorz Krzyminski"
 
 #. Author of the plugin/theme
 msgid "Marcin Pietrzak"
@@ -450,4 +526,3 @@ msgstr "Marcin Pietrzak"
 #. Author URI of the plugin/theme
 msgid "http://iworks.pl/"
 msgstr "http://iworks.pl/"
-

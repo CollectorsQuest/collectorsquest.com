@@ -51,7 +51,10 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarAmericanPickers');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_american_pickers'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_american_pickers'));
 
     return sfView::SUCCESS;
   }
@@ -86,7 +89,10 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarAmericanRestoration');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_american_restoration'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_american_restoration'));
 
     return sfView::SUCCESS;
   }
@@ -117,7 +123,10 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarPawnStars');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_pawn_stars'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_pawn_stars'));
 
     return sfView::SUCCESS;
   }
@@ -150,38 +159,42 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarPickedOff');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_picked_off'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_picked_off'));
 
     return sfView::SUCCESS;
   }
 
   public function executeFranksPicks(sfWebRequest $request)
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(cqGateKeeper::open('aetn_franks_picks', 'page'));
-
     /* @var $aetn_shows array */
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
     $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
     $this->forward404Unless($collection instanceof CollectorCollection);
+
+    $this->collection = $collection;
 
     /**
      * Increment the number of views
      */
     $this->incrementCounter($collection, 'NumViews');
 
-    $this->collection = $collection;
-
-    $this->collection = $collection;
-
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_franks_picks'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_franks_picks'));
 
     return sfView::SUCCESS;
   }
 
   public function executeMwba()
   {
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba'));
+
     return sfView::SUCCESS;
   }
 
@@ -205,6 +218,9 @@ class aetnActions extends cqFrontendActions
       ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
     $this->collectibles = $q->find();
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_petroliana'));
 
     return sfView::SUCCESS;
   }
@@ -231,6 +247,9 @@ class aetnActions extends cqFrontendActions
       ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
     $this->collectibles = $q->find();
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_rooseveltiana'));
 
     return sfView::SUCCESS;
   }
@@ -259,14 +278,10 @@ class aetnActions extends cqFrontendActions
 
     $this->collectibles = $q->find();
 
-    return sfView::SUCCESS;
-  }
-
-  public function executeBlackHistory()
-  {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(cqGateKeeper::open('aetn_black_history', 'page'));
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_railroadiana'));
 
     return sfView::SUCCESS;
   }
+
 }

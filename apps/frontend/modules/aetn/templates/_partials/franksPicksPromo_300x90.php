@@ -1,4 +1,3 @@
-<?php if (cqGateKeeper::open('aetn_franks_picks', 'page')): ?>
 <div class="banner-sidebar-promo-300-90">
   <?php
     cq_ad_slot(
@@ -12,4 +11,3 @@
     );
   ?>
 </div>
-<?php endif; ?>

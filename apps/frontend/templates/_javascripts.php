@@ -1,3 +1,8 @@
+<?php
+ /* @var  $sf_user      cqFrontendUser */
+ /* @var  $sf_request   cqWebRequest   */
+?>
+
 <script>
   if (document.getElementById('shopping-cart-count') !== null)
   {

@@ -4,66 +4,66 @@ msgid ""
 msgstr ""
 "Project-Id-Version: upPrev trunk\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/upprev\n"
-"POT-Creation-Date: 2012-08-27 18:35:03+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2012-12-13 10:58:18+00:00\n"
 "PO-Revision-Date: 2012-08-27 23:49+0200\n"
 "Last-Translator: Florin Arjocu <florin@drumliber.ro>\n"
 "Language-Team: Marcin Pietrzak <marcin@iworks.pl>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#. #-#-#-#-#  upprev.pot (upPrev trunk)  #-#-#-#-#
+#. #-#-#-#-#  upprev.pot (upPrev branch/3.3)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin/index.php:4
-#: includes/class-iworks-upprev.php:221
-#: includes/class-iworks-upprev.php:242
+#: admin/index.php:3 upprev.php:212 upprev.php:213 upprev.php:528
 msgid "upPrev"
 msgstr "upPrev"
 
-#: admin/index.php:8
+#: admin/index.php:7
 msgid "upPrev options saved."
 msgstr "Opțiunile upPrev au fost salvate."
 
-#: admin/index.php:29
-msgid "Choose configuration mode"
-msgstr "Alege modul de configurație"
-
-#: admin/index.php:31
-#: admin/index.php:41
-msgid "Below are some links to help spread this plugin to other users"
-msgstr "Mai jos găsiți câteva link-uri pentru a ajuta răspândirea plugin-ului"
-
-#: admin/index.php:33
-msgid "simple"
-msgstr "simple"
-
-#: admin/index.php:34
-msgid "advance"
-msgstr "avansate"
-
-#: admin/index.php:39
+#: admin/index.php:24
 msgid "Loved this Plugin?"
 msgstr "Ți-a plăcut pluginul?"
 
-#: admin/index.php:43
+#: admin/index.php:26
+msgid "Below are some links to help spread this plugin to other users"
+msgstr "Mai jos găsiți câteva link-uri pentru a ajuta răspândirea plugin-ului"
+
+#: admin/index.php:28
 msgid "Give it a 5 star on Wordpress.org"
 msgstr "Dă-ne o notă de 5 pe Wordpress.org"
 
-#: admin/index.php:44
+#: admin/index.php:29
 msgid "Link to it so others can easily find it"
 msgstr "Pune un link către plugin pentru ca și alții să îl găsească ușor"
 
-#: admin/index.php:49
+#: admin/index.php:34
 msgid "Need Assistance?"
 msgstr "Ai nevoie de asistență?"
 
-#: admin/index.php:51
+#: admin/index.php:36
 msgid "Problems? The links bellow can be very helpful to you"
-msgstr "Întâmpini probleme? Link-urile de mai jos s-ar putea să îți fie de folos"
+msgstr ""
+"Întâmpini probleme? Link-urile de mai jos s-ar putea să îți fie de folos"
 
-#: admin/index.php:53
+#: admin/index.php:38
+#, fuzzy
+msgid "http://wordpress.org/tags/upprev"
+msgstr "http://iworks.pl/upprev/"
+
+#: admin/index.php:38
 msgid "Wordpress Help Forum"
 msgstr "Forumul de pe Wordpress"
+
+#: includes/common.php:18
+msgid ""
+"<p>upPrev settings allows you to set the proprites of user notification "
+"showed when reader scroll down the page.</p>"
+msgstr ""
+"<p>Setările upPrev îți permit să setezi felul în care utilizatorul este "
+"notificat atunci când derulează pagina în jos.</p>"
 
 #: includes/show_thubnail_on_admin_post_list.php:5
 msgid "Thumbnail"
@@ -77,530 +77,452 @@ msgstr "Niciunul"
 msgid "An error occurred while getting the configuration."
 msgstr "Am întâmpinat o eroare în timpul preluării configurațiilor."
 
-#: includes/iworks.options.class.php:381
+#: includes/iworks.options.class.php:309
 msgid "Save Changes"
 msgstr "Salvează modificările"
 
-#: includes/class-iworks-upprev.php:54
-msgid "Default simple layout"
-msgstr "Interfața simplă standard"
-
-#: includes/class-iworks-upprev.php:61
-msgid "Vertical Three"
-msgstr "Arbore vertical"
-
-#: includes/class-iworks-upprev.php:74
-msgid "\"Bloginity\" style"
-msgstr "Stil \"Bloginity\""
-
-#: includes/class-iworks-upprev.php:183
-msgid "<p>upPrev settings allows you to set the proprites of user notification showed when reader scroll down the page.</p>"
-msgstr "<p>Setările upPrev îți permit să setezi felul în care utilizatorul este notificat atunci când derulează pagina în jos.</p>"
-
-#: includes/class-iworks-upprev.php:186
-msgid "Overview"
-msgstr "Verifică"
-
-#: includes/class-iworks-upprev.php:195
-msgid "For more information:"
-msgstr "Pentru mai multe informații:"
-
-#: includes/class-iworks-upprev.php:196
-msgid "<a href=\"http://wordpress.org/extend/plugins/upprev/\" target=\"_blank\">Plugin Homepage</a>"
-msgstr "<a href=\"http://wordpress.org/extend/plugins/upprev/\" target=\"_blank\">Pagina plugin-ului</a>"
-
-#: includes/class-iworks-upprev.php:197
-msgid "<a href=\"http://wordpress.org/tags/upprev\" target=\"_blank\">Support Forums</a>"
-msgstr "<a href=\"http://wordpress.org/tags/upprev\" target=\"_blank\">Forumul de suport</a>"
-
-#: includes/class-iworks-upprev.php:198
-msgid "<a href=\"http://iworks.pl/en/\" target=\"_blank\">break the web</a>"
-msgstr "<a href=\"http://iworks.pl/en/\" target=\"_blank\">ieși pe internet</a>"
-
-#: includes/class-iworks-upprev.php:254
-msgid "Settings"
-msgstr "Setări"
-
-#: includes/class-iworks-upprev.php:257
-#: etc/options.php:510
-msgid "Donate"
-msgstr "Donează"
-
-#: includes/class-iworks-upprev.php:559
-msgid "More in"
-msgstr "Mai multe despre "
-
-#: includes/class-iworks-upprev.php:566
-msgid "Read more:"
-msgstr "Citește mai multe:"
-
-#: includes/class-iworks-upprev.php:568
-msgid "Read previous post:"
-msgstr "Citește articolul precedent:"
-
-#: includes/class-iworks-upprev.php:656
-msgid "Close"
-msgstr "Închide"
-
-#: includes/class-iworks-upprev.php:659
-msgid "Previous posts box brought to you by <a href=\"http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
-msgstr "Căsuța cu articolele precedente este prezentată de <a href=\"http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/\">plugin-ul upPrev</a>."
-
-#: includes/class-iworks-upprev.php:797
-msgid "All positions are available in PRO version!"
-msgstr "Toate pozițiile sunt disponibile în versiunea PRO!"
-
-#: includes/class-iworks-upprev.php:847
-msgid "Exlude categories available in PRO version!"
-msgstr "Exclude categoriile disponibile în versiunea PRO!"
-
-#: etc/options.php:32
-#: etc/options.php:73
+#: includes/options.php:27 includes/options.php:43
 msgid "Apperance"
 msgstr "Aspect"
 
-#: etc/options.php:38
-msgid "Layout"
-msgstr "Interfață"
+#: includes/options.php:33
+msgid "Schema"
+msgstr ""
 
-#: etc/options.php:47
-#: etc/options.php:53
-#: etc/options.php:90
-msgid "Position"
-msgstr "Poziție"
-
-#: etc/options.php:56
-#: etc/options.php:93
-msgid "bottom right"
-msgstr "dreapta jos"
-
-#: etc/options.php:57
-#: etc/options.php:94
-msgid "bottom left"
-msgstr "stânga jos"
-
-#: etc/options.php:58
-#: etc/options.php:95
-msgid "bottom"
-msgstr "jos"
-
-#: etc/options.php:59
-#: etc/options.php:96
-msgid "top right"
-msgstr "dreapta sus"
-
-#: etc/options.php:60
-#: etc/options.php:97
-msgid "top"
-msgstr "sus"
-
-#: etc/options.php:61
-#: etc/options.php:98
-msgid "top left"
-msgstr "stânga sus"
-
-#: etc/options.php:62
-#: etc/options.php:99
-msgid "middle right"
-msgstr "dreapta, la mijloc"
-
-#: etc/options.php:63
-#: etc/options.php:100
-msgid "middle left"
-msgstr "stânga, la mijloc"
-
-#: etc/options.php:79
-msgid "Animation style"
-msgstr "Tipul animației"
-
-#: etc/options.php:82
+#: includes/options.php:36 includes/options.php:52
 msgid "flyout"
 msgstr "flyout (vine din exterior)"
 
-#: etc/options.php:83
+#: includes/options.php:37 includes/options.php:53
 msgid "fade in/out"
 msgstr "fade in/out (efect de trasparență)"
 
-#: etc/options.php:109
+#: includes/options.php:49
+msgid "Animation style"
+msgstr "Tipul animației"
+
+#: includes/options.php:60
+msgid "Position"
+msgstr "Poziție"
+
+#: includes/options.php:63
+#, fuzzy
+msgid "right"
+msgstr "dreapta sus"
+
+#: includes/options.php:64
+#, fuzzy
+msgid "left"
+msgstr "stânga sus"
+
+#: includes/options.php:72
 msgid "Margin bottom"
 msgstr "Marginea de jos"
 
-#: etc/options.php:110
-#: etc/options.php:119
-#: etc/options.php:129
+#: includes/options.php:73 includes/options.php:82 includes/options.php:92
 msgid "px"
 msgstr "px"
 
-#: etc/options.php:118
+#: includes/options.php:81
 msgid "Margin side"
 msgstr "Dinspre margine"
 
-#: etc/options.php:120
+#: includes/options.php:83
 msgid "Left or right depending on position."
 msgstr "Stânga sau dreapta, în funcție de poziție."
 
-#: etc/options.php:128
+#: includes/options.php:91
 msgid "Box width"
 msgstr "Lațimea căsuței"
 
-#: etc/options.php:137
+#: includes/options.php:100
 msgid "Offset"
 msgstr "Proporția"
 
-#: etc/options.php:138
+#: includes/options.php:101
 msgid "%"
 msgstr "%"
 
-#: etc/options.php:139
+#: includes/options.php:102
 msgid "Percentage of the page required to be scrolled to display a box."
-msgstr "Procentul de pagină care trebuie să fie derulat înainte de a afișa căsuța."
+msgstr ""
+"Procentul de pagină care trebuie să fie derulat înainte de a afișa căsuța."
 
-#: etc/options.php:147
+#: includes/options.php:110
 msgid "Before HTML element."
 msgstr "Înainte de elementul HTML."
 
-#: etc/options.php:148
-msgid "If empty, all page length is taken for calculation. If not empty, make sure to use the ID or class of an existing element. Put # \"hash\" before the ID, or . \"dot\" before a class name."
-msgstr "Dacă e gol, toată lungimea paginii este considerată la calcul. Dacă nu e gol, asigură-te că folosești ID-ul sau clasa (valoarea lui class) a unui element existent. Folosește # \"diez\" înainte de ID, sau . \"punct\" înainte de numele unei clase (class)."
+#: includes/options.php:111
+msgid ""
+"If empty, all page length is taken for calculation. If not empty, make sure "
+"to use the ID or class of an existing element. Put # \"hash\" before the ID, "
+"or . \"dot\" before a class name."
+msgstr ""
+"Dacă e gol, toată lungimea paginii este considerată la calcul. Dacă nu e "
+"gol, asigură-te că folosești ID-ul sau clasa (valoarea lui class) a unui "
+"element existent. Folosește # \"diez\" înainte de ID, sau . \"punct\" "
+"înainte de numele unei clase (class)."
 
-#: etc/options.php:155
+#: includes/options.php:118
 msgid "Box header"
 msgstr "Header-ul căsuței"
 
-#: etc/options.php:156
+#: includes/options.php:119
 msgid "Show box header."
 msgstr "Afișează header-ul (textul de deschidere) căsuței."
 
-#: etc/options.php:164
-msgid "Header tekst."
-msgstr "Textul header-ului (textul de deschidere)."
-
-#: etc/options.php:165
-msgid "Leave blank to allow plugin set the heading text."
-msgstr "Lasă gol pentru a permite plugin-ului să pună textul din deschidere (heading)."
-
-#: etc/options.php:172
+#: includes/options.php:126
 msgid "Close button"
 msgstr "Buton de închidere"
 
-#: etc/options.php:173
+#: includes/options.php:127
 msgid "Show close button."
 msgstr "Afișează butonul de închidere."
 
-#: etc/options.php:182
-msgid "Colors"
-msgstr "Culori"
-
-#: etc/options.php:188
-msgid "Set custom colors"
-msgstr "Folosește culori personalizate"
-
-#: etc/options.php:189
-msgid "Turn on custom colors."
-msgstr "Activează culorile personalizate."
-
-#: etc/options.php:197
-msgid "Text"
-msgstr "Text"
-
-#: etc/options.php:206
-msgid "Background"
-msgstr "Fundal"
-
-#: etc/options.php:215
-#: etc/options.php:348
-msgid "Links"
-msgstr "Link-uri"
-
-#: etc/options.php:225
-msgid "Content"
-msgstr "Conținut"
-
-#: etc/options.php:232
-msgid "Number of posts to show "
-msgstr "Numărul de articole pe care îl afișăm"
-
-#: etc/options.php:233
-msgid "Not affected if using YARPP as choose method."
-msgstr "Nu e afectat dacă folosești YARPP ca metodă de alegere a articolelor."
-
-#: etc/options.php:240
-msgid "Content filters"
-msgstr "Filtre de conținut"
-
-#: etc/options.php:241
-msgid "Remove all filters."
-msgstr "Scoate toate filtrele."
-
-#: etc/options.php:242
-msgid "Untick this if you have some strange things in upPrev box, but unticked have a lot of chances breaks your layout."
-msgstr "Dezactivează dacă apar lucruri ciudate în căsuța upPrev, dar ai grijă că e posibil să îți strice aspectul temei."
-
-#: etc/options.php:249
-msgid "Previous entry choose method"
-msgstr "Alegerea metodei de selectare a articolului recomandat"
-
-#: etc/options.php:252
-msgid "Just previous."
-msgstr "Articolul precedent."
-
-#: etc/options.php:253
-msgid "Previous in category."
-msgstr "Articolul precedent din aceeași categorie."
-
-#: etc/options.php:254
-msgid "Previous in tag."
-msgstr "Articolul precedent cu același tag."
-
-#: etc/options.php:255
-msgid "Random entry."
-msgstr "Articol la întâmplare."
-
-#: etc/options.php:264
-msgid "Taxonomy limit"
-msgstr "Limită de taxonomie"
-
-#: etc/options.php:265
-msgid "Number of taxonomies (tags or categories) to show."
-msgstr "Numărul maxim de taxonomii (tag-uri sau categorii) de afișat."
-
-#: etc/options.php:266
-msgid "Default value: 0 (no limit)."
-msgstr "Standard: 0 (fără nicio limită)."
-
-#: etc/options.php:273
-msgid "Match post type"
-msgstr "Potrivește tipul articolului"
-
-#: etc/options.php:274
-msgid "Display only for selected post types."
-msgstr "Afișează doar pentru tipul de articole."
-
-#: etc/options.php:281
-msgid "Select post types"
-msgstr "Tipuri de articole"
-
-#: etc/options.php:282
-msgid "Show posts."
-msgstr "Afișează articole."
-
-#: etc/options.php:283
-msgid "If not any, then default value is \"post\"."
-msgstr "Dacă nu e nimic selectat, valoaea predefinită este \"post\" (articole)."
-
-#: etc/options.php:286
-msgid "Posts."
-msgstr "Articole."
-
-#: etc/options.php:287
-msgid "Pages."
-msgstr "Pagini."
-
-#: etc/options.php:288
-msgid "Any post type (include custom post types)."
-msgstr "Orice fel de articol (inclusiv articole custom - custom post types)"
-
-#: etc/options.php:298
-msgid "Sticky posts"
-msgstr "Articole lipicioase (sticky)"
-
-#: etc/options.php:299
-msgid "Ignore sticky posts."
-msgstr "Ignoră articolele lipicioase (sticky)."
-
-#: etc/options.php:309
-msgid "Excerpt"
-msgstr "Rezumat (excerpt)"
-
-#: etc/options.php:310
-msgid "Show excerpt."
-msgstr "Afișează rezumatul (excerpt-ul)."
-
-#: etc/options.php:319
-msgid "Number of words to show."
-msgstr "Numărul de cuvinte de afișat."
-
-#: etc/options.php:328
-msgid "Featured image"
-msgstr "Poză selectată (featured)"
-
-#: etc/options.php:329
-msgid "Show featured image."
-msgstr "Afișează poza selectată (featured)."
-
-#: etc/options.php:338
-msgid "Featured image width."
-msgstr "Lățimea pozei selectate (featured)."
-
-#: etc/options.php:354
-msgid "URL prefix"
-msgstr "Prefix-ul URL-ului"
-
-#: etc/options.php:356
-msgid "Will be added before link."
-msgstr "Va fi adăugat înainte de link."
-
-#: etc/options.php:363
-msgid "URL sufix"
-msgstr "Sufixul URL-ului"
-
-#: etc/options.php:365
-msgid "Will be added after link."
-msgstr "Va fi adăugat după link."
-
-#: etc/options.php:372
-msgid "Open link"
-msgstr "Link-ul se va deschide"
-
-#: etc/options.php:373
-msgid "Open link in new window."
-msgstr "Deschide în fereastră nouă."
-
-#: etc/options.php:374
-msgid "Not recomended!"
-msgstr "Nu e recomandat!"
-
-#: etc/options.php:381
-msgid "Google Analitics"
-msgstr "Google Analytics"
-
-#: etc/options.php:382
-msgid "I don't have GA tracking on site."
-msgstr "Nu folosesc GA în site."
-
-#: etc/options.php:383
-#: etc/options.php:409
-msgid "Turn it on if you don't use any other GA tracking plugin."
-msgstr "Activează dacă nu folosește niciun plugin de supraveghere a traficului cu GA (Google Analytics)."
-
-#: etc/options.php:390
-msgid "Google Analitics Account"
-msgstr "Contul de Google Analytics"
-
-#: etc/options.php:391
-msgid "Replace UA-XXXXX-X with your web property ID."
-msgstr "Înlocuiește UA-XXXXX-X cu valoarea ID corespunzătoare contului tău."
-
-#: etc/options.php:400
-msgid "Track views"
-msgstr "Urmărește vizualizările"
-
-#: etc/options.php:401
-msgid "Track showing of upPrev box."
-msgstr "Supraveghează traficul pe afișările căsuței upPrev."
-
-#: etc/options.php:408
-msgid "Track clicks"
-msgstr "Urmărește traficul de la click-uri"
-
-#: etc/options.php:416
-msgid "Prevent bounce-rate"
-msgstr "Previne ieșirile rapide din site (bounce-urile)"
-
-#: etc/options.php:417
-msgid "Turn it on to indicate that the event hit will not be used in bounce-rate calculation."
-msgstr "Activează pentru a arăta că evenimentul nu va fi folosit în calcularea ieșirilor rapide din site (bounce-uri)."
-
-#: etc/options.php:426
-msgid "Other"
-msgstr "Altele"
-
-#: etc/options.php:434
-#: etc/options.php:439
-msgid "Mobile devices"
-msgstr "Aparate mobil"
-
-#: etc/options.php:440
-msgid "Hide for mobile devices."
-msgstr "Ascunde pentru aparatele mobile."
-
-#: etc/options.php:447
-msgid "Tablets"
-msgstr "Tablete"
-
-#: etc/options.php:448
-msgid "Hide for tablets too."
-msgstr "Ascunde și pentru tablete."
-
-#: etc/options.php:449
-msgid "Works only when hidding for mobile devices is turn on."
-msgstr "Funționeaza doar dacă ascunderea pentru aparate mobile este activată."
-
-#: etc/options.php:458
-#: etc/options.php:464
+#: includes/options.php:135
 msgid "Custom CSS"
 msgstr "CSS personalizat"
 
-#: etc/options.php:473
-#: etc/options.php:478
+#: includes/options.php:166
+msgid "Content"
+msgstr "Conținut"
+
+#: includes/options.php:173
+msgid "Number of posts to show "
+msgstr "Numărul de articole pe care îl afișăm"
+
+#: includes/options.php:174
+#, fuzzy
+msgid ""
+"Not affected if using YARPP as choose method and YARPP version is lower than "
+"4.0."
+msgstr "Nu e afectat dacă folosești YARPP ca metodă de alegere a articolelor."
+
+#: includes/options.php:181
+msgid "Content filters"
+msgstr "Filtre de conținut"
+
+#: includes/options.php:182
+msgid "Remove all filters."
+msgstr "Scoate toate filtrele."
+
+#: includes/options.php:183
+msgid ""
+"Untick this if you have some strange things in upPrev box, but unticked have "
+"a lot of chances breaks your layout."
+msgstr ""
+"Dezactivează dacă apar lucruri ciudate în căsuța upPrev, dar ai grijă că e "
+"posibil să îți strice aspectul temei."
+
+#: includes/options.php:190
+msgid "Previous entry choose method"
+msgstr "Alegerea metodei de selectare a articolului recomandat"
+
+#: includes/options.php:193
+msgid "Just previous."
+msgstr "Articolul precedent."
+
+#: includes/options.php:194
+msgid "Previous in category."
+msgstr "Articolul precedent din aceeași categorie."
+
+#: includes/options.php:195
+msgid "Previous in tag."
+msgstr "Articolul precedent cu același tag."
+
+#: includes/options.php:196
+msgid "Random entry."
+msgstr "Articol la întâmplare."
+
+#: includes/options.php:205
+msgid "Taxonomy limit"
+msgstr "Limită de taxonomie"
+
+#: includes/options.php:206
+msgid "Number of taxonomies (tags or categories) to show."
+msgstr "Numărul maxim de taxonomii (tag-uri sau categorii) de afișat."
+
+#: includes/options.php:207
+msgid "Default value: 0 (no limit)."
+msgstr "Standard: 0 (fără nicio limită)."
+
+#: includes/options.php:214
+msgid "Match post type"
+msgstr "Potrivește tipul articolului"
+
+#: includes/options.php:215
+msgid "Display only for selected post types."
+msgstr "Afișează doar pentru tipul de articole."
+
+#: includes/options.php:222
+msgid "Select post types"
+msgstr "Tipuri de articole"
+
+#: includes/options.php:223
+msgid "Show posts."
+msgstr "Afișează articole."
+
+#: includes/options.php:224
+msgid "If not any, then default value is \"post\"."
+msgstr ""
+"Dacă nu e nimic selectat, valoaea predefinită este \"post\" (articole)."
+
+#: includes/options.php:227
+msgid "Posts."
+msgstr "Articole."
+
+#: includes/options.php:228
+msgid "Pages."
+msgstr "Pagini."
+
+#: includes/options.php:229
+msgid "Any post type (include custom post types)."
+msgstr "Orice fel de articol (inclusiv articole custom - custom post types)"
+
+#: includes/options.php:239
+msgid "Sticky posts"
+msgstr "Articole lipicioase (sticky)"
+
+#: includes/options.php:240
+msgid "Ignore sticky posts."
+msgstr "Ignoră articolele lipicioase (sticky)."
+
+#: includes/options.php:250
+msgid "Excerpt"
+msgstr "Rezumat (excerpt)"
+
+#: includes/options.php:251
+msgid "Show excerpt."
+msgstr "Afișează rezumatul (excerpt-ul)."
+
+#: includes/options.php:260
+msgid "Number of words to show."
+msgstr "Numărul de cuvinte de afișat."
+
+#: includes/options.php:269
+msgid "Featured image"
+msgstr "Poză selectată (featured)"
+
+#: includes/options.php:270
+msgid "Show featured image."
+msgstr "Afișează poza selectată (featured)."
+
+#: includes/options.php:279
+msgid "Featured image width."
+msgstr "Lățimea pozei selectate (featured)."
+
+#: includes/options.php:289
+msgid "Links"
+msgstr "Link-uri"
+
+#: includes/options.php:295
+msgid "URL prefix"
+msgstr "Prefix-ul URL-ului"
+
+#: includes/options.php:297
+msgid "Will be added before link."
+msgstr "Va fi adăugat înainte de link."
+
+#: includes/options.php:304
+msgid "URL sufix"
+msgstr "Sufixul URL-ului"
+
+#: includes/options.php:306
+msgid "Will be added after link."
+msgstr "Va fi adăugat după link."
+
+#: includes/options.php:313
+msgid "Open link"
+msgstr "Link-ul se va deschide"
+
+#: includes/options.php:314
+msgid "Open link in new window."
+msgstr "Deschide în fereastră nouă."
+
+#: includes/options.php:315
+msgid "Not recomended!"
+msgstr "Nu e recomandat!"
+
+#: includes/options.php:322
+msgid "Google Analitics"
+msgstr "Google Analytics"
+
+#: includes/options.php:323
+msgid "I don't have GA tracking on site."
+msgstr "Nu folosesc GA în site."
+
+#: includes/options.php:324 includes/options.php:350
+msgid "Turn it on if you don't use any other GA tracking plugin."
+msgstr ""
+"Activează dacă nu folosește niciun plugin de supraveghere a traficului cu GA "
+"(Google Analytics)."
+
+#: includes/options.php:331
+msgid "Google Analitics Account"
+msgstr "Contul de Google Analytics"
+
+#: includes/options.php:332
+msgid "Replace UA-XXXXX-X with your web property ID."
+msgstr "Înlocuiește UA-XXXXX-X cu valoarea ID corespunzătoare contului tău."
+
+#: includes/options.php:341
+msgid "Track views"
+msgstr "Urmărește vizualizările"
+
+#: includes/options.php:342
+msgid "Track showing of upPrev box."
+msgstr "Supraveghează traficul pe afișările căsuței upPrev."
+
+#: includes/options.php:349
+msgid "Track clicks"
+msgstr "Urmărește traficul de la click-uri"
+
+#: includes/options.php:357
+msgid "Prevent bounce-rate"
+msgstr "Previne ieșirile rapide din site (bounce-urile)"
+
+#: includes/options.php:358
+msgid ""
+"Turn it on to indicate that the event hit will not be used in bounce-rate "
+"calculation."
+msgstr ""
+"Activează pentru a arăta că evenimentul nu va fi folosit în calcularea "
+"ieșirilor rapide din site (bounce-uri)."
+
+#: includes/options.php:367 includes/options.php:373
 msgid "Cache"
 msgstr "Cache"
 
-#: etc/options.php:479
+#: includes/options.php:374
 msgid "Use Transient Cache."
 msgstr "Folosește Transient Cache."
 
-#: etc/options.php:480
+#: includes/options.php:375
 msgid "Using on large site (more than 1000 posts) may crash website."
-msgstr "Folosit pe un site mare (peste 1000 de articole) s-ar putea să dărâme (să îl facă inpracticabil) site-ul."
+msgstr ""
+"Folosit pe un site mare (peste 1000 de articole) s-ar putea să dărâme (să îl "
+"facă inpracticabil) site-ul."
 
-#: etc/options.php:487
+#: includes/options.php:382
 msgid "Transients Cache Lifetime."
 msgstr "Durata de viață a cache-ului transient."
 
-#: etc/options.php:488
+#: includes/options.php:383
 msgid "In seconds, default one hour (3600s)."
 msgstr "În secunde, standard este de o oră (3600s)."
 
-#: etc/options.php:497
-#: etc/options.php:502
+#: includes/options.php:392 includes/options.php:398
+msgid "Mobile devices"
+msgstr "Aparate mobil"
+
+#: includes/options.php:399
+msgid "Hide for mobile devices."
+msgstr "Ascunde pentru aparatele mobile."
+
+#: includes/options.php:406
+msgid "Tablets"
+msgstr "Tablete"
+
+#: includes/options.php:407
+msgid "Hide for tablets too."
+msgstr "Ascunde și pentru tablete."
+
+#: includes/options.php:408
+msgid "Works only when hidding for mobile devices is turn on."
+msgstr "Funționeaza doar dacă ascunderea pentru aparate mobile este activată."
+
+#: includes/options.php:417
+msgid "Other"
+msgstr "Altele"
+
+#: includes/options.php:422
 msgid "Promote"
 msgstr "Promovează"
 
-#: etc/options.php:503
+#: includes/options.php:423
 msgid "Help promote upPrev plugin?"
 msgstr "Ajuți la promovarea plugin-ului upPrev?"
 
-#: etc/options.php:504
-msgid "This option will add the code <code>Previous posts box brought to you by &lt;a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev plugin&lt;/a&gt;.</code>. Try turning it on, updating your options, and see the code in the code example to the right. These links and donations are greatly appreciated.</span>"
-msgstr "Setarea va adăuga codul <code>Căsuța de articole precedente este oferită de &lt;a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;plugin-ul upPrev&lt;/a&gt;.</code>. Activează opțiunea, updateză setările și apoi vezi codul din exemplu în dreapta. Link-urile acestea și donațiile sunt foarte apreciate.</span>"
+#: includes/options.php:424
+msgid ""
+"This option will add the code <code>Previous posts box brought to you by &lt;"
+"a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev "
+"plugin&lt;/a&gt;.</code>. Try turning it on, updating your options, and see "
+"the code in the code example to the right. These links and donations are "
+"greatly appreciated.</span>"
+msgstr ""
+"Setarea va adăuga codul <code>Căsuța de articole precedente este oferită de "
+"&lt;a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;"
+"plugin-ul upPrev&lt;/a&gt;.</code>. Activează opțiunea, updateză setările și "
+"apoi vezi codul din exemplu în dreapta. Link-urile acestea și donațiile sunt "
+"foarte apreciate.</span>"
 
-#: etc/options.php:511
-msgid "You can buy me some special coffees if you appreciate my work, thank you! <a href=\"http://iworks.pl/donate/upprev.php\">Donate to this plugin.</a>"
-msgstr "Poți că îmi cumperi o cafea specială dacă îți place plugin-ul și apreciezi munca mea. Îți mulțumesc! <a href=\"http://iworks.pl/donate/upprev.php\">Donează pentru acest plugin.</a>"
+#: includes/options.php:430 upprev.php:515
+msgid "Donate"
+msgstr "Donează"
 
-#: etc/options.php:516
-msgid "Excludes"
-msgstr "Exclude"
+#: includes/options.php:431
+msgid ""
+"You can buy me some special coffees if you appreciate my work, thank you! <a "
+"href=\"http://iworks.pl/donate/upprev.php\">Donate to this plugin.</a>"
+msgstr ""
+"Poți că îmi cumperi o cafea specială dacă îți place plugin-ul și apreciezi "
+"munca mea. Îți mulțumesc! <a href=\"http://iworks.pl/donate/upprev.php"
+"\">Donează pentru acest plugin.</a>"
 
-#: etc/options.php:522
-msgid "Categories"
-msgstr "Categorii"
-
-#: etc/options.php:531
-msgid "Buy PRO!"
-msgstr "Cumpără versiunea PRO!"
-
-#: etc/options.php:550
+#: includes/options.php:446
 msgid "Custom post type: "
 msgstr "Articole custom (custom post type):"
 
-#: etc/options.php:561
-#: etc/options.php:564
+#: includes/options.php:457 includes/options.php:460
 msgid "Related Posts (YARPP)"
 msgstr "Articole relaționate (cu plugin-ul YARPP)"
 
-#: etc/options.php:562
+#: includes/options.php:458
 msgid ". Works only with post and/or pages."
 msgstr ". Funționează doar cu articole și/sau pagini."
+
+#: upprev.php:385
+msgid "More in"
+msgstr "Mai multe despre "
+
+#: upprev.php:392
+msgid "Read more:"
+msgstr "Citește mai multe:"
+
+#: upprev.php:394
+msgid "Read previous post:"
+msgstr "Citește articolul precedent:"
+
+#: upprev.php:464
+msgid "Close"
+msgstr "Închide"
+
+#: upprev.php:467
+msgid ""
+"Previous posts box brought to you by <a href=\"http://iworks.pl/produkty/"
+"wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
+msgstr ""
+"Căsuța cu articolele precedente este prezentată de <a href=\"http://iworks."
+"pl/produkty/wordpress/wtyczki/upprev/en/\">plugin-ul upPrev</a>."
+
+#: upprev.php:513
+msgid "Settings"
+msgstr "Setări"
 
 #. Plugin URI of the plugin/theme
 msgid "http://iworks.pl/upprev/"
 msgstr "http://iworks.pl/upprev/"
 
 #. Description of the plugin/theme
-msgid "When scrolling post down upPrev will display a flyout box with a link to post in choosen configuration."
-msgstr "Când derulezi în jos pagina, plugin-ul upPrev va afișa o căsuță cu un link spre articole care corespund setărilor."
+#, fuzzy
+msgid ""
+"When scrolling post down upPrev will display a flyout box with a link to the "
+"previous post from the same category. Based on upPrev Previous Post Animated "
+"Notification by Jason Pelker, Grzegorz Krzyminski"
+msgstr ""
+"Când derulezi în jos pagina, plugin-ul upPrev va afișa o căsuță cu un link "
+"spre articole care corespund setărilor."
 
 #. Author of the plugin/theme
 msgid "Marcin Pietrzak"
@@ -610,3 +532,103 @@ msgstr "Marcin Pietrzak"
 msgid "http://iworks.pl/"
 msgstr "http://iworks.pl/"
 
+#~ msgid "Choose configuration mode"
+#~ msgstr "Alege modul de configurație"
+
+#~ msgid "simple"
+#~ msgstr "simple"
+
+#~ msgid "advance"
+#~ msgstr "avansate"
+
+#~ msgid "Default simple layout"
+#~ msgstr "Interfața simplă standard"
+
+#~ msgid "Vertical Three"
+#~ msgstr "Arbore vertical"
+
+#~ msgid "\"Bloginity\" style"
+#~ msgstr "Stil \"Bloginity\""
+
+#~ msgid "Overview"
+#~ msgstr "Verifică"
+
+#~ msgid "For more information:"
+#~ msgstr "Pentru mai multe informații:"
+
+#~ msgid ""
+#~ "<a href=\"http://wordpress.org/extend/plugins/upprev/\" target=\"_blank"
+#~ "\">Plugin Homepage</a>"
+#~ msgstr ""
+#~ "<a href=\"http://wordpress.org/extend/plugins/upprev/\" target=\"_blank"
+#~ "\">Pagina plugin-ului</a>"
+
+#~ msgid ""
+#~ "<a href=\"http://wordpress.org/tags/upprev\" target=\"_blank\">Support "
+#~ "Forums</a>"
+#~ msgstr ""
+#~ "<a href=\"http://wordpress.org/tags/upprev\" target=\"_blank\">Forumul de "
+#~ "suport</a>"
+
+#~ msgid "<a href=\"http://iworks.pl/en/\" target=\"_blank\">break the web</a>"
+#~ msgstr ""
+#~ "<a href=\"http://iworks.pl/en/\" target=\"_blank\">ieși pe internet</a>"
+
+#~ msgid "All positions are available in PRO version!"
+#~ msgstr "Toate pozițiile sunt disponibile în versiunea PRO!"
+
+#~ msgid "Exlude categories available in PRO version!"
+#~ msgstr "Exclude categoriile disponibile în versiunea PRO!"
+
+#~ msgid "Layout"
+#~ msgstr "Interfață"
+
+#~ msgid "bottom right"
+#~ msgstr "dreapta jos"
+
+#~ msgid "bottom left"
+#~ msgstr "stânga jos"
+
+#~ msgid "bottom"
+#~ msgstr "jos"
+
+#~ msgid "top"
+#~ msgstr "sus"
+
+#~ msgid "middle right"
+#~ msgstr "dreapta, la mijloc"
+
+#~ msgid "middle left"
+#~ msgstr "stânga, la mijloc"
+
+#~ msgid "Header tekst."
+#~ msgstr "Textul header-ului (textul de deschidere)."
+
+#~ msgid "Leave blank to allow plugin set the heading text."
+#~ msgstr ""
+#~ "Lasă gol pentru a permite plugin-ului să pună textul din deschidere "
+#~ "(heading)."
+
+#~ msgid "Colors"
+#~ msgstr "Culori"
+
+#~ msgid "Set custom colors"
+#~ msgstr "Folosește culori personalizate"
+
+#~ msgid "Turn on custom colors."
+#~ msgstr "Activează culorile personalizate."
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Background"
+#~ msgstr "Fundal"
+
+#~ msgid "Excludes"
+#~ msgstr "Exclude"
+
+#~ msgid "Categories"
+#~ msgstr "Categorii"
+
+#~ msgid "Buy PRO!"
+#~ msgstr "Cumpără versiunea PRO!"

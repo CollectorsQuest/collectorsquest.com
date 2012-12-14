@@ -12,7 +12,7 @@ class FrontendCollectibleQuery extends CollectibleQuery
        */
       return $criteria
         ->isPartOfCollection()
-        ->_if(SF_ENV === 'prod')
+        ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
           ->isComplete()
         ->_endif();
     }
@@ -33,7 +33,7 @@ class FrontendCollectibleQuery extends CollectibleQuery
      */
     $query
       ->isPartOfCollection()
-      ->_if(SF_ENV === 'prod')
+      ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
         ->isComplete()
       ->_endif();
 

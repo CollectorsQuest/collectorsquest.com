@@ -12,26 +12,9 @@ class miscComponents extends cqFrontendComponents
     /** @var $values array */
     $values = $wp_post->getPostMetaValue('_featured_items');
 
-    // Initialize the arrays
-    $collectibles_for_sale_ids = $wp_post_ids = array();
+    // Initialize the array
+    $wp_post_ids = array();
 
-    if (!empty($values['cq_collectibles_for_sale_ids']))
-    {
-      $collectibles_for_sale_ids = cqFunctions::explode(',', $values['cq_collectibles_for_sale_ids']);
-
-      // Get some element of surprise
-      shuffle($collectibles_for_sale_ids);
-
-      /** @var $q CollectibleForSaleQuery */
-      $q = CollectibleForSaleQuery::create()
-        ->isForSale()
-        ->filterByCollectibleId($collectibles_for_sale_ids, Criteria::IN)
-        ->select('CollectibleId')
-        ->addAscendingOrderByColumn(
-          'FIELD(collectible_for_sale.collectible_id, ' . implode(',', $collectibles_for_sale_ids) . ')'
-        );
-      $collectibles_for_sale_ids = $q->find()->toArray();
-    }
     if (!empty($values['cq_wp_post_ids']))
     {
       $wp_post_ids = cqFunctions::explode(',', $values['cq_wp_post_ids']);
@@ -39,9 +22,8 @@ class miscComponents extends cqFrontendComponents
 
     $this->wp_post = $wp_post;
     $this->wp_post_ids = $wp_post_ids;
-    $this->collectibles_for_sale_ids = $collectibles_for_sale_ids;
 
-    return $this->wp_post ? sfView::SUCCESS : sfView::NONE;
+    return sfView::SUCCESS;
   }
 
   public function executeWordPressFeaturedItems()
@@ -66,7 +48,7 @@ class miscComponents extends cqFrontendComponents
     $limit = !empty($values['cq_items_per_page']) ? (int) $values['cq_items_per_page'] : '20';
 
     // is infinite scroll enabled?
-    $this->infinite_scroll = !empty($values['cq_infinite_scroll']) ? (boolean) $values['cq_infinite_scroll'] : false;
+    $this->infinite_scroll = !empty($values['cq_infinite_scroll']) ? $values['cq_infinite_scroll'] === 'true' : false;
 
     // what is the layout for the page - grid or pinterest
     $this->cq_layout = !empty($values['cq_layout']) ? $values['cq_layout'] : 'grid';

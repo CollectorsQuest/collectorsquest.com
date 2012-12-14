@@ -160,21 +160,14 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    if (cqGateKeeper::open('aetn_franks_picks', 'page'))
-    {
-      $this->menu = array(
-        0 => array(
-          'id' => -1, 'active' => true,
-          'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks',
-          'content' => 'blah blah',
-          'tags' => array()
-        )
-      );
-    }
-    else
-    {
-      $this->menu = array();
-    }
+    $this->menu = array(
+      0 => array(
+        'id' => -1, 'active' => true,
+        'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks',
+        'content' => 'blah blah',
+        'tags' => array()
+      )
+    );
 
     /* @var $q wpPostQuery */
     $q = wpPostQuery::create()
@@ -227,7 +220,7 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $page integer */
     $page = (integer) $this->getRequestParameter('p', 1);
 
-    if ($t == 0 && cqGateKeeper::open('aetn_franks_picks', 'page'))
+    if ($t == 0)
     {
       /* @var $aetn_shows array */
       $aetn_shows = sfConfig::get('app_aetn_shows', array());
@@ -236,7 +229,6 @@ class marketplaceComponents extends cqFrontendComponents
       $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollection($collection)
         ->isForSale()
-        ->filterByCollectibleId($aetn_shows['franks_picks']['collectibles'])
         ->orderByPosition(Criteria::ASC)
         ->orderByUpdatedAt(Criteria::ASC);
 
@@ -253,7 +245,7 @@ class marketplaceComponents extends cqFrontendComponents
     }
     else
     {
-      $offset = cqGateKeeper::open('aetn_franks_picks', 'page') ? $t-1 : $t;
+      $offset = $t-1;
 
       /* @var $q wpPostQuery */
       $q = wpPostQuery::create()
