@@ -47,8 +47,8 @@ class PropelMigration_1355326653
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
 
-        ALTER TABLE collector_identifier
-          ADD `provider` VARCHAR(20) AFTER `identifier`;
+        ALTER TABLE collector_identifier ADD `provider` VARCHAR(20) AFTER `identifier`;
+        ALTER TABLE collector_identifier_archive ADD `provider` VARCHAR(20) AFTER `identifier`;
 
         SET FOREIGN_KEY_CHECKS = 1;
       ',
@@ -71,8 +71,8 @@ class PropelMigration_1355326653
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
 
-        ALTER TABLE `collector_identifier`
-          DROP `provider`;
+        ALTER TABLE `collector_identifier` DROP `provider`;
+        ALTER TABLE `collector_identifier_archive` DROP `provider`;
 
         SET FOREIGN_KEY_CHECKS = 1;
       ',

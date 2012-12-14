@@ -94,6 +94,18 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'profile');
 
+    // Delete provider if associated
+    if ($provider = $this->getRequestParameter('remove_provider', null))
+    {
+      CollectorIdentifierQuery::create()
+        ->filterByCollector($this->getCollector())
+        ->filterByProvider($provider)
+        ->delete();
+
+      // Redirect to make sure we remove the $_GET parameter from the URL
+      return $this->redirect('@mycq_profile_account_info');
+    }
+
     $collector_form = new CollectorEditForm($this->getCollector());
     $collector_form->useFields(array(
       'old_password', 'password', 'password_again'
@@ -160,18 +172,6 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getCollector();
     $this->email_form = $email_form;
     $this->collector_form = $collector_form;
-
-    // delete provider if variable set
-    if ($remove_provider = $this->getRequestParameter('remove_provider', null))
-    {
-      $provider = CollectorIdentifierQuery::create()
-        ->filterByCollector($this->getCollector())
-        ->filterByIdentifier($remove_provider)
-        ->find();
-
-      // not sure how to remove this provider
-      $provider->delete();
-    }
 
     return sfView::SUCCESS;
   }
