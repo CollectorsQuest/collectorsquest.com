@@ -16,9 +16,9 @@ RewriteEngine On
 #
 # Meaning the pattern that RewriteRule gets to match against is in fact /pages/whatever.
 # That's why instead we add a RewriteCond on the actual REQUEST_URI var, and if that matches
-# We rewrite the whole pattern to / in our RewriteRule. Then, in the /.htaccess we
-# do a non-redirect rewrite again to /blog/pages, but that won't be cought by the following
-# rule because it's request URI doesn't match our pattern (while the actual request does ;)
+# we rewrite the whole pattern to / in our RewriteRule. Then, in /.htaccess we do an
+# internal rewrite again to /blog/pages, but that won't be cought by the following
+# rule because its REQUEST_URI doesn't match our pattern (while the actual request does ;))
 #
 # It's a doozy :)
 
