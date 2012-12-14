@@ -111,6 +111,8 @@ class CollectorSignupStep1Form extends BaseForm
       array('invalid' => 'The two passwords do not match, please enter them again!')
     ));
 
+    $this->mergePostValidator(new CollectorSignupStep1FormValidatorSchema());
+
     $this->setupIpAddressField();
     $this->mergePostValidator(new iceSpamControlValidatorSchema(array(
         'credentials' => iceSpamControl::CREDENTIALS_ALL,

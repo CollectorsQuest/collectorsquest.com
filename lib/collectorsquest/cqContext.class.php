@@ -1,8 +1,6 @@
 <?php
 
 /**
- * @method static cqContext getInstance()
- *
  * @method cqWebResponse getResponse()
  * @method cqWebRequest getRequest()
  * @method cqFrontWebController getController()
@@ -10,6 +8,36 @@
  */
 class cqContext extends sfContext
 {
+
+  /**
+   * @see sfContext::createInstance()
+   */
+  static public function createInstance(sfApplicationConfiguration $configuration, $name = null, $class = __CLASS__)
+  {
+    /* @var $context cqContext */
+    $context = parent::createInstance($configuration, $name, $class);
+
+    return $context;
+  }
+
+  /**
+   * @see sfContext::getInstance()
+   */
+  static public function getInstance($name = null, $class = __CLASS__)
+  {
+    /* @var $context cqContext */
+    $context = parent::getInstance($name, $class);
+
+    return $context;
+  }
+
+  /**
+   * @see sfContext::hasInstance()
+   */
+  public static function hasInstance($name = null)
+  {
+    return parent::hasInstance($name);
+  }
 
   public function isHomePage()
   {

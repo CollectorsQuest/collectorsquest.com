@@ -17,8 +17,10 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
        * which have Collectibles asssigned to them
        */
       return $criteria
-        ->filterByIsPublic(true)
-        ->hasCollectibles();
+        ->hasPublicCollectibles()
+        ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
+          ->isComplete()
+        ->_endif();
     }
 
     $query = new FrontendCollectorCollectionQuery();
@@ -36,17 +38,12 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
      * which have Collectibles asssigned to them
      */
     $query
-      ->filterByIsPublic(true)
-      ->hasCollectibles();
+      ->hasPublicCollectibles()
+      ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
+        ->isComplete()
+      ->_endif();
 
     return $query;
   }
 
-  /**
-   * @return FrontendCollectorCollectionQuery|CollectorCollectionQuery
-   */
-  public function hasCollectibles()
-  {
-    return $this->hasPublicCollectibles();
-  }
 }

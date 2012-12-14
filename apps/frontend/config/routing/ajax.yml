@@ -57,6 +57,12 @@ ajax_aetn:
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
+ajax_misc:
+  url:   /ajax/misc/:section/:page/:id.:sf_format
+  param: { module: misc, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
 ajax_shopping:
   url:   /ajax/shopping/:section/:page.:sf_format
   param: { module: shopping, action: ajax, sf_format: html }

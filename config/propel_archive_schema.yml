@@ -13,6 +13,7 @@ classes:
       display_name:   { type: varchar, size: 64, required: true, primaryString: true }
       slug:           { type: varchar, size: 64, required: true, index: true }
       sha1_password:  { type: varchar, size: 40, required: true }
+      portable_password:  { type: varchar, size: 64, required: true }
       salt:           { type: varchar, size: 32, required: true }
       email:          { type: varchar, size: 128, index: true }
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
@@ -103,6 +104,7 @@ classes:
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
       num_items:               { type: integer, default: 0 }
+      num_public_items:        { type: integer, default: 0 }
       num_views:               { type: integer, default: 0 }
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
@@ -151,6 +153,7 @@ classes:
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
       num_items:               { type: integer, default: 0 }
+      num_public_items:        { type: integer, default: 0 }
       num_views:               { type: integer, default: 0 }
       num_comments:            { type: integer, default: 0 }
       num_ratings:             { type: integer, default: 0 }
@@ -207,9 +210,11 @@ classes:
       collectible_id:       { type: integer, index: true, primaryKey: true, autoIncrement: false }
       price_amount:         { type: integer, required: true, default: 0 }
       price_currency:       { type: char, size: 3, required: true, default: 'USD' }
+      tax_country:          { type: char, size: 2, required: false }
+      tax_state:            { type: varchar, size: 100, required: false }
+      tax_percentage:       { type: integer, required: false }
       condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
       is_price_negotiable:  { type: boolean, default: false }
-      is_shipping_free:     { type: boolean, default: false }
       is_ready:             { type: boolean, default: false, description: 'Show in the market or not' }
       marked_for_sale_at:   { type: timestamp }
       is_sold:              { type: boolean, default: false }
@@ -260,6 +265,7 @@ classes:
       collectible_id:       { type: integer, index: true }
       shopping_payment_id:  { type: integer, index: true }
       buyer_email:          { type: varchar, size: 128, index: true }
+
       shipping_address_id:       { type: integer, index: true }
       shipping_full_name:        { type: varchar(255), required: true  }
       shipping_phone:            { type: varchar(50),  required: false }
@@ -269,9 +275,15 @@ classes:
       shipping_state_region:     { type: varchar(100), required: false }
       shipping_zip_postcode:     { type: varchar(50),  required: true }
       shipping_country_iso3166:  { type: char, size: 2, required: false }
+
       shipping_carrier:          { type: enum, required: false, valueSet: "FedEx, UPS, USPS, DHL" }
       shipping_tracking_number:  { type: varchar(64), required: false }
+
       note_to_seller:       { type: varchar, size: 255 }
+      progress:             { type: enum, valueSet: "step1, step2, step3", default: step1, required: true }
+
+      is_buyer_notified:         { type: boolean, default: false }
+      is_seller_notified:        { type: boolean, default: false }
 
       updated_at:   { type: timestamp }
       created_at:   { type: timestamp }

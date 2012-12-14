@@ -12,10 +12,16 @@ seo:
 
   general:
     index:
-      title: Buy Sell Show | Antiques, Collectibles, Vintage Items | Collectors Quest
+      title: Buy Sell Show | Antiques Collectibles Vintage Items | Collectors Quest
       description: |
         Join Collectors Quest to buy, sell, trade & show off your amazing collections,
         from antiques to collectibles, vintage to modern. See what other people collect!
+
+    recoverPassword:
+      title: Forgot your username and/or password? | Collectors Quest
+
+    login:
+      title: Sign in to Collectors Quest | Use Facebook Twitter Google WordPress
 
   aetn:
     pawnStars:
@@ -31,10 +37,11 @@ seo:
         CollectorsQuest.com gives you an inside look at the American Pickers collectibles.
 
     franksPicks:
-      title: Frank's Picks | TV Show Collectibles | Collectors Quest
+      title: American Pickers: Frank's Picks | Collectors Quest
       description: |
-        Check out these collectors items from the Frank's Picks collection.
-        CollectorsQuest.com gives you an inside look at the Frank's Picks collectibles.
+        Enter the private collection of Frank Fritz, host of HISTORY's American Pickers!
+        Shop from items seen on TV and Frank's personal picks, exclusively on Collectors Quest.
+        Check back for new items being added often!
 
     americanRestoration:
       title: American Restoration | TV Show Collectibles | Collectors Quest
@@ -47,6 +54,12 @@ seo:
       description: |
         Check out these collectors items from the Picked Off collection.
         CollectorsQuest.com gives you an inside look at the Picked Off collectibles.
+
+    blackHistory:
+      title: Black History | TV Show Collectibles | Collectors Quest
+      description: |
+        Check out these collectors items from the Black History collection.
+        CollectorsQuest.com gives you an inside look at the Black History collectibles.
 
     mwba:
       title: The Men Who Built America | Collectors Quest
@@ -159,6 +172,12 @@ seo:
         Browse our amazing collections of antique, vintage & collectible items
         from passionate collectors around the world.
 
+    holiday:
+      title: Buy & Sell Antiques, Collectibles & Vintage Items | Collectors Quest
+      description: |
+        Browse our amazing collections of antique, vintage & collectible items
+        from passionate collectors around the world.
+
     browse:
       model: true
       title:
@@ -188,6 +207,12 @@ seo:
       description:
         - %StoreDescription%
 
+    signup:
+      title: Sell on Collectors Quest | Which package is right for you?
+      description: |
+        Broader Exposure, Flat Rate with No Transaction Fees, List for Six Months!
+        Sign up now!
+
   misc:
     guideToCollecting:
       title: The Essential Guide to Collecting - Free Download | Collectors Quest
@@ -200,3 +225,7 @@ seo:
       description: |
         Our Essential Guide to Collecting has tips for everyone, whether you're a new collector or
         an experienced hunter looking for the next item for your collection.
+
+  search:
+    index:
+      title: Search for Collectibles, Collections, Blog Posts, Videos and more!

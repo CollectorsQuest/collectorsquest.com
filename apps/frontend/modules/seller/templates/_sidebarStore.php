@@ -9,7 +9,8 @@
  * @var $store_refunds              string
  * @var $store_return_policy        string
  * @var $store_additional_policies  string
- * @var  $sf_user                   cqFrontendUser
+ * @var $sf_user                    cqFrontendUser
+ * @var $sf_request                 cqWebRequest
  */
 ?>
 
@@ -76,13 +77,20 @@
         </li>
       </ul>
     </div>
+    <?php if (!$sf_request->isMobileBrowser()): ?>
     <div id="social-sharing" class="pull-right share">
-      <?php // removing the addthis_button_email causes a JS error - no toolbar displayed ?>
-      <a class="addthis_button_email" style="display: none;"></a>
-      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
-      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
+      <?php
+        include_partial(
+          'global/addthis',
+          array(
+            'providers' => array('email', 'google+', 'facebook'),
+            'image' => src_tag_collector($collector, 'original'),
+            'url' => url_for('seller_store', $collector, true)
+          )
+        );
+      ?>
     </div>
+    <?php endif; ?>
   </div>
 </div>
 
@@ -107,7 +115,8 @@
     array(
       'store_shipping' => $store_shipping, 'store_refunds' => $store_refunds,
       'store_return_policy' => $store_return_policy,
-      'store_additional_policies' => $store_additional_policies
+      'store_additional_policies' => $store_additional_policies,
+      'collector' => $collector
     )
   )
 ?>

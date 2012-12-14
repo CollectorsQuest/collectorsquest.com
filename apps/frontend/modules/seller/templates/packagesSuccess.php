@@ -100,7 +100,7 @@
           isset($promotion) ? $promotion : null,
           array(
             'template' =>
-              '<span class="%package_id_class% Chivo webfont tooltip-position-right label-holder" data-actual-price="%package_price_discounted%" rel="tooltip" title="%price_per_item% per item">
+              '<span class="%package_id_class% Chivo webfont label-holder" data-actual-price="%package_price_discounted%">
                 %num_listings%
                 <span class="spacer-left-5 green pull-right">%package_price_discounted%</span>
                 <span class="blue pull-right %discounted_class%">%package_price%</span>

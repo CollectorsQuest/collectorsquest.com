@@ -9,7 +9,7 @@ all:
         class: Swift_SmtpTransport
         param:
           host: email-smtp.us-east-1.amazonaws.com
-          port: 465
+          port: 587
           username: AKIAJXXQN5BYO3YM5AAQ
           password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
           encryption: tls
@@ -87,6 +87,14 @@ prod_debug:
             file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
 
 
+stg:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+
+
 next:
   mailer:
     class: cqMailer
@@ -123,6 +131,9 @@ next_debug:
 dev:
   view_cache_manager:
     class: cqViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    false
 
   logger:
     class: sfAggregateLogger
@@ -148,7 +159,6 @@ dev:
     param:
       delivery_strategy: single_address
       delivery_address:  developers@collectorsquest.com
-      #delivery_address:  kangov@collectorsquest.com
       force_redirect_of_collectorsquest_emails: true
       logging: false
 

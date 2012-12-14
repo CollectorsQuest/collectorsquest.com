@@ -17,14 +17,14 @@ class cqSslRedirectFilter extends sfFilter
    * request should be http or https and will redirect as such
    *
    * @param sfFilterChain $filterChain the current symfony filter chain
-   * @return boolean redirect status
+   * @return void
    */
   public function execute($filterChain)
   {
     // Only run once per request
     if ($this->isFirstCall())
     {
-      /** @var $request cqWebRequest */
+      /* @var $request cqWebRequest */
       $request = $this->getContext()->getRequest();
 
       // only filter is the request is get or head
@@ -54,8 +54,8 @@ class cqSslRedirectFilter extends sfFilter
               in_array($action, $moduleSettings[$module]['actions'])
             )
             {
-              //we need to redirect to a secure url
-              return $this->redirectSecure($request);
+              // we need to redirect to a secure url
+              $this->redirectSecure($request);
             }
             // else: the request should be secure, and is. No more to be done.
             // module was defined, but no actions were
@@ -63,13 +63,13 @@ class cqSslRedirectFilter extends sfFilter
           else if (!$request->isSecure())
           {
             // every action in this module is secure, redirect
-            return $this->redirectSecure($request);
+            $this->redirectSecure($request);
           }
         }
         else if ($request->isSecure() && $strict)
         {
-          //redirect back to http, strict is set
-          return $this->redirectUnsecure($request);
+          // redirect back to http, strict is set
+          $this->redirectUnsecure($request);
         }
       }
     }

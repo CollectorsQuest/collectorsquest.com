@@ -4,27 +4,60 @@ msgid ""
 msgstr ""
 "Project-Id-Version: upPrev 3.3.6ru\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/upprev\n"
-"POT-Creation-Date: 2012-02-17 15:48:07+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2012-12-13 10:58:18+00:00\n"
 "PO-Revision-Date: 2012-08-18 16:59+0400\n"
 "Last-Translator: Vadim Sokhin <scripanul.vs@gmail.com>\n"
 "Language-Team: http://webbizreshenie.ru/ <info@webbizreshenie.ru>\n"
+"Language: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
-"Language: Russian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#. #-#-#-#-#  upprev.pot (upPrev trunk)  #-#-#-#-#
+#. #-#-#-#-#  upprev.pot (upPrev branch/3.3)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin/index.php:3 upprev.php:214 upprev.php:215 upprev.php:526
+#: admin/index.php:3 upprev.php:212 upprev.php:213 upprev.php:528
 msgid "upPrev"
 msgstr "upPrev"
 
 #: admin/index.php:7
 msgid "upPrev options saved."
 msgstr "upPrev настройки сохранены."
+
+#: admin/index.php:24
+msgid "Loved this Plugin?"
+msgstr ""
+
+#: admin/index.php:26
+msgid "Below are some links to help spread this plugin to other users"
+msgstr ""
+
+#: admin/index.php:28
+msgid "Give it a 5 star on Wordpress.org"
+msgstr ""
+
+#: admin/index.php:29
+msgid "Link to it so others can easily find it"
+msgstr ""
+
+#: admin/index.php:34
+msgid "Need Assistance?"
+msgstr ""
+
+#: admin/index.php:36
+msgid "Problems? The links bellow can be very helpful to you"
+msgstr ""
+
+#: admin/index.php:38
+#, fuzzy
+msgid "http://wordpress.org/tags/upprev"
+msgstr "http://iworks.pl/upprev/"
+
+#: admin/index.php:38
+msgid "Wordpress Help Forum"
+msgstr ""
 
 #: includes/common.php:18
 msgid ""
@@ -46,75 +79,79 @@ msgstr "Не удалось "
 msgid "An error occurred while getting the configuration."
 msgstr "Произошла ошибка при получении конфигурации."
 
-#: includes/iworks.options.class.php:291
+#: includes/iworks.options.class.php:309
 msgid "Save Changes"
 msgstr "Сохранить изменения"
 
-#: includes/options.php:15
+#: includes/options.php:27 includes/options.php:43
 msgid "Apperance"
 msgstr "Раздел настроек"
 
-#: includes/options.php:27
-msgid "Animation style"
-msgstr "Стиль анимации"
+#: includes/options.php:33
+msgid "Schema"
+msgstr ""
 
-#: includes/options.php:30
+#: includes/options.php:36 includes/options.php:52
 msgid "flyout"
 msgstr "всплывающее"
 
-#: includes/options.php:31
+#: includes/options.php:37 includes/options.php:53
 msgid "fade in/out"
 msgstr "постепенное появление/угасание"
 
-#: includes/options.php:38
+#: includes/options.php:49
+msgid "Animation style"
+msgstr "Стиль анимации"
+
+#: includes/options.php:60
 msgid "Position"
 msgstr "Расположение"
 
-#: includes/options.php:41
+#: includes/options.php:63
 msgid "right"
 msgstr "справа"
 
-#: includes/options.php:42
+#: includes/options.php:64
 msgid "left"
 msgstr "слева"
 
-#: includes/options.php:50
+#: includes/options.php:72
 msgid "Margin bottom"
 msgstr "Ширина нижнего поля"
 
-#: includes/options.php:51 includes/options.php:60 includes/options.php:70
+#: includes/options.php:73 includes/options.php:82 includes/options.php:92
 msgid "px"
 msgstr "px"
 
-#: includes/options.php:59
+#: includes/options.php:81
 msgid "Margin side"
 msgstr "Ширина поля (правого/левого)"
 
-#: includes/options.php:61
+#: includes/options.php:83
 msgid "Left or right depending on position."
 msgstr "Влево или вправо, в зависимости от расположения."
 
-#: includes/options.php:69
+#: includes/options.php:91
 msgid "Box width"
 msgstr "Ширина окна"
 
-#: includes/options.php:78
+#: includes/options.php:100
 msgid "Offset"
 msgstr "Смещение"
 
-#: includes/options.php:79
+#: includes/options.php:101
 msgid "%"
 msgstr "%"
 
-#: includes/options.php:80
+#: includes/options.php:102
 msgid "Percentage of the page required to be scrolled to display a box."
 msgstr "Требуемый процент прокрутки страницы для отображения окна"
 
-#: includes/options.php:88
+#: includes/options.php:110
 msgid "Before HTML element."
 msgstr "Перед элементом HTML."
 
-#: includes/options.php:89
+#: includes/options.php:111
 msgid ""
 "If empty, all page length is taken for calculation. If not empty, make sure "
 "to use the ID or class of an existing element. Put # \"hash\" before the ID, "
@@ -124,47 +161,50 @@ msgstr ""
 "заполнения используйте значение ID или класс существующего элемента. Ставить "
 "# \"hash\" перед ID, и . \"dot\" перед именем класса."
 
-#: includes/options.php:96
+#: includes/options.php:118
 msgid "Box header"
 msgstr "Заголовок окна"
 
-#: includes/options.php:97
+#: includes/options.php:119
 msgid "Show box header."
 msgstr "Показывать поле заголовка."
 
-#: includes/options.php:104
+#: includes/options.php:126
 msgid "Close button"
 msgstr "Кнопка \"Закрыть\""
 
-#: includes/options.php:105
+#: includes/options.php:127
 msgid "Show close button."
 msgstr "Показывать кнопку \"Закрыть\"."
 
-#: includes/options.php:113
+#: includes/options.php:135
 msgid "Custom CSS"
 msgstr "Пользовательский CSS"
 
-#: includes/options.php:144
+#: includes/options.php:166
 msgid "Content"
 msgstr "Содержание"
 
-#: includes/options.php:150
+#: includes/options.php:173
 msgid "Number of posts to show "
 msgstr "Выводимое количество сообщений"
 
-#: includes/options.php:151
-msgid "Not affected if using YARPP as choose method."
+#: includes/options.php:174
+#, fuzzy
+msgid ""
+"Not affected if using YARPP as choose method and YARPP version is lower than "
+"4.0."
 msgstr "Не влияет, если при использовании метода выбора YARPP не меняется."
 
-#: includes/options.php:158
+#: includes/options.php:181
 msgid "Content filters"
 msgstr "Фильтры контента"
 
-#: includes/options.php:159
+#: includes/options.php:182
 msgid "Remove all filters."
 msgstr "Исключить все фильтры."
 
-#: includes/options.php:160
+#: includes/options.php:183
 msgid ""
 "Untick this if you have some strange things in upPrev box, but unticked have "
 "a lot of chances breaks your layout."
@@ -172,235 +212,235 @@ msgstr ""
 "Если при работе с upPrev возникают непредвиденные проблемы, снимите флажок, "
 "однако в этом случае целостность структуры не гарантируется."
 
-#: includes/options.php:167
+#: includes/options.php:190
 msgid "Previous entry choose method"
 msgstr "Предыдущая запись выбрать метод"
 
-#: includes/options.php:170
+#: includes/options.php:193
 msgid "Just previous."
 msgstr "Предыдущая."
 
-#: includes/options.php:171
+#: includes/options.php:194
 msgid "Previous in category."
 msgstr "Предыдущая в рубрике."
 
-#: includes/options.php:172
+#: includes/options.php:195
 msgid "Previous in tag."
 msgstr "Предыдущая в теге."
 
-#: includes/options.php:173
+#: includes/options.php:196
 msgid "Random entry."
 msgstr "Произвольный выбор."
 
-#: includes/options.php:182
+#: includes/options.php:205
 msgid "Taxonomy limit"
 msgstr "Лимит для описаний"
 
-#: includes/options.php:183
+#: includes/options.php:206
 msgid "Number of taxonomies (tags or categories) to show."
 msgstr "Количество отображаемых описаний (тегов или рубрик), для показа."
 
-#: includes/options.php:184
+#: includes/options.php:207
 msgid "Default value: 0 (no limit)."
 msgstr "Значение по умолчанию: 0 (без ограничений)."
 
-#: includes/options.php:191
+#: includes/options.php:214
 msgid "Match post type"
 msgstr "Выбрать соответствие по типам постов"
 
-#: includes/options.php:192
+#: includes/options.php:215
 msgid "Display only for selected post types."
 msgstr "Отображать только выбранные типы постов."
 
-#: includes/options.php:199
+#: includes/options.php:222
 msgid "Select post types"
 msgstr "Выберите типы"
 
-#: includes/options.php:200
+#: includes/options.php:223
 msgid "Show posts."
 msgstr "Показывать посты"
 
-#: includes/options.php:201
+#: includes/options.php:224
 msgid "If not any, then default value is \"post\"."
 msgstr ""
 "Если тип поста не выбран, система по умолчанию устанавливает тип \"post\"."
 
-#: includes/options.php:204
+#: includes/options.php:227
 msgid "Posts."
 msgstr "Посты."
 
-#: includes/options.php:205
+#: includes/options.php:228
 msgid "Pages."
 msgstr "Страницы."
 
-#: includes/options.php:206
+#: includes/options.php:229
 msgid "Any post type (include custom post types)."
 msgstr "Все типы постов (включая нестандартные)."
 
-#: includes/options.php:216
+#: includes/options.php:239
 msgid "Sticky posts"
 msgstr "Sticky posts (заметки)"
 
-#: includes/options.php:217
+#: includes/options.php:240
 msgid "Ignore sticky posts."
 msgstr "Игнорировать."
 
-#: includes/options.php:227
+#: includes/options.php:250
 msgid "Excerpt"
 msgstr "Выдержка"
 
-#: includes/options.php:228
+#: includes/options.php:251
 msgid "Show excerpt."
 msgstr "Показывать выдержку."
 
-#: includes/options.php:237
+#: includes/options.php:260
 msgid "Number of words to show."
 msgstr "Количество отображаемых слов."
 
-#: includes/options.php:246
+#: includes/options.php:269
 msgid "Featured image"
 msgstr "Рекомендуемое изображение"
 
-#: includes/options.php:247
+#: includes/options.php:270
 msgid "Show featured image."
 msgstr "Показывать изображение."
 
-#: includes/options.php:256
+#: includes/options.php:279
 msgid "Featured image width."
 msgstr "Ширина изображения."
 
-#: includes/options.php:266
+#: includes/options.php:289
 msgid "Links"
 msgstr "Ссылки"
 
-#: includes/options.php:271
+#: includes/options.php:295
 msgid "URL prefix"
 msgstr "URL префикс"
 
-#: includes/options.php:273
+#: includes/options.php:297
 msgid "Will be added before link."
 msgstr "Будет добавлен перед ссылкой."
 
-#: includes/options.php:280
+#: includes/options.php:304
 msgid "URL sufix"
 msgstr "URL суффикс"
 
-#: includes/options.php:282
+#: includes/options.php:306
 msgid "Will be added after link."
 msgstr "Будет добавлен после ссылки."
 
-#: includes/options.php:289
+#: includes/options.php:313
 msgid "Open link"
 msgstr "Открытие ссылки"
 
-#: includes/options.php:290
+#: includes/options.php:314
 msgid "Open link in new window."
 msgstr "Открывать ссылки в новом окне."
 
-#: includes/options.php:291
+#: includes/options.php:315
 msgid "Not recomended!"
 msgstr "Не рекомендуется!"
 
-#: includes/options.php:298
+#: includes/options.php:322
 msgid "Google Analitics"
 msgstr "Google Analitics"
 
-#: includes/options.php:299
+#: includes/options.php:323
 msgid "I don't have GA tracking on site."
 msgstr "У меня нет плагина отслеживания GA на сайте."
 
-#: includes/options.php:300 includes/options.php:326
+#: includes/options.php:324 includes/options.php:350
 msgid "Turn it on if you don't use any other GA tracking plugin."
 msgstr "Включите, если вы не используете любой другой плагин отслеживания GA."
 
-#: includes/options.php:307
+#: includes/options.php:331
 msgid "Google Analitics Account"
 msgstr "Аккаунт Google Analitics"
 
-#: includes/options.php:308
+#: includes/options.php:332
 msgid "Replace UA-XXXXX-X with your web property ID."
 msgstr "Заменить UA-XXXXX-X на свой ID"
 
-#: includes/options.php:317
+#: includes/options.php:341
 msgid "Track views"
 msgstr "Журнал просмотров"
 
-#: includes/options.php:318
+#: includes/options.php:342
 msgid "Track showing of upPrev box."
 msgstr "Отслеживать показ окна upPrev."
 
-#: includes/options.php:325
+#: includes/options.php:349
 msgid "Track clicks"
 msgstr "Отслеживать клики"
 
-#: includes/options.php:333
+#: includes/options.php:357
 msgid "Prevent bounce-rate"
 msgstr "Не учитывать случайные переходы"
 
-#: includes/options.php:334
+#: includes/options.php:358
 msgid ""
 "Turn it on to indicate that the event hit will not be used in bounce-rate "
 "calculation."
 msgstr ""
 "При включении этой функции, исключается попадание случайных  переходов."
 
-#: includes/options.php:343 includes/options.php:348
+#: includes/options.php:367 includes/options.php:373
 msgid "Cache"
 msgstr "Кэш"
 
-#: includes/options.php:349
+#: includes/options.php:374
 msgid "Use Transient Cache."
 msgstr "Использование переходного кэша."
 
-#: includes/options.php:350
+#: includes/options.php:375
 msgid "Using on large site (more than 1000 posts) may crash website."
 msgstr ""
 "Использование на больших сайтах (более 1000 сообщений) может привести к "
 "падению сайта."
 
-#: includes/options.php:357
+#: includes/options.php:382
 msgid "Transients Cache Lifetime."
 msgstr "Время жизни кэша."
 
-#: includes/options.php:358
+#: includes/options.php:383
 msgid "In seconds, default one hour (3600s)."
 msgstr "В секундах, по умолчанию один час (3600s)."
 
-#: includes/options.php:367 includes/options.php:372
+#: includes/options.php:392 includes/options.php:398
 msgid "Mobile devices"
 msgstr "Мобильные устройства"
 
-#: includes/options.php:373
+#: includes/options.php:399
 msgid "Hide for mobile devices."
 msgstr "Скрыть для мобильных устройств."
 
-#: includes/options.php:380
+#: includes/options.php:406
 msgid "Tablets"
 msgstr "Графические планшеты"
 
-#: includes/options.php:381
+#: includes/options.php:407
 msgid "Hide for tablets too."
 msgstr "Скрыть для планшетов."
 
-#: includes/options.php:382
+#: includes/options.php:408
 msgid "Works only when hidding for mobile devices is turn on."
 msgstr ""
 "Работает только при включенной функции блокирования доступа для мобильных "
 "устройств."
 
-#: includes/options.php:391
+#: includes/options.php:417
 msgid "Other"
 msgstr "Дополнительно"
 
-#: includes/options.php:396
+#: includes/options.php:422
 msgid "Promote"
 msgstr "Продвижение"
 
-#: includes/options.php:397
+#: includes/options.php:423
 msgid "Help promote upPrev plugin?"
 msgstr "Помощь в продвижении плагина upPrev"
 
-#: includes/options.php:398
+#: includes/options.php:424
 msgid ""
 "This option will add the code <code>Previous posts box brought to you by &lt;"
 "a href='http://iworks.pl/produkty/wordpress/wtyczki/upprev/en/'&gt;upPrev "
@@ -414,11 +454,11 @@ msgstr ""
 "чекбокс, обновить опции; пример кода расположен справа. Ссылки и "
 "пожертвования приветствуются. </span>"
 
-#: includes/options.php:404 upprev.php:513
+#: includes/options.php:430 upprev.php:515
 msgid "Donate"
 msgstr "Пожертвование"
 
-#: includes/options.php:405
+#: includes/options.php:431
 msgid ""
 "You can buy me some special coffees if you appreciate my work, thank you! <a "
 "href=\"http://iworks.pl/donate/upprev.php\">Donate to this plugin.</a>"
@@ -427,35 +467,35 @@ msgstr ""
 "элитного сорта. Спасибо! <a href=\"http://iworks.pl/donate/upprev.php\"> "
 "Поддержать этот плагин.</a>"
 
-#: includes/options.php:420
+#: includes/options.php:446
 msgid "Custom post type: "
 msgstr "Пользовательский тип поста"
 
-#: includes/options.php:431 includes/options.php:434
+#: includes/options.php:457 includes/options.php:460
 msgid "Related Posts (YARPP)"
 msgstr "Посты по теме (YARPP)"
 
-#: includes/options.php:432
+#: includes/options.php:458
 msgid ". Works only with post and/or pages."
 msgstr ". Работать только с постом и/или страницей."
 
-#: upprev.php:383
+#: upprev.php:385
 msgid "More in"
 msgstr "Подробнее в"
 
-#: upprev.php:390
+#: upprev.php:392
 msgid "Read more:"
 msgstr "Подробнее:"
 
-#: upprev.php:392
+#: upprev.php:394
 msgid "Read previous post:"
 msgstr "Читайте ранее:"
 
-#: upprev.php:462
+#: upprev.php:464
 msgid "Close"
 msgstr "Закрыть"
 
-#: upprev.php:465
+#: upprev.php:467
 msgid ""
 "Previous posts box brought to you by <a href=\"http://iworks.pl/produkty/"
 "wordpress/wtyczki/upprev/en/\">upPrev plugin</a>."
@@ -463,7 +503,7 @@ msgstr ""
 "Окно со ссылками на предыдущие посты предоставляет вам <a href=\"http://"
 "iworks.pl/produkty/wordpress/wtyczki/upprev/en/\">плагин upPrev</a>."
 
-#: upprev.php:511
+#: upprev.php:513
 msgid "Settings"
 msgstr "Настройки"
 

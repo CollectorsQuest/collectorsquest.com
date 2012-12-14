@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ .'/../config/bootstrap.php';
+
 $webdir   = __DIR__;
 $cssdir   = __DIR__ . '/css';
 $lessdir  = __DIR__ . '/less';
@@ -214,14 +216,14 @@ else
       $path = realpath($base .'/'. $element);
     }
 
-    if (substr($element, -5) === '.less')
+    if (file_exists($path) && substr($element, -5) === '.less')
     {
       require_once __DIR__ . '/../plugins/iceLibsPlugin/lib/vendor/Lessc.class.php';
 
       $less = new Lessc($path);
       $contents .= "\n\n". $less->parse();
     }
-    else
+    else if (file_exists($path))
     {
       $contents .= "\n\n" . file_get_contents($path);
     }

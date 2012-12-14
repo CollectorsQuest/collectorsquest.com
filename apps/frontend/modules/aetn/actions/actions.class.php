@@ -39,11 +39,7 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($american_pickers['collection'])
@@ -55,7 +51,10 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarAmericanPickers');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_american_pickers'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_american_pickers'));
 
     return sfView::SUCCESS;
   }
@@ -72,11 +71,7 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollection($collection)
@@ -94,7 +89,10 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarAmericanRestoration');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_american_restoration'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_american_restoration'));
 
     return sfView::SUCCESS;
   }
@@ -109,11 +107,7 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($pawn_stars['collection'])
@@ -129,7 +123,10 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarPawnStars');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_pawn_stars'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_pawn_stars'));
 
     return sfView::SUCCESS;
   }
@@ -144,11 +141,7 @@ class aetnActions extends cqFrontendActions
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     $q = FrontendCollectionCollectibleQuery::create()
       ->filterByCollectionId($picked_off['collection'])
@@ -166,38 +159,42 @@ class aetnActions extends cqFrontendActions
     $this->setComponentVar('collection', $collection, 'sidebarPickedOff');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_picked_off'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_picked_off'));
 
     return sfView::SUCCESS;
   }
 
   public function executeFranksPicks(sfWebRequest $request)
   {
-    // Check if the page is publicly available yet
-    $this->forward404Unless(cqGateKeeper::open('aetn_franks_picks', 'page'));
-
     /* @var $aetn_shows array */
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
     $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
     $this->forward404Unless($collection instanceof CollectorCollection);
 
+    $this->collection = $collection;
+
     /**
      * Increment the number of views
      */
-//    if (!$this->getCollector()->isOwnerOf($collection))
-//    {
-//      $collection->setNumViews($collection->getNumViews() + 1);
-//      $collection->save();
-//    }
+    $this->incrementCounter($collection, 'NumViews');
 
     // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection);
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_franks_picks'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_franks_picks'));
 
     return sfView::SUCCESS;
   }
 
   public function executeMwba()
   {
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba'));
+
     return sfView::SUCCESS;
   }
 
@@ -221,6 +218,9 @@ class aetnActions extends cqFrontendActions
       ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
     $this->collectibles = $q->find();
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_petroliana'));
 
     return sfView::SUCCESS;
   }
@@ -247,6 +247,9 @@ class aetnActions extends cqFrontendActions
       ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
     $this->collectibles = $q->find();
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_rooseveltiana'));
 
     return sfView::SUCCESS;
   }
@@ -275,6 +278,10 @@ class aetnActions extends cqFrontendActions
 
     $this->collectibles = $q->find();
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_mwba_railroadiana'));
+
     return sfView::SUCCESS;
   }
+
 }

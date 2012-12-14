@@ -23,6 +23,11 @@ pickedOff:
   with_layout: false
   lifetime:    3600
 
+franksPicks:
+  enabled:     true
+  with_layout: false
+  lifetime:    300
+
 mwba:
   enabled:     true
   with_layout: false

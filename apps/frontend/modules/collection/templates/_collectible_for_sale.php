@@ -27,9 +27,9 @@
   </thead>
   <tbody>
 
-  <?php if (count($collectible->getShippingReferencesByCountryCode())):
-    foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference):
-      if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
+  <?php if (count($collectible->getShippingReferencesByCountryCode())): ?>
+    <?php foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference): ?>
+      <?php if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
 
         <?php ob_start(); ?>
         <tr>
@@ -104,12 +104,21 @@
     )
   ); ?></p>
 
+  <?php if (false && 0 != $collectible_for_sale->getTaxPercentage()): ?>
+    <p>
+      <strong>Tax:</strong> <?= $collectible_for_sale->getTaxPercentage(); ?>%
+        for <?= $collectible_for_sale->getTaxState()
+      ? iceModelGeoRegionPeer::retrieveByPK($collectible_for_sale->getTaxState())->getNameLatin() . ' /' : ''; ?>
+        <?= $collectible_for_sale->getIceModelGeoCountry()->getName(); ?>
+    </p>
+  <?php endif; ?>
+
   <?php if ($refunds_policy = $collector->getSellerSettingsRefunds()): ?>
     <p><strong>Refunds Policy:</strong> <?= $refunds_policy ?></p>
   <?php endif; ?>
 
   <?php if ($shipping_policy = $collector->getSellerSettingsShipping()): ?>
-    <p><strong>Shipping Policy:</strong> <?= $shipping_policy; ?></p>
+    <p class="truncate"><strong>Shipping Policy:</strong> <?= nl2br($shipping_policy); ?></p>
   <?php endif; ?>
 </div>
 
@@ -121,7 +130,6 @@
         for <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
       </small>
     </p>
-    Quantity sold: 1
   </div>
 <?php elseif ($collectible_for_sale->isForSale() && cqGateKeeper::open('shopping_cart')): ?>
   <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
@@ -142,3 +150,21 @@
     <?= $buy_form->renderHiddenFields(); ?>
   </form>
 <?php endif; // if for sale ?>
+
+<?php if ($collector->getId() == 6668): ?>
+<script>
+  $(document).ready(function ()
+  {
+    $('.truncate').expander({
+      slicePoint: 250,
+      widow: 2,
+      expandEffect: 'show',
+      expandText: ' Read more >>',
+      expandPrefix: '',
+      userCollapseText: '[^]',
+      onSlice: function() { $(this).show(); }
+    })
+    .show();
+  });
+</script>
+<?php endif; ?>

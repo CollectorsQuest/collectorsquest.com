@@ -13,7 +13,7 @@
 $_height = 0;
 ?>
 
-<div class="row-fluid spacer-top-20 link">
+<div class="row-fluid collector-info-sidebar link">
   <?php cq_sidebar_title($title, null); ?>
 
   <?php if (!isset($message_only)): ?>
@@ -72,39 +72,41 @@ $_height = 0;
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
-  <div class="row-fluid min-height-13 spacer-top cf">
-    <div class="span9 text-word-wrap">
-      <?= $collector; ?>'s Collections:
-    </div>
-    <?php if ($collector->countFrontendCollectorCollections() > 3): ?>
-    <div class="span3">
-      <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
-    </div>
-    <?php endif; ?>
-  </div>
-  <?php $_height -= 28; ?>
-
-  <?php foreach ($collections as $collection): ?>
-  <div class="thumbnails-box-1x4-sidebar bgyellow-border">
-    <div class="inner-thumbnails-box">
-    <p><?= link_to_collection($collection, 'text'); ?></p>
-      <div class="thumb-container">
-          <?php
-            foreach ($collection->getPublicCollectionCollectibles(4) as $i => $collectible)
-            {
-              $options = array('width' => 60, 'height' => 60);
-              echo link_to(
-                image_tag_collectible($collectible, '75x75', $options),
-                'collectible_by_slug', $collectible,
-                array('class' => 'thumbnails60')
-              );
-            }
-          ?>
-        </div>
+  <div class="mobile-optimized-300 center">
+    <div class="row-fluid min-height-13 spacer-top cf">
+      <div class="span9 text-word-wrap">
+        <?= $collector; ?>'s Collections:
       </div>
+      <?php if ($collector->countFrontendCollectorCollections() > 3): ?>
+      <div class="span3">
+        <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
+      </div>
+      <?php endif; ?>
+    </div>
+    <?php $_height -= 28; ?>
+
+    <?php foreach ($collections as $collection): ?>
+    <div class="thumbnails-box-1x4-sidebar bgyellow-border">
+      <div class="inner-thumbnails-box">
+      <p><?= link_to_collection($collection, 'text'); ?></p>
+        <div class="thumb-container">
+            <?php
+              foreach ($collection->getPublicCollectionCollectibles(4) as $i => $collectible)
+              {
+                $options = array('width' => 60, 'height' => 60);
+                echo link_to(
+                  image_tag_collectible($collectible, '75x75', $options),
+                  'collectible_by_slug', $collectible,
+                  array('class' => 'thumbnails60')
+                );
+              }
+            ?>
+          </div>
+        </div>
+    </div>
+    <?php $_height -= 120; ?>
+    <?php endforeach; ?>
   </div>
-  <?php $_height -= 120; ?>
-  <?php endforeach; ?>
 <?php endif; ?>
 
 <?php

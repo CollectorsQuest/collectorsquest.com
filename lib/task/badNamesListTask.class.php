@@ -5,8 +5,8 @@
  */
 class badNamesListTask extends sfBaseTask
 {
-  /** @var sfProjectConfiguration */
-  protected $configuration = null;
+  /* @var sfApplicationConfiguration */
+  protected $configuration;
 
   protected function configure()
   {
@@ -21,29 +21,24 @@ class badNamesListTask extends sfBaseTask
 
   protected function execute($arguments = array(), $options = array())
   {
-    $config = ProjectConfiguration::getApplicationConfiguration(
-      $options['application'],
-      $options['env'],
-      false
-    );
-    sfContext::createInstance($config);
+    cqContext::createInstance($this->configuration);
+
     // initialize the database connection
     $databaseManager = new sfDatabaseManager($this->configuration);
 
-    /** @var $propel PropelPDO */
+    /* @var $propel PropelPDO */
     $propel = $databaseManager->getDatabase('propel')->getConnection();
-
 
     $stream = fopen(sfConfig::get('sf_cache_dir').'/bad_names.csv', 'w+');
     $delimeter = ',';
     $enclosure = '"';
 
-    sfContext::getInstance()->getConfiguration()->loadHelpers(array('cqLinks'));
+    $this->configuration->loadHelpers(array('cqLinks'));
 
     $collections = CollectionQuery::create()
       ->useCollectorCollectionQuery()
-        ->addAscendingOrderByColumn(CollectorCollectionPeer::COLLECTOR_ID)
-        ->endUse()
+        ->orderByCollectorId(Criteria::ASC)
+      ->endUse()
       ->find($propel);
 
     $v = new cqValidatorName();

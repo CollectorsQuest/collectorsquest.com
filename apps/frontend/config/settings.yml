@@ -6,13 +6,13 @@ prod_debug:
     logging_enabled:        true
     web_debug:              true
 
-next_debug:
+stg:
   .settings:
     error_reporting:        <?php echo (E_ALL & ~E_STRICT)."\n" ?>
     cache:                  false
     etag:                   false
     logging_enabled:        true
-    web_debug:              true
+    web_debug:              false
 
 next:
   .settings:
@@ -20,6 +20,14 @@ next:
     cache:                  false
     etag:                   false
     logging_enabled:        false
+
+next_debug:
+  .settings:
+    error_reporting:        <?php echo (E_ALL & ~E_STRICT)."\n" ?>
+    cache:                  false
+    etag:                   false
+    logging_enabled:        true
+    web_debug:              true
 
 dev:
   .settings:

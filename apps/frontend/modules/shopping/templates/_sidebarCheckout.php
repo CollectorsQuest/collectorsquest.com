@@ -1,6 +1,35 @@
 <?php /** @var $shopping_order ShoppingOrder */ ?>
 <?php if ($shopping_order): ?>
-  <div class="well">
+<div class="well">
+  <?= image_tag_collectible($shopping_order->getCollectible(), '260x205'); ?>
+  <br/><br/>
+  <table style="width: 100%;">
+    <tr>
+      <td colspan="2"><h3>
+        <?= link_to_collectible($shopping_order->getCollectible(), 'text', array('target' => '_blank')); ?>
+      </h3></td>
+    </tr>
+    <tr>
+      <td colspan="2"><hr/></td>
+    </tr>
+    <tr>
+      <td>Quantity:</td>
+      <td class="text-right">
+        1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?>
+      </td>
+    </tr>
+    <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+      <tr class="with_tax<?= 0 == (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>">
+          <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
+          <td class="text-right">
+              <?= money_format('%.2n', (float) $shopping_order->getTaxAmount('float',
+            $shopping_order->getCollectibleForSale()->getTaxPercentage())); ?>
+          </td>
+      </tr>
+    <?php endif; ?>
+    <tr>
+      <td style="vertical-align: top;">Shipping:</td>
+      <td class="text-right">
 
     <? /* need new design = image_tag_collectible($shopping_order_collectible->getCollectible(), '260x205'); ?>
     <br/><br/> */ ?>
@@ -43,7 +72,22 @@
       <tfoot style="font-weight: bold; font-size: 130%;">
       <tr>
         <td style="font-variant: small-caps;">Total:</td>
-        <td style="text-align: right;"><?= money_format('%.2n', (float) $shopping_order->getTotalPrice()); ?></td>
+        <?php // TODO fix this to work with multiple collectibles ?>
+        <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+          <td class="with_tax<?= 0 == (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>"
+              style="text-align: right;">
+            <?= money_format('%.2n', (float) $shopping_order->getTotalAmount('float',
+            $shopping_order->getCollectibleForSale()->getTaxPercentage())); ?>
+          </td>
+          <td class="no_tax<?= 0 != (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>"
+              style="text-align: right;">
+            <?= money_format('%.2n', (float) $shopping_order->getTotalAmount('float', 0)); ?>
+          </td>
+        <?php else: ?>
+          <td style="text-align: right;">
+            <?= money_format('%.2n', (float) $shopping_order->getTotalAmount()); ?>
+          </td>
+        <?php endif ?>
       </tr>
       </tfoot>
     </table>

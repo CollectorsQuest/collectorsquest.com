@@ -1,6 +1,7 @@
 // setup cookie for adaptive images without polluting the global namespace
-(function (window, document, undefined)
-{
+(function (window, document, undefined) {
+  "use strict";
+
   // expects name to be "Width" or "Height"
   function getWindowSize(name)
   {
@@ -21,7 +22,7 @@
   };
 
   // Modified script based on this function:
-  document.cookie = 'resolution=' + Math.max(getWindowSize("Width"), getWindowSize("Height")) + '; path=/';
+  document.cookie = 'cq_resolution='+ screen.width +'x'+ screen.height +'x'+ getWindowSize("Width") +'x'+ getWindowSize("Height") + '; path=/';
 }(this, this.document));
 
 /**

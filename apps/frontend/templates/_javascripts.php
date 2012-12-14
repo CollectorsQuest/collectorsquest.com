@@ -1,3 +1,8 @@
+<?php
+ /* @var  $sf_user      cqFrontendUser */
+ /* @var  $sf_request   cqWebRequest   */
+?>
+
 <script>
   if (document.getElementById('shopping-cart-count') !== null)
   {
@@ -11,9 +16,10 @@
     );
 
   }
-  if (document.getElementById('header_menu_<?= (string) SmartMenu::getSelected('header'); ?>') !== null)
+  if (document.getElementById('header_menu_<?= $active_menu_item =
+    (string) (SmartMenu::getSelected('header') ?: $sf_context->getModuleName()); ?>') !== null)
   {
-    document.getElementById('header_menu_<?= (string) SmartMenu::getSelected('header'); ?>').className = 'active';
+    document.getElementById('header_menu_<?= $active_menu_item; ?>').className = 'active';
   }
   if (document.getElementById('q') !== null)
   {
@@ -81,6 +87,7 @@ if (document.getElementById('social-sharing') !== null)
   })(document, 'script');
 
   $(window).load(function() {
+    addthis.init();
     addthis.toolbox('#social-sharing');
   });
 }

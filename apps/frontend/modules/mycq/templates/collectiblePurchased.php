@@ -40,7 +40,7 @@ cq_section_title(
             <?= $shopping_order->getShippingAddressLine1(); ?>
             <p>
               <?= $shopping_order->getShippingCity(); ?>,
-              <?= $shopping_order->getShippingStateRegion(); ?>
+              <?= $shopping_order->getShippingStateRegionName(); ?>
               <?= $shopping_order->getShippingZipPostcode(); ?>
             </p>
             <p class="text-bold"><?= $shopping_order->getShippingCountryName(); ?></p>
@@ -81,6 +81,20 @@ cq_section_title(
           </span>
           </td>
         </tr>
+        <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
+          <tr>
+            <td>
+            <span class="f-14">
+              Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage(); ?>%):
+            </span>
+            </td>
+            <td>
+            <span class="f-14">
+              <?= money_format('%.2n', (float) $shopping_order->getTaxAmount()) ?>
+            </span>
+            </td>
+          </tr>
+        <?php endif; ?>
         <tr>
           <td>
           <span class="f-14">

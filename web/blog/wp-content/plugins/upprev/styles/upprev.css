@@ -22,13 +22,9 @@
     font-size: 10px;
     font-weight: bold;
     font-family: arial,helvetica,sans-serif;
-    color: #C00;
+    color: inherit;
     padding:0;
     margin:0 0 10px 0;
-}
-#upprev_box h6 a, #upprev_box h6 a:visited
-{
-    color: #0A82C2;
 }
 
 #upprev_box h6 .num
@@ -79,7 +75,7 @@
     top: 5px;
     width: 13px;
 }
-#upprev_box p.promote
+#upprev_box p.promote 
 {
     clear:both;
     color:#888;

@@ -1,6 +1,6 @@
 <div id="confirmation-modal" class="modal hide">
     <div class="modal-header">
-      <a href="javascript:void(0)" class="close">&times;</a>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <h3></h3>
     </div>
     <div class="modal-body">

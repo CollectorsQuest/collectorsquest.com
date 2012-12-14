@@ -7,6 +7,26 @@ class ShoppingOrder extends BaseShoppingOrder
 
 
   /**
+   * Pre save hook
+   *
+   * @param     PropelPDO $con
+   * @return    boolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    // if the shipping country iso 3166 and region has been changed
+    // update tax amount
+    if (
+      $this->isColumnModified(ShoppingOrderPeer::SHIPPING_STATE_REGION) ||
+      $this->isColumnModified(ShoppingOrderPeer::SHIPPING_COUNTRY_ISO3166)
+    ) {
+      $this->updateTaxAmount();
+    }
+
+    return parent::preSave($con);
+  }
+
+  /**
    * @param  null|PropelPDO  $con
    */
   public function postSave(PropelPDO $con = null)
@@ -24,11 +44,12 @@ class ShoppingOrder extends BaseShoppingOrder
 
   public function preDelete(PropelPDO $con = null)
   {
-    /** @var $shopping_payment ShoppingPayment */
-    $shopping_payment = $this->getShoppingPayment();
-
-    // Archive and delete related ShoppingPayment objects
-    $shopping_payment->delete($con);
+    /* @var $shopping_payment ShoppingPayment */
+    if ($shopping_payment = $this->getShoppingPayment())
+    {
+      // Archive and delete related ShoppingPayment objects
+      $shopping_payment->delete($con);
+    }
 
     return parent::preDelete($con);
   }
@@ -70,32 +91,44 @@ class ShoppingOrder extends BaseShoppingOrder
    * price + tax + shipping
    *
    * @param  string  $return
+   * @param float for case if need recalculate total with different tax percentages
    * @return float
    */
-  public function getTotalAmount($return = 'float')
+  public function getTotalAmount($return = 'float', $percentage = null)
   {
     if ($return === 'integer')
     {
       return array_sum(array(
         $this->getCollectiblesAmount('integer'),
-        $this->getTaxAmount('integer'),
+        $this->getTaxAmount('integer', $percentage),
         $this->getShippingFeeAmount('integer')
       ));
     }
     else
     {
       return bcadd(
-        bcadd($this->getCollectiblesAmount(), $this->getTaxAmount(), 2),
+        bcadd($this->getCollectiblesAmount(), $this->getTaxAmount($return, $percentage), 2),
         $this->getShippingFeeAmount(), 2
       );
     }
   }
 
-  public function getTaxAmount($return = 'float')
+  public function getTaxAmount($return = 'float', $percentage = null)
   {
-    $amount = 0;
+    if ($percentage !== null)
+    {
+      return round(($this->getCollectiblesAmount($return) / 100) * $percentage, 2);
+    }
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getAmountTax($return);
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getTaxAmount($return);
+    }
 
-    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+    return null;
   }
 
   public function getCollectiblesAmount($return = 'float')
@@ -182,10 +215,22 @@ class ShoppingOrder extends BaseShoppingOrder
 
   public function getShippingCountryName()
   {
-    $geo_country = GeoCountryQuery::create()
+    $country = iceModelGeoCountryQuery::create()
       ->findOneByIso3166($this->getShippingCountryIso3166());
 
-    return $geo_country ? $geo_country->getName() : '';
+    return $country
+      ? $country->getName()
+      : '';
+  }
+
+  public function getShippingStateRegionName()
+  {
+    $region = iceModelGeoRegionQuery::create()
+      ->findOneById($this->getShippingStateRegion());
+
+    return $region
+      ? $region->getName()
+      : '';
   }
 
   public function getPaypalPayRequestFields()
@@ -338,7 +383,6 @@ class ShoppingOrder extends BaseShoppingOrder
     return $hash;
   }
 
-
   /**
    * Getting first ShoppingOrderCollectible
    *
@@ -469,6 +513,40 @@ class ShoppingOrder extends BaseShoppingOrder
   public function getSellerId()
   {
     return $this->getFirstShoppingOrderCollectible()->getSellerId();
+  }
+
+  public function updateTaxAmount()
+  {
+    /* @var $collectible_for_sale CollectibleForSale */
+    $collectible_for_sale = $this->getCollectibleForSale();
+
+    $haveTax = false;
+    if ($collectible_for_sale->getTaxCountry() == $this->getShippingCountryIso3166() &&
+      (!$collectible_for_sale->getTaxState()
+        || $collectible_for_sale->getTaxState() == (integer) $this->getShippingStateRegion())
+    )
+    {
+      $haveTax = true;
+    }
+
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      $tax = $haveTax ? (round(($payment->getAmountCollectibles() / 100) * $collectible_for_sale->getTaxPercentage(), 2)) : 0;
+      if (!is_integer($tax) && !ctype_digit($tax))
+      {
+        $tax = bcmul(cqStatic::floatval($tax, 2), 100);
+      }
+      $payment
+        ->setAmountTax($tax)
+        ->save();
+    }
+    else if ($cart = $this->getShoppingCartCollectible())
+    {
+      $tax = $haveTax ? (round(($cart->getPriceAmount() / 100) * $collectible_for_sale->getTaxPercentage(), 2)) : 0;
+      $cart
+        ->setTaxAmount($tax)
+        ->save();
+    }
   }
 
 }

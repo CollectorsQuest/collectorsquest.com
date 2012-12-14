@@ -1,7 +1,5 @@
 <?php
 
-require 'lib/model/om/BaseCollectorCollection.php';
-
 /**
  * IceTaggableBehavior
  *
@@ -12,6 +10,9 @@ require 'lib/model/om/BaseCollectorCollection.php';
  */
 class CollectorCollection extends BaseCollectorCollection
 {
+  /* @var null|integer */
+  private $_graph_id = null;
+
   /** @var array */
   public $_multimedia = array();
 
@@ -32,24 +33,42 @@ class CollectorCollection extends BaseCollectorCollection
 
   public function getGraphId()
   {
-    $graph_id = null;
+    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
 
-    if (!$this->isNew() && (!$graph_id = parent::getGraphId()))
+    if (!$this->isNew() && $graph_id === null)
     {
       $client = cqStatic::getNeo4jClient();
 
-      $node = $client->makeNode();
-      $node->setProperty('model', 'Collection');
-      $node->setProperty('model_id', $this->getId());
-      $node->save();
+      try
+      {
+        $node = $client->makeNode();
+        $node->setProperty('model', 'Collection');
+        $node->setProperty('model_id', $this->getId());
+        $node->save();
 
-      $graph_id = $node->getId();
+        $this->_graph_id = $node->getId();
+      }
+      catch(Everyman\Neo4j\Exception $e)
+      {
+        $this->_graph_id = null;
+      }
 
-      $this->setGraphId($node->getId());
-      $this->save();
+      try
+      {
+        $this->setGraphId($this->_graph_id);
+        $this->save();
+      }
+      catch (PropelException $e)
+      {
+        $this->_graph_id = $graph_id;
+      }
+    }
+    else
+    {
+      $this->_graph_id = $graph_id;
     }
 
-    return $graph_id;
+    return $this->_graph_id;
   }
 
   /**
@@ -77,6 +96,7 @@ class CollectorCollection extends BaseCollectorCollection
         $v, false,
         'p, b, u, i, em, strong, h3, h4, h5, h6, div, span, ul, ol, li, blockquote, br'
       );
+      $v = str_replace('&nbsp;', ' ', $v);
     }
 
     // We should always save the description in Markdown format
@@ -143,7 +163,7 @@ class CollectorCollection extends BaseCollectorCollection
   }
 
   /**
-   * Proxy method for CollectionCategory::getPath()
+   * Proxy method for ContentCategory::getPath()
    *
    * @param  string  $glue
    * @param  string  $column
@@ -195,6 +215,10 @@ class CollectorCollection extends BaseCollectorCollection
       {
         $is_public = true;
       }
+    }
+    else if ($is_public === true && !$this->getPrimaryImage(Propel::CONNECTION_WRITE))
+    {
+      $is_public = false;
     }
 
     // Update only if there is a change of the public status

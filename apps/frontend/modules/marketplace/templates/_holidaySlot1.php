@@ -1,8 +1,15 @@
 <?php
 /* @var  $menu  array */
+/* @var  $show_holiday_adv  boolean */
 ?>
 
 <div id="HolidayMarketHeader">
+  <?php if ($show_holiday_adv): ?>
+  <div class="holiday-marker-adv-dialog-below-menu" >
+    <a href="<?php echo url_for('@seller_signup?ref=mp_banner'); ?>" class="link" title="Sell Your Stuff with Us"></a>
+    <a class="icon-remove close-btn" title="close"></a>
+  </div>
+  <?php endif; ?>
   <!--
   <h1>Keep It<br>Classics</h1>
   <h2>for the holidays</h2>
@@ -129,5 +136,14 @@
     window.onhashchange = function () {
 
     };
+
+    <?php if ($show_holiday_adv): ?>
+    $('.icon-remove.close-btn').click(function ()
+    {
+      $('.holiday-marker-adv-dialog-below-menu').load('/ajax/marketplace/close/advDialog', function() {
+        $('.holiday-marker-adv-dialog-below-menu').hide();
+      });
+    });
+    <?php endif; ?>
   });
 </script>

@@ -122,6 +122,65 @@ class shoppingActions extends cqFrontendActions
 
     $this->shopping_orders = ShoppingOrderPeer::cartToOrders($shopping_cart);
     $this->shopping_cart_collectibles = $shopping_cart->getShoppingCartCollectibles();
+    /* @var $shopping_cart_collectibles ShoppingCartCollectible[] */
+    $shopping_cart_collectibles = $shopping_cart->getShoppingCartCollectibles();
+
+    $notices = array();
+    foreach ($shopping_cart_collectibles as $shopping_cart_collectible)
+    {
+      $old_cc = clone $shopping_cart_collectible;
+
+      $collectible_for_sale = $shopping_cart_collectible->getCollectibleForSale();
+      $shopping_cart_collectible->setPriceAmount($collectible_for_sale->getPriceAmount());
+      $shopping_cart_collectible->updateShippingFeeAmountFromCountryCode();
+      $shopping_cart_collectible->updateShippingTypeFromCountryCode();
+      $shopping_cart_collectible->updateTaxAmount();
+
+      if ($old_cc->getPriceAmount() != $shopping_cart_collectible->getPriceAmount())
+      {
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the price for item <strong>"%s"</strong>
+           has changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
+        $shopping_cart_collectible->save();
+
+        continue;
+      }
+
+      if ($old_cc->getTaxAmount() != $shopping_cart_collectible->getTaxAmount())
+      {
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the tax terms for item <strong>"%s"</strong>
+           have changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
+      }
+      if ($old_cc->getShippingFeeAmount() !== $shopping_cart_collectible->getShippingFeeAmount())
+      {
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the shipping terms for item <strong>"%s"</strong>
+           have changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
+      }
+
+      if ($shopping_cart_collectible->isModified())
+      {
+        $shopping_cart_collectible->save();
+      }
+    }
+
+    if (count($notices))
+    {
+      $this->getUser()->setFlash('highlight', implode('<br />', $notices), false);
+    }
+
+    $this->shopping_cart = $shopping_cart;
+    $this->shopping_cart_collectibles = $shopping_cart_collectibles;
 
     return sfView::SUCCESS;
   }
@@ -139,7 +198,40 @@ class shoppingActions extends cqFrontendActions
       {
         $values = $form->getValues();
         $shipping_address = new CollectorAddress();
-        $shipping_address->setCountryIso3166($values['shipping_country_iso3166']);
+        $shipping_address->setCountryIso3166($values['country_iso3166']);
+        if (isset($values['state_region']))
+        {
+          $shipping_address->setStateRegion($values['state_region']);
+        }
+
+        /** @var $collectible_for_sale CollectibleForSale */
+        $collectible_for_sale = CollectibleForSaleQuery::create()
+          ->findOneByCollectibleId($values['collectible_id']);
+
+        if ($collectible_for_sale && !$collectible_for_sale->isForSale())
+        {
+          $this->getUser()->setFlash(
+            'error', 'There was a problem processing the request
+                      and we have removed the item from your cart.
+                      Most probably this item has already been sold
+                      or no longer available for purchase.'
+          );
+
+          // Remove the CollectibleForSale from the shopping cart
+          $q = ShoppingCartCollectibleQuery::create()
+            ->filterByCollectible($collectible_for_sale->getCollectible())
+            ->filterByShoppingCart($shopping_cart);
+          $q->delete();
+
+          $this->redirect('@shopping_cart');
+        }
+        else if ($this->getCollector(false)->isOwnerOf($collectible_for_sale))
+        {
+          $this->getUser()->setFlash(
+            'error', 'Sorry, you cannot buy your own items!'
+          );
+          $this->redirect('@shopping_cart');
+        }
 
         /** @var $q ShoppingOrderQuery */
         $q = ShoppingOrderQuery::create()
@@ -812,27 +904,39 @@ class shoppingActions extends cqFrontendActions
     /**
      * Send emails to both the seller and the buyer
      */
-    $cqEmail = new cqEmail($this->getMailer());
-    $cqEmail->send('Shopping/buyer_order_confirmation', array(
-      'to' => $shopping_order->getBuyerEmail(),
-      'params' => array(
-        'buyer_name'  => $shopping_order->getShippingFullName(),
-        'oSeller' => $shopping_order->getSeller(),
-        'oCollectible' => $shopping_order->getCollectible(),
-        'oShoppingOrder' => $shopping_order
-      )
-    ));
+    if (!$shopping_order->getIsBuyerNotified())
+    {
+      $cqEmail = new cqEmail($this->getMailer());
+      $is_sent = $cqEmail->send('Shopping/buyer_order_confirmation', array(
+        'to' => $shopping_order->getBuyerEmail(),
+        'params' => array(
+          'buyer_name'  => $shopping_order->getShippingFullName(),
+          'oSeller' => $shopping_order->getSeller(),
+          'oCollectible' => $shopping_order->getCollectible(),
+          'oShoppingOrder' => $shopping_order
+        )
+      ));
 
-    $cqEmail = new cqEmail($this->getMailer());
-    $cqEmail->send('Shopping/seller_order_notification', array(
-      'to' => $shopping_order->getSeller()->getEmail(),
-      'params' => array(
-        'buyer_name'  => $shopping_order->getShippingFullName(),
-        'oSeller' => $shopping_order->getSeller(),
-        'oCollectible' => $shopping_order->getCollectible(),
-        'oShoppingOrder' => $shopping_order
-      )
-    ));
+      $shopping_order->setIsBuyerNotified($is_sent);
+    }
+
+    if (!$shopping_order->getIsSellerNotified())
+    {
+      $cqEmail = new cqEmail($this->getMailer());
+      $is_sent = $cqEmail->send('Shopping/seller_order_notification', array(
+        'to' => $shopping_order->getSeller()->getEmail(),
+        'params' => array(
+          'buyer_name'  => $shopping_order->getShippingFullName(),
+          'oSeller' => $shopping_order->getSeller(),
+          'oCollectible' => $shopping_order->getCollectible(),
+          'oShoppingOrder' => $shopping_order
+        )
+      ));
+
+      $shopping_order->setIsSellerNotified($is_sent);
+    }
+
+    $shopping_order->save();
   }
 
   /**

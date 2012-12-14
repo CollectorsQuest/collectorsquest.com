@@ -118,12 +118,13 @@ $(document).ready(function()
   'use strict';
 
   // Initialize the jQuery File Upload widget:
-  $('#fileupload').fileupload();
-  $('#fileupload').fileupload('option', 'autoUpload', true);
-  $('#fileupload').fileupload('option', 'dropZone', $('#dropzone'));
-  $('#fileupload').fileupload('option', 'limitConcurrentUploads', 3);
+  var $fileupload = $('#fileupload');
+  $fileupload.fileupload();
+  $fileupload.fileupload('option', 'autoUpload', true);
+  $fileupload.fileupload('option', 'dropZone', $('#dropzone'));
+  $fileupload.fileupload('option', 'limitConcurrentUploads', 3);
 
-  $('#fileupload')
+  $fileupload
     .bind('fileuploadstart', function(e, data) {
       $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
     })
@@ -141,6 +142,32 @@ $(document).ready(function()
       {
         window.location.href = finish;
       }
+    })
+    .bind('fileuploadadded', function(e, data)
+    {
+      // if there is js validation error with the file currently being added for upload
+      if (!data.isValidated && data.files[0])
+      {
+        // get the list of all invalid files (since this function is called once per file
+        // on multi file upload, and there is no easy way to get the final validated list.
+        // so instead we keep our own list of invalid files inn the fileupload element
+        var invalid_files = $fileupload.data('invalidFiles') || {};
+
+        // add the current file to the list of invalid files (keyed by filename)
+        invalid_files[data.files[0].name] = data.files[0];
+        // and save the list in the fileupload element
+        $fileupload.data('invalidFiles', invalid_files);
+
+        // prepare our error html
+        var error_html ='<div class="alert alert-errror">';
+        $.each(invalid_files, function(index, file){
+          error_html += file.name + ': <strong>' + (locale.fileupload.errors[file.error] || file.error)  + '</strong><br />';
+        });
+        error_html += '</div>';
+
+        // And display a modal alert, informing the user that the file upload was unsuccessful
+        MISC.modalAlert('Cannot upload files', error_html);
+      }
     });
 
   // Enable iframe cross-domain access via redirect option:
@@ -152,7 +179,7 @@ $(document).ready(function()
   );
 
   $('#fileupload').fileupload('option', {
-    maxFileSize: 10000000,
+    maxFileSize: <?= cqStatic::getPHPMaxUploadFileSize() // php file upload limit ?>,
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
   });
 

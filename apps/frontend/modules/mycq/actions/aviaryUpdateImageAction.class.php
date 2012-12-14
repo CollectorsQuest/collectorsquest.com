@@ -14,14 +14,15 @@ class aviaryUpdateImageAction extends sfAction
     $sf_user = $this->getUser();
 
     if (
-      sfRequest::POST == $request->getMethod() && $request->hasParameter('url') &&
-      $request->hasParameter('postdata')
-    ) {
+      sfRequest::POST == $request->getMethod() &&
+      $request->hasParameter('url') && $request->hasParameter('postdata')
+    )
+    {
       $postdata = urldecode($request->getParameter('postdata'));
       $url = urldecode($request->getParameter('url'));
 
       $message_data = $sf_user->hmacVerifyMessage(
-        $postdata, '+ 20 days', cqConfig::getCredentials('aviary', 'hmac_secret')
+        $postdata, '+3 hours', cqConfig::getCredentials('aviary', 'hmac_secret')
       );
 
       if (false !== $message_data)
@@ -39,7 +40,8 @@ class aviaryUpdateImageAction extends sfAction
       if (
         isset($message['multimedia-id']) &&
         $image = iceModelMultimediaPeer::retrieveByPK($message['multimedia-id'])
-      ) {
+      )
+      {
         $image->setCreatedAt(time());
         $image->setName(basename($url));
         $image->setMd5(md5($url));

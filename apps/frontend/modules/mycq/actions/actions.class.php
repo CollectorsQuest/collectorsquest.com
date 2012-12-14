@@ -452,7 +452,7 @@ class mycqActions extends cqFrontendActions
     /**
      * Handle sold/purchased Collectibles
      */
-    if ($collectible->isWasForSale() && $collectible->getCollectibleForSale()->getIsSold())
+    if ($collectible->isWasForSale() && $collectible->isSold())
     {
       SmartMenu::setSelected('mycq_menu', 'marketplace');
 
@@ -465,7 +465,7 @@ class mycqActions extends cqFrontendActions
         ->endUse()
         ->joinShoppingPaymentRelatedByShoppingPaymentId()
         ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
-        ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
+          ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
         ->endUse()
         ->findOne();
 
@@ -505,8 +505,6 @@ class mycqActions extends cqFrontendActions
           return 'Purchased';
         }
       }
-
-      $this->forward404();
     }
 
     $this->redirectUnless(
@@ -552,7 +550,7 @@ class mycqActions extends cqFrontendActions
                   ->delete();
 
                 $this->getUser()->setFlash(
-                  'success', sprintf('Item "%s" was removed from this Collection!', $name)
+                  'success', sprintf('Item "%s" was removed from this Collection!', $name), true
                 );
                 break;
               case 'collections':
@@ -563,18 +561,19 @@ class mycqActions extends cqFrontendActions
                   ->delete();
 
                 $this->getUser()->setFlash(
-                  'success', sprintf('Item "%s" was removed from all Collections!', $name)
+                  'success', sprintf('Item "%s" was removed from all Collections!', $name), true
                 );
                 break;
             }
-          } catch (PropelException $e)
+          }
+          catch (PropelException $e)
           {
             if (stripos($e->getMessage(), 'a foreign key constraint fails'))
             {
               $this->getUser()->setFlash(
-                'error', sprintf(
-                  'Collectible "%s" cannot be deleted.
-                   Please, try to archive it instead.', $name)
+                'error',
+                sprintf('Collectible "%s" cannot be deleted. Please, try to archive it instead.', $name),
+                true
               );
 
               $url = $this->generateUrl(
@@ -585,6 +584,23 @@ class mycqActions extends cqFrontendActions
 
           $this->redirect($url);
 
+          break;
+
+        case 'togglePublic':
+          $this->collectible = $collectible;
+          return $this->executeCollectibleTogglePublic($request);
+          break;
+
+        case 'markAsSold':
+          $collectible->getCollectibleForSale()->setIsSold(true);
+          $collectible->getCollectibleForSale()->setIsReady(false);
+          $collectible->getCollectibleForSale()->save();
+
+          $this->getUser()->setFlash(
+            'success', sprintf('Item "%s" was marked as sold!', $collectible->getName()), true
+          );
+
+          return $this->redirect('mycq_collectible_by_slug', array('sf_subject' => $collectible));
           break;
       }
     }
@@ -623,10 +639,7 @@ class mycqActions extends cqFrontendActions
       $form->bind($taintedValues, $request->getFiles('collectible'));
       $for_sale = $form->getValue('for_sale');
 
-      if (
-        (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
-        && cqGateKeeper::open('collectible_shipping')
-      )
+      if (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
       {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
         $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
@@ -853,6 +866,9 @@ class mycqActions extends cqFrontendActions
       'seller_settings_refunds',
       'seller_settings_shipping',
       'seller_settings_store_header_image',
+      'seller_settings_tax_country',
+      'seller_settings_tax_state',
+      'seller_settings_tax_percentage',
     ));
 
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
@@ -1116,7 +1132,7 @@ class mycqActions extends cqFrontendActions
 
     $collector = $this->getCollector();
 
-    $this->redirectUnless($collector->getGraphId() && substr($collector->getUsername(), 0, 3) == 'rpx', 'mycq_profile_account_info');
+    $this->redirectUnless(substr($collector->getUsername(), 0, 3) == 'rpx', 'mycq_profile_account_info');
 
     $collector_form = new CollectorCreatePasswordForm($this->getCollector());
 
@@ -1143,6 +1159,40 @@ class mycqActions extends cqFrontendActions
     $this->collector = $collector;
     $this->collector_form = $collector_form;
 
+    return sfView::SUCCESS;
+  }
+
+
+  /**
+   * @param     sfWebRequest  $request
+   * @return    string
+   */
+  private function executeCollectibleTogglePublic(sfWebRequest $request)
+  {
+    if (!$this->getUser()->isAdmin())
+    {
+      $this->getResponse()->setStatusCode(403);
+      return sfView::ERROR;
+    }
+
+    $con = Propel::getConnection();
+    $sql = sprintf(
+      'UPDATE %s SET %s = NOT %s WHERE %s = %d',
+      CollectiblePeer::TABLE_NAME, CollectiblePeer::IS_PUBLIC, CollectiblePeer::IS_PUBLIC,
+      CollectiblePeer::ID, $this->collectible->getId()
+    );
+    $con->exec($sql);
+
+    $this->collectible = CollectiblePeer::retrieveByPK($this->collectible->getId());
+
+    $this->getUser()->setFlash(
+      'success', sprintf(
+        'Collectible "%s" changed to %s',
+        $this->collectible->getName(), $this->collectible->getIsPublic() ? 'Public' : 'Private'
+      )
+    );
+
+    $this->redirect($request->getReferer());
     return sfView::SUCCESS;
   }
 

@@ -92,7 +92,7 @@
           <?= $shopping_order->getShippingAddressLine1(); ?>
           <p>
             <?= $shopping_order->getShippingCity(); ?>,
-            <?= $shopping_order->getShippingStateRegion(); ?>
+            <?= $shopping_order->getShippingStateRegionName(); ?>
             <?= $shopping_order->getShippingZipPostcode(); ?>
           </p>
           <p><strong><?= $shopping_order->getShippingCountryName(); ?></strong></p>
@@ -180,6 +180,12 @@
         <td>Item Price:</td>
         <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
       </tr>
+      <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
+      <tr>
+        <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage(); ?>%):</td>
+        <td><?= money_format('%.2n', (float) $shopping_order->getTaxAmount()) ?></td>
+      </tr>
+      <?php endif; ?>
       <tr>
         <td>Shipping Fee:</td>
         <td><?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()) ?></td>

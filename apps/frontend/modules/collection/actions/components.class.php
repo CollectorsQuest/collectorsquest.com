@@ -30,12 +30,12 @@ class collectionComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    // Are we dealing with an item for sale?
-    if ($this->collectible->isForSale())
-    {
-      /* @var $collectible_for_sale CollectibleForSale */
-      $collectible_for_sale = $this->collectible->getCollectibleForSale();
+    /* @var $collectible_for_sale CollectibleForSale */
+    $collectible_for_sale = $this->getVar('collectible_for_sale');
 
+    // Are we dealing with an item for sale?
+    if ($collectible_for_sale && $collectible_for_sale->isForSale())
+    {
       $this->isSold = $collectible_for_sale->getIsSold();
       $this->collectible_for_sale = $collectible_for_sale;
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
@@ -60,6 +60,76 @@ class collectionComponents extends cqFrontendComponents
     }
 
     return sfView::NONE;
+  }
+
+  public function executeSlot1SoldCollectibleRelated()
+  {
+    if (cqGateKeeper::locked('collectible_for_sale_related', 'feature'))
+    {
+      return sfView::NONE;
+    }
+
+    /* @var $collectible Collectible|CollectionCollectible */
+    $collectible = CollectiblePeer::retrieveByPk($this->getRequestParameter('id'));
+
+    // We cannot continue if no Collectible or the Collectible is not sold
+    if (!$collectible || !$collectible->isSold())
+    {
+      return sfView::NONE;
+    }
+
+    $collector = $collectible->getCollector();
+    $this->title = $this->getVar('title') ?: 'Here are some more items for sale from ' . $collector->getDisplayName();
+
+    // Set the limit of Collectibles For Sale to show
+    $limit = $this->getVar('limit', 6);
+
+    /* @var $q FrontendCollectibleForSaleQuery */
+    $q = FrontendCollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->filterByCollectible($collectible, Criteria::NOT_EQUAL)
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC)
+      ->limit($limit);
+    $this->collectibles_for_sale = $q->find();
+
+    if (count($this->collectibles_for_sale) < $limit)
+    {
+      /* @var $query_related FrontendCollectibleForSaleQuery */
+      $query_related = FrontendCollectibleForSaleQuery::create()
+        ->filterByCollector($collector, Criteria::NOT_EQUAL)
+        ->filterByCollectible($collectible, Criteria::NOT_EQUAL)
+        ->filterByContentCategoryWithDescendants($collectible->getContentCategory())
+        ->orderByUpdatedAt(Criteria::DESC)
+        ->isForSale()
+        ->limit($limit - count($this->collectibles_for_sale));
+
+      $related_collectibles_for_sale = $query_related->find();
+
+      // do we have any Items for Sale from this Collector?
+      if (count($this->collectibles_for_sale) > 0)
+      {
+        // add more items for sale to those of the Collector
+        $this->collectibles_for_sale->exchangeArray(
+          array_merge($this->collectibles_for_sale->getArrayCopy(), $related_collectibles_for_sale->getArrayCopy())
+        );
+      }
+      else
+      {
+        // display only related items for sale
+        $this->collectibles_for_sale = $related_collectibles_for_sale;
+        $this->title = $this->getVar('title') ?: 'Here are some related items for the Market!';
+      }
+    }
+
+    $this->setComponentVar(
+      'exclude_collectible_ids', $this->collectibles_for_sale->toKeyValue('CollectibleId', 'CollectibleId'),
+      $action = 'widgetCollectiblesForSale', $module = '_sidebar'
+    );
+
+    $this->collector = $collector;
+
+    return count($this->collectibles_for_sale) >= 4 ? sfView::SUCCESS : sfView::NONE;
   }
 
   private function _get_collection()

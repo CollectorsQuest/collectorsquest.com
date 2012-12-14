@@ -81,8 +81,8 @@ class CollectorCollectionPeer extends BaseCollectorCollectionPeer
   {
     $c = ($criteria instanceof Criteria) ? clone $criteria : new Criteria();
 
-    $c->setDistinct();
     $c->add(CollectorCollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
+    $c->addGroupByColumn(CollectorCollectionPeer::ID);
     $c->addAscendingOrderByColumn('RAND()');
     $c->setLimit($limit);
 

@@ -13,7 +13,7 @@ class sandboxActions extends cqFrontendActions
 
   public function executeIndex()
   {
-    return sfView::SUCCESS;
+    return sfView::NONE;
   }
 
   public function executeSidebar300()
