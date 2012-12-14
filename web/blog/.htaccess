@@ -3,6 +3,28 @@ php_value tidy.clean_output 0
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+# We want blog pages to follow the /pages/name format, without the blog part for SEO reasons
+# However, since a /blog/whatever request is first handled here, and then in the parent htaccess
+# we need our rewrite here. However however, we cannot do a simple RewriteRule ^blog/pages/whatever
+# because, to cite the apache docs:
+#
+# When using the rewrite engine in .htaccess files the per-directory prefix (which always is
+# the same for a specific directory) is automatically removed for the RewriteRule pattern
+# matching and automatically added after any relative (not starting with a slash or protocol
+# name) substitution encounters the end of a rule set.
+#
+# Meaning the pattern that RewriteRule gets to match against is in fact /pages/whatever.
+# That's why instead we add a RewriteCond on the actual REQUEST_URI var, and if that matches
+# We rewrite the whole pattern to / in our RewriteRule. Then, in the /.htaccess we
+# do a non-redirect rewrite again to /blog/pages, but that won't be cought by the following
+# rule because it's request URI doesn't match our pattern (while the actual request does ;)
+#
+# It's a doozy :)
+
+RewriteCond %{REQUEST_URI} ^/blog/pages/(.*) [NC]
+RewriteRule ^(.*)$ /$1 [R=301,L,QSA]
+
 RewriteBase /blog/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
