@@ -110,6 +110,10 @@
     <div class="span11">
       <h1 class="Chivo webfont" style="visibility: visible; ">Latest News</h1>
     </div>
+  <?php } elseif (is_archive()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; ">Blog Archive for <span><?= str_replace('→', '', $data['breadcrumbs']) ?></span></h1>
+    </div>
   <?php } elseif (is_author()) { ?>
     <div class="span11">
       <h1 class="Chivo webfont" style="visibility: visible; ">Blogger:&nbsp;&nbsp;<span><?php the_author() ?></span></h1>
