@@ -41,7 +41,7 @@ has_component_slot('mycq_upload_photos') ? $spans = array(10, 2) : $spans = arra
     <?php endif; ?>
   </div>
 
-  <?php if ($spans[1] > 0 && ($slot = has_component_slot('mycq_dropbox'))): ?>
+  <?php if ($spans[1] > 0 && ($slot = get_component_slot('mycq_dropbox'))): ?>
     <?= $slot; ?>
     <div class="row-fluid">
       <div class="span10 upload-items-wrapper-l"></div>
