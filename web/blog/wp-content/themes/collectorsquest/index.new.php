@@ -92,8 +92,6 @@
   // determine if the user is on a mobile device
   $is_mobile = (boolean) @$_SERVER['mobile'];
 
-var_dump($is_mobile); exit;
-
 ?>
 
 <div class="row-fluid header-bar <?= get_the_ID() == '33316' ? 'js-hide' : null ; ?> ">
