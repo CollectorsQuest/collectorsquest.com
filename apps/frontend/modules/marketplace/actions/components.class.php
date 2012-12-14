@@ -229,7 +229,6 @@ class marketplaceComponents extends cqFrontendComponents
       $q = FrontendCollectionCollectibleQuery::create()
         ->filterByCollection($collection)
         ->isForSale()
-        ->filterByCollectibleId($aetn_shows['franks_picks']['collectibles'])
         ->orderByPosition(Criteria::ASC)
         ->orderByUpdatedAt(Criteria::ASC);
 

@@ -2,6 +2,7 @@
 /**
  * @var $collectible Collectible
  * @var $collection  Collection
+ * @var $sf_request  cqWebRequest
  */
 ?>
 
@@ -44,6 +45,7 @@
               </li>
             </ul>
           </div>
+          <?php if (!$sf_request->isMobileBrowser()): ?>
           <div id="social-sharing-<?= $collectible->getId(); ?>" class="pull-right share">
             <?php
               include_partial(
@@ -56,6 +58,7 @@
               );
             ?>
           </div>
+          <?php endif; ?>
         </div>
       </div>
 

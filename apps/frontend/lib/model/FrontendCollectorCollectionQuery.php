@@ -18,7 +18,7 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
        */
       return $criteria
         ->hasPublicCollectibles()
-        ->_if(SF_ENV === 'prod')
+        ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
           ->isComplete()
         ->_endif();
     }
@@ -39,7 +39,7 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
      */
     $query
       ->hasPublicCollectibles()
-      ->_if(SF_ENV === 'prod')
+      ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
         ->isComplete()
       ->_endif();
 

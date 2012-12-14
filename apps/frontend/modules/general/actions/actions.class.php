@@ -121,7 +121,7 @@ class generalActions extends cqFrontendActions
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl($this->generateUrl('homepage'));
 
-    return sfView::SUCCESS;
+    return $this->getRequest()->isMobileLayout() ? 'Mobile' : sfView::SUCCESS;
   }
 
   public function executeDefault()

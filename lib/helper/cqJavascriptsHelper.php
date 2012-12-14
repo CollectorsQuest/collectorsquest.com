@@ -40,6 +40,12 @@ function cq_ad_slot($image, $link_to)
 
 function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
 {
+  // We do not want any ads on mobile devices
+  if (sfContext::getInstance()->getRequest()->isMobileLayout())
+  {
+    return;
+  }
+
   list($width, $height) = explode('x', $size);
 
   $test = isset($_GET['test']) && $_GET['test'] === 'on' ? 'on' : null;
@@ -53,6 +59,8 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
     $zone1, $zone1, $zone2, $test, $pos, $size
   );
 
+  // fix for add banners to be center aligned when responsive design
+  echo '<div class="mobile-optimized-300 center">';
   include_partial(
     'global/js/dart_slot',
     array(
@@ -60,6 +68,7 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
       'width' => (int) $width, 'height' => (int) $height
     )
   );
+  echo '</div>';
 }
 
 function cq_javascript_tag()
