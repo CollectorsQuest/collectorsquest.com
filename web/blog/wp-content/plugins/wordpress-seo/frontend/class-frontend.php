@@ -136,7 +136,20 @@ class WPSEO_Frontend {
 		if ( !empty( $title ) )
 			return wpseo_replace_vars( $title, (array) $object );
 
-		return $this->get_title_from_options( 'title-' . $object->post_type, $object );
+    // try to make the default title fit into 70 characters
+    $default_title = $this->get_title_from_options( 'title-' . $object->post_type, $object );
+    if (strlen($default_title) > 70)
+    {
+      if ($default_title < 79)
+      {
+        $default_title = str_replace('Collectors\' Blog', 'CQ Blog', $default_title);
+      }
+      else
+      {
+        $default_title = str_replace(' | Collectors\' Blog', '', $default_title);
+      }
+    }
+		return $default_title;
 	}
 
 	/**
