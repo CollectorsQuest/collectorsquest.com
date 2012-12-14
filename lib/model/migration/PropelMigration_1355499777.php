@@ -3,7 +3,7 @@
 /**
  * Migration to add seller promo codes
  */
-class PropelMigration_1355214934
+class PropelMigration_1355499777
 {
 
   public function preUp($manager)
@@ -87,11 +87,11 @@ class PropelMigration_1355214934
         ) ENGINE=InnoDB;
 
         SET FOREIGN_KEY_CHECKS = 1;
-',
+      ',
       'blog' => '
         SET FOREIGN_KEY_CHECKS = 0;
         SET FOREIGN_KEY_CHECKS = 1;
-',
+      ',
       'archive' => '
         SET FOREIGN_KEY_CHECKS = 0;
 
@@ -126,7 +126,7 @@ class PropelMigration_1355214934
         ) ENGINE=InnoDB;
 
         SET FOREIGN_KEY_CHECKS = 1;
-',
+      ',
     );
   }
 
@@ -157,11 +157,11 @@ class PropelMigration_1355214934
         ALTER TABLE `shopping_payment` DROP `amount_promotion`;
 
         SET FOREIGN_KEY_CHECKS = 1;
-',
+      ',
       'blog' => '
         SET FOREIGN_KEY_CHECKS = 0;
         SET FOREIGN_KEY_CHECKS = 1;
-',
+      ',
       'archive' => '
         SET FOREIGN_KEY_CHECKS = 0;
 
@@ -174,7 +174,7 @@ class PropelMigration_1355214934
         ALTER TABLE `shopping_payment_archive` DROP `amount_promotion`;
 
         SET FOREIGN_KEY_CHECKS = 1;
-',
+      ',
     );
   }
 
