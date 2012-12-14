@@ -22,7 +22,12 @@
     <span>Already<br>connected</span>
 
     <i class="twitter-big-icon"></i>
-    <i class="icon icon-remove-sign"></i>
+    <?php
+      echo link_to(
+        '<i class="icon icon-remove-sign"></i>',
+        '@mycq_profile_account_info?remove_provider=twitter'
+      );
+    ?>
   </div>
 <?php endif; ?>
 
@@ -31,7 +36,12 @@
     <span>Already<br>connected</span>
 
     <i class="google-big-icon"></i>
-    <i class="icon icon-remove-sign"></i>
+    <?php
+      echo link_to(
+        '<i class="icon icon-remove-sign"></i>',
+        '@mycq_profile_account_info?remove_provider=google'
+      );
+    ?>
   </div>
 <?php endif; ?>
 
@@ -40,7 +50,12 @@
     <span>Already<br>connected</span>
 
     <i class="live-id-big-icon"></i>
-    <i class="icon icon-remove-sign"></i>
+    <?php
+      echo link_to(
+        '<i class="icon icon-remove-sign"></i>',
+        '@mycq_profile_account_info?remove_provider=live'
+      );
+    ?>
   </div>
 <?php endif; ?>
 

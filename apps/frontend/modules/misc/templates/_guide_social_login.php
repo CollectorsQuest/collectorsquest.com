@@ -1,10 +1,5 @@
-<?php
-!empty($excludeProviders) or $excludeProviders = array();
-?>
 <div class="social-signin-wapper">
   <?php
-  if (!in_array('facebook', $excludeProviders))
-  {
     echo link_to(
       '<i class="hide-text">' . ucfirst($action) . ' using Facebook</i>',
       '@ajax?section=partial&page=socialModalLogin&provider=facebook',
@@ -13,10 +8,7 @@
         'onclick' => 'return false', 'title' => ucfirst($action) . ' using Facebook'
       )
     );
-  }
 
-  if (!in_array('twitter', $excludeProviders))
-  {
     echo link_to(
       '<i class="hide-text">' . ucfirst($action) . ' using Twitter</i>',
       '@ajax?section=partial&page=socialModalLogin&provider=twitter',
@@ -25,10 +17,7 @@
         'onclick' => 'return false', 'title' => ucfirst($action) . ' using Twitter'
       )
     );
-  }
 
-  if (!in_array('google', $excludeProviders))
-  {
     echo link_to(
       '<i class="hide-text">' . ucfirst($action) . ' using Google+</i>',
       '@ajax?section=partial&page=socialModalLogin&provider=google',
@@ -37,10 +26,7 @@
         'onclick' => 'return false', 'title' => ucfirst($action) . ' using Google+'
       )
     );
-  }
 
-  if (!in_array('live', $excludeProviders))
-  {
     echo link_to(
       '<i class="hide-text">' . ucfirst($action) . ' using Windows Live ID</i>',
       '@ajax?section=partial&page=socialModalLogin&provider=live_id',
@@ -49,6 +35,6 @@
         'onclick' => 'return false', 'title' => ucfirst($action) . ' using Windows Live ID'
       )
     );
-  }
+
   ?>
 </div>
