@@ -29,7 +29,7 @@
 
     echo link_to(
       '<i class="hide-text">' . ucfirst($action) . ' using Windows Live ID</i>',
-      '@ajax?section=partial&page=socialModalLogin&provider=live_id',
+      '@ajax?section=partial&page=socialModalLogin&provider=live',
       array(
         'class' => 'open-dialog live-id-big-icon', 'rel' => 'tooltip', 'data-placement' => 'top',
         'onclick' => 'return false', 'title' => ucfirst($action) . ' using Windows Live ID'

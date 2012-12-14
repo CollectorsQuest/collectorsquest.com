@@ -102,7 +102,7 @@
         {
           echo link_to(
             '<i class="hide-text">Sign up using Windows Live ID</i>',
-            '@ajax?section=partial&page=socialModalLogin&provider=live_id',
+            '@ajax?section=partial&page=socialModalLogin&provider=live',
             array(
               'class' => 'open-dialog live-id-big-icon', 'rel' => 'tooltip', 'data-placement' => 'bottom',
               'onclick' => 'return false', 'title' => 'Sign up using Windows Live ID'
