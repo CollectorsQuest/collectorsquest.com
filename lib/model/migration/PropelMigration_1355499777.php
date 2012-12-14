@@ -45,8 +45,8 @@ class PropelMigration_1355499777
         CREATE INDEX `shopping_cart_collectible_I_1` ON `shopping_cart_collectible` (`seller_promotion_id`);
 
         ALTER TABLE `shopping_payment`
-            ADD `seller_promotion_id` INTEGER AFTER `amount_tax`,
-            ADD `amount_promotion` INTEGER DEFAULT 0 AFTER `seller_promotion_id`;
+            ADD `seller_promotion_id` INTEGER AFTER `shopping_order_id`,
+            ADD `amount_promotion` INTEGER DEFAULT 0 AFTER `amount_tax`;
 
         CREATE INDEX `shopping_payment_I_1` ON `shopping_payment` (`seller_promotion_id`);
 
@@ -65,8 +65,8 @@ class PropelMigration_1355499777
             `quantity` INTEGER DEFAULT 0,
             `expiry_date` DATETIME,
             `is_expired` TINYINT(1) DEFAULT 0,
-            `created_at` DATETIME,
             `updated_at` DATETIME,
+            `created_at` DATETIME,
             PRIMARY KEY (`id`),
             INDEX `seller_promotion_I_1` (`promotion_code`),
             INDEX `seller_promotion_FI_1` (`seller_id`),
@@ -99,7 +99,7 @@ class PropelMigration_1355499777
             ADD `seller_promotion_id` INTEGER AFTER `amount_tax`,
             ADD `amount_promotion` INTEGER DEFAULT 0 AFTER `seller_promotion_id`;
 
-        CREATE INDEX `shopping_payment_archive_I_1` ON `shopping_payment_archive` (`seller_promotion_id`);
+        CREATE INDEX `shopping_payment_archive_I_2` ON `shopping_payment_archive` (`seller_promotion_id`);
 
         CREATE TABLE `seller_promotion_archive`
         (
