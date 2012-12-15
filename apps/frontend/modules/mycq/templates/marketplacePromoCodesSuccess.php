@@ -26,7 +26,9 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
               <th>Amount Type</th>
               <th>Amount</th>
               <th>Expire Date</th>
+              <th>Time left</th>
               <th>Quantity</th>
+              <th>Quantity Left</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +59,16 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
                 <?= $seller_promotion->getExpiryDate('d M Y'); ?>
               </td>
               <td>
+                <?php if ($seller_promotion->getExpiryDate(null)): ?>
+                  <?= $seller_promotion->getTimeLeft()->invert == 1
+                  ? $seller_promotion->getTimeLeft()->format('%d days %H:%I') : 0; ?>
+                <?php endif; ?>
+              </td>
+              <td>
                 <?= $seller_promotion->getQuantity() != 0 ?  $seller_promotion->getQuantity() : ''; ?>
+              </td>
+              <td>
+                <?= ($seller_promotion->getQuantity() - $seller_promotion->getUsedQuantity()); ?>
               </td>
             </tr>
               <?php endforeach; ?>

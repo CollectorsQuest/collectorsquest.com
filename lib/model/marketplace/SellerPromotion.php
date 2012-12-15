@@ -28,6 +28,39 @@ class SellerPromotion extends BaseSellerPromotion
   }
 
   /**
+   * Get count of uses of this promotion code
+   *
+   * @return int
+   */
+  public function getUsedQuantity()
+  {
+    /* @var $q ShoppingPaymentQuery */
+    $q = ShoppingPaymentQuery::create()
+      ->filterBySellerPromotionId($this->getId())
+      ->filterByStatus(ShoppingPaymentPeer::STATUS_CANCELLED, Criteria::ALT_NOT_EQUAL);
+
+    /* @var $q_a ShoppingPaymentArchiveQuery */
+    $q_a = ShoppingPaymentArchiveQuery::create()
+      ->filterBySellerPromotionId($this->getId())
+      ->filterByStatus(ShoppingPaymentArchivePeer::STATUS_CANCELLED, Criteria::ALT_NOT_EQUAL);
+
+    return $q->count() + $q_a->count();
+  }
+  /**
+   * Get time that left to expiring of this promotion code
+   *
+   * @return DateInterval
+   */
+  public function getTimeLeft()
+  {
+    /* @var $dt DateTime */
+    $dt = $this->getExpiryDate(null);
+
+    /* @var DateInterval */
+    return $dt instanceof DateTime ? $dt->diff(new DateTime('now')) : false;
+  }
+
+  /**
    * Check is Promotion code valid
    *
    * @param Collector $collector
@@ -38,7 +71,7 @@ class SellerPromotion extends BaseSellerPromotion
   {
     if ($this->getIsExpired())
     {
-      return true;
+      return false;
     }
 
     // Check collectible and collector
@@ -58,23 +91,25 @@ class SellerPromotion extends BaseSellerPromotion
       return true;
     }
 
-    // Check quantity
-    if ($this->getQuantity() != 0)
+    // Check date
+    /* @var $tl DateInterval|null */
+    if ($tl = $this->getTimeLeft())
     {
-      $q = ShoppingPaymentQuery::create()
-        ->filterBySellerPromotionId($this->getId());
-
-      if ($this->getQuantity() <= $q->count())
+      if ($tl->invert == 0)
       {
+        $this->setIsExpired(true)->save();
+
         return false;
       }
     }
 
-    // Check date
-    if ($this->getExpiryDate())
+    // Check quantity
+    if ($this->getQuantity() != 0)
     {
-      if ($this->getExpiryDate(null) > new DateTime('now'))
+      if ($this->getQuantity() <= $this->getUsedQuantity())
       {
+        $this->setIsExpired(true)->save();
+
         return false;
       }
     }
