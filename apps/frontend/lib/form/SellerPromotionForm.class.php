@@ -90,12 +90,13 @@ class SellerPromotionForm extends BaseSellerPromotionForm
     }
   }
 
-  public function updateCollectorEmail($v)
+  public function updateCollectorEmailColumn($v)
   {
     $collector = null;
     if ($v)
     {
       $collector = CollectorQuery::create()->findOneByEmail($v);
+      // We can send email notice to collector
     }
     $this->getObject()->setCollectorRelatedByCollectorId($collector);
   }
