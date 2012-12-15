@@ -330,8 +330,8 @@ classes:
       expiry_date:      { type: timestamp }
       is_expired:       { type: boolean, default: false }
 
-      updated_at:   { type: timestamp }
       created_at:   { type: timestamp }
+      updated_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
     propel_behaviors:
