@@ -821,6 +821,21 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeMarketplacePromoCodeDelete()
+  {
+    /* @var $seller_promotion SellerPromotion */
+    $seller_promotion = $this->getRoute()->getObject();
+    if ($seller_promotion->getSellerId() == $this->getUser()->getCollector()->getId())
+    {
+      $seller_promotion->delete();
+      $this->getUser()->setFlash(
+        'success', sprintf('Promotion code "%s" is successfully removed.', $seller_promotion->getPromotionName()),
+        true
+      );
+    }
+    $this->redirect('@mycq_marketplace_promo_codes');
+  }
+
   public function executeMarketplaceSettings(sfWebRequest $request)
   {
     $this->forward404Unless($this->getCollector()->hasBoughtCredits());

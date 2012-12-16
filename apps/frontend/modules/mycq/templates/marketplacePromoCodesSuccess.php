@@ -29,6 +29,7 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
               <th>Time left</th>
               <th>Quantity</th>
               <th>Quantity Left</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -68,7 +69,16 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
                 <?= $seller_promotion->getQuantity() != 0 ?  $seller_promotion->getQuantity() : ''; ?>
               </td>
               <td>
-                <?= ($seller_promotion->getQuantity() - $seller_promotion->getUsedQuantity()); ?>
+                <?php if ($seller_promotion->getQuantity() != 0): ?>
+                  <?= ($seller_promotion->getQuantity() - $seller_promotion->getUsedQuantity()); ?>
+                <?php endif; ?>
+              </td>
+              <td>
+                <?= link_to('<i class="icon-remove"></i>',
+                '@mycq_marketplace_promo_code_delete?id='. $seller_promotion->getId(),
+                array('class' => 'close-button', 'rel' => 'tooltip', 'title' => 'Remove Item',
+                  'confirm' => 'Are you sure?'
+                )); ?>
               </td>
             </tr>
               <?php endforeach; ?>

@@ -130,6 +130,13 @@ mycq_marketplace_promo_code_new:
   url:   /mycq/marketplace/promo_code/new
   param: { module: mycq, action: marketplacePromoCodeNew }
 
+mycq_marketplace_promo_code_delete:
+  url:    /mycq/marketplace/promo_code/:id/delete
+  class:  sfPropelORMRoute
+  options: { model: SellerPromotion, type: object }
+  param:  { module: mycq, action: marketplacePromoCodeDelete }
+  requirements: { id: '\d+', sf_method: [get, delete] }
+
 mycq_wanted:
   url:   /mycq/wanted
   param: { module: mycq, action: wanted }
