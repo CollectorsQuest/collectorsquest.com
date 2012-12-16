@@ -146,7 +146,13 @@ class ShoppingPayment extends BaseShoppingPayment
   {
     if ($this->aSellerPromotion === null && $this->getSellerPromotionId() != null)
     {
-      return $this->aSellerPromotion = SellerPromotionQuery::create()->findOneById($this->getSellerPromotionId());
+      /* @var $seller_promotion SellerPromotion */
+      $seller_promotion = SellerPromotionQuery::create()->findOneById($this->getSellerPromotionId());
+      if (!$seller_promotion)
+      {
+        $seller_promotion = SellerPromotionArchiveQuery::create()->findOneById($this->getSellerPromotionId());
+      }
+      return $this->aSellerPromotion = $seller_promotion;
     }
     else
     {

@@ -89,6 +89,20 @@
         <td>Item Price:</td>
         <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
       </tr>
+      <?php if ($shopping_order->getSellerPromotionId()): ?>
+        <tr>
+          <td>
+            <?= $shopping_order->getSellerPromotion()->getPromotionName(); ?>
+          </td>
+          <td>
+            <?php if (0 != (int) $shopping_order->getPromotionAmount()): ?>
+            - <?= money_format('%.2n', (float) $shopping_order->getPromotionAmount()) ?>
+            <?php else: ?>
+            &nbsp;
+            <?php endif; ?>
+          </td>
+        </tr>
+      <?php endif; ?>
       <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
       <tr>
         <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage(); ?>%):</td>
