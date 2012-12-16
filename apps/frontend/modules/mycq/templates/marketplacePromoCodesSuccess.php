@@ -25,10 +25,12 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
               <th>Code</th>
               <th>Amount Type</th>
               <th>Amount</th>
-              <th>Expire Date</th>
+<!--              <th>Expire Date</th>-->
               <th>Time left</th>
-              <th>Quantity</th>
+<!--              <th>Quantity</th>-->
               <th>Quantity Left</th>
+              <th>Assigned to</th>
+              <th>Description</th>
               <th></th>
             </tr>
           </thead>
@@ -56,22 +58,35 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
                 &nbsp;
                 <?php endif; ?>
               </td>
-              <td>
+              <?php /*  <td>
                 <?= $seller_promotion->getExpiryDate('d M Y'); ?>
-              </td>
+              </td> */ ?>
               <td>
                 <?php if ($seller_promotion->getExpiryDate(null)): ?>
                   <?= $seller_promotion->getTimeLeft()->invert == 1
                   ? $seller_promotion->getTimeLeft()->format('%d days %H:%I') : 0; ?>
                 <?php endif; ?>
               </td>
-              <td>
+              <?php /* <td>
                 <?= $seller_promotion->getQuantity() != 0 ?  $seller_promotion->getQuantity() : ''; ?>
-              </td>
+              </td> */ ?>
               <td>
                 <?php if ($seller_promotion->getQuantity() != 0): ?>
                   <?= ($seller_promotion->getQuantity() - $seller_promotion->getUsedQuantity()); ?>
                 <?php endif; ?>
+              </td>
+              <td>
+                <?php if ($seller_promotion->getCollectibleId()): ?>
+                  <?= $seller_promotion->getCollectible(); ?>
+                  <?php if ($seller_promotion->getCollectorId()): ?>
+                    / <?= $seller_promotion->getCollectorRelatedByCollectorId()->getEmail(); ?>
+                  <?php endif; ?>
+                <?php else: ?>
+                  &nbsp;
+                <?php endif; ?>
+              </td>
+              <td>
+                <?= $seller_promotion->getPromotionDesc(); ?>
               </td>
               <td>
                 <?= link_to('<i class="icon-remove"></i>',
@@ -100,13 +115,10 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
           );
           ?>
         </div>
-
-
-
-        <?= link_to('New Promo Code', '@ajax_mycq?section=promoCode&page=Create',
-        array('class' => 'btn btn-primary open-dialog', 'onclick' => 'return false;')); ?>
-
-
+        <div class="form-actions">
+          <?= link_to('New Promo Code', '@ajax_mycq?section=promoCode&page=Create',
+          array('class' => 'btn btn-primary open-dialog', 'onclick' => 'return false;')); ?>
+        </div>
 
       </div> <!-- .tab-content-inner.spacer -->
     </div> <!-- .tab-pane.active -->
