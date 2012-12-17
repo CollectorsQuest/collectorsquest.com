@@ -14,7 +14,7 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
     $this->setWidgets(array(
       'shopping_cart_id'  => new sfWidgetFormInputHidden(),
       'collectible_id'    => new sfWidgetFormInputHidden(),
-      'country_iso3166'   => new cqWidgetFormI18nChoiceCountry(array('add_empty' => false, 'culture' => 'en')),
+      'country_iso3166'   => new cqWidgetFormI18nChoiceIceModelGeoCountry(array('add_empty' => false, 'culture' => 'en')),
       'note_to_seller'    => new sfWidgetFormTextarea(),
       'promotion_code'    => new sfWidgetFormInputText(),
       '_nonce_token'      => new IceWidgetNonceToken(array('action' => 'checkout', 'salt' => $_salt))
@@ -23,7 +23,9 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
     $this->setValidators(array(
       'shopping_cart_id'  => new sfValidatorPropelChoice(array('model' => 'ShoppingCart', 'column' => 'id', 'required' => true)),
       'collectible_id'    => new sfValidatorPropelChoice(array('model' => 'Collectible', 'column' => 'id', 'required' => true)),
-      'country_iso3166'   => new sfValidatorI18nChoiceCountry(array('required' => true)),
+      'country_iso3166'   => new sfValidatorPropelChoice(
+        array('model' => 'iceModelGeoCountry', 'column' => 'iso3166',)
+      ),
       'note_to_seller'    => new sfValidatorString(array('required' => false)),
       'promotion_code'    => new sfValidatorString(array('required' => false)),
       '_nonce_token'      => new IceValidatorNonceToken(array('action' => 'checkout', 'salt' => $_salt))

@@ -68,7 +68,7 @@ class ShippingReference extends BaseShippingReference
    *
    * @param     string $return "float|integer"
    *
-   * @return    mixed A float if shipping amount set, 0 for free shipping and FALSE for No shipping
+   * @return    mixed A float if shipping amount set, 0 for free shipping, FALSE for No shipping and NULL for Local Pickup Only
    * @throws    Exception when the shipping refenrence does not conform to the expected simple format
    */
   public function getSimpleShippingAmount($return = 'float')
@@ -76,6 +76,11 @@ class ShippingReference extends BaseShippingReference
     if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getShippingType())
     {
       return false;
+    }
+
+    if (ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY == $this->getShippingType())
+    {
+      return null;
     }
 
     if (ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $this->getShippingType())

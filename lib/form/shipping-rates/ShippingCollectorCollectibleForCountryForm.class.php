@@ -123,10 +123,13 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
     endswitch;
   }
 
-  protected function getCurrentShippingType()
+  /**
+   * @return    ShippingReferencePeer::SHIPPINT_TYPE enum value
+   */
+  public function getCurrentShippingType()
   {
     return $this->getTaintedRequestValue('shipping_type',
-      !$this->getObject()->isNew()
+      !$this->isNew()
         ? $this->getObject()->getShippingType()
         : '');
   }

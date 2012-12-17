@@ -41,8 +41,10 @@
       <td style="vertical-align: top;">Shipping:</td>
       <td class="text-right">
 
-      <?php if (null === $shopping_order->getShippingFeeAmount()): ?>
+      <?php if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shopping_order->getShippingType()): ?>
         <span class="red">Cannot be shipped to <br/>the chosen country!</span>
+      <?php elseif (ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY == $shopping_order->getShippingType()): ?>
+        Local Pickup Only
       <?php elseif (0 === $shopping_order->getShippingFeeAmount('integer')): ?>
         Free
       <?php else: ?>

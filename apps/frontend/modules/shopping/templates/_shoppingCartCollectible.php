@@ -1,8 +1,8 @@
 <?php
-/**
- * @var $shopping_cart_collectible ShoppingCartCollectible
- * @var $form ShoppingCartCollectibleCheckoutForm
- */
+  /* @var $shopping_cart_collectible ShoppingCartCollectible */
+  /* @var $form ShoppingCartCollectibleCheckoutForm */
+
+  $cannot_ship = ShoppingCartCollectiblePeer::SHIPPING_TYPE_NO_SHIPPING == $shopping_cart_collectible->getShippingType();
 ?>
 
 <div class="row-fluid">
@@ -101,6 +101,8 @@
               <?php elseif ($shopping_cart_collectible->getShippingFeeAmount() > 0): ?>
                 <?= money_format('%.2n', (float) $shopping_cart_collectible->getShippingFeeAmount()); ?>
                 <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+              <?php elseif (ShoppingCartCollectiblePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY == $shopping_cart_collectible->getShippingType()): ?>
+                Local Pickup Only
               <?php else: ?>
                 Free
               <?php endif; ?>

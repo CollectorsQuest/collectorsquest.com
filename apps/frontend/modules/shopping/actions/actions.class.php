@@ -333,7 +333,9 @@ class shoppingActions extends cqFrontendActions
     /**
      * Create the Shopping Order form
      */
-    $form = new ShoppingOrderShippingForm($shopping_order);
+    $form = new ShoppingOrderShippingForm($shopping_order, array(), array(
+      'tainted_request_values' => $request->getParameter('shopping_order'),
+    ));
 
     if ($request->isMethod('post') && '' !== $request->getParameter('new_address', null))
     {

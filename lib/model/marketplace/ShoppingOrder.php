@@ -399,14 +399,48 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     if (null === $this->aShippingReference || null !== $country_code)
     {
-      $this->aShippingReference = $this->getCollectible($con)
+      $aShippingReference = $this->getCollectible($con)
         ->getShippingReferenceForCountryCode(
           $country_code ?: $this->getShippingCountryIso3166(),
-          $con);
+          $con
+        );
+
+      // if we are getting the shipping reference for the default country code
+      if (null === $country_code || $this->getShippingCountryIso3166() == $country_code)
+      {
+        // then save a reference in this object
+        $this->aShippingReference = $aShippingReference;
+      }
+      else
+      {
+        // otherwize return the object without saving a reference, so that
+        // when the method is called with the default country code we don't
+        // get the wrong shipping reference
+        return $aShippingReference;
+      }
+
     }
 
     return $this->aShippingReference;
   }
+
+  /**
+   * Get the shipping type for a related shipping reference
+   *
+   * @param     string $country_code
+   * @param     PropelPDO $con
+   *
+   * @return    ShippingReferencePeer::SHIPPING_TYPE|null
+   */
+  public function getShippingType($country_code = null, PropelPDO $con = null)
+  {
+    $shipping_reference = $this->getShippingReference($country_code, $con);
+
+    return $shipping_reference
+      ? $shipping_reference->getShippingType()
+      : null;
+  }
+
 
   public function getShoppingPayment()
   {
