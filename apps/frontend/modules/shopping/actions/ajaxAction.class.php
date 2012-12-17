@@ -95,20 +95,25 @@ class ajaxAction extends cqAjaxAction
           }
           else
           {
-            return $this->output(array('error'=>'Sorry, your code is wrong'));
+            return $this->output(array('error' => 'We are sorry but this promo code is not valid for this item!'));
           }
         }
         else
         {
-          return $this->output(array('error'=>'Sorry, your code is wrong'));
+          return $this->output(array('error' => 'Sorry, this promo code has expired or is no longer valid!'));
         }
       }
+
       try
       {
         $cart_collectible->save();
+
         return $this->success();
       }
-      catch (PropelException $e) { ; }
+      catch (PropelException $e)
+      {
+        ;
+      }
     }
 
     return $this->error('error', 'error');

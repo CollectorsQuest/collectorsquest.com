@@ -91,10 +91,10 @@
       </tr>
       <?php if ($shopping_order->getSellerPromotionId()): ?>
         <tr>
-          <td>
-            <?= $shopping_order->getSellerPromotion()->getPromotionName(); ?>
+          <td style="color: red;">
+            <?= $shopping_order->getSellerPromotion()->getPromotionCode(); ?>
           </td>
-          <td>
+          <td style="color: red;">
             <?php if (0 != (int) $shopping_order->getPromotionAmount()): ?>
             - <?= money_format('%.2n', (float) $shopping_order->getPromotionAmount()) ?>
             <?php else: ?>
@@ -104,10 +104,10 @@
         </tr>
       <?php endif; ?>
       <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
-      <tr>
-        <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage(); ?>%):</td>
-        <td><?= money_format('%.2n', (float) $shopping_order->getTaxAmount()) ?></td>
-      </tr>
+        <tr>
+          <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage(); ?>%):</td>
+          <td><?= money_format('%.2n', (float) $shopping_order->getTaxAmount()) ?></td>
+        </tr>
       <?php endif; ?>
       <tr>
         <td>Shipping Fee:</td>

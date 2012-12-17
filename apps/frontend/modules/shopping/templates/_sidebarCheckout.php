@@ -20,8 +20,8 @@
     </tr>
     <?php if ($promotion = $shopping_order->getSellerPromotion()): ?>
       <tr>
-        <td><?= $promotion->getPromotionName() ?></td>
-        <td class="text-right">
+        <td style="color: red;"><?= $promotion->getPromotionCode() ?></td>
+        <td class="text-right" style="color: red;">
           <?php if (0 != (int) $promotion->getAmount()): ?>
             - <?= money_format('%.2n', (float) $shopping_order->getPromotionAmount()); ?>
           <?php endif; ?>

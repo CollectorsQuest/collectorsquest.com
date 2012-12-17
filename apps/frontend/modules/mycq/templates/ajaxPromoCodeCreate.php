@@ -7,7 +7,7 @@
 <form action="<?= url_for('ajax_mycq', array('section' => 'promoCode', 'page' => 'Create')); ?>"
       method="post" class="ajax form-horizontal form-modal">
 
-  <h1>Add new Promo Code</h1>
+  <h1>Add New Promo Code</h1>
   <?= $form->renderGlobalErrors(); ?>
 
   <div style="position: relative;">

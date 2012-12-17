@@ -75,8 +75,8 @@
           </tr>
           <?php if ($promotion = $shopping_cart_collectible->getSellerPromotion()): ?>
             <tr>
-              <td><?= $promotion->getPromotionName() ?></td>
-              <td class="text-right">
+              <td style="color: red;"><?= $promotion->getPromotionCode() ?></td>
+              <td class="text-right" style="color: red;">
                 <?php if (0 != (int) $promotion->getAmount()): ?>
                   - <?= money_format('%.2n', (float) $shopping_cart_collectible->getPromotionAmount()); ?>
                   <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
@@ -116,7 +116,12 @@
           <tr>
             <td colspan="2" class="seller-promo">
               <div class="input-append">
-                <?php echo $form['promotion_code']->render(array('class' => 'input-small', 'placeholder'=>'Discount code')); ?>
+                <?php
+                  echo $form['promotion_code']->render(array(
+                    'class' => 'input-small', 'placeholder' => 'Promo code...',
+                    'style' => 'width: 105px; height: 20px;'
+                  ));
+                ?>
                 <button type="button" data-collectible-id="<?=$shopping_cart_collectible->getCollectibleId() ?>"
                         class="btn apply-promo">Apply</button>
               </div>
