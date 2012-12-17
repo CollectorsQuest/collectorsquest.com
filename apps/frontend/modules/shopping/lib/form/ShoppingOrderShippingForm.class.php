@@ -123,7 +123,7 @@ class ShoppingOrderShippingForm extends BaseForm
     }
     else
     {
-      $this->widgetSchema['shipping_address']['state_region'] =  new sfWidgetFormInputText();
+      $this->widgetSchema['shipping_address']['state_region'] = new sfWidgetFormInputText();
     }
 
     $this->mergePostValidator(new sfValidatorCallback(array(
