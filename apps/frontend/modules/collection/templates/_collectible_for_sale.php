@@ -36,15 +36,17 @@
           <td>
             <?php if ($shipping_reference->isSimpleFreeShipping()): ?>
             Free shipping
+            <?php elseif (ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY == $shipping_reference->getShippingType()): ?>
+            Local pickup only
             <?php else: ?>
             $<?= $shipping_reference->getSimpleShippingAmount(); ?>
             <?php endif; ?>
           </td>
         </tr>
-          <?php $shipping_will_ship_text .= ob_get_clean(); ?>
+        <?php $shipping_will_ship_text .= ob_get_clean(); ?>
 
-          <?php else: // shipping_type = no shipping
-          $shipping_no_shipping_countries[] = $shipping_reference->getCountryName();
+      <?php else: // shipping_type = no shipping
+      $shipping_no_shipping_countries[] = $shipping_reference->getCountryName();
 
         endif;
       endforeach; // foreach shipping reference ?>
