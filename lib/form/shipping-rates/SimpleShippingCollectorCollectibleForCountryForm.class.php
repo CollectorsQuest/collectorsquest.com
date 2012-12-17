@@ -5,13 +5,15 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
 
   // only used internally in this form as shipping references
   // do not have a "free shipping" option
-  const SHIPPING_TYPE_FREE = 'free_shipping';
+  const SHIPPING_TYPE_FREE_SHIPPING = 'free_shipping';
 
   public function configure()
   {
     parent::configure();
 
-    $this->setupFlatRateAmountField($this->isShippingTypeFreeShipping());
+    $this->setupFlatRateAmountField(
+      $disabled = $this->getCurrentShippingType() != ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE
+    );
 
     $this->mergePostValidator(
       new SimpleShippingCollectorCollectibleForCountryFormValidatorSchema(null));
@@ -53,30 +55,27 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
   }
 
   /**
-   * Check if the shipping type is really flat rate or if it is a fake flat rate
-   * that hides a free shipping rate
-   *
-   * @return    boolean
+   * @return    ShippingReferencePeer::SHIPPING_TYPE enum value or SimpleShippingCollectorCollectibleForCountryForm::SHIPPING_TYPE_FREE_SHIPPING
    */
-  public function isShippingTypeFreeShipping()
+  public function getCurrentShippingType()
   {
-    return self::SHIPPING_TYPE_FREE == $this->getTaintedRequestValue('shipping_type',
+    $is_free_shipping = self::SHIPPING_TYPE_FREE_SHIPPING == $this->getTaintedRequestValue('shipping_type',
        $this->getObject()->getShippingRates()->count() == 1 &&
-        $this->getObject()->getShippingRates()->getFirst()->getIsFreeShipping()
-      ? self::SHIPPING_TYPE_FREE : '');
-  }
+       $this->getObject()->getShippingRates()->getFirst()->getIsFreeShipping()
+         ? self::SHIPPING_TYPE_FREE_SHIPPING
+         : ''
+    );
 
-  public function isShippingTypeNoShipping()
-  {
-    return ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING
-        == $this->getTaintedRequestValue('shipping_type', $this->getObject()->getShippingType())
-        || ($this->isNew() && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getDefault('shipping_type'));
+    return $is_free_shipping
+      ? self::SHIPPING_TYPE_FREE_SHIPPING
+      : parent::getCurrentShippingType();
   }
 
   protected static function getShippingTypeChoices()
   {
     return array(
-        self::SHIPPING_TYPE_FREE => 'Free Shipping',
+        ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY => 'Local Pickup Only',
+        self::SHIPPING_TYPE_FREE_SHIPPING => 'Free Shipping',
         ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE => 'Flat Rate',
     );
   }
@@ -89,18 +88,18 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
     // repopulate this form
     if (1 == $this->getObject()->getShippingRates()->count())
     {
+      /* @var $shipping_rate ShippingRate */
       $shipping_rate = $this->getObject()->getShippingRates()->getFirst();
       // if the shipping rate is free simply mark the shipping type as such
       // (this is a fake type, the actual field does not allow this value,
       // it's only used internally in this form)
       if ($shipping_rate->getIsFreeShipping())
       {
-        $this->setDefault('shipping_type', self::SHIPPING_TYPE_FREE);
+        $this->setDefault('shipping_type', self::SHIPPING_TYPE_FREE_SHIPPING);
       }
-      else
+      // and if we have a flat rate, then we need to populate that field
+      elseif ($shipping_rate->getFlatRateInCents())
       {
-        // if not then we repopulate the "flat_rate" field;
-        // shipping_tye
         $this->setDefault('flat_rate', $shipping_rate->getFlatRateInUSD());
       }
     }
@@ -123,15 +122,15 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
 
     // we have free shipping, save a related ShippingRate object of
     // type free shipping and set this record to flat rate shipping
-    if (self::SHIPPING_TYPE_FREE == $values['shipping_type'])
+    if (self::SHIPPING_TYPE_FREE_SHIPPING == $values['shipping_type'])
     {
       $values['shipping_type'] = ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE;
       $shipping_rate = new ShippingRate();
       $shipping_rate->setIsFreeShipping(true);
       $shipping_rate->setShippingReference($this->getObject());
       // the shipping rate object will be saved when this form's object is saved
-    } else
-    if ($values['shipping_type'] == ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE)
+    }
+    elseif ($values['shipping_type'] == ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE)
     {
       $shipping_rate = new ShippingRate();
       $shipping_rate->setFlatRateInUSD($values['flat_rate']);
