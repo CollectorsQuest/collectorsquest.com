@@ -47,14 +47,42 @@
       switch (strtolower(get_class($object)))
       {
         case 'wppost':
-          include_partial(
-            'general/homepage_blogpost',
-            array(
-              'blog_post' => $object, 'i' => $i,
-              'excerpt' => $pager->getExcerpt($i),
-              'image' => false
-            )
-          );
+          if ($object->getPostType() == 'featured_items')
+          {
+            include_partial(
+              'search/wp_featured_item',
+              array(
+                'blog_post' => $object,
+                'url' => array('sf_route' => 'wordpress_featured_items', 'sf_subject' => $object)
+              )
+            );
+          }
+          elseif ($object->getPostType() == 'search_result')
+          {
+            $values = $object->getPostMetaValue('_search_result');
+            $routing = $values['cq_route'];
+            if ($routing)
+            {
+              include_partial(
+                'search/wp_featured_item',
+                array(
+                  'blog_post' => $object,
+                  'url' => url_for($routing)
+                )
+              );
+            }
+          }
+          else
+          {
+            include_partial(
+              'general/homepage_blogpost',
+              array(
+                'blog_post' => $object, 'i' => $i,
+                'excerpt' => $pager->getExcerpt($i),
+                'image' => false
+              )
+            );
+          }
           break;
         case 'collectible':
           include_partial(
