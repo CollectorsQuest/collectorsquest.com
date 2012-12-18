@@ -2991,6 +2991,18 @@ CollectorGeocacheArchive:
     latitude: '39.85993'
     longitude: '-75.72552'
     timezone: America/New_York
+  CollectorGeocacheArchive_1595:
+    id: '1595'
+    collector_id: '1202'
+    country_iso3166: US
+    state: OH
+    county: Medina
+    city: Medina
+    zip_postal: '44256'
+    address: 'Medina, OH 44256, USA'
+    latitude: '41.13247'
+    longitude: '-81.84429'
+    timezone: America/New_York
   CollectorGeocacheArchive_1609:
     id: '1609'
     collector_id: '2017'

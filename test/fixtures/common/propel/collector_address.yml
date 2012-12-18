@@ -7,6 +7,6 @@ CollectorAddress:
     city: Fargo
     state_region: ND
     zip_postcode: '58102'
-    country_iso3166: iceModelGeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     phone: 701.306.6145
     is_primary: '0'

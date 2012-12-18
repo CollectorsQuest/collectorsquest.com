@@ -52,7 +52,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '33'
+    count: '34'
   wpTermTaxonomy_146:
     term_id: wpTerm_146
     taxonomy: post_tag
@@ -130,7 +130,7 @@ wpTermTaxonomy:
     taxonomy: post_tag
     description: ''
     parent: '0'
-    count: '19'
+    count: '20'
   wpTermTaxonomy_1528:
     term_id: wpTerm_1527
     taxonomy: post_tag

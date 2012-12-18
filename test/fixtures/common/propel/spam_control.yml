@@ -303,3 +303,19 @@ iceModelSpamControl:
     is_throttled: '0'
     created_at: '2012-12-10 13:03:21'
     updated_at: '2012-12-10 13:03:21'
+  iceModelSpamControl_59:
+    field: '0'
+    value: escobartmly@hotmail.com
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-12-14 09:31:36'
+    updated_at: '2012-12-14 09:31:36'
+  iceModelSpamControl_60:
+    field: '2'
+    value: 172.168.1.101
+    credentials: '4'
+    is_banned: '1'
+    is_throttled: '0'
+    created_at: '2012-12-14 09:31:36'
+    updated_at: '2012-12-14 09:31:36'

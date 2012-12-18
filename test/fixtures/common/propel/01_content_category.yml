@@ -14,7 +14,7 @@ ContentCategory:
     tree_left: '2'
     tree_right: '227'
     tree_level: '1'
-    num_collectibles_for_sale: '100'
+    num_collectibles_for_sale: '102'
   ContentCategory_3:
     name: 'Advertising Clocks'
     slug: advertising-clocks
@@ -1195,7 +1195,7 @@ ContentCategory:
     tree_left: '341'
     tree_right: '364'
     tree_level: '2'
-    num_collectibles_for_sale: '3'
+    num_collectibles_for_sale: '4'
   ContentCategory_188:
     name: 'Animal Folk Art'
     slug: animal-folk-art
@@ -1773,7 +1773,7 @@ ContentCategory:
     tree_left: '505'
     tree_right: '632'
     tree_level: '2'
-    num_collectibles_for_sale: '52'
+    num_collectibles_for_sale: '51'
   ContentCategory_270:
     name: 'Alabaster Sculptures'
     slug: alabaster-sculptures
@@ -1948,14 +1948,14 @@ ContentCategory:
     tree_left: '554'
     tree_right: '565'
     tree_level: '3'
-    num_collectibles_for_sale: '52'
+    num_collectibles_for_sale: '51'
   ContentCategory_295:
     name: 'Bronze Sculptures'
     slug: bronze-sculptures
     tree_left: '555'
     tree_right: '556'
     tree_level: '4'
-    num_collectibles_for_sale: '52'
+    num_collectibles_for_sale: '51'
   ContentCategory_296:
     name: 'Gold Sculptures'
     slug: gold-sculptures
@@ -2708,7 +2708,7 @@ ContentCategory:
     tree_left: '772'
     tree_right: '1315'
     tree_level: '1'
-    num_collectibles_for_sale: '31'
+    num_collectibles_for_sale: '30'
   ContentCategory_403:
     name: Advertisements
     slug: advertisements
@@ -9498,7 +9498,7 @@ ContentCategory:
     tree_left: '2702'
     tree_right: '2799'
     tree_level: '1'
-    num_collectibles_for_sale: '21'
+    num_collectibles_for_sale: '22'
   ContentCategory_1368:
     name: Beds
     slug: beds
@@ -9512,7 +9512,7 @@ ContentCategory:
     tree_left: '2705'
     tree_right: '2706'
     tree_level: '2'
-    num_collectibles_for_sale: '0'
+    num_collectibles_for_sale: '1'
   ContentCategory_1370:
     name: Bookcases
     slug: bookcases
@@ -9906,7 +9906,7 @@ ContentCategory:
     tree_left: '2818'
     tree_right: '3085'
     tree_level: '1'
-    num_collectibles_for_sale: '66'
+    num_collectibles_for_sale: '65'
   ContentCategory_1426:
     name: 'Bakeware & Cookware'
     slug: bakeware-cookware
@@ -9930,7 +9930,7 @@ ContentCategory:
     tree_left: '2823'
     tree_right: '2932'
     tree_level: '2'
-    num_collectibles_for_sale: '45'
+    num_collectibles_for_sale: '46'
   ContentCategory_1429:
     collection_category_id: '551'
     name: 'Art Pottery'
@@ -10318,7 +10318,7 @@ ContentCategory:
     tree_left: '2933'
     tree_right: '3084'
     tree_level: '2'
-    num_collectibles_for_sale: '13'
+    num_collectibles_for_sale: '12'
   ContentCategory_1484:
     name: 'Art Glass'
     slug: art-glass
@@ -10661,7 +10661,7 @@ ContentCategory:
     tree_left: '3030'
     tree_right: '3067'
     tree_level: '3'
-    num_collectibles_for_sale: '2'
+    num_collectibles_for_sale: '1'
   ContentCategory_1533:
     name: 'Anchor Hocking'
     slug: anchor-hocking
@@ -11168,7 +11168,7 @@ ContentCategory:
     tree_left: '3175'
     tree_right: '3216'
     tree_level: '2'
-    num_collectibles_for_sale: '15'
+    num_collectibles_for_sale: '14'
   ContentCategory_1605:
     name: 'Adolf Hitler'
     slug: adolf-hitler
@@ -11280,7 +11280,7 @@ ContentCategory:
     tree_left: '3206'
     tree_right: '3211'
     tree_level: '3'
-    num_collectibles_for_sale: '14'
+    num_collectibles_for_sale: '13'
   ContentCategory_1621:
     name: 'Ronald Reagan'
     slug: ronald-reagan
@@ -11294,7 +11294,7 @@ ContentCategory:
     tree_left: '3209'
     tree_right: '3210'
     tree_level: '4'
-    num_collectibles_for_sale: '14'
+    num_collectibles_for_sale: '13'
   ContentCategory_1623:
     name: Ribbons
     slug: ribbons
@@ -12237,7 +12237,7 @@ ContentCategory:
     tree_left: '3478'
     tree_right: '3579'
     tree_level: '1'
-    num_collectibles_for_sale: '503'
+    num_collectibles_for_sale: '487'
   ContentCategory_1756:
     name: Aprons
     slug: aprons-1
@@ -12324,7 +12324,7 @@ ContentCategory:
     tree_left: '3501'
     tree_right: '3502'
     tree_level: '2'
-    num_collectibles_for_sale: '405'
+    num_collectibles_for_sale: '389'
   ContentCategory_1768:
     name: Corkscrews
     slug: corkscrews
@@ -12423,7 +12423,7 @@ ContentCategory:
     tree_left: '3528'
     tree_right: '3529'
     tree_level: '3'
-    num_collectibles_for_sale: '10'
+    num_collectibles_for_sale: '11'
   ContentCategory_1782:
     name: 'Lunch Boxes & Thermoses'
     slug: lunch-boxes-thermoses
@@ -12600,7 +12600,7 @@ ContentCategory:
     tree_left: '3580'
     tree_right: '3777'
     tree_level: '1'
-    num_collectibles_for_sale: '12'
+    num_collectibles_for_sale: '11'
   ContentCategory_1807:
     name: 'Artist Memorabilia'
     slug: artist-memorabilia-1
@@ -12915,7 +12915,7 @@ ContentCategory:
     tree_left: '3669'
     tree_right: '3682'
     tree_level: '2'
-    num_collectibles_for_sale: '3'
+    num_collectibles_for_sale: '2'
   ContentCategory_1852:
     name: 'Film Memorabilia'
     slug: film-memorabilia
@@ -13297,7 +13297,7 @@ ContentCategory:
     tree_left: '3778'
     tree_right: '4299'
     tree_level: '1'
-    num_collectibles_for_sale: '11'
+    num_collectibles_for_sale: '12'
   ContentCategory_1906:
     name: 8-tracks
     slug: 8-tracks
@@ -14448,7 +14448,7 @@ ContentCategory:
     tree_left: '4008'
     tree_right: '4067'
     tree_level: '3'
-    num_collectibles_for_sale: '0'
+    num_collectibles_for_sale: '1'
   ContentCategory_2070:
     name: 'Vintage Guitars'
     slug: vintage-guitars
@@ -16935,7 +16935,7 @@ ContentCategory:
     tree_left: '4814'
     tree_right: '5639'
     tree_level: '1'
-    num_collectibles_for_sale: '4'
+    num_collectibles_for_sale: '5'
   ContentCategory_2424:
     name: 'Auto Racing'
     slug: auto-racing
@@ -17084,7 +17084,7 @@ ContentCategory:
     tree_left: '4854'
     tree_right: '4855'
     tree_level: '3'
-    num_collectibles_for_sale: '0'
+    num_collectibles_for_sale: '1'
   ContentCategory_2445:
     name: 'Boston Red Sox'
     slug: boston-red-sox
@@ -20827,7 +20827,7 @@ ContentCategory:
     tree_left: '5640'
     tree_right: '5709'
     tree_level: '1'
-    num_collectibles_for_sale: '8'
+    num_collectibles_for_sale: '10'
   ContentCategory_2979:
     name: Flags
     slug: flags
@@ -21026,7 +21026,7 @@ ContentCategory:
     tree_left: '5694'
     tree_right: '5695'
     tree_level: '3'
-    num_collectibles_for_sale: '6'
+    num_collectibles_for_sale: '5'
   ContentCategory_3007:
     name: 'Sewing Machines'
     slug: sewing-machines-1
@@ -21201,7 +21201,7 @@ ContentCategory:
     tree_left: '5744'
     tree_right: '5745'
     tree_level: '3'
-    num_collectibles_for_sale: '178'
+    num_collectibles_for_sale: '170'
   ContentCategory_3032:
     name: 'Match Holders'
     slug: match-holders
@@ -21287,7 +21287,7 @@ ContentCategory:
     tree_left: '6054'
     tree_right: '7065'
     tree_level: '1'
-    num_collectibles_for_sale: '66'
+    num_collectibles_for_sale: '76'
   ContentCategory_3044:
     collection_category_id: '1'
     name: 'Action Figures'
@@ -24850,7 +24850,7 @@ ContentCategory:
     tree_left: '7063'
     tree_right: '7064'
     tree_level: '2'
-    num_collectibles_for_sale: '0'
+    num_collectibles_for_sale: '1'
   ContentCategory_3549:
     name: Travel
     slug: travel
@@ -24935,11 +24935,11 @@ ContentCategory:
     tree_left: '7088'
     tree_right: '7089'
     tree_level: '1'
-    num_collectibles_for_sale: '119'
+    num_collectibles_for_sale: '117'
   ContentCategory_3561:
     name: Art
     slug: art
     tree_left: '292'
     tree_right: '635'
     tree_level: '1'
-    num_collectibles_for_sale: '66'
+    num_collectibles_for_sale: '65'

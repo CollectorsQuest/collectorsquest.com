@@ -2934,7 +2934,7 @@ wpPostmeta:
   wpPostmeta_42770:
     post_id: wpPost_23222
     meta_key: _edit_lock
-    meta_value: '1349975416:20'
+    meta_value: '1355430665:20'
   wpPostmeta_42771:
     post_id: wpPost_20049
     meta_key: _edit_last
@@ -3406,7 +3406,7 @@ wpPostmeta:
   wpPostmeta_60655:
     post_id: wpPost_30886
     meta_key: _edit_lock
-    meta_value: '1354634824:20'
+    meta_value: '1355431472:20'
   wpPostmeta_60656:
     post_id: wpPost_30887
     meta_key: _wp_attached_file
@@ -3450,7 +3450,7 @@ wpPostmeta:
   wpPostmeta_62222:
     post_id: wpPost_31676
     meta_key: _edit_lock
-    meta_value: '1352747752:20'
+    meta_value: '1355785356:20'
   wpPostmeta_62235:
     post_id: wpPost_31681
     meta_key: _wp_attached_file
@@ -3671,3 +3671,7 @@ wpPostmeta:
     post_id: wpPost_14901
     meta_key: _yoast_wpseo_linkdex
     meta_value: '0'
+  wpPostmeta_70644:
+    post_id: wpPost_31676
+    meta_key: _wpas_done_all
+    meta_value: '1'

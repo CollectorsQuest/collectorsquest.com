@@ -28,7 +28,7 @@ class testGenerateFixturesTask extends sfBaseTask
     $archive = $databaseManager->getDatabase('archive')->getConnection();
 
     $collector_ids = array(
-      163, 963, 644, 59, 4208, 6700, 1212, 4295, 846, 9367
+      163, 963, 644, 59, 4208, 6700, 1212, 4295, 9367
     );
 
     /** @var $sqls array */
@@ -44,21 +44,21 @@ class testGenerateFixturesTask extends sfBaseTask
       'TRUNCATE TABLE `shopping_cart_collectible`;',
       'TRUNCATE TABLE `shopping_cart`;',
 
-      'DELETE FROM collectible WHERE collector_id NOT IN ('.  implode(',', $collector_ids) .');',
+      'DELETE FROM collectible WHERE collector_id NOT IN ('. implode(',', $collector_ids) .');',
       'DELETE FROM collectible_rating WHERE collectible_id NOT IN (SELECT id FROM collectible);',
       'DELETE FROM collection_collectible WHERE collectible_id NOT IN (SELECT id FROM collectible)',
-      'DELETE FROM collector_collection WHERE collector_id NOT IN ('.  implode(',', $collector_ids) .');',
+      'DELETE FROM collector_collection WHERE collector_id NOT IN ('. implode(',', $collector_ids) .');',
       'DELETE FROM collector_collection_rating WHERE collector_collection_id NOT IN (SELECT id FROM collector_collection)',
       "DELETE FROM collection WHERE id NOT IN (SELECT id FROM collector_collection) AND descendant_class = 'CollectorCollection';",
       'DELETE FROM collection_rating WHERE collection_id NOT IN (SELECT id FROM collection)',
-      'DELETE FROM collector_email WHERE collector_id NOT IN ('.  implode(',', $collector_ids) .');',
-      'DELETE FROM collector WHERE id NOT IN ('.  implode(',', $collector_ids) .');',
+      'DELETE FROM collector_email WHERE collector_id NOT IN ('. implode(',', $collector_ids) .');',
+      'DELETE FROM collector WHERE id NOT IN ('. implode(',', $collector_ids) .');',
       'DELETE FROM collector_rating WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM collector_profile WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM collector_profile_extra_property WHERE collector_profile_collector_id NOT IN (SELECT collector_id FROM collector_profile);',
       'DELETE FROM collector_extra_property WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM collector_address WHERE collector_id NOT IN (SELECT id FROM collector);',
-      'DELETE FROM collector_geocache WHERE collector_id NOT IN (SELECT id FROM collector);',
+      'DELETE FROM collector_geocache WHERE collector_id NOT IN (SELECT id FROM collector) OR country_iso3166 <> \'US\';',
       'DELETE FROM collector_remember_key WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM collector_friend WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM collector_friend WHERE friend_id NOT IN (SELECT id FROM collector);',
@@ -82,16 +82,20 @@ class testGenerateFixturesTask extends sfBaseTask
 
       "DELETE FROM multimedia WHERE `model` = 'Collector' AND `model_id` NOT IN (SELECT id FROM collector);",
       "DELETE FROM multimedia WHERE `model` = 'Collection' AND `model_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 25) AS c WHERE collection.id = c.id);",
+      "DELETE FROM multimedia WHERE `model` = 'CollectorCollection' AND `model_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 25) AS c WHERE collection.id = c.id);",
       "DELETE FROM multimedia WHERE `model` = 'Collectible' AND `model_id` NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 25) AS c WHERE collectible.id = c.id);",
 
       "DELETE FROM tagging WHERE `taggable_model` = 'Collector' AND `taggable_id` NOT IN (SELECT id FROM collector);",
       "DELETE FROM tagging WHERE `taggable_model` = 'Collection' AND `taggable_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",
+      "DELETE FROM tagging WHERE `taggable_model` = 'CollectorCollection' AND `taggable_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",
       "DELETE FROM tagging WHERE `taggable_model` = 'Collectible' AND `taggable_id` NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 10) AS c WHERE collectible.id = c.id);",
       "DELETE FROM tag WHERE `id` NOT IN (SELECT tagging.tag_id FROM tagging);",
 
       "DELETE FROM term_relationship WHERE `model` = 'Collector' AND `model_id` NOT IN (SELECT id FROM collector);",
       "DELETE FROM term_relationship WHERE `model` = 'Collection' AND `model_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",
+      "DELETE FROM term_relationship WHERE `model` = 'CollectorCollection' AND `model_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",
       "DELETE FROM term_relationship WHERE `model` = 'Collectible' AND `model_id` NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 10) AS c WHERE collectible.id = c.id);",
+      "DELETE FROM term WHERE `id` NOT IN (SELECT term_relationship.term_id FROM term_relationship);",
 
       'DELETE FROM package_transaction WHERE collector_id NOT IN (SELECT id FROM collector);',
       'DELETE FROM package_transaction_credit WHERE package_transaction_id NOT IN (SELECT id FROM package_transaction);',
@@ -107,6 +111,7 @@ class testGenerateFixturesTask extends sfBaseTask
       // For now we need to delete all shipping_references
       // because they link to country_is3160 instead of the primary key
       "DELETE FROM shipping_reference",
+      "DELETE FROM shipping_rate",
 
       'UPDATE collector SET eblob = NULL WHERE 1',
       'UPDATE collector_archive SET eblob = NULL WHERE 1',
@@ -117,6 +122,8 @@ class testGenerateFixturesTask extends sfBaseTask
       'UPDATE collectible SET eblob = NULL WHERE 1',
       'UPDATE collectible_archive SET eblob = NULL WHERE 1',
 
+      'TRUNCATE TABLE `content_category_extra_property`;',
+      'TRUNCATE TABLE `emails_log`;',
       'TRUNCATE TABLE `resource_entry`;',
       'TRUNCATE TABLE `resource_category`;',
       'TRUNCATE TABLE `sf_guard_remember_key`;',
@@ -126,11 +133,11 @@ class testGenerateFixturesTask extends sfBaseTask
 
     $sqls['archive'] = array(
       'SET FOREIGN_KEY_CHECKS = 0;',
-      'DELETE FROM collectible_archive WHERE collector_id NOT IN ('.  implode(',', $collector_ids) .');' ,
+      'DELETE FROM collectible_archive WHERE collector_id NOT IN ('. implode(',', $collector_ids) .');' ,
       "DELETE FROM collection_archive
         WHERE id NOT IN (SELECT id FROM collector_collection)
           AND descendant_class = 'CollectorCollection';",
-      'DELETE FROM collector_identifier_archive WHERE collector_id NOT IN ('.  implode(',', $collector_ids) .');' ,
+      'DELETE FROM collector_identifier_archive WHERE collector_id NOT IN ('. implode(',', $collector_ids) .');' ,
       'SET FOREIGN_KEY_CHECKS = 1;'
     );
 
@@ -161,8 +168,8 @@ class testGenerateFixturesTask extends sfBaseTask
       'TRUNCATE TABLE `wp_comments`;',
       'TRUNCATE TABLE `wp_commentmeta`;',
       'DELETE FROM `wp_options` WHERE `option_id` > 50;',
-      "DELETE FROM `wp_posts` WHERE `ID` NOT IN (".  implode(',', $wp_post_ids) .") AND `post_type` <> 'attachment';",
-      'DELETE FROM `wp_posts` WHERE `post_parent` <> 0 AND `post_parent` NOT IN ('.  implode(',', $wp_post_ids) .');' ,
+      "DELETE FROM `wp_posts` WHERE `ID` NOT IN (". implode(',', $wp_post_ids) .") AND `post_type` <> 'attachment';",
+      'DELETE FROM `wp_posts` WHERE `post_parent` <> 0 AND `post_parent` NOT IN ('. implode(',', $wp_post_ids) .');' ,
       'DELETE FROM `wp_postmeta` WHERE `post_id` NOT IN (SELECT ID FROM `wp_posts`);',
       'DELETE FROM `wp_term_relationships` WHERE `object_id` NOT IN (SELECT ID FROM `wp_posts`);',
       'DELETE FROM `wp_term_taxonomy` WHERE `term_taxonomy_id` NOT IN (SELECT `term_taxonomy_id` FROM `wp_term_relationships`);',
@@ -263,6 +270,9 @@ class testGenerateFixturesTask extends sfBaseTask
       exec(
         sfToolkit::getPhpCli() . ' -d error_reporting=0 -d display_errors=0 ./symfony propel:data-dump'.
         ' --connection="propel" --env="'. $options['env'] .'" --classes="'. $class .'"'.
+        '| sed "s/descendant_class: CollectorCollection/ /g" '.
+        '| sed "s/country_iso3166: iceModelGeoCountry_US/country_iso3166: iceModelGeoCountry_226/g" '.
+        '| sed "s/SfGuardUser/sfGuardUser/g" '.
         ' > test/fixtures/common/propel/'. $table .'.yml'
       );
     }

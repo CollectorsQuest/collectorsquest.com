@@ -7375,15 +7375,15 @@ wpPost:
     post_title: 'Video Spotlight: Museum of UnCut Funk'
     post_category: '0'
     post_excerpt: ''
-    post_status: publish
+    post_status: draft
     comment_status: closed
     ping_status: closed
     post_password: ''
     post_name: cq-video-spotlight-museum-uncut-funk
     to_ping: ''
     pinged: ''
-    post_modified: '2012-10-11 13:11:05'
-    post_modified_gmt: '2012-10-11 17:11:05'
+    post_modified: '2012-12-13 15:31:05'
+    post_modified_gmt: '2012-12-13 20:31:05'
     post_content_filtered: ''
     post_parent: '0'
     guid: 'http://www.collectorsquest.com/blog/?post_type=homepage_carousel&#038;p=23222'
@@ -8743,15 +8743,15 @@ wpPost:
     post_title: 'Classics from <em>American Restoration</em>'
     post_category: '0'
     post_excerpt: ''
-    post_status: publish
+    post_status: draft
     comment_status: closed
     ping_status: closed
     post_password: ''
     post_name: classics-from-american-restoration
     to_ping: ''
     pinged: ''
-    post_modified: '2012-12-04 10:18:16'
-    post_modified_gmt: '2012-12-04 15:18:16'
+    post_modified: '2012-12-13 15:44:32'
+    post_modified_gmt: '2012-12-13 20:44:32'
     post_content_filtered: ''
     post_parent: '0'
     guid: 'http://www.collectorsquest.com/blog/?post_type=homepage_carousel&#038;p=30886'
@@ -8846,8 +8846,8 @@ wpPost:
     post_name: collections-inspired-by-historys-the-men-who-built-america
     to_ping: ''
     pinged: ''
-    post_modified: '2012-11-12 14:15:52'
-    post_modified_gmt: '2012-11-12 19:15:52'
+    post_modified: '2012-12-17 11:42:36'
+    post_modified_gmt: '2012-12-17 16:42:36'
     post_content_filtered: ''
     post_parent: '0'
     guid: 'http://www.collectorsquest.com/blog/?post_type=homepage_carousel&#038;p=31676'

@@ -5,7 +5,7 @@ sfGuardUser:
     salt: b9092afa31afecabe82ff58f5e06a0e2
     password: d134b9e1dfea1cb41473ef38ddbbf9789eda898f
     created_at: '2011-11-09 04:41:21'
-    last_login: '2012-12-12 11:24:05'
+    last_login: '2012-12-18 13:36:53'
     is_active: '1'
     is_super_admin: '0'
   sfGuardUser_4:
@@ -14,7 +14,7 @@ sfGuardUser:
     salt: e5a2bf53d50b124b938583f91977bcda
     password: e01853347b947af31376427033eda2d8cf39cd9c
     created_at: '2011-11-09 06:49:06'
-    last_login: '2012-12-12 06:07:56'
+    last_login: '2012-12-16 09:08:11'
     is_active: '1'
     is_super_admin: '0'
   sfGuardUser_5:
@@ -23,7 +23,7 @@ sfGuardUser:
     salt: f10aa6f43983466abf6fbf567b4b75da
     password: 685a336e7fd7045837169425dbe01d63165a0058
     created_at: '2011-11-17 11:41:13'
-    last_login: '2012-12-11 21:11:20'
+    last_login: '2012-12-18 12:18:10'
     is_active: '1'
     is_super_admin: '0'
   sfGuardUser_6:
@@ -50,7 +50,7 @@ sfGuardUser:
     salt: 62e978b64789a12fa6729420213bb0f4
     password: 4b28479e177f8d8e64f0689b9131329d6e896745
     created_at: '2012-02-07 17:29:02'
-    last_login: '2012-12-12 09:55:09'
+    last_login: '2012-12-18 09:56:47'
     is_active: '1'
     is_super_admin: '0'
   sfGuardUser_9:

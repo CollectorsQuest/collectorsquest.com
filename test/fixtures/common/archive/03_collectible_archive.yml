@@ -6980,3 +6980,3248 @@ CollectibleArchive:
     is_public: '0'
     updated_at: '2012-11-05 07:50:26'
     created_at: '2012-11-05 07:50:16'
+  CollectibleArchive_100752:
+    id: '100752'
+    graph_id: '66822'
+    collector_id: '1212'
+    name: 'AmazingSpiderman583 Cover'
+    slug: amazingspiderman583-cover
+    description: ''
+    batch_hash: c725d2f05d3f974c197bc3aabd769ac8
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 12:17:33'
+    created_at: '2012-12-13 12:17:12'
+  CollectibleArchive_100753:
+    id: '100753'
+    graph_id: '66824'
+    collector_id: '1212'
+    name: 'AmazingSpiderman583 Interior1'
+    slug: amazingspiderman583-interior1
+    description: ''
+    batch_hash: c725d2f05d3f974c197bc3aabd769ac8
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 12:17:41'
+    created_at: '2012-12-13 12:17:13'
+  CollectibleArchive_100754:
+    id: '100754'
+    graph_id: '66825'
+    collector_id: '1212'
+    name: 'AmazingSpiderman583 Interior2'
+    slug: amazingspiderman583-interior2
+    description: ''
+    batch_hash: c725d2f05d3f974c197bc3aabd769ac8
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 12:17:45'
+    created_at: '2012-12-13 12:17:14'
+  CollectibleArchive_100755:
+    id: '100755'
+    graph_id: '66823'
+    collector_id: '1212'
+    name: 'AmazingSpiderman583 CoverVariant'
+    slug: amazingspiderman583-covervariant
+    description: ''
+    batch_hash: c725d2f05d3f974c197bc3aabd769ac8
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 12:17:38'
+    created_at: '2012-12-13 12:17:14'
+  CollectibleArchive_100756:
+    id: '100756'
+    graph_id: '66826'
+    collector_id: '1212'
+    name: 'AmazingSpiderman583 Interior3'
+    slug: amazingspiderman583-interior3
+    description: ''
+    batch_hash: c725d2f05d3f974c197bc3aabd769ac8
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 12:17:48'
+    created_at: '2012-12-13 12:17:15'
+  CollectibleArchive_100757:
+    id: '100757'
+    graph_id: '66839'
+    collector_id: '1212'
+    name: 'Archie616 Cover'
+    slug: archie616-cover
+    description: ''
+    batch_hash: 0a585ab1d3f9414399f3b61c96ba10ce
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:21:15'
+    created_at: '2012-12-13 13:12:45'
+  CollectibleArchive_100758:
+    id: '100758'
+    graph_id: '66840'
+    collector_id: '1212'
+    name: 'Archie616 CoverVariant'
+    slug: archie616-covervariant
+    description: ''
+    batch_hash: 0a585ab1d3f9414399f3b61c96ba10ce
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:21:25'
+    created_at: '2012-12-13 13:12:46'
+  CollectibleArchive_100759:
+    id: '100759'
+    graph_id: '66842'
+    collector_id: '1212'
+    name: 'Archie617 Cover'
+    slug: archie617-cover
+    description: ''
+    batch_hash: 7d7826c2ac3d09c205a8fc024d027659
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:24:10'
+    created_at: '2012-12-13 13:12:56'
+  CollectibleArchive_100760:
+    id: '100760'
+    graph_id: '66844'
+    collector_id: '1212'
+    name: 'Archie617 Interior1'
+    slug: archie617-interior1
+    description: ''
+    batch_hash: 7d7826c2ac3d09c205a8fc024d027659
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:24:28'
+    created_at: '2012-12-13 13:12:58'
+  CollectibleArchive_100761:
+    id: '100761'
+    graph_id: '66843'
+    collector_id: '1212'
+    name: 'Archie617 CoverVariant'
+    slug: archie617-covervariant
+    description: ''
+    batch_hash: 7d7826c2ac3d09c205a8fc024d027659
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:24:19'
+    created_at: '2012-12-13 13:12:58'
+  CollectibleArchive_100762:
+    id: '100762'
+    graph_id: '66846'
+    collector_id: '1212'
+    name: 'Archie617 Interior3'
+    slug: archie617-interior3
+    description: ''
+    batch_hash: 7d7826c2ac3d09c205a8fc024d027659
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:24:44'
+    created_at: '2012-12-13 13:13:00'
+  CollectibleArchive_100763:
+    id: '100763'
+    graph_id: '66845'
+    collector_id: '1212'
+    name: 'Archie617 Interior2'
+    slug: archie617-interior2
+    description: ''
+    batch_hash: 7d7826c2ac3d09c205a8fc024d027659
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:24:35'
+    created_at: '2012-12-13 13:13:00'
+  CollectibleArchive_100766:
+    id: '100766'
+    graph_id: '66848'
+    collector_id: '1212'
+    name: 'BarackObama Decision20121 Interior1'
+    slug: barackobama-decision20121-interior1
+    description: ''
+    batch_hash: 45ceac4787b7ace347fd14021705fc4d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:41:05'
+    created_at: '2012-12-13 13:40:04'
+  CollectibleArchive_100768:
+    id: '100768'
+    graph_id: '66849'
+    collector_id: '1212'
+    name: 'BarackObama Decision20121 Interior2'
+    slug: barackobama-decision20121-interior2
+    description: ''
+    batch_hash: 45ceac4787b7ace347fd14021705fc4d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:41:25'
+    created_at: '2012-12-13 13:40:06'
+  CollectibleArchive_100769:
+    id: '100769'
+    graph_id: '66851'
+    collector_id: '1212'
+    name: 'BarackObama RoadtotheWhiteHouse Cover'
+    slug: barackobama-roadtothewhitehouse-cover
+    description: ''
+    batch_hash: 45ceac4787b7ace347fd14021705fc4d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:44:18'
+    created_at: '2012-12-13 13:40:07'
+  CollectibleArchive_100770:
+    id: '100770'
+    graph_id: '66852'
+    collector_id: '1212'
+    name: 'BarackObama RoadtotheWhiteHouse Interior1'
+    slug: barackobama-roadtothewhitehouse-interior1
+    description: ''
+    batch_hash: 45ceac4787b7ace347fd14021705fc4d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:44:28'
+    created_at: '2012-12-13 13:40:08'
+  CollectibleArchive_100771:
+    id: '100771'
+    graph_id: '66854'
+    collector_id: '1212'
+    name: 'BarackObama TheFirst100Days Cover'
+    slug: barackobama-thefirst100days-cover
+    description: ''
+    batch_hash: 45ceac4787b7ace347fd14021705fc4d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:45:06'
+    created_at: '2012-12-13 13:40:08'
+  CollectibleArchive_100773:
+    id: '100773'
+    graph_id: '66882'
+    collector_id: '1212'
+    name: 'BarackObama RoadtotheWhiteHouse Interior1'
+    slug: barackobama-roadtothewhitehouse-interior1
+    description: ''
+    batch_hash: d33fc4f32f380a16b8a0877235465f50
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:18:51'
+    created_at: '2012-12-13 13:47:55'
+  CollectibleArchive_100774:
+    id: '100774'
+    graph_id: '66851'
+    collector_id: '1212'
+    name: 'BarackObama RoadtotheWhiteHouse Cover'
+    slug: barackobama-roadtothewhitehouse-cover-794795
+    description: ''
+    batch_hash: 45ceac4787b7ace347fd14021705fc4d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:18:47'
+    created_at: '2012-12-13 13:40:07'
+  CollectibleArchive_100775:
+    id: '100775'
+    graph_id: '66852'
+    collector_id: '1212'
+    name: 'BarackObama RoadtotheWhiteHouse Interior1'
+    slug: barackobama-roadtothewhitehouse-interior1-ba30cb
+    description: ''
+    batch_hash: 45ceac4787b7ace347fd14021705fc4d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 13:48:16'
+    created_at: '2012-12-13 13:40:08'
+  CollectibleArchive_100777:
+    id: '100777'
+    graph_id: '66877'
+    collector_id: '1212'
+    name: 'FemaleForce MichelleObama YearOne1 Interior2'
+    slug: femaleforce-michelleobama-yearone1-interior2
+    description: ''
+    batch_hash: 1f13fad703eb3e24e8b79bdfb44cf182
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:15:58'
+    created_at: '2012-12-13 13:50:25'
+  CollectibleArchive_100778:
+    id: '100778'
+    graph_id: '66876'
+    collector_id: '1212'
+    name: 'FemaleForce MichelleObama YearOne1 Interior1'
+    slug: femaleforce-michelleobama-yearone1-interior1
+    description: ''
+    batch_hash: 1f13fad703eb3e24e8b79bdfb44cf182
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:15:51'
+    created_at: '2012-12-13 13:50:25'
+  CollectibleArchive_100779:
+    id: '100779'
+    graph_id: '66878'
+    collector_id: '1212'
+    name: 'FemaleForce MichelleObama YearOne1 Interior3'
+    slug: femaleforce-michelleobama-yearone1-interior3
+    description: ''
+    batch_hash: 1f13fad703eb3e24e8b79bdfb44cf182
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:16:04'
+    created_at: '2012-12-13 13:50:28'
+  CollectibleArchive_100780:
+    id: '100780'
+    graph_id: '66879'
+    collector_id: '1212'
+    name: 'FemaleForce MichelleObama YearOne1 Interior4'
+    slug: femaleforce-michelleobama-yearone1-interior4
+    description: ''
+    batch_hash: 1f13fad703eb3e24e8b79bdfb44cf182
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:16:13'
+    created_at: '2012-12-13 13:50:29'
+  CollectibleArchive_100781:
+    id: '100781'
+    graph_id: '66880'
+    collector_id: '1212'
+    name: 'FemaleForce MichelleObama YearOne1 Interior5'
+    slug: femaleforce-michelleobama-yearone1-interior5
+    description: ''
+    batch_hash: 1f13fad703eb3e24e8b79bdfb44cf182
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:16:22'
+    created_at: '2012-12-13 13:50:30'
+  CollectibleArchive_100785:
+    id: '100785'
+    graph_id: '66874'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:14:51'
+    created_at: '2012-12-13 15:13:29'
+  CollectibleArchive_100788:
+    id: '100788'
+    graph_id: '66885'
+    collector_id: '1212'
+    name: 'Obama1 Cover'
+    slug: obama1-cover
+    description: ''
+    batch_hash: 14915ce74f8671cc4d13a6a9202e77f2
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:20:56'
+    created_at: '2012-12-13 15:19:23'
+  CollectibleArchive_100790:
+    id: '100790'
+    graph_id: '66889'
+    collector_id: '1212'
+    name: 'SavageDragon145 CoverVariant'
+    slug: savagedragon145-covervariant
+    description: ''
+    batch_hash: a03214105dfb3a6f64a6bcc250e45c23
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:26:00'
+    created_at: '2012-12-13 15:24:08'
+  CollectibleArchive_100793:
+    id: '100793'
+    graph_id: '66891'
+    collector_id: '1212'
+    name: 'YoungBlood8 CoverVariant'
+    slug: youngblood8-covervariant
+    description: ''
+    batch_hash: 2f255014ef60e40d4eae4f218591e6b1
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 15:27:15'
+    created_at: '2012-12-13 15:26:52'
+  CollectibleArchive_100795:
+    id: '100795'
+    graph_id: '66896'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior2'
+    slug: goldenlegacy13-mlk-interior2
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:28:50'
+    created_at: '2012-12-13 16:11:42'
+  CollectibleArchive_100796:
+    id: '100796'
+    graph_id: '66895'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior1'
+    slug: goldenlegacy13-mlk-interior1
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:28:39'
+    created_at: '2012-12-13 16:11:42'
+  CollectibleArchive_100797:
+    id: '100797'
+    graph_id: '66897'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior3'
+    slug: goldenlegacy13-mlk-interior3
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:29:00'
+    created_at: '2012-12-13 16:11:44'
+  CollectibleArchive_100798:
+    id: '100798'
+    graph_id: '66899'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior5'
+    slug: goldenlegacy13-mlk-interior5
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:29:38'
+    created_at: '2012-12-13 16:11:45'
+  CollectibleArchive_100799:
+    id: '100799'
+    graph_id: '66898'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior4'
+    slug: goldenlegacy13-mlk-interior4
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:29:20'
+    created_at: '2012-12-13 16:11:46'
+  CollectibleArchive_100800:
+    id: '100800'
+    graph_id: '66900'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior6'
+    slug: goldenlegacy13-mlk-interior6
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:30:03'
+    created_at: '2012-12-13 16:11:47'
+  CollectibleArchive_100801:
+    id: '100801'
+    graph_id: '66901'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior7'
+    slug: goldenlegacy13-mlk-interior7
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:30:18'
+    created_at: '2012-12-13 16:11:48'
+  CollectibleArchive_100802:
+    id: '100802'
+    graph_id: '66902'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior8'
+    slug: goldenlegacy13-mlk-interior8
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:30:27'
+    created_at: '2012-12-13 16:11:49'
+  CollectibleArchive_100803:
+    id: '100803'
+    graph_id: '66903'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior9'
+    slug: goldenlegacy13-mlk-interior9
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:30:33'
+    created_at: '2012-12-13 16:11:50'
+  CollectibleArchive_100804:
+    id: '100804'
+    graph_id: '66904'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior10'
+    slug: goldenlegacy13-mlk-interior10
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:30:45'
+    created_at: '2012-12-13 16:11:50'
+  CollectibleArchive_100805:
+    id: '100805'
+    graph_id: '66905'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior11'
+    slug: goldenlegacy13-mlk-interior11
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:30:57'
+    created_at: '2012-12-13 16:11:51'
+  CollectibleArchive_100806:
+    id: '100806'
+    graph_id: '66906'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior12'
+    slug: goldenlegacy13-mlk-interior12
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:31:04'
+    created_at: '2012-12-13 16:11:54'
+  CollectibleArchive_100807:
+    id: '100807'
+    graph_id: '66907'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior13'
+    slug: goldenlegacy13-mlk-interior13
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:31:10'
+    created_at: '2012-12-13 16:11:54'
+  CollectibleArchive_100809:
+    id: '100809'
+    graph_id: '66893'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:26:55'
+    created_at: '2012-12-13 16:24:58'
+  CollectibleArchive_100810:
+    id: '100810'
+    graph_id: '66912'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior8'
+    slug: goldenlegacy13-mlk-interior8
+    description: ''
+    batch_hash: a91e8ecf7c933501562057a15ae323cb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:42:42'
+    created_at: '2012-12-13 16:42:27'
+  CollectibleArchive_100813:
+    id: '100813'
+    graph_id: '66921'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior1'
+    slug: goldenlegacy13-mlk-interior1
+    description: ''
+    batch_hash: 18a27e402fe0f6c04576459458271364
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:52:43'
+    created_at: '2012-12-13 16:48:51'
+  CollectibleArchive_100814:
+    id: '100814'
+    graph_id: '66920'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Cover'
+    slug: goldenlegacy13-mlk-cover
+    description: ''
+    batch_hash: 3532f88b90d0f9c2b3ffbb0db7b7b0ef
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:52:33'
+    created_at: '2012-12-13 16:48:59'
+  CollectibleArchive_100815:
+    id: '100815'
+    graph_id: '66895'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior1'
+    slug: goldenlegacy13-mlk-interior1-d9fd93
+    description: ''
+    batch_hash: 81c5994f4466dd7208f2cb581e566506
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:52:38'
+    created_at: '2012-12-13 16:11:42'
+  CollectibleArchive_100816:
+    id: '100816'
+    graph_id: '66918'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior1'
+    slug: goldenlegacy13-mlk-interior1-efe49e
+    description: ''
+    batch_hash: 22769549944a81be89131bf19da1bb82
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:52:25'
+    created_at: '2012-12-13 16:52:15'
+  CollectibleArchive_100819:
+    id: '100819'
+    graph_id: '66924'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: '15cent Detail'
+    slug: 15cent-detail
+    description: ''
+    batch_hash: 6ec50f76f8d64a79f7685429dda0272f
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:57:04'
+    created_at: '2012-12-13 16:56:11'
+  CollectibleArchive_100821:
+    id: '100821'
+    graph_id: '66928'
+    collector_id: '1212'
+    name: 'CelebratetheCentury 1960'
+    slug: celebratethecentury-1960
+    description: ''
+    batch_hash: 6ec50f76f8d64a79f7685429dda0272f
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:58:13'
+    created_at: '2012-12-13 16:56:14'
+  CollectibleArchive_100822:
+    id: '100822'
+    graph_id: '66925'
+    collector_id: '1212'
+    name: 15cent
+    slug: 15cent
+    description: ''
+    batch_hash: 6ec50f76f8d64a79f7685429dda0272f
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 16:56:44'
+    created_at: '2012-12-13 16:56:15'
+  CollectibleArchive_100824:
+    id: '100824'
+    graph_id: '66925'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'MLK stamps: 15-cent'
+    slug: mlk-stamps-15-cent
+    description: 'MLK stamps: 15-cent'
+    batch_hash: 6ec50f76f8d64a79f7685429dda0272f
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:38:44'
+    created_at: '2012-12-13 16:56:15'
+  CollectibleArchive_100826:
+    id: '100826'
+    graph_id: '66968'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Interior5 copy'
+    slug: goldenlegacy13-mlk-interior5-copy
+    description: ''
+    batch_hash: d406beeb9da88b1e6e601cd887a9208e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:37:43'
+    created_at: '2012-12-13 17:00:00'
+  CollectibleArchive_100850:
+    id: '100850'
+    graph_id: '66966'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:34:28'
+    created_at: '2012-12-13 17:33:19'
+  CollectibleArchive_100852:
+    id: '100852'
+    graph_id: '66969'
+    collector_id: '1212'
+    name: 'Rosa Park closeupper'
+    slug: rosa-park-closeupper
+    description: ''
+    batch_hash: 774c27872738c6e3f9d4e60120dbe02b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:37:56'
+    created_at: '2012-12-13 17:36:51'
+  CollectibleArchive_100853:
+    id: '100853'
+    graph_id: '66972'
+    collector_id: '1212'
+    name: 'RoseParks Tails'
+    slug: roseparks-tails
+    description: ''
+    batch_hash: 140a6af41f7c549b6878e3dd7ee3af59
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:41:57'
+    created_at: '2012-12-13 17:41:40'
+  CollectibleArchive_100855:
+    id: '100855'
+    graph_id: '66974'
+    collector_id: '1212'
+    name: 'MuhammadAli thumb'
+    slug: muhammadali-thumb
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:49:59'
+    created_at: '2012-12-13 17:48:14'
+  CollectibleArchive_100857:
+    id: '100857'
+    graph_id: '66977'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior1'
+    slug: supermanvsmuhammadali-interior1
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:51:54'
+    created_at: '2012-12-13 17:48:17'
+  CollectibleArchive_100858:
+    id: '100858'
+    graph_id: '66976'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli CoverBack'
+    slug: supermanvsmuhammadali-coverback
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:51:48'
+    created_at: '2012-12-13 17:48:20'
+  CollectibleArchive_100859:
+    id: '100859'
+    graph_id: '66986'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior2'
+    slug: supermanvsmuhammadali-interior2
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:23'
+    created_at: '2012-12-13 17:48:21'
+  CollectibleArchive_100860:
+    id: '100860'
+    graph_id: '66987'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior3'
+    slug: supermanvsmuhammadali-interior3
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:26'
+    created_at: '2012-12-13 17:48:21'
+  CollectibleArchive_100861:
+    id: '100861'
+    graph_id: '66985'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior4'
+    slug: supermanvsmuhammadali-interior4
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:21'
+    created_at: '2012-12-13 17:48:22'
+  CollectibleArchive_100862:
+    id: '100862'
+    graph_id: '66983'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior5'
+    slug: supermanvsmuhammadali-interior5
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:16'
+    created_at: '2012-12-13 17:48:25'
+  CollectibleArchive_100863:
+    id: '100863'
+    graph_id: '66984'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior6'
+    slug: supermanvsmuhammadali-interior6
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:18'
+    created_at: '2012-12-13 17:48:25'
+  CollectibleArchive_100864:
+    id: '100864'
+    graph_id: '66982'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior7'
+    slug: supermanvsmuhammadali-interior7
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:14'
+    created_at: '2012-12-13 17:48:26'
+  CollectibleArchive_100865:
+    id: '100865'
+    graph_id: '66981'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior8'
+    slug: supermanvsmuhammadali-interior8
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:12'
+    created_at: '2012-12-13 17:48:28'
+  CollectibleArchive_100866:
+    id: '100866'
+    graph_id: '66979'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior10'
+    slug: supermanvsmuhammadali-interior10
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:08'
+    created_at: '2012-12-13 17:48:29'
+  CollectibleArchive_100867:
+    id: '100867'
+    graph_id: '66980'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior9'
+    slug: supermanvsmuhammadali-interior9
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:10'
+    created_at: '2012-12-13 17:48:29'
+  CollectibleArchive_100868:
+    id: '100868'
+    graph_id: '66978'
+    collector_id: '1212'
+    name: 'SupermanVsMuhammadAli Interior11'
+    slug: supermanvsmuhammadali-interior11
+    description: ''
+    batch_hash: 91e5ece999c63d62f7d4bd10dea33d5e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:52:05'
+    created_at: '2012-12-13 17:48:31'
+  CollectibleArchive_100869:
+    id: '100869'
+    graph_id: '66989'
+    collector_id: '1212'
+    name: 'BoxingGlove Signed Detail'
+    slug: boxingglove-signed-detail
+    description: ''
+    batch_hash: 11633e65a106994cbf485cc399f2906b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 17:54:40'
+    created_at: '2012-12-13 17:53:12'
+  CollectibleArchive_100878:
+    id: '100878'
+    graph_id: '66998'
+    collector_id: '1212'
+    name: '250FSet Detail2'
+    slug: 250fset-detail2
+    description: ''
+    batch_hash: 42ceef910b0a2abf2185337991e419de
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 18:00:50'
+    created_at: '2012-12-13 17:53:49'
+  CollectibleArchive_100879:
+    id: '100879'
+    graph_id: '66997'
+    collector_id: '1212'
+    name: '250FSet Detail3'
+    slug: 250fset-detail3
+    description: ''
+    batch_hash: 42ceef910b0a2abf2185337991e419de
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 18:00:47'
+    created_at: '2012-12-13 17:53:49'
+  CollectibleArchive_100880:
+    id: '100880'
+    graph_id: '66999'
+    collector_id: '1212'
+    name: 250FSet
+    slug: 250fset
+    description: ''
+    batch_hash: 42ceef910b0a2abf2185337991e419de
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-13 18:00:52'
+    created_at: '2012-12-13 17:53:51'
+  CollectibleArchive_101146:
+    id: '101146'
+    graph_id: '68188'
+    collector_id: '1212'
+    name: MLK01
+    slug: mlk01
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:40:11'
+    created_at: '2012-12-17 12:36:53'
+  CollectibleArchive_101147:
+    id: '101147'
+    graph_id: '68176'
+    collector_id: '1212'
+    name: MLK06
+    slug: mlk06
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:38:00'
+    created_at: '2012-12-17 12:36:54'
+  CollectibleArchive_101148:
+    id: '101148'
+    graph_id: '68177'
+    collector_id: '1212'
+    name: MLK07
+    slug: mlk07
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:38:11'
+    created_at: '2012-12-17 12:36:55'
+  CollectibleArchive_101149:
+    id: '101149'
+    graph_id: '68178'
+    collector_id: '1212'
+    name: MLK08
+    slug: mlk08
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:38:21'
+    created_at: '2012-12-17 12:36:55'
+  CollectibleArchive_101150:
+    id: '101150'
+    graph_id: '68179'
+    collector_id: '1212'
+    name: MLK09
+    slug: mlk09
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:39:02'
+    created_at: '2012-12-17 12:36:56'
+  CollectibleArchive_101151:
+    id: '101151'
+    graph_id: '68180'
+    collector_id: '1212'
+    name: MLK10
+    slug: mlk10
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:39:10'
+    created_at: '2012-12-17 12:36:56'
+  CollectibleArchive_101152:
+    id: '101152'
+    graph_id: '68181'
+    collector_id: '1212'
+    name: MLK11
+    slug: mlk11
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:39:23'
+    created_at: '2012-12-17 12:36:57'
+  CollectibleArchive_101153:
+    id: '101153'
+    graph_id: '68182'
+    collector_id: '1212'
+    name: MLK12
+    slug: mlk12
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:39:39'
+    created_at: '2012-12-17 12:36:58'
+  CollectibleArchive_101154:
+    id: '101154'
+    graph_id: '68183'
+    collector_id: '1212'
+    name: MLK13
+    slug: mlk13
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:39:48'
+    created_at: '2012-12-17 12:36:58'
+  CollectibleArchive_101155:
+    id: '101155'
+    graph_id: '68184'
+    collector_id: '1212'
+    name: MLK14
+    slug: mlk14
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:39:55'
+    created_at: '2012-12-17 12:36:59'
+  CollectibleArchive_101156:
+    id: '101156'
+    graph_id: '68186'
+    collector_id: '1212'
+    name: MLK15
+    slug: mlk15
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:40:01'
+    created_at: '2012-12-17 12:37:00'
+  CollectibleArchive_101157:
+    id: '101157'
+    graph_id: '68187'
+    collector_id: '1212'
+    name: MLK16
+    slug: mlk16
+    description: ''
+    batch_hash: 313935d107b68d7f09caafbb2e9feecb
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 12:40:07'
+    created_at: '2012-12-17 12:37:00'
+  CollectibleArchive_101164:
+    id: '101164'
+    graph_id: '68201'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:11:39'
+    created_at: '2012-12-17 13:10:00'
+  CollectibleArchive_101165:
+    id: '101165'
+    graph_id: '68203'
+    collector_id: '1212'
+    name: Cell1
+    slug: cell1
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:13:06'
+    created_at: '2012-12-17 13:12:01'
+  CollectibleArchive_101168:
+    id: '101168'
+    graph_id: '68205'
+    collector_id: '1212'
+    name: Cell2
+    slug: cell2
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:14:09'
+    created_at: '2012-12-17 13:12:04'
+  CollectibleArchive_101170:
+    id: '101170'
+    graph_id: '68209'
+    collector_id: '1212'
+    name: Cell3
+    slug: cell3
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:15:00'
+    created_at: '2012-12-17 13:12:05'
+  CollectibleArchive_101172:
+    id: '101172'
+    graph_id: '68213'
+    collector_id: '1212'
+    name: Cell4
+    slug: cell4
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:15:36'
+    created_at: '2012-12-17 13:12:07'
+  CollectibleArchive_101173:
+    id: '101173'
+    graph_id: '68215'
+    collector_id: '1212'
+    name: 'Cell5 Detail'
+    slug: cell5-detail
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:16:10'
+    created_at: '2012-12-17 13:12:08'
+  CollectibleArchive_101176:
+    id: '101176'
+    graph_id: '68218'
+    collector_id: '1212'
+    name: Cell6
+    slug: cell6
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:17:17'
+    created_at: '2012-12-17 13:12:11'
+  CollectibleArchive_101178:
+    id: '101178'
+    graph_id: '68220'
+    collector_id: '1212'
+    name: Cell7
+    slug: cell7
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:17:41'
+    created_at: '2012-12-17 13:12:12'
+  CollectibleArchive_101180:
+    id: '101180'
+    graph_id: '68222'
+    collector_id: '1212'
+    name: Cell8
+    slug: cell8
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:18:10'
+    created_at: '2012-12-17 13:12:15'
+  CollectibleArchive_101182:
+    id: '101182'
+    graph_id: '68224'
+    collector_id: '1212'
+    name: Cell9
+    slug: cell9
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:18:35'
+    created_at: '2012-12-17 13:12:18'
+  CollectibleArchive_101184:
+    id: '101184'
+    graph_id: '68226'
+    collector_id: '1212'
+    name: Cell10
+    slug: cell10
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:19:02'
+    created_at: '2012-12-17 13:12:20'
+  CollectibleArchive_101186:
+    id: '101186'
+    graph_id: '68228'
+    collector_id: '1212'
+    name: Cell11
+    slug: cell11
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:19:26'
+    created_at: '2012-12-17 13:12:23'
+  CollectibleArchive_101188:
+    id: '101188'
+    graph_id: '68230'
+    collector_id: '1212'
+    name: Cell12
+    slug: cell12
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:20:04'
+    created_at: '2012-12-17 13:12:23'
+  CollectibleArchive_101189:
+    id: '101189'
+    graph_id: '68232'
+    collector_id: '1212'
+    name: Cell13
+    slug: cell13
+    description: ''
+    batch_hash: 4aa317ee6ed6ae3416dc300faa64d57d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:20:53'
+    created_at: '2012-12-17 13:12:26'
+  CollectibleArchive_101192:
+    id: '101192'
+    graph_id: '68216'
+    collector_id: '1212'
+    name: Cell5
+    slug: cell5-2284ad
+    description: ''
+    batch_hash: 0e9f462ba1614fb27afe908e208bb0ab
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:16:28'
+    created_at: '2012-12-17 13:16:18'
+  CollectibleArchive_101193:
+    id: '101193'
+    graph_id: '68247'
+    collector_id: '1212'
+    name: Cell1
+    slug: cell1
+    description: ''
+    batch_hash: 60aba020736558439a5beac3e76a1e7b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:23:06'
+    created_at: '2012-12-17 13:22:24'
+  CollectibleArchive_101196:
+    id: '101196'
+    graph_id: '68249'
+    collector_id: '1212'
+    name: Drawing1
+    slug: drawing1
+    description: ''
+    batch_hash: 60aba020736558439a5beac3e76a1e7b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:23:20'
+    created_at: '2012-12-17 13:22:27'
+  CollectibleArchive_101199:
+    id: '101199'
+    graph_id: '68251'
+    collector_id: '1212'
+    name: Cell1
+    slug: cell1
+    description: ''
+    batch_hash: a998d689bc12a38e6f12fa1f41551d91
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:25:38'
+    created_at: '2012-12-17 13:24:36'
+  CollectibleArchive_101200:
+    id: '101200'
+    graph_id: '68253'
+    collector_id: '1212'
+    name: Cell2
+    slug: cell2
+    description: ''
+    batch_hash: a998d689bc12a38e6f12fa1f41551d91
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:29:30'
+    created_at: '2012-12-17 13:24:38'
+  CollectibleArchive_101202:
+    id: '101202'
+    graph_id: '68255'
+    collector_id: '1212'
+    name: Cell3
+    slug: cell3
+    description: ''
+    batch_hash: a998d689bc12a38e6f12fa1f41551d91
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:29:53'
+    created_at: '2012-12-17 13:24:39'
+  CollectibleArchive_101205:
+    id: '101205'
+    graph_id: '68258'
+    collector_id: '1212'
+    name: Drawing1
+    slug: drawing1
+    description: ''
+    batch_hash: a998d689bc12a38e6f12fa1f41551d91
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:31:20'
+    created_at: '2012-12-17 13:24:43'
+  CollectibleArchive_101207:
+    id: '101207'
+    graph_id: '68260'
+    collector_id: '1212'
+    name: Drawing2
+    slug: drawing2
+    description: ''
+    batch_hash: a998d689bc12a38e6f12fa1f41551d91
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:31:45'
+    created_at: '2012-12-17 13:24:46'
+  CollectibleArchive_101209:
+    id: '101209'
+    graph_id: '68262'
+    collector_id: '1212'
+    name: Drawing3
+    slug: drawing3
+    description: ''
+    batch_hash: a998d689bc12a38e6f12fa1f41551d91
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:32:04'
+    created_at: '2012-12-17 13:24:47'
+  CollectibleArchive_101210:
+    id: '101210'
+    graph_id: '68264'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:35:15'
+    created_at: '2012-12-17 13:33:09'
+  CollectibleArchive_101212:
+    id: '101212'
+    graph_id: '68266'
+    collector_id: '1212'
+    name: 'BTWashington GWCarver Cell1'
+    slug: btwashington-gwcarver-cell1
+    description: ''
+    batch_hash: bffd67df9d519ddf8ec7ff7791ceb75c
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:36:24'
+    created_at: '2012-12-17 13:36:07'
+  CollectibleArchive_101213:
+    id: '101213'
+    graph_id: '68268'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:41:54'
+    created_at: '2012-12-17 13:40:58'
+  CollectibleArchive_101215:
+    id: '101215'
+    graph_id: '68276'
+    collector_id: '1212'
+    name: 'GoldenLegacy HarrietTubman2 Interior1'
+    slug: goldenlegacy-harriettubman2-interior1
+    description: ''
+    batch_hash: 9e9277437ed11ee7558a30ac767abb6a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:51:21'
+    created_at: '2012-12-17 13:42:42'
+  CollectibleArchive_101216:
+    id: '101216'
+    graph_id: '68277'
+    collector_id: '1212'
+    name: 'GoldenLegacy HarrietTubman2 Interior2'
+    slug: goldenlegacy-harriettubman2-interior2
+    description: ''
+    batch_hash: 9e9277437ed11ee7558a30ac767abb6a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:51:28'
+    created_at: '2012-12-17 13:42:42'
+  CollectibleArchive_101217:
+    id: '101217'
+    graph_id: '68278'
+    collector_id: '1212'
+    name: 'GoldenLegacy HarrietTubman2 Interior3'
+    slug: goldenlegacy-harriettubman2-interior3
+    description: ''
+    batch_hash: 9e9277437ed11ee7558a30ac767abb6a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:51:43'
+    created_at: '2012-12-17 13:42:42'
+  CollectibleArchive_101218:
+    id: '101218'
+    graph_id: '68280'
+    collector_id: '1212'
+    name: 'GoldenLegacy HarrietTubman2 Interior5'
+    slug: goldenlegacy-harriettubman2-interior5
+    description: ''
+    batch_hash: 9e9277437ed11ee7558a30ac767abb6a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:52:02'
+    created_at: '2012-12-17 13:42:46'
+  CollectibleArchive_101219:
+    id: '101219'
+    graph_id: '68281'
+    collector_id: '1212'
+    name: 'GoldenLegacy HarrietTubman2 Interior6'
+    slug: goldenlegacy-harriettubman2-interior6
+    description: ''
+    batch_hash: 9e9277437ed11ee7558a30ac767abb6a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:52:09'
+    created_at: '2012-12-17 13:42:47'
+  CollectibleArchive_101220:
+    id: '101220'
+    graph_id: '68279'
+    collector_id: '1212'
+    name: 'GoldenLegacy HarrietTubman2 Interior4'
+    slug: goldenlegacy-harriettubman2-interior4
+    description: ''
+    batch_hash: 9e9277437ed11ee7558a30ac767abb6a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:51:54'
+    created_at: '2012-12-17 13:42:47'
+  CollectibleArchive_101223:
+    id: '101223'
+    graph_id: '68283'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Interior2'
+    slug: classicsillustrated169-negroamericans-interior2
+    description: ''
+    batch_hash: 0fb74978a02e0fdee612faa58448d30b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:53:40'
+    created_at: '2012-12-17 13:52:24'
+  CollectibleArchive_101224:
+    id: '101224'
+    graph_id: '68284'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Cover'
+    slug: classicsillustrated169-negroamericans-cover
+    description: ''
+    batch_hash: 90c8a91bbd62593ed6b0badfea3d5c88
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 13:54:30'
+    created_at: '2012-12-17 13:54:16'
+  CollectibleArchive_101232:
+    id: '101232'
+    graph_id: '68352'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 15:34:14'
+    created_at: '2012-12-17 15:33:13'
+  CollectibleArchive_101233:
+    id: '101233'
+    graph_id: '68353'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.1: Toussaint L''Ouverture and the Birth of Haiti'
+    slug: golden-legacy-vol1-toussaint-louverture-and-the-birth-of-haiti
+    description: 'Golden Legacy Vol.1: Toussaint L''Ouverture and the Birth of Haiti<br />Copyright 1966'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:44'
+    created_at: '2012-12-17 15:34:27'
+  CollectibleArchive_101234:
+    id: '101234'
+    graph_id: '68354'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'GoldenLegacy Vol.3: Crispus Attucks and the Minutemen'
+    slug: goldenlegacy-vol3-crispus-attucks-and-the-minutemen
+    description: 'GoldenLegacy Vol.3: Crispus Attucks and the Minutemen<br />Copyright 1967'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:39'
+    created_at: '2012-12-17 15:34:29'
+  CollectibleArchive_101235:
+    id: '101235'
+    graph_id: '68357'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.4: The Life of Benjamin Banneker'
+    slug: golden-legacy-vol4-the-life-of-benjamin-banneker
+    description: 'Golden Legacy Vol.4: The Life of Benjamin Banneker<br />Copyright 1968'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:42'
+    created_at: '2012-12-17 15:34:29'
+  CollectibleArchive_101236:
+    id: '101236'
+    graph_id: '68358'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.5: The Life of Matthew Henson'
+    slug: golden-legacy-vol5-the-life-of-matthew-henson
+    description: 'Golden Legacy Vol.5: The Life of Matthew Henson'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:36'
+    created_at: '2012-12-17 15:34:31'
+  CollectibleArchive_101237:
+    id: '101237'
+    graph_id: '68359'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.6: Alexander Dumas and Family'
+    slug: golden-legacy-vol6-alexander-dumas-and-family
+    description: 'Golden Legacy Vol.6: Alexander Dumas and Family<br />Copyright 1969'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:33'
+    created_at: '2012-12-17 15:34:32'
+  CollectibleArchive_101238:
+    id: '101238'
+    graph_id: '68360'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.9: The Life of Robert Smalls'
+    slug: golden-legacy-vol9-the-life-of-robert-smalls
+    description: 'Golden Legacy Vol.9: The Life of Robert Smalls<br />Copyright 1970<br /><br />'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:27'
+    created_at: '2012-12-17 15:34:33'
+  CollectibleArchive_101239:
+    id: '101239'
+    graph_id: '68361'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.10: Joseph Cinqué and the Amistad Mutiny'
+    slug: golden-legacy-vol10-joseph-cinque-and-the-amistad-mutiny
+    description: 'Golden Legacy Vol.10: Joseph Cinqué and the Amistad Mutiny<br />Copyright 1970'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:30'
+    created_at: '2012-12-17 15:34:33'
+  CollectibleArchive_101240:
+    id: '101240'
+    graph_id: '68362'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.11: Men of Action White, Wilkins &amp; Marshall'
+    slug: golden-legacy-vol11-men-of-action-white-wilkins-andamp-marshall
+    description: 'Golden Legacy Vol.11: Men of Action White, Wilkins &amp; Marshall<br />Copyright 1970'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:22'
+    created_at: '2012-12-17 15:34:37'
+  CollectibleArchive_101241:
+    id: '101241'
+    graph_id: '68364'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.14: The Life of Alexander Pushkin'
+    slug: golden-legacy-vol14-the-life-of-alexander-pushkin
+    description: 'Golden Legacy Vol.14: The Life of Alexander Pushkin<br />Copyright 1983'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:24'
+    created_at: '2012-12-17 15:34:37'
+  CollectibleArchive_101242:
+    id: '101242'
+    graph_id: '68363'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.12: Black Cowboys'
+    slug: golden-legacy-vol12-black-cowboys
+    description: 'Golden Legacy Vol.12: Black Cowboys<br />Copyright 1972'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:19'
+    created_at: '2012-12-17 15:34:38'
+  CollectibleArchive_101243:
+    id: '101243'
+    graph_id: '68366'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.16: Black Inventors'
+    slug: golden-legacy-vol16-black-inventors
+    description: 'Golden Legacy Vol.16: Black Inventors<br />Copyright 1976'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:13'
+    created_at: '2012-12-17 15:34:42'
+  CollectibleArchive_101244:
+    id: '101244'
+    graph_id: '68365'
+    collector_id: '1212'
+    content_category_id: '117'
+    name: 'Golden Legacy Vol.15: Ancient African Kingdoms'
+    slug: golden-legacy-vol15-ancient-african-kingdoms
+    description: 'Golden Legacy Vol.15: Ancient African Kingdoms<br />Copyright 1972'
+    batch_hash: b8257a112ba0fc1c0f868fd49be86512
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    is_public: '0'
+    updated_at: '2012-12-17 17:10:16'
+    created_at: '2012-12-17 15:34:42'
+  CollectibleArchive_101246:
+    id: '101246'
+    graph_id: '68370'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Cover'
+    slug: classicsillustrated169-negroamericans-cover
+    description: ''
+    batch_hash: 4dfa91d0b8b9665c251afd3aba70d79f
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:05:15'
+    created_at: '2012-12-17 16:03:03'
+  CollectibleArchive_101247:
+    id: '101247'
+    graph_id: '68369'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Interior9'
+    slug: classicsillustrated169-negroamericans-interior9
+    description: ''
+    batch_hash: 27a31b7dec10d442fc162f29cfc21843
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:05:12'
+    created_at: '2012-12-17 16:03:46'
+  CollectibleArchive_101249:
+    id: '101249'
+    graph_id: '68368'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Interior8'
+    slug: classicsillustrated169-negroamericans-interior8
+    description: ''
+    batch_hash: 27a31b7dec10d442fc162f29cfc21843
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:05:10'
+    created_at: '2012-12-17 16:03:46'
+  CollectibleArchive_101250:
+    id: '101250'
+    graph_id: '68378'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Cover'
+    slug: classicsillustrated169-negroamericans-cover
+    description: ''
+    batch_hash: 290ef6e648064770c13f9cba825ab9f9
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:13:30'
+    created_at: '2012-12-17 16:05:46'
+  CollectibleArchive_101252:
+    id: '101252'
+    graph_id: '68375'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Interior4'
+    slug: classicsillustrated169-negroamericans-interior4
+    description: ''
+    batch_hash: e62ae98bd8b01ef2259b02252eb5813a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:13:08'
+    created_at: '2012-12-17 16:06:03'
+  CollectibleArchive_101253:
+    id: '101253'
+    graph_id: '68376'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Interior5'
+    slug: classicsillustrated169-negroamericans-interior5
+    description: ''
+    batch_hash: e62ae98bd8b01ef2259b02252eb5813a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:13:18'
+    created_at: '2012-12-17 16:06:04'
+  CollectibleArchive_101254:
+    id: '101254'
+    graph_id: '68377'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Interior6'
+    slug: classicsillustrated169-negroamericans-interior6
+    description: ''
+    batch_hash: e62ae98bd8b01ef2259b02252eb5813a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:13:25'
+    created_at: '2012-12-17 16:06:05'
+  CollectibleArchive_101255:
+    id: '101255'
+    graph_id: '68371'
+    collector_id: '1212'
+    name: 'FrederickDouglas thumb'
+    slug: frederickdouglas-thumb
+    description: ''
+    batch_hash: 2dc867092cc3e1ef4edc1a9d5077a4f1
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:09:42'
+    created_at: '2012-12-17 16:09:32'
+  CollectibleArchive_101256:
+    id: '101256'
+    graph_id: '68373'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:11:48'
+    created_at: '2012-12-17 16:10:32'
+  CollectibleArchive_101258:
+    id: '101258'
+    graph_id: '68380'
+    collector_id: '1212'
+    name: 'GoldenLegacy7 FrederickDouglasPt1 Interior1'
+    slug: goldenlegacy7-frederickdouglaspt1-interior1
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:14:48'
+    created_at: '2012-12-17 16:13:49'
+  CollectibleArchive_101259:
+    id: '101259'
+    graph_id: '68381'
+    collector_id: '1212'
+    name: 'GoldenLegacy7 FrederickDouglasPt1 Interior2'
+    slug: goldenlegacy7-frederickdouglaspt1-interior2
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:14:57'
+    created_at: '2012-12-17 16:13:49'
+  CollectibleArchive_101260:
+    id: '101260'
+    graph_id: '68382'
+    collector_id: '1212'
+    name: 'GoldenLegacy7 FrederickDouglasPt1 Interior3'
+    slug: goldenlegacy7-frederickdouglaspt1-interior3
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:15:10'
+    created_at: '2012-12-17 16:13:50'
+  CollectibleArchive_101261:
+    id: '101261'
+    graph_id: '68383'
+    collector_id: '1212'
+    name: 'GoldenLegacy7 FrederickDouglasPt1 Interior4'
+    slug: goldenlegacy7-frederickdouglaspt1-interior4
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:15:20'
+    created_at: '2012-12-17 16:13:52'
+  CollectibleArchive_101262:
+    id: '101262'
+    graph_id: '68384'
+    collector_id: '1212'
+    name: 'GoldenLegacy7 FrederickDouglasPt1 Interior5'
+    slug: goldenlegacy7-frederickdouglaspt1-interior5
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:15:31'
+    created_at: '2012-12-17 16:13:53'
+  CollectibleArchive_101263:
+    id: '101263'
+    graph_id: '68385'
+    collector_id: '1212'
+    name: 'GoldenLegacy7 FrederickDouglasPt1 Interior6'
+    slug: goldenlegacy7-frederickdouglaspt1-interior6
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:15:38'
+    created_at: '2012-12-17 16:13:53'
+  CollectibleArchive_101264:
+    id: '101264'
+    graph_id: '68386'
+    collector_id: '1212'
+    name: 'GoldenLegacy7 FrederickDouglasPt1 Interior7'
+    slug: goldenlegacy7-frederickdouglaspt1-interior7
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:15:49'
+    created_at: '2012-12-17 16:13:54'
+  CollectibleArchive_101266:
+    id: '101266'
+    graph_id: '68388'
+    collector_id: '1212'
+    name: 'GoldenLegacy8 FrederickDouglasPt2 Interior1'
+    slug: goldenlegacy8-frederickdouglaspt2-interior1
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:16:43'
+    created_at: '2012-12-17 16:13:57'
+  CollectibleArchive_101267:
+    id: '101267'
+    graph_id: '68389'
+    collector_id: '1212'
+    name: 'GoldenLegacy8 FrederickDouglasPt2 Interior2'
+    slug: goldenlegacy8-frederickdouglaspt2-interior2
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:16:51'
+    created_at: '2012-12-17 16:13:57'
+  CollectibleArchive_101268:
+    id: '101268'
+    graph_id: '68390'
+    collector_id: '1212'
+    name: 'GoldenLegacy8 FrederickDouglasPt2 Interior3'
+    slug: goldenlegacy8-frederickdouglaspt2-interior3
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:16:59'
+    created_at: '2012-12-17 16:13:58'
+  CollectibleArchive_101269:
+    id: '101269'
+    graph_id: '68391'
+    collector_id: '1212'
+    name: 'GoldenLegacy8 FrederickDouglasPt2 Interior4'
+    slug: goldenlegacy8-frederickdouglaspt2-interior4
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:17:06'
+    created_at: '2012-12-17 16:13:59'
+  CollectibleArchive_101270:
+    id: '101270'
+    graph_id: '68392'
+    collector_id: '1212'
+    name: 'GoldenLegacy8 FrederickDouglasPt2 Interior5'
+    slug: goldenlegacy8-frederickdouglaspt2-interior5
+    description: ''
+    batch_hash: 2ba7f98e17757db86cd9c6f99c37d021
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:17:16'
+    created_at: '2012-12-17 16:14:00'
+  CollectibleArchive_101271:
+    id: '101271'
+    graph_id: '68394'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Interior10'
+    slug: classicsillustrated169-negroamericans-interior10
+    description: ''
+    batch_hash: 7fa85b5c2be339b11ad46e3ba9f00dfa
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:19:26'
+    created_at: '2012-12-17 16:18:24'
+  CollectibleArchive_101273:
+    id: '101273'
+    graph_id: '68395'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Interior11'
+    slug: classicsillustrated169-negroamericans-interior11
+    description: ''
+    batch_hash: 7fa85b5c2be339b11ad46e3ba9f00dfa
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:19:30'
+    created_at: '2012-12-17 16:18:25'
+  CollectibleArchive_101274:
+    id: '101274'
+    graph_id: '68396'
+    collector_id: '1212'
+    name: 'ClassicsIllustrated169 NegroAmericans Cover'
+    slug: classicsillustrated169-negroamericans-cover
+    description: ''
+    batch_hash: 2d1dc752e572117a37fb6e0fa5ef0bc8
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:19:33'
+    created_at: '2012-12-17 16:18:31'
+  CollectibleArchive_101276:
+    id: '101276'
+    graph_id: '68398'
+    collector_id: '1212'
+    name: 'BirthplaceMemorialCoin Tails'
+    slug: birthplacememorialcoin-tails
+    description: ''
+    batch_hash: 0d925fd78894af42e21c1deebe6927fe
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:21:14'
+    created_at: '2012-12-17 16:20:48'
+  CollectibleArchive_101278:
+    id: '101278'
+    graph_id: '68400'
+    collector_id: '1212'
+    name: 'BTWashing GWCarverCoin Tails'
+    slug: btwashing-gwcarvercoin-tails
+    description: ''
+    batch_hash: 4dfddc75be8f320fb93d7607923acf9f
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:24:07'
+    created_at: '2012-12-17 16:23:49'
+  CollectibleArchive_101279:
+    id: '101279'
+    graph_id: '68409'
+    collector_id: '1212'
+    name: '1997Proof Box1'
+    slug: 1997proof-box1
+    description: ''
+    batch_hash: 6ef09da7ea843b38452e42adf34fee0b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:34:48'
+    created_at: '2012-12-17 16:25:26'
+  CollectibleArchive_101280:
+    id: '101280'
+    graph_id: '68410'
+    collector_id: '1212'
+    name: '1997Proof Box2'
+    slug: 1997proof-box2
+    description: ''
+    batch_hash: 6ef09da7ea843b38452e42adf34fee0b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:34:55'
+    created_at: '2012-12-17 16:25:27'
+  CollectibleArchive_101282:
+    id: '101282'
+    graph_id: '68408'
+    collector_id: '1212'
+    name: '1997Proof Coin Tails'
+    slug: 1997proof-coin-tails
+    description: ''
+    batch_hash: 6ef09da7ea843b38452e42adf34fee0b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:34:40'
+    created_at: '2012-12-17 16:25:28'
+  CollectibleArchive_101283:
+    id: '101283'
+    graph_id: '68413'
+    collector_id: '1212'
+    name: 'JackRobinson CommemorativeBox1'
+    slug: jackrobinson-commemorativebox1
+    description: ''
+    batch_hash: 6ef09da7ea843b38452e42adf34fee0b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:36:36'
+    created_at: '2012-12-17 16:25:32'
+  CollectibleArchive_101284:
+    id: '101284'
+    graph_id: '68412'
+    collector_id: '1212'
+    name: 'JackRobinson CommemorativeBox2'
+    slug: jackrobinson-commemorativebox2
+    description: ''
+    batch_hash: 6ef09da7ea843b38452e42adf34fee0b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:36:33'
+    created_at: '2012-12-17 16:25:32'
+  CollectibleArchive_101286:
+    id: '101286'
+    graph_id: '68414'
+    collector_id: '1212'
+    name: 'JackRobinson CommemorativeBox4'
+    slug: jackrobinson-commemorativebox4
+    description: ''
+    batch_hash: 6ef09da7ea843b38452e42adf34fee0b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:36:39'
+    created_at: '2012-12-17 16:25:34'
+  CollectibleArchive_101287:
+    id: '101287'
+    graph_id: '68415'
+    collector_id: '1212'
+    name: 'JackRobinson CommemorativeBox5'
+    slug: jackrobinson-commemorativebox5
+    description: ''
+    batch_hash: 6ef09da7ea843b38452e42adf34fee0b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:36:43'
+    created_at: '2012-12-17 16:25:35'
+  CollectibleArchive_101288:
+    id: '101288'
+    graph_id: '68416'
+    collector_id: '1212'
+    name: 'JackRobinson CommemorativeBox6'
+    slug: jackrobinson-commemorativebox6
+    description: ''
+    batch_hash: 6ef09da7ea843b38452e42adf34fee0b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:36:46'
+    created_at: '2012-12-17 16:25:35'
+  CollectibleArchive_101289:
+    id: '101289'
+    graph_id: '68401'
+    collector_id: '1212'
+    name: 'RoseParks Heads'
+    slug: roseparks-heads
+    description: ''
+    batch_hash: 4f7a7621ddb013c1deece3544a899e51
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:26:30'
+    created_at: '2012-12-17 16:25:42'
+  CollectibleArchive_101290:
+    id: '101290'
+    graph_id: '68402'
+    collector_id: '1212'
+    name: 'RoseParks Tails'
+    slug: roseparks-tails
+    description: ''
+    batch_hash: 4f7a7621ddb013c1deece3544a899e51
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:26:32'
+    created_at: '2012-12-17 16:25:43'
+  CollectibleArchive_101292:
+    id: '101292'
+    graph_id: '68404'
+    collector_id: '1212'
+    name: 'AintIAWomanCoin Tails'
+    slug: aintiawomancoin-tails
+    description: ''
+    batch_hash: 53d36004e43917a62c997f1b311372dd
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:27:24'
+    created_at: '2012-12-17 16:25:49'
+  CollectibleArchive_101293:
+    id: '101293'
+    graph_id: '68406'
+    collector_id: '1212'
+    name: ''
+    slug: n-a
+    description: ''
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:33:25'
+    created_at: '2012-12-17 16:32:15'
+  CollectibleArchive_101294:
+    id: '101294'
+    graph_id: '68420'
+    collector_id: '1212'
+    name: 'JacksonFiveActionGame Box'
+    slug: jacksonfiveactiongame-box
+    description: ''
+    batch_hash: b92f255e5ccdac120c9bc7f69090673d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:40:59'
+    created_at: '2012-12-17 16:37:49'
+  CollectibleArchive_101295:
+    id: '101295'
+    graph_id: '68419'
+    collector_id: '1212'
+    name: 'JacksonFiveActionGame Cards2'
+    slug: jacksonfiveactiongame-cards2
+    description: ''
+    batch_hash: b92f255e5ccdac120c9bc7f69090673d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:40:56'
+    created_at: '2012-12-17 16:37:49'
+  CollectibleArchive_101296:
+    id: '101296'
+    graph_id: '68418'
+    collector_id: '1212'
+    name: 'JacksonFiveActionGame Cards1'
+    slug: jacksonfiveactiongame-cards1
+    description: ''
+    batch_hash: b92f255e5ccdac120c9bc7f69090673d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:40:44'
+    created_at: '2012-12-17 16:37:49'
+  CollectibleArchive_101299:
+    id: '101299'
+    graph_id: '68422'
+    collector_id: '1212'
+    name: 'MJ close up'
+    slug: mj-close-up
+    description: ''
+    batch_hash: be60a3da0f9fbcff141b8df9d3519b4b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:44:45'
+    created_at: '2012-12-17 16:44:27'
+  CollectibleArchive_101300:
+    id: '101300'
+    graph_id: '68423'
+    collector_id: '1212'
+    name: 'TheImmortal CirqueDiSoleil Cover'
+    slug: theimmortal-cirquedisoleil-cover
+    description: ''
+    batch_hash: 69de0ee810b0e45430660df574b1344b
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:44:49'
+    created_at: '2012-12-17 16:44:33'
+  CollectibleArchive_101303:
+    id: '101303'
+    graph_id: '68430'
+    collector_id: '1212'
+    name: 'GoldenLegacy1 ToussaintLOuverture Cover'
+    slug: goldenlegacy1-toussaintlouverture-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:55:20'
+    created_at: '2012-12-17 16:52:45'
+  CollectibleArchive_101304:
+    id: '101304'
+    graph_id: '68440'
+    collector_id: '1212'
+    name: 'GoldenLegacy4 BenjaminBanneker Cover'
+    slug: goldenlegacy4-benjaminbanneker-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:02:48'
+    created_at: '2012-12-17 16:52:45'
+  CollectibleArchive_101305:
+    id: '101305'
+    graph_id: '68438'
+    collector_id: '1212'
+    name: 'GoldenLegacy3 CrispusAttucks Cover'
+    slug: goldenlegacy3-crispusattucks-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:02:11'
+    created_at: '2012-12-17 16:52:45'
+  CollectibleArchive_101306:
+    id: '101306'
+    graph_id: '68427'
+    collector_id: '1212'
+    name: 'GoldenLegacy5 MattherHenson Cover'
+    slug: goldenlegacy5-mattherhenson-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:53:15'
+    created_at: '2012-12-17 16:52:48'
+  CollectibleArchive_101307:
+    id: '101307'
+    graph_id: '68432'
+    collector_id: '1212'
+    name: 'GoldenLegacy6 AlexanderDumas Cover'
+    slug: goldenlegacy6-alexanderdumas-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:57:00'
+    created_at: '2012-12-17 16:52:49'
+  CollectibleArchive_101308:
+    id: '101308'
+    graph_id: '68450'
+    collector_id: '1212'
+    name: 'GoldenLegacy9 RobertSmalls Cover'
+    slug: goldenlegacy9-robertsmalls-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:06:09'
+    created_at: '2012-12-17 16:52:49'
+  CollectibleArchive_101309:
+    id: '101309'
+    graph_id: '68442'
+    collector_id: '1212'
+    name: 'GoldenLegacy10 JosephCinque Cover'
+    slug: goldenlegacy10-josephcinque-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:03:13'
+    created_at: '2012-12-17 16:52:52'
+  CollectibleArchive_101310:
+    id: '101310'
+    graph_id: '68452'
+    collector_id: '1212'
+    name: 'GoldenLegacy11 MenofAction Cover'
+    slug: goldenlegacy11-menofaction-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:06:36'
+    created_at: '2012-12-17 16:52:55'
+  CollectibleArchive_101311:
+    id: '101311'
+    graph_id: '68428'
+    collector_id: '1212'
+    name: 'GoldenLegacy12 BlackCowboys Cover'
+    slug: goldenlegacy12-blackcowboys-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:54:14'
+    created_at: '2012-12-17 16:52:55'
+  CollectibleArchive_101312:
+    id: '101312'
+    graph_id: '68444'
+    collector_id: '1212'
+    name: 'GoldenLegacy14 AlexanderPushkin Cover'
+    slug: goldenlegacy14-alexanderpushkin-cover
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:04:09'
+    created_at: '2012-12-17 16:52:55'
+  CollectibleArchive_101313:
+    id: '101313'
+    graph_id: '68446'
+    collector_id: '1212'
+    name: 'GoldenLegacy15 AncientAfricanKingdoms'
+    slug: goldenlegacy15-ancientafricankingdoms
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:05:01'
+    created_at: '2012-12-17 16:52:59'
+  CollectibleArchive_101314:
+    id: '101314'
+    graph_id: '68454'
+    collector_id: '1212'
+    name: 'GoldenLegacy16 BlackInventors'
+    slug: goldenlegacy16-blackinventors
+    description: ''
+    batch_hash: d431758b18165a5519b5f80b801a4926
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:07:07'
+    created_at: '2012-12-17 16:52:59'
+  CollectibleArchive_101315:
+    id: '101315'
+    graph_id: '68434'
+    collector_id: '1212'
+    name: 'GoldenLegacy8 FrederickDouglasPt2 Cover'
+    slug: goldenlegacy8-frederickdouglaspt2-cover
+    description: ''
+    batch_hash: 59919f22df758609075a51b8412456f6
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 16:58:48'
+    created_at: '2012-12-17 16:57:58'
+  CollectibleArchive_101316:
+    id: '101316'
+    graph_id: '68448'
+    collector_id: '1212'
+    name: 'GoldenLegacy7 FrederickDouglasPt1 Cover'
+    slug: goldenlegacy7-frederickdouglaspt1-cover
+    description: ''
+    batch_hash: ea1b701df3301a31937b845fbc33703a
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:05:30'
+    created_at: '2012-12-17 16:58:05'
+  CollectibleArchive_101317:
+    id: '101317'
+    graph_id: '68436'
+    collector_id: '1212'
+    name: 'GoldenLegacy HarrietTubman2 Cover'
+    slug: goldenlegacy-harriettubman2-cover
+    description: ''
+    batch_hash: c178b040f380a43cfc6ca0b883259170
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:00:59'
+    created_at: '2012-12-17 17:00:22'
+  CollectibleArchive_101318:
+    id: '101318'
+    graph_id: '68456'
+    collector_id: '1212'
+    name: 'GoldenLegacy13 MLK Cover'
+    slug: goldenlegacy13-mlk-cover
+    description: ''
+    batch_hash: fc9577f3c01149886d1fe9df2a9c98b6
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:08:32'
+    created_at: '2012-12-17 17:08:26'
+  CollectibleArchive_101320:
+    id: '101320'
+    graph_id: '68458'
+    collector_id: '1212'
+    name: SavetheChildren
+    slug: savethechildren
+    description: ''
+    batch_hash: 1043af88dc4a8c131d98df5e8e93e9aa
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:11:50'
+    created_at: '2012-12-17 17:11:32'
+  CollectibleArchive_101322:
+    id: '101322'
+    graph_id: '68460'
+    collector_id: '1212'
+    name: TheWiz
+    slug: thewiz
+    description: ''
+    batch_hash: 1043af88dc4a8c131d98df5e8e93e9aa
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:12:47'
+    created_at: '2012-12-17 17:11:34'
+  CollectibleArchive_101324:
+    id: '101324'
+    graph_id: '68461'
+    collector_id: '1212'
+    name: 'Cracked207 Cover'
+    slug: cracked207-cover
+    description: ''
+    batch_hash: aac28251fbed7d6d7fd7993fceaf2112
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:16:33'
+    created_at: '2012-12-17 17:16:16'
+  CollectibleArchive_101326:
+    id: '101326'
+    graph_id: '68462'
+    collector_id: '1212'
+    name: 'TheHornet519 Cover'
+    slug: thehornet519-cover
+    description: ''
+    batch_hash: aac28251fbed7d6d7fd7993fceaf2112
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:16:54'
+    created_at: '2012-12-17 17:16:17'
+  CollectibleArchive_101327:
+    id: '101327'
+    graph_id: '68463'
+    collector_id: '1212'
+    name: 'TheHornet519 Interior1'
+    slug: thehornet519-interior1
+    description: ''
+    batch_hash: aac28251fbed7d6d7fd7993fceaf2112
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:17:07'
+    created_at: '2012-12-17 17:16:19'
+  CollectibleArchive_101330:
+    id: '101330'
+    graph_id: '68466'
+    collector_id: '1212'
+    name: 3cent
+    slug: 3cent
+    description: ''
+    batch_hash: 8c5d7981aae8f57ffe16a92d6bc19289
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:23:06'
+    created_at: '2012-12-17 17:20:21'
+  CollectibleArchive_101331:
+    id: '101331'
+    graph_id: '68468'
+    collector_id: '1212'
+    name: 10cent
+    slug: 10cent
+    description: ''
+    batch_hash: 8c5d7981aae8f57ffe16a92d6bc19289
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:23:26'
+    created_at: '2012-12-17 17:20:23'
+  CollectibleArchive_101333:
+    id: '101333'
+    graph_id: '68470'
+    collector_id: '1212'
+    name: 25cent
+    slug: 25cent
+    description: ''
+    batch_hash: 5029bf14990876abaddb391458397d05
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:25:00'
+    created_at: '2012-12-17 17:24:37'
+  CollectibleArchive_101336:
+    id: '101336'
+    graph_id: '68472'
+    collector_id: '1212'
+    name: 3cent
+    slug: 3cent
+    description: ''
+    batch_hash: 5f8060194872244d0016246ba2bb1a49
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:27:43'
+    created_at: '2012-12-17 17:27:28'
+  CollectibleArchive_101337:
+    id: '101337'
+    graph_id: '68474'
+    collector_id: '1212'
+    name: 'CelebratetheCentury 1910'
+    slug: celebratethecentury-1910
+    description: ''
+    batch_hash: 5f8060194872244d0016246ba2bb1a49
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:28:23'
+    created_at: '2012-12-17 17:27:29'
+  CollectibleArchive_101339:
+    id: '101339'
+    graph_id: '68476'
+    collector_id: '1212'
+    name: 13cent
+    slug: 13cent
+    description: ''
+    batch_hash: 2079d158843fd222daf2b0b6bdc9942d
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:29:41'
+    created_at: '2012-12-17 17:29:18'
+  CollectibleArchive_101342:
+    id: '101342'
+    graph_id: '68480'
+    collector_id: '1212'
+    name: 20cent
+    slug: 20cent
+    description: ''
+    batch_hash: 710a3fab9bde98f005b3d7052c929de4
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:32:15'
+    created_at: '2012-12-17 17:30:41'
+  CollectibleArchive_101344:
+    id: '101344'
+    graph_id: '68478'
+    collector_id: '1212'
+    name: 'CelebratetheCentury 1940'
+    slug: celebratethecentury-1940
+    description: ''
+    batch_hash: 710a3fab9bde98f005b3d7052c929de4
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:31:22'
+    created_at: '2012-12-17 17:30:43'
+  CollectibleArchive_101345:
+    id: '101345'
+    graph_id: '68482'
+    collector_id: '1212'
+    name: LegendsofBaseball
+    slug: legendsofbaseball
+    description: ''
+    batch_hash: 710a3fab9bde98f005b3d7052c929de4
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:32:56'
+    created_at: '2012-12-17 17:30:44'
+  CollectibleArchive_101346:
+    id: '101346'
+    graph_id: '68508'
+    collector_id: '1212'
+    name: '32cent Detail'
+    slug: 32cent-detail
+    description: ''
+    batch_hash: f107d1f382c424329da29f5d0779a814
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:43:51'
+    created_at: '2012-12-17 17:33:45'
+  CollectibleArchive_101348:
+    id: '101348'
+    graph_id: '68510'
+    collector_id: '1212'
+    name: 32cent
+    slug: 32cent
+    description: ''
+    batch_hash: f107d1f382c424329da29f5d0779a814
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:45:03'
+    created_at: '2012-12-17 17:33:46'
+  CollectibleArchive_101351:
+    id: '101351'
+    graph_id: '68492'
+    collector_id: '1212'
+    name: CivilWarSet
+    slug: civilwarset
+    description: ''
+    batch_hash: 3cf575a95fdbe7bb2e8b135abc01d844
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:34:51'
+    created_at: '2012-12-17 17:34:21'
+  CollectibleArchive_101352:
+    id: '101352'
+    graph_id: '68500'
+    collector_id: '1212'
+    name: CivilWarSet
+    slug: civilwarset-44ae1b
+    description: ''
+    batch_hash: d62e032186b6f7d770871a8937b85fcc
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:36:02'
+    created_at: '2012-12-17 17:34:30'
+  CollectibleArchive_101354:
+    id: '101354'
+    graph_id: '68505'
+    collector_id: '1212'
+    name: 'CelebratetheCentury 1960 Detail'
+    slug: celebratethecentury-1960-detail
+    description: ''
+    batch_hash: 1eb4d3d48d8fd9b99ab872fa03f3c8b7
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:39:41'
+    created_at: '2012-12-17 17:37:05'
+  CollectibleArchive_101355:
+    id: '101355'
+    graph_id: '68504'
+    collector_id: '1212'
+    name: 15cent
+    slug: 15cent
+    description: ''
+    batch_hash: 1eb4d3d48d8fd9b99ab872fa03f3c8b7
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:37:27'
+    created_at: '2012-12-17 17:37:06'
+  CollectibleArchive_101356:
+    id: '101356'
+    graph_id: '68506'
+    collector_id: '1212'
+    name: 'CelebratetheCentury 1960'
+    slug: celebratethecentury-1960
+    description: ''
+    batch_hash: 1eb4d3d48d8fd9b99ab872fa03f3c8b7
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:39:50'
+    created_at: '2012-12-17 17:37:06'
+  CollectibleArchive_101358:
+    id: '101358'
+    graph_id: '68524'
+    collector_id: '1212'
+    name: 22cent
+    slug: 22cent
+    description: ''
+    batch_hash: 905f1961c5c2ccb3f3497fddf62c314c
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:52:21'
+    created_at: '2012-12-17 17:42:04'
+  CollectibleArchive_101361:
+    id: '101361'
+    graph_id: '68516'
+    collector_id: '1212'
+    name: 33cent
+    slug: 33cent
+    description: ''
+    batch_hash: 9589feae0de8ce48c9db9fb857fff5de
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:49:24'
+    created_at: '2012-12-17 17:48:12'
+  CollectibleArchive_101362:
+    id: '101362'
+    graph_id: '68514'
+    collector_id: '1212'
+    name: '33cent Detail'
+    slug: 33cent-detail-70154c
+    description: ''
+    batch_hash: 1f97e022c9994681a2cb680d835e1474
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:49:10'
+    created_at: '2012-12-17 17:48:20'
+  CollectibleArchive_101363:
+    id: '101363'
+    graph_id: '68522'
+    collector_id: '1212'
+    name: 'SJ thumb'
+    slug: sj-thumb
+    description: ''
+    batch_hash: d39cab9823b70807048fd8c3b5494e8e
+    num_views: '0'
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '1'
+    is_public: '0'
+    updated_at: '2012-12-17 17:52:10'
+    created_at: '2012-12-17 17:51:35'

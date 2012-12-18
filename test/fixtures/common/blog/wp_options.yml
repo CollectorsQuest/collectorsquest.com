@@ -99,11 +99,6 @@ wpOption:
     option_name: default_pingback_flag
     option_value: '1'
     autoload: yes
-  wpOption_23_default_post_edit_rows:
-    option_id: '23'
-    option_name: default_post_edit_rows
-    option_value: '15'
-    autoload: yes
   wpOption_24_posts_per_page:
     option_id: '24'
     option_name: posts_per_page

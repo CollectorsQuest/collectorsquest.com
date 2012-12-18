@@ -657,19 +657,6 @@ Comment:
     body: 'Does anyone know where I can find/buy playboy shoes? They were patten leather with rough rubber on the sides. Very stylish in the 70s.'
     ip_address: 68.196.125.30
     created_at: '2012-02-07 18:29:51'
-  Comment_14287:
-    collection_id: Collection_879
-    model: ''
-    model_id: '0'
-    author_name: Ivana
-    author_email: ivana083@HOTMAIL.COM
-    author_url: ''
-    is_notify: '0'
-    is_hidden: '0'
-    is_spam: '0'
-    body: "Dear,\r\nyour collection is very nice.\r\n\r\nIf you want, like this page on facebook\r\nhttps://www.facebook.com/pages/Snowglobes-snezne-kugle/185456721468232?ref=tn_tnmn\r\n\r\n"
-    ip_address: 82.208.203.51
-    created_at: '2012-02-10 05:12:36'
   Comment_14458:
     collection_id: Collection_1383
     model: ''

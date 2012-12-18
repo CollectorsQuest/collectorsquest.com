@@ -1,5 +1,7 @@
-Collection:
-  Collection_255:
+CollectorCollection:
+  CollectorCollection_255:
+    id: Collection_255
+    collector_id: Collector_163
     graph_id: '11410'
     collection_category_id: '15'
     content_category_id: ContentCategory_857
@@ -18,8 +20,9 @@ Collection:
     rating_on: '1'
     created_at: '2007-09-15 22:38:42'
     updated_at: '2012-12-15 04:57:58'
-     
-  Collection_616:
+  CollectorCollection_616:
+    id: Collection_616
+    collector_id: Collector_644
     graph_id: '11622'
     collection_category_id: '10'
     content_category_id: ContentCategory_367
@@ -38,8 +41,9 @@ Collection:
     rating_on: '1'
     created_at: '2008-06-24 17:17:53'
     updated_at: '2012-12-15 00:06:21'
-     
-  Collection_618:
+  CollectorCollection_618:
+    id: Collection_618
+    collector_id: Collector_644
     graph_id: '10871'
     collection_category_id: '6'
     content_category_id: ContentCategory_294
@@ -58,8 +62,9 @@ Collection:
     rating_on: '1'
     created_at: '2008-06-25 16:15:32'
     updated_at: '2012-12-17 13:21:06'
-     
-  Collection_619:
+  CollectorCollection_619:
+    id: Collection_619
+    collector_id: Collector_644
     graph_id: '10347'
     collection_category_id: '6'
     content_category_id: ContentCategory_332
@@ -78,8 +83,9 @@ Collection:
     rating_on: '1'
     created_at: '2008-06-25 21:56:38'
     updated_at: '2012-12-16 02:07:31'
-     
-  Collection_643:
+  CollectorCollection_643:
+    id: Collection_643
+    collector_id: Collector_644
     graph_id: '11596'
     collection_category_id: '6'
     content_category_id: ContentCategory_206
@@ -98,8 +104,9 @@ Collection:
     rating_on: '1'
     created_at: '2008-07-10 16:18:10'
     updated_at: '2012-12-16 06:25:50'
-     
-  Collection_1021:
+  CollectorCollection_1021:
+    id: Collection_1021
+    collector_id: Collector_963
     graph_id: '11849'
     collection_category_id: '757'
     content_category_id: ContentCategory_1622
@@ -118,8 +125,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-02-05 22:09:17'
     updated_at: '2012-12-18 10:18:48'
-     
-  Collection_1290:
+  CollectorCollection_1290:
+    id: Collection_1290
+    collector_id: Collector_1212
     graph_id: '11743'
     collection_category_id: '330'
     content_category_id: ContentCategory_1255
@@ -138,8 +146,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-03 19:28:40'
     updated_at: '2012-12-15 22:45:37'
-     
-  Collection_1299:
+  CollectorCollection_1299:
+    id: Collection_1299
+    collector_id: Collector_1212
     graph_id: '11894'
     collection_category_id: '115'
     content_category_id: ContentCategory_117
@@ -158,8 +167,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-04 20:07:13'
     updated_at: '2012-12-13 17:42:50'
-     
-  Collection_1300:
+  CollectorCollection_1300:
+    id: Collection_1300
+    collector_id: Collector_1212
     graph_id: '12076'
     collection_category_id: '250'
     content_category_id: ContentCategory_521
@@ -178,8 +188,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-04 20:24:47'
     updated_at: '2012-11-30 23:51:05'
-     
-  Collection_1301:
+  CollectorCollection_1301:
+    id: Collection_1301
+    collector_id: Collector_1212
     graph_id: '11703'
     collection_category_id: '52'
     content_category_id: ContentCategory_882
@@ -198,8 +209,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-04 20:59:35'
     updated_at: '2012-12-07 14:29:04'
-     
-  Collection_1302:
+  CollectorCollection_1302:
+    id: Collection_1302
+    collector_id: Collector_1212
     graph_id: '10820'
     collection_category_id: '15'
     content_category_id: ContentCategory_778
@@ -218,8 +230,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-04 20:46:56'
     updated_at: '2012-12-17 17:56:02'
-     
-  Collection_1372:
+  CollectorCollection_1372:
+    id: Collection_1372
+    collector_id: Collector_1212
     graph_id: '11706'
     collection_category_id: '2'
     content_category_id: ContentCategory_57
@@ -238,8 +251,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-24 23:45:06'
     updated_at: '2012-12-01 22:21:59'
-     
-  Collection_1383:
+  CollectorCollection_1383:
+    id: Collection_1383
+    collector_id: Collector_1212
     graph_id: '10903'
     collection_category_id: '16'
     content_category_id: ContentCategory_117
@@ -258,8 +272,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-29 00:08:26'
     updated_at: '2012-12-17 17:08:32'
-     
-  Collection_1395:
+  CollectorCollection_1395:
+    id: Collection_1395
+    collector_id: Collector_1212
     graph_id: '11308'
     collection_category_id: '2'
     content_category_id: ContentCategory_55
@@ -278,8 +293,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-30 11:07:21'
     updated_at: '2012-12-16 00:58:51'
-     
-  Collection_1402:
+  CollectorCollection_1402:
+    id: Collection_1402
+    collector_id: Collector_1212
     graph_id: '11161'
     collection_category_id: '2'
     content_category_id: ContentCategory_1856
@@ -298,8 +314,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-05-31 17:06:15'
     updated_at: '2012-12-11 04:31:50'
-     
-  Collection_1452:
+  CollectorCollection_1452:
+    id: Collection_1452
+    collector_id: Collector_1212
     graph_id: '10601'
     collection_category_id: '2'
     content_category_id: ContentCategory_2369
@@ -318,8 +335,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-06-14 14:29:32'
     updated_at: '2012-12-07 03:35:16'
-     
-  Collection_1506:
+  CollectorCollection_1506:
+    id: Collection_1506
+    collector_id: Collector_1212
     graph_id: '11786'
     collection_category_id: '250'
     content_category_id: ContentCategory_521
@@ -338,8 +356,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-06-22 18:16:18'
     updated_at: '2012-12-09 17:27:55'
-     
-  Collection_1507:
+  CollectorCollection_1507:
+    id: Collection_1507
+    collector_id: Collector_1212
     graph_id: '11895'
     collection_category_id: '16'
     content_category_id: ContentCategory_521
@@ -358,8 +377,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-06-22 18:10:16'
     updated_at: '2012-12-08 01:52:03'
-     
-  Collection_1534:
+  CollectorCollection_1534:
+    id: Collection_1534
+    collector_id: Collector_1212
     graph_id: '11691'
     collection_category_id: '768'
     content_category_id: ContentCategory_521
@@ -378,8 +398,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-07-23 21:45:53'
     updated_at: '2012-12-17 17:18:05'
-     
-  Collection_1554:
+  CollectorCollection_1554:
+    id: Collection_1554
+    collector_id: Collector_1212
     graph_id: '11360'
     collection_category_id: '115'
     content_category_id: ContentCategory_120
@@ -398,8 +419,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-07-11 18:34:26'
     updated_at: '2012-12-17 14:58:51'
-     
-  Collection_1598:
+  CollectorCollection_1598:
+    id: Collection_1598
+    collector_id: Collector_1212
     graph_id: '11976'
     collection_category_id: '23'
     content_category_id: ContentCategory_3431
@@ -418,8 +440,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-07-23 22:34:33'
     updated_at: '2012-12-15 08:41:33'
-     
-  Collection_1681:
+  CollectorCollection_1681:
+    id: Collection_1681
+    collector_id: Collector_1212
     graph_id: '10478'
     collection_category_id: '250'
     content_category_id: ContentCategory_665
@@ -438,8 +461,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-08-22 11:17:46'
     updated_at: '2012-12-03 17:34:48'
-     
-  Collection_1683:
+  CollectorCollection_1683:
+    id: Collection_1683
+    collector_id: Collector_1212
     graph_id: '10295'
     collection_category_id: '250'
     content_category_id: ContentCategory_576
@@ -458,8 +482,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-08-22 11:45:33'
     updated_at: '2012-12-14 18:29:12'
-     
-  Collection_1710:
+  CollectorCollection_1710:
+    id: Collection_1710
+    collector_id: Collector_1212
     graph_id: '11654'
     collection_category_id: '115'
     content_category_id: ContentCategory_117
@@ -478,8 +503,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-08-26 10:28:03'
     updated_at: '2012-11-28 21:04:41'
-     
-  Collection_1839:
+  CollectorCollection_1839:
+    id: Collection_1839
+    collector_id: Collector_1212
     graph_id: '11171'
     collection_category_id: '115'
     content_category_id: ContentCategory_117
@@ -498,8 +524,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-11-28 20:42:09'
     updated_at: '2012-12-14 09:35:37'
-     
-  Collection_1870:
+  CollectorCollection_1870:
+    id: Collection_1870
+    collector_id: Collector_1212
     graph_id: '10495'
     collection_category_id: '115'
     content_category_id: ContentCategory_117
@@ -518,8 +545,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-11-28 21:08:52'
     updated_at: '2012-11-29 01:20:25'
-     
-  Collection_1892:
+  CollectorCollection_1892:
+    id: Collection_1892
+    collector_id: Collector_1212
     graph_id: '11276'
     collection_category_id: '115'
     content_category_id: ContentCategory_120
@@ -538,8 +566,9 @@ Collection:
     rating_on: '1'
     created_at: '2009-12-07 20:50:51'
     updated_at: '2012-12-11 13:30:51'
-     
-  Collection_2373:
+  CollectorCollection_2373:
+    id: Collection_2373
+    collector_id: Collector_4208
     graph_id: '11929'
     collection_category_id: '42'
     content_category_id: ContentCategory_243
@@ -558,8 +587,9 @@ Collection:
     rating_on: '1'
     created_at: '2010-09-12 12:15:51'
     updated_at: '2012-12-16 12:34:02'
-     
-  Collection_2395:
+  CollectorCollection_2395:
+    id: Collection_2395
+    collector_id: Collector_4295
     graph_id: '12301'
     collection_category_id: '677'
     content_category_id: ContentCategory_3502
@@ -578,8 +608,9 @@ Collection:
     rating_on: '1'
     created_at: '2010-09-28 21:01:24'
     updated_at: '2012-11-26 17:32:13'
-     
-  Collection_2973:
+  CollectorCollection_2973:
+    id: Collection_2973
+    collector_id: Collector_6700
     graph_id: '12244'
     collection_category_id: '551'
     content_category_id: ContentCategory_1435
@@ -598,8 +629,9 @@ Collection:
     rating_on: '1'
     created_at: '2011-08-24 20:06:13'
     updated_at: '2012-12-11 11:14:23'
-     
-  Collection_3329:
+  CollectorCollection_3329:
+    id: Collection_3329
+    collector_id: Collector_1212
     graph_id: '22316'
     content_category_id: ContentCategory_1138
     name: 'Black Animation'
@@ -617,8 +649,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-07-06 10:13:09'
     updated_at: '2012-12-17 16:31:43'
-     
-  Collection_3330:
+  CollectorCollection_3330:
+    id: Collection_3330
+    collector_id: Collector_1212
     graph_id: '22346'
     content_category_id: ContentCategory_521
     name: 'Barack Obama Comic Book Collection'
@@ -636,8 +669,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-07-06 11:12:04'
     updated_at: '2012-12-13 15:28:48'
-     
-  Collection_3930:
+  CollectorCollection_3930:
+    id: Collection_3930
+    collector_id: Collector_59
     graph_id: '48211'
     content_category_id: ContentCategory_402
     name: 'Poptart''s Items for Sale'
@@ -655,8 +689,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-09-10 04:33:23'
     updated_at: '2012-12-14 11:55:07'
-     
-  Collection_4046:
+  CollectorCollection_4046:
+    id: Collection_4046
+    collector_id: Collector_59
     graph_id: '50617'
     content_category_id: ContentCategory_1427
     name: 'Kistchy Vintage Animals With Bowties'
@@ -674,8 +709,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-09-19 18:46:31'
     updated_at: '2012-12-15 09:08:24'
-     
-  Collection_4047:
+  CollectorCollection_4047:
+    id: Collection_4047
+    collector_id: Collector_59
     graph_id: '50621'
     content_category_id: ContentCategory_1427
     name: 'Kitschy Animals With Fur'
@@ -693,8 +729,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-09-19 18:56:21'
     updated_at: '2012-12-12 03:43:13'
-     
-  Collection_4400:
+  CollectorCollection_4400:
+    id: Collection_4400
+    collector_id: Collector_59
     graph_id: '58352'
     content_category_id: ContentCategory_3503
     name: 'Vintage Rubber Squeaky Toys'
@@ -712,8 +749,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-11-05 04:29:14'
     updated_at: '2012-12-16 23:41:16'
-     
-  Collection_4401:
+  CollectorCollection_4401:
+    id: Collection_4401
+    collector_id: Collector_59
     graph_id: '58382'
     content_category_id: ContentCategory_3411
     name: 'Vintage Rubber Faced - Headed Stuffed Animals'
@@ -731,8 +769,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-11-05 06:05:55'
     updated_at: '2012-12-15 09:12:37'
-     
-  Collection_4402:
+  CollectorCollection_4402:
+    id: Collection_4402
+    collector_id: Collector_59
     graph_id: '58386'
     content_category_id: ContentCategory_3411
     name: 'Vintage Stuffed Animal Toys'
@@ -750,8 +789,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-11-05 06:15:05'
     updated_at: '2012-12-15 09:14:07'
-     
-  Collection_4634:
+  CollectorCollection_4634:
+    id: Collection_4634
+    collector_id: Collector_1212
     graph_id: '66873'
     content_category_id: ContentCategory_521
     name: 'Michelle Obama Comic Book Collection '
@@ -769,8 +809,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-13 15:14:50'
     updated_at: '2012-12-16 18:08:58'
-     
-  Collection_4635:
+  CollectorCollection_4635:
+    id: Collection_4635
+    collector_id: Collector_1212
     graph_id: '66892'
     content_category_id: ContentCategory_117
     name: 'Dr. Martin Luther King Jr. Collection'
@@ -788,8 +829,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-13 16:26:54'
     updated_at: '2012-12-17 21:19:48'
-     
-  Collection_4637:
+  CollectorCollection_4637:
+    id: Collection_4637
+    collector_id: Collector_1212
     graph_id: '66965'
     content_category_id: ContentCategory_117
     name: 'Rosa Parks Collection'
@@ -807,8 +849,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-13 17:34:28'
     updated_at: '2012-12-18 05:47:18'
-     
-  Collection_4638:
+  CollectorCollection_4638:
+    id: Collection_4638
+    collector_id: Collector_1212
     graph_id: '66973'
     content_category_id: ContentCategory_117
     name: 'Muhammad Ali Collection'
@@ -826,8 +869,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-13 17:49:58'
     updated_at: '2012-12-18 05:47:15'
-     
-  Collection_4660:
+  CollectorCollection_4660:
+    id: Collection_4660
+    collector_id: Collector_1212
     graph_id: '68200'
     content_category_id: ContentCategory_2056
     name: 'Michael Jackson Collection'
@@ -845,8 +889,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-17 13:11:38'
     updated_at: '2012-12-17 19:02:59'
-     
-  Collection_4661:
+  CollectorCollection_4661:
+    id: Collection_4661
+    collector_id: Collector_1212
     graph_id: '68263'
     content_category_id: ContentCategory_117
     name: 'Booker T. Washington and George Washington Carver Collection'
@@ -864,8 +909,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-17 13:35:14'
     updated_at: '2012-12-17 17:29:04'
-     
-  Collection_4662:
+  CollectorCollection_4662:
+    id: Collection_4662
+    collector_id: Collector_1212
     graph_id: '68267'
     content_category_id: ContentCategory_117
     name: 'Harriet Tubman Collection'
@@ -883,8 +929,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-17 13:41:54'
     updated_at: '2012-12-17 17:36:23'
-     
-  Collection_4667:
+  CollectorCollection_4667:
+    id: Collection_4667
+    collector_id: Collector_1212
     graph_id: '68372'
     content_category_id: ContentCategory_117
     name: 'Frederick Douglass Collection'
@@ -902,8 +949,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-17 16:11:47'
     updated_at: '2012-12-17 19:02:26'
-     
-  Collection_4668:
+  CollectorCollection_4668:
+    id: Collection_4668
+    collector_id: Collector_1212
     graph_id: '68405'
     content_category_id: ContentCategory_2458
     name: 'Jackie Robinson Collection'
@@ -921,8 +969,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-17 16:33:24'
     updated_at: '2012-12-17 19:02:22'
-     
-  Collection_4669:
+  CollectorCollection_4669:
+    id: Collection_4669
+    collector_id: Collector_1212
     graph_id: '68507'
     content_category_id: ContentCategory_2019
     name: 'Louis Armstrong Collection'
@@ -940,8 +989,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-17 17:43:49'
     updated_at: '2012-12-17 19:02:10'
-     
-  Collection_4670:
+  CollectorCollection_4670:
+    id: Collection_4670
+    collector_id: Collector_1212
     graph_id: '68513'
     content_category_id: ContentCategory_117
     name: 'Malcolm X Collection'
@@ -959,8 +1009,9 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-17 17:49:09'
     updated_at: '2012-12-17 17:49:49'
-     
-  Collection_4671:
+  CollectorCollection_4671:
+    id: Collection_4671
+    collector_id: Collector_1212
     graph_id: '68521'
     content_category_id: ContentCategory_117
     name: 'Sojourner Truth Collection'
@@ -978,4 +1029,3 @@ Collection:
     rating_on: '1'
     created_at: '2012-12-17 17:52:09'
     updated_at: '2012-12-17 17:53:35'
-     

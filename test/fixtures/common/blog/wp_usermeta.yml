@@ -608,7 +608,7 @@ wpUsermeta:
     umeta_id: '330'
     user_id: wpUser_7
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_media_uploader,wp330_toolbar'
+    meta_value: 'wp330_media_uploader,wp330_toolbar,wp350_media'
   wpUsermeta_305:
     umeta_id: '305'
     user_id: wpUser_9
@@ -668,12 +668,12 @@ wpUsermeta:
     umeta_id: '317'
     user_id: wpUser_3
     meta_key: wp_user-settings
-    meta_value: 'editor=html&align=center&imgsize=large&urlbutton=file&uploader=1&m4=o&m5=o&m7=o&m6=o&m3=o'
+    meta_value: 'editor=tinymce&align=center&imgsize=medium&urlbutton=file&uploader=1&m4=o&m5=o&m7=o&m6=o&m3=o&libraryContent=browse'
   wpUsermeta_318:
     umeta_id: '318'
     user_id: wpUser_3
     meta_key: wp_user-settings-time
-    meta_value: '1355274809'
+    meta_value: '1355746230'
   wpUsermeta_201:
     umeta_id: '201'
     user_id: wpUser_4
@@ -753,7 +753,7 @@ wpUsermeta:
     umeta_id: '213'
     user_id: wpUser_8
     meta_key: closedpostboxes_post
-    meta_value: 'a:4:{i:0;s:10:"postcustom";i:1;s:12:"postimagediv";i:2;s:18:"be_gallery_metabox";i:3;s:7:"slugdiv";}'
+    meta_value: 'a:5:{i:0;s:10:"postcustom";i:1;s:16:"tagsdiv-post_tag";i:2;s:12:"postimagediv";i:3;s:18:"be_gallery_metabox";i:4;s:7:"slugdiv";}'
   wpUsermeta_214:
     umeta_id: '214'
     user_id: wpUser_1
@@ -828,7 +828,7 @@ wpUsermeta:
     umeta_id: '329'
     user_id: wpUser_1
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_toolbar,wp330_media_uploader,wp340_customize_current_theme_link'
+    meta_value: 'wp330_toolbar,wp330_media_uploader,wp340_customize_current_theme_link,wp350_media'
   wpUsermeta_283:
     umeta_id: '283'
     user_id: wpUser_7
@@ -883,7 +883,7 @@ wpUsermeta:
     umeta_id: '275'
     user_id: wpUser_1
     meta_key: wp_user-settings-time
-    meta_value: '1355347691'
+    meta_value: '1355427259'
   wpUsermeta_276:
     umeta_id: '276'
     user_id: wpUser_11
@@ -953,7 +953,7 @@ wpUsermeta:
     umeta_id: '327'
     user_id: wpUser_7
     meta_key: wp_dashboard_quick_press_last_post_id
-    meta_value: '35204'
+    meta_value: '35730'
   wpUsermeta_326:
     umeta_id: '326'
     user_id: wpUser_1
@@ -963,7 +963,7 @@ wpUsermeta:
     umeta_id: '274'
     user_id: wpUser_1
     meta_key: wp_user-settings
-    meta_value: 'editor=tinymce&align=left&imgsize=full&m0=c&m1=o&m2=c&m3=c&m4=o&m5=c&m6=c&m7=c&m8=c&m9=c&hidetb=1&wplink=1&urlbutton=none'
+    meta_value: 'editor=tinymce&align=left&imgsize=full&m0=c&m1=o&m2=c&m3=c&m4=o&m5=c&m6=c&m7=c&m8=c&m9=c&hidetb=1&wplink=1&urlbutton=none&libraryContent=browse'
   wpUsermeta_262:
     umeta_id: '262'
     user_id: wpUser_1
@@ -983,7 +983,7 @@ wpUsermeta:
     umeta_id: '270'
     user_id: wpUser_7
     meta_key: wp_user-settings
-    meta_value: 'align=right&imgsize=large&editor=tinymce&galdesc=1&galcols=2&galord=post_date&galfile=1&hidetb=1&m0=o&m4=o&m5=o&m6=o&m9=o&m1=o&m3=o&m8=o&m7=o&m2=o&wplink=1&mfold=o&urlbutton=file'
+    meta_value: 'align=center&imgsize=full&editor=tinymce&galdesc=1&galcols=2&galord=post_date&galfile=1&hidetb=1&m0=o&m4=o&m5=o&m6=o&m9=o&m1=o&m3=o&m8=o&m7=o&m2=o&wplink=1&mfold=o&urlbutton=file&libraryContent=browse&ed_size=667'
   wpUsermeta_264:
     umeta_id: '264'
     user_id: wpUser_7
@@ -993,7 +993,7 @@ wpUsermeta:
     umeta_id: '271'
     user_id: wpUser_7
     meta_key: wp_user-settings-time
-    meta_value: '1355148756'
+    meta_value: '1355772677'
   wpUsermeta_265:
     umeta_id: '265'
     user_id: wpUser_1
@@ -1003,17 +1003,17 @@ wpUsermeta:
     umeta_id: '323'
     user_id: wpUser_9
     meta_key: wp_user-settings
-    meta_value: 'm0=c&m1=o&m2=o&m3=c&m4=c&align=center&imgsize=large&editor=tinymce&m5=o&urlbutton=file&mfold=o&galcols=2&galord=title&galdesc=1&hidetb=0&galfile=1&wplink=1'
+    meta_value: 'm0=c&m1=o&m2=o&m3=c&m4=c&align=center&imgsize=large&editor=tinymce&m5=o&urlbutton=file&mfold=o&galcols=2&galord=title&galdesc=1&hidetb=0&galfile=1&wplink=1&libraryContent=browse'
   wpUsermeta_319:
     umeta_id: '319'
     user_id: wpUser_8
     meta_key: wp_user-settings
-    meta_value: 'm0=c&m1=o&m2=o&m3=c&m4=c&editor=tinymce&align=center&imgsize=full&m5=c&urlbutton=urlfile&galcols=2&hidetb=1&galdesc=1&galord=post_date&galfile=1'
+    meta_value: 'm0=c&m1=o&m2=o&m3=c&m4=c&editor=tinymce&align=center&imgsize=full&m5=c&urlbutton=post&galcols=2&hidetb=1&galdesc=1&galord=post_date&galfile=1&libraryContent=browse'
   wpUsermeta_320:
     umeta_id: '320'
     user_id: wpUser_8
     meta_key: wp_user-settings-time
-    meta_value: '1353970685'
+    meta_value: '1355530167'
   wpUsermeta_321:
     umeta_id: '321'
     user_id: wpUser_8
@@ -1028,7 +1028,7 @@ wpUsermeta:
     umeta_id: '324'
     user_id: wpUser_9
     meta_key: wp_user-settings-time
-    meta_value: '1352780583'
+    meta_value: '1355713977'
   wpUsermeta_325:
     umeta_id: '325'
     user_id: wpUser_1
@@ -1313,7 +1313,7 @@ wpUsermeta:
     umeta_id: '386'
     user_id: wpUser_15
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets'
+    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets,wp350_media'
   wpUsermeta_408:
     umeta_id: '408'
     user_id: wpUser_17
@@ -1373,12 +1373,12 @@ wpUsermeta:
     umeta_id: '410'
     user_id: wpUser_17
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets'
+    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets,wp350_media'
   wpUsermeta_411:
     umeta_id: '411'
     user_id: wpUser_17
     meta_key: wp_dashboard_quick_press_last_post_id
-    meta_value: '35006'
+    meta_value: '35610'
   wpUsermeta_412:
     umeta_id: '412'
     user_id: wpUser_17
@@ -1418,12 +1418,12 @@ wpUsermeta:
     umeta_id: '419'
     user_id: wpUser_17
     meta_key: wp_user-settings
-    meta_value: 'hidetb=1&wplink=1&align=left&imgsize=medium&editor=tinymce&galcols=2&galfile=1&galord=title&urlbutton=file'
+    meta_value: 'hidetb=1&wplink=1&align=left&imgsize=medium&editor=tinymce&galcols=2&galfile=1&galord=title&urlbutton=file&libraryContent=browse'
   wpUsermeta_420:
     umeta_id: '420'
     user_id: wpUser_17
     meta_key: wp_user-settings-time
-    meta_value: '1355068404'
+    meta_value: '1355693895'
   wpUsermeta_421:
     umeta_id: '421'
     user_id: wpUser_15
@@ -1473,17 +1473,17 @@ wpUsermeta:
     umeta_id: '430'
     user_id: wpUser_15
     meta_key: wp_user-settings
-    meta_value: 'align=left&urlbutton=post&imgsize=large'
+    meta_value: 'align=right&urlbutton=post&imgsize=medium&libraryContent=browse'
   wpUsermeta_431:
     umeta_id: '431'
     user_id: wpUser_15
     meta_key: wp_user-settings-time
-    meta_value: '1355276840'
+    meta_value: '1355700664'
   wpUsermeta_432:
     umeta_id: '432'
     user_id: wpUser_3
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_toolbar,wp330_media_uploader'
+    meta_value: 'wp330_toolbar,wp330_media_uploader,wp350_media'
   wpUsermeta_433:
     umeta_id: '433'
     user_id: wpUser_17
@@ -1553,7 +1553,7 @@ wpUsermeta:
     umeta_id: '446'
     user_id: wpUser_18
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets'
+    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets,wp350_media'
   wpUsermeta_447:
     umeta_id: '447'
     user_id: wpUser_18
@@ -1573,12 +1573,12 @@ wpUsermeta:
     umeta_id: '450'
     user_id: wpUser_9
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_media_uploader,wp330_toolbar'
+    meta_value: 'wp330_media_uploader,wp330_toolbar,wp350_media'
   wpUsermeta_451:
     umeta_id: '451'
     user_id: wpUser_8
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_media_uploader,wp330_toolbar'
+    meta_value: 'wp330_media_uploader,wp330_toolbar,wp350_media'
   wpUsermeta_452:
     umeta_id: '452'
     user_id: wpUser_8
@@ -1603,7 +1603,7 @@ wpUsermeta:
     umeta_id: '456'
     user_id: wpUser_18
     meta_key: wp_dashboard_quick_press_last_post_id
-    meta_value: '34913'
+    meta_value: '35608'
   wpUsermeta_457:
     umeta_id: '457'
     user_id: wpUser_18
@@ -1648,12 +1648,12 @@ wpUsermeta:
     umeta_id: '465'
     user_id: wpUser_18
     meta_key: wp_user-settings
-    meta_value: 'align=center&editor=tinymce&imgsize=large&mfold=o&galfile=1&galord=title&hidetb=1&galcols=2&galdesc=1'
+    meta_value: 'align=center&editor=tinymce&imgsize=large&mfold=o&galfile=1&galord=title&hidetb=1&galcols=4&galdesc=1&libraryContent=browse&urlbutton=post'
   wpUsermeta_466:
     umeta_id: '466'
     user_id: wpUser_18
     meta_key: wp_user-settings-time
-    meta_value: '1354953000'
+    meta_value: '1355455300'
   wpUsermeta_467:
     umeta_id: '467'
     user_id: wpUser_17
@@ -1723,7 +1723,7 @@ wpUsermeta:
     umeta_id: '480'
     user_id: wpUser_19
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets'
+    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets,wp350_media'
   wpUsermeta_481:
     umeta_id: '481'
     user_id: wpUser_19
@@ -1748,17 +1748,17 @@ wpUsermeta:
     umeta_id: '485'
     user_id: wpUser_19
     meta_key: wp_dashboard_quick_press_last_post_id
-    meta_value: '35005'
+    meta_value: '35657'
   wpUsermeta_486:
     umeta_id: '486'
     user_id: wpUser_19
     meta_key: wp_user-settings
-    meta_value: 'galfile=1&uploader=1&align=left&imgsize=full&urlbutton=none'
+    meta_value: 'galfile=1&uploader=1&align=left&imgsize=full&urlbutton=custom&libraryContent=browse'
   wpUsermeta_487:
     umeta_id: '487'
     user_id: wpUser_19
     meta_key: wp_user-settings-time
-    meta_value: '1355343790'
+    meta_value: '1355728785'
   wpUsermeta_488:
     umeta_id: '488'
     user_id: wpUser_15
@@ -1828,7 +1828,7 @@ wpUsermeta:
     umeta_id: '501'
     user_id: wpUser_20
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets'
+    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets,wp350_media'
   wpUsermeta_515:
     umeta_id: '515'
     user_id: wpUser_15
@@ -2163,7 +2163,7 @@ wpUsermeta:
     umeta_id: '549'
     user_id: wpUser_20
     meta_key: wp_dashboard_quick_press_last_post_id
-    meta_value: '35291'
+    meta_value: '35733'
   wpUsermeta_590:
     umeta_id: '590'
     user_id: wpUser_4
@@ -2643,7 +2643,7 @@ wpUsermeta:
     umeta_id: '708'
     user_id: wpUser_9
     meta_key: meta-box-order_post
-    meta_value: 'a:3:{s:4:"side";s:51:"submitdiv,categorydiv,tagsdiv-post_tag,postimagediv";s:6:"normal";s:104:"be_gallery_metabox,wpseo_meta,postexcerpt,trackbacksdiv,postcustom,commentstatusdiv,slugdiv,revisionsdiv";s:8:"advanced";s:12:"sharing_meta";}'
+    meta_value: 'a:3:{s:4:"side";s:86:"slidedeck-sidebar,submitdiv,categorydiv,tagsdiv-post_tag,postimagediv,tagsdiv-matching";s:6:"normal";s:91:"be_gallery_metabox,wpseo_meta,postexcerpt,trackbacksdiv,postcustom,commentstatusdiv,slugdiv";s:8:"advanced";s:12:"sharing_meta";}'
   wpUsermeta_710:
     umeta_id: '710'
     user_id: wpUser_23
@@ -2828,7 +2828,7 @@ wpUsermeta:
     umeta_id: '746'
     user_id: wpUser_25
     meta_key: dismissed_wp_pointers
-    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets,wp340_choose_image_from_library,wp340_customize_current_theme_link'
+    meta_value: 'wp330_toolbar,wp330_media_uploader,wp330_saving_widgets,wp340_choose_image_from_library,wp340_customize_current_theme_link,wp350_media'
   wpUsermeta_747:
     umeta_id: '747'
     user_id: wpUser_25
@@ -2969,3 +2969,8 @@ wpUsermeta:
     user_id: wpUser_25
     meta_key: screen_layout_page
     meta_value: '2'
+  wpUsermeta_785:
+    umeta_id: '785'
+    user_id: wpUser_4
+    meta_key: googleplus
+    meta_value: ''

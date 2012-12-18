@@ -4,8 +4,8 @@ Collector:
     username: poptart
     display_name: Poptart
     slug: poptart
-    sha1_password: 6b2fbb208a7648a40beee46fc926957cc619a170
-    portable_password: ''
+    sha1_password: '*'
+    portable_password: $P$B8r1199Z/59Bv47wZvLfTDLjvC/M9O.
     salt: dcf45611bedf847e93193bdeb5dc89b4
     email: Deanna.Pop.Tart@gmail.com
     user_type: Seller
@@ -15,12 +15,12 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: 5pp8mh6qgkobqh6b5enak9ujq7
+    session_id: 6ufctc32f8v3jkgao2fp14bcb3
     cookie_uuid: 3d12a5e5f9e33a8103381b0426b4cb2b
-    last_seen_at: '2012-12-10 22:02:22'
-    last_visited_at: '2012-12-11 20:13:14'
+    last_seen_at: '2012-12-17 04:37:01'
+    last_visited_at: '2012-12-17 05:27:10'
     created_at: '2007-06-24 01:24:56'
-    updated_at: '2012-12-10 22:02:22'
+    updated_at: '2012-12-17 04:37:01'
   Collector_163:
     username: pmurph
     display_name: pmurph
@@ -61,25 +61,6 @@ Collector:
     last_visited_at: '2012-11-18 12:29:50'
     created_at: '2008-06-24 17:03:10'
     updated_at: '2012-11-18 12:26:51'
-  Collector_846:
-    graph_id: '26506'
-    username: francesca76
-    display_name: Francesca76
-    slug: francesca76
-    sha1_password: 69f15ff0e3c8534e7576eb3eb03c1a407a8135d4
-    portable_password: ''
-    salt: 85e0ca4d66214f86f3820db7fe0c9400
-    email: baifrancesca@gmail.com
-    user_type: Collector
-    locale: en_US
-    score: '0'
-    spam_score: '5'
-    is_spam: '0'
-    is_public: '1'
-    has_completed_registration: '1'
-    last_seen_at: '2008-12-21 00:00:00'
-    created_at: '2008-12-12 12:58:56'
-    updated_at: '2012-07-19 00:31:53'
   Collector_963:
     graph_id: '11542'
     username: trbuttons
@@ -105,8 +86,8 @@ Collector:
     username: tofunky
     display_name: Tofunky
     slug: tofunky
-    sha1_password: 3fb7deb6aee6fdf6e7b662d1a32c99a735523abd
-    portable_password: ''
+    sha1_password: '*'
+    portable_password: $P$BhCuVqLDisT8n8w3a.jBiostAflBVD.
     salt: 502eff96a82283a5f1a628195523587d
     email: tofunky@mac.com
     user_type: Collector
@@ -116,10 +97,12 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: t162dt09cahnsg36bb8kqj07c4
-    last_seen_at: '2012-07-06 10:07:23'
+    session_id: u5lkh5mvi5vdgjijeljs0p0c11
+    cookie_uuid: 02be1bcf052490499d25fc4d4e15756f
+    last_seen_at: '2012-12-17 12:31:10'
+    last_visited_at: '2012-12-17 17:57:49'
     created_at: '2009-05-03 18:58:54'
-    updated_at: '2012-07-06 10:07:44'
+    updated_at: '2012-12-17 12:31:10'
   Collector_4208:
     graph_id: '28545'
     username: freeburgh
