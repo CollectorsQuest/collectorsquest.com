@@ -964,14 +964,7 @@ class ajaxAction extends cqAjaxAction
   {
     /* @var $seller_promotion  SellerPromotion*/
     $seller_promotion = new SellerPromotion();
-
-    $base='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';
-    $code='';
-    for ($i=0; $i < 8; ++$i)
-    {
-      $code .= $base[((int) rand(0, strlen($base)-1))];
-    }
-   // $seller_promotion->setPromotionCode($code);
+    $seller_promotion->setPromotionCode(cqStatic::getUniqueId(8));
     $seller_promotion->setCollectorRelatedBySellerId($this->getUser()->getCollector());
     $this->form = new SellerPromotionForm($seller_promotion);
     if ($request->isMethod(sfRequest::POST))
