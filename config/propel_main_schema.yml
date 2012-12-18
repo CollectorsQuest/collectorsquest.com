@@ -246,8 +246,9 @@ classes:
     columns:
       id:  ~
       thread:        { type: varchar, size: 32 }
-      sender:        { type: integer, required: true, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
-      receiver:      { type: integer, required: true, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
+      sender_id:     { type: integer, required: true, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
+      receiver_id:   { type: integer, required: false, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
+      receiver_email: { type: varchar(255), required: false }
       subject:       { type: varchar, size: 255, required: true }
       body:          { type: longvarchar, required: true }
       is_rich:       { type: boolean, default: false }
@@ -261,7 +262,7 @@ classes:
 
     indexes:
       private_message_I_1: [thread]
-      private_message_I_2: [receiver, sender]
+      private_message_I_2: [receiver_id, sender_id]
 
     propel_behaviors:
       extra_properties: ~

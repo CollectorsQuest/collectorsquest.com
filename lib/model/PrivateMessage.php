@@ -1,20 +1,24 @@
 <?php
 
 /**
- * @method    PrivateMessage setAttachedCollectibleId(int $v)
- * @method    int            getAttachedCollectibleId()
+ * @method    string              getAttachedObjectClass()
  *
- * @method    PrivateMessage setAttachedCollectionId(int $v)
- * @method    int            getAttachedCollectionId()
+ * @method    boolean             hasAttachedCollection(PropelPDO $con = null, $forceQuery = false)
+ * @method    Collection|null     getAttachedCollection(PropelPDO $con = null, $forceQuery = false)
+ *
+ * @method    boolean             hasAttachedCollectible(PropelPDO $con = null, $forceQuery = false)
+ * @method    Collectible|null    getAttachedCollectible(PropelPDO $con = null, $forceQuery = false)
+ *
+ * @method    boolean             hasAttachedShoppingOrder(PropelPDO $con = null, $forceQuery = false)
+ * @method    ShoppingOrder|null  getAttachedShoppingOrder(PropelPDO $con = null, $forceQuery = false)
+ *
  */
 class PrivateMessage extends BasePrivateMessage
 {
+  const MAGIC_ATTACHED_METHODS_REGEX = '/(?<modifier>(?:get|has))Attached(?<class>(\w+))/';
 
-  /** @var Collectible */
-  protected $attached_collectible;
-
-  /** @var Collection */
-  protected $attached_collection;
+  /** @var BaseObject */
+  protected $attached_object;
 
   /**
    * Initialize extra properties so that auto setters/getters are added
@@ -22,84 +26,199 @@ class PrivateMessage extends BasePrivateMessage
    */
   public function initializeProperties()
   {
-    $this->registerProperty(PrivateMessagePeer::PROPERTY_ATTACHED_COLLECTION_ID);
-    $this->registerProperty(PrivateMessagePeer::PROPERTY_ATTACHED_COLLECTIBLE_ID);
+    $this->registerProperty(PrivateMessagePeer::PROPERTY_ATTACHED_OBJECT_CLASS);
+    $this->registerProperty(PrivateMessagePeer::PROPERTY_ATTACHED_OBJECT_PK);
   }
 
   /**
-   * Set the attached collectible for this message
+   * @param     string $v
+   * @return    PrivateMessage
    *
-   * @param     Collectible $collectible
+   * @throws    RuntimeException
+   */
+  public function setAttachedObjectClass($v)
+  {
+    if (!in_array($v, PrivateMessagePeer::$allowedAttachClasses))
+    {
+      throw new RuntimeException(sprintf(
+        'Cannot attach object of type %s to PrivateMessage, allowed classes: %s',
+        $v,
+        implode(', ', PrivateMessagePeer::$allowedAttachClasses)
+      ));
+    }
+
+    return parent::setAttachedObjectClass($v);
+  }
+
+  /**
+   * @param     int|array $v
    * @return    PrivateMessage
    */
-  public function setAttachedCollectible(Collectible $collectible)
+  public function setAttachedObjectPK($v)
   {
-    $this->setAttachedCollectibleId($collectible->getId());
-    $this->attached_collectible = $collectible;
+    if (is_array($v))
+    {
+      $v = implode('-', $v);
+    }
+
+    return parent::setAttachedObjectPK($v);
+  }
+
+  /**
+   * @return    int|array
+   */
+  public function getAttachedObjectPK()
+  {
+    $v = parent::getAttachedObjectPK();
+    if (false !== strpos('-', $v))
+    {
+      $v = explode('-', $v);
+    }
+
+    return $v;
+  }
+
+  /**
+   * Directly set the attached object data
+   *
+   * @param     string $class
+   * @param     int|array $pk
+   *
+   * @return    PrivateMessage
+   */
+  public function setAttachedObjectData($class, $pk)
+  {
+    $this->setAttachedObjectClass($class);
+    $this->setAttachedObjectPK($pk);
 
     return $this;
   }
 
   /**
-   * Set the attached colletion for this message
+   * Set a Propel object as attached to this PrivateMessage
    *
-   * @param     Collection $collection
+   * @param     BaseObject $obj
    * @return    PrivateMessage
    */
-  public function setAttachedCollection(Collection $collection)
+  public function setAttachedObject(BaseObject $obj)
   {
-    $this->setAttachedCollectionId($collection->getId());
-    $this->attached_collection = $collection;
+    $this->attached_object = $obj;
+    $this->setAttachedObjectData(get_class($obj), $obj->getPrimaryKey());
 
     return $this;
   }
 
   /**
-   * Get the attached collectible for this message (if present)
+   * Get the attached object, if there is one
    *
-   * @return    Collectible|null
+   * @param     PropelPDO $con
+   * @param     boolean $forceQuery
+   *
+   * @return    BaseObject|null
    */
-  public function getAttachedCollectible()
+  public function getAttachedObject(PropelPDO $con = null, $forceQuery = false)
   {
-    if (null === $this->attached_collectible)
+    // if we don't have the object cached, or forceQuery option was set
+    // and we have attached object class and pk set
+    if (
+      (null === $this->attached_object || $forceQuery) &&
+      $this->getAttachedObjectClass() && $this->getAttachedObjectPK()
+    )
     {
-      $pk = $this->getAttachedCollectibleId();
+      // check that a Query object exists for the attached class
+      // and if not, log error and return null
+      $query = sprintf('%sQuery', $this->getAttachedObjectClass());
+      if (!class_exists($query))
+      {
+        cqContext::getInstance()->getLogger()->log(
+          sprintf('Unable to load class %s', $query)
+        );
 
-      $this->attached_collectible = $pk
-        ? call_user_func(array('CollectiblePeer', 'retrieveByPK'), $pk)
-        : null;
+        return null;
+      }
+
+      // try to get the attached object
+      $q = call_user_func(array($query, 'create'));
+      $this->attached_object = call_user_func_array(
+        array($q, 'findPk'),
+        array($this->getAttachedObjectPK(), $con)
+      );
+
+      // and if no object was returned, log an error
+      if (null === $this->attached_object)
+      {
+        cqContext::getInstance()->getLogger()->log(sprintf(
+          'Unable to retrieve %s with primary key %s',
+          $this->getAttachedObjectClass(),
+          implode('-', (array) $this->getAttachedObjectPK())
+        ));
+      }
     }
 
-    return $this->attached_collectible;
+    // and return the attached object
+    return $this->attached_object;
   }
 
   /**
-   * Get the attached collection for this message (if present)
-   *
-   * @return    Collection|null
-   */
-  public function getAttachedCollection()
-  {
-    if (null === $this->attached_collection)
-    {
-      $pk = $this->getAttachedCollectionId();
-
-      $this->attached_collection = $pk
-        ? call_user_func(array('CollectionPeer', 'retrieveByPK'), $pk)
-        : null;
-    }
-
-    return $this->attached_collection;
-  }
-
-  /**
-   * Convenience method for checking if there is an attached Collection or Collectible
+   * @param     PropelPDO $con
+   * @param     boolean $forceQuery
    *
    * @return    boolean
    */
-  public function hasAttachedCollectionOrCollectible()
+  public function hasAttachedObject(PropelPDO $con = null, $forceQuery = false)
   {
-    return !!($this->getAttachedCollectible() || $this->getAttachedCollection());
+    return !! $this->getAttachedObject($con, $forceQuery);
+  }
+
+  /**
+   * Handle magic (get/has)Attached(Something) methods
+   */
+  public function __call($name, $params)
+  {
+    // if the call method name matches our magic attached methods regex
+    // (get/has)Attached(Something)
+    if (preg_match(self::MAGIC_ATTACHED_METHODS_REGEX, $name, $matches))
+    {
+      // and the Something is one of the allowed attach classes
+      if (in_array($matches['class'], PrivateMessagePeer::$allowedAttachClasses))
+      {
+        // and we are performing a getAttachedSomething
+        if ('get' == $matches['modifier'])
+        {
+          // we have to check if we meet the request method class restriction
+          if ($matches['class'] == $this->getAttachedObjectClass())
+          {
+            // and only then try to return the attached object
+            return call_user_func_array(array($this, 'getAttachedObject'), $params);
+          }
+          else
+          {
+            // otherwize return null (even if we have an attached object)
+            return null;
+          }
+        }
+
+        // if we are performing a hasAttachedSomething
+        if ('has' == $matches['modifier'])
+        {
+          // then we can first do a very quick check of Something
+          // and the attached object class
+          if ($matches['class'] == $this->getAttachedObjectClass())
+          {
+            // and execute hasAttachedObject method only when needed
+            return call_user_func_array(array($this, 'hasAttachedObject'), $params);
+          }
+          else
+          {
+            // or directly return false if they don't match
+            return false;
+          }
+        }
+      }
+    }
+
+    // otherwize fallback to parent's __call()
+    return parent::__call($name, $params);
   }
 
   /**
@@ -113,11 +232,11 @@ class PrivateMessage extends BasePrivateMessage
       $v = $v->getId();
     }
 
-    return parent::setSender($v);
+    return $this->setSenderId($v);
   }
 
   /**
-   * @param     int|Collector $v
+   * @param     int|Collector|email $v
    * @return    PrivateMessage
    */
   public function setReceiver($v)
@@ -127,7 +246,14 @@ class PrivateMessage extends BasePrivateMessage
       $v = $v->getId();
     }
 
-    return parent::setReceiver($v);
+    if (is_numeric($v))
+    {
+      return $this->setReceiverId($v);
+    }
+    else
+    {
+      return $this->setReceiverEmail($v);
+    }
   }
 
   /**
