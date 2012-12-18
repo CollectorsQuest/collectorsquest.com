@@ -4,7 +4,7 @@
  * ComposePrivateMessageForm does what its name says :)
  *
  * Options:
- *    attach: Collection/Collectible object (or an array of both)
+ *    attach: Collection/Collectible object
  *
  */
 class ComposePrivateMessageForm extends PrivateMessageForm
@@ -18,6 +18,13 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
   /** @var cqFrontendUser */
   protected $sf_user;
+
+  /** @var array Allowed attach fields */
+  public static $attach_fields = array(
+      'collection_id' => 'Collection',
+      'collectible_id' => 'Collectible',
+      'shopping_order_id' => 'ShoppingOrder',
+  );
 
   /**
    * The Compose form takes a Collector object in its constructor that
@@ -53,11 +60,12 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     $this->setupReceiverField();
     $this->setupSenderField();
     $this->setupThreadField();
-    $this->setupCaptchaField();
     $this->setupRedirectField();
     $this->setupAttachFields();
     $this->setupCopyForSenderField();
     $this->setupIpAddressField();
+
+    $this->unsetFields();
 
     $this->widgetSchema->setLabels(array(
         'receiver' => 'To',
@@ -65,7 +73,18 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         'copy_for_sender' => 'Email me a copy',
     ));
 
-    $this->unsetFields();
+    $this->widgetSchema->setPositions(array_merge(array_keys(self::$attach_fields), array(
+        'ip_address',
+        'thread',
+        'goto',
+        'sender',
+        'receiver',
+        'subject',
+        'body',
+        'copy_for_sender',
+    )));
+
+    $this->setupCaptchaField();
 
     $this->mergePostValidator(new iceSpamControlValidatorSchema(array(
         'credentials' => iceSpamControl::CREDENTIALS_ALL,
@@ -193,6 +212,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
   protected function setupSenderField()
   {
+    $this->widgetSchema['sender'] = new sfWidgetFormInputHidden();
     // check if we are replying to a thread
     $this->validatorSchema['sender'] = new cqValidatorCollectorByName(array(
         'return_object' => true,
@@ -234,35 +254,28 @@ class ComposePrivateMessageForm extends PrivateMessageForm
    */
   protected function setupAttachFields()
   {
-    $this->widgetSchema['collection_id'] = new sfWidgetFormInputHidden();
-    $this->validatorSchema['collection_id'] = new sfValidatorPropelChoice(array(
-        'required' => false,
-        'model' =>  'Collection',
-        'column' => 'id',
-    ));
-
-    $this->widgetSchema['collectible_id'] = new sfWidgetFormInputHidden();
-    $this->validatorSchema['collectible_id'] = new sfValidatorPropelChoice(array(
-        'required' => false,
-        'model' =>  'Collectible',
-        'column' => 'id',
-    ));
+    // setup all possible attached fields as hidden fields
+    foreach (self::$attach_fields as $field => $model_class)
+    {
+      $this->widgetSchema[$field] = new sfWidgetFormInputHidden();
+      $this->validatorSchema[$field] = new sfValidatorPropelChoice(array(
+          'required' => false,
+          'model' =>  $model_class,
+          'column' => 'id',
+      ));
+    }
 
     // if we have an attach option passed to the form
-    if ($this->getOption('attach'))
-    {
-      // try to set defaults for attached collection/collectible
-      foreach ((array) $this->getOption('attach') as $object)
-      {
-        if ($object instanceof Collection)
-        {
-          $this->setDefault('collection_id', $object->getPrimaryKey());
-        }
+    $object = $this->getOption('attach');
 
-        if ($object instanceof Collectible)
-        {
-          $this->setDefault('collectible_id', $object->getPrimaryKey());
-        }
+    // and it is a propel object
+    if ($object instanceof BaseObject)
+    {
+      // and it is one of the allowed attach object types
+      if (false !== $field = array_search(get_class($object), self::$attach_fields))
+      {
+        // add it's value to the appropriate hidden field
+        $this->setDefault($field, $object->getPrimaryKey());
       }
     }
   }
@@ -359,8 +372,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         'to' => sfConfig::get('app_private_messages_spam_receiver'),
         'subject' => 'Spam notification',
         'params' => array(
-          'sender' => $this->getObject()->getCollectorRelatedBySender(),
-          'receiver' => $this->getObject()->getCollectorRelatedByReceiver(),
+          'sender' => $this->getObject()->getCollectorRelatedBySenderId(),
+          'receiver' => $this->getObject()->getCollectorRelatedByReceiverId(),
           'similarity' => $percent,
           'lastText' => $this->sf_user->getAttribute(
           cqFrontendUser::PRIVATE_MESSAGES_SENT_TEXT, null, 'collector'),
@@ -380,15 +393,18 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
     $this->getObject()->setIsRich(false);
     $this->getObject()->setBody($values['body'], true);
+    $this->getObject()->setSender($values['sender']);
+    $this->getObject()->setReceiver($values['receiver']);
 
-    if ($values['collectible_id'])
+    // handle attached fields
+    foreach (self::$attach_fields as $field => $model_class)
     {
-      $this->getObject()->setAttachedCollectibleId($values['collectible_id']);
-    }
-
-    if ($values['collection_id'])
-    {
-      $this->getObject()->setAttachedCollectionId($values['collection_id']);
+      // if we have a value set for one of the fields
+      if ($values[$field])
+      {
+        // then we set is as attached object
+        $this->getObject()->setAttachedObjectData($model_class, $values[$field]);
+      }
     }
   }
 
@@ -414,24 +430,35 @@ class ComposePrivateMessageForm extends PrivateMessageForm
       $this->setDefault('thread', $this->thread);
       if (( $receiver = $this->getReceiverFromThread() ))
       {
-        $this->setDefault('receiver', $receiver->getUsername());
+        $this->setDefault('receiver', $receiver);
       }
     }
 
     $this->setDefault('sender', $this->sender_collector->getUsername());
   }
 
+  /**
+   *
+   * @return string|null Username or an email address
+   */
   protected function getReceiverFromThread()
   {
     if (null !== $this->thread)
     {
       $message = PrivateMessageQuery::create()
         ->filterByThread($this->thread)
+        ->orderByCreatedAt(Criteria::ASC)
         ->findOne();
 
-      return $this->sender_collector == $message->getCollectorRelatedByReceiver()
-        ? $message->getCollectorRelatedBySender()
-        : $message->getCollectorRelatedByReceiver();
+      $receiver = $this->sender_collector == $message->getCollectorRelatedByReceiverId()
+        ? $message->getCollectorRelatedBySenderId()
+        : $message->getCollectorRelatedByReceiverId();
+
+      // when the receiver is not a valid obect (ie, it was an email address)
+      // we get it directly from the message object, otherwize return the username
+      return $receiver
+        ? $receiver->getUsername()
+        : $message->getReceiverEmail();
     }
 
     return null;
@@ -449,6 +476,9 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     parent::unsetFields();
 
     unset ($this['id']);
+    unset ($this['sender_id']);
+    unset ($this['receiver_id']);
+    unset ($this['receiver_email']);
     unset ($this['is_read']);
     unset ($this['is_rich']);
     unset ($this['is_replied']);
