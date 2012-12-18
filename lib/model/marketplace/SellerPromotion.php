@@ -116,4 +116,9 @@ class SellerPromotion extends BaseSellerPromotion
 
     return true;
   }
+
+  public function setPromotionCode($v)
+  {
+    return parent::setPromotionCode(strtoupper($v));
+  }
 }

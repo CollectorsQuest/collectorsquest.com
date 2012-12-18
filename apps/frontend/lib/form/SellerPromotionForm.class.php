@@ -16,6 +16,9 @@ class SellerPromotionForm extends BaseSellerPromotionForm
       'amount', 'quantity', 'collectible_id',
     ));
 
+    $this->widgetSchema['promotion_code']->setAttribute('maxlength', 8);
+    $this->validatorSchema['promotion_code']->setOption('max_length', 8);
+
     $this->validatorSchema['amount'] = new cqValidatorPrice(
     array('required' => false,  'scale' => 3),
       array(

@@ -27,7 +27,7 @@
       <div class="controls">
         <div class="with-required-token">
           <span class="required-token">*</span>
-          <?= $form['promotion_code']; ?>
+          <?= $form['promotion_code']->render(array('style' => 'text-transform:uppercase;')); ?>
         </div>
       </div>
       <?= $form['promotion_code']->renderError(); ?>
