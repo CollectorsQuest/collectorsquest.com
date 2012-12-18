@@ -27,7 +27,6 @@ class SellerPromotionForm extends BaseSellerPromotionForm
       )
     );
 
-    $this->widgetSchema['collectible_id']->setOption('add_empty', 'All Collectibles');
     /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getObject()->getCollectorRelatedBySellerId())
@@ -35,7 +34,13 @@ class SellerPromotionForm extends BaseSellerPromotionForm
       ->useCollectibleForSaleQuery()
       ->filterByIsSold(false)
       ->endUse();
-    $this->widgetSchema['collectible_id']->setOption('criteria', $q);
+    $choices = array('' => 'All Collectibles');
+    $q1 = clone $q;
+    foreach ($q1->find() as $collectible)
+    {
+      $choices[$collectible->getId()] = $collectible->getName();
+    }
+    $this->widgetSchema['collectible_id'] =  new sfWidgetFormChosenChoice(array('choices' => $choices));
     $this->validatorSchema['collectible_id']->setOption('criteria', $q);
 
     $this->widgetSchema['collector_email'] = new sfWidgetFormInput();
