@@ -152,4 +152,30 @@ class BaseForm extends sfFormSymfony
     }
   }
 
+  /**
+   * Easy getter for values set in the tainted_request_values option or
+   * the actual tainted values,
+   *
+   * @param     string $value_name
+   * @param     mixed $default
+   *
+   * @return    mixed
+   */
+  protected function getTaintedRequestValue($value_name, $default = null)
+  {
+    $tainted_request_values = $this->getOption(
+      'tainted_request_values',
+      $this->getTaintedValues()
+    );
+
+    if (isset($tainted_request_values[$value_name]))
+    {
+      return $tainted_request_values[$value_name];
+    }
+    else
+    {
+      return $default;
+    }
+  }
+
 }

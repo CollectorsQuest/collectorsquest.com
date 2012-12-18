@@ -75,12 +75,6 @@ class shoppingComponents extends cqFrontendComponents
     }
 
     $this->country = $shopping_cart_collectible->getShippingCountryName();
-    $this->cannot_ship =
-      ShoppingCartCollectiblePeer::SHIPPING_TYPE_NO_SHIPPING ==
-      $shopping_cart_collectible->getShippingType() &&
-      $shopping_cart_collectible->getShippingFeeAmount() === null;
-
-    // Get the form
     $this->form = new ShoppingCartCollectibleCheckoutForm($shopping_cart_collectible);
     $this->shopping_cart_collectible = $shopping_cart_collectible;
 

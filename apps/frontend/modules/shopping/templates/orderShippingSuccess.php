@@ -97,7 +97,8 @@
     });
 
     var states_cache = {};
-    $('#shopping_order_shipping_address_country_iso3166').change(function()
+    var $country_select = $('#shopping_order_shipping_address_country_iso3166');
+    $country_select.change(function()
     {
 
       var $state = $('#shopping_order_shipping_address_state_region');
@@ -126,6 +127,19 @@
           $new_input.val($state.val());
           $state.replaceWith($new_input);
         }
+
+        $state.hideLoading();
+        if ($new_input)
+        {
+          $new_input.animate( { backgroundColor: "#ffffcc" }, 1)
+                    .animate( { backgroundColor: "#ffffff" }, 2500);
+        }
+        else
+        {
+          $state.animate( { backgroundColor: "#ffffcc" }, 1)
+                .animate( { backgroundColor: "#ffffff" }, 2500);
+        }
+
       };
       $state.find('option').remove();
       if (country_code in states_cache)
@@ -134,6 +148,7 @@
       }
       else
       {
+        $state.showLoading();
         $.ajax({
           url: '<?= url_for('@ajax?section=states&page=lookup'); ?>',
           type: 'GET',
@@ -141,10 +156,10 @@
             c: country_code
           },
           dataType: 'json',
-          success: function(responce)
+          success: function(data)
           {
-            states_cache[country_code] = responce;
-            update_states(states_cache[country_code]);
+            states_cache[country_code] = data;
+            update_states(states_cache[$country_select.val()]);
           }
         });
       }

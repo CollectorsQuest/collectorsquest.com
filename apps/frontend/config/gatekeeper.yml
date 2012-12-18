@@ -1,6 +1,5 @@
 all:
   pages:
-    aetn_black_history: false
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
@@ -15,17 +14,14 @@ all:
     mycq_profile_addresses: false
     expose_collection_categories: false
     expose_market_categories: false
-    collectible_for_sale_related: false
+    collectible_for_sale_related: true
 
 stg:
-  pages:
-    aetn_black_history: true
-
+  pages: []
   features: []
 
 next:
   pages:
-    aetn_black_history: true
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
@@ -44,7 +40,6 @@ next:
 
 dev:
   pages:
-    aetn_black_history: true
     holiday_marketplace: true
     marketplace_categories: true
     mycq_incomplete: true

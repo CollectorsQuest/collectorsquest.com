@@ -161,6 +161,10 @@
 <div class="span11">
   <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Press Releases', 'collectorsquest' ) ?></h1>
 </div>
+<?php } elseif (is_archive()) { ?>
+<div class="span11">
+  <h1 class="Chivo webfont" style="visibility: visible; ">Blog Archive for <span><?= str_replace('→', '', $data['breadcrumbs']) ?></span></h1>
+</div>
 <?php } ?>
 
 <?php if (!is_author()) : ?>

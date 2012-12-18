@@ -119,8 +119,65 @@ class shoppingActions extends cqFrontendActions
       return 'Empty';
     }
 
+    /* @var $shopping_cart_collectibles ShoppingCartCollectible[] */
+    $shopping_cart_collectibles = $shopping_cart->getShoppingCartCollectibles();
+
+    $notices = array();
+    foreach ($shopping_cart_collectibles as $shopping_cart_collectible)
+    {
+      $old_cc = clone $shopping_cart_collectible;
+
+      $collectible_for_sale = $shopping_cart_collectible->getCollectibleForSale();
+      $shopping_cart_collectible->setPriceAmount($collectible_for_sale->getPriceAmount());
+      $shopping_cart_collectible->updateShippingFeeAmountFromCountryCode();
+      $shopping_cart_collectible->updateShippingTypeFromCountryCode();
+      $shopping_cart_collectible->updateTaxAmount();
+
+      if ($old_cc->getPriceAmount() != $shopping_cart_collectible->getPriceAmount())
+      {
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the price for item <strong>"%s"</strong>
+           has changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
+        $shopping_cart_collectible->save();
+
+        continue;
+      }
+
+      if ($old_cc->getTaxAmount() != $shopping_cart_collectible->getTaxAmount())
+      {
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the tax terms for item <strong>"%s"</strong>
+           have changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
+      }
+      if ($old_cc->getShippingFeeAmount() !== $shopping_cart_collectible->getShippingFeeAmount())
+      {
+        $notices[] = sprintf(
+          '<strong>Note:</strong> the shipping terms for item <strong>"%s"</strong>
+           have changed since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
+      }
+
+      if ($shopping_cart_collectible->isModified())
+      {
+        $shopping_cart_collectible->save();
+      }
+    }
+
+    if (count($notices))
+    {
+      $this->getUser()->setFlash('highlight', implode('<br />', $notices), false);
+    }
+
     $this->shopping_cart = $shopping_cart;
-    $this->shopping_cart_collectibles = $shopping_cart->getShoppingCartCollectibles();
+    $this->shopping_cart_collectibles = $shopping_cart_collectibles;
 
     return sfView::SUCCESS;
   }
@@ -256,7 +313,9 @@ class shoppingActions extends cqFrontendActions
     /**
      * Create the Shopping Order form
      */
-    $form = new ShoppingOrderShippingForm($shopping_order);
+    $form = new ShoppingOrderShippingForm($shopping_order, array(), array(
+      'tainted_request_values' => $request->getParameter('shopping_order'),
+    ));
 
     if ($request->isMethod('post') && '' !== $request->getParameter('new_address', null))
     {

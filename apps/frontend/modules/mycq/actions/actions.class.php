@@ -686,6 +686,11 @@ class mycqActions extends cqFrontendActions
                 break;
             }
           }
+          else
+          {
+            // perform a redirect on successful form save
+            return $this->redirect('mycq_collectible_by_slug', $collectible);
+          }
         }
         catch (PropelException $e)
         {

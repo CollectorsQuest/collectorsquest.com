@@ -1,10 +1,10 @@
 === upPrev ===
 Contributors: iworks
 Donate link: http://iworks.pl/donate/upprev.php
-Tags: next post, previous post, notification, related, upPrev, flyout, new york times, NYTimes, animated, featured, related content
+Tags: animated, featured, flyout, links, new york times, next post, notification, NYTimes, previous post, related, related content, seo
 Requires at least: 3.1
-Tested up to: 3.4.1
-Stable tag: 3.3.9
+Tested up to: 3.5
+Stable tag: 3.3.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,16 +25,16 @@ in the selected configuration:
 4. Random
 5. Related using YARPP (only post/pages)
 
-Plugin based on "upPrev Previous Post Animated Notification"
-
 = Translators =
 
 * Brazilian Portuguese (pt_BR) - [Leonardo Antonioli](http://www.tobeguarany.com/)
+* Bulgarian (bg_BG) - [Martin Halachev](http://wordpress.org/support/profile/mhalachev)
 * French (fr_FR) - Eva, [Agence web - My Client is Rich](http://myclientisrich-leblog.com/)
 * German (de_DE) - [Mario Wolf](http://wolfmedien.de/)
 * Polish (pl_PL) - [Marcin Pietrzak](http://iworks.pl/)
 * Romanian (ro_RO) - [Florin Arjocu](http://drumliber.ro/)
 * Russian (ru_RU) - [Вадим Сохин](http://webbizreshenie.ru/)
+* Spanish (er_ES) - [Apasionados del Marketing](http://www.apasionadosdelmarketing.es)
 * Turkish (tr_TR) - [wpdestek](http://wordpress.org/support/profile/wpdestek/)
 * Vietnamese (vi_VI) - [Xman](http://thegioimanguon.com/)
 
@@ -57,11 +57,13 @@ First of all, check your template. Rof proper work plugin requires function `wp_
 upPrev plugin will work on websites in the following languages:
 
 * Brazilian Portuguese
+* Bulgarian
 * French
 * German
 * Polish
 * Romanian
 * Russian
+* Spanish
 * Turkish
 * Vietnamese
 
@@ -162,9 +164,23 @@ Example:
 
 == Changelog ==
 
+= 3.3.12 =
+
+* BUGFIX: fixed compatybility errors with YARPP 4.x version thx to [adamdport](http://wordpress.org/support/profile/adamdport)
+* IMPROVMENT: add css to changed tabs class in WordPress 3.5
+* IMPROVMENT: check upPrev compatybility with WordPress 3.5
+
+= 3.3.11 =
+
+* IMPROVMENT: added Bulgarian translation by [Martin Halachev](http://wordpress.org/support/profile/mhalachev)
+
+= 3.3.10 =
+
+* IMPROVMENT: added Spanish translation by [Ramón Rautenstrauch](http://www.apasionadosdelmarketing.es/about/)
+
 = 3.3.9 =
 
-* IMPROVMENT: added Russian translation by [Вадим Сохин](http://webbizreshenie.ru/)
+* IMPROVMENT: added Romanian translation by [Florin Arjocu](http://drumliber.ro/)
 
 = 3.3.8 =
 
@@ -323,6 +339,7 @@ Example:
 * BUGFIX: fixed translation load
 * IMPROVMENT: added show box header option
 * IMPROVMENT: added stamp for cache key
+* IMPROVMENT: added Polish translation by [Marcin Pietrzak](http://iworks.pl/)
 
 = 2.0 =
 
@@ -345,9 +362,21 @@ Example:
 
 == Upgrade Notice ==
 
+= 3.3.12 =
+
+Fixed using YARPP 4.x. Check upPrev compatybility with WordPress 3.5.
+
+= 3.3.11 =
+
+Add Bulgarian translation.
+
+= 3.3.10 =
+
+Add Spanish translation.
+
 = 3.3.9 =
 
-Add Romanian translation.
+Add Russian translation.
 
 = 3.3.8 =
 

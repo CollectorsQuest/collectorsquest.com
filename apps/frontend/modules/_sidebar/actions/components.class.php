@@ -189,7 +189,8 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $height stdClass */
     $height = $this->getVar('height');
-    if (!$this->getRequest()->isMobileBrowser())
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 66), $this->limit);
     }
@@ -428,7 +429,8 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $height stdClass */
     $height = $this->getVar('height');
-    if (!$this->getRequest()->isMobileBrowser())
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 100), $this->limit);
     }
@@ -652,7 +654,8 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $height stdClass */
     $height = $this->getVar('height');
-    if (!$this->getRequest()->isMobileBrowser())
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 161), $this->limit);
     }
@@ -711,7 +714,8 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $height stdClass */
     $height = $this->getVar('height');
-    if (!$this->getRequest()->isMobileBrowser())
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       // one row is 142px in height, fits 2 collectibles
       $this->limit = min(floor(($height->value - 63) / 142 * round($this->limit / 2)), $this->limit);
@@ -1078,7 +1082,8 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $height stdClass */
     $height = $this->getVar('height');
-    if (!$this->getRequest()->isMobileBrowser())
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 120), $this->limit);
     }
