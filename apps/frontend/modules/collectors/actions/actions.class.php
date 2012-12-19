@@ -82,4 +82,9 @@ class collectorsActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeToCollectors(sfWebRequest $request)
+  {
+    $this->redirect('@collectors');
+  }
+
 }
