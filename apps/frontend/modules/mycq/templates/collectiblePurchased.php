@@ -95,24 +95,6 @@ cq_section_title(
             </td>
           </tr>
         <?php endif; ?>
-        <?php if ($shopping_order->getSellerPromotionId()): ?>
-        <tr>
-          <td>
-            <span class="f-14">
-              <?= $shopping_order->getSellerPromotion()->getPromotionName(); ?>
-            </span>
-          </td>
-          <td>
-            <?php if (0 != (int) $shopping_order->getPromotionAmount()): ?>
-              <span class="f-14">
-                - <?= money_format('%.2n', (float) $shopping_order->getPromotionAmount()) ?>
-              </span>
-            <?php else: ?>
-              &nbsp;
-            <?php endif; ?>
-          </td>
-        </tr>
-        <?php endif; ?>
         <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
           <tr>
             <td>

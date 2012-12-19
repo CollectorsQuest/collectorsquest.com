@@ -64,6 +64,7 @@ class SellerPromotionForm extends BaseSellerPromotionForm
       'collectible_id' => 'Collectible',
       'quantity' => 'Propositions quantity',
       'collector_email' => 'Collector email',
+      'promotion_desc' => 'Notes',
     ));
 
     $this->widgetSchema->setHelps(array(
