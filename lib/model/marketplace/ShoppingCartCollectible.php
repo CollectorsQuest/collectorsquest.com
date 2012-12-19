@@ -45,6 +45,17 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     return parent::preSave($con);
   }
 
+  public function postDelete(PropelPDO $con = null)
+  {
+    // Remove all not finished orders for this collectible
+    ShoppingOrderQuery::create()
+      ->filterByCollectibleId($this->getCollectibleId())
+      ->filterByShoppingCartId($this->getShoppingCartId())
+      ->filterByShoppingPaymentId(null, Criteria::ISNULL)
+      ->delete();
+
+    return parent::postDelete($con);
+  }
   public function getCollector(PropelPDO $con = null)
   {
     return $this->getCollectibleForSale($con)->getCollector($con);
