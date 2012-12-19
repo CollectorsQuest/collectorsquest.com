@@ -386,6 +386,26 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeRedirect(cqWebRequest $request)
+  {
+    $this->forward404Unless($route = $request->getParameter('route'));
+    $object = is_callable(array($this->getRoute(), 'getObject')) ? $this->getRoute()->getObject() : null;
+
+    if ($object)
+    {
+      $this->redirect(
+        $route, array('sf_subject' => $object),
+        $request->getParameter('permanent', 'true') == 'true' ? '301' : '302'
+      );
+    }
+    else
+    {
+      $this->redirect(
+        $route, $request->getParameter('permanent', 'true') == 'true' ? '301' : '302'
+      );
+    }
+  }
+
   public function executeError404()
   {
     return cqStatic::isCrawler() ?

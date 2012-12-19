@@ -1,7 +1,7 @@
 <?php
 
 /**
- * legacy actions.
+ * Legacy actions.
  *
  * @package    CollectorsQuest
  * @subpackage legacy
@@ -13,11 +13,9 @@ class _legacyActions extends sfActions
  /**
   * Executes help action
   *
-  * @param sfWebRequest $request A request object
-  *
   * @deprecated
   */
-  public function executeHelp(sfWebRequest $request)
+  public function executeHelp()
   {
     $this->redirect($this->generateUrl(
       'blog_page', array('slug' => 'cq-faqs/general-questions', '_decode' => 1)
@@ -25,66 +23,23 @@ class _legacyActions extends sfActions
   }
 
   /**
-   * Action Signup
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeSignup(sfWebRequest $request)
-  {
-    $this->redirect('collector_signup', 301);
-  }
-
-  /**
    * Action ComingSoon
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
    */
-  public function executeComingSoon(sfWebRequest $request)
+  public function executeComingSoon()
   {
     $this->redirect('@homepage', 301);
   }
 
   /**
-   * Action RedirectToCollections
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeRedirectToCollections(sfWebRequest $request)
-  {
-     $this->redirect('@collections', 301);
-  }
-
-  /**
-   * Action RedirectToContentCategories
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeRedirectToContentCategories(sfWebRequest $request)
-  {
-     $this->redirect('@content_categories', 301);
-  }
-
-  /**
    * Action RedirectToMarketplaceCategory
    *
-   * @param sfWebRequest $request
-   *
+   * @param  sfWebRequest  $request
    * @return string
    */
   public function executeRedirectToMarketplaceCategory(sfWebRequest $request)
   {
-    $id = $request->getParameter('id', 0);
-
     $content_category = ContentCategoryQuery::create()
-      ->findOneByCollectionCategoryId($id);
+      ->findOneByCollectionCategoryId($request->getParameter('id', 0));
 
     if ($content_category)
     {
@@ -95,14 +50,11 @@ class _legacyActions extends sfActions
             'sf_subject'=> $content_category
           )
         ),
-      301);
+        301
+      );
     }
 
     $this->redirect('@marketplace', 301);
   }
 
-  public function executeRedirectToSellerStore()
-  {
-    $this->redirect('seller_store', $this->getRoute()->getObject(), 301);
-  }
 }
