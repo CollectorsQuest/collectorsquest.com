@@ -6,7 +6,7 @@ class PackageTransaction extends BasePackageTransaction
 {
   public function getPackageName()
   {
-    if ($package = $this->getPackage())
+    if (( $package = $this->getPackage() ))
     {
       return $package->getPackageName();
     }
@@ -30,4 +30,29 @@ class PackageTransaction extends BasePackageTransaction
 
     return $this;
   }
+
+  /**
+   * @return    integer
+   */
+  public function getCreditsRemaining()
+  {
+    return $this->getCredits() - $this->getCreditsUsed();
+  }
+
+  /**
+   * Check if the package transaction is expired, or if it is expiring based on
+   * strtotime argument
+   *
+   * @param     string $within strtotime argument if you need to check +/- few days
+   * @param     integer $now Manually set current time for this function
+   *
+   * @return    boolean
+   */
+  public function isExpired($within = '0 days', $now = null)
+  {
+    $now = strtotime($within, null === $now ? time() : $now);
+
+    return $this->getExpiryDate('U') < $now;
+  }
+
 }

@@ -59,6 +59,7 @@ class ShippingReference extends BaseShippingReference
 
     $this->setModel(get_class($object));
     $this->setModelId($object->getPrimaryKey());
+    $this->model_object = $object;
 
     return $this;
   }
