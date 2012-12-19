@@ -10,6 +10,10 @@ collectors:
   param: { module: collectors, action: index, sort: latest, sf_format: html }
   requirements: { sf_format: (?:html|rss) }
 
+to_collectors:
+  url:  /collector
+  param: { module: collectors, action: toCollectors}
+
 collector_verify_email:
   url:  /collector/verify-email/:hash
   class: cqPropelRoute
