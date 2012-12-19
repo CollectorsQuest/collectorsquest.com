@@ -1,0 +1,358 @@
+iceModelGeoRegion:
+  iceModelGeoRegion_1:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Alabama
+    name_latin: Alabama
+    slug_cyrillic: Alabama
+    slug_latin: Alabama
+    coords: ''
+  iceModelGeoRegion_2:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Alaska
+    name_latin: Alaska
+    slug_cyrillic: Alaska
+    slug_latin: Alaska
+    coords: ''
+  iceModelGeoRegion_3:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Arizona
+    name_latin: Arizona
+    slug_cyrillic: Arizona
+    slug_latin: Arizona
+    coords: ''
+  iceModelGeoRegion_4:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Arkansas
+    name_latin: Arkansas
+    slug_cyrillic: Arkansas
+    slug_latin: Arkansas
+    coords: ''
+  iceModelGeoRegion_5:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: California
+    name_latin: California
+    slug_cyrillic: California
+    slug_latin: California
+    coords: ''
+  iceModelGeoRegion_6:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Colorado
+    name_latin: Colorado
+    slug_cyrillic: Colorado
+    slug_latin: Colorado
+    coords: ''
+  iceModelGeoRegion_7:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Connecticut
+    name_latin: Connecticut
+    slug_cyrillic: Connecticut
+    slug_latin: Connecticut
+    coords: ''
+  iceModelGeoRegion_8:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Delaware
+    name_latin: Delaware
+    slug_cyrillic: Delaware
+    slug_latin: Delaware
+    coords: ''
+  iceModelGeoRegion_9:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'District of Columbia'
+    name_latin: 'District of Columbia'
+    slug_cyrillic: District-of-Columbia
+    slug_latin: District-of-Columbia
+    coords: ''
+  iceModelGeoRegion_10:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Florida
+    name_latin: Florida
+    slug_cyrillic: Florida
+    slug_latin: Florida
+    coords: ''
+  iceModelGeoRegion_11:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Georgia
+    name_latin: Georgia
+    slug_cyrillic: Georgia
+    slug_latin: Georgia
+    coords: ''
+  iceModelGeoRegion_12:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Hawaii
+    name_latin: Hawaii
+    slug_cyrillic: Hawaii
+    slug_latin: Hawaii
+    coords: ''
+  iceModelGeoRegion_13:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Idaho
+    name_latin: Idaho
+    slug_cyrillic: Idaho
+    slug_latin: Idaho
+    coords: ''
+  iceModelGeoRegion_14:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Illinois
+    name_latin: Illinois
+    slug_cyrillic: Illinois
+    slug_latin: Illinois
+    coords: ''
+  iceModelGeoRegion_15:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Indiana
+    name_latin: Indiana
+    slug_cyrillic: Indiana
+    slug_latin: Indiana
+    coords: ''
+  iceModelGeoRegion_16:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Iowa
+    name_latin: Iowa
+    slug_cyrillic: Iowa
+    slug_latin: Iowa
+    coords: ''
+  iceModelGeoRegion_17:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Kansas
+    name_latin: Kansas
+    slug_cyrillic: Kansas
+    slug_latin: Kansas
+    coords: ''
+  iceModelGeoRegion_18:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Kentucky
+    name_latin: Kentucky
+    slug_cyrillic: Kentucky
+    slug_latin: Kentucky
+    coords: ''
+  iceModelGeoRegion_19:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Louisiana
+    name_latin: Louisiana
+    slug_cyrillic: Louisiana
+    slug_latin: Louisiana
+    coords: ''
+  iceModelGeoRegion_20:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Maine
+    name_latin: Maine
+    slug_cyrillic: Maine
+    slug_latin: Maine
+    coords: ''
+  iceModelGeoRegion_21:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Maryland
+    name_latin: Maryland
+    slug_cyrillic: Maryland
+    slug_latin: Maryland
+    coords: ''
+  iceModelGeoRegion_22:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Massachusetts
+    name_latin: Massachusetts
+    slug_cyrillic: Massachusetts
+    slug_latin: Massachusetts
+    coords: ''
+  iceModelGeoRegion_23:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Michigan
+    name_latin: Michigan
+    slug_cyrillic: Michigan
+    slug_latin: Michigan
+    coords: ''
+  iceModelGeoRegion_24:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Minnesota
+    name_latin: Minnesota
+    slug_cyrillic: Minnesota
+    slug_latin: Minnesota
+    coords: ''
+  iceModelGeoRegion_25:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Mississippi
+    name_latin: Mississippi
+    slug_cyrillic: Mississippi
+    slug_latin: Mississippi
+    coords: ''
+  iceModelGeoRegion_26:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Missouri
+    name_latin: Missouri
+    slug_cyrillic: Missouri
+    slug_latin: Missouri
+    coords: ''
+  iceModelGeoRegion_27:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Montana
+    name_latin: Montana
+    slug_cyrillic: Montana
+    slug_latin: Montana
+    coords: ''
+  iceModelGeoRegion_28:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Nebraska
+    name_latin: Nebraska
+    slug_cyrillic: Nebraska
+    slug_latin: Nebraska
+    coords: ''
+  iceModelGeoRegion_29:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Nevada
+    name_latin: Nevada
+    slug_cyrillic: Nevada
+    slug_latin: Nevada
+    coords: ''
+  iceModelGeoRegion_30:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'New Hampshire'
+    name_latin: 'New Hampshire'
+    slug_cyrillic: New-Hampshire
+    slug_latin: New-Hampshire
+    coords: ''
+  iceModelGeoRegion_31:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'New Jersey'
+    name_latin: 'New Jersey'
+    slug_cyrillic: New-Jersey
+    slug_latin: New-Jersey
+    coords: ''
+  iceModelGeoRegion_32:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'New Mexico'
+    name_latin: 'New Mexico'
+    slug_cyrillic: New-Mexico
+    slug_latin: New-Mexico
+    coords: ''
+  iceModelGeoRegion_33:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'New York'
+    name_latin: 'New York'
+    slug_cyrillic: New-York
+    slug_latin: New-York
+    coords: ''
+  iceModelGeoRegion_34:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'North Carolina'
+    name_latin: 'North Carolina'
+    slug_cyrillic: North-Carolina
+    slug_latin: North-Carolina
+    coords: ''
+  iceModelGeoRegion_35:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'North Dakota'
+    name_latin: 'North Dakota'
+    slug_cyrillic: North-Dakota
+    slug_latin: North-Dakota
+    coords: ''
+  iceModelGeoRegion_36:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Ohio
+    name_latin: Ohio
+    slug_cyrillic: Ohio
+    slug_latin: Ohio
+    coords: ''
+  iceModelGeoRegion_37:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Oklahoma
+    name_latin: Oklahoma
+    slug_cyrillic: Oklahoma
+    slug_latin: Oklahoma
+    coords: ''
+  iceModelGeoRegion_38:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Oregon
+    name_latin: Oregon
+    slug_cyrillic: Oregon
+    slug_latin: Oregon
+    coords: ''
+  iceModelGeoRegion_39:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Pennsylvania
+    name_latin: Pennsylvania
+    slug_cyrillic: Pennsylvania
+    slug_latin: Pennsylvania
+    coords: ''
+  iceModelGeoRegion_40:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'Rhode Island'
+    name_latin: 'Rhode Island'
+    slug_cyrillic: Rhode-Island
+    slug_latin: Rhode-Island
+    coords: ''
+  iceModelGeoRegion_41:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'South Carolina'
+    name_latin: 'South Carolina'
+    slug_cyrillic: South-Carolina
+    slug_latin: South-Carolina
+    coords: ''
+  iceModelGeoRegion_42:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'South Dakota'
+    name_latin: 'South Dakota'
+    slug_cyrillic: South-Dakota
+    slug_latin: South-Dakota
+    coords: ''
+  iceModelGeoRegion_43:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Tennessee
+    name_latin: Tennessee
+    slug_cyrillic: Tennessee
+    slug_latin: Tennessee
+    coords: ''
+  iceModelGeoRegion_44:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Texas
+    name_latin: Texas
+    slug_cyrillic: Texas
+    slug_latin: Texas
+    coords: ''
+  iceModelGeoRegion_45:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Utah
+    name_latin: Utah
+    slug_cyrillic: Utah
+    slug_latin: Utah
+    coords: ''
+  iceModelGeoRegion_46:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Vermont
+    name_latin: Vermont
+    slug_cyrillic: Vermont
+    slug_latin: Vermont
+    coords: ''
+  iceModelGeoRegion_47:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Virginia
+    name_latin: Virginia
+    slug_cyrillic: Virginia
+    slug_latin: Virginia
+    coords: ''
+  iceModelGeoRegion_48:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Washington
+    name_latin: Washington
+    slug_cyrillic: Washington
+    slug_latin: Washington
+    coords: ''
+  iceModelGeoRegion_49:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: 'West Virginia'
+    name_latin: 'West Virginia'
+    slug_cyrillic: West-Virginia
+    slug_latin: West-Virginia
+    coords: ''
+  iceModelGeoRegion_50:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Wisconsin
+    name_latin: Wisconsin
+    slug_cyrillic: Wisconsin
+    slug_latin: Wisconsin
+    coords: ''
+  iceModelGeoRegion_51:
+    geo_country_id: iceModelGeoCountry_226
+    name_cyrillic: Wyoming
+    name_latin: Wyoming
+    slug_cyrillic: Wyoming
+    slug_latin: Wyoming
+    coords: ''

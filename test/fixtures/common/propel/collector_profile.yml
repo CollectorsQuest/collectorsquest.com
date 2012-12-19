@@ -5,102 +5,90 @@ CollectorProfile:
     birthday: '1964-06-21'
     gender: f
     zip_postal: '58102'
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     website: inherited-values.com
-    num_views: '1616'
+    num_views: '1666'
     is_featured: '0'
     is_image_auto: '1'
     created_at: '2007-06-24 01:24:56'
-    updated_at: '2012-10-30 17:36:07'
+    updated_at: '2012-12-16 12:30:22'
   CollectorProfile_163:
     collector_id: Collector_163
     collector_type: '0'
     birthday: '1969-09-30'
     gender: m
     zip_postal: '11201'
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     website: ''
-    num_views: '61'
+    num_views: '70'
     is_image_auto: '0'
     created_at: '2007-09-15 22:27:59'
-    updated_at: '2012-10-15 19:33:32'
+    updated_at: '2012-12-09 21:03:10'
   CollectorProfile_644:
     collector_id: Collector_644
     collector_type: '3'
     birthday: '1952-02-09'
     gender: m
     zip_postal: '48335'
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     website: 'http://cardomain.com/ride/340096'
-    num_views: '587'
+    num_views: '617'
     is_featured: '0'
     is_image_auto: '0'
     created_at: '2008-06-24 17:03:11'
-    updated_at: '2012-10-29 16:37:18'
-  CollectorProfile_846:
-    collector_id: Collector_846
-    collector_type: '2'
-    birthday: '1976-07-09'
-    gender: f
-    country_iso3166: GeoCountry_IT
-    website: ''
-    num_views: '361'
-    is_featured: '0'
-    is_image_auto: '0'
-    created_at: '2008-12-12 12:58:56'
-    updated_at: '2012-10-30 17:28:56'
+    updated_at: '2012-12-12 18:18:14'
   CollectorProfile_963:
     collector_id: Collector_963
     collector_type: '4'
     birthday: '1957-10-14'
     gender: m
     zip_postal: '33405'
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     website: PoliticalCollectors.com
-    num_views: '481'
+    num_views: '517'
     is_featured: '0'
     is_image_auto: '0'
     created_at: '2009-02-04 21:13:11'
-    updated_at: '2012-10-30 15:19:56'
+    updated_at: '2012-12-17 05:54:33'
   CollectorProfile_1212:
     collector_id: Collector_1212
     collector_type: '2'
     birthday: '1962-05-20'
     gender: f
     zip_postal: '07069'
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     website: ''
-    num_views: '631'
+    num_views: '676'
     is_featured: '0'
     is_image_auto: '0'
     created_at: '2009-05-03 18:58:54'
-    updated_at: '2012-10-30 15:08:29'
+    updated_at: '2012-12-13 12:31:46'
   CollectorProfile_4208:
     collector_id: Collector_4208
     collector_type: '0'
     website: houstonfreeburgcollection.com/
-    num_views: '152'
+    num_views: '163'
     is_image_auto: '0'
     created_at: '2010-09-12 12:04:44'
-    updated_at: '2012-10-13 20:52:31'
+    updated_at: '2012-12-03 18:27:49'
   CollectorProfile_4295:
     collector_id: Collector_4295
     collector_type: '0'
     gender: f
-    num_views: '107'
+    num_views: '112'
     is_image_auto: '0'
     created_at: '2010-09-28 20:51:11'
-    updated_at: '2012-10-21 07:27:39'
+    updated_at: '2012-12-02 01:28:37'
   CollectorProfile_6700:
     collector_id: Collector_6700
     collector_type: '2'
     birthday: '1970-10-06'
     gender: f
     zip_postal: '68127'
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     website: ''
-    num_views: '156'
+    num_views: '169'
     is_seller: '0'
     is_image_auto: '1'
     created_at: '2011-06-13 21:45:21'
-    updated_at: '2012-10-28 10:43:21'
+    updated_at: '2012-12-12 07:31:03'

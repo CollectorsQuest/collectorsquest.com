@@ -5,7 +5,7 @@ include(__DIR__.'/../../bootstrap/model.php');
 $t = new lime_test(0, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 // Reset all tables we will be working on
-cqTest::resetTables(array('multimedia', 'collectible'));
+cqTest::resetTables(array('iceModelMultimedia', 'collectible'));
 
 $images = array(
   sfConfig::get('sf_test_dir').'/data/multimedia/05620d783231c09402ea1d406d35a58c.jpg',

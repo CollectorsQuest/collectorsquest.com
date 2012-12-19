@@ -24,9 +24,18 @@ PackageTransaction:
     collector_id: Collector_59
     payment_status: '1'
     credits: '9999'
-    credits_used: '3'
+    credits_used: '4'
     package_price: '0'
     discount: '250'
     promotion_transaction_id: PromotionTransaction_36
     expiry_date: '2013-07-09 16:59:33'
     created_at: '2012-07-09 16:59:33'
+  PackageTransaction_306:
+    package_id: Package_10000
+    collector_id: Collector_6700
+    payment_status: '1'
+    credits: '100'
+    credits_used: '0'
+    package_price: '0'
+    expiry_date: '2013-11-05 14:55:34'
+    created_at: '2012-11-05 14:55:34'

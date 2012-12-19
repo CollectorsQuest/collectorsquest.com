@@ -4,7 +4,7 @@
 ?>
 
 <div class="span6 brick masonry-blogpost featured-item">
-  <div class="masonry-blogpost yellow-background">
+  <div class="masonry-blogpost featured-item-background">
     <a href="<?= url_for($url) ?>" class="link">
       <?php if (!isset($image) || $image === true): ?>
       <div class="featured-item-img">

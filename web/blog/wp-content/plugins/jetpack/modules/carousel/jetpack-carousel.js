@@ -1176,6 +1176,9 @@ jQuery(document).ready(function($) {
 			if ( ! $(this).jp_carousel( 'testForData', gallery ) )
 				return;
 
+			if ( ! $(this).jp_carousel( 'testForData', gallery ) )
+				return;
+
 			n = parseInt(n[1], 10);
 
 			gallery.find('img').each(function(num, el){

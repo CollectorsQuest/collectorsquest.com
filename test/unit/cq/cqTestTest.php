@@ -9,8 +9,8 @@ $t->diag('::getRandomModelObject()');
   $collector = cqTest::getModelObject('Collector', true);
   $t->isa_ok($collector, 'Collector');
 
-  $multimedia = cqTest::getModelObject('Multimedia', false);
-  $t->isa_ok($multimedia, 'Multimedia');
+  $multimedia = cqTest::getModelObject('iceModelMultimedia', false);
+  $t->isa_ok($multimedia, 'iceModelMultimedia');
 
 $t->diag('::getNewModel()');
 
