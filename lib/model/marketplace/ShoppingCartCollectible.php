@@ -20,7 +20,8 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
       !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_FEE_AMOUNT)
-    ) {
+    )
+    {
       $this->updateShippingFeeAmountFromCountryCode();
     }
 
@@ -29,7 +30,8 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
       !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_TYPE)
-    ) {
+    )
+    {
       $this->updateShippingTypeFromCountryCode();
     }
 
@@ -38,11 +40,24 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) ||
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_STATE_REGION)
-    ) {
+    )
+    {
       $this->updateTaxAmount();
     }
 
     return parent::preSave($con);
+  }
+
+  public function postDelete(PropelPDO $con = null)
+  {
+    // Remove all not finished orders for this collectible
+    ShoppingOrderQuery::create()
+      ->filterByCollectibleId($this->getCollectibleId())
+      ->filterByShoppingCartId($this->getShoppingCartId())
+      ->filterByShoppingPaymentId(null, Criteria::ISNULL)
+      ->delete();
+
+    return parent::postDelete($con);
   }
 
   public function getCollector(PropelPDO $con = null)
@@ -85,6 +100,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   /**
    * @param integer|float|double $v
+   * @return ShoppingCartCollectible|void
    */
   public function setPriceAmount($v)
   {
@@ -115,7 +131,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   /**
    * @param integer|float|double $v
-   *
+   * @return ShoppingCartCollectible
    */
   public function setTaxAmount($v)
   {
@@ -209,17 +225,17 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       ->getShippingAmountForCountry($this->getShippingCountryIso3166(), 'integer');
 
     // if no shipping amout can be returned for a country we get "FALSE"
-    if (false !== $shipping_amount)
-    {
-      // if we got a normal result simply update the shipping amount
-      $this->setShippingFeeAmount($shipping_amount);
-    }
-    else
+    if (false === $shipping_amount)
     {
       // in this case we set the shipping fee amount field to NULL to show that
       // it does not hold an actual value. Notice that null !== 0, which denounces
       // free shipping
       $this->setRawShippingFeeAmount(null);
+    }
+    else
+    {
+      // if we got a normal result simply update the shipping amount
+      $this->setShippingFeeAmount($shipping_amount);
     }
 
     return $this;
@@ -295,10 +311,25 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
   {
     if (null === $this->aShippingReference || null !== $country_code)
     {
-      $this->aShippingReference = $this->getCollectible($con)
+      $aShippingReference = $this->getCollectible($con)
         ->getShippingReferenceForCountryCode(
           $country_code ?: $this->getShippingCountryIso3166(),
-          $con);
+          $con
+        );
+
+      // if we are getting the shipping reference for the default country code
+      if (null === $country_code || $this->getShippingCountryIso3166() == $country_code)
+      {
+        // then save a reference in this object
+        $this->aShippingReference = $aShippingReference;
+      }
+      else
+      {
+        // otherwize return the object without saving a reference, so that
+        // when the method is called with the default country code we don't
+        // get the wrong shipping reference
+        return $aShippingReference;
+      }
     }
 
     return $this->aShippingReference;

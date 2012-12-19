@@ -41,17 +41,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.COMPANY
     property_value: ''
     collector_profile_collector_id: CollectorProfile_644
-  CollectorProfileExtraProperty_4718:
-    property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
-    collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_4719:
-    property_name: ABOUT.WHAT_YOU_SELL
-    collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_4722:
-    property_name: ABOUT.COMPANY
-    property_value: ''
-    collector_profile_collector_id: CollectorProfile_846
   CollectorProfileExtraProperty_5360:
     property_name: ABOUT.PURCHASES_PER_YEAR
     property_value: '0'
@@ -207,34 +196,6 @@ CollectorProfileExtraProperty:
     property_name: ABOUT.ANNUALLY_SPEND
     property_value: '20000'
     collector_profile_collector_id: CollectorProfile_644
-  CollectorProfileExtraProperty_42311:
-    property_name: ABOUT.ME
-    property_value: "HI! I am Francesca, 32. I live in Prato, a cool town, close by Florence, in Tuscany [Italy]\r\nTo be honest with you, I have to say that I have an addiction...I love collecting snowglobes!!!!!\r\nAnd I know, I know, I am the worste nightmare of all my best friends: any time they  look at a snowglobe, immediately, and you must believe me, they think about me!!!"
-    collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_42312:
-    property_name: ABOUT.COLLECTIONS
-    property_value: "I started collecting snowglobes when I was 10. The first one I got was a a gift by my aunt: a little gufo playing sax. I has keept on collecting several items such as: Christmas, Disney, Towns and Places, Fairies and many others!  I am literally crazy for Nordstrom Snowglobes, and I used to buy them by eBay, because it is pretty hard to find them in Italy nowadays.\r\nI love collecting SG because they look like small worlds, places where everything is quiet beautiful magic and full of peace, quite far from the real world where we live. They give me happiness, tranquillity and make me relaxed. Today, I own 190 snowglobes!"
-    collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_42313:
-    property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: '5+ times a year'
-    collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_42314:
-    property_name: ABOUT.INTERESTS
-    property_value: 'I like architecture (I am an architect!), listening to music, going to the theater and cinema, and also reading.. My favourite book is: The Picture of Dorian Gray written by Oscar Wilde, but I like all books he wrote!'
-    collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_42315:
-    property_name: ABOUT.WHAT_YOU_COLLECT
-    property_value: snowglobes
-    collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_42316:
-    property_name: ABOUT.MOST_EXPENSIVE_ITEM
-    property_value: '40'
-    collector_profile_collector_id: CollectorProfile_846
-  CollectorProfileExtraProperty_42317:
-    property_name: ABOUT.ANNUALLY_SPEND
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_846
   CollectorProfileExtraProperty_42913:
     property_name: ABOUT.ME
     property_value: 'I''m president of the Theodore Roosevelt Chapter of the American Political Items Collectors and a former member of the board of APIC. I also run the South Florida Political Collectibles Show the last Saturday of February each year in West Palm Beach, Florida. I''m an editor at The Palm Beach Post newspaper.'
@@ -347,10 +308,6 @@ CollectorProfileExtraProperty:
     property_name: COMPLETED
     property_value: '100'
     collector_profile_collector_id: CollectorProfile_644
-  CollectorProfileExtraProperty_73727:
-    property_name: COMPLETED
-    property_value: '100'
-    collector_profile_collector_id: CollectorProfile_846
   CollectorProfileExtraProperty_73832:
     property_name: COMPLETED
     property_value: '100'

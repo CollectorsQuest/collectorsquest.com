@@ -30,7 +30,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'zip_postal'      => new sfWidgetFormInputText(array(
           'label'       => 'Zip/Postal code',
       )),
-      'country_iso3166'         => new cqWidgetFormI18nChoiceCountry(array(
+      'country_iso3166'         => new cqWidgetFormI18nChoiceIceModelGeoCountry(array(
           'add_empty'     => true,
         ), array(
           'required'    => 'required',
@@ -82,7 +82,9 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'birthday' => new sfValidatorDate(array('required' => false)),
       'gender' => new sfValidatorChoice(array('choices' => array('f', 'm'), 'required' => false)),
       'zip_postal' => new sfValidatorString(array('max_length' => 10, 'required' => false)),
-      'country_iso3166' => new sfValidatorI18nChoiceCountry(array('required' => true)),
+      'country_iso3166' => new sfValidatorPropelChoice(
+        array('model' => 'iceModelGeoCountry', 'column' => 'iso3166',)
+      ),
       'website' => new sfValidatorString(array('max_length' => 128, 'required' => false)),
 
       'about_me' => new sfValidatorString(array('required' => false)),

@@ -74,24 +74,31 @@
               <div class="controls flat-rate-controller">
                 <label class="radio">
                   <input name="shipping_rates_us[shipping_type]" type="radio"
-                         value="free_shipping"
+                         value="<?= ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY; ?>"
+                         id="shipping_rates_us_shipping_type_local_pickup_only"
+                         <?= ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY == $form_shipping_us->getCurrentShippingType() ? 'checked="checked"' : ''; ?>
+                  />Local Pickup Only
+                </label><br />
+                <label class="radio">
+                  <input name="shipping_rates_us[shipping_type]" type="radio"
+                         value="<?= SimpleShippingCollectorCollectibleForCountryForm::SHIPPING_TYPE_FREE_SHIPPING; ?>"
                          id="shipping_rates_us_shipping_type_free_shipping"
-                         <?php if ($form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
-
+                         <?= SimpleShippingCollectorCollectibleForCountryForm::SHIPPING_TYPE_FREE_SHIPPING == $form_shipping_us->getCurrentShippingType() ? 'checked="checked"' : ''; ?>
                   />Free shipping
                 </label><br />
                 <label class="radio">
-                  <input name="shipping_rates_us[shipping_type]"
-                         type="radio"
-                         value="flat_rate"
+                  <input name="shipping_rates_us[shipping_type]" type="radio"
+                         value="<?= ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE; ?>"
                          class="flat-rate-checkbox"
                          id="shipping_rates_us_shipping_type_flat_rate"
-                         <?php if (!$form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+                         <?= ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $form_shipping_us->getCurrentShippingType() ? 'checked="checked"' : ''; ?>
                   />Flat rate
                 </label>
                 <div class="input-prepend spacer-left-15 spacer-top-5">
-                  <span class="add-on">$</span><?= $form_shipping_us['flat_rate']->render(array(
-                    'class' => 'input-small flat-rate-field')); ?>
+                  <span class="add-on">$</span>
+                  <?= $form_shipping_us['flat_rate']->render(array(
+                    'class' => 'input-small flat-rate-field'));
+                  ?>
                 </div>
                 <?php if ($form_shipping_us->isError('flat_rate')): ?>
                   <?= $form_shipping_us['flat_rate']->renderError(); ?>
@@ -107,25 +114,24 @@
             <div class="controls flat-rate-controller">
               <label class="radio">
                 <input name="shipping_rates_zz[shipping_type]" type="radio"
-                       value="no_shipping"
+                       value="<?= ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING; ?>"
                        id="shipping_rates_zz_shipping_type_no_shipping"
-                       <?php if ($form_shipping_zz->getDefault('shipping_type') == ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING) echo 'checked="checked"'; ?>
+                       <?= ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $form_shipping_zz->getCurrentShippingType() ? 'checked="checked"' : ''; ?>
                 />Not available
               </label><br />
               <label class="radio">
                 <input name="shipping_rates_zz[shipping_type]" type="radio"
-                       value="free_shipping"
+                       value="<?= SimpleShippingCollectorCollectibleInternationalForm::SHIPPING_TYPE_FREE_SHIPPING; ?>"
                        id="shipping_rates_zz_shipping_type_free_shipping"
-                       <?php if ($form_shipping_zz->getDefault('shipping_type') == SimpleShippingCollectorCollectibleForCountryForm::SHIPPING_TYPE_FREE) echo 'checked="checked"'; ?>
+                       <?= SimpleShippingCollectorCollectibleInternationalForm::SHIPPING_TYPE_FREE_SHIPPING == $form_shipping_zz->getCurrentShippingType() ? 'checked="checked"' : ''; ?>
                 />Free shipping
               </label><br />
               <label class="radio">
-                <input name="shipping_rates_zz[shipping_type]"
-                       type="radio"
-                       value="flat_rate"
+                <input name="shipping_rates_zz[shipping_type]" type="radio"
+                       value="<?= ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE; ?>"
                        class="flat-rate-checkbox"
                        id="shipping_rates_zz_shipping_type_flat_rate"
-                       <?php if ($form_shipping_zz->getDefault('shipping_type') == ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE) echo 'checked="checked"'; ?>
+                       <?= ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $form_shipping_zz->getCurrentShippingType() ? 'checked="checked"' : ''; ?>
                 />Flat rate
               </label>
               <div class="input-prepend spacer-left-15 spacer-top-5">
@@ -135,9 +141,9 @@
               <?php if ($form_shipping_zz->isError('flat_rate')): ?>
                 <?= $form_shipping_zz['flat_rate']->renderError(); ?>
               <?php endif; ?>
-              <br />
+              <br /><br />
               <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
-              <?= $form_shipping_zz['do_not_ship_to']->render(array('class'=>'input-xxlarge')); ?>
+              <?= $form_shipping_zz['do_not_ship_to']->render(array('class' => 'input-xxlarge')); ?>
             </div>
           </div>
         </fieldset>

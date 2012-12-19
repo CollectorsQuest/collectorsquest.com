@@ -21,7 +21,7 @@ class ShippingAddressForm extends CollectorAddressForm
       'zip_postcode'    => new sfWidgetFormInputText(
         array(), array('required' => 'required')
       ),
-      'country_iso3166' => new cqWidgetFormI18nChoiceCountry(
+      'country_iso3166' => new cqWidgetFormI18nChoiceIceModelGeoCountry(
         array('add_empty' => false), array('required' => 'required')
       ),
 

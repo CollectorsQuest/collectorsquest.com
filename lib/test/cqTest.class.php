@@ -26,7 +26,6 @@ class cqTest
           'collector_geocache_archive',
           'collector_identifier',
           'collector_identifier_archive',
-          'collector_interview',
           'collector_profile',
           'collector_profile_archive',
           'collector_profile_extra_property'

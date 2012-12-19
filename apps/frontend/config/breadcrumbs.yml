@@ -22,7 +22,6 @@ ice_breadcrumbs:
     pickedOff: [{ name: 'As Seen on Picked Off' }]
     storageWars: [{ name: 'As Seen on Storage Wars' }]
     franksPicks: [{ name: "Frank's Picks" }]
-    blackHistory: [{ name: 'As Seen on Black History' }]
 
   collection:
     index:

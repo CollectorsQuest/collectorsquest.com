@@ -1,1 +1,78 @@
-{  }
+ShoppingOrderArchive:
+  ShoppingOrderArchive_1000013:
+    id: '1000013'
+    uuid: EK00X9LY
+    seller_id: '572'
+    shopping_cart_id: '108990'
+    collectible_id: '79360'
+    buyer_email: jp100356@yahoo.com
+    shipping_full_name: 'Jeanna Pohlman'
+    shipping_phone: 785.655.9088
+    shipping_address_line_1: '413 N. WILLOW'
+    shipping_address_line_2: ''
+    shipping_city: Solomon
+    shipping_state_region: Kansas
+    shipping_zip_postcode: '67480'
+    shipping_country_iso3166: US
+    note_to_seller: ''
+    progress: '0'
+    is_buyer_notified: '0'
+    is_seller_notified: '0'
+    updated_at: '2012-08-28 14:38:32'
+    created_at: '2012-08-28 14:35:08'
+  ShoppingOrderArchive_1000065:
+    id: '1000065'
+    uuid: EK00XRIQ
+    seller_id: '572'
+    shopping_cart_id: '220800'
+    collectible_id: '79857'
+    buyer_email: kiril.angov@gmail.com
+    shipping_full_name: 'Kiril Angov'
+    shipping_phone: ''
+    shipping_address_line_1: '262 West 38th Street'
+    shipping_address_line_2: 'RM 1701'
+    shipping_city: 'New York'
+    shipping_state_region: NY
+    shipping_zip_postcode: '10018'
+    shipping_country_iso3166: US
+    note_to_seller: ''
+    progress: '1'
+    is_buyer_notified: '0'
+    is_seller_notified: '0'
+    updated_at: '2012-11-19 15:12:08'
+    created_at: '2012-11-14 18:32:11'
+  ShoppingOrderArchive_1000071:
+    id: '1000071'
+    uuid: EK00XSFM
+    seller_id: '572'
+    shopping_cart_id: '232336'
+    collectible_id: '78735'
+    shipping_full_name: ''
+    shipping_address_line_1: ''
+    shipping_city: ''
+    shipping_zip_postcode: ''
+    shipping_country_iso3166: US
+    note_to_seller: ''
+    progress: '0'
+    is_buyer_notified: '0'
+    is_seller_notified: '0'
+    updated_at: '2012-11-20 09:10:17'
+    created_at: '2012-11-20 09:10:17'
+  ShoppingOrderArchive_1000075:
+    id: '1000075'
+    uuid: EK00XSEB
+    seller_id: '572'
+    collector_id: '6'
+    shopping_cart_id: '790'
+    collectible_id: '78664'
+    shipping_full_name: ''
+    shipping_address_line_1: ''
+    shipping_city: ''
+    shipping_zip_postcode: ''
+    shipping_country_iso3166: US
+    note_to_seller: ''
+    progress: '0'
+    is_buyer_notified: '0'
+    is_seller_notified: '0'
+    updated_at: '2012-11-21 10:58:21'
+    created_at: '2012-11-21 10:58:21'
