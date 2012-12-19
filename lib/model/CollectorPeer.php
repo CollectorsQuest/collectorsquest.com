@@ -27,6 +27,10 @@ class CollectorPeer extends BaseCollectorPeer
   const PROPERTY_SELLER_SETTINGS_REFUNDS = 'SELLER_SETTINGS_REFUNDS';
   const PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES = 'SELLER_SETTINGS_ADDITIONAL_POLICIES';
 
+  const PROPERTY_SELLER_SETTINGS_TAX_COUNTRY = 'SELLER_SETTINGS_TAX_COUNTRY';
+  const PROPERTY_SELLER_SETTINGS_TAX_STATE = 'SELLER_SETTINGS_TAX_STATE';
+  const PROPERTY_SELLER_SETTINGS_TAX_PERCENTAGE = 'SELLER_SETTINGS_TAX_PERCENTAGE';
+
   const PROPERTY_VISITOR_INFO_FIRST_VISIT_AT = 'VISITOR_INFO_FIRST_VISIT_AT';
   const PROPERTY_VISITOR_INFO_LAST_VISIT_AT = 'VISITOR_INFO_LAST_VISIT_AT';
   const PROPERTY_VISITOR_INFO_NUM_VISITS = 'VISITOR_INFO_NUM_VISITS';
@@ -282,6 +286,7 @@ class CollectorPeer extends BaseCollectorPeer
 
     $collector_identifier = $q->findOneOrCreate();
     $collector_identifier->setCollector($collector);
+    $collector_identifier->setProvider($collector_identifier->getProviderFromIdentifier());
     $collector_identifier->save();
 
     return $collector;
@@ -290,10 +295,7 @@ class CollectorPeer extends BaseCollectorPeer
   public static function createFromArray($data = array())
   {
     // We need to make sure we have a display name
-    $display_name = !empty($data['display_name']) ?
-      $data['display_name'] :
-      // Avoid running into duplicate display names at this point
-      $data['username'] . rand(10, 99);
+    $display_name = !empty($data['display_name']) ? $data['display_name'] : $data['username'];
 
     $collector = new Collector();
     $collector->setUsername($data['username']);
@@ -333,25 +335,18 @@ class CollectorPeer extends BaseCollectorPeer
       ? $data['collector_type']
       : 'casual');
 
-    try
-    {
-      $collector->save();
-      $collector_profile->save();
+    $collector->save();
+    $collector_profile->save();
 
-      if (!empty($data['email']))
-      {
-        $collectorEmail = new CollectorEmail();
-        $collectorEmail->setCollector($collector);
-        $collectorEmail->setEmail($collector->getEmail());
-        $collectorEmail->setSalt($collector->generateSalt());
-        $collectorEmail->setHash($collector->getAutoLoginHash());
-        $collectorEmail->setIsVerified(false);
-        $collectorEmail->save();
-      }
-    }
-    catch (PropelException $e)
+    if (!empty($data['email']))
     {
-      throw $e;
+      $collectorEmail = new CollectorEmail();
+      $collectorEmail->setCollector($collector);
+      $collectorEmail->setEmail($collector->getEmail());
+      $collectorEmail->setSalt($collector->generateSalt());
+      $collectorEmail->setHash($collector->getAutoLoginHash());
+      $collectorEmail->setIsVerified(false);
+      $collectorEmail->save();
     }
 
     return $collector;
@@ -409,11 +404,11 @@ class CollectorPeer extends BaseCollectorPeer
         ORDER BY count DESC
         LIMIT 0, %d
       ',
-      /*select*/    GeoCountryPeer::NAME,
+      /*select*/    iceModelGeoCountryPeer::NAME,
       /*from*/      CollectorProfilePeer::TABLE_NAME,
-      /*join*/      GeoCountryPeer::TABLE_NAME,
-      /*on*/        CollectorProfilePeer::COUNTRY_ISO3166, GeoCountryPeer::ISO3166,
-      /*group by*/  GeoCountryPeer::NAME,
+      /*join*/      iceModelGeoCountryPeer::TABLE_NAME,
+      /*on*/        CollectorProfilePeer::COUNTRY_ISO3166, iceModelGeoCountryPeer::ISO3166,
+      /*group by*/  iceModelGeoCountryPeer::NAME,
       /*limit*/      $max
     );
 

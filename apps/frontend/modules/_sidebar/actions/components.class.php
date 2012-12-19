@@ -10,7 +10,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 340);
   }
 
   /**
@@ -21,7 +21,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 370);
   }
 
   /**
@@ -39,7 +39,6 @@ class _sidebarComponents extends cqFrontendComponents
     $q = ContentCategoryQuery::create()
       ->filterByTreeLevel($level)
       ->hasCollectionsWithCollectibles()
-      ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
       ->groupById()
       ->limit($this->limit);
@@ -189,7 +188,9 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = $this->getVar('limit') ?: 5;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 66), $this->limit);
     }
@@ -306,7 +307,6 @@ class _sidebarComponents extends cqFrontendComponents
         $tag_query->filterByTags($machine_tags, Criteria::IN);
       }
 
-
       $q->filterByTags($tags, Criteria::IN);
 
       /** @var $category ContentCategory */
@@ -388,7 +388,7 @@ class _sidebarComponents extends cqFrontendComponents
     $total = count($this->collections);
 
     return $this->_sidebar_if(
-      $total > 0 && (!empty($height) ? $height->value >= ($total * 66 + 63) : true)
+      $total > 0, !empty($height) ? $height->value >= ($total * 66 + 63) : true
     );
   }
 
@@ -428,7 +428,9 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 5;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 100), $this->limit);
     }
@@ -651,7 +653,9 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 161), $this->limit);
     }
@@ -699,11 +703,19 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $this->title = $this->getVar('title') ?: 'From the Market';
 
+    // Should we display only certain Collectibles?
+    $this->ids = $this->getVar('ids', array());
+
+    // Should we exclude any Collectibles?
+    $this->exclude_ids = $this->getVar('exclude_ids', array());
+
     // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 4;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       // one row is 142px in height, fits 2 collectibles
       $this->limit = min(floor(($height->value - 63) / 142 * round($this->limit / 2)), $this->limit);
@@ -715,35 +727,26 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
+    // Ignore Collectible IDs already displayed in slot1SoldCollectibleRelated component
+    if ($exclude_collectible_ids = $this->getVar('exclude_collectible_ids', array()))
+    {
+      $this->exclude_ids = array_merge($this->exclude_ids, $exclude_collectible_ids);
+    }
+
     /** @var $q FrontendCollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create()
       ->isForSale();
 
     // have random  Items on Frank's Picks pages
     $aetn_shows = sfConfig::get('app_aetn_shows', array());
-    if ($this->getVar('collector') && $this->collector->getId() != $aetn_shows['american_pickers']['collector'])
+
+    if ($this->getVar('collector') && $this->collector->getId() == $aetn_shows['american_pickers']['collector'])
     {
-      $q->orderBy('UpdatedAt', Criteria::DESC);
+      $q->addAscendingOrderByColumn('RAND()');
     }
     else
     {
-      $q->addAscendingOrderByColumn('RAND()');;
-    }
-
-    // See if we need to filter by CollectibleId first
-    if (!empty($this->ids) && is_array($this->ids))
-    {
-      $q
-        ->filterByCollectibleId($this->ids, Criteria::IN)
-        ->addAscendingOrderByColumn(
-          'FIELD(collectible_for_sale.collectible_id, ' . implode(',', $this->ids) . ')'
-        );
-    }
-
-    /** @var $category ContentCategory */
-    if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
-    {
-      $q->filterByContentCategoryWithDescendants($category);
+      $q->orderBy('UpdatedAt', Criteria::DESC);
     }
 
     /** @var $collection Collection */
@@ -879,53 +882,65 @@ class _sidebarComponents extends cqFrontendComponents
         $q->filterByContentCategoryWithDescendants($category);
       }
     }
-
-    if ($collector = $this->getVar('collector'))
+    else if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
     {
-      $exclude_collectible_ids = $this->getVar('exclude_collectible_ids');
-      if ($collector instanceof Collector)
+      /* @var $post_meta_values array */
+      $post_meta_values = $wp_post->getPostMetaValue('_featured_items');
+
+      if ($post_meta_values && !empty($post_meta_values['cq_collectibles_for_sale_ids']))
       {
-        $q
-          ->filterByCollector($collector)
-          ->filterByCollectibleId($exclude_collectible_ids, Criteria::NOT_IN);
+        $collectibles_for_sale_ids = cqFunctions::explode(',', $post_meta_values['cq_collectibles_for_sale_ids']);
 
-        $this->collector = $collector;
+        // Get some element of surprise
+        shuffle($collectibles_for_sale_ids);
+
+        $this->ids = array_merge((array) $this->ids, $collectibles_for_sale_ids);
       }
-    }
-
-    /** @var $wp_post wpPost */
-    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
-    {
-      $tags = $wp_post->getTags('array');
-
-      $machine_tags = $wp_post->getTags(
-        array(
-          'is_triple' => true,
-          'namespace' => 'matching',
-          'key' => array('market', 'all'),
-          'return' => 'value'
-        )
-      );
-
-      if (!empty($machine_tags))
+      else
       {
-        /**
-         * match machine tags against machine tags
-         * @var $machine_query FrontendCollectibleForSaleQuery
-         */
-        $machine_query = clone $q;
+        if (!empty($post_meta_values['cq_homepage_collectible_ids']))
+        {
+          $collectibles_for_sale_ids = cqFunctions::explode(',', $post_meta_values['cq_homepage_collectible_ids']);
+          $collectibles_for_sale_ids = array_map('intval', $collectibles_for_sale_ids);
 
-        /**
-         * match machine tags against regular tags
-         * @var $tag_query FrontendCollectibleForSaleQuery
-         */
-        $tag_query = clone $q;
+          $this->exclude_ids = array_merge(
+            (array) $this->exclude_ids,
+            (array) $collectibles_for_sale_ids
+          );
+        }
 
-        $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
-        $tag_query->filterByTags($machine_tags, Criteria::IN);
+        /** @var $wp_post wpPost */
+        $tags = $wp_post->getTags('array');
+
+        $machine_tags = $wp_post->getTags(
+          array(
+            'is_triple' => true,
+            'namespace' => 'matching',
+            'key' => array('market', 'all'),
+            'return' => 'value'
+          )
+        );
+
+        if (!empty($machine_tags))
+        {
+          /**
+           * match machine tags against machine tags
+           * @var $machine_query FrontendCollectibleForSaleQuery
+           */
+          $machine_query = clone $q;
+
+          /**
+           * match machine tags against regular tags
+           * @var $tag_query FrontendCollectibleForSaleQuery
+           */
+          $tag_query = clone $q;
+
+          $machine_query->filterByMachineTags($machine_tags, 'matching', array('market', 'all'), Criteria::IN);
+          $tag_query->filterByTags($machine_tags, Criteria::IN);
+        }
+
+        $q->filterByTags($tags, Criteria::IN);
       }
-
-      $q->filterByTags($tags, Criteria::IN);
     }
     /** @var $wp_user wpUser */
     else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
@@ -962,6 +977,37 @@ class _sidebarComponents extends cqFrontendComponents
       $q->filterByTags($tags, Criteria::IN);
     }
 
+    if ($collector = $this->getVar('collector'))
+    {
+      $this->exclude_ids = array_merge($this->exclude_ids, (array) $this->getVar('exclude_collectible_ids', array()));
+      if ($collector instanceof Collector)
+      {
+        $q->filterByCollector($collector);
+
+        $this->collector = $collector;
+      }
+    }
+
+    // Remove the IDs we want to exclude from $this->ids
+    $this->ids = array_diff($this->ids, $this->exclude_ids);
+
+    $q
+      ->_if(!empty($this->ids))
+        ->filterByCollectibleId($this->ids, Criteria::IN)
+        ->clearOrderByColumns()
+        ->addAscendingOrderByColumn(
+          'FIELD(collectible_for_sale.collectible_id, ' . implode(',', $this->ids) . ')'
+        )
+      ->_elseif(!empty($this->exclude_ids))
+        ->filterByCollectibleId($this->exclude_ids, Criteria::NOT_IN)
+      ->_endif();
+
+    /** @var $category ContentCategory */
+    if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
+    {
+      $q->filterByContentCategoryWithDescendants($category);
+    }
+
     // Make the actual query and get the CollectiblesForSale
     if (isset($machine_query))
     {
@@ -972,7 +1018,7 @@ class _sidebarComponents extends cqFrontendComponents
       {
         // make sure we are not repeating collectibles_for_sale
         $collectible_ids = $this->collectibles_for_sale->toKeyValue('CollectibleId', 'CollectibleId');
-        $tag_query->filterByCollectibleId($collectible_ids, Criteria::NOT_IN);
+        $tag_query->filterByCollectibleId(array_merge((array) $this->exclude_ids, $collectible_ids), Criteria::NOT_IN);
 
         $additional_collectibles_for_sale = $tag_query->limit($this->limit - $count_collectibles_for_sale)->find();
         // add collectibles_for_sale that are matching by machine tags
@@ -988,7 +1034,7 @@ class _sidebarComponents extends cqFrontendComponents
       {
         // make sure we are not repeating collectibles_for_sale
         $collectible_ids = $this->collectibles_for_sale->toKeyValue('CollectibleId', 'CollectibleId');
-        $q->filterByCollectibleId($collectible_ids, Criteria::NOT_IN);
+        $q->filterByCollectibleId(array_merge((array) $this->exclude_ids, $collectible_ids), Criteria::NOT_IN);
 
         $additional_collectibles_for_sale = $q->limit($this->limit - $count_collectibles_for_sale)->find();
         // add collectibles_for_sale that are not matching by machine tags but are matching by regular tags
@@ -1035,7 +1081,9 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = (int) $this->getVar('limit') ?: 3;
 
     /** @var $height stdClass */
-    if ($height = $this->getVar('height'))
+    $height = $this->getVar('height');
+
+    if (!empty($height) && !$this->getRequest()->isMobileBrowser())
     {
       $this->limit = min(floor(($height->value - 63) / 120), $this->limit);
     }
@@ -1062,7 +1110,7 @@ class _sidebarComponents extends cqFrontendComponents
     $total = count($this->wp_posts);
 
     return $this->_sidebar_if(
-      $total > 0 && (!empty($height) ? $height->value >= ($total * 120 + 63) : true)
+      $total > 0, !empty($height) ? $height->value >= ($total * 120 + 63) : true
     );
   }
 
@@ -1149,16 +1197,17 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     $height = $this->getVar('height') ?: new stdClass();
 
-    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
+    return $this->_sidebar_if(true, !property_exists($height, 'value') || $height->value >= 190);
   }
 
-  private function _sidebar_if($condition = false)
+  private function _sidebar_if($condition = false, $condition2 = true)
   {
-    if ($condition)
+    if ($condition && ($condition2 || $this->getRequest()->isMobileBrowser()))
     {
       return sfView::SUCCESS;
     }
     else if (
+      ($condition2 || $this->getRequest()->isMobileBrowser()) &&
       $this->fallback && is_string($this->fallback) &&
       method_exists($this, 'execute' . $this->fallback)
     )
@@ -1166,6 +1215,7 @@ class _sidebarComponents extends cqFrontendComponents
       echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
     }
     else if (
+      ($condition2 || $this->getRequest()->isMobileBrowser()) &&
       $this->fallback && count($this->fallback) === 2 &&
       function_exists($this->fallback[0])
     )

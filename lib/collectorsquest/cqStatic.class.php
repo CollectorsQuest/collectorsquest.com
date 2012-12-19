@@ -26,7 +26,7 @@ class cqStatic extends IceStatic
       $servers = array_merge(
         array(
           'cq-memcached' => array(
-            'host' => 'ice-memcached', 'port' => 11211,
+            'host' => 'cache.e0sqlk.cfg.use1.cache.amazonaws.com', 'port' => 11211,
             'persistent' => true, 'weight' => 1
           )
         ),
@@ -376,7 +376,7 @@ class cqStatic extends IceStatic
       if (false !== $country_code = @geoip_country_code_by_name($ip))
       {
         if ( $check_against_geo_country
-          && !GeoCountryQuery::create()->filterByIso3166($country_code)->count() )
+          && !iceModelGeoCountryQuery::create()->filterByIso3166($country_code)->count() )
         {
           return false;
         }
@@ -386,5 +386,44 @@ class cqStatic extends IceStatic
     }
 
     return false;
+  }
+
+  /**
+   * Return the bytes equivalent of an php_ini setting (like "upload_max_filesize")
+   *
+   * @param     string $val
+   * @return    int
+   *
+   * @see       http://php.net/manual/en/function.ini-get.php for implementation
+   */
+  public static function returnBytes($val)
+  {
+    $val = trim($val);
+    $last = strtolower($val[strlen($val)-1]);
+    switch($last)
+    {
+      // The 'G' modifier is available since PHP 5.1.0
+      case 'g':
+          $val *= 1024;
+      case 'm':
+          $val *= 1024;
+      case 'k':
+          $val *= 1024;
+    }
+
+    return $val;
+  }
+
+  /**
+   * Return the actual allowed max upload filesize, based on current php ini settings
+   *
+   * @return    integer
+   */
+  public static function getPHPMaxUploadFileSize()
+  {
+    return min(
+      self::returnBytes(ini_get('upload_max_filesize')),
+      self::returnBytes(ini_get('post_max_size'))
+    );
   }
 }

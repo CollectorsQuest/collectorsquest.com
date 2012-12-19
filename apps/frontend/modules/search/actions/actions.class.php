@@ -21,9 +21,28 @@ class searchActions extends cqFrontendActions
       $request->setParameter('q', str_replace('-', ' ', $tag));
     }
 
-    self::$_query['q'] = $request->getParameter('q');
+    self::$_query['q'] = trim($request->getParameter('q'));
 
-    if (!empty(self::$_query['q']))
+    if (empty(self::$_query['q']))
+    {
+      switch (strtolower($request->getParameter('only', $this->getActionName())))
+      {
+        case 'collectors':
+          return $this->redirect('@collectors');
+          break;
+        case 'collections':
+        case 'collectibles':
+          return $this->redirect('@collections');
+          break;
+        case 'videos':
+          return $this->redirect('@video');
+          break;
+        default:
+          return $this->redirect('@homepage');
+          break;
+      }
+    }
+    else
     {
       $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());
       $breadcrumbs->addItem(sprintf('Search results for "%s"', self::$_query['q']));
@@ -96,7 +115,7 @@ class searchActions extends cqFrontendActions
 
     $query = array(
       'q' => self::$_query['q'],
-      'limits' => array(4 * (min($page, 250) - 1), 4),
+      'limits' => array(4 * (min($page, 250) - 1), 5),
       'filters' => array(
         'object_type' => 'collectible',
         'has_thumbnail' => 'yes',
@@ -114,7 +133,7 @@ class searchActions extends cqFrontendActions
 
       $this->collectibles_for_sale = FrontendCollectibleForSaleQuery::create()
         ->filterByCollectibleId($pks, Criteria::IN)
-        ->limit(4)
+        ->limit(5)
         ->find();
 
       self::$_query['filters']['id'] = array($this->collectibles_for_sale->getPrimaryKeys(), true);
@@ -138,11 +157,6 @@ class searchActions extends cqFrontendActions
       return 'NoResults';
     }
 
-    return sfView::SUCCESS;
-  }
-
-  public function executeAdvanced()
-  {
     return sfView::SUCCESS;
   }
 

@@ -27,6 +27,13 @@ require 'lib/model/om/BaseCollector.php';
  * @method     string    getSellerSettingsPaypalLastName()
  *
  *
+ * @method     Collector setSellerSettingsTaxCountry(string $v)
+ * @method     string    getSellerSettingsTaxCountry()
+ *
+ * @method     Collector setSellerSettingsTaxState(string $v)
+ * @method     string    getSellerSettingsTaxState()
+ *
+ *
  * @method     Collector setSellerSettingsPhoneCode(string $v)
  * @method     string    getSellerSettingsPhoneCode()
  *
@@ -98,6 +105,9 @@ require 'lib/model/om/BaseCollector.php';
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
+  /* @var null|integer */
+  private $_graph_id = null;
+
   /** @var array */
   public $_multimedia = array();
 
@@ -142,6 +152,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_REFUNDS);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_COUNTRY);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_STATE);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_TAX_PERCENTAGE);
 
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT);
@@ -367,31 +381,42 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
   public function getGraphId()
   {
-    $graph_id = parent::getGraphId();
+    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
 
-    if (!$this->isNew() && null === $graph_id)
+    if (!$this->isNew() && $graph_id === null)
     {
+      $client = cqStatic::getNeo4jClient();
+
       try
       {
-        $client = cqStatic::getNeo4jClient();
-
         $node = $client->makeNode();
         $node->setProperty('model', 'Collector');
         $node->setProperty('model_id', $this->getId());
         $node->save();
 
         $graph_id = $node->getId();
+      }
+      catch(Everyman\Neo4j\Exception $e)
+      {
+        $this->_graph_id = null;
+      }
 
-        $this->setGraphId($node->getId());
+      try
+      {
+        $this->setGraphId($this->_graph_id);
         $this->save();
       }
-      catch (Exception $e)
+      catch (PropelException $e)
       {
-        // Error when trying to create a new neo4j node
+        $this->_graph_id = $graph_id;
       }
     }
+    else
+    {
+      $this->_graph_id = $graph_id;
+    }
 
-    return $graph_id;
+    return $this->_graph_id;
   }
 
   public function getCollectorId()
@@ -440,11 +465,23 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * @param  BaseObject $something
+   * @param  BaseObject|array $something
    * @return boolean
    */
   public function isOwnerOf($something)
   {
+    // handle multiple checks at once
+    if (is_array($something))
+    {
+      $is_owner = true;
+      foreach ($something as $a_thing)
+      {
+        $is_owner = $is_owner && $this->isOwnerOf($a_thing);
+      }
+
+      return $is_owner;
+    }
+
     // Assume the User is not the owner if not an object
     if (!is_object($something))
     {
@@ -491,7 +528,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setPassword($password)
   {
-    $this->setSha1Password(sha1($this->getSalt() . $password));
+    // Legacy
+    $this->setSha1Password('*');
+    // Generate the salt if empty
+    $this->getSalt();
+
+    /**
+     * Portable Password
+     * @since 2012-11-24
+     */
+    $this->setPortablePassword(Password::hash($password));
 
     return $this;
   }
@@ -504,7 +550,20 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function checkPassword($password)
   {
-    return sha1($this->getSalt() . $password) === $this->getSha1Password();
+    if ($this->getSha1Password() != '*')
+    {
+      if ($this->getSha1Password() === sha1($this->getSalt() . $password))
+      {
+        $this->setPassword($password);
+        $this->save();
+
+        return true;
+      }
+
+      return false;
+    }
+
+    return Password::check($password, $this->getPortablePassword());
   }
 
   public function setDisplayName($v)
@@ -622,7 +681,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   /**
    * Returns the multimedia object for the collector profile photo
    *
-   * @return Multimedia
+   * @return iceModelMultimedia
    */
   public function getPhoto()
   {

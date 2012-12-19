@@ -212,6 +212,7 @@ div.onecolumn {
 }
 
 #HolidayMarketHeader {
+  position: relative;
   .size(248px, 980px);
   background: url("@{baseUrl}/misc/holiday-market/keep-it-classic-hm-header-bg.jpg") no-repeat 0 0;
   border-top: 1px solid #eaede6;
@@ -332,5 +333,35 @@ div.onecolumn {
 #infscr-loading {
   visibility: hidden;
 }
+
+.promo-banner {
+  .size(176px, 222px);
+  border: none;
+  .box-shadow(none);
+}
+
+.holiday-marker-adv-dialog-below-menu {
+  position: absolute;
+  top: -5px;
+  right: 1px;
+  z-index: 300;
+  .size(178px, 376px);
+  background: url("/images/headlines/banner-holiday-market-sell-your-stuff.png") no-repeat 0 0;
+
+  .link {
+    display: block;
+    .size(178px, 376px);
+  }
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 301;
+    color: #c0e1f7;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+
 
 

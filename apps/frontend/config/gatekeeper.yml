@@ -1,63 +1,58 @@
 all:
   pages:
-    aetn_black_history: false
-    aetn_franks_picks: false
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
 
   features:
     shopping_cart: true
+    shopping_collectible_tax: true
     shopping_checkout_help: false
     mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false
     mycq_profile_addresses: false
-    collectible_shipping: true
-    collectible_allow_no_shipping: true
-    expose_collection_categories: true
-    expose_market_categories: true
+    expose_collection_categories: false
+    expose_market_categories: false
+    collectible_for_sale_related: true
 
 stg:
-  pages: ~
-  features: ~
+  pages: []
+  features: []
 
 next:
   pages:
-    aetn_black_history: true
-    aetn_franks_picks: true
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
 
   features:
     shopping_cart: true
+    shopping_collectible_tax: true
     shopping_checkout_help: false
     mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false
     mycq_profile_addresses: false
-    collectible_shipping: true
-    collectible_allow_no_shipping: true
-    expose_collection_categories: true
-    expose_market_categories: true
+    expose_collection_categories: false
+    expose_market_categories: false
+    collectible_for_sale_related: true
 
 dev:
   pages:
-    aetn_black_history: true
-    aetn_franks_picks: true
     holiday_marketplace: true
     marketplace_categories: true
     mycq_incomplete: true
 
   features:
     shopping_cart: true
+    shopping_collectible_tax: true
     shopping_checkout_help: false
     mycq_homepage: true
     mycq_marketplace: true
+    mycq_marketplace_credit_history: true
     mycq_wanted: false
     mycq_profile_addresses: false
-    collectible_shipping: true
-    collectible_allow_no_shipping: true
-    expose_collection_categories: true
-    expose_market_categories: true
+    expose_collection_categories: false
+    expose_market_categories: false
+    collectible_for_sale_related: true

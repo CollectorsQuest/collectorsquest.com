@@ -160,21 +160,14 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    if (cqGateKeeper::locked('aetn_franks_picks', 'page'))
-    {
-      $this->menu = array();
-    }
-    else
-    {
-      $this->menu = array(
-        0 => array(
-          'id' => -1, 'active' => true,
-          'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks',
-          'content' => 'blah blah',
-          'tags' => array()
-        )
-      );
-    }
+    $this->menu = array(
+      0 => array(
+        'id' => -1, 'active' => true,
+        'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks',
+        'content' => 'blah blah',
+        'tags' => array()
+      )
+    );
 
     /* @var $q wpPostQuery */
     $q = wpPostQuery::create()
@@ -205,6 +198,17 @@ class marketplaceComponents extends cqFrontendComponents
       );
     }
 
+    $this->show_holiday_adv = true;
+    $user = $this->getUser();
+
+    if (
+      $user->getAttribute('closed_adv_dialog', false, 'marketplace') ||
+      ($user->getSeller() && $user->getSeller()->hasPackageCredits())
+    )
+    {
+      $this->show_holiday_adv = false;
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -216,7 +220,7 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $page integer */
     $page = (integer) $this->getRequestParameter('p', 1);
 
-    if ($t == 0 && cqGateKeeper::open('aetn_franks_picks', 'page'))
+    if ($t == 0)
     {
       /* @var $aetn_shows array */
       $aetn_shows = sfConfig::get('app_aetn_shows', array());
@@ -241,7 +245,7 @@ class marketplaceComponents extends cqFrontendComponents
     }
     else
     {
-      $offset = cqGateKeeper::open('aetn_franks_picks', 'page') ? $t-1 : $t;
+      $offset = $t-1;
 
       /* @var $q wpPostQuery */
       $q = wpPostQuery::create()
@@ -314,7 +318,7 @@ class marketplaceComponents extends cqFrontendComponents
         $query['order']  = 'desc';
         $query['filters']['uint3'] = array();
 
-        // Add the descendant categories
+        /* @var $descendants array|PropelObjectCollection */
         if ($descendants = $content_category->getDescendants())
         {
           $query['filters']['uint3'] = array_values(
@@ -350,7 +354,7 @@ class marketplaceComponents extends cqFrontendComponents
           break;
       }
 
-      $pager = new cqSphinxPager($query, array('collectibles'), 16);
+      $pager = new cqSphinxPager($query, array('collectibles'), 15);
       $pager->setJoinWith(array('collectible' => array('CollectibleForSale')));
     }
     else
@@ -371,7 +375,7 @@ class marketplaceComponents extends cqFrontendComponents
       $query->orderByAverageRating(Criteria::DESC);
       $query->orderByUpdatedAt(Criteria::DESC);
 
-      $pager = new cqPropelModelPager($query, 16);
+      $pager = new cqPropelModelPager($query, 15);
       $pager->setNbResults(count($pks));
     }
 
@@ -393,6 +397,9 @@ class marketplaceComponents extends cqFrontendComponents
         '@search_collectibles_for_sale?q=%s&s1=%s&s2&page=%d',
         $q, $s1, $s2, $pager->getNextPage()
       );
+
+      // variable used for displaying holiday promo banner
+      $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
 
       return sfView::SUCCESS;
     }

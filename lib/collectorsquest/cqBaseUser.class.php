@@ -61,6 +61,19 @@ class cqBaseUser extends IceSecurityUser
   /**
    * @return string
    */
+  public function getSalt()
+  {
+    if ($this->isAuthenticated() && ($collector = $this->getCollector()))
+    {
+      return $collector->getSalt();
+    }
+
+    return '';
+  }
+
+  /**
+   * @return string
+   */
   public function getSlug()
   {
     if ($this->isAuthenticated() && ($collector = $this->getCollector()))
@@ -186,7 +199,7 @@ class cqBaseUser extends IceSecurityUser
   public function hmacSignMessage($message, $hmac_secret = null)
   {
     $id = $this->getId();
-    $hmac_secret = $id.($hmac_secret ?: $this->getHmacSecret());
+    $hmac_secret = $id . ($hmac_secret ?: $this->getHmacSecret());
     $time = time();
 
     return json_encode(array(
@@ -194,7 +207,7 @@ class cqBaseUser extends IceSecurityUser
         'message' => base64_encode($message),
         'time' => $time,
         'hmac' => base64_encode(
-          hash_hmac('sha1', $id.$message.$time, $hmac_secret)
+          hash_hmac('sha1', $id . $message . $time, $hmac_secret)
         )
     ));
   }
@@ -232,9 +245,9 @@ class cqBaseUser extends IceSecurityUser
     }
 
     // Construct the hmac secret
-    $hmac_secret = $id.($hmac_secret ?: $this->getHmacSecret());
+    $hmac_secret = $id . ($hmac_secret ?: $this->getHmacSecret());
 
-    if ($hmac === base64_encode(hash_hmac('sha1', $id.$message.$time, $hmac_secret)))
+    if ($hmac === base64_encode(hash_hmac('sha1', $id . $message . $time, $hmac_secret)))
     {
       return $message;
     }

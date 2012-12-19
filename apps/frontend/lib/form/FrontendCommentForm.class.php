@@ -29,11 +29,6 @@ class FrontendCommentForm extends BaseCommentForm
 
     $object = new Comment();
 
-    if ($this->isAuthenticated())
-    {
-      $object->setCollector($this->sf_user->getCollector());
-    }
-
     parent::__construct($object, $options, $CSRFSecret);
   }
 
@@ -150,6 +145,8 @@ class FrontendCommentForm extends BaseCommentForm
           'trim' => true,
           'required' => !$this->isAuthenticated(),
       ))
+    ), array(
+        'required' => !$this->isAuthenticated(),
     ));
   }
 
@@ -181,6 +178,11 @@ class FrontendCommentForm extends BaseCommentForm
       $this->getValue('token'),
       $this->sf_user
     ));
+
+    if ($this->isAuthenticated())
+    {
+      $this->getObject()->setCollector($this->sf_user->getCollector());
+    }
   }
 
   protected function unsetFields()

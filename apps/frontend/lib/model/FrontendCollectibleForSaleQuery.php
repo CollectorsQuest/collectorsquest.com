@@ -12,8 +12,10 @@ class FrontendCollectibleForSaleQuery extends CollectibleForSaleQuery
        */
       return $criteria
         ->useCollectibleQuery()
-          ->isComplete()
           ->isPartOfCollection()
+          ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
+            ->isComplete()
+          ->_endif()
         ->endUse()
         ->joinWith('Collectible');
     }
@@ -34,8 +36,10 @@ class FrontendCollectibleForSaleQuery extends CollectibleForSaleQuery
      */
     $query
       ->useCollectibleQuery()
-        ->isComplete()
         ->isPartOfCollection()
+        ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
+          ->isComplete()
+        ->_endif()
       ->endUse()
       ->joinWith('Collectible');
 

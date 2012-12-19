@@ -142,7 +142,7 @@ class cqFrontendUser extends cqBaseUser
       $country_code = $this->getCountryCode();
     }
 
-    return GeoCountryQuery::create()
+    return iceModelGeoCountryQuery::create()
       ->filterByIso3166($country_code)
       ->select('Name')
       ->findOne() ?: false;
@@ -464,11 +464,23 @@ class cqFrontendUser extends cqBaseUser
   }
 
   /**
-   * @param  BaseObject $something
+   * @param  BaseObject|array $something
    * @return boolean
    */
   public function isOwnerOf($something)
   {
+    // handle multiple checks at once
+    if (is_array($something))
+    {
+      $is_owner = true;
+      foreach ($something as $a_thing)
+      {
+        $is_owner = $is_owner && $this->isOwnerOf($a_thing);
+      }
+
+      return $is_owner;
+    }
+
     $is_owner = parent::isOwnerOf($something);
 
     if (!$is_owner && method_exists($something, 'getId'))
@@ -521,9 +533,9 @@ class cqFrontendUser extends cqBaseUser
   {
     if ($uuid = $this->getCookieUuid())
     {
-      return
-        @$this->collectors_by_uuid[$uuid] ?:
-        $this->collectors_by_uuid[$uuid] = CollectorQuery::create()->filterByCookieUuid($uuid)->findOne();
+      return isset($this->collectors_by_uuid[$uuid])
+        ? $this->collectors_by_uuid[$uuid]
+        : $this->collectors_by_uuid[$uuid] = CollectorQuery::create()->filterByCookieUuid($uuid)->findOne();
     }
 
     return null;

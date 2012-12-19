@@ -17,6 +17,7 @@ classes:
       display_name:   { type: varchar, size: 64, required: true, primaryString: true, index: unique }
       slug:           { type: varchar, size: 64, required: true, index: unique }
       sha1_password:  { type: varchar, size: 40, required: true }
+      portable_password:  { type: varchar, size: 64, required: true }
       salt:           { type: varchar, size: 32, required: true }
       email:          { type: varchar, size: 128, index: unique }
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
@@ -61,6 +62,7 @@ classes:
       archivable: { archive_class: CollectorProfileArchive, archived_at_column: archived_at }
       extra_properties: ~
       timestampable:  ~
+      simple_calculations: { columns: [num_views] }
 
   CollectorEmail:
     columns:
@@ -100,6 +102,7 @@ classes:
       id:  ~
       collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
       identifier:    { type: varchar, size: 255, index: unique }
+      provider:      { type: varchar, size: 20 }
       created_at:    ~
 
     propel_behaviors:
@@ -117,17 +120,6 @@ classes:
     propel_behaviors:
       symfony:       { form: false, filter: false }
 
-  CollectorInterview:
-    columns:
-      id:  ~
-      collector_id:            { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: setnull }
-      collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
-      content_category_id:     { type: integer, foreignClass: ContentCategory, foreignReference: id, onDelete: setnull }
-      collection_id:           { type: integer, foreignClass: Collection, foreignReference: id, onDelete: setnull }
-      title:                   { type: varchar, size: 128, required: true, primaryString: true }
-      catch_phrase:            { type: varchar, size: 128, required: true }
-      is_active:               { type: boolean, default: false }
-      created_at:  ~
 
   ###
   # NOTE: Make SURE to update also CollectorGeocacheArchive in archive.schema.yml
@@ -164,7 +156,7 @@ classes:
     columns:
       id:  ~
       graph_id:                { type: integer, required: false, index: unique }
-      collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      collection_category_id:  { type: integer, required: false }
       content_category_id:     { type: integer, foreignClass: ContentCategory, foreignReference: id, onDelete: setnull, required: false }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
@@ -185,12 +177,13 @@ classes:
     propel_behaviors:
       sluggable: { slug_pattern: "{Name}", permanent: false }
       ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
+      simple_calculations: { columns: [num_views] }
       timestampable:  ~
 
   ContentCategory:
     columns:
       id: ~
-      collection_category_id: { type: integer, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      collection_category_id: { type: integer, required: false }
       name:          { type: varchar, size: 64, required: true, primaryString: true }
       name_singular: { type: varchar, size: 64, required: false }
       slug:          { type: varchar, size: 64, required: true }
@@ -218,13 +211,6 @@ classes:
   CollectorCollection:
     columns:
       collector_id:     { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
-
-    foreignKeys:
-      collection_collectible:
-        foreignClass: CollectionCollectible
-        skipSQL: true
-        references:
-          - { local: id, foreign: collection_id }
 
     propel_behaviors:
       concrete_inheritance: { extends: collection, copy_data_to_parent: true }
@@ -254,6 +240,7 @@ classes:
     propel_behaviors:
       archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
       ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
+      simple_calculations: { columns: [num_views] }
       timestampable:  ~
 
   PrivateMessage:
@@ -274,8 +261,8 @@ classes:
       created_at:    ~
 
     indexes:
-      private_message_I_1: [thread];
-      private_message_I_2: [receiver, sender];
+      private_message_I_1: [thread]
+      private_message_I_2: [receiver, sender]
 
     propel_behaviors:
       extra_properties: ~

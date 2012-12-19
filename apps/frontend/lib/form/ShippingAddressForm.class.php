@@ -21,7 +21,7 @@ class ShippingAddressForm extends CollectorAddressForm
       'zip_postcode'    => new sfWidgetFormInputText(
         array(), array('required' => 'required')
       ),
-      'country_iso3166' => new cqWidgetFormI18nChoiceCountry(
+      'country_iso3166' => new cqWidgetFormI18nChoiceIceModelGeoCountry(
         array('add_empty' => false), array('required' => 'required')
       ),
 
@@ -36,7 +36,7 @@ class ShippingAddressForm extends CollectorAddressForm
       'state_region'    => new sfValidatorString(array('max_length' => 100, 'required' => true)),
       'zip_postcode'    => new sfValidatorString(array('max_length' => 50, 'required' => true)),
       'country_iso3166' => new sfValidatorPropelChoice(
-        array('model' => 'GeoCountry', 'column' => 'iso3166')
+        array('model' => 'iceModelGeoCountry', 'column' => 'iso3166')
       ),
 
       'address_id' => new sfValidatorPropelChoice(

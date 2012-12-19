@@ -59,17 +59,17 @@
   ?>
   <div class="shadow">
   <?php
-    if (has_component_slot('breadcrumbs'))
+    if ($slot = get_component_slot('breadcrumbs'))
     {
       echo '<div id="breadcrumbs">';
-        include_component_slot('breadcrumbs');
+      echo $slot;
       echo '</div>';
     }
 
-    if (has_component_slot('slot1'))
+    if ($slot = get_component_slot('slot1'))
     {
       echo '<div class="slots-container"><div id="slot1">';
-        include_component_slot('slot1');
+      echo $slot;
       echo '</div></div>';
     }
 
@@ -129,10 +129,10 @@
   ?>
 
   <?php
-    if (has_component_slot('slot2'))
+    if ($slot = get_component_slot('slot2'))
     {
       echo '<div class="slots-container"><div id="slot2">';
-      include_component_slot('slot2');
+      echo $slot;
       echo '</div></div>';
     }
   ?>
@@ -148,6 +148,9 @@
 
     // include the html for modal confirmation
     include_partial('global/modal_confirm');
+
+    // include the html for modal alerts
+    include_partial('global/modal_alert');
 
     // Include the global javascripts
     include_partial('global/javascripts');

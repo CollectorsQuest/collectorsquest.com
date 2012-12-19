@@ -1,10 +1,6 @@
 
 ### COLLECTORS
 
-legacy_collectors_filter:
-  url: /collectors/filter/:sort
-  param: { module: collectors, action: index, sort: latest }
-
 collectors:
   url:  /collectors/:sort.:sf_format
   param: { module: collectors, action: index, sort: latest, sf_format: html }
@@ -44,6 +40,10 @@ collector_by_slug:
   options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collector, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collector_without_parameters:
+  url:  /collector
+  param: { module: general, action: redirect, route: 'collectors'}
 
 ### SELLERS
 

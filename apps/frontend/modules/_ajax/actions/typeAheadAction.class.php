@@ -54,19 +54,39 @@ class typeAheadAction extends cqAjaxAction
     /* @var $q iceModelTagQuery */
     $q = iceModelTagQuery::create()
       ->addAsColumn('id', 'Id')
-      ->addAsColumn('name', 'LOWER(CONVERT(`Name` USING utf8))')
-      ->addAsColumn('label', 'LOWER(CONVERT(`Name` USING utf8))');
+      ->addAsColumn('normalized_name', 'LOWER(CONVERT(`Name` USING utf8))')
+      ->addAsColumn('normalized_label', 'LOWER(CONVERT(`Name` USING utf8))');
 
     $q->filterBy('Name', 'name LIKE '. $term, Criteria::CUSTOM)
       ->filterBy('IsTriple', false)
       ->orderBy('name', Criteria::ASC)
-      ->select(array('id', 'name', 'label'))
+      ->select(array('id', 'normalized_name', 'normalized_label'))
       ->groupBy('id')
       ->limit(10);
 
     /* @var $tags array */
-    $tags = $q->find()->getArrayCopy();
+    $tags = array_map(function($tag) {
+      $tag['name'] = $tag['normalized_name'];
+      $tag['label'] = $tag['normalized_label'];
+      unset ($tag['normalized_name'], $tag['normalized_label']);
+
+      return $tag;
+    }, $q->find()->getArrayCopy());
 
     return $this->output($tags);
+  }
+
+  public function executeStatesLookup(sfWebRequest $request)
+  {
+    $states = iceModelGeoRegionQuery::create()
+      ->orderByNameLatin()
+      ->useiceModelGeoCountryQuery()
+        ->filterByIso3166((string) $request->getParameter('c'))
+      ->endUse()
+      ->select(array('Id', 'NameLatin'))
+      ->find()
+      ->toKeyValue('Id', 'NameLatin');
+
+    return $this->renderText(json_encode($states));
   }
 }

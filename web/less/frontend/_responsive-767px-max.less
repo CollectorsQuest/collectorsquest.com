@@ -1,0 +1,439 @@
+@import "_variables.less";
+@import "_mixins.less";
+
+// Fixed wrapper under 1024px
+@media (max-width: 767px) {
+  // homepage
+  #slot1 .slot1-inner
+  {
+    padding: 40px 0 25px 0;
+  }
+
+  // Padding to set content in a bit
+    body {
+      padding-right: 0;
+    }
+
+  // Remove padding on container given explicit padding set on body
+    .container-fluid {
+      padding: 0;
+    }
+
+  // TYPOGRAPHY
+  // ----------
+  // Reset horizontal dl
+    .dl-horizontal {
+      dt {
+        float: none;
+        clear: none;
+        width: auto;
+        text-align: left;
+      }
+      dd {
+        margin-left: 0;
+      }
+    }
+
+  // GRID & CONTAINERS
+  // -----------------
+  // Remove width from containers
+    .container {
+      width: auto;
+    }
+  // Fluid rows
+    .row-fluid {
+      width: 100%;
+    }
+
+
+  // FORM FIELDS
+  // -----------
+  // Make span* classes full width
+    .input-large,
+    .input-xlarge,
+    .input-xxlarge,
+    input[class*="span"],
+    select[class*="span"],
+    textarea[class*="span"],
+    .uneditable-input {
+      .input-block-level();
+    }
+  // But don't let it screw up prepend/append inputs
+    .input-prepend input,
+    .input-append input,
+    .input-prepend input[class*="span"],
+    .input-append input[class*="span"] {
+      display: inline-block; // redeclare so they don't wrap to new lines
+      width: auto;
+    }
+    .controls-row [class*="span"] + [class*="span"] {
+      margin-left: 0;
+    }
+
+    // textarea below comments to fill in blank space
+    .post-comment textarea.expand, .post-comment textarea.shrink {
+      width: 490px;
+    }
+
+  // Modals
+    .modal {
+      position: fixed;
+      top:   20px;
+      left:  20px;
+      right: 20px;
+      width: auto;
+      margin: 0;
+      &.fade.in { top: auto; }
+    }
+
+
+  .reset-row-fluid() {
+    .row-fluid [class*="span"] {
+      float: none;
+      display: block;
+      width: 100%;
+      margin-left: 0;
+      .box-sizing(border-box);
+    }
+  }
+
+  //CONTAINERS & SIDEBAR
+  header, nav, footer, #footer-links,
+  .slots-container, .shadow, .container-fluid.without-column,
+  #slot1, #slot2  {
+    width: 640px;
+    .margin-auto();
+  }
+
+  .container-fluid.without-column, .container.without-column {
+    padding-right: 0;
+  }
+
+  .shadow {
+    .box-shadow(none);
+  }
+
+  .container-fluid.fixed-right-300, #breadcrumbs  {
+    width: 620px;
+    margin: 0 10px;
+  }
+
+  #breadcrumbs {
+    .pull-right {
+      float: left;
+    }
+
+    .breadcrumbs-inner {
+      padding: 15px 5px 25px 5px;
+    }
+  }
+
+  #content, .navbar, #breadcrumbs {
+    border: none;
+  }
+
+  #content {
+    padding-top: 10px;
+  }
+
+  /*
+   * move the search field and the cart/signup section a to the left
+   * so that it is not all the way in the end of the screen
+   */
+  .right-section-header, .search-header
+  {
+    padding-right: 15px;
+  }
+
+  // homepage sidebar
+  #body-general-index #sidebar {
+    display: none;
+  }
+
+  // sidebar to display properly without taking extra space on the right
+  .fixed-right-300 > #sidebar {
+    width: 620px;
+    margin: 0;
+    padding: 0 !important;
+  }
+
+  // banners in sidebar
+  .banner-sidebar-promo-300-90 {
+    display: block;
+    width: 300px;
+    margin: 0 auto 30px auto;
+  }
+
+  // other items in this collection widget
+  .carousel-sidebar.sidebar-title {
+    margin: 20px auto;
+    display: block;
+
+    a.left-arrow, a.right-arrow {
+      display: block;
+    }
+
+    a.left-arrow {
+      left: -20px;
+      .border-radius(3px 0 0 3px);
+    }
+
+    a.right-arrow {
+      right: -20px;
+      .border-radius(0 3px 3px 0);
+    }
+
+    .well {
+      position: relative;
+    }
+  }
+
+  // Collector widget
+  .collector-info-sidebar {
+    width: 300px;
+    display: block;
+    margin: auto;
+  }
+  .send-pm {
+    width: 290px;
+    display: block;
+    margin: auto;
+  }
+
+  // items for sale widget to display 4 items on one row
+  #items-for-sale-sidebar {
+    width: 620px;
+  }
+
+  // blue actions pannel does not 'stick' to page content
+  #sidebar .blue-actions-panel {
+    margin-top: 20px;
+  }
+
+  // used for (center) aligned sidebar widgets NOT on full width
+  .mobile-optimized-300 {
+    width: 300px;
+    display: block;
+
+    &.center {
+      margin: auto;
+    }
+  }
+
+  // two column layout for 'Collections of Interest' widget
+  .row-fluid.collection-container.link {
+    width: 310px;
+    float: left;
+    // this is needed because in cases of 3 row text elements might get misplaced (default height is 50)
+    height: 54px;
+  }
+
+  // center align adds in blog
+  .widget_cq_300x250ad_widget {
+    width: 300px;
+    display: block;
+    margin: auto;
+  }
+
+  // disable upprev box on such low width - it covers everything
+  #upprev_box {
+    display: none !important;
+  }
+
+  // magnify videos sidebar widget
+  .row-fluid .span5.sidebar-video-image {
+    width: 120px;
+  }
+
+  //HEADER & NAV
+
+  .cq-logo {
+    top: 8px;
+
+    &.logo {
+      .size(96px, 176px);
+      background-position: 0 10px;
+      background-size: 229% auto;
+    }
+  }
+
+  header {
+
+    .search-header {
+      margin-top: 18px;
+    }
+
+    .header-inner {
+      padding-left: 5px;
+      padding-right: 5px;
+      .reset-row-fluid();
+    }
+  }
+
+  //search input
+  .search-header .input-append input {
+    width: 310px;
+  }
+
+  header .navbar-inner {
+    padding: 0;
+
+    .container {
+      padding: 0;
+    }
+
+  }
+
+  header .navbar .nav > li > a {
+    padding: 12px 25px 10px 25px;
+  }
+
+  .menu-wrapper-social-icons {
+    display: none; //NB!!
+  }
+
+  //FOOTER
+  .footer-inner .row-fluid > [class*="span"] {
+    float: none;
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    .box-sizing(border-box);
+  }
+
+  .footer-links-inner .row-fluid [class*="span"] {
+    text-align: center;
+  }
+
+  #footer-links ul[role="footer-links"] {
+    text-align: center;
+    float: none;
+
+    li {
+      float: none;
+      display: inline;
+
+      a {
+        display: inline;
+        font-size: 12px;
+        float: none;
+      }
+    }
+  }
+
+  .footer-profile-box-h-list ul.row-fluid .span6 {
+    float: left;
+    width: 48%;
+  }
+
+  .footer-social-icons {
+    margin-bottom: 10px;
+  }
+
+  .footer-links {
+    border: none;
+    margin-right: 0;
+  }
+
+  .footer-user-container {
+    padding: 20px 10px 40px 30px;
+    clear: both;
+  }
+
+  .footer-profile-box {
+    margin-right: 10px;
+  }
+
+  .footer-links-inner {
+    .reset-row-fluid();
+  }
+
+  #footer-links, #footer {
+    border: none;
+  }
+
+  footer .contact-us-button {
+    float: left;
+    width: 50%;
+    margin: 20px 0;
+  }
+
+  .footer-social-icons {
+    width: 250px;
+    float: left;
+    margin: 24px 0 0 0;
+  }
+
+  //ELEMENTS
+
+  //Comments
+  .collector-info-sidebar {
+    > span3 {
+      float: left;
+    }
+  }
+
+  .post-comment textarea {
+    width: 70%; //NB!!
+  }
+
+  //Vertical carousel
+  .vertical-carousel-wrapper {
+    .ui-carousel-navigation.up-arrow, .ui-carousel-navigation.down-arrow {
+      display: block;
+    }
+  }
+
+  //PAGES
+  #sidebar #price-container {
+    display: none;
+  }
+
+  .main-collectible-container .prev-zone .prev-btn {
+    display: block;
+  }
+
+  .main-collectible-container .next-zone .next-btn {
+    display: block;
+  }
+
+  //login
+  .rpxnow-wrapper {
+    text-align: center;
+    margin: auto;
+  }
+
+  .login-form-wrapper {
+    .row-fluid [class*="span"] {
+      float: none;
+      display: block;
+      width: 100%;
+      margin-left: 0;
+      .box-sizing(border-box);
+    }
+  }
+
+  //categories
+  #all-categories {
+    margin-left: 0;
+
+    .span4 {
+      width: 30% !important;
+      margin: 20px 0 10px 0;
+      padding-right: 0;
+      padding-left: 3%;
+
+      > .section-title.spacer-top-35 {
+        margin-top: 0!important;
+      }
+    }
+
+    br.clearfix {
+      display: none;
+    }
+    .three-col {
+      display: block !important;
+    }
+  }
+
+}

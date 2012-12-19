@@ -171,7 +171,7 @@ function iworks_upprev_options()
                 'type'              => 'text',
                 'class'             => 'small-text',
                 'th'                => __( 'Number of posts to show ', 'upprev' ),
-                'description'       => __( 'Not affected if using YARPP as choose method.', 'upprev' ),
+                'description'       => __( 'Not affected if using YARPP as choose method and YARPP version is lower than 4.0.', 'upprev' ),
                 'default'           => 1,
                 'sanitize_callback' => 'absint'
             ),

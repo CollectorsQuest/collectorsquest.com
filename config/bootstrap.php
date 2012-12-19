@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Avoid direct calls to the load blanancer's web address
+ */
+if (
+  in_array(
+    $_SERVER['HTTP_HOST'],
+    array('web-471984672.us-east-1.elb.amazonaws.com', 'd2y8496azcwpd6.cloudfront.net')
+  ) && empty($_SERVER['HTTP_X_FORWARDED_FOR'])
+)
+{
+  header('Location: http://www.collectorsquest.com'. $_SERVER['REQUEST_URI']);
+  exit;
+}
+
 // Set the correct timezone and do not rely on php.ini settings
 date_default_timezone_set('America/New_York');
 
@@ -32,14 +46,17 @@ unset($app, $env, $dbg);
  */
 if (extension_loaded('newrelic'))
 {
-  if (SF_APP !== 'frontend' || SF_ENV !== 'prod')
+  if (trim($_SERVER['SCRIPT_NAME'], '/') !== 'index.php')
   {
-    newrelic_set_appname(ucfirst(SF_APP) .'.CollectorsQuest.'. SF_ENV);
+    $script = '/'. trim($_SERVER['SCRIPT_NAME'], '/');
+    $script = preg_replace('/\\.[^.\\s]{3,4}$/', '', $script);
   }
   else
   {
-    newrelic_set_appname('CollectorsQuest.com');
+    $script = null;
   }
+
+  newrelic_set_appname('CollectorsQuest.'. (SF_ENV !== 'prod' ? SF_ENV : 'com') . $script);
 }
 
 if (!defined('GIT_REVISION'))

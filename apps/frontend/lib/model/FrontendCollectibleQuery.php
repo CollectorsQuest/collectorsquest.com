@@ -7,12 +7,14 @@ class FrontendCollectibleQuery extends CollectibleQuery
     if ($criteria instanceof FrontendCollectibleQuery)
     {
       /**
-       * By default we want to only show public Collectibles
-       * which are part of a Collection
+       * By default we want to only show complete (public)
+       * Collectibles which are part of a Collection
        */
       return $criteria
-        ->isComplete()
-        ->isPartOfCollection();
+        ->isPartOfCollection()
+        ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
+          ->isComplete()
+        ->_endif();
     }
 
     $query = new FrontendCollectibleQuery();
@@ -30,8 +32,10 @@ class FrontendCollectibleQuery extends CollectibleQuery
      * which are part of a Collection
      */
     $query
-      ->isComplete()
-      ->isPartOfCollection();
+      ->isPartOfCollection()
+      ->_if(SF_ENV === 'prod' || SF_ENV === 'stg')
+        ->isComplete()
+      ->_endif();
 
     return $query;
   }

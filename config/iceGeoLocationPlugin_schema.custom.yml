@@ -7,34 +7,35 @@ encoding:  utf8
 classes:
   GeoCountry:
     tableName: geo_country
-    phpName: GeoCountry
-    baseClass: iceModelGeoCountry
+    phpName: iceModelGeoCountry
     columns:
       id:  ~
-
     uniques:
       geo_country_U_2: [iso3166]
+    behaviors:
+      PropelActAsSluggableBehavior:
+        columns: { from: geo_country.name, to: geo_country.slug }
+        separator: "-"
+        permament: false
+        lowercase: false
 
   GeoRegion:
     tableName: geo_region
-    phpName: GeoRegion
-    baseClass: iceModelGeoRegion
+    phpName: iceModelGeoRegion
     columns:
       id:  ~
       geo_country_id:  { type: integer, required: true, foreignClass: GeoCountry, foreignReference: id, onDelete: cascade }
 
   GeoCity:
     tableName: geo_city
-    phpName: GeoCity
-    baseClass: iceModelGeoCity
+    phpName: iceModelGeoCity
     columns:
       id:  ~
       geo_region_id:  { type: integer, required: true, foreignClass: GeoRegion, foreignReference: id, onDelete: cascade }
 
   GeoArea:
     tableName: geo_area
-    phpName: GeoArea
-    baseClass: iceModelGeoArea
+    phpName: iceModelGeoArea
     columns:
       id:  ~
       geo_region_id:  { type: integer, required: true, foreignClass: GeoRegion, foreignReference: id, onDelete: cascade }
@@ -42,8 +43,7 @@ classes:
 
   GeoStreet:
     tableName: geo_street
-    phpName: GeoStreet
-    baseClass: iceModelGeoStreet
+    phpName: iceModelGeoStreet
     columns:
       id:  ~
       geo_region_id:  { type: integer, required: true, foreignClass: GeoRegion, foreignReference: id, onDelete: cascade }

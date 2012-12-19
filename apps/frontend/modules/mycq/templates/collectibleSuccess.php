@@ -2,28 +2,29 @@
 /**
  * @var $collection Collection
  * @var $collectible Collectible
+ * @var $collectibles Collectible[]
  *
  * @var $form CollectibleEditForm
- * @var $for_for_sale CollectibleForSaleEditForm
+ * @var $form_for_sale CollectibleForSaleEditForm
  */
 ?>
 
 <?php
-if ($collectible->getMultimediaCount('image') > 0)
-{
-  slot(
-    'mycq_dropbox_info_message',
-    'To add another view of this item, drag an image
-     into the "Alternate View" boxes below your main image.'
-  );
-}
-else
-{
-  slot(
-    'mycq_dropbox_info_message',
-    'Drag a photo below to set it as the "Main Image" for this item.'
-  );
-}
+  if ($collectible->getMultimediaCount('image') > 0)
+  {
+    slot(
+      'mycq_dropbox_info_message',
+      'To add another view of this item, drag an image
+       into the "Alternate View" boxes below your main image.'
+    );
+  }
+  else
+  {
+    slot(
+      'mycq_dropbox_info_message',
+      'Drag a photo below to set it as the "Main Image" for this item.'
+    );
+  }
 ?>
 
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
@@ -174,7 +175,7 @@ else
       Edit other items in this collection:
     </div>
     <div class="span6">
-      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details'))?>"
+      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles'))?>"
          class="pull-right">
         See All Items &raquo;
       </a>

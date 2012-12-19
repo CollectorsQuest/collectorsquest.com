@@ -66,7 +66,7 @@ all:
         homepage:     { name: Home, uri: "mycq", check_lock: mycq_homepage }
         profile:      { name: Profile, uri: "mycq_profile" }
         collections:  { name: My Collections, uri: "mycq_collections" }
-        marketplace:  { name: "My Market <sup>βeta</sup>", uri: "mycq_marketplace", check_lock: mycq_marketplace }
+        marketplace:  { name: "My Market", uri: "mycq_marketplace", check_lock: mycq_marketplace }
         messages:     { name: Inbox, uri: "messages_inbox" }
         wanted:       { name: Wanted List, uri: "mycq_wanted", check_lock: mycq_wanted }
 
@@ -83,7 +83,7 @@ all:
         # collectibles_sold:       { name: "Sold Items", uri: "@mycq_marketplace_sold" }
         collectibles_purchased:  { name: "Purchases", uri: "mycq_marketplace_purchased", check_lock: shopping_cart }
         settings:                { name: "Store Settings",  uri: "mycq_marketplace_settings", check_eval: "cqContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
-        packages:                { name: "Credit History",  uri: "mycq_marketplace_credit_history", check_eval: "cqContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
+        packages:                { name: "Listing History <sup>new</sup>",  uri: "mycq_marketplace_credit_history", check_eval: "cqContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
 
     mycq_incomplete_tabs:
       items:
@@ -96,9 +96,17 @@ all:
         sent:     { name: 'Sent Messages', icon: share-alt, uri: "messages_sent" }
         compose:  { name: 'Compose Message', icon: edit, uri: "messages_compose" }
 
-dev:
-
+stg:
   ssl_redirect:
+    # if insecure pages accesed with https should be rerouted to http
+    strict: false
+    # modules and actions that should be https
+    secure: ~
+
+dev:
+  ssl_redirect:
+    # if insecure pages accesed with https should be rerouted to http
+    strict: false
     # do not force SSL on collectorsquest.dev
     secure: ~
 

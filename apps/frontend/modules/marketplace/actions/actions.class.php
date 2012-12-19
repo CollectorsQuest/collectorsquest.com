@@ -68,11 +68,13 @@ class marketplaceActions extends cqFrontendActions
       $this->wp_post = $wp_post;
     }
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('marketplace'));
 
     return sfView::SUCCESS;
   }
 
-  public function executeHoliday()
+  public function executeHoliday(cqWebRequest $sf_request)
   {
     $this->categories = ContentCategoryQuery::create()
       ->filterById(array(2, 402, 674, 1767, 1367, 1425, 1677, 1755, 1604, 3043))
@@ -80,7 +82,10 @@ class marketplaceActions extends cqFrontendActions
       ->orderByName(Criteria::ASC)
       ->find();
 
-    return sfView::SUCCESS;
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('marketplace'));
+
+    return $sf_request->isMobileLayout() ? 'Mobile' : sfView::SUCCESS;
   }
 
   public function executeBrowse(sfWebRequest $request)

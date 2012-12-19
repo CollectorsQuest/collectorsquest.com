@@ -156,6 +156,9 @@ class messagesActions extends cqFrontendActions
 
       if ($form->isValid())
       {
+        // then we need to save a message object
+        $message = $form->save();
+
         $receiver = $form->getValue('receiver');
         $cqEmail = new cqEmail($this->getMailer());
 
@@ -163,9 +166,6 @@ class messagesActions extends cqFrontendActions
         // and the collector wants to receive notifications
         if ($receiver instanceof Collector && $receiver->getNotificationsMessage())
         {
-          // then we need to save a message object
-          $message = $form->save();
-
           // and send it as normal
           $cqEmail->send('Messages/private_message_notification', array(
               'to' => $receiver->getEmail(),

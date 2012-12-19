@@ -89,6 +89,9 @@
   ob_start();
   get_header();
 
+  // determine if the user is on a mobile device
+  $is_mobile = (boolean) @$_SERVER['mobile'];
+
 ?>
 
 <div class="row-fluid header-bar <?= get_the_ID() == '33316' ? 'js-hide' : null ; ?> ">
@@ -157,6 +160,10 @@
 <?php } elseif (is_child(23511)) { ?>
 <div class="span11">
   <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Press Releases', 'collectorsquest' ) ?></h1>
+</div>
+<?php } elseif (is_archive()) { ?>
+<div class="span11">
+  <h1 class="Chivo webfont" style="visibility: visible; ">Blog Archive for <span><?= str_replace('→', '', $data['breadcrumbs']) ?></span></h1>
 </div>
 <?php } ?>
 
@@ -332,7 +339,7 @@ $lastclass = 0;
             </span>
           </span>
 
-          <?php if (is_single()) : ?>
+          <?php if (is_single() && !$is_mobile) : ?>
           <div id="social-sharing" class="blue-actions-panel entry-share pull-right share <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
             <!-- AddThis Button BEGIN -->
             <a class="btn btn-lightblue btn-mini-social addthis_button_email">

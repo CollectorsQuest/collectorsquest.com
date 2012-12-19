@@ -12,11 +12,17 @@ require 'lib/model/om/BaseCollectible.php';
  */
 class Collectible extends BaseCollectible implements ShippingReferencesInterface
 {
+  /* @var null|integer */
+  private $_graph_id = null;
+
   /** @var array */
   public $_multimedia = array();
 
   /** @var array */
   public $_counts = array();
+
+  /** @var ShippingReference[] */
+  protected $shipping_references = null;
 
   /**
    * @var        Collection
@@ -37,9 +43,9 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
 
   public function getGraphId()
   {
-    $graph_id = null;
+    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
 
-    if (!$this->isNew() && (!$graph_id = parent::getGraphId()))
+    if (!$this->isNew() && $graph_id === null)
     {
       $client = cqStatic::getNeo4jClient();
 
@@ -50,25 +56,29 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         $node->setProperty('model_id', $this->getId());
         $node->save();
 
-        $graph_id = $node->getId();
+        $this->_graph_id = $node->getId();
       }
       catch(Everyman\Neo4j\Exception $e)
       {
-        $graph_id = null;
+        $this->_graph_id = null;
       }
 
       try
       {
-        $this->setGraphId($graph_id);
+        $this->setGraphId($this->_graph_id);
         $this->save();
       }
       catch (PropelException $e)
       {
-        $graph_id = parent::getGraphId();
+        $this->_graph_id = $graph_id;
       }
     }
+    else
+    {
+      $this->_graph_id = $graph_id;
+    }
 
-    return $graph_id;
+    return $this->_graph_id;
   }
 
   /**
@@ -111,6 +121,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         $v, false,
         'p, b, u, i, em, strong, h3, h4, h5, h6, div, span, ul, ol, li, blockquote, br'
       );
+      $v = str_replace('&nbsp;', ' ', $v);
     }
 
     return parent::setDescription($v);
@@ -334,7 +345,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     }
 
     // only add it if the **same** object is not already associated
-    if (!$this->collCollections->contains($collection, false))
+    if (!in_array($collection, $this->collCollections->getArrayCopy(), false))
     {
       $this->doAddCollection($collection);
       $this->collCollections[]= $collection;
@@ -555,14 +566,17 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    */
   public function getShippingReferencesByCountryCode(PropelPDO $con = null)
   {
-    return array_merge(
-      ShippingReferenceQuery::create()
-        ->filterByCollector($this->getCollector($con))
-        ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166'),
-      ShippingReferenceQuery::create()
-        ->filterByCollectible($this)
-        ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166')
-    );
+    if (null === $this->shipping_references)
+    {
+      // either use shipping settings set for this specific collectible,
+      // or general ones set for the Collector
+      $this->shipping_references = ShippingReferenceQuery::create()
+          ->filterByCollectible($this)
+          ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166')
+        ?: $this->getCollector($con)->getShippingReferencesByCountryCode($con);
+    }
+
+    return $this->shipping_references;
   }
 
   /**
@@ -578,17 +592,23 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    */
   public function getShippingReferenceForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    return (
-      ShippingReferenceQuery::create()
-        ->filterByCollectible($this)
-        ->filterByCountryIso3166($coutry_code)
-        ->findOne($con)
-      ?: ShippingReferenceQuery::create()
-        ->filterByCollectible($this)
-        ->filterByCountryIso3166('ZZ') // international
-        ->findOne($con)
-    )
-    ?: $this->getCollector()->getShippingReferenceForCountryCode($coutry_code, $con);
+    // get all shiping references, indexed by country code
+    $shipping_references = $this->getShippingReferencesByCountryCode($con);
+
+    // if we have a shipping reference for the specified country code, return it
+    if (isset($shipping_references[$coutry_code]))
+    {
+      return $shipping_references[$coutry_code];
+    }
+
+    // otherwize if we have a ZZ code (international), return it instead
+    if (isset($shipping_references['ZZ']))
+    {
+      return $shipping_references['ZZ'];
+    }
+
+    // otherwize return null
+    return null;
   }
 
   /**
@@ -600,7 +620,17 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
   public function getShippingReferenceDomestic(PropelPDO $con = null)
   {
     return $this->getShippingRateForCountryCode(
-      $this->getCollector($con)->getProfile($con)->getCountryIso3166(), $con);
+      $this->getCollector($con)->getProfile($con)->getCountryIso3166(),
+      $con
+    );
+  }
+
+  /**
+   * @return    void
+   */
+  public function clearShippingReferences()
+  {
+    $this->shipping_references = null;
   }
 
   public function updateIsPublic(PropelPDO $con = null)
@@ -638,6 +668,10 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       {
         $is_public = true;
       }
+    }
+    else if ($is_public === true && !$this->getPrimaryImage(Propel::CONNECTION_WRITE))
+    {
+      $is_public = false;
     }
 
     // Update only if there is a change of the public status
@@ -704,6 +738,105 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     $multimedia->makeCustomThumb(75, 75, '75x75', 'top', false);
     $multimedia->makeCustomThumb(190, 150, '190x150', 'top', false);
     $multimedia->makeCustomThumb(260, 205, '260x205', 'top', $watermark);
+  }
+
+  /**
+   * A deep copy that copies the following relationships:
+   *  - CollectionCollectible
+   *  - CollectibleForSale
+   *  - CollectibleRating
+   *  - ShippingReference
+   *  - Multimedia
+   *
+   * @param     PropelPDO $con
+   * @return    Collectible
+   */
+  public function customDeepCopy(PropelPDO $con = null)
+  {
+    // we use get_class(), because this might be a subclass
+    $clazz = get_class($this);
+    $copyObj = new $clazz();
+
+    // we copy the normal fields with the ready function, but cannot use deep copy
+    // because we need to handle some custom relations, and there are some relations
+    // we want to forgoe in a copy
+    $this->copyInto($copyObj, $deepCopy = false);
+
+    // important: temporarily setNew(false) because this affects the behavior of
+    // the getter/setter methods for fkey referrer objects.
+    $copyObj->setNew(false);
+    // store object hash to prevent cycle
+    $this->startCopy = true;
+
+    // CollectionCollectible
+    foreach($this->getCollectionCollectibles() as $relObj)
+    {
+      if ($relObj !== $this)
+      {
+        // ensure that we don't try to copy a reference to ourselves
+        $copyObj->addCollectionCollectible($relObj->copy($deepCopy = false));
+      }
+    }
+
+    // CollectibleForSale
+    $relObj = $this->getCollectibleForSale();
+    if ($relObj)
+    {
+      $new_collectible_for_sale = $relObj->copy($deepCopy = false);
+      if ($new_collectible_for_sale->getIsReady())
+      {
+        $new_collectible_for_sale->setMarkedForSaleAt(time());
+      }
+      $copyObj->setCollectibleForSale($new_collectible_for_sale);
+    }
+
+    // CollectibleRating
+    foreach($this->getCollectibleRatings() as $relObj)
+    {
+      if ($relObj !== $this)
+      {
+        // ensure that we don't try to copy a reference to ourselves
+        $copyObj->addCollectibleRating($relObj->copy($deepCopy = false));
+      }
+    }
+
+    // unflag object copy
+    $this->startCopy = false;
+
+    // the next relations require this object to have a proper PK,
+    // so we perform a save now
+    $copyObj->setNew(true);
+    $copyObj->setId(NULL);
+    $copyObj->setGraphId(NULL);
+    $copyObj->save($con);
+
+    // Special relations
+
+    // ShippingReference
+    $shipping_references = ShippingReferenceQuery::create()
+      ->filterByCollectible($this)
+      ->find($con);
+    foreach ($shipping_references as $shipping_reference)
+    {
+      $new_shipping_reference = $shipping_reference->copy($deepCopy = true);
+      $new_shipping_reference->setModelObject($copyObj);
+      $new_shipping_reference->save($con);
+    }
+
+    // Multimedia
+    $multimedia_items = $this->getMultimedia();
+    foreach ($multimedia_items as $multimedia)
+    {
+      $new_multimedia = $multimedia->copy($deepCopy = false);
+      $new_multimedia->setModel($copyObj);
+      $new_multimedia->save($con);
+    }
+
+    // Tags
+    $copyObj->setTags($this->getTags());
+    $copyObj->save($con);
+
+    return $copyObj;
   }
 
   /**
