@@ -1,47 +1,59 @@
-<?php
-/**
- * @var $sf_user cqFrontendUser
- * @var $collector Collector
- */
-$collector = $sf_user->getCollector();
-$unread_messages = $collector->getUnreadMessagesCount();
-?>
-
-<h3 class="Chivo webfont no-margin-bottom">
-  Welcome back, <?= $collector->getDisplayName() ?>!
-</h3>
-<ul class="footer-profile-box cf">
-  <li class="footer-pm-box">
-    <span class="big-email-icon">
-      <span class="pm-counter">
-        <?= $unread_messages < 1000 ? $unread_messages : '&#8734; <!-- infinity! -->'; ?>
-      </span>
-    </span>
-    <p>
-      You have <?= format_number_choice('[0]no messages|[1]1 message|(1, +Inf]%count% messages',
-      array('%count%' => $unread_messages), $unread_messages); ?>
-      in <?= link_to('your inbox', '@messages_inbox?ref=' . cq_link_ref('footer'), array('class' => 'bold-links')); ?>
-    </p>
-  </li>
-  <?php if (100 > $profile_completed = $collector->getProfile()->getProfileCompleted()): ?>
-    <li class="icon-big-battery">
-      <p>Your profile is <?= $profile_completed ?>% complete.
-        <?php if (75 <= $profile_completed): ?>
-          <a href="<?= url_for('@mycq_profile?ref=' . cq_link_ref('footer')) ?>" class="bold-links">
-            Add info about what you collect
-          </a>.
-          <?php elseif (50 <= $profile_completed): ?>
-            <a href="<?= url_for('@mycq_collections?ref=' . cq_link_ref('footer')) ?>" class="bold-links">
-              Add a collectible
-            </a> in minutes.
-          <?php else: ?>
-            <a href="<?= url_for('@mycq_collections?ref=' . cq_link_ref('footer')) ?>#my-collections"
-               class="bold-links">
-              Add a collection
-            </a> in minutes.
-          <?php endif; ?>
-          (+25%)
-      </p>
+<div class="footer-user-container">
+  <div id="footer-user-info">
+    <h3 class="Chivo webfont no-margin-bottom">
+      Welcome back, <span class="collector-name"></span>
+    </h3>
+    <ul class="footer-profile-box cf">
+      <li class="footer-pm-box">
+        <span class="big-email-icon">
+          <span class="pm-counter">
+            &#8734; <!-- infinity! -->
+          </span>
+        </span>
+        <p>
+          You have <span class="pm-counter-word"></span>
+          in <?= link_to('your inbox', '@messages_inbox?ref=' . cq_link_ref('footer'),
+            array('class' => 'bold-links')); ?>
+        </p>
+      </li>
+      <li class="icon-big-battery profile-hints">
+        <p>
+          Your profile is <span class="profile-completed"></span>% complete.
+          <span class="profile-hint"></span>
+        </p>
+      </li>
+    </ul>
+  </div>
+  <ul class="footer-profile-box cf">
+    <li class="footer-profile-box-h-list spacer-inner-top-reset">
+      <ul class="row-fluid">
+        <li class="span6 add-collectible-img link">
+          <a href="<?= url_for('@mycq_collections?ref='. cq_link_ref('footer'), true) ?>" class="bold-links target">
+            Upload<br> an item
+          </a>
+        </li>
+        <li class="span6 organize-collection link">
+          <a href="<?= url_for('@mycq_collections?ref='. cq_link_ref('footer'), true) ?>#my-collections" class="bold-links target">
+            Organize your<br> collections
+          </a>
+        </li>
+      </ul>
     </li>
-  <?php endif; ?>
-</ul>
+  </ul>
+
+  <div class="row-fluid spacer-inner-top">
+    <div class="span12">
+      <a href="<?= url_for('@mycq_profile?ref='. cq_link_ref('footer'), true); ?>" class="btn btn-primary">
+        My Profile
+      </a>
+      <b>
+        <?php
+         echo link_to(
+           'Log out', '@logout?ref='. cq_link_ref('footer'),
+           array('class' => 'spacer-left logout-link')
+         );
+        ?>
+      </b>
+    </div>
+  </div>
+</div>
