@@ -1,5 +1,6 @@
 @import "../_variables.less";
 @import "../_mixins.less";
+@import "../_utilities.less";
 @import "../_fileupload.less";
 @import "../_wysihtml5.less";
 @import "../jquery/chosen.less";
@@ -2259,4 +2260,96 @@ div.wpfaqask {
     float: left;
     margin-right: 5px;
   }
+}
+
+.table-credit-history {
+  margin-bottom: 10px;
+
+  td, th {
+    text-align: center
+  }
+  td {
+    height: 30px;
+    padding: 4px 8px;
+    vertical-align: middle;
+    line-height: 14px;
+  }
+  .expired td {
+    color: #b0b0b0;
+    background-color: #F7F7F7;
+    &:first-child {
+      text-decoration: line-through;
+    }
+  }
+  .alert td {
+    color: @red;
+    //background-color: #F2DEDE;
+  }
+  .processing td, .cancelled td, .pending td {
+    color: #b0b0b0;
+  }
+}
+
+.table-items-for-sale-history {
+
+  td, th {
+    padding: 8px 8px 6px 8px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .thumb {
+    display: block;
+    width: 75px;
+    margin-right: 5px;
+  }
+  .items-column {
+    width: 500px;
+  }
+  th.items-column {
+    text-align: left
+  }
+  .title {
+    display: block;
+    width: 400px;
+    .text-overflow();
+    text-align: left;
+    line-height: 16px;
+  }
+  .description {
+    display: block;
+    width: 400px;
+    text-align: left;
+    margin: 0 0 5px;
+  }
+  .price {
+    display: block;
+    width: 400px;
+    .text-overflow();
+    text-align: left;
+  }
+}
+
+#body-mycq-marketplaceCreditHistory .filter-container {
+  margin-left: 5px;
+  padding-top: 5px;
+
+  .control-group {
+    margin-bottom: 0;
+  }
+}
+
+.table-collectible-purchased {
+  margin-bottom: 0;
+  .table-no-borders();
+
+  td:first-child {
+    width: 140px;
+    font-weight: bold;
+    text-align: right !important;
+  }
+}
+
+.table-price-purchased {
+  margin-bottom: 0;
+  .table-no-borders();
 }

@@ -4,7 +4,42 @@ CollectibleForSale:
     price: 1500
     condition: excellent
     is_price_negotiable: false
-    is_shipping_free: true
     is_sold: false
     is_ready: true
     quantity: 1
+
+  active:
+    collectible_id: active
+    price: 10
+    condition: excellent
+    is_sold: false
+    is_ready: true
+
+  inactive:
+    collectible_id: inactive
+    price: 10
+    condition: excellent
+    is_sold: false
+    is_ready: false
+
+  expired:
+    collectible_id: expired
+    price: 10
+    condition: excellent
+    is_sold: false
+    is_ready: true
+
+  sold:
+    collectible_id: sold
+    price: 10
+    condition: excellent
+    quantity: 0
+    is_sold: true
+    is_ready: true
+
+  second_sold:
+    collectible_id: second_sold
+    price: 10
+    condition: excellent
+    is_sold: true
+    is_ready: true

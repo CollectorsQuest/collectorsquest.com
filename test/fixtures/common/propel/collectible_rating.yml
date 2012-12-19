@@ -159,3 +159,23 @@ CollectibleRating:
     rating: '3'
     collectible_id: Collectible_75358
     sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_3166:
+    dimension: content
+    rating: '4'
+    collectible_id: Collectible_96091
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_3167:
+    dimension: images
+    rating: '4'
+    collectible_id: Collectible_96091
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_3234:
+    dimension: content
+    rating: '3'
+    collectible_id: Collectible_87877
+    sf_guard_user_id: sfGuardUser_8
+  CollectibleRating_3235:
+    dimension: images
+    rating: '3'
+    collectible_id: Collectible_87877
+    sf_guard_user_id: sfGuardUser_8

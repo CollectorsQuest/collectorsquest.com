@@ -1,1 +1,26 @@
-{  }
+ShoppingPaymentArchive:
+  ShoppingPaymentArchive_7:
+    id: '7'
+    shopping_order_id: '1000013'
+    cookie_uuid: 39f4c50d6578b687d5e7737a3e72f862
+    processor: '0'
+    status: '1'
+    currency: USD
+    amount_total: '60'
+    amount_collectibles: '50'
+    amount_shipping_fee: '10'
+    amount_tax: '0'
+    updated_at: '2012-08-28 14:38:33'
+    created_at: '2012-08-28 14:38:32'
+  ShoppingPaymentArchive_73:
+    id: '73'
+    shopping_order_id: '1000065'
+    processor: '0'
+    status: '1'
+    currency: USD
+    amount_total: '30'
+    amount_collectibles: '25'
+    amount_shipping_fee: '5'
+    amount_tax: '0'
+    updated_at: '2012-11-14 19:26:58'
+    created_at: '2012-11-14 19:26:57'

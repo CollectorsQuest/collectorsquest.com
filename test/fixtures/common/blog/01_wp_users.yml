@@ -23,7 +23,7 @@ wpUser:
     user_login: derek
     user_pass: $P$BcNvIyvJJlpjS/KgT11KPlBbi8/6Le1
     user_nicename: derek
-    user_email: derek@collectorsquest.com
+    user_email: info+derek@collectorsquest.com
     user_url: 'http://www.collectorsquest.com'
     user_registered: '2006-02-01 23:46:08'
     user_activation_key: ''
@@ -146,7 +146,7 @@ wpUser:
     user_email: joe@collectorsquest.com
     user_url: ''
     user_registered: '2012-01-26 15:09:03'
-    user_activation_key: ''
+    user_activation_key: w43ngp0nM9dvUjtoDcE8
     user_status: '0'
     display_name: 'Joe Szilvagyi'
   wpUser_18:

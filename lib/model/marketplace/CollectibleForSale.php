@@ -138,6 +138,15 @@ class CollectibleForSale extends BaseCollectibleForSale
   }
 
   /**
+   * @param     PropelPDO $con
+   * @return    Seller
+   */
+  public function getSeller(PropelPDO $con = null)
+  {
+    return $this->getCollector($con)->getSeller();
+  }
+
+  /**
    * Proxy method to Collectible::getCollector()
    *
    * @param  null|PropelPDO  $con
@@ -183,6 +192,29 @@ class CollectibleForSale extends BaseCollectibleForSale
   }
 
   /**
+   * @return    CollectibleForSalePeer::STATUS_SOLD/STATUS_ACTIVE/STATUS_EXPIRED/STATUS_INACTIVE
+   */
+  public function getStatus()
+  {
+    if ($this->getIsSold())
+    {
+      return CollectibleForSalePeer::STATUS_SOLD;
+    }
+    elseif ($this->isForSale() && $this->hasActiveCredit())
+    {
+      return CollectibleForSalePeer::STATUS_ACTIVE;
+    }
+    elseif ($this->isForSale() && !$this->hasActiveCredit())
+    {
+      return CollectibleForSalePeer::STATUS_EXPIRED;
+    }
+    else
+    {
+      return CollectibleForSalePeer::STATUS_INACTIVE;
+    }
+  }
+
+  /**
    * Is there an active credit available for this Collectible?
    *
    * @param     PropelPDO $con
@@ -209,6 +241,30 @@ class CollectibleForSale extends BaseCollectibleForSale
       ->notExpired()
       ->orderByExpiryDate(Criteria::ASC)
       ->findOne($con);
+  }
+
+  /**
+   * Get expiry date of collectible for sale
+   *
+   * @param string $format
+   * @param PropelPDO $con
+   * @return mixed|null
+   */
+  public function getExpiryDate($format = 'Y-m-d H:i:s', PropelPDO $con = null)
+  {
+    $package_transaction = PackageTransactionCreditQuery::create()
+      ->filterByCollectibleId($this->getCollectibleId())
+      ->orderByExpiryDate(Criteria::DESC)
+      ->findOne($con);
+
+    if ($package_transaction)
+    {
+      return $package_transaction->getExpiryDate($format);
+    }
+    else
+    {
+      return null;
+    }
   }
 
   public function getShoppingOrder()
