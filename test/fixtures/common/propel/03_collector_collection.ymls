@@ -10,7 +10,7 @@ CollectorCollection:
     description: 'My collection focuses on 19th and 20th century merchant tokens issued in Brooklyn, New York.  Most of these were issued by retail stores as promotional items.  However, the collection includes an array of other Brooklyn tokens including tokens issued by the Brooklyn Navy Yard, the Brooklyn City Prison, Brooklyn mass transit organizations, and the YMCA.  The collection provides interesting and unusual snapshots of Brooklyn''s lost history.'
     num_items: '1'
     num_public_items: '1'
-    num_views: '448'
+    num_views: '443'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -19,7 +19,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-09-15 22:38:42'
-    updated_at: '2012-12-15 04:57:58'
+    updated_at: '2012-12-07 08:34:39'
   CollectorCollection_616:
     id: Collection_616
     collector_id: Collector_644
@@ -31,7 +31,7 @@ CollectorCollection:
     description: 'I collect all things "Continental". '
     num_items: '7'
     num_public_items: '7'
-    num_views: '1445'
+    num_views: '1440'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -40,7 +40,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-24 17:17:53'
-    updated_at: '2012-12-15 00:06:21'
+    updated_at: '2012-12-09 15:48:39'
   CollectorCollection_618:
     id: Collection_618
     collector_id: Collector_644
@@ -52,7 +52,7 @@ CollectorCollection:
     description: 'Our collection is too large to post together so I''ve split it into Metal art, Ceramics, Glass and Graphic art.'
     num_items: '60'
     num_public_items: '60'
-    num_views: '2730'
+    num_views: '2725'
     num_comments: '8'
     num_ratings: '0'
     score: '0'
@@ -61,7 +61,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-25 16:15:32'
-    updated_at: '2012-12-17 13:21:06'
+    updated_at: '2012-12-06 15:49:56'
   CollectorCollection_619:
     id: Collection_619
     collector_id: Collector_644
@@ -73,7 +73,7 @@ CollectorCollection:
     description: 'Everything we collect has a high degree of difficulty. Our wood pieces are no exception.'
     num_items: '26'
     num_public_items: '26'
-    num_views: '2949'
+    num_views: '2944'
     num_comments: '5'
     num_ratings: '0'
     score: '0'
@@ -82,7 +82,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-25 21:56:38'
-    updated_at: '2012-12-16 02:07:31'
+    updated_at: '2012-12-06 08:48:37'
   CollectorCollection_643:
     id: Collection_643
     collector_id: Collector_644
@@ -94,7 +94,7 @@ CollectorCollection:
     description: 'I really like photo-realism. I also like surrealism. Many of our pieces combine the two.'
     num_items: '44'
     num_public_items: '44'
-    num_views: '2554'
+    num_views: '2549'
     num_comments: '5'
     num_ratings: '0'
     score: '0'
@@ -103,7 +103,112 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-07-10 16:18:10'
-    updated_at: '2012-12-16 06:25:50'
+    updated_at: '2012-12-10 03:37:47'
+  CollectorCollection_876:
+    id: Collection_876
+    collector_id: Collector_846
+    graph_id: '11962'
+    collection_category_id: '50'
+    content_category_id: ContentCategory_1713
+    name: 'nordstrom snowglobes'
+    slug: nordstrom-snowglobes
+    description: 'Little winter fairies'
+    num_items: '7'
+    num_public_items: '7'
+    num_views: '1680'
+    num_comments: '0'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    created_at: '2008-12-12 16:16:47'
+    updated_at: '2012-12-12 00:33:03'
+  CollectorCollection_877:
+    id: Collection_877
+    collector_id: Collector_846
+    graph_id: '11133'
+    collection_category_id: '50'
+    content_category_id: ContentCategory_1658
+    name: Christmas
+    slug: christmas
+    description: 'Christmas Snowglobes'
+    num_items: '9'
+    num_public_items: '9'
+    num_views: '1330'
+    num_comments: '0'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    created_at: '2008-12-12 16:36:22'
+    updated_at: '2012-12-01 00:38:18'
+  CollectorCollection_879:
+    id: Collection_879
+    collector_id: Collector_846
+    graph_id: '12153'
+    collection_category_id: '50'
+    content_category_id: ContentCategory_3557
+    name: 'Around the World'
+    slug: around-the-world
+    description: 'My friends love me! :)'
+    num_items: '28'
+    num_public_items: '28'
+    num_views: '1494'
+    num_comments: '3'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    created_at: '2008-12-13 11:39:30'
+    updated_at: '2012-12-08 07:42:50'
+  CollectorCollection_880:
+    id: Collection_880
+    collector_id: Collector_846
+    graph_id: '10328'
+    collection_category_id: '50'
+    content_category_id: ContentCategory_1713
+    name: Miscellaneous
+    slug: miscellaneous-1
+    description: 'fairy, dancer, strange items...'
+    num_items: '10'
+    num_public_items: '10'
+    num_views: '145936'
+    num_comments: '0'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    created_at: '2008-12-13 12:52:44'
+    updated_at: '2012-12-12 12:53:21'
+  CollectorCollection_882:
+    id: Collection_882
+    collector_id: Collector_846
+    graph_id: '11380'
+    collection_category_id: '50'
+    content_category_id: ContentCategory_1223
+    name: 'Disney Snowglobes'
+    slug: disney-snowglobes
+    description: '...fairy tales...'
+    num_items: '21'
+    num_public_items: '21'
+    num_views: '2422'
+    num_comments: '1'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    created_at: '2008-12-13 13:56:00'
+    updated_at: '2012-12-09 17:45:24'
   CollectorCollection_1021:
     id: Collection_1021
     collector_id: Collector_963
@@ -115,7 +220,7 @@ CollectorCollection:
     description: 'Campaign buttons, ribbons, etc.'
     num_items: '57'
     num_public_items: '56'
-    num_views: '4931'
+    num_views: '4896'
     num_comments: '4'
     num_ratings: '0'
     score: '0'
@@ -124,7 +229,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-02-05 22:09:17'
-    updated_at: '2012-12-18 10:18:48'
+    updated_at: '2012-12-12 08:27:55'
   CollectorCollection_1290:
     id: Collection_1290
     collector_id: Collector_1212
@@ -136,7 +241,7 @@ CollectorCollection:
     description: 'The collection includes a small sample of Italian movie posters from the 1970''s Blaxploitation film genre. To view the entire collection of The Museum of Uncut Funk please visit www.museumofuncutfunk.com'
     num_items: '10'
     num_public_items: '10'
-    num_views: '1904'
+    num_views: '1894'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -145,7 +250,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-03 19:28:40'
-    updated_at: '2012-12-15 22:45:37'
+    updated_at: '2012-12-08 21:52:53'
   CollectorCollection_1299:
     id: Collection_1299
     collector_id: Collector_1212
@@ -157,7 +262,7 @@ CollectorCollection:
     description: 'The Museum of UnCut Funk Collection includes original production drawings and cels and limited edition cels from the 1970’s,1980’s and 1990’s. Please visit The Museum of UnCut Funk to see more of our collection of Black animation and read our animation blogs.'
     num_items: '3'
     num_public_items: '3'
-    num_views: '1189'
+    num_views: '1184'
     num_comments: '2'
     num_ratings: '0'
     score: '0'
@@ -166,7 +271,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:07:13'
-    updated_at: '2012-12-13 17:42:50'
+    updated_at: '2012-12-02 11:31:18'
   CollectorCollection_1300:
     id: Collection_1300
     collector_id: Collector_1212
@@ -218,8 +323,8 @@ CollectorCollection:
     name: 'Blacks on Currency and Gold Medals'
     slug: blacks-on-currency-and-gold-medals
     description: 'The Museum of UnCut Funk Collection includes a collection of gold coin and medal featuring Blacks. Please visit The Museum of UnCut Funk at www.museumofuncutfunk.com to read our blogs about our collection. '
-    num_items: '8'
-    num_public_items: '4'
+    num_items: '3'
+    num_public_items: '3'
     num_views: '1049'
     num_comments: '0'
     num_ratings: '0'
@@ -229,7 +334,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:46:56'
-    updated_at: '2012-12-17 17:56:02'
+    updated_at: '2012-12-02 03:30:12'
   CollectorCollection_1372:
     id: Collection_1372
     collector_id: Collector_1212
@@ -262,7 +367,7 @@ CollectorCollection:
     description: 'Bertram A Fitzgerald is the publisher of the Golden Legacy Series of Black History Comic Books. During the decade between 1966 and 1976 he acted as editor and publisher for the series and wrote almost half the books. To read more about the series please visit The Museum of UnCut Funk blog Can''t Get Enough...Og That Funky Stuff at www.museumofuncutfunk.com'
     num_items: '16'
     num_public_items: '16'
-    num_views: '3137'
+    num_views: '3112'
     num_comments: '9'
     num_ratings: '0'
     score: '0'
@@ -271,7 +376,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-29 00:08:26'
-    updated_at: '2012-12-17 17:08:32'
+    updated_at: '2012-12-12 01:45:55'
   CollectorCollection_1395:
     id: Collection_1395
     collector_id: Collector_1212
@@ -283,7 +388,7 @@ CollectorCollection:
     description: 'From the archives of The Museum of UnCut Funk Flagg Brothers Couture. For a trip down memory lane in funky mens fashion please visit www.museumofuncutfunk.com and read our Can''t Get Enough of That Funky Stuff blog.'
     num_items: '7'
     num_public_items: '7'
-    num_views: '4450'
+    num_views: '4435'
     num_comments: '24'
     num_ratings: '0'
     score: '0'
@@ -292,7 +397,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-30 11:07:21'
-    updated_at: '2012-12-16 00:58:51'
+    updated_at: '2012-12-11 20:23:03'
   CollectorCollection_1402:
     id: Collection_1402
     collector_id: Collector_1212
@@ -386,9 +491,9 @@ CollectorCollection:
     name: 'A Comic Tribute to Michael Jackson '
     slug: a-comic-tribute-to-michael-jackson
     description: "The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator.\r\n\r\nPlease visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com."
-    num_items: '13'
-    num_public_items: '13'
-    num_views: '1539'
+    num_items: '12'
+    num_public_items: '12'
+    num_views: '1529'
     num_comments: '3'
     num_ratings: '0'
     score: '0'
@@ -397,7 +502,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-23 21:45:53'
-    updated_at: '2012-12-17 17:18:05'
+    updated_at: '2012-12-12 14:48:10'
   CollectorCollection_1554:
     id: Collection_1554
     collector_id: Collector_1212
@@ -409,7 +514,7 @@ CollectorCollection:
     description: 'The Museum of UnCut Funk Collection includes original production drawings and cels and limited edition cels from the 1970’s,1980’s and 1990’s. The Curator''s collection includes original production cels from The Jackson Five cartoon series. '
     num_items: '5'
     num_public_items: '5'
-    num_views: '2271'
+    num_views: '2261'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -418,7 +523,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-11 18:34:26'
-    updated_at: '2012-12-17 14:58:51'
+    updated_at: '2012-12-11 13:31:39'
   CollectorCollection_1598:
     id: Collection_1598
     collector_id: Collector_1212
@@ -430,7 +535,7 @@ CollectorCollection:
     description: 'The Museum of UnCut Funk has a unique collection of 1970''s and 80''s  board games featuring Black characters such as the Harlem Globetrotters, The Jackson Five, Fat Albert and The A-Team. Please visit Can''t Get Enough of That Funky Stuff blog to read more. www.funkystuffblog.com'
     num_items: '3'
     num_public_items: '3'
-    num_views: '1115'
+    num_views: '1110'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -439,7 +544,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-23 22:34:33'
-    updated_at: '2012-12-15 08:41:33'
+    updated_at: '2012-11-28 18:55:48'
   CollectorCollection_1681:
     id: Collection_1681
     collector_id: Collector_1212
@@ -472,7 +577,7 @@ CollectorCollection:
     description: '?I am Curious (Black)” the first story in Superman’s Girlfriend Lois Lane #106. The Museum of UnCut Funk has acquired this comic book to our comic book collection. Please visit the Can''t Get Enough of that Stuff blog to read more. www.funkystuffblog.com'
     num_items: '2'
     num_public_items: '2'
-    num_views: '1053'
+    num_views: '1048'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -481,7 +586,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-08-22 11:45:33'
-    updated_at: '2012-12-14 18:29:12'
+    updated_at: '2012-12-03 08:11:04'
   CollectorCollection_1710:
     id: Collection_1710
     collector_id: Collector_1212
@@ -514,7 +619,7 @@ CollectorCollection:
     description: 'The Museum Of UnCut Funk presents our interview with Robert Balser, Supervising Director of The Jackson Five Cartoon. Bob talks to us about his illustrious career, and in particular his involvement with The Jackson Five Cartoon and how important it was to create a positive animated series for Black children during the 1970''s.'
     num_items: '5'
     num_public_items: '5'
-    num_views: '684'
+    num_views: '679'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -523,7 +628,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-11-28 20:42:09'
-    updated_at: '2012-12-14 09:35:37'
+    updated_at: '2012-12-10 00:27:58'
   CollectorCollection_1870:
     id: Collection_1870
     collector_id: Collector_1212
@@ -577,7 +682,7 @@ CollectorCollection:
     description: 'Original sixties rock concert posters and vintage black light posters from the psychedelic era. Includes complete sets of Bill Graham Fillmore West and Chet Helms'' Family Dog, as well as Art of Rock, Grande Ballroom, Neon Rose, Hapshash, and others. Also, probably the world''s largest private collection of vintage black light posters. Hundreds and hundreds of quality pieces which will take you on a trip back in time. Other memorabilia include signed LP albums by Jimi Hendrix, the Beatles, and the Rolling Stones, original movie promotional one sheets, concert photos, autographs, and more. Check it out.'
     num_items: '139'
     num_public_items: '139'
-    num_views: '2046'
+    num_views: '2026'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -586,7 +691,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-09-12 12:15:51'
-    updated_at: '2012-12-16 12:34:02'
+    updated_at: '2012-12-11 08:49:16'
   CollectorCollection_2395:
     id: Collection_2395
     collector_id: Collector_4295
@@ -639,7 +744,7 @@ CollectorCollection:
     description: ''
     num_items: '16'
     num_public_items: '16'
-    num_views: '88'
+    num_views: '83'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -648,7 +753,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-07-06 10:13:09'
-    updated_at: '2012-12-17 16:31:43'
+    updated_at: '2012-12-11 13:30:31'
   CollectorCollection_3330:
     id: Collection_3330
     collector_id: Collector_1212
@@ -657,9 +762,9 @@ CollectorCollection:
     name: 'Barack Obama Comic Book Collection'
     slug: barack-obama-comic-book-collection
     description: '<span>I am pleased to announce that The Museum of UnCut Funk is doing it’s part to collect, archive and preserve (however tactful or tasteless they are) the comic book history of the first Black President of the United States.<br />http://museumofuncutfunk.com/2011/10/06/barack-obama-comic-book-exhibition/</span>'
-    num_items: '18'
-    num_public_items: '18'
-    num_views: '194'
+    num_items: '7'
+    num_public_items: '7'
+    num_views: '184'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -668,7 +773,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-07-06 11:12:04'
-    updated_at: '2012-12-13 15:28:48'
+    updated_at: '2012-12-10 00:03:25'
   CollectorCollection_3930:
     id: Collection_3930
     collector_id: Collector_59
@@ -679,7 +784,7 @@ CollectorCollection:
     description: 'Items for sale.<br />'
     num_items: '4'
     num_public_items: '4'
-    num_views: '86'
+    num_views: '76'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -688,7 +793,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-09-10 04:33:23'
-    updated_at: '2012-12-14 11:55:07'
+    updated_at: '2012-12-06 17:49:46'
   CollectorCollection_4046:
     id: Collection_4046
     collector_id: Collector_59
@@ -699,7 +804,7 @@ CollectorCollection:
     description: 'Vintage ceramic animal figurines -- each wearing red bowties with white polka dots!<br />'
     num_items: '3'
     num_public_items: '3'
-    num_views: '107'
+    num_views: '92'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -708,7 +813,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-09-19 18:46:31'
-    updated_at: '2012-12-15 09:08:24'
+    updated_at: '2012-12-11 17:39:55'
   CollectorCollection_4047:
     id: Collection_4047
     collector_id: Collector_59
@@ -739,7 +844,7 @@ CollectorCollection:
     description: 'Vintage and retro rubber squeaker toys.<br />'
     num_items: '5'
     num_public_items: '5'
-    num_views: '85'
+    num_views: '70'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -748,7 +853,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-11-05 04:29:14'
-    updated_at: '2012-12-16 23:41:16'
+    updated_at: '2012-12-09 04:16:38'
   CollectorCollection_4401:
     id: Collection_4401
     collector_id: Collector_59
@@ -759,7 +864,7 @@ CollectorCollection:
     description: 'Vintage and retro stuffed animals with rubber heads and/or rubber masked faces.<br />'
     num_items: '2'
     num_public_items: '2'
-    num_views: '76'
+    num_views: '66'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -768,7 +873,7 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-11-05 06:05:55'
-    updated_at: '2012-12-15 09:12:37'
+    updated_at: '2012-12-10 11:39:22'
   CollectorCollection_4402:
     id: Collection_4402
     collector_id: Collector_59
@@ -779,7 +884,7 @@ CollectorCollection:
     description: 'Traditional, cute and kitschy vintage and retro stuffed animals.<br /><br />'
     num_items: '2'
     num_public_items: '2'
-    num_views: '63'
+    num_views: '58'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -788,244 +893,4 @@ CollectorCollection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-11-05 06:15:05'
-    updated_at: '2012-12-15 09:14:07'
-  CollectorCollection_4634:
-    id: Collection_4634
-    collector_id: Collector_1212
-    graph_id: '66873'
-    content_category_id: ContentCategory_521
-    name: 'Michelle Obama Comic Book Collection '
-    slug: michelle-obama-comic-book-collection
-    description: 'Our collection of comics books featuring Michelle Obama.'
-    num_items: '2'
-    num_public_items: '2'
-    num_views: '15'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-13 15:14:50'
-    updated_at: '2012-12-16 18:08:58'
-  CollectorCollection_4635:
-    id: Collection_4635
-    collector_id: Collector_1212
-    graph_id: '66892'
-    content_category_id: ContentCategory_117
-    name: 'Dr. Martin Luther King Jr. Collection'
-    slug: dr-martin-luther-king-jr-collection
-    description: 'This is a collection of Martin Luther King Jr. collectibles and memorabilia.'
-    num_items: '13'
-    num_public_items: '13'
-    num_views: '15'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-13 16:26:54'
-    updated_at: '2012-12-17 21:19:48'
-  CollectorCollection_4637:
-    id: Collection_4637
-    collector_id: Collector_1212
-    graph_id: '66965'
-    content_category_id: ContentCategory_117
-    name: 'Rosa Parks Collection'
-    slug: rosa-parks-collection
-    description: 'This is a collection of memorabilia and collectibles related to Rosa Parks.'
-    num_items: '3'
-    num_public_items: '3'
-    num_views: '15'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-13 17:34:28'
-    updated_at: '2012-12-18 05:47:18'
-  CollectorCollection_4638:
-    id: Collection_4638
-    collector_id: Collector_1212
-    graph_id: '66973'
-    content_category_id: ContentCategory_117
-    name: 'Muhammad Ali Collection'
-    slug: muhammad-ali-collection
-    description: 'Our collection of memorabilia and collectibles related to "The Greatest", Muhammad Ali.'
-    num_items: '11'
-    num_public_items: '11'
-    num_views: '15'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-13 17:49:58'
-    updated_at: '2012-12-18 05:47:15'
-  CollectorCollection_4660:
-    id: Collection_4660
-    collector_id: Collector_1212
-    graph_id: '68200'
-    content_category_id: ContentCategory_2056
-    name: 'Michael Jackson Collection'
-    slug: michael-jackson-collection
-    description: 'This is our collection of Michael Jackson memorabilia.'
-    num_items: '18'
-    num_public_items: '18'
-    num_views: '5'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-17 13:11:38'
-    updated_at: '2012-12-17 19:02:59'
-  CollectorCollection_4661:
-    id: Collection_4661
-    collector_id: Collector_1212
-    graph_id: '68263'
-    content_category_id: ContentCategory_117
-    name: 'Booker T. Washington and George Washington Carver Collection'
-    slug: booker-t-washington-and-george-washington-carver-collection
-    description: 'Booker T. Washington and George Washington Carver Collection'
-    num_items: '9'
-    num_public_items: '9'
-    num_views: '0'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-17 13:35:14'
-    updated_at: '2012-12-17 17:29:04'
-  CollectorCollection_4662:
-    id: Collection_4662
-    collector_id: Collector_1212
-    graph_id: '68267'
-    content_category_id: ContentCategory_117
-    name: 'Harriet Tubman Collection'
-    slug: harriet-tubman-collection
-    description: 'Harriet Tubman Collection'
-    num_items: '4'
-    num_public_items: '4'
-    num_views: '0'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-17 13:41:54'
-    updated_at: '2012-12-17 17:36:23'
-  CollectorCollection_4667:
-    id: Collection_4667
-    collector_id: Collector_1212
-    graph_id: '68372'
-    content_category_id: ContentCategory_117
-    name: 'Frederick Douglass Collection'
-    slug: frederick-douglass-collection
-    description: 'Collection of memorabilia and collectibles of Frederick Douglass.'
-    num_items: '5'
-    num_public_items: '5'
-    num_views: '5'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-17 16:11:47'
-    updated_at: '2012-12-17 19:02:26'
-  CollectorCollection_4668:
-    id: Collection_4668
-    collector_id: Collector_1212
-    graph_id: '68405'
-    content_category_id: ContentCategory_2458
-    name: 'Jackie Robinson Collection'
-    slug: jackie-robinson-collection
-    description: 'Collection of Jackie Robinson memorabilia and collectibles.'
-    num_items: '7'
-    num_public_items: '7'
-    num_views: '5'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-17 16:33:24'
-    updated_at: '2012-12-17 19:02:22'
-  CollectorCollection_4669:
-    id: Collection_4669
-    collector_id: Collector_1212
-    graph_id: '68507'
-    content_category_id: ContentCategory_2019
-    name: 'Louis Armstrong Collection'
-    slug: louis-armstrong-collection
-    description: 'Collection of Louis Armstrong memorabilia and collectibles.'
-    num_items: '3'
-    num_public_items: '3'
-    num_views: '5'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-17 17:43:49'
-    updated_at: '2012-12-17 19:02:10'
-  CollectorCollection_4670:
-    id: Collection_4670
-    collector_id: Collector_1212
-    graph_id: '68513'
-    content_category_id: ContentCategory_117
-    name: 'Malcolm X Collection'
-    slug: malcolm-x-collection
-    description: 'Malcolm X Collection'
-    num_items: '1'
-    num_public_items: '1'
-    num_views: '0'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-17 17:49:09'
-    updated_at: '2012-12-17 17:49:49'
-  CollectorCollection_4671:
-    id: Collection_4671
-    collector_id: Collector_1212
-    graph_id: '68521'
-    content_category_id: ContentCategory_117
-    name: 'Sojourner Truth Collection'
-    slug: sojourner-truth-collection
-    description: 'Sojourner Truth Collection'
-    num_items: '2'
-    num_public_items: '1'
-    num_views: '0'
-    num_comments: '0'
-    num_ratings: '0'
-    score: '0'
-    is_public: '1'
-    is_featured: '0'
-    comments_on: '1'
-    rating_on: '1'
-    created_at: '2012-12-17 17:52:09'
-    updated_at: '2012-12-17 17:53:35'
+    updated_at: '2012-12-08 21:53:26'
