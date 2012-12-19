@@ -9,9 +9,10 @@
 <!--#include virtual="bootstrap/bootstrap-tooltip.js" -->
 <!--#include virtual="/assets/js/jquery/controls.js" -->
 <!--#include virtual="/assets/js/jquery/form.js" -->
-<!--#include virtual="/js/jquery/jail.js" -->
 <!--#include virtual="/assets/js/bootstrap/dialog2.js" -->
 <!--#include virtual="/assets/js/bootstrap/dialog2.helpers.js" -->
+<!--#include virtual="/js/jquery/jail.js" -->
+<!--#include virtual="/js/jquery/pure.js" -->
 
 // fix bugs with dialog2.js
 $.support.transition = false;
