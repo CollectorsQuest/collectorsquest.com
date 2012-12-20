@@ -73,7 +73,7 @@
               <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
             </td>
           </tr>
-          <?php if (0 != (int) $shopping_cart_collectible->getTaxAmount()): ?>
+          <?php if (0 != $shopping_cart_collectible->getTaxAmount('integer')): ?>
             <tr>
               <td>Tax (<?= $shopping_cart_collectible->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
               <td class="text-right">

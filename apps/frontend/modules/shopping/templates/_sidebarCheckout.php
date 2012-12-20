@@ -18,8 +18,8 @@
         1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?>
       </td>
     </tr>
-    <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
-      <tr class="with_tax<?= 0 == (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>">
+    <?php if (0 != $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+      <tr class="with_tax<?= 0 ==  $shopping_order->getTaxAmount('integer') ? ' hide' : ''?>">
           <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
           <td class="text-right">
               <?= money_format('%.2n', (float) $shopping_order->getTaxAmount('float',
@@ -48,13 +48,13 @@
     <tfoot style="font-weight: bold; font-size: 130%;">
       <tr>
         <td style="font-variant: small-caps;">Total:</td>
-        <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
-          <td class="with_tax<?= 0 == (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>"
+        <?php if (0 != $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+          <td class="with_tax<?= 0 == $shopping_order->getTaxAmount('integer') ? ' hide' : ''?>"
               style="text-align: right;">
             <?= money_format('%.2n', (float) $shopping_order->getTotalAmount('float',
             $shopping_order->getCollectibleForSale()->getTaxPercentage())); ?>
           </td>
-          <td class="no_tax<?= 0 != (int) $shopping_order->getTaxAmount() ? ' hide' : ''?>"
+          <td class="no_tax<?= 0 != $shopping_order->getTaxAmount('integer') ? ' hide' : ''?>"
               style="text-align: right;">
             <?= money_format('%.2n', (float) $shopping_order->getTotalAmount('float', 0)); ?>
           </td>

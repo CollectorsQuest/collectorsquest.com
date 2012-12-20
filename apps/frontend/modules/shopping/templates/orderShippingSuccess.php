@@ -166,7 +166,7 @@
 
     });
 
-  <?php if (0 != (int) $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
+  <?php if (0 !=  $shopping_order->getCollectibleForSale()->getTaxPercentage()): ?>
     // Update right bar when need include or exclude tax to total amount
     $('#shopping_order_shipping_address_country_iso3166, #shopping_order_shipping_address_state_region')
         .live('change', function()
