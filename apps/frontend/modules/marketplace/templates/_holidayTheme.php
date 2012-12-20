@@ -38,20 +38,24 @@
         foreach ($pager->getResults() as $collectible)
         {
           // set the link to open modal dialog
-          $url = url_for('ajax_marketplace',
+          $ajax_url = url_for('ajax_marketplace',
             array(
               'section' => 'collectible',
               'page' => 'forSale',
               'id' => $collectible->getId()
             )
           );
+          $url = url_for('collectible_by_slug', $collectible);
 
           include_partial(
             'marketplace/collectible_for_sale_grid_view_square_big',
             array(
               'collectible_for_sale' => $collectible->getCollectibleForSale(),
               'url' => $url, 'i' => $collectible->getId(),
-              'lazy_image' => false
+              'lazy_image' => false,
+              'link_parameters' => array(
+                'data-ajax-url' => $ajax_url
+              ),
             )
           );
         }
