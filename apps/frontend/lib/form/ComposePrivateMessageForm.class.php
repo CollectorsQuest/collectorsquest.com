@@ -176,16 +176,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   public function validateReceiverField(sfValidatorBase $validator, $value, $arguments = array())
   {
     // first we check if the value is a valid email address
-    try
-    {
-      $v = new sfValidatorEmail();
-      $value = $v->clean($value);
-      $is_email = true;
-    }
-    catch (sfValidatorError $e)
-    {
-      $is_email = false;
-    }
+    $is_email = $this->isReceiverAnEmailAddress($value);
 
     // if the value is a valid email
     if ($is_email)
@@ -396,6 +387,13 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     $this->getObject()->setSender($values['sender']);
     $this->getObject()->setReceiver($values['receiver']);
 
+    // if we are sending a message to an email address
+    if ($this->isReceiverAnEmailAddress($values['receiver']))
+    {
+      // then mark the message read, because there is no way to check that
+      $this->getObject()->setIsRead(true);
+    }
+
     // handle attached fields
     foreach (self::$attach_fields as $field => $model_class)
     {
@@ -405,6 +403,32 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         // then we set is as attached object
         $this->getObject()->setAttachedObjectData($model_class, $values[$field]);
       }
+    }
+  }
+
+  /**
+   * @param     string $receiver
+   * @return    boolean
+   */
+  protected function isReceiverAnEmailAddress($receiver)
+  {
+    // if validation has passed, we might be getting an Collector object
+    if ($receiver instanceof Collector)
+    {
+      return false;
+    }
+
+    // for a normal string, try to evaluate based on sfValidatorEmail
+    try
+    {
+      $v = new sfValidatorEmail();
+      $value = $v->clean((string) $receiver);
+
+      return true;
+    }
+    catch (sfValidatorError $e)
+    {
+      return false;
     }
   }
 
