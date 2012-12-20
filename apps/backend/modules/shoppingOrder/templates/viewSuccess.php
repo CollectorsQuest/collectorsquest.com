@@ -172,7 +172,7 @@
         </td>
       </tr>
       <?php endif; ?>
-      <?php if (($v = $shopping_order->getTaxAmount()) && 0 != (int) $v): ?>
+      <?php if (($v = $shopping_order->getTaxAmount('float')) && 0 != (int) $v): ?>
         <tr>
           <td>Tax Fee:</td>
           <td><?= money_format('%.2n', (float) $v); ?></td>

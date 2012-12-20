@@ -78,13 +78,13 @@
               <td style="color: red;"><?= $promotion->getPromotionCode() ?></td>
               <td class="text-right" style="color: red;">
                 <?php if (0 != (int) $promotion->getAmount()): ?>
-                  - <?= money_format('%.2n', (float) $shopping_cart_collectible->getPromotionAmount()); ?>
+                  - <?= money_format('%.2n', (float) $shopping_cart_collectible->getPromotionAmount('float')); ?>
                   <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
                 <?php endif ?>
               </td>
             </tr>
           <?php endif; ?>
-          <?php if (0 != (int) $shopping_cart_collectible->getTaxAmount()): ?>
+          <?php if (0 != $shopping_cart_collectible->getTaxAmount('integer')): ?>
             <tr>
               <td>Tax (<?= $shopping_cart_collectible->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
               <td class="text-right">

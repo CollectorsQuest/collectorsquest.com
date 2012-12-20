@@ -95,7 +95,7 @@ cq_section_title(
             </td>
           </tr>
         <?php endif; ?>
-        <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
+        <?php if (0 != $shopping_order->getTaxAmount('integer')): ?>
           <tr>
             <td>
             <span class="f-14">
