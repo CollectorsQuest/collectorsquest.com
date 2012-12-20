@@ -53,7 +53,7 @@ all:
         required_params: [oSender, sReceiver, sMessageBody]
       relay_message_to_unregistered_user:
         subject: "You have a new message from {{ oSender.displayName | raw }} on Collectors Quest!"
-        required_params: [oSender, sMessageBody ]
+        required_params: [oSender, sMessageBody, sSubject]
 
     Comments:
       comment_response_notification:

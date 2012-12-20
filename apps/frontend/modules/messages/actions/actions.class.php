@@ -189,6 +189,7 @@ class messagesActions extends cqFrontendActions
               'params' => array(
                 'oSender' => $sender,
                 'sMessageBody' => $form->getValue('body'),
+                'sSubject' => $form->getValue('subject'),
               ),
           ));
         }
