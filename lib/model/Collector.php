@@ -496,7 +496,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
     if ($something instanceof PrivateMessage)
     {
-      return $something->getSender() === $this->getId();
+      return $something->getSenderId() === $this->getId();
     }
     else if ($something instanceof ShoppingOrder)
     {
@@ -693,39 +693,45 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $this->setPrimaryImage($file);
   }
 
-  public function getMessagesCount()
+  /**
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function getMessagesCount(PropelPDO $con = null)
   {
-    $c = new Criteria();
-    $c->add(PrivateMessagePeer::RECEIVER, $this->getId());
-    $c->add(PrivateMessagePeer::IS_DELETED, false);
-    $c->addGroupByColumn(PrivateMessagePeer::THREAD);
-    $c->addDescendingOrderByColumn(PrivateMessagePeer::CREATED_AT);
-
-    return PrivateMessagePeer::doCount($c);
+    return PrivateMessageQuery::create()
+      ->filterByCollectorRelatedByReceiverId($this)
+      ->filterByIsDeleted(false)
+      ->groupByThread()
+      ->count($con);
   }
 
-  public function getReadMessagesCount()
+  /**
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function getReadMessagesCount(PropelPDO $con = null)
   {
-    $c = new Criteria();
-    $c->add(PrivateMessagePeer::RECEIVER, $this->getId());
-    $c->add(PrivateMessagePeer::IS_READ, true);
-    $c->add(PrivateMessagePeer::IS_DELETED, false);
-    $c->addGroupByColumn(PrivateMessagePeer::THREAD);
-    $c->addDescendingOrderByColumn(PrivateMessagePeer::CREATED_AT);
-
-    return PrivateMessagePeer::doCount($c);
+    return PrivateMessageQuery::create()
+      ->filterByCollectorRelatedByReceiverId($this)
+      ->filterByIsDeleted(false)
+      ->filterByIsRead(true)
+      ->groupByThread()
+      ->count($con);
   }
 
-  public function getUnreadMessagesCount()
+  /**
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function getUnreadMessagesCount(PropelPDO $con = null)
   {
-    $c = new Criteria();
-    $c->add(PrivateMessagePeer::RECEIVER, $this->getId());
-    $c->add(PrivateMessagePeer::IS_READ, false);
-    $c->add(PrivateMessagePeer::IS_DELETED, false);
-    $c->addGroupByColumn(PrivateMessagePeer::THREAD);
-    $c->addDescendingOrderByColumn(PrivateMessagePeer::CREATED_AT);
-
-    return PrivateMessagePeer::doCount($c);
+    return PrivateMessageQuery::create()
+      ->filterByCollectorRelatedByReceiverId($this)
+      ->filterByIsDeleted(false)
+      ->filterByIsRead(false)
+      ->groupByThread()
+      ->count($con);
   }
 
   public function getCollectionCategoryIds($criteria = null, PropelPDO $con = null)
@@ -1479,7 +1485,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       ->filterByCollector($this)
       ->delete($con);
 
-    /** @var $collections Collection[] */
+    /* @var $collections Collection[] */
     if ($collections = $this->getCollections())
     {
       foreach ($collections as $collection)
@@ -1488,27 +1494,19 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       }
     }
 
+    // Delete related comments
     CommentQuery::create()
       ->filterByModelObject($this)
       ->delete($con);
 
-    // Deleting private messages
-    $c = new Criteria();
-    $c->add(CollectorPeer::ID, PrivateMessagePeer::RECEIVER);
-    $c->addOr(CollectorPeer::ID, PrivateMessagePeer::SENDER);
+    // Set related private messages as deleted
+    PrivateMessageQuery::create()
+      ->filterByCollectorRelatedBySenderId($this)
+      ->_or()
+      ->filterByCollectorRelatedByReceiverId($this)
+      ->update(array('IsDeleted' => true), $con);
 
-    /** @var $messages PrivateMessage[] */
-    $messages = PrivateMessagePeer::doSelect($c);
-    if (!empty($messages))
-    {
-      foreach ($messages as $message)
-      {
-        $message->setIsDeleted(true);
-        $message->save($con);
-      }
-    }
-
-    /** @var $collector_identifiers CollectorIdentifier[] */
+    /* @var $collector_identifiers CollectorIdentifier[] */
     if ($collector_identifiers = $this->getCollectorIdentifiers($con))
     {
       foreach ($collector_identifiers as $collector_identifier)
@@ -1517,7 +1515,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       }
     }
 
-    /** @var $collector_geocaches CollectorGeoCache[] */
+    /* @var $collector_geocaches CollectorGeoCache[] */
     if ($collector_geocaches = $this->getCollectorGeocaches($con))
     {
       foreach ($collector_geocaches as $collector_geocache)

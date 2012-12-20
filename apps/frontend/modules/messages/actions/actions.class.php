@@ -27,7 +27,7 @@ class messagesActions extends cqFrontendActions
     $search = '%'.$request->getParameter('search').'%';
 
     $q = PrivateMessageQuery::create()
-      ->filterByCollectorRelatedByReceiver($this->getCollector())
+      ->filterByCollectorRelatedByReceiverId($this->getCollector())
       ->_if('read' == $this->filter_by)
         ->filterByIsRead(true)
       ->_elseif('unread' == $this->filter_by)
@@ -36,12 +36,12 @@ class messagesActions extends cqFrontendActions
       ->filterByIsDeleted(false)
       ->filterByIsSpam(false)
       ->_if($is_search)
-        //->joinCollectorRelatedBySender(null, Criteria::LEFT_JOIN)
+        //->joinCollectorRelatedBySenderId(null, Criteria::LEFT_JOIN)
         ->filterBySubject($search)
         ->_or()
         ->filterByBody($search)
         ->_or()
-        ->useCollectorRelatedBySenderQuery()
+        ->useCollectorRelatedBySenderIdQuery()
           ->filterByDisplayName($search)
           ->_or()
           ->filterByUsername($search)
@@ -71,7 +71,7 @@ class messagesActions extends cqFrontendActions
   public function executeSent(sfWebRequest $request)
   {
     $q = PrivateMessageQuery::create()
-      ->filterByCollectorRelatedBySender($this->getCollector())
+      ->filterByCollectorRelatedBySenderId($this->getCollector())
       ->groupByThread()
       ->orderByCreatedAt(Criteria::DESC);
 
@@ -91,7 +91,7 @@ class messagesActions extends cqFrontendActions
     // forward to 404 if message is not for this user
     $this->forward404Unless(in_array(
       $this->getUser()->getId(),
-      array($message->getSender(), $message->getReceiver())
+      array($message->getSenderId(), $message->getReceiverId())
     ));
 
     $messages = PrivateMessageQuery::create()
@@ -102,7 +102,7 @@ class messagesActions extends cqFrontendActions
     // mark messages as read if they are addressed to us
     foreach ($messages as $a_message)
     {
-      if ($a_message->getReceiver() == $this->getUser()->getId())
+      if ($a_message->getReceiverId() == $this->getUser()->getId())
       {
         $a_message->setIsRead(true);
       }
@@ -130,13 +130,14 @@ class messagesActions extends cqFrontendActions
     {
       $form->setDefault('goto', $request->getParameter('goto'));
     }
-    if ($request->hasParameter('collection_id'))
+
+    // set form defaults for attach fields if given as get params
+    foreach (array_keys(ComposePrivateMessageForm::$attach_fields) as $field)
     {
-      $form->setDefault('collection_id', $request->getParamteter('collection_id'));
-    }
-    if ($request->hasParameter('collectible_id'))
-    {
-      $form->setDefault('collectible_id', $request->getParamteter('collectible_id'));
+      if ($request->hasParameter($field))
+      {
+        $form->setDefault($field, $request->getParameter($field));
+      }
     }
 
     // If "to" param is numeric, try to add corresponding Collector username as default
@@ -188,6 +189,7 @@ class messagesActions extends cqFrontendActions
               'params' => array(
                 'oSender' => $sender,
                 'sMessageBody' => $form->getValue('body'),
+                'sSubject' => $form->getValue('subject'),
               ),
           ));
         }
@@ -201,6 +203,7 @@ class messagesActions extends cqFrontendActions
                 'oSender' => $sender,
                 'sReceiver' => (string) $receiver,
                 'sMessageBody' => $form->getValue('body'),
+                'sSubject' => $form->getValue('subject'),
               ),
           ));
         }
@@ -248,7 +251,7 @@ class messagesActions extends cqFrontendActions
 
     $q = PrivateMessageQuery::create()
       ->filterByPrimaryKeys($request->getParameter('ids'))
-      ->filterByCollectorRelatedByReceiver($this->getCollector());
+      ->filterByCollectorRelatedByReceiverId($this->getCollector());
 
     if (isset($action['mark_as_unread']))
     {
@@ -310,7 +313,7 @@ class messagesActions extends cqFrontendActions
     // forward to 404 if message is not for this user
     $this->forward404Unless(
       $message &&
-      $message->getReceiver() == $this->getUser()->getId()
+      $message->getReceiverId() == $this->getUser()->getId()
     );
 
     // possible keys: delete, mark_as_unread, report_spam
@@ -338,8 +341,8 @@ class messagesActions extends cqFrontendActions
     elseif (isset($action['report_spam']))
     {
       $affected_rows = $q
-        ->filterByCollectorRelatedBySender(
-          $message->getCollectorRelatedBySender()
+        ->filterByCollectorRelatedBySenderId(
+          $message->getCollectorRelatedBySenderId()
         )
         ->keepQuery()
         ->update(array('IsSpam' => true));
