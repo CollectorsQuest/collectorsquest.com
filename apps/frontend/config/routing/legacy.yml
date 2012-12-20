@@ -7,22 +7,22 @@ legacy_community_help:
 
 legacy_community:
   url:   /community
-  param: { module: _legacy, action: redirectToCollections }
+  param: { module: general, action: redirect, route: 'collections' }
 
 legacy_collectible_sell:
   url:  /collectible/sell
-  param: { module: _legacy, action: redirectToCollections }
+  param: { module: general, action: redirect, route: 'collections' }
 
 legacy_featured_week:
   url:   /community/spotlight/:id/:slug
   class: sfPropelRoute
   options: { model: Featured, type: object, method: getObjectForFeaturedWeek }
-  param: { module: _legacy, action: redirectToCollections }
+  param: { module: general, action: redirect, route: 'collections' }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 legacy_community_pages:
   url:  /community/:string
-  param: { module: _legacy, action: redirectToCollections }
+  param: { module: general, action: redirect, route: 'collections' }
   requirements: { string: "[^/]+" }
 
 legacy_seller_subscribe:
@@ -31,24 +31,28 @@ legacy_seller_subscribe:
 
 legacy_collector_signup_facebook:
   url:   /collector/signup/facebook
-  param: { module: collector, action: signup }
+  param: { module: general, action: redirect, route: 'collector_signup' }
 
 legacy_collections_most_recent:
   url:  /collections/filter/most-recent
-  param: { module: _legacy, action: redirectToCollections }
+  param: { module: general, action: redirect, route: 'collections' }
+
+legacy_collectors_filter:
+  url: /collectors/filter/:sort
+  param: { module: collectors, action: index, sort: latest }
 
 legacy_collector_by_slug:
   url:  /collector/:slug
   class: sfPropelRoute
   options: { model: Collector, type: object, method: getObjectForRoute }
-  param: { module: collector, action: index }
+  param: { module: general, action: redirect, route: 'collector_by_slug' }
   requirements: { slug: '[\-\w\.]+' }
 
 legacy_collectible_by_slug:
   url:  /collection/item/:id/:slug
   class: cqPropelRoute
   options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
-  param: { module: collection, action: collectible }
+  param: { module: general, action: redirect, route: 'collectible_by_slug' }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 legacy_marketplace_category_by_slug:
@@ -58,31 +62,31 @@ legacy_marketplace_category_by_slug:
 
 legacy_featured_week_page:
   url:  /featured-week/:slug
-  param: { module: _legacy, action: redirectToCollections }
+  param: { module: general, action: redirect, route: 'collections' }
 
 legacy_calendar_events:
   url:  /calendar/events/:string
-  param: { module: _legacy, action: redirectToCollections }
+  param: { module: general, action: redirect, route: 'collections' }
   requirements: { string: "[^/]+" }
 
 legacy_general_pages:
   url:  /general/:string
-  param: { module: _legacy, action: redirectToCollections }
+  param: { module: general, action: redirect, route: 'collections' }
   requirements: { string: "[^/]+" }
 
 legacy_redirect_pages:
   url:  /redirect/:string
-  param: { module: _legacy, action: redirectToContentCategories }
+  param: { module: general, action: redirect, route: 'content_categories' }
   requirements: { string: "[^/]+" }
 
 legacy_feed_pages:
   url:  /feed/:string
-  param: { module: _legacy, action: redirectToContentCategories }
+  param: { module: general, action: redirect, route: 'content_categories' }
   requirements: { string: "[^/]+" }
 
 legacy_collectibles_for_sale_by_collector:
   url:  /collectibles-for-sale/by/:id/:store_slug
   class: cqPropelRoute
   options: { model: Collector, type: object, method: getObjectForRoute }
-  param: { module: _legacy, action: redirectToSellerStore }
+  param: { module: general, action: redirect, route: 'seller_store' }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }

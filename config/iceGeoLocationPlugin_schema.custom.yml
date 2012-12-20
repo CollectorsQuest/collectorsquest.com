@@ -14,7 +14,7 @@ classes:
       geo_country_U_2: [iso3166]
     behaviors:
       PropelActAsSluggableBehavior:
-        columns: { from: geo_country.NAME, to: geo_country.SLUG }
+        columns: { from: geo_country.name, to: geo_country.slug }
         separator: "-"
         permament: false
         lowercase: false

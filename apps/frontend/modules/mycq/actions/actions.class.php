@@ -94,6 +94,18 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'profile');
 
+    // Delete provider if associated
+    if ($provider = $this->getRequestParameter('remove_provider', null))
+    {
+      CollectorIdentifierQuery::create()
+        ->filterByCollector($this->getCollector())
+        ->filterByProvider($provider)
+        ->delete();
+
+      // Redirect to make sure we remove the $_GET parameter from the URL
+      return $this->redirect('@mycq_profile_account_info');
+    }
+
     $collector_form = new CollectorEditForm($this->getCollector());
     $collector_form->useFields(array(
       'old_password', 'password', 'password_again'
@@ -134,11 +146,11 @@ class mycqActions extends cqFrontendActions
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Collector/verify_new_email', array(
-            'to'     => $collector_email->getEmail(),
-            'params' => array(
-              'collector'       => $collector_email->getCollector(),
-              'collector_email' => $collector_email,
-            )
+              'to' => $collector_email->getEmail(),
+              'params' => array(
+                'collector' => $collector_email->getCollector(),
+                'collector_email' => $collector_email,
+              )
           ));
 
           $this->getUser()->setFlash('success',
@@ -248,7 +260,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileAddressesEdit(sfWebRequest $request)
   {
-    /** @var $address CollectorAddress */
+    /* @var $address CollectorAddress */
     $address = $this->getRoute()->getObject();
 
     $this->forward404Unless($this->getCollector()->isOwnerOf($address));
@@ -273,7 +285,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileAddressesDelete(sfWebRequest $request)
   {
-    /** @var $address CollectorAddress */
+    /* @var $address CollectorAddress */
     $address = $this->getRoute()->getObject();
 
     $this->forward404Unless($this->getUser()->isOwnerOf($address));
@@ -308,7 +320,7 @@ class mycqActions extends cqFrontendActions
         );
         $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
 
-        /** @var $collectibles Collectible[] */
+        /* @var $collectibles Collectible[] */
         if ($collectibles = CollectiblePeer::doSelect($c))
         {
           foreach ($collectibles as $collectible)
@@ -367,7 +379,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
-    /** @var $collection CollectorCollection */
+    /* @var $collection CollectorCollection */
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
 
@@ -376,7 +388,7 @@ class mycqActions extends cqFrontendActions
       '@mycq_collections'
     );
 
-    /** @var $collectible Collectible */
+    /* @var $collectible Collectible */
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
 
@@ -417,10 +429,10 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollectible(sfWebRequest $request)
   {
-    /** @var $collectible Collectible */
+    /* @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
 
-    /** @var $collection CollectorCollection */
+    /* @var $collection CollectorCollection */
     $collection = $collectible->getCollectorCollection();
 
     /**
@@ -479,6 +491,9 @@ class mycqActions extends cqFrontendActions
       '@mycq_collections'
     );
 
+    /* @var $collection CollectorCollection */
+    $collection = $collectible->getCollectorCollection();
+
     if ($request->getParameter('cmd'))
     {
       switch ($request->getParameter('cmd'))
@@ -495,11 +510,9 @@ class mycqActions extends cqFrontendActions
 
           try
           {
-            /**
-             * If the Collectible has Multimedia associated with it, let's just
-             * delete the CollectionCollectible references so that it can return
-             * to the Dropbox
-             */
+            // If the Collectible has Multimedia associated with it, let's just
+            // delete the CollectionCollectible references so that it can return
+            // to the Dropbox
             $default = $collectible->getMultimediaCount() > 0 ? 'collections' : 'collectible';
 
             switch ($request->getParameter('scope', $default))
@@ -691,7 +704,8 @@ class mycqActions extends cqFrontendActions
             // perform a redirect on successful form save
             return $this->redirect('mycq_collectible_by_slug', $collectible);
           }
-        } catch (PropelException $e)
+        }
+        catch (PropelException $e)
         {
           $this->getUser()->setFlash(
             'error', 'There was a problem saving your information'
@@ -746,9 +760,15 @@ class mycqActions extends cqFrontendActions
       ->isForSale();
     $this->total = $q->count();
 
-    $q = ShoppingOrderQuery::create()
-      ->isPaid()
-      ->filterBySellerId($collector->getId());
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->filterByIsSold(true)
+      ->groupByCollectibleId()
+      ->joinCollectible()
+      ->useCollectibleQuery()
+        ->joinWith('ShoppingOrder', Criteria::RIGHT_JOIN)
+      ->endUse();
+
     $this->sold_total = $q->count();
 
     // Make the seller available to the template
@@ -796,16 +816,48 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeMarketplaceCreditHistory()
+  public function executeMarketplaceCreditHistory(sfWebRequest $request)
   {
+    $this->redirectUnless(IceGateKeeper::open('mycq_marketplace_credit_history'), '@mycq');
+
+    $this->filter_by = $request->getParameter('filter_by', 'all');
+
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
+    // Get the Collector
+    $collector = $this->getCollector(true);
+
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollector($collector);
+      //->isForSale()
+      //->filterByIsSold(true)
+    $this->total = $q->count();
+    $this->collectibles_for_sale = $q->find();
+
+    // Make the collector available to the template
+    $this->collector = $collector;
+
+    // retrieve the package transactions
     $this->package_transactions = PackageTransactionQuery::create()
       ->filterByCollector($this->getCollector())
       ->_if('dev' != sfConfig::get('sf_environment'))
-      ->paidFor()
+        ->paidFor()
       ->_endif()
       ->find();
+
+    // check if the seller has valid credits left
+    $this->has_no_credits = true;
+    foreach ($this->package_transactions as $package)
+    {
+      /* @var $package PackageTransaction */
+      if (
+        $package->getCredits() - $package->getCreditsUsed() > 0 &&
+        $package->getExpiryDate('YmdHis') > date('YmdHis')
+      )
+      {
+        $this->has_no_credits = false;
+      }
+    }
 
     return sfView::SUCCESS;
   }
@@ -939,7 +991,7 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
-    /** @var $shopping_order ShoppingOrder */
+    /* @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
     $collectible = $shopping_order->getCollectible();
@@ -948,7 +1000,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeShoppingOrderTracking(sfWebRequest $request)
   {
-    /** @var $shopping_order ShoppingOrder */
+    /* @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
     if ($request->isMethod('post') && $this->getUser()->isOwnerOf($shopping_order))

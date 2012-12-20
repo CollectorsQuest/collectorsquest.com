@@ -464,11 +464,23 @@ class cqFrontendUser extends cqBaseUser
   }
 
   /**
-   * @param  BaseObject $something
+   * @param  BaseObject|array $something
    * @return boolean
    */
   public function isOwnerOf($something)
   {
+    // handle multiple checks at once
+    if (is_array($something))
+    {
+      $is_owner = true;
+      foreach ($something as $a_thing)
+      {
+        $is_owner = $is_owner && $this->isOwnerOf($a_thing);
+      }
+
+      return $is_owner;
+    }
+
     $is_owner = parent::isOwnerOf($something);
 
     if (!$is_owner && method_exists($something, 'getId'))

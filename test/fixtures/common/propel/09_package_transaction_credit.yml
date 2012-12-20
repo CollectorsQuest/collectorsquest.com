@@ -89,3 +89,8 @@ PackageTransactionCredit:
     collectible_id: Collectible_92646
     expiry_date: '2013-04-08 05:20:01'
     created_at: '2012-10-08 05:20:01'
+  PackageTransactionCredit_1306:
+    package_transaction_id: PackageTransaction_142
+    collectible_id: Collectible_96091
+    expiry_date: '2013-05-05 01:38:10'
+    created_at: '2012-11-05 01:38:10'

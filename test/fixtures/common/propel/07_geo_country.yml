@@ -1,5 +1,5 @@
 iceModelGeoCountry:
-  GeoCountry_AF:
+  iceModelGeoCountry_1:
     name: Afghanistan
     slug: Afghanistan
     iso3166: AF
@@ -7,7 +7,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AL:
+  iceModelGeoCountry_2:
     name: Albania
     slug: Albania
     iso3166: AL
@@ -15,7 +15,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_DZ:
+  iceModelGeoCountry_3:
     name: Algeria
     slug: Algeria
     iso3166: DZ
@@ -23,7 +23,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AS:
+  iceModelGeoCountry_4:
     name: 'American Samoa'
     slug: American-Samoa
     iso3166: AS
@@ -31,7 +31,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AD:
+  iceModelGeoCountry_5:
     name: Andorra
     slug: Andorra
     iso3166: AD
@@ -39,7 +39,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AO:
+  iceModelGeoCountry_6:
     name: Angola
     slug: Angola
     iso3166: AO
@@ -47,7 +47,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AI:
+  iceModelGeoCountry_7:
     name: Anguilla
     slug: Anguilla
     iso3166: AI
@@ -55,7 +55,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AQ:
+  iceModelGeoCountry_8:
     name: Antarctica
     slug: Antarctica
     iso3166: AQ
@@ -63,7 +63,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AG:
+  iceModelGeoCountry_9:
     name: 'Antigua and Barbuda'
     slug: Antigua-and-Barbuda
     iso3166: AG
@@ -71,7 +71,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AR:
+  iceModelGeoCountry_10:
     name: Argentina
     slug: Argentina
     iso3166: AR
@@ -79,7 +79,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AM:
+  iceModelGeoCountry_11:
     name: Armenia
     slug: Armenia
     iso3166: AM
@@ -87,7 +87,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AW:
+  iceModelGeoCountry_12:
     name: Aruba
     slug: Aruba
     iso3166: AW
@@ -95,7 +95,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AU:
+  iceModelGeoCountry_13:
     name: Australia
     slug: Australia
     iso3166: AU
@@ -103,7 +103,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AT:
+  iceModelGeoCountry_14:
     name: Austria
     slug: Austria
     iso3166: AT
@@ -111,7 +111,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AZ:
+  iceModelGeoCountry_15:
     name: Azerbaijan
     slug: Azerbaijan
     iso3166: AZ
@@ -119,7 +119,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BS:
+  iceModelGeoCountry_16:
     name: Bahamas
     slug: Bahamas
     iso3166: BS
@@ -127,7 +127,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BH:
+  iceModelGeoCountry_17:
     name: Bahrain
     slug: Bahrain
     iso3166: BH
@@ -135,7 +135,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BD:
+  iceModelGeoCountry_18:
     name: Bangladesh
     slug: Bangladesh
     iso3166: BD
@@ -143,7 +143,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BB:
+  iceModelGeoCountry_19:
     name: Barbados
     slug: Barbados
     iso3166: BB
@@ -151,7 +151,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BY:
+  iceModelGeoCountry_20:
     name: Belarus
     slug: Belarus
     iso3166: BY
@@ -159,7 +159,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BE:
+  iceModelGeoCountry_21:
     name: Belgium
     slug: Belgium
     iso3166: BE
@@ -167,7 +167,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BZ:
+  iceModelGeoCountry_22:
     name: Belize
     slug: Belize
     iso3166: BZ
@@ -175,7 +175,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BJ:
+  iceModelGeoCountry_23:
     name: Benin
     slug: Benin
     iso3166: BJ
@@ -183,7 +183,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BM:
+  iceModelGeoCountry_24:
     name: Bermuda
     slug: Bermuda
     iso3166: BM
@@ -191,7 +191,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BT:
+  iceModelGeoCountry_25:
     name: Bhutan
     slug: Bhutan
     iso3166: BT
@@ -199,7 +199,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BO:
+  iceModelGeoCountry_26:
     name: Bolivia
     slug: Bolivia
     iso3166: BO
@@ -207,7 +207,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BA:
+  iceModelGeoCountry_27:
     name: 'Bosnia and Herzegovina'
     slug: Bosnia-and-Herzegovina
     iso3166: BA
@@ -215,7 +215,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BW:
+  iceModelGeoCountry_28:
     name: Botswana
     slug: Botswana
     iso3166: BW
@@ -223,7 +223,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BV:
+  iceModelGeoCountry_29:
     name: 'Bouvet Island'
     slug: Bouvet-Island
     iso3166: BV
@@ -231,7 +231,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BR:
+  iceModelGeoCountry_30:
     name: Brazil
     slug: Brazil
     iso3166: BR
@@ -239,7 +239,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_IO:
+  iceModelGeoCountry_31:
     name: 'British Indian Ocean Territory'
     slug: British-Indian-Ocean-Territory
     iso3166: IO
@@ -247,7 +247,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BN:
+  iceModelGeoCountry_32:
     name: 'Brunei Darussalam'
     slug: Brunei-Darussalam
     iso3166: BN
@@ -255,7 +255,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BG:
+  iceModelGeoCountry_33:
     name: Bulgaria
     slug: Bulgaria
     iso3166: BG
@@ -263,7 +263,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BF:
+  iceModelGeoCountry_34:
     name: 'Burkina Faso'
     slug: Burkina-Faso
     iso3166: BF
@@ -271,7 +271,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_BI:
+  iceModelGeoCountry_35:
     name: Burundi
     slug: Burundi
     iso3166: BI
@@ -279,7 +279,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KH:
+  iceModelGeoCountry_36:
     name: Cambodia
     slug: Cambodia
     iso3166: KH
@@ -287,7 +287,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CM:
+  iceModelGeoCountry_37:
     name: Cameroon
     slug: Cameroon
     iso3166: CM
@@ -295,7 +295,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CA:
+  iceModelGeoCountry_38:
     name: Canada
     slug: Canada
     iso3166: CA
@@ -303,7 +303,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CV:
+  iceModelGeoCountry_39:
     name: 'Cape Verde'
     slug: Cape-Verde
     iso3166: CV
@@ -311,7 +311,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KY:
+  iceModelGeoCountry_40:
     name: 'Cayman Islands'
     slug: Cayman-Islands
     iso3166: KY
@@ -319,7 +319,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CF:
+  iceModelGeoCountry_41:
     name: 'Central African Republic'
     slug: Central-African-Republic
     iso3166: CF
@@ -327,7 +327,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TD:
+  iceModelGeoCountry_42:
     name: Chad
     slug: Chad
     iso3166: TD
@@ -335,7 +335,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CL:
+  iceModelGeoCountry_43:
     name: Chile
     slug: Chile
     iso3166: CL
@@ -343,7 +343,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CN:
+  iceModelGeoCountry_44:
     name: China
     slug: China
     iso3166: CN
@@ -351,7 +351,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CX:
+  iceModelGeoCountry_45:
     name: 'Christmas Island'
     slug: Christmas-Island
     iso3166: CX
@@ -359,7 +359,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CC:
+  iceModelGeoCountry_46:
     name: 'Cocos (Keeling) Islands'
     slug: Cocos-Keeling-Islands
     iso3166: CC
@@ -367,7 +367,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CO:
+  iceModelGeoCountry_47:
     name: Colombia
     slug: Colombia
     iso3166: CO
@@ -375,7 +375,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KM:
+  iceModelGeoCountry_48:
     name: Comoros
     slug: Comoros
     iso3166: KM
@@ -383,7 +383,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CG:
+  iceModelGeoCountry_49:
     name: Congo
     slug: Congo
     iso3166: CG
@@ -391,7 +391,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CD:
+  iceModelGeoCountry_50:
     name: 'Congo, the Democratic Republic of the'
     slug: Congo-the-Democratic-Republic-of-the
     iso3166: CD
@@ -399,7 +399,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CK:
+  iceModelGeoCountry_51:
     name: 'Cook Islands'
     slug: Cook-Islands
     iso3166: CK
@@ -407,7 +407,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CR:
+  iceModelGeoCountry_52:
     name: 'Costa Rica'
     slug: Costa-Rica
     iso3166: CR
@@ -415,7 +415,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CI:
+  iceModelGeoCountry_53:
     name: 'Cote D''Ivoire'
     slug: Cote-DIvoire
     iso3166: CI
@@ -423,7 +423,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_HR:
+  iceModelGeoCountry_54:
     name: Croatia
     slug: Croatia
     iso3166: HR
@@ -431,7 +431,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CU:
+  iceModelGeoCountry_55:
     name: Cuba
     slug: Cuba
     iso3166: CU
@@ -439,7 +439,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CY:
+  iceModelGeoCountry_56:
     name: Cyprus
     slug: Cyprus
     iso3166: CY
@@ -447,7 +447,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CZ:
+  iceModelGeoCountry_57:
     name: 'Czech Republic'
     slug: Czech-Republic
     iso3166: CZ
@@ -455,7 +455,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_DK:
+  iceModelGeoCountry_58:
     name: Denmark
     slug: Denmark
     iso3166: DK
@@ -463,7 +463,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_DJ:
+  iceModelGeoCountry_59:
     name: Djibouti
     slug: Djibouti
     iso3166: DJ
@@ -471,7 +471,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_DM:
+  iceModelGeoCountry_60:
     name: Dominica
     slug: Dominica
     iso3166: DM
@@ -479,7 +479,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_DO:
+  iceModelGeoCountry_61:
     name: 'Dominican Republic'
     slug: Dominican-Republic
     iso3166: DO
@@ -487,7 +487,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_EC:
+  iceModelGeoCountry_62:
     name: Ecuador
     slug: Ecuador
     iso3166: EC
@@ -495,7 +495,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_EG:
+  iceModelGeoCountry_63:
     name: Egypt
     slug: Egypt
     iso3166: EG
@@ -503,7 +503,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SV:
+  iceModelGeoCountry_64:
     name: 'El Salvador'
     slug: El-Salvador
     iso3166: SV
@@ -511,7 +511,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GQ:
+  iceModelGeoCountry_65:
     name: 'Equatorial Guinea'
     slug: Equatorial-Guinea
     iso3166: GQ
@@ -519,7 +519,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ER:
+  iceModelGeoCountry_66:
     name: Eritrea
     slug: Eritrea
     iso3166: ER
@@ -527,7 +527,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_EE:
+  iceModelGeoCountry_67:
     name: Estonia
     slug: Estonia
     iso3166: EE
@@ -535,7 +535,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ET:
+  iceModelGeoCountry_68:
     name: Ethiopia
     slug: Ethiopia
     iso3166: ET
@@ -543,7 +543,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_FK:
+  iceModelGeoCountry_69:
     name: 'Falkland Islands (Malvinas)'
     slug: Falkland-Islands-Malvinas
     iso3166: FK
@@ -551,7 +551,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_FO:
+  iceModelGeoCountry_70:
     name: 'Faroe Islands'
     slug: Faroe-Islands
     iso3166: FO
@@ -559,7 +559,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_FJ:
+  iceModelGeoCountry_71:
     name: Fiji
     slug: Fiji
     iso3166: FJ
@@ -567,7 +567,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_FI:
+  iceModelGeoCountry_72:
     name: Finland
     slug: Finland
     iso3166: FI
@@ -575,7 +575,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_FR:
+  iceModelGeoCountry_73:
     name: France
     slug: France
     iso3166: FR
@@ -583,7 +583,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GF:
+  iceModelGeoCountry_74:
     name: 'French Guiana'
     slug: French-Guiana
     iso3166: GF
@@ -591,7 +591,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PF:
+  iceModelGeoCountry_75:
     name: 'French Polynesia'
     slug: French-Polynesia
     iso3166: PF
@@ -599,7 +599,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TF:
+  iceModelGeoCountry_76:
     name: 'French Southern Territories'
     slug: French-Southern-Territories
     iso3166: TF
@@ -607,7 +607,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GA:
+  iceModelGeoCountry_77:
     name: Gabon
     slug: Gabon
     iso3166: GA
@@ -615,7 +615,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GM:
+  iceModelGeoCountry_78:
     name: Gambia
     slug: Gambia
     iso3166: GM
@@ -623,7 +623,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GE:
+  iceModelGeoCountry_79:
     name: Georgia
     slug: Georgia
     iso3166: GE
@@ -631,7 +631,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_DE:
+  iceModelGeoCountry_80:
     name: Germany
     slug: Germany
     iso3166: DE
@@ -639,7 +639,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GH:
+  iceModelGeoCountry_81:
     name: Ghana
     slug: Ghana
     iso3166: GH
@@ -647,7 +647,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GI:
+  iceModelGeoCountry_82:
     name: Gibraltar
     slug: Gibraltar
     iso3166: GI
@@ -655,7 +655,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GR:
+  iceModelGeoCountry_83:
     name: Greece
     slug: Greece
     iso3166: GR
@@ -663,7 +663,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GL:
+  iceModelGeoCountry_84:
     name: Greenland
     slug: Greenland
     iso3166: GL
@@ -671,7 +671,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GD:
+  iceModelGeoCountry_85:
     name: Grenada
     slug: Grenada
     iso3166: GD
@@ -679,7 +679,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GP:
+  iceModelGeoCountry_86:
     name: Guadeloupe
     slug: Guadeloupe
     iso3166: GP
@@ -687,7 +687,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GU:
+  iceModelGeoCountry_87:
     name: Guam
     slug: Guam
     iso3166: GU
@@ -695,7 +695,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GT:
+  iceModelGeoCountry_88:
     name: Guatemala
     slug: Guatemala
     iso3166: GT
@@ -703,7 +703,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GN:
+  iceModelGeoCountry_89:
     name: Guinea
     slug: Guinea
     iso3166: GN
@@ -711,7 +711,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GW:
+  iceModelGeoCountry_90:
     name: Guinea-Bissau
     slug: Guinea-Bissau
     iso3166: GW
@@ -719,7 +719,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GY:
+  iceModelGeoCountry_91:
     name: Guyana
     slug: Guyana
     iso3166: GY
@@ -727,7 +727,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_HT:
+  iceModelGeoCountry_92:
     name: Haiti
     slug: Haiti
     iso3166: HT
@@ -735,7 +735,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_HM:
+  iceModelGeoCountry_93:
     name: 'Heard Island and Mcdonald Islands'
     slug: Heard-Island-and-Mcdonald-Islands
     iso3166: HM
@@ -743,7 +743,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_VA:
+  iceModelGeoCountry_94:
     name: 'Holy See (Vatican City State)'
     slug: Holy-See-Vatican-City-State
     iso3166: VA
@@ -751,7 +751,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_HN:
+  iceModelGeoCountry_95:
     name: Honduras
     slug: Honduras
     iso3166: HN
@@ -759,7 +759,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_HK:
+  iceModelGeoCountry_96:
     name: 'Hong Kong'
     slug: Hong-Kong
     iso3166: HK
@@ -767,7 +767,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_HU:
+  iceModelGeoCountry_97:
     name: Hungary
     slug: Hungary
     iso3166: HU
@@ -775,7 +775,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_IS:
+  iceModelGeoCountry_98:
     name: Iceland
     slug: Iceland
     iso3166: IS
@@ -783,7 +783,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_IN:
+  iceModelGeoCountry_99:
     name: India
     slug: India
     iso3166: IN
@@ -791,7 +791,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ID:
+  iceModelGeoCountry_100:
     name: Indonesia
     slug: Indonesia
     iso3166: ID
@@ -799,7 +799,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_IR:
+  iceModelGeoCountry_101:
     name: 'Iran, Islamic Republic of'
     slug: Iran-Islamic-Republic-of
     iso3166: IR
@@ -807,7 +807,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_IQ:
+  iceModelGeoCountry_102:
     name: Iraq
     slug: Iraq
     iso3166: IQ
@@ -815,7 +815,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_IE:
+  iceModelGeoCountry_103:
     name: Ireland
     slug: Ireland
     iso3166: IE
@@ -823,7 +823,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_IL:
+  iceModelGeoCountry_104:
     name: Israel
     slug: Israel
     iso3166: IL
@@ -831,7 +831,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_IT:
+  iceModelGeoCountry_105:
     name: Italy
     slug: Italy
     iso3166: IT
@@ -839,7 +839,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_JM:
+  iceModelGeoCountry_106:
     name: Jamaica
     slug: Jamaica
     iso3166: JM
@@ -847,7 +847,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_JP:
+  iceModelGeoCountry_107:
     name: Japan
     slug: Japan
     iso3166: JP
@@ -855,7 +855,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_JO:
+  iceModelGeoCountry_108:
     name: Jordan
     slug: Jordan
     iso3166: JO
@@ -863,7 +863,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KZ:
+  iceModelGeoCountry_109:
     name: Kazakhstan
     slug: Kazakhstan
     iso3166: KZ
@@ -871,7 +871,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KE:
+  iceModelGeoCountry_110:
     name: Kenya
     slug: Kenya
     iso3166: KE
@@ -879,7 +879,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KI:
+  iceModelGeoCountry_111:
     name: Kiribati
     slug: Kiribati
     iso3166: KI
@@ -887,7 +887,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KP:
+  iceModelGeoCountry_112:
     name: 'Korea, Democratic People''s Republic of'
     slug: Korea-Democratic-Peoples-Republic-of
     iso3166: KP
@@ -895,7 +895,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KR:
+  iceModelGeoCountry_113:
     name: 'Korea, Republic of'
     slug: Korea-Republic-of
     iso3166: KR
@@ -903,7 +903,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KW:
+  iceModelGeoCountry_114:
     name: Kuwait
     slug: Kuwait
     iso3166: KW
@@ -911,7 +911,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KG:
+  iceModelGeoCountry_115:
     name: Kyrgyzstan
     slug: Kyrgyzstan
     iso3166: KG
@@ -919,7 +919,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LA:
+  iceModelGeoCountry_116:
     name: 'Lao People''s Democratic Republic'
     slug: Lao-Peoples-Democratic-Republic
     iso3166: LA
@@ -927,7 +927,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LV:
+  iceModelGeoCountry_117:
     name: Latvia
     slug: Latvia
     iso3166: LV
@@ -935,7 +935,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LB:
+  iceModelGeoCountry_118:
     name: Lebanon
     slug: Lebanon
     iso3166: LB
@@ -943,7 +943,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LS:
+  iceModelGeoCountry_119:
     name: Lesotho
     slug: Lesotho
     iso3166: LS
@@ -951,7 +951,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LR:
+  iceModelGeoCountry_120:
     name: Liberia
     slug: Liberia
     iso3166: LR
@@ -959,7 +959,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LY:
+  iceModelGeoCountry_121:
     name: 'Libyan Arab Jamahiriya'
     slug: Libyan-Arab-Jamahiriya
     iso3166: LY
@@ -967,7 +967,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LI:
+  iceModelGeoCountry_122:
     name: Liechtenstein
     slug: Liechtenstein
     iso3166: LI
@@ -975,7 +975,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LT:
+  iceModelGeoCountry_123:
     name: Lithuania
     slug: Lithuania
     iso3166: LT
@@ -983,7 +983,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LU:
+  iceModelGeoCountry_124:
     name: Luxembourg
     slug: Luxembourg
     iso3166: LU
@@ -991,7 +991,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MO:
+  iceModelGeoCountry_125:
     name: Macao
     slug: Macao
     iso3166: MO
@@ -999,7 +999,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MK:
+  iceModelGeoCountry_126:
     name: 'Macedonia, the Former Yugoslav Republic of'
     slug: Macedonia-the-Former-Yugoslav-Republic-of
     iso3166: MK
@@ -1007,7 +1007,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MG:
+  iceModelGeoCountry_127:
     name: Madagascar
     slug: Madagascar
     iso3166: MG
@@ -1015,7 +1015,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MW:
+  iceModelGeoCountry_128:
     name: Malawi
     slug: Malawi
     iso3166: MW
@@ -1023,7 +1023,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MY:
+  iceModelGeoCountry_129:
     name: Malaysia
     slug: Malaysia
     iso3166: MY
@@ -1031,7 +1031,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MV:
+  iceModelGeoCountry_130:
     name: Maldives
     slug: Maldives
     iso3166: MV
@@ -1039,7 +1039,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ML:
+  iceModelGeoCountry_131:
     name: Mali
     slug: Mali
     iso3166: ML
@@ -1047,7 +1047,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MT:
+  iceModelGeoCountry_132:
     name: Malta
     slug: Malta
     iso3166: MT
@@ -1055,7 +1055,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MH:
+  iceModelGeoCountry_133:
     name: 'Marshall Islands'
     slug: Marshall-Islands
     iso3166: MH
@@ -1063,7 +1063,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MQ:
+  iceModelGeoCountry_134:
     name: Martinique
     slug: Martinique
     iso3166: MQ
@@ -1071,7 +1071,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MR:
+  iceModelGeoCountry_135:
     name: Mauritania
     slug: Mauritania
     iso3166: MR
@@ -1079,7 +1079,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MU:
+  iceModelGeoCountry_136:
     name: Mauritius
     slug: Mauritius
     iso3166: MU
@@ -1087,7 +1087,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_YT:
+  iceModelGeoCountry_137:
     name: Mayotte
     slug: Mayotte
     iso3166: YT
@@ -1095,7 +1095,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MX:
+  iceModelGeoCountry_138:
     name: Mexico
     slug: Mexico
     iso3166: MX
@@ -1103,7 +1103,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_FM:
+  iceModelGeoCountry_139:
     name: 'Micronesia, Federated States of'
     slug: Micronesia-Federated-States-of
     iso3166: FM
@@ -1111,7 +1111,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MD:
+  iceModelGeoCountry_140:
     name: 'Moldova, Republic of'
     slug: Moldova-Republic-of
     iso3166: MD
@@ -1119,7 +1119,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MC:
+  iceModelGeoCountry_141:
     name: Monaco
     slug: Monaco
     iso3166: MC
@@ -1127,7 +1127,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MN:
+  iceModelGeoCountry_142:
     name: Mongolia
     slug: Mongolia
     iso3166: MN
@@ -1135,7 +1135,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MS:
+  iceModelGeoCountry_143:
     name: Montserrat
     slug: Montserrat
     iso3166: MS
@@ -1143,7 +1143,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MA:
+  iceModelGeoCountry_144:
     name: Morocco
     slug: Morocco
     iso3166: MA
@@ -1151,7 +1151,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MZ:
+  iceModelGeoCountry_145:
     name: Mozambique
     slug: Mozambique
     iso3166: MZ
@@ -1159,7 +1159,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MM:
+  iceModelGeoCountry_146:
     name: Myanmar
     slug: Myanmar
     iso3166: MM
@@ -1167,7 +1167,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NA:
+  iceModelGeoCountry_147:
     name: Namibia
     slug: Namibia
     iso3166: NA
@@ -1175,7 +1175,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NR:
+  iceModelGeoCountry_148:
     name: Nauru
     slug: Nauru
     iso3166: NR
@@ -1183,7 +1183,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NP:
+  iceModelGeoCountry_149:
     name: Nepal
     slug: Nepal
     iso3166: NP
@@ -1191,7 +1191,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NL:
+  iceModelGeoCountry_150:
     name: Netherlands
     slug: Netherlands
     iso3166: NL
@@ -1199,7 +1199,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AN:
+  iceModelGeoCountry_151:
     name: 'Netherlands Antilles'
     slug: Netherlands-Antilles
     iso3166: AN
@@ -1207,7 +1207,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NC:
+  iceModelGeoCountry_152:
     name: 'New Caledonia'
     slug: New-Caledonia
     iso3166: NC
@@ -1215,7 +1215,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NZ:
+  iceModelGeoCountry_153:
     name: 'New Zealand'
     slug: New-Zealand
     iso3166: NZ
@@ -1223,7 +1223,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NI:
+  iceModelGeoCountry_154:
     name: Nicaragua
     slug: Nicaragua
     iso3166: NI
@@ -1231,7 +1231,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NE:
+  iceModelGeoCountry_155:
     name: Niger
     slug: Niger
     iso3166: NE
@@ -1239,7 +1239,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NG:
+  iceModelGeoCountry_156:
     name: Nigeria
     slug: Nigeria
     iso3166: NG
@@ -1247,7 +1247,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NU:
+  iceModelGeoCountry_157:
     name: Niue
     slug: Niue
     iso3166: NU
@@ -1255,7 +1255,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NF:
+  iceModelGeoCountry_158:
     name: 'Norfolk Island'
     slug: Norfolk-Island
     iso3166: NF
@@ -1263,7 +1263,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_MP:
+  iceModelGeoCountry_159:
     name: 'Northern Mariana Islands'
     slug: Northern-Mariana-Islands
     iso3166: MP
@@ -1271,7 +1271,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_NO:
+  iceModelGeoCountry_160:
     name: Norway
     slug: Norway
     iso3166: NO
@@ -1279,7 +1279,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_OM:
+  iceModelGeoCountry_161:
     name: Oman
     slug: Oman
     iso3166: OM
@@ -1287,7 +1287,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PK:
+  iceModelGeoCountry_162:
     name: Pakistan
     slug: Pakistan
     iso3166: PK
@@ -1295,7 +1295,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PW:
+  iceModelGeoCountry_163:
     name: Palau
     slug: Palau
     iso3166: PW
@@ -1303,7 +1303,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PS:
+  iceModelGeoCountry_164:
     name: 'Palestinian Territory, Occupied'
     slug: Palestinian-Territory-Occupied
     iso3166: PS
@@ -1311,7 +1311,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PA:
+  iceModelGeoCountry_165:
     name: Panama
     slug: Panama
     iso3166: PA
@@ -1319,7 +1319,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PG:
+  iceModelGeoCountry_166:
     name: 'Papua New Guinea'
     slug: Papua-New-Guinea
     iso3166: PG
@@ -1327,7 +1327,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PY:
+  iceModelGeoCountry_167:
     name: Paraguay
     slug: Paraguay
     iso3166: PY
@@ -1335,7 +1335,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PE:
+  iceModelGeoCountry_168:
     name: Peru
     slug: Peru
     iso3166: PE
@@ -1343,7 +1343,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PH:
+  iceModelGeoCountry_169:
     name: Philippines
     slug: Philippines
     iso3166: PH
@@ -1351,7 +1351,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PN:
+  iceModelGeoCountry_170:
     name: Pitcairn
     slug: Pitcairn
     iso3166: PN
@@ -1359,7 +1359,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PL:
+  iceModelGeoCountry_171:
     name: Poland
     slug: Poland
     iso3166: PL
@@ -1367,7 +1367,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PT:
+  iceModelGeoCountry_172:
     name: Portugal
     slug: Portugal
     iso3166: PT
@@ -1375,7 +1375,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PR:
+  iceModelGeoCountry_173:
     name: 'Puerto Rico'
     slug: Puerto-Rico
     iso3166: PR
@@ -1383,7 +1383,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_QA:
+  iceModelGeoCountry_174:
     name: Qatar
     slug: Qatar
     iso3166: QA
@@ -1391,7 +1391,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_RE:
+  iceModelGeoCountry_175:
     name: Reunion
     slug: Reunion
     iso3166: RE
@@ -1399,7 +1399,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_RO:
+  iceModelGeoCountry_176:
     name: Romania
     slug: Romania
     iso3166: RO
@@ -1407,7 +1407,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_RU:
+  iceModelGeoCountry_177:
     name: 'Russian Federation'
     slug: Russian-Federation
     iso3166: RU
@@ -1415,7 +1415,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_RW:
+  iceModelGeoCountry_178:
     name: Rwanda
     slug: Rwanda
     iso3166: RW
@@ -1423,7 +1423,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SH:
+  iceModelGeoCountry_179:
     name: 'Saint Helena'
     slug: Saint-Helena
     iso3166: SH
@@ -1431,7 +1431,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_KN:
+  iceModelGeoCountry_180:
     name: 'Saint Kitts and Nevis'
     slug: Saint-Kitts-and-Nevis
     iso3166: KN
@@ -1439,7 +1439,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LC:
+  iceModelGeoCountry_181:
     name: 'Saint Lucia'
     slug: Saint-Lucia
     iso3166: LC
@@ -1447,7 +1447,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_PM:
+  iceModelGeoCountry_182:
     name: 'Saint Pierre and Miquelon'
     slug: Saint-Pierre-and-Miquelon
     iso3166: PM
@@ -1455,7 +1455,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_VC:
+  iceModelGeoCountry_183:
     name: 'Saint Vincent and the Grenadines'
     slug: Saint-Vincent-and-the-Grenadines
     iso3166: VC
@@ -1463,7 +1463,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_WS:
+  iceModelGeoCountry_184:
     name: Samoa
     slug: Samoa
     iso3166: WS
@@ -1471,7 +1471,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SM:
+  iceModelGeoCountry_185:
     name: 'San Marino'
     slug: San-Marino
     iso3166: SM
@@ -1479,7 +1479,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ST:
+  iceModelGeoCountry_186:
     name: 'Sao Tome and Principe'
     slug: Sao-Tome-and-Principe
     iso3166: ST
@@ -1487,7 +1487,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SA:
+  iceModelGeoCountry_187:
     name: 'Saudi Arabia'
     slug: Saudi-Arabia
     iso3166: SA
@@ -1495,7 +1495,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SN:
+  iceModelGeoCountry_188:
     name: Senegal
     slug: Senegal
     iso3166: SN
@@ -1503,7 +1503,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CS:
+  iceModelGeoCountry_189:
     name: 'Serbia and Montenegro'
     slug: Serbia-and-Montenegro
     iso3166: CS
@@ -1511,7 +1511,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SC:
+  iceModelGeoCountry_190:
     name: Seychelles
     slug: Seychelles
     iso3166: SC
@@ -1519,7 +1519,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SL:
+  iceModelGeoCountry_191:
     name: 'Sierra Leone'
     slug: Sierra-Leone
     iso3166: SL
@@ -1527,7 +1527,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SG:
+  iceModelGeoCountry_192:
     name: Singapore
     slug: Singapore
     iso3166: SG
@@ -1535,7 +1535,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SK:
+  iceModelGeoCountry_193:
     name: Slovakia
     slug: Slovakia
     iso3166: SK
@@ -1543,7 +1543,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SI:
+  iceModelGeoCountry_194:
     name: Slovenia
     slug: Slovenia
     iso3166: SI
@@ -1551,7 +1551,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SB:
+  iceModelGeoCountry_195:
     name: 'Solomon Islands'
     slug: Solomon-Islands
     iso3166: SB
@@ -1559,7 +1559,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SO:
+  iceModelGeoCountry_196:
     name: Somalia
     slug: Somalia
     iso3166: SO
@@ -1567,7 +1567,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ZA:
+  iceModelGeoCountry_197:
     name: 'South Africa'
     slug: South-Africa
     iso3166: ZA
@@ -1575,7 +1575,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GS:
+  iceModelGeoCountry_198:
     name: 'South Georgia and the South Sandwich Islands'
     slug: South-Georgia-and-the-South-Sandwich-Islands
     iso3166: GS
@@ -1583,7 +1583,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ES:
+  iceModelGeoCountry_199:
     name: Spain
     slug: Spain
     iso3166: ES
@@ -1591,7 +1591,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_LK:
+  iceModelGeoCountry_200:
     name: 'Sri Lanka'
     slug: Sri-Lanka
     iso3166: LK
@@ -1599,7 +1599,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SD:
+  iceModelGeoCountry_201:
     name: Sudan
     slug: Sudan
     iso3166: SD
@@ -1607,7 +1607,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SR:
+  iceModelGeoCountry_202:
     name: Suriname
     slug: Suriname
     iso3166: SR
@@ -1615,7 +1615,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SJ:
+  iceModelGeoCountry_203:
     name: 'Svalbard and Jan Mayen'
     slug: Svalbard-and-Jan-Mayen
     iso3166: SJ
@@ -1623,7 +1623,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SZ:
+  iceModelGeoCountry_204:
     name: Swaziland
     slug: Swaziland
     iso3166: SZ
@@ -1631,7 +1631,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SE:
+  iceModelGeoCountry_205:
     name: Sweden
     slug: Sweden
     iso3166: SE
@@ -1639,7 +1639,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_CH:
+  iceModelGeoCountry_206:
     name: Switzerland
     slug: Switzerland
     iso3166: CH
@@ -1647,7 +1647,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_SY:
+  iceModelGeoCountry_207:
     name: 'Syrian Arab Republic'
     slug: Syrian-Arab-Republic
     iso3166: SY
@@ -1655,7 +1655,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TW:
+  iceModelGeoCountry_208:
     name: 'Taiwan, Province of China'
     slug: Taiwan-Province-of-China
     iso3166: TW
@@ -1663,7 +1663,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TJ:
+  iceModelGeoCountry_209:
     name: Tajikistan
     slug: Tajikistan
     iso3166: TJ
@@ -1671,7 +1671,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TZ:
+  iceModelGeoCountry_210:
     name: 'Tanzania, United Republic of'
     slug: Tanzania-United-Republic-of
     iso3166: TZ
@@ -1679,7 +1679,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TH:
+  iceModelGeoCountry_211:
     name: Thailand
     slug: Thailand
     iso3166: TH
@@ -1687,7 +1687,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TL:
+  iceModelGeoCountry_212:
     name: Timor-Leste
     slug: Timor-Leste
     iso3166: TL
@@ -1695,7 +1695,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TG:
+  iceModelGeoCountry_213:
     name: Togo
     slug: Togo
     iso3166: TG
@@ -1703,7 +1703,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TK:
+  iceModelGeoCountry_214:
     name: Tokelau
     slug: Tokelau
     iso3166: TK
@@ -1711,7 +1711,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TO:
+  iceModelGeoCountry_215:
     name: Tonga
     slug: Tonga
     iso3166: TO
@@ -1719,7 +1719,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TT:
+  iceModelGeoCountry_216:
     name: 'Trinidad and Tobago'
     slug: Trinidad-and-Tobago
     iso3166: TT
@@ -1727,7 +1727,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TN:
+  iceModelGeoCountry_217:
     name: Tunisia
     slug: Tunisia
     iso3166: TN
@@ -1735,7 +1735,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TR:
+  iceModelGeoCountry_218:
     name: Turkey
     slug: Turkey
     iso3166: TR
@@ -1743,7 +1743,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TM:
+  iceModelGeoCountry_219:
     name: Turkmenistan
     slug: Turkmenistan
     iso3166: TM
@@ -1751,7 +1751,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TC:
+  iceModelGeoCountry_220:
     name: 'Turks and Caicos Islands'
     slug: Turks-and-Caicos-Islands
     iso3166: TC
@@ -1759,7 +1759,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_TV:
+  iceModelGeoCountry_221:
     name: Tuvalu
     slug: Tuvalu
     iso3166: TV
@@ -1767,7 +1767,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_UG:
+  iceModelGeoCountry_222:
     name: Uganda
     slug: Uganda
     iso3166: UG
@@ -1775,7 +1775,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_UA:
+  iceModelGeoCountry_223:
     name: Ukraine
     slug: Ukraine
     iso3166: UA
@@ -1783,7 +1783,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_AE:
+  iceModelGeoCountry_224:
     name: 'United Arab Emirates'
     slug: United-Arab-Emirates
     iso3166: AE
@@ -1791,7 +1791,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_GB:
+  iceModelGeoCountry_225:
     name: 'United Kingdom'
     slug: United-Kingdom
     iso3166: GB
@@ -1799,7 +1799,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_US:
+  iceModelGeoCountry_226:
     name: 'United States'
     slug: United-States
     iso3166: US
@@ -1807,7 +1807,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_UM:
+  iceModelGeoCountry_227:
     name: 'United States Minor Outlying Islands'
     slug: United-States-Minor-Outlying-Islands
     iso3166: UM
@@ -1815,7 +1815,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_UY:
+  iceModelGeoCountry_228:
     name: Uruguay
     slug: Uruguay
     iso3166: UY
@@ -1823,7 +1823,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_UZ:
+  iceModelGeoCountry_229:
     name: Uzbekistan
     slug: Uzbekistan
     iso3166: UZ
@@ -1831,7 +1831,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_VU:
+  iceModelGeoCountry_230:
     name: Vanuatu
     slug: Vanuatu
     iso3166: VU
@@ -1839,7 +1839,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_VE:
+  iceModelGeoCountry_231:
     name: Venezuela
     slug: Venezuela
     iso3166: VE
@@ -1847,7 +1847,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_VN:
+  iceModelGeoCountry_232:
     name: 'Viet Nam'
     slug: Viet-Nam
     iso3166: VN
@@ -1855,7 +1855,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_VG:
+  iceModelGeoCountry_233:
     name: 'Virgin Islands, British'
     slug: Virgin-Islands-British
     iso3166: VG
@@ -1863,7 +1863,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_VI:
+  iceModelGeoCountry_234:
     name: 'Virgin Islands, U.s.'
     slug: Virgin-Islands-U.s.
     iso3166: VI
@@ -1871,7 +1871,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_WF:
+  iceModelGeoCountry_235:
     name: 'Wallis and Futuna'
     slug: Wallis-and-Futuna
     iso3166: WF
@@ -1879,7 +1879,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_EH:
+  iceModelGeoCountry_236:
     name: 'Western Sahara'
     slug: Western-Sahara
     iso3166: EH
@@ -1887,7 +1887,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_YE:
+  iceModelGeoCountry_237:
     name: Yemen
     slug: Yemen
     iso3166: YE
@@ -1895,7 +1895,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ZM:
+  iceModelGeoCountry_238:
     name: Zambia
     slug: Zambia
     iso3166: ZM
@@ -1903,7 +1903,7 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ZW:
+  iceModelGeoCountry_239:
     name: Zimbabwe
     slug: Zimbabwe
     iso3166: ZW
@@ -1911,11 +1911,8 @@ iceModelGeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
-  GeoCountry_ZZ:
+  iceModelGeoCountry_240:
     name: Worldwide
     slug: worldwide
     iso3166: ZZ
-    currency: 'USD'
-    latitude: '0'
-    longitude: '0'
-    zoom: '0'
+    currency: USD

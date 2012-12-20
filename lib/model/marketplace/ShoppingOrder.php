@@ -53,6 +53,15 @@ class ShoppingOrder extends BaseShoppingOrder
       $shopping_payment->delete($con);
     }
 
+    // Remove old payments by reverse relationship
+    /* @var $shopping_payments ShoppingPayment[] */
+    $shopping_payments = $this->getShoppingPaymentsRelatedByShoppingOrderId();
+    foreach ($shopping_payments as $shopping_payment)
+    {
+      // Archive and delete related ShoppingPayment objects
+      $shopping_payment->delete($con);
+    }
+
     return parent::preDelete($con);
   }
 

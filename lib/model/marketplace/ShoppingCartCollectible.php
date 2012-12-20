@@ -20,7 +20,8 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
       !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_FEE_AMOUNT)
-    ) {
+    )
+    {
       $this->updateShippingFeeAmountFromCountryCode();
     }
 
@@ -29,7 +30,8 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
       !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_TYPE)
-    ) {
+    )
+    {
       $this->updateShippingTypeFromCountryCode();
     }
 
@@ -38,11 +40,24 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) ||
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_STATE_REGION)
-    ) {
+    )
+    {
       $this->updateTaxAmount();
     }
 
     return parent::preSave($con);
+  }
+
+  public function postDelete(PropelPDO $con = null)
+  {
+    // Remove all not finished orders for this collectible
+    ShoppingOrderQuery::create()
+      ->filterByCollectibleId($this->getCollectibleId())
+      ->filterByShoppingCartId($this->getShoppingCartId())
+      ->filterByShoppingPaymentId(null, Criteria::ISNULL)
+      ->delete();
+
+    return parent::postDelete($con);
   }
 
   public function getCollector(PropelPDO $con = null)
@@ -85,6 +100,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   /**
    * @param integer|float|double $v
+   * @return ShoppingCartCollectible|void
    */
   public function setPriceAmount($v)
   {
@@ -115,7 +131,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   /**
    * @param integer|float|double $v
-   *
+   * @return ShoppingCartCollectible
    */
   public function setTaxAmount($v)
   {
