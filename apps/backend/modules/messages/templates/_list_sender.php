@@ -1,8 +1,10 @@
 <?php
-/** @var $PrivateMessage PrivateMessage */
-echo $PrivateMessage->getCollectorRelatedBySender()
+/* @var $PrivateMessage PrivateMessage */
+echo $PrivateMessage->getCollectorRelatedBySenderId()
   ? link_to_frontend(
-    $PrivateMessage->getCollectorRelatedBySender()->getUsername(), 'collector_by_slug',
-    $PrivateMessage->getCollectorRelatedBySender(), array('target' => '_blank')
+    $PrivateMessage->getCollectorRelatedBySenderId()->getUsername(),
+    'collector_by_slug',
+    $PrivateMessage->getCollectorRelatedBySenderId(),
+    array('target' => '_blank')
   )
-  :'';
+  : '';

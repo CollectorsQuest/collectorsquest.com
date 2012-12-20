@@ -1,8 +1,6 @@
 <?php
-  /**
-   * @var $pager PropelModelPager
-   * @var $message PrivateMessage
-   */
+  /* @var $pager PropelModelPager */
+  /* @var $message PrivateMessage */
 
   cq_sidebar_title(
     'Sent Messages', null,
@@ -23,10 +21,10 @@
       <td class="sender-col">
         <?php
           echo image_tag_collector(
-            $message->getCollectorRelatedByReceiver(), '50x50', array('class' => 'avatar')
+            $message->getCollectorRelatedByReceiverId(), '50x50', array('class' => 'avatar')
           );
         ?>
-        To:&nbsp;<?= link_to_collector($message->getCollectorRelatedByReceiver()); ?>
+        To:&nbsp;<?= link_to_collector($message->getCollectorRelatedByReceiverId()) ?: mail_to($message->getReceiverEmail()); ?>
         <p class="font10">
           <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
         </p>

@@ -12,7 +12,9 @@
   {{ link_to_collector(oSender, 'text') }}
   has sent you a message through CollectorsQuest.com:
   <br /><br />
-  <em>{{ sMessageBody|raw }}</em>
+  <strong>{{ sSubject|raw }}</strong>
+  <br /><br />
+  <em>{{ sMessageBody|raw|nl2br }}</em>
 </p>
 <br style="clear: both;" />
 

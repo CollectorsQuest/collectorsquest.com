@@ -2,7 +2,7 @@
   /* @var $message  PrivateMessage   */ $message;
   /* @var $messages PrivateMessage[] */ $messages;
   /* @var $reply_form ComposePrivateMessageForm */ $reply_form;
-  $user_is_recepient = $sf_user->getCollector()->equals($message->getCollectorRelatedByReceiver());
+  $user_is_recepient = $sf_user->getCollector()->equals($message->getCollectorRelatedByReceiverId());
 
   if ($user_is_recepient)
   {
@@ -15,8 +15,8 @@
 
   cq_sidebar_title(
     'Conversation with '. ($user_is_recepient
-      ? $message->getCollectorRelatedBySender()
-      : $message->getCollectorRelatedByReceiver()),
+      ? $message->getCollectorRelatedBySenderId()
+      : $message->getCollectorRelatedByReceiverId()),
     null,
     array(
       'left' => 8, 'right' => 4,
@@ -34,8 +34,8 @@
         <input type="submit" name="thread_action[mark_as_unread]" class="btn btn-mini" value="Mark Unread" />
       </div>
       <div class="btn-group pull-left">
-        <input type="submit" name="thread_action[delete]" class="btn btn-mini" value="Delete" />
-        <input type="submit" name="thread_action[report_spam]" class="btn btn-mini" value="Report Spam" />
+        <input type="submit" name="thread_action[delete]" class="btn btn-mini" value="Delete" onclick="return confirm('Are you sure you want to delete this message?')" />
+        <input type="submit" name="thread_action[report_spam]" class="btn btn-mini" value="Report Spam" onclick="return confirm('Are you sure you want to report this message as spam and delete it?')" />
       </div>
     </div>
   </div>
@@ -45,15 +45,15 @@
 <table class="private-message-thread table table-striped table-bordered">
   <tbody>
   <?php foreach ($messages as $message):
-    $sender = $message->getCollectorRelatedBySender();
-    $receiver = $message->getCollectorRelatedByReceiver();
+    $sender = $message->getCollectorRelatedBySenderId();
+    $receiver = $message->getCollectorRelatedByReceiverId();
   ?>
     <tr class="table-condensed"
       <?php if ($messages->isLast()): ?>
         id="latest-message"
       <?endif; ?>
     >
-      <td class="sender" rowspan="<?= $message->hasAttachedCollectionOrCollectible() ? 3 : 2 ?>">
+      <td class="sender" rowspan="<?= $message->hasAttachedObject() ? 3 : 2 ?>">
         <span>From:&nbsp;<?= link_to_if($sender, $sender, 'collector_by_slug', $sender); ?></span>
         <br/>
         <span title="<?= $message->getCreatedAt('c'); ?>">
@@ -64,7 +64,7 @@
           <?= link_to_collector($sender, 'image'); ?>
         </div>
         <br/>
-        <span>To:&nbsp;<?= link_to_if($receiver, $receiver, 'collector_by_slug', $receiver); ?></span>
+        <span>To:&nbsp;<?= link_to_collector($receiver) ?: mail_to($message->getReceiverEmail()); ?></span>
       </td>
       <td class="subject"><b><?= $message->getSubject(); ?></b></td>
     </tr>
@@ -84,13 +84,22 @@
         echo (!$message->getIsRich()) ? cqStatic::linkify($body, false) : $body;
       ?></div></td>
     </tr>
-    <?php if ($message->hasAttachedCollectionOrCollectible()): ?>
+    <?php if ($message->hasAttachedObject()): ?>
     <tr>
       <td class="message-attached-info">
-      <?php if ($collectible = $message->getAttachedCollectible()): ?>
-        This message was sent regarding the collectible <?= link_to_collectible($collectible, 'text'); ?>.
-      <?php elseif ($collection = $message->getAttachedCollection()): ?>
-        This message was sent regarding the collection <?= link_to_collection($collection, 'text'); ?>.
+      <?php if (( $collectible = $message->getAttachedCollectible() )): ?>
+        This message was sent regarding the collectible
+        <?= link_to_collectible($collectible, 'text'); ?>.
+      <?php elseif (( $collection = $message->getAttachedCollection() )): ?>
+        This message was sent regarding the collection
+        <?= link_to_collection($collection, 'text'); ?>.
+      <?php elseif (( $shopping_order = $message->getAttachedShoppingOrder() )): ?>
+        This message was sent regarding the shopping order
+        <?= link_to(
+          $shopping_order->getCollectible()->getName(),
+          'mycq_collectible_by_slug',
+          $shopping_order->getCollectible()
+        ); ?>.
       <?php endif; ?>
       </td>
     </tr>

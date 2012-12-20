@@ -374,7 +374,7 @@ class cqFrontendUser extends cqBaseUser
     if (null === $this->unread_messages_count && $this->isAuthenticated())
     {
       $this->unread_messages_count = PrivateMessageQuery::create()
-        ->filterByCollectorRelatedByReceiver($this->getCollector())
+        ->filterByCollectorRelatedByReceiverId($this->getCollector())
         ->filterByIsRead(false)
         ->count();
     }
