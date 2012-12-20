@@ -50,7 +50,7 @@ all:
         required_params: [oSender, oReceiver, oMessage, sThreadUrl]
       private_message_copy_for_sender:
         subject: "You've Sent a Message on Collectors Quest!"
-        required_params: [oSender, sReceiver, sMessageBody]
+        required_params: [oSender, sReceiver, sMessageBody, sSubject]
       relay_message_to_unregistered_user:
         subject: "You have a new message from {{ oSender.displayName | raw }} on Collectors Quest!"
         required_params: [oSender, sMessageBody, sSubject]
