@@ -92,6 +92,12 @@ class ajaxAction extends cqAjaxAction
           if ($seller_promotion->isValid($this->getUser()->getCollector(), $cart_collectible->getCollectible()))
           {
             $cart_collectible->setSellerPromotion($seller_promotion);
+            if ($cart_collectible->getTotalPrice() <= 0)
+            {
+              return $this->output(
+                array('error' => 'We are sorry but this promo code is not valid for this item!')
+              );
+            }
           }
           else
           {

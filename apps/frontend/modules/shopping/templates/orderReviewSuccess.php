@@ -95,7 +95,7 @@
             <?= $shopping_order->getSellerPromotion()->getPromotionCode(); ?>
           </td>
           <td style="color: red;">
-            <?php if (0 != (int) $shopping_order->getPromotionAmount()): ?>
+            <?php if (0 != $shopping_order->getPromotionAmount('integer')): ?>
             - <?= money_format('%.2n', (float) $shopping_order->getPromotionAmount()) ?>
             <?php else: ?>
             &nbsp;

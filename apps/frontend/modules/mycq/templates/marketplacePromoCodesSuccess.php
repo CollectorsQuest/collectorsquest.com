@@ -106,7 +106,7 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'promo_codes');
               <?php endforeach; ?>
             <?php else: ?>
               <tr>
-                <td colspan="8">
+                <td colspan="9">
                   You have not created any promo codes yet. Please use the <strong>"New Promo Code"</strong>
                   button to create your first promo code.
                 </td>

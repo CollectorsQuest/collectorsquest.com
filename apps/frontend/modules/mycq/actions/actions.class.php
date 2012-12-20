@@ -867,7 +867,8 @@ class mycqActions extends cqFrontendActions
 
     /* @var $q SellerPromotionQuery */
     $q = SellerPromotionQuery::create()
-      ->filterByCollectorRelatedBySellerId($this->getUser()->getCollector());
+      ->filterByCollectorRelatedBySellerId($this->getUser()->getCollector())
+      ->orderByCreatedAt(Criteria::DESC);
 
     $pager = new PropelModelPager($q, 5);
     $pager->setPage($this->getRequestParameter('page', 1));

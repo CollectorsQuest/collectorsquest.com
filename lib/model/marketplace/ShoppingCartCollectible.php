@@ -215,9 +215,10 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
    * will be overwritten
    *
    * @param     string|null $country_code
+   * @param     bool $update_discount
    * @return    ShoppingCartCollectible
    */
-  public function updateShippingFeeAmountFromCountryCode($country_code = null)
+  public function updateShippingFeeAmountFromCountryCode($country_code = null, $update_discount = true)
   {
     if (!empty($country_code))
     {
@@ -241,7 +242,10 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       $this->setShippingFeeAmount($shipping_amount);
     }
 
-    $this->updateSellerPromotionAmount();
+    if ($update_discount)
+    {
+      $this->updateSellerPromotionAmount();
+    }
 
     return $this;
   }
@@ -446,7 +450,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
           if ($this->getRawShippingFeeAmount() == 0)
           {
             // Need restore shipping if we change code for free shipping
-            $this->updateShippingFeeAmountFromCountryCode();
+            $this->updateShippingFeeAmountFromCountryCode(null, false);
             $this->updateShippingTypeFromCountryCode();
           }
           break;
@@ -457,7 +461,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
           if ($this->getRawShippingFeeAmount() == 0)
           {
             // Need restore shipping if we change code for free shipping
-            $this->updateShippingFeeAmountFromCountryCode();
+            $this->updateShippingFeeAmountFromCountryCode(null, false);
             $this->updateShippingTypeFromCountryCode();
           }
           break;
@@ -469,7 +473,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       if ($this->getRawShippingFeeAmount() == 0)
       {
         // Need restore shiping if we remove code for free shipping
-        $this->updateShippingFeeAmountFromCountryCode();
+        $this->updateShippingFeeAmountFromCountryCode(null, false);
         $this->updateShippingTypeFromCountryCode();
       }
     }
