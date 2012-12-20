@@ -803,6 +803,10 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     // unflag object copy
     $this->startCopy = false;
 
+    // set proper created at / updated at times
+    $copyObj->setUpdatedAt(time());
+    $copyObj->setCreatedAt(time());
+
     // the next relations require this object to have a proper PK,
     // so we perform a save now
     $copyObj->setNew(true);
