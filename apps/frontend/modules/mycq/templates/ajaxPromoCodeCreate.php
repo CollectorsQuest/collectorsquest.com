@@ -58,13 +58,14 @@
       <?= $form['amount']->renderError(); ?>
     </div>
 
-
-    <?= $form['collectible_id']->renderRow(); ?>
-
     <div id="promo-options-optional" class="hidden">
-      <div class="row-fluid section-title spacer-top-35">  <div class="span12">
-        <h2 class="Chivo webfont">Other options <small style="color: grey;">(optional)</small></h2>
-      </div></div>
+      <div class="row-fluid section-title spacer-top-35">
+        <div class="span12">
+          <h2 class="Chivo webfont">Other options <small style="color: grey;">(optional)</small></h2>
+        </div>
+      </div>
+
+      <?= $form['collectible_id']->renderRow(); ?>
 
       <div class="hidden" id="promo-options-collector">
         <?= $form['collector_email']->renderRow(); ?>
@@ -132,5 +133,7 @@
         $('#promo-options-expire').addClass('hidden');
       }
     }).change();
+
+    $('.modal').css('overflow', 'hidden'); //double scroller fix
   });
 </script>
