@@ -12,3 +12,38 @@ Collectible:
 
       Placerat lundium. Pid phasellus velit penatibus? Magna sed sagittis dignissim! Mattis, dis ac!
       In rhoncus nascetur enim et? Ridiculus velit, adipiscing adipiscing, vel a? Urna penatibus dis sit diam aenean.
+
+  active:
+    collector_id: ivan_ivanov
+    name: "active"
+    graph_id: '<?php echo mt_rand(1, 99999); ?>'
+    description: |
+      bla bla
+
+  inactive:
+    collector_id: ivan_ivanov
+    name: "inactive"
+    graph_id: '<?php echo mt_rand(1, 99999); ?>'
+    description: |
+      ble ble
+
+  expired:
+    collector_id: ivan_ivanov
+    name: "expired"
+    graph_id: '<?php echo mt_rand(1, 99999); ?>'
+    description: |
+      boo boo
+
+  sold:
+    collector_id: ivan_ivanov
+    name: "sold"
+    graph_id: '<?php echo mt_rand(1, 99999); ?>'
+    description: |
+      boo boo
+
+  second_sold:
+    collector_id: ivan_ivanov
+    name: "second_sold"
+    graph_id: '<?php echo mt_rand(1, 99999); ?>'
+    description: |
+      boo boo

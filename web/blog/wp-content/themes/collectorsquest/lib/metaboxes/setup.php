@@ -16,6 +16,7 @@ include_once 'featured-week-spec.php';
 include_once 'featured-items-spec.php';
 include_once 'seller-spotlight-spec.php';
 include_once 'market-theme-spec.php';
+include_once 'search-results-spec.php';
 
 
 /* eof */

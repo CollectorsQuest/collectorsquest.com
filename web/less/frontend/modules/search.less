@@ -103,6 +103,10 @@
     border: 2px solid #CFE0E9;
   }
 
+  .featured-item-background {
+    border: 2px solid #FFF5D5;
+  }
+
   .blue-background {
     background: #CFE0E9;
   }
@@ -192,4 +196,29 @@
   background: white;
   opacity: 0.2;
   filter: alpha(opacity=20);
+}
+
+#search-results .featured-item-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  .square(280px);
+  padding: 10px 0 0 10px;
+  background-color: @white;
+  .transition(all 0.4s ease-in-out);
+  line-height: 270px;
+  vertical-align: middle;
+}
+
+#search-results .masonry-blogpost:hover .featured-item-img {
+  opacity:0;
+}
+
+.lt-ie9 #search-results .masonry-blogpost:hover .featured-item-img {
+  display: none;
+}
+
+#search-results .masonry-blogpost.featured-item .link {
+  height: 265px;
 }

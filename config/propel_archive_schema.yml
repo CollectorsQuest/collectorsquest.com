@@ -68,6 +68,7 @@ classes:
       id:            { type: integer, primaryKey: true, autoIncrement: false }
       collector_id:  { type: integer, index: true }
       identifier:    { type: varchar, size: 255, index: true }
+      provider:      { type: varchar, size: 20 }
       created_at:    { type: timestamp }
       archived_at:   { type: timestamp }
 

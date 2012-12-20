@@ -1,7 +1,7 @@
 CollectorGeocache:
   CollectorGeocache_124:
     collector_id: Collector_163
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     state: NY
     city: Brooklyn
     zip_postal: '11201'
@@ -11,7 +11,7 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_239:
     collector_id: Collector_644
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     state: MI
     county: Oakland
     city: Farmington
@@ -20,15 +20,9 @@ CollectorGeocache:
     latitude: '42.46434'
     longitude: '-83.40564'
     timezone: America/New_York
-  CollectorGeocache_1490:
-    collector_id: Collector_846
-    country_iso3166: GeoCountry_IT
-    address: Italy
-    latitude: '41.87194'
-    longitude: '12.56738'
   CollectorGeocache_8724:
     collector_id: Collector_6700
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     state: NE
     city: Omaha
     zip_postal: '68127'
@@ -38,7 +32,7 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_11313:
     collector_id: Collector_963
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     state: FL
     city: 'West Palm Beach'
     zip_postal: '33405'
@@ -48,7 +42,7 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_11347:
     collector_id: Collector_59
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     state: ND
     city: Fargo
     address: 'Fargo, ND 58102, USA'
@@ -57,7 +51,7 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_11356:
     collector_id: Collector_1212
-    country_iso3166: GeoCountry_US
+    country_iso3166: iceModelGeoCountry_226
     state: NJ
     city: Watchung
     zip_postal: '07069'

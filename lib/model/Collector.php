@@ -465,11 +465,23 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * @param  BaseObject $something
+   * @param  BaseObject|array $something
    * @return boolean
    */
   public function isOwnerOf($something)
   {
+    // handle multiple checks at once
+    if (is_array($something))
+    {
+      $is_owner = true;
+      foreach ($something as $a_thing)
+      {
+        $is_owner = $is_owner && $this->isOwnerOf($a_thing);
+      }
+
+      return $is_owner;
+    }
+
     // Assume the User is not the owner if not an object
     if (!is_object($something))
     {
