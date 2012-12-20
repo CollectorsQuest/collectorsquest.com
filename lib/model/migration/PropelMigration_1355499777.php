@@ -167,7 +167,7 @@ class PropelMigration_1355499777
 
         DROP TABLE IF EXISTS `seller_promotion_archive`;
 
-        DROP INDEX `shopping_payment_archive_I_1` ON `shopping_payment_archive`;
+        DROP INDEX `shopping_payment_archive_I_2` ON `shopping_payment_archive`;
 
         ALTER TABLE `shopping_payment_archive` DROP `seller_promotion_id`;
 
