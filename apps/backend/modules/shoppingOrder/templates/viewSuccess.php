@@ -158,10 +158,10 @@
         <td>Item Price:</td>
         <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
       </tr>
-      <?php if (($v = $shopping_order->getTaxAmount()) && 0 != (int) $v): ?>
+      <?php if ((0 != $shopping_order->getTaxAmount('integer'))): ?>
         <tr>
           <td>Tax Fee:</td>
-          <td><?= money_format('%.2n', (float) $v); ?></td>
+          <td><?= money_format('%.2n', $shopping_order->getTaxAmount()); ?></td>
         </tr>
       <?php endif; ?>
       <tr>
