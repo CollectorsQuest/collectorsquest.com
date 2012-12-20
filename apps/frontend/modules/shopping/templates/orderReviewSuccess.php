@@ -89,7 +89,7 @@
         <td>Item Price:</td>
         <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
       </tr>
-      <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
+      <?php if (0 != $shopping_order->getTaxAmount('integer')): ?>
       <tr>
         <td>Tax (<?= $shopping_order->getCollectibleForSale()->getTaxPercentage(); ?>%):</td>
         <td><?= money_format('%.2n', (float) $shopping_order->getTaxAmount()) ?></td>
