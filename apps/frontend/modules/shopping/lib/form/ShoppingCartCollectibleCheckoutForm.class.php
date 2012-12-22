@@ -16,6 +16,7 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
       'collectible_id'    => new sfWidgetFormInputHidden(),
       'country_iso3166'   => new cqWidgetFormI18nChoiceIceModelGeoCountry(array('add_empty' => false, 'culture' => 'en')),
       'note_to_seller'    => new sfWidgetFormTextarea(),
+      'promotion_code'    => new sfWidgetFormInputText(),
       '_nonce_token'      => new IceWidgetNonceToken(array('action' => 'checkout', 'salt' => $_salt))
     ));
 
@@ -26,11 +27,17 @@ class ShoppingCartCollectibleCheckoutForm extends ShoppingCartCollectibleForm
         array('model' => 'iceModelGeoCountry', 'column' => 'iso3166',)
       ),
       'note_to_seller'    => new sfValidatorString(array('required' => false)),
+      'promotion_code'    => new sfValidatorString(array('required' => false)),
       '_nonce_token'      => new IceValidatorNonceToken(array('action' => 'checkout', 'salt' => $_salt))
     ));
 
     // Default to United States
     $this->setDefault('country_iso3166', $this->getObject()->getShippingCountryIso3166());
+
+    if ($promotion = $this->getObject()->getSellerPromotion())
+    {
+      $this->setDefault('promotion_code', $promotion->getPromotionCode());
+    }
 
     $this->setupStateField();
 

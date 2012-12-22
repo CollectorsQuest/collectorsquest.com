@@ -133,6 +133,26 @@ class shoppingActions extends cqFrontendActions
       $shopping_cart_collectible->updateShippingTypeFromCountryCode();
       $shopping_cart_collectible->updateTaxAmount();
 
+      if ($shopping_cart_collectible->getSellerPromotionId()
+        && (!$shopping_cart_collectible->getSellerPromotion()
+          || !$shopping_cart_collectible->getSellerPromotion()->isValid(
+            $this->getUser()->getCollector(), $shopping_cart_collectible->getCollectible()
+          )
+        ))
+      {
+        $notices[] = sprintf(
+          '<strong>Note:</strong> Discount code for item <strong>"%s"</strong>
+           has been expired/canceled since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
+        $shopping_cart_collectible
+          ->setSellerPromotion(null)
+          ->save();
+
+        continue;
+      }
+
       if ($old_cc->getPriceAmount() != $shopping_cart_collectible->getPriceAmount())
       {
         $notices[] = sprintf(

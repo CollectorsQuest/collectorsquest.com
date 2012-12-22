@@ -862,6 +862,39 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeMarketplacePromoCodes()
+  {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    /* @var $q SellerPromotionQuery */
+    $q = SellerPromotionQuery::create()
+      ->filterByCollectorRelatedBySellerId($this->getUser()->getCollector())
+      ->orderByCreatedAt(Criteria::DESC);
+
+    $pager = new PropelModelPager($q, 5);
+    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMarketplacePromoCodeDelete()
+  {
+    /* @var $seller_promotion SellerPromotion */
+    $seller_promotion = $this->getRoute()->getObject();
+    if ($seller_promotion->getSellerId() == $this->getUser()->getCollector()->getId())
+    {
+      $seller_promotion->delete();
+      $this->getUser()->setFlash(
+        'success', sprintf('Promotion code "%s" is successfully removed.', $seller_promotion->getPromotionName()),
+        true
+      );
+    }
+    $this->redirect('@mycq_marketplace_promo_codes');
+  }
+
   public function executeMarketplaceSettings(sfWebRequest $request)
   {
     $this->forward404Unless($this->getCollector()->hasBoughtCredits());
