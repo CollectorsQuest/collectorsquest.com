@@ -1036,4 +1036,29 @@ class ajaxAction extends cqAjaxAction
     return $template;
   }
 
+  public function executePromoCodeCreate(sfWebRequest $request, $template)
+  {
+    /* @var $seller_promotion  SellerPromotion*/
+    $seller_promotion = new SellerPromotion();
+    $seller_promotion->setPromotionCode(cqStatic::getUniqueId(8));
+    $seller_promotion->setCollectorRelatedBySellerId($this->getUser()->getCollector());
+    $this->form = new SellerPromotionForm($seller_promotion);
+    if ($request->isMethod(sfRequest::POST))
+    {
+      $this->form->bind($request->getParameter($this->form->getName()));
+      if ($this->form->isValid())
+      {
+        $this->form->save();
+        $this->getUser()->setFlash(
+          'success', 'New Promotion code was added successfully.',
+          true
+        );
+        return $this->renderPartial('global/loading', array(
+          'url' => $this->generateUrl('mycq_marketplace_promo_codes'),
+        ));
+      }
+    }
+
+    return $template;
+  }
 }
