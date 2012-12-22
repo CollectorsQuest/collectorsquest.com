@@ -3,7 +3,7 @@
 /**
  * Migration to add seller promo codes
  */
-class PropelMigration_1355499777
+class PropelMigration_1356198788
 {
 
   public function preUp($manager)
