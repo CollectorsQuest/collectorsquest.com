@@ -49,7 +49,7 @@ class SellerPromotionForm extends BaseSellerPromotionForm
     );
 
     $this->widgetSchema['expire_days'] = new sfWidgetFormChoice(
-      array('choices' => array('' => 'Unlimited', 1 => 1, 7 => 7, 30 => 30))
+      array('choices' => array('' => 'Never', 1 => 'in 1 day', 7 => 'in 7 days', 30 => 'in 30 days'))
     );
     $this->validatorSchema['expire_days'] = new sfValidatorChoice(
       array('choices' => array('', 1, 7, 30), 'required' => false)
@@ -62,14 +62,15 @@ class SellerPromotionForm extends BaseSellerPromotionForm
       'amount_type' => 'Amount Type',
       'amount' => 'Amount',
       'collectible_id' => 'Collectible',
-      'quantity' => 'Propositions quantity',
+      'quantity' => 'Number of Uses',
+      'expire_days' => 'Expires',
       'collector_email' => 'Collector email',
       'promotion_desc' => 'Notes',
     ));
 
     $this->widgetSchema->setHelps(array(
-      'quantity' => 'Set 0 for unlimited',
-      'collector_id' => 'Promotion code will work only for user with this email',
+      'quantity' => 'Set to 0 for unlimited uses',
+      'collector_id' => 'Promotion code will only work for checkouts with this email address!',
     ));
 
     // add a pre validator
