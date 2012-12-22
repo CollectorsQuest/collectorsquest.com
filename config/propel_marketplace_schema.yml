@@ -46,8 +46,10 @@ classes:
     columns:
       shopping_cart_id:          { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
       collectible_id:            { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
+      seller_promotion_id:       { type: integer, required: false, index: true }
       price_amount:              { type: integer, required: true, default: 0 }
       price_currency:            { type: char, size: 3, required: true, default: 'USD' }
+      promotion_amount:          { type: integer, required: false, default: 0 }
       tax_amount:                { type: integer, required: true, default: 0 }
       shipping_country_iso3166:  { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 }
       shipping_state_region:     { type: integer, required: false }
@@ -121,6 +123,8 @@ classes:
       amount_collectibles: { type: integer, required: true, default: 0 }
       amount_shipping_fee: { type: integer, required: true, default: 0 }
       amount_tax:          { type: integer, required: true, default: 0 }
+      seller_promotion_id: { type: integer, required: false, index: true }
+      amount_promotion:    { type: integer, required: false, default: 0 }
 
     propel_behaviors:
       extra_properties: ~
@@ -218,4 +222,23 @@ classes:
       collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
       amount:        { type: float }
       amount_type:   { type: varchar, default: pending, size: 255 }
-      created_at:  ~
+      created_at:    ~
+
+  SellerPromotion:
+    columns:
+      id:  ~
+      seller_id:        { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      collector_id:     { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      collectible_id:   { type: integer, required: false, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      promotion_code:   { type: varchar, size: 100, required: true, index: true }
+      promotion_name:   { type: varchar, size: 255, required: true, primaryString: true }
+      promotion_desc:   { type: longvarchar }
+      amount:           { type: integer, required: false, default: 0  }
+      amount_type:      { type: enum, valueSet: "Fixed, Percentage, Free Shipping", required: true }
+      quantity:         { type: integer, default: 0  }
+      expiry_date:      { type: timestamp }
+      is_expired:       { type: boolean, default: false }
+
+    propel_behaviors:
+      timestampable:  ~
+      archivable: { archive_class: SellerPromotionArchive, archived_at_column: archived_at }

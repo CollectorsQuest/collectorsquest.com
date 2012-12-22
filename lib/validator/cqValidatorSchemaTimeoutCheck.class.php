@@ -122,7 +122,7 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
       }
 
       $sent_pms = PrivateMessageQuery::create()
-        ->filterByCollectorRelatedBySender($collector)
+        ->filterByCollectorRelatedBySenderId($collector)
         ->filterByCreatedAt(
           strtotime('-'.$this->getOption('timeout_check_period')),
           Criteria::GREATER_EQUAL

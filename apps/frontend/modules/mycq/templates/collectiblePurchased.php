@@ -81,7 +81,21 @@ cq_section_title(
           </span>
           </td>
         </tr>
-        <?php if (0 != (int) $shopping_order->getTaxAmount()): ?>
+        <?php if ($shopping_order->getSellerPromotionId()): ?>
+          <tr>
+            <td>
+              <?= $shopping_order->getSellerPromotion()->getPromotionName(); ?>
+            </td>
+            <td>
+              <?php if (0 != $shopping_order->getPromotionAmount('integer')): ?>
+              - <?= money_format('%.2n', (float) $shopping_order->getPromotionAmount()) ?>
+              <?php else: ?>
+              &nbsp;
+              <?php endif; ?>
+            </td>
+          </tr>
+        <?php endif; ?>
+        <?php if (0 != $shopping_order->getTaxAmount('integer')): ?>
           <tr>
             <td>
             <span class="f-14">

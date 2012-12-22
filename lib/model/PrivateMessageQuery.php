@@ -44,7 +44,7 @@ class PrivateMessageQuery extends BasePrivateMessageQuery
   {
     $this->addAlias('sender_col', CollectorPeer::TABLE_NAME);
     $this->addJoin(
-      PrivateMessagePeer::SENDER, CollectorPeer::alias('sender_col', CollectorPeer::ID), Criteria::LEFT_JOIN
+      PrivateMessagePeer::SENDER_ID, CollectorPeer::alias('sender_col', CollectorPeer::ID), Criteria::LEFT_JOIN
     );
     switch ($type) {
       case 'asc':
@@ -66,7 +66,7 @@ class PrivateMessageQuery extends BasePrivateMessageQuery
   public function orderByReceiverName($type)
   {
     $this->addAlias('receiver_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(PrivateMessagePeer::RECEIVER, CollectorPeer::alias('receiver_col', CollectorPeer::ID), Criteria::LEFT_JOIN);
+    $this->addJoin(PrivateMessagePeer::RECEIVER_ID, CollectorPeer::alias('receiver_col', CollectorPeer::ID), Criteria::LEFT_JOIN);
     switch ($type) {
       case 'asc':
         $this->addAscendingOrderByColumn(CollectorPeer::alias('receiver_col', CollectorPeer::USERNAME));

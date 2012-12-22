@@ -15,12 +15,12 @@ class PrivateMessageForm extends BasePrivateMessageForm
 
   public function configure()
   {
-    $this->widgetSchema['sender'] = new sfWidgetFormInputHidden();
-    $this->widgetSchema['receiver'] = new sfWidgetFormPropelSelectMany(array(
+    $this->widgetSchema['sender_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['receiver_id'] = new sfWidgetFormPropelSelectMany(array(
         'model' => 'Collector',
     ));
 
-    $this->validatorSchema['receiver'] = new sfValidatorPropelChoice(array(
+    $this->validatorSchema['receiver_id'] = new sfValidatorPropelChoice(array(
         'model' => 'Collector',
         'multiple' => true,
         'required' => true
