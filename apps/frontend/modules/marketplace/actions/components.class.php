@@ -396,8 +396,8 @@ class marketplaceComponents extends cqFrontendComponents
           $query->addDescendingOrderByColumn(CollectibleForSalePeer::MARKED_FOR_SALE_AT);
           break;
         default:
-          $query->orderByCreatedAt(Criteria::DESC);
           $query->orderByAverageRating(Criteria::DESC);
+          $query->orderByUpdatedAt(Criteria::DESC);
       }
 
       $pager = new cqPropelModelPager($query, 15);
