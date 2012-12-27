@@ -362,6 +362,7 @@ class marketplaceComponents extends cqFrontendComponents
       /** @var $query FrontendCollectibleQuery */
       $query = FrontendCollectibleQuery::create()
         ->hasThumbnail()
+        ->filterByAverageRating(3, Criteria::GREATER_THAN)
         ->useCollectibleForSaleQuery()
           ->isForSale()
         ->endUse()
@@ -372,8 +373,32 @@ class marketplaceComponents extends cqFrontendComponents
         ->filterById($pks)
         ->joinWith('CollectibleForSale')
       ;
-      $query->orderByAverageRating(Criteria::DESC);
-      $query->orderByUpdatedAt(Criteria::DESC);
+
+      $order_combination = $this->getUser()->getAttribute('marketplace_order_combination', null, 'marketplace');
+      if (!$order_combination || $p == 1)
+      {
+        $order_combination = rand(1, 4);
+        $this->getUser()->setAttribute('marketplace_order_combination', $order_combination, 'marketplace');
+      }
+
+      switch ($order_combination)
+      {
+        case 1:
+          $query->orderByAverageRating(Criteria::DESC);
+          break;
+        case 2:
+          $query->orderByCreatedAt(Criteria::DESC);
+          break;
+        case 3:
+          $query->orderByUpdatedAt(Criteria::DESC);
+          break;
+        case 4:
+          $query->addDescendingOrderByColumn(CollectibleForSalePeer::MARKED_FOR_SALE_AT);
+          break;
+        default:
+          $query->orderByCreatedAt(Criteria::DESC);
+          $query->orderByAverageRating(Criteria::DESC);
+      }
 
       $pager = new cqPropelModelPager($query, 15);
       $pager->setNbResults(count($pks));
