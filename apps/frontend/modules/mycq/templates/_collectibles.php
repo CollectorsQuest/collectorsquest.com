@@ -11,8 +11,8 @@
        id="collectible-create-icon" class="open-dialog btn-upload-collectible" onclick="return false;">
       <i class="icon-plus icon-white"></i>
     </a>
-    <a href="<?= url_for('@ajax_mycq?section=collectible&page=create&collection_id='. $collection->getId()); ?>"
-       id="collectible-create-link" class="open-dialog btn-upload-collectible-txt" onclick="return false;">
+    <a href="<?= url_for('@mycq_collectible_wizard?collection_id='. $collection->getId()); ?>"
+       id="collectible-create-link" class="btn-upload-collectible-txt">
       ADD NEW ITEM<br>
       <span style="color: #999;">(a single item)</span>
     </a>

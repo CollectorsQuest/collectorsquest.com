@@ -65,6 +65,10 @@ mycq_collection_by_slug:
   param: { module: mycq, action: collection }
   requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get] }
 
+mycq_collectible_wizard:
+  url:  /mycq/collectible/wizard
+  param: { module: mycq, action: collectibleWizard }
+
 mycq_collection_collectible_create:
   url:  /mycq/collection-collectible/create
   param: { module: mycq, action: collectionCollectibleCreate }

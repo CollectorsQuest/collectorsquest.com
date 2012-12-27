@@ -743,6 +743,16 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeCollectibleWizard(sfWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    $this->step1 = new CollectibleWizardStep1Form();
+    $this->step2 = new CollectibleWizardStep2Form();
+    $this->step3 = new CollectibleWizardStep3Form();
+  }
+
   public function executeMarketplace()
   {
     $this->redirectUnless(cqGateKeeper::open('mycq_marketplace'), '@mycq');
