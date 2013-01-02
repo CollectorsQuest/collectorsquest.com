@@ -114,7 +114,7 @@ class generalActions extends cqFrontendActions
            ->filterById($collectible_ids, Criteria::IN)
            ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
-        $this->collectibles = $q->limit(22)->find();
+        $this->collectibles = $q->limit(24)->find();
       }
     }
 
