@@ -4,7 +4,7 @@ index:
   lifetime:    600
 
 holiday:
-  enabled:     true
+  enabled:     false
   with_layout: false
   lifetime:    600
 
