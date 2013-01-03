@@ -748,9 +748,34 @@ class mycqActions extends cqFrontendActions
     /* @var $collector Collector */
     $collector = $this->getUser()->getCollector();
 
-    $this->step1 = new CollectibleWizardStep1Form();
-    $this->step2 = new CollectibleWizardStep2Form();
-    $this->step3 = new CollectibleWizardStep3Form();
+    /* @var $collectible Collectible|null */
+    $collectible = null;
+    if ($collectible_id = $this->getUser()->getAttribute('wizard-collectible'))
+    {
+      $collectible = CollectibleQuery::create()->filterById($collectible_id)->findOne();
+      if ($collectible && $collectible->getCollectorId() != $collector->getId())
+      {
+        $collectible = null;
+      }
+    }
+
+    if (!$collectible)
+    {
+      $collectible = new Collectible();
+      $collectible->setCollector($collector);
+      $collectible->save();
+      $this->getUser()->setAttribute('wizard-collectible', $collectible->getId());
+    }
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+      ->descendantsOf($root)
+      ->findTree();
+
+    $this->step1 = new CollectibleWizardStep1Form($collectible);
+    $this->step2 = new CollectibleWizardStep2Form($collectible);
+    $this->step3 = new CollectibleWizardStep3Form($collectible);
+    $this->step = 1;
   }
 
   public function executeMarketplace()

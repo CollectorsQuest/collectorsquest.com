@@ -1061,4 +1061,47 @@ class ajaxAction extends cqAjaxAction
 
     return $template;
   }
+
+  public function executeCollectibleWizard(sfWebRequest $request, $template)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    /* @var $collectible Collectible|null */
+    $collectible = null;
+    if ($collectible_id = $this->getUser()->getAttribute('wizard-collectible'))
+    {
+      $collectible = CollectibleQuery::create()->filterById($collectible_id)->findOne();
+      if ($collectible && $collectible->getCollectorId() != $collector->getId())
+      {
+        $collectible = null;
+      }
+    }
+
+    if (!$collectible)
+    {
+      return $this->error('Error', 'Wrong collectible');
+    }
+    $formClass = sprintf('CollectibleWizardStep%sForm', $request->getParameter('step'));
+
+    $form = new $formClass($collectible);
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter($form->getName()));
+
+      if ($form->isValid())
+      {
+        $form->save();
+
+        return $this->success();
+      }
+      else
+      {
+        return $this->output(array('Success' => false,
+          'form' => $this->getPartial('mycq/partials/collectible_wizard_st2', array('form' => $form))));
+      }
+    }
+
+    return $this->error('Error', 'Some error');
+  }
 }

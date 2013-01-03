@@ -1,10 +1,11 @@
 <?php
 
-class CollectibleWizardStep2Form extends CollectibleForm
+class CollectibleWizardStep2Form extends CollectibleEditForm
 {
   public function configure()
   {
-    $this->useFields(array('name'));
+    $this->setupTagsField();
+    $this->useFields(array('name', 'tags', 'description'));
   }
 
 }
