@@ -13,19 +13,24 @@
 
 <p>
   <a href="http://www.collectorsquest.com/collector/{{ collector.id }}/{{ collector.slug }}">
-    <img src="{{ collector.photo }}" style="float: left; margin-right: 8px;" align="left" hspace="4" />
+    {{ collector_image | raw }}
   </a>
 
   <strong>Try uploading one of your favorite collections</strong> to our Community and get feedback from your fellow collectors.
   Discover treasures and missing items to add to your collection.
   Someone out there has that holy grail that you just can’t live without.
+</p>
+
+<div style="clear:both"></div>
 
 <p>
-  [Graphic of mysterious object with ‘?’ mark?]
+  <img src="http://www.collectorsquest.dev/images/emails/autoresponders_mysterious_object.jpg" width="75" height="75" style="float: left; margin-right: 8px;">
   Maybe one of our collectors can help you identify that mysterious thing you picked up at last weekend’s flea market.
   You can also lend your expert knowledge to a worldwide audience. Become a collexpert.
   We just made that word up, but we’re sticking with it.
 </p>
+
+<div style="clear:both"></div>
 
 <p>
   Come back and check us out. We’re constantly churning with new activity,

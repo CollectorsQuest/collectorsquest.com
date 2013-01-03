@@ -33,7 +33,7 @@ all:
         subject: "Would you like to continue receiving the Collectors Quest newsletter?"
       one_week_inactivity_reminder:
         subject: "Things have been quiet without you, {{ collector.displayName | raw }} ..."
-        required_params: [collector]
+        required_params: [collector, collector_image]
 
 
     Seller:
