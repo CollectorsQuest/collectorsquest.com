@@ -265,7 +265,7 @@ class ajaxAction extends cqAjaxAction
 
       // auto-set collection thumbnail if none set yet
       $collection = $recipient->getCollectorCollection();
-      if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+      if ($collection instanceof Collection && 1 == $collection->countCollectibles() && !$collection->hasThumbnail())
       {
         $collection->setPrimaryImage($recipient->getPrimaryImage()
           ->getAbsolutePath('original'));
@@ -507,6 +507,36 @@ class ajaxAction extends cqAjaxAction
         $values = $form->getValues();
         $file = $values['thumbnail'];
 
+        $this->loadHelpers('cqImages');
+
+        if ($request->getParameter('set-main') == '1')
+        {
+          $collectible = CollectibleQuery::create()->findOneById($values['collectible_id']);
+
+          // Get rid of the old primary Multimedia
+          if ($primary = $collectible->getPrimaryImage())
+          {
+            $primary->delete();
+          }
+
+          if ($multimedia = $collectible->setThumbnail($file))
+          {
+            $multimedia->setName($file);
+            $multimedia->save();
+          }
+          $collectible->save();
+          $output = array();
+          $output[] = array(
+            'thumbnail' => src_tag_multimedia($multimedia, '300x0'),
+            'name' => $multimedia->getName(),
+            'size' => $multimedia->getFileSize(),
+            'multimediaid' => $multimedia->getId(),
+            'type' => 'image/jpeg',
+          );
+
+          return $this->renderText(json_encode($output));
+        }
+
         try
         {
           $collectible = new Collectible();
@@ -547,13 +577,13 @@ class ajaxAction extends cqAjaxAction
         // change the dropbox open status depending on whether we have stuff
         // left in it
         $this->getUser()->setMycqDropboxOpenState(true);
-        $this->loadHelpers('cqImages');
 
         $output = array();
         $output[] = array(
           'name' => $multimedia->getName(),
           'size' => $multimedia->getFileSize(),
           'type' => 'image/jpeg',
+          'donor' => $collectible->getId(),
           'thumbnail' => src_tag_multimedia($multimedia, '19:15x60'),
           'redirect' => $this->generateUrl('ajax_mycq', array(
             'section' => $model,

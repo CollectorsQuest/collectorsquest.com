@@ -1457,7 +1457,7 @@ textarea.input-xlarge {
     padding: 8px 3px 0;
   }
   &.single-file.in {
-    border: 2px dashed @red;
+    border: 2px dashed @red!important;
   }
   &.in, &.hover {
     padding: 5px;
@@ -2414,4 +2414,41 @@ div.wpfaqask {
       margin: 0 10px;
     }
   }
+}
+
+#dropzone-wz1 {
+  width: 300px;
+  border: 2px dashed #0A82C2;
+  &.with-file {
+    .info-no-items-to-sort {
+      display: none;
+    }
+  }
+  &.in, &.hover {
+    .file {
+      display: none;
+    }
+  }
+  .file {
+    position: relative;
+    .icon-remove-sign
+    {
+      left: 95%;
+      top: -10px;
+    }
+    .upbox {
+      position: absolute;
+      width: 300px;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      padding: 10px;
+    }
+  }
+  &:hover {
+    .icon-remove-sign {
+      display: block;
+    }
+  }
+
 }
