@@ -42,7 +42,7 @@ class aviaryUpdateImageAction extends sfAction
         $image = iceModelMultimediaPeer::retrieveByPK($message['multimedia-id'])
       )
       {
-        $image->setCreatedAt(time());
+        // $image->setCreatedAt(time());
         $image->setName(basename($url));
         $image->setMd5(md5($url));
         $image->setSource($url);
