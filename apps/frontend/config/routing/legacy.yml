@@ -15,8 +15,6 @@ legacy_collectible_sell:
 
 legacy_featured_week:
   url:   /community/spotlight/:id/:slug
-  class: sfPropelRoute
-  options: { model: Featured, type: object, method: getObjectForFeaturedWeek }
   param: { module: general, action: redirect, route: 'collections' }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
