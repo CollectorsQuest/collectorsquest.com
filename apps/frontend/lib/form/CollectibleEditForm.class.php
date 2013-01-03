@@ -151,7 +151,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
   }
 
-  private function setupCollectorCollectionsField()
+  protected function setupCollectorCollectionsField()
   {
     /** @var $collectible Collectible */
     $collectible = $this->getObject();

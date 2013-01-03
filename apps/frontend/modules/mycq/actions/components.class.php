@@ -270,6 +270,11 @@ class mycqComponents extends cqFrontendComponents
 
     $this->multimedia = $this->collectible->getMultimedia(0, 'image', false);
 
+    if ($this->getRequestParameter('mainOnly'))
+    {
+      $this->mainOnly = true;
+    }
+
     return sfView::SUCCESS;
   }
 

@@ -60,48 +60,51 @@
       </div>
       <?php endif; ?>
 
-      <?php if ($collectible->getIsPublic() === false): ?>
+      <?php if (!isset($mainOnly) && $collectible->getIsPublic() === false): ?>
         <span class="not-public">NOT PUBLIC</span>
       <?php endif; ?>
     </li>
-    <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
-    <?php $has_image = isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia; ?>
-    <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
-      <div class="thumbnail drop-zone" data-is-primary="0">
-      <?php if ($has_image): ?>
-        <div class="alt-view-img">
-          <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
-          <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
-          <i class="icon icon-plus icon-plus-pos hide"></i>
-          <?php
-            $aviary_hmac_message = $sf_user->hmacSignMessage(
-              json_encode(array('multimedia-id' => $multimedia[$i]->getId())),
-              cqConfig::getCredentials('aviary', 'hmac_secret')
-            );
-          ?>
-          <span class="multimedia-edit holder-icon-edit"
-                data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
-                data-post-data='<?= $aviary_hmac_message; ?>'>
-            <i class="icon icon-camera"></i>
-          </span>
-        </div>
-      <?php else: ?>
-        <div class="alt-view-slot">
-          <i class="icon icon-plus white-alternate-view"></i>
-          <span class="info-text">
-            Alternate<br/> View
-          </span>
-        </div>
-      <?php endif; ?>
-        <div class="hidden">
-          <i class="icon icon-plus white-alternate-view spacer-top"></i>
-            <span class="info-text spacer-top-5">
-              Add View
+    <?php if (!isset($mainOnly)): ?>
+      <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
+        <?php $has_image = isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia; ?>
+        <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
+          <div class="thumbnail drop-zone" data-is-primary="0">
+            <?php if ($has_image): ?>
+            <div class="alt-view-img">
+              <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
+              <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
+              <i class="icon icon-plus icon-plus-pos hide"></i>
+              <?php
+              $aviary_hmac_message = $sf_user->hmacSignMessage(
+                json_encode(array('multimedia-id' => $multimedia[$i]->getId())),
+                cqConfig::getCredentials('aviary', 'hmac_secret')
+              );
+              ?>
+              <span class="multimedia-edit holder-icon-edit"
+                    data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
+                    data-post-data='<?= $aviary_hmac_message; ?>'>
+              <i class="icon icon-camera"></i>
             </span>
-        </div>
-      </div>
-    </li>
-    <?php endfor; ?>
+            </div>
+            <?php else: ?>
+            <div class="alt-view-slot">
+              <i class="icon icon-plus white-alternate-view"></i>
+            <span class="info-text">
+              Alternate<br/> View
+            </span>
+            </div>
+            <?php endif; ?>
+            <div class="hidden">
+              <i class="icon icon-plus white-alternate-view spacer-top"></i>
+              <span class="info-text spacer-top-5">
+                Add View
+              </span>
+            </div>
+          </div>
+        </li>
+      <?php endfor; ?>
+    <?php endif; ?>
+
   </ul>
 </div>
 
@@ -169,7 +172,8 @@ $(document).ready(function()
         success: function()
         {
           $('#main-image-set').load(
-            '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id='. $collectible->getId()); ?>',
+            '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id=' .
+              $collectible->getId() . (isset($mainOnly) ? '&mainOnly=true' : '')); ?>',
             function () { $this.hideLoading(); }
           );
         },
@@ -196,7 +200,8 @@ $(document).ready(function()
         success: function()
         {
           $('#main-image-set').load(
-            '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id='. $collectible->getId()); ?>',
+            '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id=' .
+              $collectible->getId() . (isset($mainOnly) ? '&mainOnly=true' : '')); ?>',
             function () { $this.hideLoading(); }
           );
         },

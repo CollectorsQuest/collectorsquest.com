@@ -265,7 +265,7 @@ class ajaxAction extends cqAjaxAction
 
       // auto-set collection thumbnail if none set yet
       $collection = $recipient->getCollectorCollection();
-      if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+      if ($collection instanceof Collection && 1 == $collection->countCollectibles() && !$collection->hasThumbnail())
       {
         $collection->setPrimaryImage($recipient->getPrimaryImage()
           ->getAbsolutePath('original'));
@@ -507,6 +507,25 @@ class ajaxAction extends cqAjaxAction
         $values = $form->getValues();
         $file = $values['thumbnail'];
 
+        if ($request->getParameter('set-main') == '1')
+        {
+          $collectible = CollectibleQuery::create()->findOneById($values['collectible_id']);
+          if ($multimedia = $collectible->setThumbnail($file))
+          {
+            $multimedia->setName($file);
+            $multimedia->save();
+          }
+          $collectible->save();
+          $output = array();
+          $output[] = array(
+            'name' => $multimedia->getName(),
+            'size' => $multimedia->getFileSize(),
+            'type' => 'image/jpeg',
+          );
+
+          return $this->renderText(json_encode($output));
+        }
+
         try
         {
           $collectible = new Collectible();
@@ -554,6 +573,7 @@ class ajaxAction extends cqAjaxAction
           'name' => $multimedia->getName(),
           'size' => $multimedia->getFileSize(),
           'type' => 'image/jpeg',
+          'donor' => $collectible->getId(),
           'thumbnail' => src_tag_multimedia($multimedia, '19:15x60'),
           'redirect' => $this->generateUrl('ajax_mycq', array(
             'section' => $model,

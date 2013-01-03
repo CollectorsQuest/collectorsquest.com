@@ -1,3 +1,21 @@
+<?php
+if ($collectible->getMultimediaCount('image') > 0)
+{
+  slot(
+    'mycq_dropbox_info_message',
+    'To add another view of this item, drag an image
+       into the "Alternate View" boxes below your main image.'
+  );
+}
+else
+{
+  slot(
+    'mycq_dropbox_info_message',
+    'Drag a photo below to set it as the "Main Image" for this item.'
+  );
+}
+?>
+
 <div class="collecton-wizard" id="accordion2">
   <div class="accordion-group<?= $step == 1 ? ' active' : '' ?>">
     <div class="accordion-heading">
@@ -14,7 +32,7 @@
         <?php
         include_partial(
           'mycq/partials/collectible_wizard_st1',
-          array('form' => $step1)
+          array('form' => $step1, 'upload_form' => $upload_form)
         );
         ?>
 
