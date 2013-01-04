@@ -34,6 +34,7 @@ base
 /lib/vendor/monolog
 /lib/vendor/twig
 /lib/vendor/magnify
+/lib/vendor/aws
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)
