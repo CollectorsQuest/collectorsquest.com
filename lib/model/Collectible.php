@@ -898,20 +898,3 @@ sfPropelBehavior::add(
   'Collectible',
   array('PropelActAsEblobBehavior' => array('column' => 'eblob')
 ));
-
-sfPropelBehavior::add(
-  'Collectible',
-  array(
-    'PropelActAsSluggableBehavior' => array(
-      'columns' => array(
-        'from' => CollectiblePeer::NAME,
-        'to' => CollectiblePeer::SLUG
-      ),
-      'separator' => '-',
-      'permanent' => false,
-      'lowercase' => true,
-      'ascii' => true,
-      'chars' => 128
-    )
-  )
-);
