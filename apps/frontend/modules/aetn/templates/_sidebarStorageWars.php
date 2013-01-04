@@ -6,7 +6,7 @@
   <?php cq_dart_slot('300x250', 'collections', 'storagewars', 'sidebar') ?>
 </div>
 
-<?php include_partial('marketplace/partials/holidayMarketPromo_300x90'); ?>
+<?php // include_partial('marketplace/partials/holidayMarketPromo_300x90'); ?>
 
 <?php include_partial('aetn/partials/pawnStarsPromo_300x90'); ?>
 
