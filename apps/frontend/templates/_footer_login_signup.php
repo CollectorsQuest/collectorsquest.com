@@ -11,8 +11,6 @@
   $signup_action = isset($signup_action) ? $signup_action : '@misc_guide_to_collecting';
   $login_action = isset($login_action) ? $login_action : '@login';
   $display = $sf_request->getParameter('display', 'signup');
-
-  unset($signup_form['newsletter']);
 ?>
 
 <div id="footer-form-signup" style="<?= 'signup' == $display ? '' : 'display: none;'; ?>">
@@ -22,14 +20,6 @@
         method="post" class="form-horizontal form-footer">
 
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
-
-    <div class="row-fluid spacer-15">
-      <label class="checkbox">
-        <input class="newsletter-checkbox" type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
-               id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
-        Sign me up for the Collectors Quest newsletter
-      </label>
-    </div>
 
     <div class="row-fluid spacer-7">
       <div class="span8 spacer-inner-top">

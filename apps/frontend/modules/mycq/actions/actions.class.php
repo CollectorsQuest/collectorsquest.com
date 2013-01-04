@@ -203,7 +203,7 @@ class mycqActions extends cqFrontendActions
     {
       if ($request->hasParameter($key))
       {
-        $collector->setProperty($property, (boolean)$request->getParameter($key));
+        $collector->setProperty($property, (boolean) $request->getParameter($key));
         $_property_changed = $key;
       }
 

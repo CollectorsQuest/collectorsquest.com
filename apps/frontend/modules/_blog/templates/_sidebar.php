@@ -34,11 +34,6 @@ if ($data['is_single'])
   echo '<!-- Blog Sidebar Widget7 //-->';
   echo '<!-- Blog Sidebar Widget8 //-->';
   echo '<!-- Blog Sidebar Widget9 //-->';
-
-  if (!$sf_user->isAuthenticated())
-  {
-    include_component('_sidebar', 'widgetMailChimpSubscribe');
-  }
 }
 else if ($data['is_page'])
 {
@@ -72,11 +67,6 @@ else if ($data['is_author'])
     array('wp_user' => $wp_user, 'limit' => 4)
   );
 
-  if (!$sf_user->isAuthenticated())
-  {
-    include_component('_sidebar', 'widgetMailChimpSubscribe');
-  }
-
   echo '<!-- Blog Sidebar Widget2 //-->';
   echo '<!-- Blog Sidebar Widget3 //-->';
   echo '<!-- Blog Sidebar Widget4 //-->';
@@ -101,8 +91,6 @@ else
       ),
       'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
     );
-
-    include_component('_sidebar', 'widgetMailChimpSubscribe');
   }
 
   echo '<!-- Blog Sidebar Widget2 //-->';
