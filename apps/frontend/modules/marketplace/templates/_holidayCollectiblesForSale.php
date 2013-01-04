@@ -10,10 +10,10 @@
   foreach ($pager->getResults() as $i => $collectible)
   {
     // special case to include holiday promo banner
-    if ($rand == $i)
+/*    if ($rand == $i)
     {
       include_partial('marketplace/partials/holidayMarketBuyPackagePromo_220x170');
-    }
+    }*/
 
     // set the link to open modal dialog
     $url = url_for('ajax_marketplace',
