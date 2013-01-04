@@ -12,7 +12,7 @@
 
 <?php include_partial('aetn/partials/americanPickersPromo_300x90'); ?>
 
-<?php include_partial('marketplace/partials/holidayMarketPromo_300x90'); ?>
+<?php // include_partial('marketplace/partials/holidayMarketPromo_300x90'); ?>
 
 <?php
   include_component(
