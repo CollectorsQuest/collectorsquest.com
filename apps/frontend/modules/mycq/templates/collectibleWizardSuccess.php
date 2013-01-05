@@ -26,7 +26,7 @@ else
         </span>
       </div>
     </div>
-    <div class="accordion-body collapse in">
+    <div class="accordion-body collapse">
       <div class="accordion-inner">
 
         <?php
@@ -99,7 +99,7 @@ else
         <?php
         include_partial(
           'mycq/partials/collectible_wizard_st3',
-          array('form' => $step3)
+          array('form' => $step3, 'collectible' => $collectible)
         );
         ?>
 

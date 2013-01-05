@@ -773,12 +773,11 @@ class mycqActions extends cqFrontendActions
       ->findTree();
 
     $this->step1 = new CollectibleWizardStep1Form($collectible);
-    $this->step2 = new CollectibleWizardStep2Form($collectible);
-    $this->step3 = new CollectibleWizardStep3Form($collectible);
-    $this->upload_form = new CollectibleUploadForm();
+    $this->step2 = new CollectibleWizardStep2Form($collectible);;
+    $this->step3 = $this->upload_form = new CollectibleUploadForm();
     $this->upload_form->setDefault('collectible_id', $collectible->getId());
     $this->collectible = $collectible;
-    $this->step = 1;
+    $this->step = 3;
   }
 
   public function executeMarketplace()

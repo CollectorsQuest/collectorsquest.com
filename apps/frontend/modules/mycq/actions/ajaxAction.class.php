@@ -537,6 +537,71 @@ class ajaxAction extends cqAjaxAction
           return $this->renderText(json_encode($output));
         }
 
+        if ($request->getParameter('set-alter') == '1')
+        {
+          $recipient = CollectibleQuery::create()->findOneById($values['collectible_id']);
+
+          $collectible = new Collectible();
+          $collectible->setCollector($collector);
+          $collectible->setName($file, true);
+          $collectible->setBatchHash($request->getParameter('batch', null));
+          $collectible->setIsPublic(false);
+          $collectible->save();
+
+          /** @var $image iceModelMultimedia */
+          if ($image = $collectible->setThumbnail($file))
+          {
+            try
+            {
+              $image->setIsPrimary(false);
+              $image->setModelId($recipient->getId());
+              $image->setSource($collectible->getId());
+              // $image->setCreatedAt(time());
+              $image->save();
+            }
+            catch (PropelException $e)
+            {
+              if (preg_match('/multimedia_U_1/i', $e->getMessage()))
+              {
+                return $this->error(
+                  'Multimedia Exists', 'This multimedia already exists for this object'
+                );
+              }
+
+              throw $e;
+            }
+
+            $recipient->setUpdatedAt(time());
+            $recipient->save();
+
+            // auto-set collection thumbnail if none set yet
+            $collection = $recipient->getCollectorCollection();
+            if ($collection instanceof Collection && 1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+            {
+              $collection->setPrimaryImage($recipient->getPrimaryImage()
+                ->getAbsolutePath('original'));
+              $collection->save();
+            }
+
+            // Archive the donor $collectible, not needed anymore
+            $collectible->delete();
+
+            $output = array();
+            $output[] = array(
+              'thumbnail' => src_tag_multimedia($image, '190x190'),
+              'name' => $image->getName(),
+              'size' => $image->getFileSize(),
+              'multimediaid' => $image->getId(),
+              'type' => 'image/jpeg',
+            );
+
+            return $this->renderText(json_encode($output));
+
+          }
+
+
+        }
+
         try
         {
           $collectible = new Collectible();

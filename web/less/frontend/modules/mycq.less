@@ -2417,38 +2417,88 @@ div.wpfaqask {
 }
 
 #dropzone-wz1 {
-  width: 300px;
-  border: 2px dashed #0A82C2;
-  &.with-file {
-    .info-no-items-to-sort {
-      display: none;
-    }
-  }
-  &.in, &.hover {
-    .file {
-      display: none;
-    }
-  }
-  .file {
-    position: relative;
-    .icon-remove-sign
-    {
-      left: 95%;
-      top: -10px;
-    }
-    .upbox {
-      position: absolute;
-      width: 300px;
-      z-index: 2;
-      top: 0;
-      left: 0;
-      padding: 10px;
-    }
-  }
-  &:hover {
-    .icon-remove-sign {
+  width: 294px;
+  height: 294px;
+  font-size: 28px;
+  border: 2px dashed @red;
+  color: @red;
+  margin-bottom: 29px;
+  position: relative;
+  .alt-view-slot {
+    font-size: 100px;
+    text-align: center;
+    color: @red;
+    line-height: 1;
+    padding-top: 35px;
+    .info-text {
+      color: @red;
       display: block;
+      font-size: 20px;
+      height: 100px;
+      left: 45px;
+      line-height: 22px;
+      position: absolute;
+      text-align: center;
+      text-transform: uppercase;
+      top: 160px;
+      width: 200px;
     }
   }
 
+}
+
+#dropzone-wz2 {
+  border: 2px dashed @red;
+  padding: 5px;
+  .span3, .span3:first-child {
+    margin: 4px;
+  }
+  .thumbnails {
+
+  }
+  ul {
+    margin-bottom: 0;
+  }
+  .thumbnail {
+    background-color: #E6F2F9;
+    height: 92px;
+    margin-bottom: 0;
+    margin-left: 0;
+    position: relative;
+    width: 92px;
+    border: 2px dashed #0A82C2;
+    padding: 0;
+    .border-radius(0);
+    .box-shadow(none);
+    .alt-view-slot {
+      color: #FFFFFF;
+      font-size: 40px;
+      text-align: center;
+
+    }
+    .info-text {
+      color: #125375;
+      display: block;
+      font-size: 14px;
+      line-height: 18px;
+    }
+    i {
+      padding-top: 8px;
+    }
+    .icon-remove-sign {
+      left: 91px;
+      top: -6px;
+      display: none;
+    }
+    &:hover {
+      .icon-remove-sign {
+        display: block;
+      }
+    }
+  }
+
+
+}
+#wz-step3 {
+  margin-left: -90px;
 }
