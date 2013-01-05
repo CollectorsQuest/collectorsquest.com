@@ -1,21 +1,21 @@
 <?php
+/**
+ * @var $form CollectibleWizardStep1Form
+ * @var $upload_form CollectionCreateForm
+ */
 
-$imge = $form->getObject()->getPrimaryImage();
 ?>
 <div class="row-fluid">
   <div class="span4">
 
+    <div id="files-wz1" style="display: none;"></div>
+
     <div id="dropzone-wz1" class="dropzone single-file Chivo webfont" style="display: none;">
-        <span class="info-no-items-to-sort" style="text-align: center;">
-          <strong>Drag</strong> a photo from your computer<br/>
-          and <strong>drop it here</strong> to upload.
-        </span>
-      <div class="info-drop-here" style="line-height: 60px;">
-        Drop file here
+      <div class="alt-view-slot">
+        <i class="icon icon-plus"></i>
+        <span class="info-text">Drop file here</span>
       </div>
     </div>
-
-      <div id="files-wz1" style="display: none;"></div>
 
     <div id="main-image-set">
       <?php
@@ -23,10 +23,12 @@ $imge = $form->getObject()->getPrimaryImage();
         array('collectible' => $form->getObject(), 'mainOnly' => true));
       ?>
     </div>
+
   </div>
   <div class="span8">
+
     <form action="<?= url_for('@ajax_mycq?section=collectible&page=upload'); ?>"
-          method="post" id="fileupload-c" class="ajax form-horizontal" enctype="multipart/form-data">
+          method="post" id="fileupload-wz1" class="ajax form-horizontal" enctype="multipart/form-data">
 
       <?= $upload_form['thumbnail']->renderRow(); ?>
       <input type="hidden" name="model" value="<?= $model ?>">
@@ -34,9 +36,11 @@ $imge = $form->getObject()->getPrimaryImage();
       <?= $upload_form->renderHiddenFields(); ?>
 
     </form>
+
     <form  action="<?= url_for('ajax_mycq', array('section' => 'collectible', 'page' => 'Wizard')); ?>"
            method="post" class="form-horizontal" id="wz-step1">
       <?= $form; ?>
+      <input type="hidden" name="step" value="1" />
     </form>
   </div>
 </div>
@@ -44,22 +48,20 @@ $imge = $form->getObject()->getPrimaryImage();
 <input type="hidden" name="step" value="1" />
 
 <!-- The template to display files available for upload -->
-<script id="template-upload-c" type="text/x-tmpl">
+<script id="template-upload-wz1" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
-  <div class="template-upload file">
+  <div class="template-upload">
     {% if (file.error) { %}
-    <div class="error"></div>
+    <div class="error">{%=localeC.fileupload.errors[file.error] || file.error%}</div>
     {% } else if (o.files.valid && !i) { %}
-    <i class="icon icon-remove-sign"></i>
-
     <div class="preview">
       <span class="fade"></span>
     </div>
-    <div class="upbox">
-      <div class="progress progress-info progress-striped active">
-        <div class="bar" style="width:10%;"></div>
+    <div class="row-fluid fade">
+      <div class="span9 progress progress-info progress-striped active" style="min-height:20px">
+        <div class="bar" style="width:0;"></div>
       </div>
-      <div class="cancel">
+      <div class="cancel span2 pull-right">
         {% if (!i) { %}
         <button class="btn btn-warning btn-mini">
           <span>{%=locale.fileupload.cancel%}</span>
@@ -73,10 +75,8 @@ $imge = $form->getObject()->getPrimaryImage();
 
 </script>
 
-
-
 <!-- The template to display files available for download -->
-<script id="template-download-c" type="text/x-tmpl">
+<script id="template-download-wz1" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <div class="template-download file">
     <i class="icon icon-remove-sign" data-multimedia-id="{%=file.multimediaid%}" ></i>
@@ -94,9 +94,6 @@ $imge = $form->getObject()->getPrimaryImage();
   </div>
   {% } %}
 </script>
-
-
-
 
 <script type="text/javascript">
   window.localeC = {
@@ -121,6 +118,8 @@ $imge = $form->getObject()->getPrimaryImage();
   {
     'use strict';
 
+    $(".chzn-select").chosen();
+
     $(document).bind('dragover', function (e)
     {
       var dropZone = $('#dropzone-wz1'),
@@ -137,90 +136,88 @@ $imge = $form->getObject()->getPrimaryImage();
         window.dropZoneCTimeout = null;
         dropZone.hide();
         $('#main-image-set').show();
+        $('#files-wz1').hide();
       }, 100);
     });
 
-
-
     // Initialize the jQuery File Upload widget:
-    $('#fileupload-c').fileupload();
-    $('#fileupload-c').fileupload('option', 'autoUpload', true);
-    $('#fileupload-c').fileupload('option', 'dropZone', $('#dropzone-wz1'));
-    $('#fileupload-c').fileupload('option', 'filesContainer', $('#files-wz1'));
-    // $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);
-    $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1);
-    $('#fileupload-c').fileupload('option', 'uploadTemplateId', 'template-upload-c');
-    $('#fileupload-c').fileupload('option', 'downloadTemplateId', 'template-download-c');
-    $('#fileupload-c').fileupload('option', 'previewMaxWidth', 300);
-    $('#fileupload-c').fileupload('option', 'previewMaxHeight', 800);
+    $('#fileupload-wz1').fileupload();
+    $('#fileupload-wz1').fileupload('option', 'autoUpload', true);
+    $('#fileupload-wz1').fileupload('option', 'dropZone', $('#dropzone-wz1'));
+    $('#fileupload-wz1').fileupload('option', 'filesContainer', $('#files-wz1'));
+    $('#fileupload-wz1').fileupload('option', 'limitConcurrentUploads', 1);
+    $('#fileupload-wz1').fileupload('option', 'maxNumberOfFiles', 1);
+    $('#fileupload-wz1').fileupload('option', 'uploadTemplateId', 'template-upload-wz1');
+    $('#fileupload-wz1').fileupload('option', 'downloadTemplateId', 'template-download-wz1');
+    $('#fileupload-wz1').fileupload('option', 'previewMaxWidth', 295);
+    $('#fileupload-wz1').fileupload('option', 'previewMaxHeight', 800);
 
-    $('#fileupload-c')
-        .bind('fileuploadadd', function (e, data) {
-          //  $('.template-download').remove();
-//         $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1); //update files count
-//          $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);
-          //     $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1); //update files count
-        $('#files-wz1').show();
-          $('#main-image-set').hide();
-          setTimeout(function () {
-            $('#main-image-set').hide();
-          }, 100);
+    $('#fileupload-wz1')
+        .bind('fileuploadadd', function (e, data)
+        {
+          $('#files-wz1').html('').show();
+          $('#main-image-set .main-image-set-container, #dropzone-wz1').hide();
+
+          setTimeout(function ()
+          {
+            $('#files-wz1').hide();
+            if (data.isValidated)
+            {
+              $('#main-image-set .main-image-set-container').hide();
+              $('#files-wz1 .template-upload .fade').addClass('in');
+            }
+            else
+            {
+              $('#main-image-set').show();
+              $('#main-image-set .main-image-set-container').show();
+              $('#fileupload-wz1').fileupload('option', 'maxNumberOfFiles', 1); //update files count
+              $('#main-image-set').load(
+                  '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id=' .
+                    $form->getObject()->getId() .  '&mainOnly=true' ); ?>',
+                  function () {
+                    $('#main-image-set .main-image-set-container').hideLoading();
+                  });
+            }
+            $('#files-wz1').show();
+          }, 150);
+
         })
-//        .bind('fileuploadstart', function(e, data) {
-//
-//
-//        })
-      .bind('fileuploadstop', function(e, data)
-      {
+        .bind('fileuploadstop', function(e, data)
+        {
+          console.log($(this));
+          $('#main-image-set').show();
+          $('#main-image-set .main-image-set-container').show();
+          $('#fileupload-wz1').fileupload('option', 'limitConcurrentUploads', 1);
+          $('#fileupload-wz1').fileupload('option', 'maxNumberOfFiles', 1);
+          $('#main-image-set').show();
+          $('#main-image-set .main-image-set-container').show().showLoading();
+          $('#main-image-set').load(
+              '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id=' .
+                $form->getObject()->getId() .  '&mainOnly=true' ); ?>',
+              function () {
+                $('#main-image-set .main-image-set-container').hideLoading();
+              });
+        })
 
-      })
         .bind('fileuploadcompleted', function (e, data)
         {
-          var refresh = function()
-          {
-            $('#files-wz1').html('').hide();
-            $('#main-image-set').show();
-            $('#main-image-set .main-image-set-container').showLoading();
-            $('#main-image-set').load(
-                '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id=' .
-                  $form->getObject()->getId() .  '&mainOnly=true' ); ?>',
-                function () {
-                  $('#main-image-set .main-image-set-container').hideLoading();
-                }
-            );
-          }
-          // check for upload error
-          if (data.result[0].error)
-          {
-            setTimeout(function () {
-              refresh();
-            }, 2000);
-            data.context.text(data.result[0].error);
-          }
-          // if no error
-          else
-          {
-            refresh();
-          }
-          $('#fileupload-c').fileupload('option', 'maxNumberOfFiles', 1); //update files count
-          //   $('#fileupload-c').fileupload('option', 'limitConcurrentUploads', 1);;
+
+          $('#files-wz1').html('').hide();
 
         });
 
     // Enable iframe cross-domain access via redirect option:
-    $('#fileupload-c').fileupload(
+    $('#fileupload-wz1').fileupload(
         'option', 'redirect',
         window.location.href.replace(
             /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
         )
     );
 
-    $('#fileupload-c').fileupload('option', {
+    $('#fileupload-wz1').fileupload('option', {
       maxFileSize: <?= cqStatic::getPHPMaxUploadFileSize() // php file upload limit ?>,
       acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
     });
-
-
 
   });
 </script>
