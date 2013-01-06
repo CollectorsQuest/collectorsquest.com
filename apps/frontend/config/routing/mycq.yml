@@ -66,8 +66,15 @@ mycq_collection_by_slug:
   requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get] }
 
 mycq_collectible_wizard:
+  url:  /mycq/collectible/wizard/:id
+  class: sfPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute }
+  param: { module: mycq, action: collectibleWizard, slug: '' }
+  requirements: { id: '\d+', sf_method: [get] }
+
+mycq_collectible_create_wizard:
   url:  /mycq/collectible/wizard
-  param: { module: mycq, action: collectibleWizard }
+  param: { module: mycq, action: collectibleCreateWizard }
 
 mycq_collection_collectible_create:
   url:  /mycq/collection-collectible/create

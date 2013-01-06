@@ -743,29 +743,34 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeCollectibleCreateWizard(sfWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    $collectible = new Collectible();
+    $collectible->setCollector($collector);
+
+    $collectible->save();
+    if ($collection_id = $request->getParameter('collection_id'))
+    {
+      //Should we check collection user id?
+      $collectible->setCollectionId((int) $collection_id);
+    }
+
+    return $this->redirect('@mycq_collectible_wizard?id=' . $collectible->getId());
+
+  }
+
   public function executeCollectibleWizard(sfWebRequest $request)
   {
     /* @var $collector Collector */
     $collector = $this->getUser()->getCollector();
 
-    /* @var $collectible Collectible|null */
-    $collectible = null;
-    if ($collectible_id = $this->getUser()->getAttribute('wizard-collectible'))
-    {
-      $collectible = CollectibleQuery::create()->filterById($collectible_id)->findOne();
-      if ($collectible && $collectible->getCollectorId() != $collector->getId())
-      {
-        $collectible = null;
-      }
-    }
+    /* @var $collectible Collectible */
+    $collectible = $this->getRoute()->getObject();
 
-    if (!$collectible)
-    {
-      $collectible = new Collectible();
-      $collectible->setCollector($collector);
-      $collectible->save();
-      $this->getUser()->setAttribute('wizard-collectible', $collectible->getId());
-    }
+    $this->forward404Unless($collectible->getCollectorId() == $collector->getId());
 
     $root = ContentCategoryQuery::create()->findRoot();
     $this->categories = ContentCategoryQuery::create()
@@ -777,7 +782,7 @@ class mycqActions extends cqFrontendActions
     $this->step3 = $this->upload_form = new CollectibleUploadForm();
     $this->upload_form->setDefault('collectible_id', $collectible->getId());
     $this->collectible = $collectible;
-    $this->step = 3;
+    $this->step = 1;
   }
 
   public function executeMarketplace()

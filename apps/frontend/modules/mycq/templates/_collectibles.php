@@ -7,11 +7,11 @@
 <?php slot('mycq_create_collectible'); ?>
 <div class="span3 collectible_grid_view_square link add-new-holder">
   <div data-collection-id="<?= $collection->getId() ?>" class="add-new-zone mycq-create-collectible">
-    <a href="<?= url_for('@ajax_mycq?section=collectible&page=create&collection_id='. $collection->getId()); ?>"
-       id="collectible-create-icon" class="open-dialog btn-upload-collectible" onclick="return false;">
+    <a href="<?= url_for('@mycq_collectible_create_wizard?collection_id='. $collection->getId()); ?>"
+       id="collectible-create-icon" class="btn-upload-collectible">
       <i class="icon-plus icon-white"></i>
     </a>
-    <a href="<?= url_for('@mycq_collectible_wizard?collection_id='. $collection->getId()); ?>"
+    <a href="<?= url_for('@mycq_collectible_create_wizard?collection_id='. $collection->getId()); ?>"
        id="collectible-create-link" class="btn-upload-collectible-txt">
       ADD NEW ITEM<br>
       <span style="color: #999;">(a single item)</span>
@@ -92,7 +92,7 @@
       <i class="icon-warning-sign"></i>&nbsp;
       None of your items match search term: <strong><?= $sf_params->get('q'); ?></strong>.
       Do you want to <?= link_to('see all items', 'mycq_collection_by_slug', $collection); ?> or
-      <?= link_to('add a new item', '@ajax_mycq?section=collectible&page=create&collection_id='. $collection->getId(), array('class' => 'open-dialog', 'onclick' => 'return false;')); ?>?
+      <?= link_to('add a new item', '@mycq_collectible_create_wizard?collection_id='. $collection->getId()); ?>?
     </div>
   <?php else: ?>
     <?php include_slot('mycq_create_collectible'); ?>

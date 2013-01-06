@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $form CollectibleWizardStep1Form
- * @var $upload_form CollectionCreateForm
+ * @var $upload_form CollectibleUploadForm
  */
 
 ?>
@@ -41,11 +41,10 @@
            method="post" class="form-horizontal" id="wz-step1">
       <?= $form; ?>
       <input type="hidden" name="step" value="1" />
+      <input type="hidden" name="collectible_id" value="<?= $form->getObject()->getId() ?>" />
     </form>
   </div>
 </div>
-
-<input type="hidden" name="step" value="1" />
 
 <!-- The template to display files available for upload -->
 <script id="template-upload-wz1" type="text/x-tmpl">
@@ -123,7 +122,7 @@
     $(document).bind('dragover', function (e)
     {
       var dropZone = $('#dropzone-wz1'),
-          timeout = window.dropZoneCTimeout;
+          timeout = window.dropZoneWZ1Timeout;
       if (!timeout) {
         dropZone.show();
         $('#main-image-set').hide();
@@ -132,8 +131,8 @@
       }
 
 
-      window.dropZoneCTimeout = setTimeout(function () {
-        window.dropZoneCTimeout = null;
+      window.dropZoneWZ1Timeout = setTimeout(function () {
+        window.dropZoneWZ1Timeout = null;
         dropZone.hide();
         $('#main-image-set').show();
         $('#files-wz1').hide();
@@ -184,7 +183,6 @@
         })
         .bind('fileuploadstop', function(e, data)
         {
-          console.log($(this));
           $('#main-image-set').show();
           $('#main-image-set .main-image-set-container').show();
           $('#fileupload-wz1').fileupload('option', 'limitConcurrentUploads', 1);

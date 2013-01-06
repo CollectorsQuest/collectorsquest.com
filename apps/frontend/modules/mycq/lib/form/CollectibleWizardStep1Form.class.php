@@ -49,6 +49,7 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
       'section' => 'collectible',
       'page' => 'changeCategory',
       'collectible_id' => $this->getObject()->getId(),
+      'wizard' => '1',
     ));
 
     $this->widgetSchema['content_category'] = new cqWidgetFormPlain(array(
@@ -64,6 +65,19 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
       'style' => 'margin-top: 5px;'
     ));
     $this->validatorSchema['content_category'] = new sfValidatorPass();
+  }
+
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    $this->setDefault(
+      'content_category',
+      $this->getObject()->getContentCategory()
+        ? $this->getObject()->getContentCategory()->getPath()
+        : 'No category selected'
+    );
+
   }
 
 }

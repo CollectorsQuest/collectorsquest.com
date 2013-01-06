@@ -303,6 +303,8 @@ class ajaxAction extends cqAjaxAction
     $form->useFields(array('content_category_id'));
     $form->unsetCollectionIdField();
 
+    $this->wizard = $request->getParameter('wizard');
+
     if (sfRequest::POST == $request->getMethod())
     {
       $form->bind($request->getParameter($form->getName()));
@@ -310,9 +312,10 @@ class ajaxAction extends cqAjaxAction
       if ($form->isValid())
       {
         $form->save();
-
         return $this->renderPartial('global/loading', array(
-            'url' => $this->generateUrl('mycq_collectible_by_slug', $collectible),
+            'url' =>
+            $request->getParameter('wizard') ? $this->generateUrl('mycq_collectible_wizard', $collectible) :
+            $this->generateUrl('mycq_collectible_by_slug', $collectible),
         ));
       }
     }
@@ -1163,20 +1166,13 @@ class ajaxAction extends cqAjaxAction
     $collector = $this->getUser()->getCollector();
 
     /* @var $collectible Collectible|null */
-    $collectible = null;
-    if ($collectible_id = $this->getUser()->getAttribute('wizard-collectible'))
-    {
-      $collectible = CollectibleQuery::create()->filterById($collectible_id)->findOne();
-      if ($collectible && $collectible->getCollectorId() != $collector->getId())
-      {
-        $collectible = null;
-      }
-    }
+    $collectible = CollectibleQuery::create()
+      ->filterById($request->getParameter('collectible_id'))
+      ->filterByCollector($collector)
+      ->findOne();
 
-    if (!$collectible)
-    {
-      return $this->error('Error', 'Wrong collectible');
-    }
+    $this->forward404Unless($collectible && $request->getParameter('step'));
+
     $formClass = sprintf('CollectibleWizardStep%sForm', $request->getParameter('step'));
 
     $form = new $formClass($collectible);

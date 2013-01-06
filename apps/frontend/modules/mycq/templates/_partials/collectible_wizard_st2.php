@@ -7,6 +7,7 @@
        method="post" class="form-horizontal" id="wz-step2">
   <?= $form; ?>
   <input type="hidden" name="step" value="2" />
+  <input type="hidden" name="collectible_id" value="<?= $form->getObject()->getId() ?>" />
 </form>
 
 <script type="text/javascript">

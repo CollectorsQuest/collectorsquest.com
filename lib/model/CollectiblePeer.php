@@ -16,7 +16,7 @@ class CollectiblePeer extends BaseCollectiblePeer
     $collectible = null;
     $parameters['id'] = str_replace(array('.html', '.htm'), '', $parameters['id']);
 
-    if (preg_match('/-c(\d+)$/i', $parameters['slug'], $m))
+    if (isset($parameters['slug']) && preg_match('/-c(\d+)$/i', $parameters['slug'], $m))
     {
       /* @var $q CollectionCollectibleQuery */
       $q = CollectionCollectibleQuery::create()

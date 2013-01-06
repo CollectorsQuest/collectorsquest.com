@@ -33,7 +33,8 @@
     <ul class="thumbnails">
       <?php foreach ($collectibles as $collectible): ?>
       <li class="span2 thumbnail draggable" data-collectible-id="<?= $collectible->getId(); ?>"
-          data-multimedia-id="<?= $collectible->getPrimaryImage()->getId(); ?>">
+         <?= $collectible->getPrimaryImage()
+        ? 'data-multimedia-id="' . $collectible->getPrimaryImage()->getId() . '"' : ''; ?>>
         <?php
           echo image_tag_collectible(
             $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
