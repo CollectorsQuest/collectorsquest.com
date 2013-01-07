@@ -40,7 +40,9 @@ class batchAutorespondersMonthTask extends sfBaseTask
      */
     $q = CollectorQuery::create()
       ->filterByExtraPropertyWithDefault(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY, false, false)
-      ->filterByLastSeenAt(date(strtotime( '-1 month' )), Criteria::LESS_EQUAL)
+      ->filterByLastSeenAt(date('Ymd000000', strtotime('-30 days')), Criteria::GREATER_EQUAL)
+      ->_and()
+      ->filterByLastSeenAt(date('Ymd000000', strtotime('-31 days')), Criteria::LESS_THAN)
       ->limit($limit);
 
     /**
@@ -53,22 +55,19 @@ class batchAutorespondersMonthTask extends sfBaseTask
     // Send an email to each collector
     foreach ($collectors as $collector)
     {
-      $email = $collector->getEmail();
-      if ($email)
+      if ($collector->getEmail() && $collector->countCollectorCollections() === 0)
       {
         $cqEmail = new cqEmail($mailer);
         $cqEmail->send('Collector/one_month_inactivity_reminder', array(
-          'to'     => $email,
+          'to'     => $collector->getEmail(),
           'params' => array(
             'collector' => $collector
           )
         ));
-
-        echo $email . "\n";
-
-        $collector->setProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY, true);
-        $collector->save();
       }
+
+      $collector->setProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY, true);
+      $collector->save();
     }
   }
 

@@ -44,7 +44,9 @@ class batchAutorespondersWeekTask extends sfBaseTask
      */
     $q = CollectorQuery::create()
       ->filterByExtraPropertyWithDefault(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY, false, false)
-      ->filterByLastSeenAt(date(strtotime( '-1 week' )), Criteria::LESS_EQUAL)
+      ->filterByLastSeenAt(date('Ymd000000', strtotime('-7 days')), Criteria::GREATER_EQUAL)
+      ->_and()
+      ->filterByLastSeenAt(date('Ymd000000', strtotime('-8 days')), Criteria::LESS_THAN)
       ->limit($limit);
 
     /**
@@ -57,12 +59,11 @@ class batchAutorespondersWeekTask extends sfBaseTask
     // Send an email to each collector
     foreach ($collectors as $collector)
     {
-      $email = $collector->getEmail();
-      if ($email)
+      if ($collector->getEmail() && $collector->countCollectorCollections() === 0)
       {
         $cqEmail = new cqEmail($mailer);
         $cqEmail->send('Collector/one_week_inactivity_reminder', array(
-          'to'     => $email,
+          'to'     => $collector->getEmail(),
           'params' => array(
             'collector'       => $collector,
             'collector_image' => image_tag_collector(
@@ -72,11 +73,11 @@ class batchAutorespondersWeekTask extends sfBaseTask
           )
         ));
 
-        echo $email . "\n";
-
-        $collector->setProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY, true);
-        $collector->save();
+        echo $collector->getEmail() . "\n";
       }
+
+      $collector->setProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY, true);
+      $collector->save();
     }
   }
 

@@ -16,7 +16,8 @@
     {{ collector_image | raw }}
   </a>
 
-  <strong>Try uploading one of your favorite collections</strong> to our Community and get feedback from your fellow collectors.
+  <strong>{{ link_to('Try uploading one of your favorite collections', "@auto_login?hash=#{collector.autoLoginHash}&r=#{url_for('@mycq_collections', true)}", {absolute: true}) }}</strong>
+    to our Community and get feedback from your fellow collectors.
   Discover treasures and missing items to add to your collection.
   Someone out there has that holy grail that you just can’t live without.
 </p>

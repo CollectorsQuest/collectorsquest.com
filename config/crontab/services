@@ -11,6 +11,8 @@ HOME=/www/vhosts/collectorsquest.com/current
 
 # Tasks
  01  05  *  *  *  apache  cronic ./symfony batch:sellers-anonymous --env=prod
+ 05  09  *  *  *  apache  cronic ./symfony batch:autoresponders-week --env=prod
+ 10  09  *  *  *  apache  cronic ./symfony batch:autoresponders-month --env=prod
 
 # Sphinx indexes
  */5  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod --delta=yes
