@@ -181,6 +181,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY,
       CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY_DEFAULT);
 
+    $this->registerProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY,
+      CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY,
+      CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY_DEFAULT);
+
     $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_COMMENTS_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_PRIVATE_MESSAGES_AT);
 
