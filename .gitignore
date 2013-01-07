@@ -29,14 +29,12 @@ base
 /.composer
 /composer
 /plugins/sfGuardPlugin
-/lib/vendor/aws
-/lib/vendor/composer
-/lib/vendor/fzaninotto
-/lib/vendor/guzzle
-/lib/vendor/magnify
 /lib/vendor/neo4jphp
+/lib/vendor/faker
+/lib/vendor/monolog
 /lib/vendor/twig
-/lib/vendor/symfony
+/lib/vendor/magnify
+/lib/vendor/aws
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)

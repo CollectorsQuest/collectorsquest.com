@@ -14,7 +14,7 @@ $web = $_SERVER['DOCUMENT_ROOT'];
 if (in_array($type, array('image', 'video')))
 {
   // Include sfYaml from Symfony
-  include_once __DIR__ .'/../lib/vendor/symfony/symfony1/lib/yaml/sfYaml.php';
+  include_once __DIR__ .'/../lib/vendor/symfony/lib/yaml/sfYaml.php';
 
   $databases = sfYaml::load(__DIR__ .'/../config/databases.yml');
 
