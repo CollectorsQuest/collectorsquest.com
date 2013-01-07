@@ -61,3 +61,4 @@ base
 /config/vagrant/.vagrant
 /config/vagrant/platform
 /config/vagrant/id_rsa
+/oradiag_root
