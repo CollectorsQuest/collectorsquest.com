@@ -8,6 +8,10 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
     $this->setupContentCategoryField();
     $this->useFields(array('collection_collectible_list', 'content_category'));
 
+//    $this->validatorSchema->setPostValidator(
+//      new sfValidatorCallback(array('callback' => array($this, 'validatePhoto')))
+//    );
+
     $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
   }
 
@@ -77,7 +81,16 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
         ? $this->getObject()->getContentCategory()->getPath()
         : 'No category selected'
     );
+  }
 
+  public function validatePhoto($validator, $values)
+  {
+    if (!$this->getObject()->getPrimaryImage())
+    {
+      throw new sfValidatorError($validator, 'Photo is required');
+     }
+
+    return $values;
   }
 
 }

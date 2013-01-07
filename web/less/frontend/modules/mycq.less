@@ -2416,37 +2416,81 @@ div.wpfaqask {
   }
 }
 
-#dropzone-wz1 {
-  width: 294px;
-  height: 294px;
-  font-size: 28px;
-  border: 2px dashed @red;
-  color: @red;
-  margin-bottom: 29px;
-  position: relative;
-  .alt-view-slot {
-    font-size: 100px;
-    text-align: center;
-    color: @red;
-    line-height: 1;
-    padding-top: 35px;
-    .info-text {
-      color: @red;
-      display: block;
-      font-size: 20px;
-      height: 100px;
-      left: 45px;
-      line-height: 22px;
-      position: absolute;
-      text-align: center;
-      text-transform: uppercase;
-      top: 160px;
-      width: 200px;
-    }
-  }
 
+#dropzone-wz1 {
+  .hide {display: none!important;}
+  .dropzone-inner {
+    .drop-help {
+      display: none;
+      width: 294px;
+
+      border: 2px dashed @red;
+      margin-bottom: 29px;
+      position: relative;
+      font-size: 28px;
+      height: 210px;
+      font-size: 100px;
+      text-align: center;
+      color: @red;
+      line-height: 1;
+      padding-top: 35px;
+      .info-text {
+        color: @red;
+        display: block;
+        font-size: 20px;
+        height: 100px;
+        left: 45px;
+        line-height: 22px;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: 160px;
+        width: 200px;
+      }
+
+    }
+    .image-view-slot {
+    }
+    &.in {
+      .drop-help {
+        display: block;
+      }
+      .image-view-slot {
+        display: none;
+      }
+    }
+    &.in-progress {
+      .drop-help {
+        display: none;
+      }
+      .image-view-slot {
+        display: none;
+      }
+    }
+
+  }
 }
 
+.collecton-wizard {
+  .tagedit-list {
+    width: 406px;
+  }
+  .chzn-choices {
+    width: 300px;
+  }
+}
+
+#files-wz1 {
+  width: 296px;
+  .template-upload {
+    canvas {
+      border: 2px dashed #0A82C2;
+    }
+  }
+  .bar {
+    height: 20px;
+  }
+}
 #dropzone-wz2 {
   border: 2px dashed #0A82C2;
   &.in {
@@ -2475,7 +2519,6 @@ div.wpfaqask {
       color: #FFFFFF;
       font-size: 40px;
       text-align: center;
-
     }
     .info-text {
       color: #125375;
@@ -2496,25 +2539,25 @@ div.wpfaqask {
         display: block;
       }
     }
-  .error {
-    color: @red;
-    padding: 2px;
-    text-align: center;
-    font-size: 12px;
-    line-height: 14px;
-  }
+    .error {
+      color: @red;
+      padding: 2px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 14px;
+    }
   }
 
-    button {
-      border: none;
-    }
-    position: relative;
-    .preview {
-      height: 92px;
-      width: 92px;
-      overflow: hidden;
-    }
-    .cancel {}
+  button {
+    border: none;
+  }
+  position: relative;
+  .preview {
+    height: 92px;
+    width: 92px;
+    overflow: hidden;
+  }
+  .cancel {}
   .progress {
     position: absolute;
     left: 8px;
@@ -2523,8 +2566,6 @@ div.wpfaqask {
     width: 76px;
     max-height: 10px;
   }
-
-
 }
 #fileupload-wz2 {
   margin-left: -90px;
