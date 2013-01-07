@@ -1,0 +1,39 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Dear {{ collector.displayName }},
+</p>
+
+<p>
+  Once again, we thank you for joining your fellow comrades in collecting here at Collectors Quest!
+  We see that you haven’t really done much since you’ve signed up a week ago, but we’d love to hear more from you!
+  We’re not creepy - we just notice these things. Through your window with a pair of binoculars.
+</p>
+
+<p>
+  <a href="http://www.collectorsquest.com/collector/{{ collector.id }}/{{ collector.slug }}">
+    {{ collector_image | raw }}
+  </a>
+
+  <strong>Try uploading one of your favorite collections</strong> to our Community and get feedback from your fellow collectors.
+  Discover treasures and missing items to add to your collection.
+  Someone out there has that holy grail that you just can’t live without.
+</p>
+
+<div style="clear:both"></div>
+
+<p>
+  {{ image_tag('emails/autoresponders_mysterious_object.jpg', {border: 0, width: 83, height: 75, align: 'left', absolute: true }) }}
+  Maybe one of our collectors can help you identify that mysterious thing you picked up at last weekend’s flea market.
+  You can also lend your expert knowledge to a worldwide audience. Become a collexpert.
+  We just made that word up, but we’re sticking with it.
+</p>
+
+<div style="clear:both"></div>
+
+<p>
+  Come back and check us out. We’re constantly churning with new activity,
+  and you never know what your fellow collectors can help you discover!
+</p>
+{% endblock %}

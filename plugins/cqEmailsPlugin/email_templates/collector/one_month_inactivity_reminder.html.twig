@@ -1,0 +1,23 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Dear {{ collector.displayName }},
+</p>
+
+<p>
+  We here at Collectors Quest have come to a unanimous decision : we miss you! We want you back. We’ll treat you right.
+</p>
+
+<p>
+  Our community of collectors just feels incomplete without your fascinating collections and witty comments.
+  We fell in love with you for your brains, after all. Stop on by and <strong>upload a collection</strong>,
+  or <strong>talk about collecting</strong> with like-minded acquirers. If you need some help getting started,
+  <strong>check out our {{ link_to('FAQ', 'http://www.collectorsquest.com/pages/cq-faqs/general-questions/') }}</strong>,
+  or drop us a line!
+</p>
+
+<p>
+  Thanks again for being part of the Collectors Quest community!
+</p>
+{% endblock %}
