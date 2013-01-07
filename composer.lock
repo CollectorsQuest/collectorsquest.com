@@ -1,17 +1,6 @@
 {
-    "hash": "05dc942003a8dd4206c6c265b36db6a7",
+    "hash": "be618ef4327dbc2633493f400f708eaf",
     "packages": [
-        {
-            "name": "lib/vendor/aws",
-            "version": "2.0.3",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/aws/aws-sdk-php.git",
-                "reference": "f8e1d240d6550db528871cf8c92bf9f4a7c2a30f"
-            },
-            "type": "library",
-            "installation-source": "source"
-        },
         {
             "name": "lib/vendor/faker",
             "version": "master-dev",
