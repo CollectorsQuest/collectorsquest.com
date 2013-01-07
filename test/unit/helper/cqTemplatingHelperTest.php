@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../../bootstrap/unit.php');
 
-require_once(sfConfig::get('sf_symfony_lib_dir').'/../test/unit/sfContextMock.class.php');
+require_once(__DIR__.'/../../../lib/vendor/symfony/symfony1/test/unit/sfContextMock.class.php');
 require_once(__DIR__.'/../../../lib/vendor/symfony/symfony1/lib/helper/DateHelper.php');
 require_once(__DIR__.'/../../../lib/vendor/symfony/symfony1/lib/helper/I18NHelper.php');
 require_once(__DIR__.'/../../../lib/helper/cqTemplatingHelper.php');

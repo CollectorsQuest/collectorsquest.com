@@ -654,7 +654,7 @@ class ajaxAction extends cqAjaxAction
         return $this->renderPartial('global/loading', array(
             'url' => $this->generateUrl('mycq_collection_by_section', array(
                 'id' => $collection->getId(),
-                'section' => 'details',
+                'section' => 'collectibles',
             )),
         ));
       }
