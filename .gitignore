@@ -37,6 +37,7 @@ base
 /lib/vendor/neo4jphp
 /lib/vendor/twig
 /lib/vendor/symfony
+/lib/vendor/autoload.php
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)
