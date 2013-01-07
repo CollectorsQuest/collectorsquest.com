@@ -40,9 +40,9 @@ class batchAutorespondersMonthTask extends sfBaseTask
      */
     $q = CollectorQuery::create()
       ->filterByExtraPropertyWithDefault(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY, false, false)
-      ->filterByLastSeenAt(date('Ymd000000', strtotime('-30 days')), Criteria::GREATER_EQUAL)
+      ->filterByLastSeenAt(date('Ymd000000', strtotime('-31 days')), Criteria::GREATER_EQUAL)
       ->_and()
-      ->filterByLastSeenAt(date('Ymd000000', strtotime('-31 days')), Criteria::LESS_THAN)
+      ->filterByLastSeenAt(date('Ymd000000', strtotime('-30 days')), Criteria::LESS_THAN)
       ->limit($limit);
 
     /**
