@@ -83,6 +83,18 @@
                     "reference": "f946c9f572e98f286595cb2b024e6b13423b8610"
                 }
             }
+        },
+        "AWS": {
+            "type": "package",
+            "package": {
+                "name": "lib/vendor/aws",
+                "version": "2.0.3",
+                "source": {
+                    "url": "git://github.com/aws/aws-sdk-php.git",
+                    "type": "git",
+                    "reference": "f8e1d240d6550db528871cf8c92bf9f4a7c2a30f"
+                }
+            }
         }
     },
     "require": {
@@ -90,6 +102,7 @@
         "lib/vendor/neo4jphp": "0.1.0",
         "lib/vendor/faker": "master-dev",
         "lib/vendor/twig": "1.11.1",
-        "lib/vendor/magnify": "1.1"
+        "lib/vendor/magnify": "1.1",
+        "lib/vendor/aws": "2.0.*"
     }
 }
