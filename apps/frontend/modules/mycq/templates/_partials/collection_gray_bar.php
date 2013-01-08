@@ -14,8 +14,7 @@
           </a>
         </li>
         <li>
-          <a href="<?= url_for('@ajax_mycq?section=collectible&page=upload&collection_id='. $collection->getId()); ?>"
-             class="open-dialog" onclick="return false;">
+          <a href="<?= url_for('@mycq_collectible_create_wizard?collection_id='. $collection->getId()); ?>">
             <i class="icon icon-plus"></i>
             Add Item
           </a>
