@@ -5,6 +5,11 @@
         "vendor-dir": "lib/vendor",
         "bin-dir": "console/"
     },
+    "autoload": {
+      "psr-0": {
+        "Everyman\\Neo4j\\": "lib/vendor/neo4jphp/lib"
+      }
+    },
     "description": "CollectorsQuest composer file",
     "repositories": {
         "CollectorsQuest/sfGuardPlugin": {
