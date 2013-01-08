@@ -522,21 +522,29 @@ class ajaxAction extends cqAjaxAction
             $primary->delete();
           }
 
+          $output = array();
           if ($multimedia = $collectible->setThumbnail($file))
           {
             $multimedia->setName($file);
             $multimedia->save();
-          }
-          $collectible->save();
-          $output = array();
-          $output[] = array(
-            'thumbnail' => src_tag_multimedia($multimedia, '300x0'),
-            'name' => $multimedia->getName(),
-            'size' => $multimedia->getFileSize(),
-            'multimediaid' => $multimedia->getId(),
-            'type' => 'image/jpeg',
-          );
+            $collectible->save();
 
+            $output[] = array(
+              'thumbnail' => src_tag_multimedia($multimedia, '300x0'),
+              'name' => $multimedia->getName(),
+              'size' => $multimedia->getFileSize(),
+              'multimediaid' => $multimedia->getId(),
+              'type' => 'image/jpeg',
+            );
+
+            return $this->renderText(json_encode($output));
+          }
+          else
+          {
+            $output[] = array(
+              'error' => 'This multimedia already exists for this object'
+            );
+          }
           return $this->renderText(json_encode($output));
         }
 
@@ -566,9 +574,11 @@ class ajaxAction extends cqAjaxAction
             {
               if (preg_match('/multimedia_U_1/i', $e->getMessage()))
               {
-                return $this->error(
-                  'Multimedia Exists', 'This multimedia already exists for this object'
+                $output = array();
+                $output[] = array(
+                  'error' => 'This multimedia already exists for this object'
                 );
+                return $this->renderText(json_encode($output));
               }
 
               throw $e;
@@ -601,7 +611,6 @@ class ajaxAction extends cqAjaxAction
             return $this->renderText(json_encode($output));
 
           }
-
 
         }
 

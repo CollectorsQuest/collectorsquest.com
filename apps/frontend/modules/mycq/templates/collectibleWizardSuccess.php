@@ -222,7 +222,13 @@ else
 
               .bind('fileuploadcompleted', function (e, data)
               {
-                $('#files-wz1').html('').hide();
+                if ($('#files-wz1 .file-box .error').length == 0)
+                {
+                  $('#files-wz1').html('').hide();
+                }
+                {
+                  $('#files-wz1 .file-box').removeAttr('style');
+                }
               });
 
           // Enable iframe cross-domain access via redirect option:
@@ -253,7 +259,6 @@ else
   </div>
 
 
-
   <div class="accordion-group<?= $step == 2 ? ' active' : '' ?>">
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
@@ -263,7 +268,7 @@ else
         </span>
       </div>
     </div>
-    <div class="accordion-body collapse">
+    <div class="accordion-body collapse<?= $step == 2 ? ' in' : '' ?>">
       <div class="accordion-inner">
         <?php
         include_partial(
@@ -277,7 +282,6 @@ else
   </div>
 
 
-
   <div class="button-wrapper<?= $step != 2 ? ' hide' : '' ?>">
     <?= link_to('<i class="icon-caret-left f-16 text-v"></i>&nbsp; Previous Step', $sf_request->getUri() . '#',
     array('class' => 'btn pull-left wz-back', 'data-target' => 'wz-step1', 'data-current' => 'wz-step2')); ?>
@@ -286,7 +290,6 @@ else
       'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'wz-step2', 'data-next' => 'wz-step3'
     ));?>
   </div>
-
 
 
   <div class="accordion-group<?= $step == 3 ? ' active' : '' ?>">
@@ -298,8 +301,8 @@ else
         </span>
       </div>
     </div>
-    <div class="accordion-body collapse">
-      <div class="accordion-inner"  id="wz-step3">
+    <div class="accordion-body collapse<?= $step == 3 ? ' in' : '' ?>">
+      <div class="accordion-inner" id="wz-step3">
 
         <?php
         include_partial(
@@ -311,7 +314,6 @@ else
       </div>
     </div>
   </div>
-
 
 
   <div class="button-wrapper<?= $step != 3 ? ' hide' : '' ?>">
@@ -372,16 +374,15 @@ else
   </div>
 
 
-
-
-
-
-
-
 </div>
 <script>
   $(document).ready(function()
   {
+    <?php if ($step != 1): ?>
+      $('#dropzone-wz1 .ui-droppable').each(function(){
+        $(this).droppable('disable');
+      });
+    <?php endif; ?>
     $('.wz-next').click(function(e)
     {
       e.preventDefault();

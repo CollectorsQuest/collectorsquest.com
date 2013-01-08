@@ -1,10 +1,10 @@
 <?php
 
-class CollectibleWizardStep3Form extends CollectibleForm
+class CollectibleWizardStep3Form extends CollectibleUploadForm
 {
   public function configure()
   {
-    $this->useFields(array('name'));
+    parent::configure();
   }
 
 }
