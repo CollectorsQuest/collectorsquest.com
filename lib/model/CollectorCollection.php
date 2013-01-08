@@ -91,7 +91,7 @@ class CollectorCollection extends BaseCollectorCollection
     // check if the graph id is unique
     return !CollectorCollectionQuery::create()
       ->filterByGraphId($graph_id)
-      ->count()
+      ->count($con)
       ? $graph_id
       : null;
   }

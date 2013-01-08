@@ -433,7 +433,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     // check if the graph id is unique
     return !CollectorQuery::create()
       ->filterByGraphId($graph_id)
-      ->count()
+      ->count($con)
       ? $graph_id
       : null;
   }

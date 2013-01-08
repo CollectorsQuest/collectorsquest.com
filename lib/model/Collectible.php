@@ -90,7 +90,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     // check if the graph id is unique
     return !CollectibleQuery::create()
       ->filterByGraphId($graph_id)
-      ->count()
+      ->count($con)
       ? $graph_id
       : null;
   }
