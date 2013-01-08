@@ -354,7 +354,7 @@ class marketplaceComponents extends cqFrontendComponents
           break;
       }
 
-      $pager = new cqSphinxPager($query, array('collectibles'), 15);
+      $pager = new cqSphinxPager($query, array('collectibles'), 16);
       $pager->setJoinWith(array('collectible' => array('CollectibleForSale')));
     }
     else
@@ -362,6 +362,7 @@ class marketplaceComponents extends cqFrontendComponents
       /** @var $query FrontendCollectibleQuery */
       $query = FrontendCollectibleQuery::create()
         ->hasThumbnail()
+        ->filterByAverageRating(3, Criteria::GREATER_THAN)
         ->useCollectibleForSaleQuery()
           ->isForSale()
         ->endUse()
@@ -372,10 +373,34 @@ class marketplaceComponents extends cqFrontendComponents
         ->filterById($pks)
         ->joinWith('CollectibleForSale')
       ;
-      $query->orderByAverageRating(Criteria::DESC);
-      $query->orderByUpdatedAt(Criteria::DESC);
 
-      $pager = new cqPropelModelPager($query, 15);
+      $order_combination = $this->getUser()->getAttribute('marketplace_order_combination', null, 'marketplace');
+      if (!$order_combination || $p == 1)
+      {
+        $order_combination = rand(1, 4);
+        $this->getUser()->setAttribute('marketplace_order_combination', $order_combination, 'marketplace');
+      }
+
+      switch ($order_combination)
+      {
+        case 1:
+          $query->orderByAverageRating(Criteria::DESC);
+          break;
+        case 2:
+          $query->orderByCreatedAt(Criteria::DESC);
+          break;
+        case 3:
+          $query->orderByUpdatedAt(Criteria::DESC);
+          break;
+        case 4:
+          $query->addDescendingOrderByColumn(CollectibleForSalePeer::MARKED_FOR_SALE_AT);
+          break;
+        default:
+          $query->orderByAverageRating(Criteria::DESC);
+          $query->orderByUpdatedAt(Criteria::DESC);
+      }
+
+      $pager = new cqPropelModelPager($query, 16);
       $pager->setNbResults(count($pks));
     }
 
@@ -399,7 +424,7 @@ class marketplaceComponents extends cqFrontendComponents
       );
 
       // variable used for displaying holiday promo banner
-      $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
+      // $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
 
       return sfView::SUCCESS;
     }

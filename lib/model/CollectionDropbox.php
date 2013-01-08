@@ -25,7 +25,7 @@ class CollectionDropbox extends CollectorCollection
     return 0;
   }
 
-  public function getGraphId()
+  public function getGraphId($force = false, PropelPDO $con = null)
   {
     return null;
   }

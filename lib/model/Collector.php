@@ -105,9 +105,6 @@ require 'lib/model/om/BaseCollector.php';
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
-  /* @var null|integer */
-  private $_graph_id = null;
-
   /** @var array */
   public $_multimedia = array();
 
@@ -183,6 +180,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_OPT_OUT_DEFAULT);
     $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY,
       CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY_DEFAULT);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY,
+      CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY,
+      CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY_DEFAULT);
 
     $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_COMMENTS_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_PRIVATE_MESSAGES_AT);
@@ -379,44 +381,61 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return true;
   }
 
-  public function getGraphId()
+  /**
+   * @param     PropelPDO $con
+   * @return    integer|null
+   */
+  public function getGraphId(PropelPDO $con = null)
   {
-    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
+    // if not new object and no graph id set
+    if (!$this->isNew() && null === parent::getGraphId())
+    {
+      // try to create a new graph id for this object
+      $this->setGraphId($this->createGraphId($con));
+      $this->save($con);
+    }
 
-    if (!$this->isNew() && $graph_id === null)
+    return parent::getGraphId();
+  }
+
+  /**
+   * Tries to create a new Neo4j graph id for this object.
+   * Returns the graph id on success or null on failure.
+   *
+   * If a graph id already exists for this object it is returned directly
+   *
+   * @param     PropelPDO $con
+   * @return    integer|null
+   */
+  protected function createGraphId(PropelPDO $con = null)
+  {
+    if (null !== parent::getGraphId())
+    {
+      return parent::getGraphId();
+    }
+
+    // try to create a new graph id
+    try
     {
       $client = cqStatic::getNeo4jClient();
+      $node = $client->makeNode();
+      $node->setProperty('model', 'Collection');
+      $node->setProperty('model_id', $this->getId());
+      $node->save();
 
-      try
-      {
-        $node = $client->makeNode();
-        $node->setProperty('model', 'Collector');
-        $node->setProperty('model_id', $this->getId());
-        $node->save();
-
-        $graph_id = $node->getId();
-      }
-      catch(Everyman\Neo4j\Exception $e)
-      {
-        $this->_graph_id = null;
-      }
-
-      try
-      {
-        $this->setGraphId($this->_graph_id);
-        $this->save();
-      }
-      catch (PropelException $e)
-      {
-        $this->_graph_id = $graph_id;
-      }
+      $graph_id = $node->getId();
     }
-    else
+    catch(Everyman\Neo4j\Exception $e)
     {
-      $this->_graph_id = $graph_id;
+      return null;
     }
 
-    return $this->_graph_id;
+    // check if the graph id is unique
+    return !CollectorQuery::create()
+      ->filterByGraphId($graph_id)
+      ->count($con)
+      ? $graph_id
+      : null;
   }
 
   public function getCollectorId()

@@ -605,7 +605,7 @@ class cqSphinxPager extends sfPager
 
   public function getDidYouMean($keyword)
   {
-    $keyword = trim($keyword);
+    $keyword = str_replace(array('*', '/'), '', trim($keyword));
     $t = '__' . $keyword . '__';
 
     $trigrams = '';

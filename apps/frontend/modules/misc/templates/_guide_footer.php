@@ -11,10 +11,6 @@
       <p>
         You found it, now brag about it! Let other members see what's hiding in your closets,
         or create a digital archive so you don't buy the same thing twice!
-        <span class="yellowlight">
-          And see what other people are collecting in our
-          <strong >weekly newsletter</strong>!
-        </span>
       </p>
     </div>
 

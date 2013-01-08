@@ -8,8 +8,8 @@
 
 require __DIR__ .'/../config/bootstrap.php';
 
-require __DIR__ .'/../lib/vendor/symfony/lib/yaml/sfYaml.php';
-require __DIR__ .'/../lib/vendor/symfony/lib/util/sfToolkit.class.php';
+require __DIR__ .'/../lib/vendor/symfony/symfony1/lib/yaml/sfYaml.php';
+require __DIR__ .'/../lib/vendor/symfony/symfony1/lib/util/sfToolkit.class.php';
 
 require __DIR__ .'/../plugins/iceLibsPlugin/lib/IceStatic.class.php';
 require __DIR__ .'/../plugins/iceLibsPlugin/lib/IceFunctions.class.php';

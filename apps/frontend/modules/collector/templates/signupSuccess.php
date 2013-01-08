@@ -47,19 +47,9 @@ cq_page_title(
       </div>
     </fieldset>
 
-	<?php unset($form['newsletter']); ?>
     <?= form_tag('@collector_signup', array('class' => 'form-horizontal')) ?>
     <fieldset>
       <?= $form ?>
-      <div class="control-group ">
-      	<div class="row-fluid spacer-15" style="margin-left: 130px;">
-          <label class="checkbox">
-            <input type="checkbox" name="<?= $form->getName() ?>[newsletter]"
-                   id="<?= $form->getName() ?>_newsletter">
-            Sign me up for the Collectors Quest newsletter
-          </label>
-	      </div>
-	    </div>
       <div class="form-actions">
         <input type="submit" class="btn btn-primary" value="Sign Up" />
       </div>
@@ -67,5 +57,3 @@ cq_page_title(
     <?= '</form>' ?>
   </div>
 </div>
-
-
