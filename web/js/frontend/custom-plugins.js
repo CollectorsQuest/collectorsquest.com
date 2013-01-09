@@ -9,7 +9,7 @@
 jQuery.fn.collectionCollectiblesCarousel = function(options)
 {
   var defaults = {
-    limit: 2,
+    limit: 3,
     collection_id: 0,
     collectible_id: null,
     nextControl:'.right-arrow',
