@@ -347,7 +347,7 @@ function cq_custom_post_type_init()
     'query_var'       => false,
     'menu_position'   => 100,
     'taxonomies'      => array('post_tag'),
-    'supports'        => array('title', 'editor', 'tags', 'thumbnail')
+    'supports'        => array('title', 'editor', 'tags', 'thumbnail', 'author')
   ));
 }
 
