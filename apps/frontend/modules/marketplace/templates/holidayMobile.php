@@ -5,7 +5,7 @@
   <br/>
   <div id="items-for-sale">
     <div id="collectibles-holder" class="row thumbnails">
-      <?php include_component('marketplace', 'holidayCollectiblesForSale'); ?>
+      <?php include_component('marketplace', 'holidayCollectiblesForSaleMobile'); ?>
     </div>
   </div>
 </div>
