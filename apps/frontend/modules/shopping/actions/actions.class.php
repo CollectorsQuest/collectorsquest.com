@@ -87,6 +87,7 @@ class shoppingActions extends cqFrontendActions
           }
           catch (PropelException $e)
           {
+            $shopping_cart->reload(true);
             if (preg_match("/1062 Duplicate entry '(\d+)-(\d+)' for key 'PRIMARY'/i", $e->getMessage()))
             {
               $this->getUser()->setFlash(
