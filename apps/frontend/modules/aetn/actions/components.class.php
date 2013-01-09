@@ -118,7 +118,7 @@ class aetnComponents extends cqFrontendComponents
     /* @var $page integer */
     $page = (integer) $this->getRequestParameter('p', 1);
 
-    $pager = new PropelModelPager($q, 32);
+    $pager = new PropelModelPager($q, 27);
     $pager->setPage($page);
     $pager->init();
     $this->pager = $pager;
