@@ -13,7 +13,7 @@
   <?php $default_url = url_for_collectible($collectible_for_sale->getCollectible()); ?>
 
   <a href="<?= $url ?: $default_url ?>" <?= _tag_options($link_parameters ?: array('class' => 'target')); ?>>
-    <?= image_tag_collectible($collectible_for_sale->getCollectible(), '200x0'); ?>
+    <?= image_tag_collectible($collectible_for_sale->getCollectible(), '194x0'); ?>
   </a>
 
   <?php if ($collectible_for_sale->getIsSold()): ?>

@@ -2,7 +2,7 @@
 /* @var $pager cqPropelModelPager */
 ?>
 
-<div id="collectibles" class="row thumbnails" style="margin-left: 0;">
+<div id="collectibles" class="row thumbnails" style="margin-left: 12px;">
   <?php
     /* @var $collectible Collectible */
     /* @var $pager       PropelModelPager */
@@ -47,7 +47,7 @@
     $container.imagesLoaded(function() {
       $container.masonry({
         itemSelector : '.brick',
-        columnWidth : 202, gutterWidth: 16
+        columnWidth : 196, gutterWidth: 14
       });
     });
 
