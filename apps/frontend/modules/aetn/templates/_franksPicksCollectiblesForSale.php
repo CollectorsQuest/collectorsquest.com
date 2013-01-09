@@ -2,7 +2,7 @@
 /* @var $pager cqPropelModelPager */
 ?>
 
-<div id="collectibles" class="row thumbnails" style="margin-left: 0;">
+<div id="collectibles" class="row thumbnails mobile-image-padding" style="margin-left: 0;">
   <?php
     /* @var $collectible Collectible */
     /* @var $pager       PropelModelPager */
