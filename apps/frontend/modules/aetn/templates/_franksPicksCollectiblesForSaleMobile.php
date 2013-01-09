@@ -9,7 +9,7 @@
     foreach ($pager->getResults() as $i => $collectible)
     {
       include_partial(
-        'marketplace/collectible_for_sale_masonry_view_big',
+        'marketplace/collectible_for_sale_masonry_view_mobile',
         array(
           'collectible_for_sale' => $collectible->getCollectibleForSale(),
           'url' => url_for_collectible($collectible),
@@ -30,7 +30,7 @@
           'pager' => $pager,
           'options' => array(
             'id' => 'collectibles-pagination',
-            'url' => url_for('@ajax_aetn?section=component&page=franksPicksCollectiblesForSale'),
+            'url' => url_for('@ajax_aetn?section=component&page=franksPicksCollectiblesForSaleMobile'),
             'show_all' => true,
             'page_param' => 'p',
           )
@@ -47,7 +47,7 @@
     $container.imagesLoaded(function() {
       $container.masonry({
         itemSelector : '.brick',
-        columnWidth : 220, gutterWidth: 18
+        columnWidth : 202, gutterWidth: 16
       });
     });
 

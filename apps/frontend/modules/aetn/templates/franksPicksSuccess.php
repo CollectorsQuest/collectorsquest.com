@@ -34,5 +34,14 @@
 <?php cq_page_title("Frank's Picks"); ?>
 
 <div id="collectibles-holder" class="row thumbnails" style="margin-top: 10px;">
-  <?php include_component('aetn', 'franksPicksCollectiblesForSale'); ?>
+  <?php
+    if ($sf_request->isMobileLayout())
+    {
+      include_component('aetn', 'franksPicksCollectiblesForSaleMobile');
+    }
+    else
+    {
+      include_component('aetn', 'franksPicksCollectiblesForSale');
+    }
+  ?>
 </div>

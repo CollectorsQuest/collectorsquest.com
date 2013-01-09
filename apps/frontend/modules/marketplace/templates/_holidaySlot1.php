@@ -10,10 +10,6 @@
     <a class="icon-remove close-btn" title="close"></a>
   </div>
   <?php endif; ?>
-  <!--
-  <h1>Keep It<br>Classics</h1>
-  <h2>for the holidays</h2>
-  -->
 </div>
 
 <a name="market"></a>

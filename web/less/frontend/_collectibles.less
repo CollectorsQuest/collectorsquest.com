@@ -447,6 +447,96 @@
   }
 }
 
+.collectible_for_sale_grid_view_masonry_mobile {
+  position: relative;
+  width: 200px;
+  margin-left: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #fff;
+  .box-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+
+  > a {
+    display: block;
+    color: #afafaf;
+    text-decoration: none;
+  }
+
+  img {
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
+  }
+
+  .collectible-info {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    max-height: 0;
+    background-color: rgba(0,0,0,0.6);
+    .transition(max-height 0.55s ease-out);
+
+    > a {
+      display: block;
+      .size(100%, 90%);
+      padding: 10px 5%;
+    }
+
+    .target.zoom-zone {
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .open-modal.zoom-zone {
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+    span.price {
+      display: block;
+      margin-top: 3px;
+      font-size: 13px;
+      font-weight: normal;
+      color: #fff;
+    }
+  }
+
+  &:hover .collectible-info {
+    .transition(max-height 0.55s ease-out);
+    max-height: 140px;
+  }
+
+  .sold {
+    position: absolute;
+    z-index: 101;
+    top: 16px;
+    left: 0;
+    padding: 2px 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #57a957;
+  }
+}
+
+.collectible_for_sale_grid_view_masonry_mobile .collectible-info {
+  *filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#80000000', endColorstr = '#80000000', GradientType = 0);
+}
+
+
+.lt-ie9 .collectible_for_sale_grid_view_masonry_mobile,
+.lt-ie9 .collectible_for_sale_grid_view_square_mobile,
+{
+  .collectible-info {
+    display: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#80000000', endColorstr = '#80000000', GradientType = 0);
+  }
+  &:hover .collectible-info {
+    display: block;
+  }
+}
+
 .collectible_for_sale_grid_view_square {
   margin-bottom: 15px;
   margin-left: 13px;
