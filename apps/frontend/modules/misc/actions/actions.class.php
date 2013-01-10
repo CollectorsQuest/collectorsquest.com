@@ -294,4 +294,18 @@ class miscActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  /**
+   * @param  cqWebRequest  $request
+   * @return string
+   */
+  public function executeWordPressFeaturedWeeks(cqWebRequest $request)
+  {
+    /* @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterByPostStatus('publish')
+      ->filterByPostType('featured_week');
+
+    $this->featured_weeks = $q->find();
+  }
+
 }

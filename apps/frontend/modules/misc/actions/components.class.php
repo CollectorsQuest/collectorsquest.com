@@ -387,4 +387,9 @@ class miscComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeWordPressFeaturedWeeksSlot1()
+  {
+    return sfView::SUCCESS;
+  }
+
 }

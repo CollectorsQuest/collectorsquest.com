@@ -61,6 +61,7 @@ legacy_marketplace_category_by_slug:
 legacy_featured_week_page:
   url:  /featured-week/:slug
   param: { module: general, action: redirect, route: 'collections' }
+  requirements: { id: '\d{3}' }
 
 legacy_calendar_events:
   url:  /calendar/events/:string

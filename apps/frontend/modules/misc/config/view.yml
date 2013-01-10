@@ -40,3 +40,8 @@ wordPressFeaturedItemsNoSidebarSuccess:
     slot1: [misc, wordPressFeaturedItemsSlot1]
     breadcrumbs: []
     footer: []
+
+wordPressFeaturedWeeksSuccess:
+  components:
+    slot1: [misc, wordPressFeaturedWeeksSlot1]
+    breadcrumbs: []
