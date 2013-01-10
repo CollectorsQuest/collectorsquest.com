@@ -66,14 +66,6 @@ class cqFrontWebController extends sfFrontWebController
         );
         break;
 
-      case 'CollectorCollection':
-        /** @var $model_object CollectorCollection */
-        return array(
-          'sf_subject' => $model_object->getCollection(),
-          'sf_route' => 'collection_by_slug',
-        );
-        break;
-
       case 'ContentCategory':
         /** @var $model_object ContentCategory */
 
