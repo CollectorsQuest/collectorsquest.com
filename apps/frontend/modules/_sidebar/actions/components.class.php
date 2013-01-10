@@ -1174,7 +1174,8 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     $pager = new cqCollectionCollectiblesPager(
-      $collection, (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3)
+      $collection, (integer) $this->getVar('limit') ?:
+      (integer) $request->getParameter('limit', $request->isMobileLayout() ? 6 : 3)
     );
     $pager->setPage($this->getRequest()->getParameter('p', 1));
     $pager->setCollectibleId($collectible ? $collectible->getId() : $request->getParameter('collectible_id'));
