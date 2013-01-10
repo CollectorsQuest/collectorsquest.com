@@ -1,19 +1,16 @@
 <?php
 /* @var  $menu  array */
 /* @var  $show_holiday_adv  boolean */
+/* @var $sf_request cqWebRequest */
 ?>
 
 <div id="HolidayMarketHeader">
-  <?php if ($show_holiday_adv): ?>
+  <?php if ($show_holiday_adv && !$sf_request->isMobileLayout()): ?>
   <div class="holiday-marker-adv-dialog-below-menu" >
     <a href="<?php echo url_for('@seller_signup?ref=mp_banner'); ?>" class="link" title="Sell Your Stuff with Us"></a>
     <a class="icon-remove close-btn" title="close"></a>
   </div>
   <?php endif; ?>
-  <!--
-  <h1>Keep It<br>Classics</h1>
-  <h2>for the holidays</h2>
-  -->
 </div>
 
 <a name="market"></a>

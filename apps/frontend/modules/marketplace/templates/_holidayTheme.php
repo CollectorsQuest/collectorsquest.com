@@ -1,10 +1,11 @@
 <?php
 /* @var $pager PropelModelPager */
+/* @var $sf_request cqWebRequest */
 ?>
 
 <div id="holiday-market-theme" class="collectibles-for-sale-3x-big-wrapper">
   <div class="row">
-    <div class="row-content" style="margin-left: 24px;">
+    <div class="row-content" style="margin-left: <?= $sf_request->isMobileLayout() ? '12' : '24'; ?>px;">
 
       <?php if ($pager->getPage() === 1): ?>
         <?php if (!isset($wp_post)): ?>

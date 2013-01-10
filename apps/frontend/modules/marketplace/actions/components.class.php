@@ -432,4 +432,147 @@ class marketplaceComponents extends cqFrontendComponents
     return sfView::NONE;
   }
 
+  public function executeHolidayCollectiblesForSaleMobile()
+  {
+    $q = $this->getRequestParameter('q');
+    $p = $this->getRequestParameter('p', 1);
+    $s1 = $this->getRequestParameter('s1');
+    $s2 = $this->getRequestParameter('s2');
+
+    // Initialize the $pager
+    $pager = null;
+
+    if (!empty($q) || !empty($s1) || !empty($s2))
+    {
+      $query = array(
+        'q' => $q,
+        'filters' => array(
+          'has_thumbnail' => true,
+          'is_public' => true,
+          'uint1' => 1
+        ),
+        'sortby' => 'date',
+        'order' => 'desc'
+      );
+
+      if (!empty($s1) && ($content_category = ContentCategoryQuery::create()->findOneById((integer) $s1)))
+      {
+        $query['sortby'] = 'uint4';
+        $query['order']  = 'desc';
+        $query['filters']['uint3'] = array();
+
+        /* @var $descendants array|PropelObjectCollection */
+        if ($descendants = $content_category->getDescendants())
+        {
+          $query['filters']['uint3'] = array_values(
+            $descendants->toKeyValue('Id', 'Id')
+          );
+        }
+
+        // Add the level 1 category also
+        $query['filters']['uint3'][] = $content_category->getId();
+      }
+
+      switch ($s2)
+      {
+        case 'under-50':
+          $query['sortby'] = 'uint2';
+          $query['order']  = 'desc';
+          $query['filters']['uint2'] = array('max' => 4900);
+          break;
+        case '50-200':
+          $query['sortby'] = 'uint2';
+          $query['order']  = 'asc';
+          $query['filters']['uint2'] = array('min' => 5000, 'max' => 20000);
+          break;
+        case '200-500':
+          $query['sortby'] = 'uint2';
+          $query['order']  = 'asc';
+          $query['filters']['uint2'] = array('min' => 20000, 'max' => 50000);
+          break;
+        case 'over-500':
+          $query['sortby'] = 'uint2';
+          $query['order']  = 'asc';
+          $query['filters']['uint2'] = array('min' => 50100);
+          break;
+      }
+
+      $pager = new cqSphinxPager($query, array('collectibles'), 16);
+      $pager->setJoinWith(array('collectible' => array('CollectibleForSale')));
+    }
+    else
+    {
+      /** @var $query FrontendCollectibleQuery */
+      $query = FrontendCollectibleQuery::create()
+        ->hasThumbnail()
+        ->filterByAverageRating(3, Criteria::GREATER_THAN)
+        ->useCollectibleForSaleQuery()
+          ->isForSale()
+        ->endUse()
+        ->joinWith('CollectibleForSale');
+      $pks = $query->select('Id')->find()->getArrayCopy();
+
+      $query = CollectibleQuery::create()
+        ->filterById($pks)
+        ->joinWith('CollectibleForSale')
+      ;
+
+      $order_combination = $this->getUser()->getAttribute('marketplace_order_combination', null, 'marketplace');
+      if (!$order_combination || $p == 1)
+      {
+        $order_combination = rand(1, 4);
+        $this->getUser()->setAttribute('marketplace_order_combination', $order_combination, 'marketplace');
+      }
+
+      switch ($order_combination)
+      {
+        case 1:
+          $query->orderByAverageRating(Criteria::DESC);
+          break;
+        case 2:
+          $query->orderByCreatedAt(Criteria::DESC);
+          break;
+        case 3:
+          $query->orderByUpdatedAt(Criteria::DESC);
+          break;
+        case 4:
+          $query->addDescendingOrderByColumn(CollectibleForSalePeer::MARKED_FOR_SALE_AT);
+          break;
+        default:
+          $query->orderByAverageRating(Criteria::DESC);
+          $query->orderByUpdatedAt(Criteria::DESC);
+      }
+
+      $pager = new cqPropelModelPager($query, 15);
+      $pager->setNbResults(count($pks));
+    }
+
+    if ($pager)
+    {
+      $pager->setStrictMode(true);
+      $pager->setPage($p);
+      $pager->init();
+
+      // if we are trying to get an out of bounds page
+      if ($p > 1 && $p > $pager->getLastPage())
+      {
+        // return empty response
+        return sfView::NONE;
+      }
+
+      $this->pager = $pager;
+      $this->url = sprintf(
+        '@search_collectibles_for_sale?q=%s&s1=%s&s2&page=%d',
+        $q, $s1, $s2, $pager->getNextPage()
+      );
+
+      // variable used for displaying holiday promo banner
+      // $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
+
+      return sfView::SUCCESS;
+    }
+
+    return sfView::NONE;
+  }
+
 }

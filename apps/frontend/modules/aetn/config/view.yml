@@ -20,7 +20,6 @@ pickedOffSuccess:
     sidebar_300: [aetn, sidebarPickedOff]
 
 franksPicksSuccess:
-  stylesheets: [-frontend/responsive.css]
   javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
   components:
     footer: []
