@@ -2,18 +2,59 @@
 
 class CollectibleWizardStep1Form extends BaseCollectibleForm
 {
+
   public function configure()
   {
-    $this->setupCollectorCollectionsField();
-    $this->setupContentCategoryField();
-    $this->useFields(array('collection_collectible_list', 'content_category'));
+    $this->setupThumbnailField();
 
-//    $this->validatorSchema->setPostValidator(
-//      new sfValidatorCallback(array('callback' => array($this, 'validatePhoto')))
-//    );
+    $this->useFields(array('name', 'thumbnail'));
 
-    $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
+    $this->widgetSchema->setNameFormat('collectible_upload[%s]');
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
+
+  protected function setupThumbnailField()
+  {
+    $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile(
+      array('label' => 'Photo')
+    );
+    $this->validatorSchema['thumbnail'] = new cqValidatorFile(array(
+      'mime_types' => 'cq_supported_images', 'required' => true
+    ));
+
+    $this->getWidgetSchema()->setHelp(
+      'thumbnail', 'Choose a photo which represents your item.'
+    );
+  }
+
+
+
+
+
+
+
+
+
+//  public function configure()
+//  {
+//    $this->setupCollectorCollectionsField();
+//    $this->setupContentCategoryField();
+//    $this->useFields(array('collection_collectible_list', 'content_category'));
+//
+////    $this->validatorSchema->setPostValidator(
+////      new sfValidatorCallback(array('callback' => array($this, 'validatePhoto')))
+////    );
+//
+//    $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
+//  }
+
+
+
+
+
+
+
+
 
   protected function setupCollectorCollectionsField()
   {

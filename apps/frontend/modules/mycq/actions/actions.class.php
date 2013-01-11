@@ -750,15 +750,16 @@ class mycqActions extends cqFrontendActions
 
     $collectible = new Collectible();
     $collectible->setCollector($collector);
+    $this->form = new CollectibleWizardStep1Form();
+    $this->form = new CollectibleUploadForm();
 
-    $collectible->save();
     if ($collection_id = $request->getParameter('collection_id'))
     {
       //Should we check collection user id?
-      $collectible->setCollectionId((int) $collection_id);
+      //$collectible->setCollectionId((int) $collection_id);
     }
 
-    return $this->redirect('@mycq_collectible_wizard?id=' . $collectible->getId());
+    //return $this->redirect('@mycq_collectible_wizard?id=' . $collectible->getId());
 
   }
 

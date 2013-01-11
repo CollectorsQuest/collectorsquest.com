@@ -48,6 +48,11 @@ marketplaceSuccess:
     mycq_upload_photos: [mycq, uploadPhotos]
     mycq_dropbox: [mycq, dropbox]
 
+collectibleCreateWizardSuccess:
+  components:
+    mycq_upload_photos: [mycq, uploadPhotos]
+    mycq_dropbox: [mycq, dropbox]
+
 collectibleWizardSuccess:
   components:
     mycq_upload_photos: [mycq, uploadPhotos]
