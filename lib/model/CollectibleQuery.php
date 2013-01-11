@@ -28,12 +28,12 @@ class CollectibleQuery extends BaseCollectibleQuery
         Collectible.Id IN (
           SELECT tagging.taggable_id from (
             SELECT tag.id from tag WHERE tag.is_triple = 0 AND
-            (tag.slug %s (%s) OR CONVERT(tag.name USING latin1) %s (%s))
+            (tag.slug %s ('%s') OR CONVERT(tag.name USING latin1) %s ('%s'))
           ) res INNER JOIN tagging ON (res.id = tag_id AND taggable_model = 'Collectible')
         )
       ",
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', implode(',', $slugs),
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', implode(',', $tags)
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $slugs), "'"),
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $tags), "'")
     );
 
     return $this->where($where);
@@ -64,15 +64,15 @@ class CollectibleQuery extends BaseCollectibleQuery
               )
               FROM tagging INNER JOIN tag ON (
                 tag.id = tagging.tag_id AND tag.is_triple = 0 AND
-                (tag.slug %s (%s) OR CONVERT(tag.name USING latin1) %s (%s))
+                (tag.slug %s ('%s') OR CONVERT(tag.name USING latin1) %s ('%s'))
               )
               WHERE tagging.taggable_model = 'Collectible'
               GROUP BY tagging.taggable_model
           )
         )
       ",
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', implode(',', $slugs),
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', implode(',', $tags)
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $slugs), "'"),
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $tags), "'")
     );
 
     return $this->where($where);
