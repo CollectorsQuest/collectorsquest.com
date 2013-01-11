@@ -1190,6 +1190,11 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetMoreHistory()
   {
+    if ($this->getRequest()->isMobileLayout())
+    {
+       return sfView::NONE;
+    }
+
     return sfView::SUCCESS;
   }
 
