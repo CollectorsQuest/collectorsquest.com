@@ -2480,115 +2480,206 @@ div.wpfaqask {
   }
 }
 
+
 #dropzone-wz1 {
-  .thumbnails>li {
+  border: 2px solid blue;
+  width: 903px;
+  .thumbnails li {
+   // border: 1px solid red;
+    &:nth-child(2) {
+      padding-bottom: 0!important;
+    }
     position: relative;
-    display: block;
     width: 92px;
     height: 92px;
+    display: block;
     float: left;
-    .progress {
-      height: 10px;
-      left: 10px;
-      position: absolute;
-      top: 41px;
-      z-index: 1;
-      width: 74px;
+
+    .big {
+      display: none;
     }
     .thumbnail {
       .border-radius(0);
       .box-shadow(none);
-      width: 92px;
-      height: 92px;
-      border: none;
       padding: 0;
-      overflow: hidden;
-      background-color: #E6F2F9;
-      text-align: center;
-      .icon-plus {
-        color: white;
-        font-size: 40px;
-      }
-      .info-text {
-        font-size: 14px;
-        padding-top: 6px;
-        line-height: 18px;
-        display: none;
-        &.first {
-          display: block;
-        }
-      }
-    }
-    &#always-last {
-      .thumbnail {
+      border: none;
+      .preview.small {
         width: 92px;
         height: 92px;
-        .info-text {
-          display: block;
-          &.first {
-            display: none;
-          }
-        }
+        overflow: hidden;
       }
-      &:first-child {
-        .thumbnail {
-          width: 298px;
-          height: 294px;
-          .icon-plus {
-            color: white;
-            font-size: 100px;
-            padding: 30px 0 15px;
-          }
-          .info-text {
-            display: none;
-            &.first {
-              display: block;
-              margin: 0 auto;
-              width: 215px;
-            }
-          }
-        }
+    }
+    .progress{
+      height: 8px;
+      z-index: 2;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      margin: 0;
+      &.small {
+        width: 92px;
       }
     }
     &:first-child {
-      height: 294px;
-      width: 298px;
-      .thumbnail {
-        height: 294px;
-        width: 298px;
-      }
-      .progress {
-        height: 18px;
-        top: 135px;
-        width: 277px;
-      }
-    }
-    &.ui-state-highlight{
-      display: none;
-      &:first-child {
+      width: 300px;
+      height: auto;
+      .big {
         display: block;
       }
+      .small {
+        display: none;
+      }
+      .progress{
+        height: 14px;
+      }
     }
-    .icon-remove-sign {
-       top: -7px;
-       right: -14px;
-       left: auto;
-       z-index: 2;
-       bottom: auto;
-       position: absolute;
-       border: none;
-     }
-  }
 
-  form {
 
-    display: block;
-    float: right;
-    height: 182px;
-    width: 592px;
-    overflow: hidden;
-  }
+      .icon-remove-sign {
+         top: -7px;
+         right: -14px;
+         left: auto;
+         z-index: 2;
+         bottom: auto;
+         position: absolute;
+         border: none;
+        display:none;
+      }
+        &:hover {
+        .icon-remove-sign {
+          display: block;
+        }
+       }
+
+    &.ui-state-highlight{ //Show sortable placeholder only for main image
+          display: none;
+          &:first-child {
+            display: block;
+          }
+        }
+
 }
+  #form-box {
+  // border: 1px solid red;
+
+   display: block;
+   float: right;
+   height: 160px;
+   width: 592px;
+   overflow: hidden;
+ }
+}
+//#dropzone-wz1 {
+//  .thumbnails>li {
+//    border: 1px solid red;
+//    position: relative;
+//    display: block;
+//    width: 92px;
+//    height: 92px;
+//    float: left;
+//    .progress {
+//      height: 10px;
+//      left: 10px;
+//      position: absolute;
+//      top: 41px;
+//      z-index: 1;
+//      width: 74px;
+//    }
+//    .thumbnail {
+//      .border-radius(0);
+//      .box-shadow(none);
+//      width: 92px;
+//      height: 92px;
+//      border: none;
+//      padding: 0;
+//      overflow: hidden;
+//      background-color: #E6F2F9;
+//      text-align: center;
+//      .icon-plus {
+//        color: white;
+//        font-size: 40px;
+//      }
+//      .info-text {
+//        font-size: 14px;
+//        padding-top: 6px;
+//        line-height: 18px;
+//        display: none;
+//        &.first {
+//          display: block;
+//        }
+//      }
+//    }
+//    &#always-last {
+//      .thumbnail {
+//        width: 92px;
+//        height: 92px;
+//        .info-text {
+//          display: block;
+//          &.first {
+//            display: none;
+//          }
+//        }
+//      }
+//      &:first-child {
+//        .thumbnail {
+//          width: 300px;
+//          height: 300px;
+//          .icon-plus {
+//            color: white;
+//            font-size: 100px;
+//            padding: 30px 0 15px;
+//          }
+//          .info-text {
+//            display: none;
+//            &.first {
+//              display: block;
+//              margin: 0 auto;
+//              width: 215px;
+//            }
+//          }
+//        }
+//      }
+//    }
+//    &:first-child {
+//      height: 294px;
+//      width: 298px;
+//      .thumbnail {
+//        height: 294px;
+//        width: 298px;
+//      }
+//      .progress {
+//        height: 18px;
+//        top: 135px;
+//        width: 277px;
+//      }
+//    }
+//    &.ui-state-highlight{
+//      display: none;
+//      &:first-child {
+//        display: block;
+//      }
+//    }
+//    .icon-remove-sign {
+//       top: -7px;
+//       right: -14px;
+//       left: auto;
+//       z-index: 2;
+//       bottom: auto;
+//       position: absolute;
+//       border: none;
+//     }
+//  }
+//
+//  #form-box {
+//    border: 1px solid red;
+//    display: block;
+//    float: right;
+//    height: 182px;
+//    width: 592px;
+//    overflow: hidden;
+//  }
+//}
 
 
 //#files-wz1 {

@@ -90,12 +90,35 @@ class ajaxAction extends cqAjaxAction
             $multimedia->setName($name);
             $multimedia->save();
 
-            $output[] = array(
+            $result = array(
               'name' => $multimedia->getName(),
               'size' => $multimedia->getFileSize(),
+              'multimediaid' => $multimedia->getId(),
               'type' => 'image/jpeg',
-              'thumbnail' => src_tag_multimedia($multimedia, '19:15x60')
+              'donor' => $collectible->getId(),
             );
+            if ($formats = $request->getParameter('formats'))
+            {
+              // $names = $request->getParameter('format_name', array());
+
+              foreach ($formats as $key => $format)
+              {
+                $image_info = $multimedia->getImageInfo($format);
+                $result['thumbnails'][$key] = array(
+                  'src' => src_tag_multimedia($multimedia, $format),
+                  'width' => $image_info['width'],
+                  'height' => $image_info['height'],
+                );
+
+              }
+
+            }
+            else
+            {
+              $result['thumbnail'] = src_tag_multimedia($multimedia, '19:15x60');
+            }
+            $output = array();
+            $output[] = $result;
           }
           else
           {
@@ -512,107 +535,107 @@ class ajaxAction extends cqAjaxAction
 
         $this->loadHelpers('cqImages');
 
-        if ($request->getParameter('set-main') == '1')
-        {
-          $collectible = CollectibleQuery::create()->findOneById($values['collectible_id']);
-
-          // Get rid of the old primary Multimedia
-          if ($primary = $collectible->getPrimaryImage())
-          {
-            $primary->delete();
-          }
-
-          $output = array();
-          if ($multimedia = $collectible->setThumbnail($file))
-          {
-            $multimedia->setName($file);
-            $multimedia->save();
-            $collectible->save();
-
-            $output[] = array(
-              'thumbnail' => src_tag_multimedia($multimedia, '300x0'),
-              'name' => $multimedia->getName(),
-              'size' => $multimedia->getFileSize(),
-              'multimediaid' => $multimedia->getId(),
-              'type' => 'image/jpeg',
-            );
-
-            return $this->renderText(json_encode($output));
-          }
-          else
-          {
-            $output[] = array(
-              'error' => 'This multimedia already exists for this object'
-            );
-          }
-          return $this->renderText(json_encode($output));
-        }
-
-        if ($request->getParameter('set-alter') == '1')
-        {
-          $recipient = CollectibleQuery::create()->findOneById($values['collectible_id']);
-
-          $collectible = new Collectible();
-          $collectible->setCollector($collector);
-          $collectible->setName($file, true);
-          $collectible->setBatchHash($request->getParameter('batch', null));
-          $collectible->setIsPublic(false);
-          $collectible->save();
-
-          /** @var $image iceModelMultimedia */
-          if ($image = $collectible->setThumbnail($file))
-          {
-            try
-            {
-              $image->setIsPrimary(false);
-              $image->setModelId($recipient->getId());
-              $image->setSource($collectible->getId());
-              // $image->setCreatedAt(time());
-              $image->save();
-            }
-            catch (PropelException $e)
-            {
-              if (preg_match('/multimedia_U_1/i', $e->getMessage()))
-              {
-                $output = array();
-                $output[] = array(
-                  'error' => 'This multimedia already exists for this object'
-                );
-                return $this->renderText(json_encode($output));
-              }
-
-              throw $e;
-            }
-
-            $recipient->setUpdatedAt(time());
-            $recipient->save();
-
-            // auto-set collection thumbnail if none set yet
-            $collection = $recipient->getCollectorCollection();
-            if ($collection instanceof Collection && 1 == $collection->countCollectibles() && !$collection->hasThumbnail())
-            {
-              $collection->setPrimaryImage($recipient->getPrimaryImage()
-                ->getAbsolutePath('original'));
-              $collection->save();
-            }
-
-            // Archive the donor $collectible, not needed anymore
-            $collectible->delete();
-
-            $output = array();
-            $output[] = array(
-              'thumbnail' => src_tag_multimedia($image, '190x190'),
-              'name' => $image->getName(),
-              'size' => $image->getFileSize(),
-              'multimediaid' => $image->getId(),
-              'type' => 'image/jpeg',
-            );
-
-            return $this->renderText(json_encode($output));
-
-          }
-
-        }
+//        if ($request->getParameter('set-main') == '1')
+//        {
+//          $collectible = CollectibleQuery::create()->findOneById($values['collectible_id']);
+//
+//          // Get rid of the old primary Multimedia
+//          if ($primary = $collectible->getPrimaryImage())
+//          {
+//            $primary->delete();
+//          }
+//
+//          $output = array();
+//          if ($multimedia = $collectible->setThumbnail($file))
+//          {
+//            $multimedia->setName($file);
+//            $multimedia->save();
+//            $collectible->save();
+//
+//            $output[] = array(
+//              'thumbnail' => src_tag_multimedia($multimedia, '300x0'),
+//              'name' => $multimedia->getName(),
+//              'size' => $multimedia->getFileSize(),
+//              'multimediaid' => $multimedia->getId(),
+//              'type' => 'image/jpeg',
+//            );
+//
+//            return $this->renderText(json_encode($output));
+//          }
+//          else
+//          {
+//            $output[] = array(
+//              'error' => 'This multimedia already exists for this object'
+//            );
+//          }
+//          return $this->renderText(json_encode($output));
+//        }
+//
+//        if ($request->getParameter('set-alter') == '1')
+//        {
+//          $recipient = CollectibleQuery::create()->findOneById($values['collectible_id']);
+//
+//          $collectible = new Collectible();
+//          $collectible->setCollector($collector);
+//          $collectible->setName($file, true);
+//          $collectible->setBatchHash($request->getParameter('batch', null));
+//          $collectible->setIsPublic(false);
+//          $collectible->save();
+//
+//          /** @var $image iceModelMultimedia */
+//          if ($image = $collectible->setThumbnail($file))
+//          {
+//            try
+//            {
+//              $image->setIsPrimary(false);
+//              $image->setModelId($recipient->getId());
+//              $image->setSource($collectible->getId());
+//              // $image->setCreatedAt(time());
+//              $image->save();
+//            }
+//            catch (PropelException $e)
+//            {
+//              if (preg_match('/multimedia_U_1/i', $e->getMessage()))
+//              {
+//                $output = array();
+//                $output[] = array(
+//                  'error' => 'This multimedia already exists for this object'
+//                );
+//                return $this->renderText(json_encode($output));
+//              }
+//
+//              throw $e;
+//            }
+//
+//            $recipient->setUpdatedAt(time());
+//            $recipient->save();
+//
+//            // auto-set collection thumbnail if none set yet
+//            $collection = $recipient->getCollectorCollection();
+//            if ($collection instanceof Collection && 1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+//            {
+//              $collection->setPrimaryImage($recipient->getPrimaryImage()
+//                ->getAbsolutePath('original'));
+//              $collection->save();
+//            }
+//
+//            // Archive the donor $collectible, not needed anymore
+//            $collectible->delete();
+//
+//            $output = array();
+//            $output[] = array(
+//              'thumbnail' => src_tag_multimedia($image, '190x190'),
+//              'name' => $image->getName(),
+//              'size' => $image->getFileSize(),
+//              'multimediaid' => $image->getId(),
+//              'type' => 'image/jpeg',
+//            );
+//
+//            return $this->renderText(json_encode($output));
+//
+//          }
+//
+//        }
 
         try
         {
@@ -656,19 +679,39 @@ class ajaxAction extends cqAjaxAction
         $this->getUser()->setMycqDropboxOpenState(true);
 
         $output = array();
-        $output[] = array(
+        $result = array(
           'name' => $multimedia->getName(),
           'size' => $multimedia->getFileSize(),
           'type' => 'image/jpeg',
           'donor' => $collectible->getId(),
-          'thumbnail' => src_tag_multimedia($multimedia, '19:15x60'),
-          'redirect' => $this->generateUrl('ajax_mycq', array(
+          );
+        if ($formats = $request->getParameter('formats'))
+        {
+         // $names = $request->getParameter('format_name', array());
+
+          foreach ($formats as $key => $format)
+          {
+            $image_info = $multimedia->getImageInfo($format);
+            $result['thumbnails'][$key] = array(
+              'src' => src_tag_multimedia($multimedia, $format),
+              'width' => $image_info['width'],
+              'height' => $image_info['height'],
+            );
+
+          }
+
+        }
+        else
+        {
+          $result['thumbnail'] = src_tag_multimedia($multimedia, '19:15x60');
+          $result['redirect'] = $this->generateUrl('ajax_mycq', array(
             'section' => $model,
             'page' => 'create',
             'collectible_id' => $collectible->getId(),
             'collection_id' => $this->collection_id
-          ))
-        );
+          ));
+        }
+        $output[] = $result;
 
         return $this->renderText(json_encode($output));
       }
