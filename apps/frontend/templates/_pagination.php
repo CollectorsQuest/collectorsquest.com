@@ -55,7 +55,7 @@ $linkPrev = $linkNext = false;
       <li class="active"><a href="javascript:void(0);"><?= $page ?></a></li>
       <?php endif; ?>
     <?php endforeach; ?>
-    <?php if ($pager->getLastPage() > $page): ?>
+    <?php if (false && $pager->getLastPage() > $page): ?>
     <li class="disabled"><a href="javascript:void(0);"> ... </a></li>
     <li>
       <?php
