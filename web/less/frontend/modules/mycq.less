@@ -2480,12 +2480,32 @@ div.wpfaqask {
   }
 }
 
+#fileupload-wz1 {
+  border: 2px dashed white;
+  margin: 0 0 0 -5px;
+  padding: 5px 0 0 5px;
+  width: 908px;
+  &.in {
+    border: 2px dashed @red;
+  }
+}
 
 #dropzone-wz1 {
-  border: 2px solid blue;
   width: 903px;
+
   .thumbnails li {
-   // border: 1px solid red;
+    .error{
+      border: 1px solid red;
+      background-color: #ffd4d4;
+    }
+    .error {
+      color: @red;
+      text-align: center;
+      font-size: 10px;
+      padding: 3px;
+      max-height: 82px;
+      overflow: hidden;
+    }
     &:nth-child(2) {
       padding-bottom: 0!important;
     }
@@ -2499,6 +2519,7 @@ div.wpfaqask {
       display: none;
     }
     .thumbnail {
+      .transition(none);
       .border-radius(0);
       .box-shadow(none);
       padding: 0;
@@ -2510,6 +2531,7 @@ div.wpfaqask {
       }
     }
     .progress{
+      .border-radius(0);
       height: 8px;
       z-index: 2;
       top: auto;
@@ -2533,169 +2555,86 @@ div.wpfaqask {
       .progress{
         height: 14px;
       }
+      .error{
+        font-size: 14px;
+        padding: 10px;
+        max-height: 200px;
+      }
     }
 
 
+    .icon-remove-sign {
+      top: -7px;
+      right: -14px;
+      left: auto;
+      z-index: 2;
+      bottom: auto;
+      position: absolute;
+      border: none;
+      display:none;
+    }
+    &:hover {
       .icon-remove-sign {
-         top: -7px;
-         right: -14px;
-         left: auto;
-         z-index: 2;
-         bottom: auto;
-         position: absolute;
-         border: none;
-        display:none;
+        display: block;
       }
-        &:hover {
-        .icon-remove-sign {
-          display: block;
-        }
-       }
+    }
 
     &.ui-state-highlight{ //Show sortable placeholder only for main image
-          display: none;
-          &:first-child {
-            display: block;
+      display: none;
+      &:first-child {
+        display: block;
+      }
+    }
+
+    &#always-last {
+      .thumbnail {
+        border: 2px dashed #0A82C2;
+        background-color: #E6F2F9;
+        margin: 0!important;
+        text-align: center;
+        width: 88px;
+        height: 88px;
+        .icon-plus {
+          color: white;
+          font-size: 40px;
+          padding-top: 6px;
+        }
+        .info-text {
+          font-size: 14px;
+          padding-top: 6px;
+          line-height: 18px;
+        }
+      }
+      &:first-child {
+        .thumbnail {
+          width: 296px;
+          height: 296px;
+          .icon-plus {
+            color: white;
+            font-size: 100px;
+            padding: 30px 0 15px;
+          }
+          .info-text {
+            margin: 0 auto;
+            width: 215px;
+
           }
         }
+      }
+    }
 
-}
+  }
   #form-box {
-  // border: 1px solid red;
-
-   display: block;
-   float: right;
-   height: 160px;
-   width: 592px;
-   overflow: hidden;
- }
+    display: block;
+    float: right;
+    width: 592px;
+    overflow: hidden;
+    .spacer {
+      margin: 0; padding: 0;
+    }
+  }
 }
-//#dropzone-wz1 {
-//  .thumbnails>li {
-//    border: 1px solid red;
-//    position: relative;
-//    display: block;
-//    width: 92px;
-//    height: 92px;
-//    float: left;
-//    .progress {
-//      height: 10px;
-//      left: 10px;
-//      position: absolute;
-//      top: 41px;
-//      z-index: 1;
-//      width: 74px;
-//    }
-//    .thumbnail {
-//      .border-radius(0);
-//      .box-shadow(none);
-//      width: 92px;
-//      height: 92px;
-//      border: none;
-//      padding: 0;
-//      overflow: hidden;
-//      background-color: #E6F2F9;
-//      text-align: center;
-//      .icon-plus {
-//        color: white;
-//        font-size: 40px;
-//      }
-//      .info-text {
-//        font-size: 14px;
-//        padding-top: 6px;
-//        line-height: 18px;
-//        display: none;
-//        &.first {
-//          display: block;
-//        }
-//      }
-//    }
-//    &#always-last {
-//      .thumbnail {
-//        width: 92px;
-//        height: 92px;
-//        .info-text {
-//          display: block;
-//          &.first {
-//            display: none;
-//          }
-//        }
-//      }
-//      &:first-child {
-//        .thumbnail {
-//          width: 300px;
-//          height: 300px;
-//          .icon-plus {
-//            color: white;
-//            font-size: 100px;
-//            padding: 30px 0 15px;
-//          }
-//          .info-text {
-//            display: none;
-//            &.first {
-//              display: block;
-//              margin: 0 auto;
-//              width: 215px;
-//            }
-//          }
-//        }
-//      }
-//    }
-//    &:first-child {
-//      height: 294px;
-//      width: 298px;
-//      .thumbnail {
-//        height: 294px;
-//        width: 298px;
-//      }
-//      .progress {
-//        height: 18px;
-//        top: 135px;
-//        width: 277px;
-//      }
-//    }
-//    &.ui-state-highlight{
-//      display: none;
-//      &:first-child {
-//        display: block;
-//      }
-//    }
-//    .icon-remove-sign {
-//       top: -7px;
-//       right: -14px;
-//       left: auto;
-//       z-index: 2;
-//       bottom: auto;
-//       position: absolute;
-//       border: none;
-//     }
-//  }
-//
-//  #form-box {
-//    border: 1px solid red;
-//    display: block;
-//    float: right;
-//    height: 182px;
-//    width: 592px;
-//    overflow: hidden;
-//  }
-//}
 
-
-//#files-wz1 {
-//  width: 296px;
-//  .template-upload {
-//    canvas {
-//      border: 2px dashed #0A82C2;
-//    }
-//  }
-//  .bar {
-//    height: 20px;
-//  }
-//  .error {
-//    color: @red;
-//  }
-//}
 #dropzone-wz2 {
   border: 2px dashed #0A82C2;
   &.in {
