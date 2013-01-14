@@ -32,8 +32,8 @@ class CollectibleQuery extends BaseCollectibleQuery
           ) res INNER JOIN tagging ON (res.id = tag_id AND taggable_model = 'Collectible')
         )
       ",
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $slugs), "'"),
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $tags), "'")
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $slugs), "',"),
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $tags), "',")
     );
 
     return $this->where($where);
@@ -71,8 +71,8 @@ class CollectibleQuery extends BaseCollectibleQuery
           )
         )
       ",
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $slugs), "'"),
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $tags), "'")
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $slugs), "',"),
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $tags), "',")
     );
 
     return $this->where($where);
