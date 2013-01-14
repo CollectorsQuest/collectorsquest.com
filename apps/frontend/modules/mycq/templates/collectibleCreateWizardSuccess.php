@@ -22,13 +22,7 @@
     </div>
     <div class="accordion-body collapse<?= $step == 1 ? ' in' : '' ?>">
       <div class="accordion-inner">
-        <?php
-        include_partial(
-          'mycq/partials/collectible_wizard_st1',
-          array('form' => $form)
-        );
-        ?>
-
+        <?php include_partial('mycq/partials/collectible_wizard_st1', array('form' => $form)); ?>
       </div>
     </div>
   </div>
@@ -40,6 +34,12 @@
     ));?>
   </div>
 
+  <div class="button-wrapper">
+    <?= link_to('Next Step &nbsp;<i class="icon-caret-right f-16 text-v"></i>', $sf_request->getUri() . '#',
+    array(
+      'class' => 'btn btn-primary pull-right', 'onclick' => "$('#fileupload-wz1').submit(); return false;"
+    ));?>
+  </div>
 
   <div class="accordion-group<?= $step == 2 ? ' active' : '' ?>">
     <div class="accordion-heading">
@@ -50,7 +50,7 @@
         </span>
       </div>
     </div>
-    <div class="accordion-body collapse<?= $step == 2 ? ' in' : '' ?>">
+    <div class="accordion-body collapse">
       <div class="accordion-inner">
 
       </div>
@@ -60,7 +60,7 @@
 
 
 
-  <div class="accordion-group<?= $step == 3 ? ' active' : '' ?>">
+  <div class="accordion-group">
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
         Step #3
@@ -69,7 +69,7 @@
         </span>
       </div>
     </div>
-    <div class="accordion-body collapse<?= $step == 3 ? ' in' : '' ?>">
+    <div class="accordion-body collapse">
       <div class="accordion-inner" id="wz-step3">
 
 
