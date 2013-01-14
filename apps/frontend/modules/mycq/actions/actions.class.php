@@ -750,16 +750,19 @@ class mycqActions extends cqFrontendActions
 
     $collectible = new Collectible();
     $collectible->setCollector($collector);
-    $this->form = new CollectibleWizardStep1Form();
-    $this->form = new CollectibleUploadForm();
 
-    if ($collection_id = $request->getParameter('collection_id'))
+    $this->form = new CollectibleWizardStep1Form($collectible);
+
+    if ($request->isMethod(sfRequest::POST))
     {
-      //Should we check collection user id?
-      //$collectible->setCollectionId((int) $collection_id);
+      $this->form->bind($request->getParameter($this->form->getName()));
+      if ($this->form->isValid())
+      {
+        $collectible = $this->form->save();
+        $this->redirect('@mycq_collectible_wizard?id=' . $collectible->getId());
+      }
     }
 
-    //return $this->redirect('@mycq_collectible_wizard?id=' . $collectible->getId());
 
   }
 
@@ -792,15 +795,15 @@ class mycqActions extends cqFrontendActions
 
     $this->collectible = $collectible;
 
-    $this->step = 1;
-    if ($collectible->getPrimaryImage())
-    {
-      $this->step = 2;
-    }
-    if ($collectible->getName())
-    {
-      $this->step = 3;
-    }
+    $this->step = 2;
+//    if ($collectible->getPrimaryImage())
+//    {
+//      $this->step = 2;
+//    }
+//    if ($collectible->getName())
+//    {
+//      $this->step = 3;
+//    }
 
   }
 
