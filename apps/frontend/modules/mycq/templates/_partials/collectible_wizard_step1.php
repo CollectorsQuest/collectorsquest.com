@@ -1,8 +1,5 @@
 <?php
-/**
- * @var $form CollectibleWizardStep1Form
- */
-
+/* @var $form CollectibleWizardStep1Form */
 ?>
 
 <form action="<?= url_for($form->getObject()->isNew() ? '@mycq_collectible_create_wizard' :
@@ -29,7 +26,7 @@
     </div>
 
     <ul class="thumbnails" id="files-wz1">
-      <?php foreach($form->getMultimedia() as $mm): ?>
+      <?php foreach ($form->getMultimedia() as $mm): ?>
       <li class="template-download in">
         <?php
         if ($mm instanceof iceModelMultimedia)
@@ -178,7 +175,7 @@ $(document).ready(function()
         minWidth: options.previewMaxWidth,
         // maxHeight: options.previewMaxHeight,
         canvas: options.previewAsCanvas
-      }
+      };
       if (size == 'small')
       {
         popt.maxWidth =  120;
@@ -252,7 +249,7 @@ $(document).ready(function()
    */
   var initDropbox = function()
   {
-    $("#dropzone-wz1 #always-last .thumbnail").droppable(
+    $('.thumbnail', '#always-last').droppable(
         {
           accept: ".draggable",
           over: function(event, ui)
@@ -299,7 +296,7 @@ $(document).ready(function()
             fix_main_image();
           }
         });
-  }
+  };
   initDropbox();
 
   /**
@@ -318,7 +315,7 @@ $(document).ready(function()
     {
       window.fixMainImageTimeout = null;
 
-      if ($('#files-wz1 li:not(.template-upload)').length >= 3)
+      if ($('li:not(.template-upload)', '#files-wz1').length >= 3)
       {
         $('.althelp').addClass('in');
       }
@@ -328,23 +325,24 @@ $(document).ready(function()
       }
 
       var $last = $('#always-last').clone();
+
       $('#always-last')
           .removeClass('ui-droppable')
           .remove();
       $last.appendTo($('#files-wz1'));
       initDropbox();
 
-      var form_box_h = $('#form-box .box').outerHeight();
+      var form_box_h = $('.box', '#form-box').outerHeight();
       var padding = 18;
       var small_image_h = 92 + padding;
 
-      var $form_box = $('#form-box .spacer');
+      var $form_box = $('.spacer', '#form-box');
       //reset styles
-      $('#files-wz1 li').each(function(){
+      $('li', '#files-wz1').each(function() {
         $(this).removeAttr('style');
-      })
+      });
 
-      var $main_image =  $('#files-wz1 li:first-child');
+      var $main_image =  $('li:first-child', '#files-wz1');
       if ($main_image.find('.error').length != 0)
       {
         //We have upload error message
@@ -360,7 +358,7 @@ $(document).ready(function()
             fix_main_image();
           });
         }
-        if ($('#files-wz1 li').length == 1)
+        if ($('li', '#files-wz1').length == 1)
         {
           h = 300;
         }
@@ -386,23 +384,25 @@ $(document).ready(function()
   };
   fix_main_image();
 
-  $('#files-wz1').sortable({
+  var $files = $('#files-wz1');
+
+  $files.sortable({
     cursor: "move",
     placeholder: "ui-state-highlight",
     items: "li:not(#always-last, .template-upload)",
     cancel: "li:first-child",
     //     helper: "clone",
     start: function( event, ui ) {
-      $(this).data('main_image_h', $('#files-wz1 li.in:first').height());
+      $(this).data('main_image_h', $('li.in:first', '#files-wz1').height());
     },
     over: function( event, ui ) {
       //Set size for main image placeholder
-      var h = $(this).data('main_image_h')
-      if (h < $('#form-box .box').outerHeight())
+      var h = $(this).data('main_image_h');
+      if (h < $('.box', '#form-box').outerHeight())
       {
-        h = $('#form-box .box').outerHeight() - 18;
+        h = $('.box', '#form-box').outerHeight() - 18;
       }
-      $('#files-wz1 .ui-state-highlight').css({"height": (h - 2) + 'px', 'width': '298px'});
+      $('.ui-state-highlight', '#files-wz1').css({"height": (h - 2) + 'px', 'width': '298px'});
 
 
     },
@@ -412,14 +412,13 @@ $(document).ready(function()
 
       if (!$(this).data('save'))
       {
-        $(this).sortable( "cancel" );
+        $(this).sortable("cancel");
       }
       fix_main_image();
     },
     sort: function( event, ui ) {
       //Set flag to save or cancel sorting
-      $(this).data('save',$('#files-wz1 li').first().hasClass('ui-state-highlight'));
-
+      $(this).data('save', $('li', '#files-wz1').first().hasClass('ui-state-highlight'));
     }
   });
 
@@ -440,17 +439,19 @@ $(document).ready(function()
   });
 
   // Initialize the jQuery File Upload widget:
-  $('#fileupload-wz1').fileupload({
+  var $fileupload = $('#fileupload-wz1');
+
+  $fileupload.fileupload({
     url: '<?= url_for('@ajax_mycq?section=collectibles&page=upload'); ?>'
   });
-  $('#fileupload-wz1').fileupload('option', 'autoUpload', true);
-  $('#fileupload-wz1').fileupload('option', 'dropZone', $('#dropzone-wz1'));
-  $('#fileupload-wz1').fileupload('option', 'filesContainer', $('#files-wz1'));
-  $('#fileupload-wz1').fileupload('option', 'uploadTemplateId', 'template-upload-wz1');
-  $('#fileupload-wz1').fileupload('option', 'downloadTemplateId', 'template-download-wz1');
-  $('#fileupload-wz1').fileupload('option', 'previewMaxWidth', 300);
-  $('#fileupload-wz1').fileupload('option', 'previewMinWidth', 300);
-  $('#fileupload-wz1')
+  $fileupload.fileupload('option', 'autoUpload', true);
+  $fileupload.fileupload('option', 'dropZone', $('#dropzone-wz1'));
+  $fileupload.fileupload('option', 'filesContainer', $files);
+  $fileupload.fileupload('option', 'uploadTemplateId', 'template-upload-wz1');
+  $fileupload.fileupload('option', 'downloadTemplateId', 'template-download-wz1');
+  $fileupload.fileupload('option', 'previewMaxWidth', 300);
+  $fileupload.fileupload('option', 'previewMinWidth', 300);
+  $fileupload
       .bind('fileuploadadd', function (e, data)
       {
         fix_main_image();
@@ -465,24 +466,24 @@ $(document).ready(function()
       });
 
   // Enable iframe cross-domain access via redirect option:
-  $('#fileupload-wz1').fileupload(
+  $fileupload.fileupload(
       'option', 'redirect',
       window.location.href.replace(
           /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
       )
   );
 
-  $('#fileupload-wz1').fileupload('option', {
+  $fileupload.fileupload('option', {
     maxFileSize: <?= cqStatic::getPHPMaxUploadFileSize() // php file upload limit ?>,
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
   });
 
-  $('#dropzone-wz1 button.icon-remove-sign').live('click', function()
+  $('button.icon-remove-sign', '#dropzone-wz1').live('click', function()
   {
     console.log(11);
     fix_main_image();
   });
-  $('#dropzone-wz1 .template-download i.icon-remove-sign').live('click', function()
+  $('.template-download i.icon-remove-sign', '#dropzone-wz1').live('click', function()
   {
     var $icon = $(this);
 

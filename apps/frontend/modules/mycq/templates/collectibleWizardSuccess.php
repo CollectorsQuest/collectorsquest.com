@@ -33,7 +33,7 @@ else
     </div>
     <div class="accordion-body collapse<?= $step == 1 ? ' in' : '' ?>">
       <div class="accordion-inner">
-        <?php include_partial('mycq/partials/collectible_wizard_st1', array('form' => $step1)); ?>
+        <?php include_partial('mycq/partials/collectible_wizard_step1', array('form' => $step1)); ?>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@ else
     </div>
     <div class="accordion-body collapse<?= $step == 2 ? ' in' : '' ?>">
       <div class="accordion-inner">
-        <?php include_partial('mycq/partials/collectible_wizard_st2', array('form' => $step2));?>
+        <?php include_partial('mycq/partials/collectible_wizard_step2', array('form' => $step2));?>
       </div>
     </div>
   </div>
@@ -71,41 +71,6 @@ else
       'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'wz-step2', 'data-next' => 'wz-step4'
     ));?>
   </div>
-
-<? /*
-  <div class="accordion-group<?= $step == 3 ? ' active' : '' ?>">
-    <div class="accordion-heading">
-      <div class="accordion-toggle Chivo webfont">
-        Step #3
-        <span class="description">
-          Alternative Images
-        </span>
-      </div>
-    </div>
-    <div class="accordion-body collapse<?= $step == 3 ? ' in' : '' ?>">
-      <div class="accordion-inner" id="wz-step3">
-
-        <?php
-        include_partial(
-          'mycq/partials/collectible_wizard_st3',
-          array('form' => $step3, 'collectible' => $collectible)
-        );
-        ?>
-
-      </div>
-    </div>
-  </div>
-
-
-  <div class="button-wrapper<?= $step != 3 ? ' hide' : '' ?>">
-    <?= link_to('<i class="icon-caret-left f-16 text-v"></i>&nbsp; Previous Step', $sf_request->getUri() . '#',
-    array('class' => 'btn pull-left wz-back', 'data-target' => 'wz-step2', 'data-current' => 'wz-step3')); ?>
-    <?= link_to('Next Step &nbsp;<i class="icon-caret-right f-16 text-v"></i>', $sf_request->getUri() . '#',
-    array(
-      'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'wz-step3', 'data-next' => 'wz-step4'
-    ));?>
-  </div>
-*/ ?>
 
   <div class="accordion-group">
     <div class="accordion-heading">

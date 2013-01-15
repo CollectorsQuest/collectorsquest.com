@@ -16,13 +16,13 @@
       <div class="accordion-toggle Chivo webfont">
         Step #1
         <span class="description">
-          Categorization
+          Name & Photos
         </span>
       </div>
     </div>
     <div class="accordion-body collapse<?= $step == 1 ? ' in' : '' ?>">
       <div class="accordion-inner">
-        <?php include_partial('mycq/partials/collectible_wizard_st1', array('form' => $form)); ?>
+        <?php include_partial('mycq/partials/collectible_wizard_step1', array('form' => $form)); ?>
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@
       <div class="accordion-toggle Chivo webfont">
         Step #2
         <span class="description">
-          Description
+          Categorization
         </span>
       </div>
     </div>
@@ -57,33 +57,10 @@
     </div>
   </div>
 
-
-
-
   <div class="accordion-group">
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
         Step #3
-        <span class="description">
-          Alternative Images
-        </span>
-      </div>
-    </div>
-    <div class="accordion-body collapse">
-      <div class="accordion-inner" id="wz-step3">
-
-
-
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <div class="accordion-toggle Chivo webfont">
-        Step #4
         <span class="description">
           Finish
         </span>
@@ -93,6 +70,5 @@
 
     </div>
   </div>
-
 
 </div>
