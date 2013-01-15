@@ -2,11 +2,10 @@
 
 class CollectibleWizardStep1Form extends BaseCollectibleForm
 {
+  protected $multimedia = null;
 
   public function configure()
   {
-   // $this->setupThumbnailField();
-
     $this->widgetSchema['files'] = new sfWidgetFormInputFile(
       array('needs_multipart' => false), array('name' => 'files[]', 'multiple' => 'multiple'));
     $this->validatorSchema['files'] = new sfValidatorString(
@@ -20,7 +19,6 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
 
     }
 
-  //  $this->widgetSchema->setNameFormat('collectible_upload[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
 
@@ -31,18 +29,27 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
     $recipient = parent::save();
     $values = $this->getValues();
 
+    /* @var $multimedias iceModelMultimedia[] */
+    $oldMultimedia = array();
+    /* @var $multimedias iceModelMultimedia[] */
+    $multimedias = $recipient->getMultimedia();
 
+    foreach ($multimedias as $multimedia)
+    {
+      $oldMultimedia[$multimedia->getId()] = $multimedia;
+    }
 
-
+    //Refill multimedia to get it from request
+    $this->multimedia = null;
     /* @var $donors Collectible[] */
     $donors = $this->getMultimedia();
+
     $is_primary = true;
 
     foreach ($donors as $donor)
     {
       if ($donor instanceof Collectible)
       {
-
         if ($donor->getCollectorId() != $recipient->getCollectorId()
           || $donor->countCollectionCollectibles() > 0)
         {
@@ -52,8 +59,6 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
         /* @var $image iceModelMultimedia */
         if ($image = $donor->getPrimaryImage(Propel::CONNECTION_WRITE))
         {
-
-
           try
           {
             $image->setIsPrimary($is_primary);
@@ -85,16 +90,25 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
         }
       }
 
-
-
-
-
+      if ($donor instanceof iceModelMultimedia)
+      {
+        if (isset($oldMultimedia[$donor->getId()]))
+        {
+          $oldMultimedia[$donor->getId()]->setIsPrimary($is_primary);
+          $oldMultimedia[$donor->getId()]->setNew(false);
+          $oldMultimedia[$donor->getId()]->save();
+          if ($is_primary === true)
+          {
+            $is_primary = false;
+          }
+          unset($oldMultimedia[$donor->getId()]);
+        }
+      }
     }
 
     return $recipient;
   }
 
-  protected $multimedia = null;
   public function getMultimedia()
   {
     if ($this->multimedia !== null)
@@ -113,7 +127,6 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
         switch($f[0])
         {
           case 'upload':
-
             /* @var $donor Collectible */
             $donor = CollectibleQuery::create()->findOneById((int) $f[1]);
 
@@ -122,28 +135,26 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
             {
               continue;
             }
-
             $mm[] = $donor;
             break;
+
           case 'mm':
+            /* @var $donor iceModelMultimedia */
+            $donor = iceModelMultimediaQuery::create()
+              ->filterByModelId($this->getObject()->getId())
+              ->filterById((int) $f[1])
+              ->findOne();
+
+            if ($donor)
+            {
+              $mm[] = $donor;
+            }
             break;
         }
       }
     }
 
     return $this->multimedia = $mm;
-  }
-
-
-
-  public function validatePhoto($validator, $values)
-  {
-    if (!$this->getObject()->getPrimaryImage())
-    {
-      throw new sfValidatorError($validator, 'Photo is required');
-     }
-
-    return $values;
   }
 
 }

@@ -5,7 +5,8 @@
 
 ?>
 
-<form action="<?= url_for('@mycq_collectible_create_wizard'); ?>"
+<form action="<?= url_for($form->getObject()->isNew() ? '@mycq_collectible_create_wizard' :
+  'ajax_mycq', array('section' => 'collectible', 'page' => 'Wizard')); ?>"
       method="post" id="fileupload-wz1" class="ajax form-horizontal" enctype="multipart/form-data">
   <div id="dropzone-wz1">
 
@@ -16,6 +17,10 @@
         <input type="hidden" name="formats[small]" value="190x190">
         <?php if ($sf_request->getParameter('collection_id')): ?>
           <input type="hidden" name="collection_id" value="<?= $sf_request->getParameter('collection_id') ?>">
+        <?php endif; ?>
+        <?php if (!$form->getObject()->isNew()): ?>
+          <input type="hidden" name="step" value="1" />
+          <input type="hidden" name="collectible_id" value="<?= $form->getObject()->getId() ?>" />
         <?php endif; ?>
         <p class="althelp fade">Drag and drop help text</p>
         <div style="clear: both; height: 1px;"></div>
