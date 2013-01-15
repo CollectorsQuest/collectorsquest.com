@@ -14,6 +14,12 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
 
     $this->useFields(array('name', 'files'));
 
+    if (!$this->getObject()->isNew())
+    {
+      $this->multimedia = $this->getObject()->getMultimedia();
+
+    }
+
   //  $this->widgetSchema->setNameFormat('collectible_upload[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
@@ -25,61 +31,58 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
     $recipient = parent::save();
     $values = $this->getValues();
 
-    /* @var $donors Collectible[] */
-    $donors = CollectibleQuery::create()
-      ->filterById($values['files'])->find();
-    $is_primary = true;
-    foreach ($values['files'] as $file)
-    {
-      $f = explode('-', $file);
-      switch($f[0])
-      {
-        case 'upload':
-          /* @var $donor Collectible */
-          $donor = CollectibleQuery::create()->findOneById((int) $f[1]);
-          if (!$donor || $donor->getCollectorId() != $recipient->getCollectorId()
-            || $donor->countCollectionCollectibles() > 0)
-          {
-            continue;
-          }
 
-          /* @var $image iceModelMultimedia */
-          if ($image = $donor->getPrimaryImage(Propel::CONNECTION_WRITE))
+
+
+    /* @var $donors Collectible[] */
+    $donors = $this->getMultimedia();
+    $is_primary = true;
+
+    foreach ($donors as $donor)
+    {
+      if ($donor instanceof Collectible)
+      {
+
+        if ($donor->getCollectorId() != $recipient->getCollectorId()
+          || $donor->countCollectionCollectibles() > 0)
+        {
+          continue;
+        }
+
+        /* @var $image iceModelMultimedia */
+        if ($image = $donor->getPrimaryImage(Propel::CONNECTION_WRITE))
+        {
+
+
+          try
           {
-            // Get rid of the old primary Multimedia
-            if ($is_primary === true && ($primary = $recipient->getPrimaryImage()))
+            $image->setIsPrimary($is_primary);
+            $image->setModelId($recipient->getId());
+            $image->setSource($donor->getId());
+            // $image->setCreatedAt(time());
+            $image->save();
+            if ($is_primary === true)
             {
-              $primary->delete();
               $is_primary = false;
             }
 
-            try
-            {
-              $image->setIsPrimary($is_primary);
-              $image->setModelId($recipient->getId());
-              $image->setSource($donor->getId());
-              // $image->setCreatedAt(time());
-              $image->save();
-            }
-            catch (PropelException $e)
-            {
-              if (preg_match('/multimedia_U_1/i', $e->getMessage()))
-              {
-                continue;
-              }
-
-              throw $e;
-            }
-
-            $recipient->setUpdatedAt(time());
-            $recipient->save();
-
-            // Archive the $donor, not needed anymore
-            $donor->delete();
           }
-          break;
-        case 'mm':
-          break;
+          catch (PropelException $e)
+          {
+            if (preg_match('/multimedia_U_1/i', $e->getMessage()))
+            {
+              continue;
+            }
+
+            throw $e;
+          }
+
+          $recipient->setUpdatedAt(time());
+          $recipient->save();
+
+          // Archive the $donor, not needed anymore
+          $donor->delete();
+        }
       }
 
 
@@ -106,11 +109,14 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
       foreach ($values['files'] as $file)
       {
         $f = explode('-', $file);
+
         switch($f[0])
         {
           case 'upload':
+
             /* @var $donor Collectible */
             $donor = CollectibleQuery::create()->findOneById((int) $f[1]);
+
             if (!$donor || $donor->getCollectorId() != $this->getObject()->getCollectorId()
               || $donor->countCollectionCollectibles() > 0)
             {

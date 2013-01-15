@@ -14,6 +14,9 @@
         <?= $form ?>
         <input type="hidden" name="formats[big]" value="300x0">
         <input type="hidden" name="formats[small]" value="190x190">
+        <?php if ($sf_request->getParameter('collection_id')): ?>
+          <input type="hidden" name="collection_id" value="<?= $sf_request->getParameter('collection_id') ?>">
+        <?php endif; ?>
         <p class="althelp fade">Drag and drop help text</p>
         <div style="clear: both; height: 1px;"></div>
       </div>
@@ -38,7 +41,7 @@
         <div class="thumbnail">
           <i data-multimedia-id="<?= $multimedia->getId() ?>" class="icon icon-remove-sign"></i>
           <img width="300" src="<?= src_tag_multimedia($multimedia, '300x0');?>" class="multimedia big" />
-          <img width="190" height="190" src="<?= src_tag_multimedia($multimedia, '19:15x60');?>"
+          <img width="190" height="190" src="<?= src_tag_multimedia($multimedia, '190x190');?>"
                class="multimedia small" />
         </div>
         <input type="hidden" value="<?= $f ?>" name="collectible[files][]">
@@ -276,7 +279,7 @@ $(document).ready(function()
                 '<img width="190" height="190" src="' +
                 ui.draggable.find('.multimedia').attr('src') + '" class="multimedia small" />' +
                 '</div>' +
-                '<input type="hidden" value="upload-' +  ui.draggable.data('multimedia-id') +
+                '<input type="hidden" value="upload-' +  ui.draggable.data('collectible-id') +
                 '" name="collectible[files][]">' +
                 '</li>');
 
@@ -344,7 +347,11 @@ $(document).ready(function()
       {
         var $image = $main_image.find('.thumbnail .big');
         var h = $image.height() + padding;
-
+        if (h < 20) {
+          $image.imagesLoaded(function(){
+            fix_main_image();
+          });
+        }
         if ($('#files-wz1 li').length == 1)
         {
           h = 300;
