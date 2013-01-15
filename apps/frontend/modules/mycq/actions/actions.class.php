@@ -759,7 +759,9 @@ class mycqActions extends cqFrontendActions
       if ($this->form->isValid())
       {
         $collectible = $this->form->save();
-        $this->redirect('@mycq_collectible_wizard?id=' . $collectible->getId());
+        $this->redirect('@mycq_collectible_wizard?id=' . $collectible->getId() .
+          ($request->getParameter('collection_id') ? '&collection_id=' . $request->getParameter('collection_id') : '')
+          );
       }
     }
 
@@ -781,17 +783,22 @@ class mycqActions extends cqFrontendActions
       ->descendantsOf($root)
       ->findTree();
 
+    //Setup default collection
+    if ($request->getParameter('collection_id'))
+    {
+      $collection = CollectorCollectionQuery::create()
+        ->filterByCollector($collector)
+        ->filterById((int) $request->getParameter('collection_id'))
+        ->findOne();
+      if ($collection && $collectible->getCollectionId() == null)
+      {
+        $collectible->setCollection($collection);
+      }
+    }
     $this->step1 = new CollectibleWizardStep1Form($collectible);
-    $this->upload_form = new CollectibleUploadForm();
-    $this->upload_form->getWidget('thumbnail')->setAttribute('required', 'required');
-    $this->upload_form->setDefault('collectible_id', $collectible->getId());
 
-    $this->step2 = new CollectibleWizardStep2Form($collectible);;
-
-    $this->step3 = new CollectibleUploadForm();
-    $this->step3 = new CollectibleUploadForm();
-    $this->step3->getWidget('thumbnail')->setAttribute('required', 'required');
-    $this->step3->setDefault('collectible_id', $collectible->getId());
+    $this->step2 = new CollectibleWizardStep2Form($collectible);
+    $this->step2->setDefault('collectible_id', $collectible->getId());
 
     $this->collectible = $collectible;
 

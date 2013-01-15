@@ -13,6 +13,8 @@
 <script type="text/javascript">
   $(document).ready(function()
   {
+    $(".chzn-select").chosen();
+
     $('#collectible_description').wysihtml5({
       "font-styles": false, "image": false, "link": false,
       events:

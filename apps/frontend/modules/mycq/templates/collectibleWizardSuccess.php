@@ -57,13 +57,7 @@ else
     </div>
     <div class="accordion-body collapse<?= $step == 2 ? ' in' : '' ?>">
       <div class="accordion-inner">
-        <?php
-        include_partial(
-          'mycq/partials/collectible_wizard_st2',
-          array('form' => $step2)
-        );
-        ?>
-
+        <?php include_partial('mycq/partials/collectible_wizard_st2', array('form' => $step2));?>
       </div>
     </div>
   </div>
@@ -74,11 +68,11 @@ else
     array('class' => 'btn pull-left wz-back', 'data-target' => 'fileupload-wz1', 'data-current' => 'wz-step2')); ?>
     <?= link_to('Next Step &nbsp;<i class="icon-caret-right f-16 text-v"></i>', $sf_request->getUri() . '#',
     array(
-      'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'wz-step2', 'data-next' => 'wz-step3'
+      'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'wz-step2', 'data-next' => 'wz-step4'
     ));?>
   </div>
 
-
+<? /*
   <div class="accordion-group<?= $step == 3 ? ' active' : '' ?>">
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
@@ -111,7 +105,7 @@ else
       'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'wz-step3', 'data-next' => 'wz-step4'
     ));?>
   </div>
-
+*/ ?>
 
   <div class="accordion-group">
     <div class="accordion-heading">
