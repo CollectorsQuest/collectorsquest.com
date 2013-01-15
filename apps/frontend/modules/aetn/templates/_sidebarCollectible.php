@@ -1,7 +1,8 @@
 <?php
-  /* @var $aetn_show    array       */
-  /* @var $collectible  Collectible */
-  /* @var $height       stdClass    */
+  /* @var $aetn_show    array        */
+  /* @var $collectible  Collectible  */
+  /* @var $height       stdClass     */
+  /* @var $sf_request   cqWebRequest */
 ?>
 
 <?php if ($collectible->isWasForSale()): ?>
@@ -45,24 +46,48 @@
 switch ($aetn_show['id'])
 {
   case 'pawn_stars':
-    include_partial('aetn/partials/franksPicksPromo_300x90');
-    include_partial('aetn/partials/americanPickersPromo_300x90');
-    include_partial('aetn/partials/americanRestorationPromo_300x90');
+    if ($sf_request->isMobileLayout()):
+      include_partial('aetn/partials/franksPicksPromo_620x67');
+      include_partial('aetn/partials/americanPickersPromo_620x67');
+      include_partial('aetn/partials/americanRestorationPromo_620x67');
+    else:
+      include_partial('aetn/partials/franksPicksPromo_300x90');
+      include_partial('aetn/partials/americanPickersPromo_300x90');
+      include_partial('aetn/partials/americanRestorationPromo_300x90');
+    endif;
     break;
   case 'american_pickers':
-    include_partial('aetn/partials/franksPicksPromo_300x90');
-    include_partial('aetn/partials/pawnStarsPromo_300x90');
-    include_partial('aetn/partials/americanRestorationPromo_300x90');
+    if ($sf_request->isMobileLayout()):
+      include_partial('aetn/partials/franksPicksPromo_620x67');
+      include_partial('aetn/partials/pawnStarsPromo_620x67');
+      include_partial('aetn/partials/americanRestorationPromo_620x67');
+    else:
+      include_partial('aetn/partials/franksPicksPromo_300x90');
+      include_partial('aetn/partials/pawnStarsPromo_300x90');
+      include_partial('aetn/partials/americanRestorationPromo_300x90');
+    endif;
     break;
   case 'picked_off':
-    include_partial('aetn/partials/franksPicksPromo_300x90');
-    include_partial('aetn/partials/pawnStarsPromo_300x90');
-    include_partial('aetn/partials/americanPickersPromo_300x90');
+    if ($sf_request->isMobileLayout()):
+      include_partial('aetn/partials/franksPicksPromo_620x67');
+      include_partial('aetn/partials/pawnStarsPromo_620x67');
+      include_partial('aetn/partials/americanPickersPromo_620x67');
+    else:
+      include_partial('aetn/partials/franksPicksPromo_300x90');
+      include_partial('aetn/partials/pawnStarsPromo_300x90');
+      include_partial('aetn/partials/americanPickersPromo_300x90');
+    endif;
     break;
   case 'american_restoration':
-    include_partial('aetn/partials/franksPicksPromo_300x90');
-    include_partial('aetn/partials/pawnStarsPromo_300x90');
-    include_partial('aetn/partials/americanPickersPromo_300x90');
+    if ($sf_request->isMobileLayout()):
+      include_partial('aetn/partials/franksPicksPromo_620x67');
+      include_partial('aetn/partials/pawnStarsPromo_620x67');
+      include_partial('aetn/partials/americanPickersPromo_620x67');
+    else:
+      include_partial('aetn/partials/franksPicksPromo_300x90');
+      include_partial('aetn/partials/pawnStarsPromo_300x90');
+      include_partial('aetn/partials/americanPickersPromo_300x90');
+    endif;
     break;
   case 'franks_picks':
 
@@ -77,8 +102,13 @@ switch ($aetn_show['id'])
 
     echo '<div style="height: 20px;"></div>';
 
-    include_partial('aetn/partials/pawnStarsPromo_300x90');
-    include_partial('aetn/partials/americanRestorationPromo_300x90');
+    if ($sf_request->isMobileLayout()):
+      include_partial('aetn/partials/pawnStarsPromo_620x67');
+      include_partial('aetn/partials/americanRestorationPromo_620x67');
+    else:
+      include_partial('aetn/partials/pawnStarsPromo_300x90');
+      include_partial('aetn/partials/americanRestorationPromo_300x90');
+    endif;
     break;
 }
 

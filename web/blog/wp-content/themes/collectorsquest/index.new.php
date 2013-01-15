@@ -321,19 +321,7 @@ $lastclass = 0;
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
                   title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
               <span class="entry-date">| Posted
-                <?php
-               /* global $post;
-                  $postdate = get_the_date('mdy');
-                  $date = date('mdy');
-                  if ($date == $postdate ||
-                    date('mdy',strtotime($date." -1 day")) == $postdate ||
-                    date('mdy',strtotime($date." -2 days")) == $postdate) :
-                    echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
-                  else :
-                  endif;*/
-                    echo get_the_date('M jS, Y');
-
-                ?>
+                <?= get_the_date('M jS, Y'); ?>
               </span>
               <?php edit_post_link('Edit', ' | ', ''); ?>
             </span>
@@ -423,7 +411,40 @@ $lastclass = 0;
   <?php if (!is_page()): ?>
 
     <?php if (is_single()) : ?>
+      <div class="entry-meta span12" style="width: 608px;">
+        <span class="meta-text">
+          <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
+             title="<?php the_author() ?>'s articles on collecting...">
+
+            <?php echo get_avatar(get_the_author_meta('ID'), 33); ?>
+          </a>
+          <span class="author-info">
+          By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
+                title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
+            <span class="entry-date">| Posted
+              <?= get_the_date('M jS, Y'); ?>
+            </span>
+            <?php edit_post_link('Edit', ' | ', ''); ?>
+          </span>
+        </span>
+
+        <?php if (!$is_mobile) : ?>
+        <div id="social-sharing-bottom" class="blue-actions-panel entry-share pull-right share">
+          <!-- AddThis Button BEGIN -->
+          <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+            <i class="mail-icon-mini"></i> Email
+          </a>
+          <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+          <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+          <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo get_post_image_url(); ?>" pi:pinit:layout="horizontal"></a>
+          <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
+          <!-- AddThis Button END -->
+        </div>
+        <?php endif; ?>
+      </div>
+
       <?php slidedeck(30032, array( 'width' => '620px', 'height' => '65px')); ?>
+
       <div id="comments">
        <?php comments_template(); ?>
       </div>

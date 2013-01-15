@@ -1,71 +1,47 @@
-<?php cq_dart_slot('300x250', 'collections', 'landing', 'sidebar') ?>
-
-<?php include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-20')); ?>
-
 <?php
-  $link = link_to(
-    'See all &raquo;',
-    '@content_categories', array('class' => 'text-v-middle link-align')
-  );
-  $link = null;
+/* @var $sf_user cqFrontendUser */
+/* @var $sf_request   cqWebRequest */
 
-  cq_sidebar_title('Popular Categories', $link);
+cq_dart_slot('300x250', 'collections', 'landing', 'sidebar');
 ?>
 
-<div class="twocolumn cf">
-  <ul>
-    <?php
-      /** @var $categories ContentCategory[] */
-      foreach ($categories as $i => $category)
-      {
-        // Special case for the Political Buttons landing page
-        if ($category->getId() === 2266)
-        {
-          // Special case to have Pawn Stars and Picked Off appear alphabetically in list
-          echo '<li><strong><em>' . link_to('Pawn Stars', '@aetn_pawn_stars') . '</em></strong></li>';
+<?php
+  if ($sf_request->isMobileLayout()):
+    include_partial('aetn/partials/franksPicksPromo_620x67', array('class' => 'spacer-top-20'));
+  else:
+    include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-20'));
+  endif;
+?>
 
-          echo '<li><strong><em>' . link_to('Picked Off', '@aetn_picked_off') . '</em></strong></li>';
-
-          $route = '@wordpress_featured_items?id=29455&slug=political-buttons';
-          echo '<li>', link_to('<strong>Political Buttons</strong> <sup style="color: #cc0000">NEW!</sup>', $route), '</li>';
-        }
-        else
-        {
-          // Special case to have American Pickers and American Restoration appear alphabetically in list
-          if ($category->getId() === 402)
-          {
-            echo '<li><strong><em>' . link_to('American Pickers', '@aetn_american_pickers') . '</em></strong></li>';
-
-            echo '<li><strong><em>' . link_to('American Restoration', '@aetn_american_restoration') . '</em></strong></li>';
-          }
-          // Special case to display Halloween theme page
-          if ($category->getId() === 1559)
-          {
-            $route = '@wordpress_featured_items?id=31565&slug=halloween-collectibles';
-            echo '<li>', link_to('<strong>Halloween</strong> <sup style="color: #cc0000">NEW!</sup>', $route), '</li>';
-          }
-
-          // display 'regular' popular categories
-          echo '<li>', ($category) ? link_to_content_category($category, 'text') : '', '</li>';
-        }
-      }
-    ?>
-  </ul>
-</div>
+<?php include_component('_sidebar', 'widgetPopularCategories'); ?>
 
 <?php
-  /* @var $sf_user cqFrontendUser */
   if (!$sf_user->isAuthenticated())
   {
-    cq_ad_slot(
-      cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png',
-        array(
-          'width' => '300', 'height' => '90', 'class' => 'spacer-top-20 mobile-optimized-300 center',
-          'alt' => 'Quest Your Best: The Essential Guide to Collecting'
-        )
-      ),
-      '@misc_guide_to_collecting'
-    );
+    if ($sf_request->isMobileLayout())
+    {
+      cq_ad_slot(
+        cq_image_tag('headlines/2012-06-24_CQGuidePromo_635x111.png',
+          array(
+            'width' => '635', 'height' => '111', 'class' => 'spacer-top-20',
+            'alt' => 'Quest Your Best: The Essential Guide to Collecting'
+          )
+        ),
+        '@misc_guide_to_collecting'
+      );
+    }
+    else
+    {
+      cq_ad_slot(
+        cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png',
+          array(
+            'width' => '300', 'height' => '90', 'class' => 'spacer-top-20 mobile-optimized-300 center',
+            'alt' => 'Quest Your Best: The Essential Guide to Collecting'
+          )
+        ),
+        '@misc_guide_to_collecting'
+      );
+    }
   }
 ?>
 

@@ -59,6 +59,28 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
+  public function executeWidgetPopularCategories()
+  {
+    $ids = array(
+      3044,  152,  402,  775,
+      521, 3465, 1209, 3375,
+      2, 1136, 1425, 1559,
+      1755, 3464, 1905, 2266,
+      2836, 3043,
+    );
+
+    $q = ContentCategoryQuery::create()
+      ->filterById($ids, Criteria::IN)
+      ->orderByName(Criteria::ASC)
+      ->limit($this->limit);
+    $this->categories = $q->find();
+
+    return sfView::SUCCESS;
+  }
+
+  /**
+   * @return string
+   */
   public function executeWidgetCollectionSubCategories()
   {
     $this->current_category = $this->getVar('current_category');
@@ -1152,7 +1174,8 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     $pager = new cqCollectionCollectiblesPager(
-      $collection, (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3)
+      $collection, (integer) $this->getVar('limit') ?:
+      (integer) $request->getParameter('limit', $request->isMobileLayout() ? 6 : 3)
     );
     $pager->setPage($this->getRequest()->getParameter('p', 1));
     $pager->setCollectibleId($collectible ? $collectible->getId() : $request->getParameter('collectible_id'));
@@ -1167,6 +1190,11 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetMoreHistory()
   {
+    if ($this->getRequest()->isMobileLayout())
+    {
+       return sfView::NONE;
+    }
+
     return sfView::SUCCESS;
   }
 

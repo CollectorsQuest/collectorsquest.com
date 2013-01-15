@@ -1,10 +1,10 @@
 <?php
-/**
- * @var $wp_post wpPost
- * @var $wp_user wpUser
- * @var $data    array
- * @var $sf_user cqFrontendUser
- */
+/*
+/* @var $wp_post wpPost            */
+/* @var $wp_user wpUser            */
+/* @var $data    array             */
+/* @var $sf_user cqFrontendUser    */
+/* @var $sf_request cqWebRequest   */
 
 if ($data['is_single'])
 {
@@ -12,13 +12,26 @@ if ($data['is_single'])
 
   if (!$sf_user->isAuthenticated())
   {
-    echo link_to(
-      cq_image_tag(
-        'headlines/2012-06-24_CQGuidePromo_300x90.png',
-        array('class' => 'spacer-top-20 mobile-optimized-300 center')
-      ),
-      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
-    );
+    if ($sf_request->isMobileLayout())
+    {
+      echo link_to(
+        cq_image_tag(
+          'headlines/2012-06-24_CQGuidePromo_635x111.png',
+          array('class' => 'spacer-top-20')
+        ),
+        'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+      );
+    }
+    else
+    {
+      echo link_to(
+        cq_image_tag(
+          'headlines/2012-06-24_CQGuidePromo_300x90.png',
+          array('class' => 'spacer-top-20 mobile-optimized-300 center')
+        ),
+        'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+      );
+    }
   }
 
   include_component(
@@ -53,13 +66,26 @@ else if ($data['is_author'])
 
   if (!$sf_user->isAuthenticated())
   {
-    echo link_to(
-      cq_image_tag(
-        'headlines/2012-06-24_CQGuidePromo_300x90.png',
-        array('class' => 'spacer-top-20 mobile-optimized-300 center')
-      ),
-      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
-    );
+    if ($sf_request->isMobileLayout())
+    {
+      echo link_to(
+        cq_image_tag(
+          'headlines/2012-06-24_CQGuidePromo_635x111.png',
+          array('class' => 'spacer-top-20')
+        ),
+        'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+      );
+    }
+    else
+    {
+      echo link_to(
+        cq_image_tag(
+          'headlines/2012-06-24_CQGuidePromo_300x90.png',
+          array('class' => 'spacer-top-20 mobile-optimized-300 center')
+        ),
+        'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+      );
+    }
   }
 
   include_component(
@@ -85,12 +111,26 @@ else
 
   if (!$sf_user->isAuthenticated())
   {
-    echo link_to(
-      cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png',
-        array('class' => 'spacer-top-20 mobile-optimized-300 center')
-      ),
-      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
-    );
+    if ($sf_request->isMobileLayout())
+    {
+      echo link_to(
+        cq_image_tag(
+          'headlines/2012-06-24_CQGuidePromo_635x111.png',
+          array('class' => 'spacer-top-20')
+        ),
+        'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+      );
+    }
+    else
+    {
+      echo link_to(
+        cq_image_tag(
+          'headlines/2012-06-24_CQGuidePromo_300x90.png',
+          array('class' => 'spacer-top-20 mobile-optimized-300 center')
+        ),
+        'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+      );
+    }
   }
 
   echo '<!-- Blog Sidebar Widget2 //-->';

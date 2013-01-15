@@ -218,6 +218,22 @@ div.onecolumn {
   border-top: 1px solid #eaede6;
   .clearfix();
 
+  &.february {
+    background: url("@{baseUrl}/misc/holiday-market/february-header.jpg") no-repeat 0 0 !important;
+  }
+  &.march {
+    background: url("@{baseUrl}/misc/holiday-market/march-header.jpg") no-repeat 0 0 !important;
+  }
+  &.april {
+    background: url("@{baseUrl}/misc/holiday-market/april-header.jpg") no-repeat 0 0 !important;
+  }
+  &.may {
+    background: url("@{baseUrl}/misc/holiday-market/may-header.jpg") no-repeat 0 0 !important;
+  }
+  &.june {
+    background: url("@{baseUrl}/misc/holiday-market/june-header.jpg") no-repeat 0 0 !important;
+  }
+
   h1 {
     margin: 40px 0 0 40px;
     font-size: 70px;
@@ -327,6 +343,126 @@ div.onecolumn {
       }
     }
   }
+
+  &.february {
+    .navbar-inner {
+      #gradient > .vertical(#55001D, #430D24);
+    }
+
+    ul.nav {
+      a:hover {
+        background-color: #601432;
+      }
+
+      li.active > a {
+        background-color: #9C0049;
+        &:hover {
+          background-color: #9C0049;
+        }
+
+        &:after {
+          border-top: 16px solid #9C0049;
+          border-top-color: #9C0049;
+        }
+      }
+    }
+  }
+
+  &.march {
+    .navbar-inner {
+      #gradient > .vertical(#3B3871, #141032);
+    }
+
+    ul.nav {
+      a:hover {
+        background-color: #3B3871;
+      }
+
+      li.active > a {
+        background-color: #6764A7;
+        &:hover {
+          background-color: #6764A7;
+        }
+
+        &:after {
+          border-top: 16px solid #6764A7;
+          border-top-color: #6764A7;
+        }
+      }
+    }
+  }
+
+  &.april {
+    .navbar-inner {
+      #gradient > .vertical(#1B491B, #0E1A0F);
+    }
+
+    ul.nav {
+      a:hover {
+        background-color: #1B491B;
+      }
+
+      li.active > a {
+        background-color: #028326;
+        &:hover {
+          background-color: #028326;
+        }
+
+        &:after {
+          border-top: 16px solid #028326;
+          border-top-color: #028326;
+        }
+      }
+    }
+  }
+
+  &.may {
+    .navbar-inner {
+      #gradient > .vertical(#583716, #2D1F0D);
+    }
+
+    ul.nav {
+      a:hover {
+        background-color: #583716;
+      }
+
+      li.active > a {
+        background-color: #CF5725;
+        &:hover {
+          background-color: #CF5725;
+        }
+
+        &:after {
+          border-top: 16px solid #CF5725;
+          border-top-color: #CF5725;
+        }
+      }
+    }
+  }
+
+  &.june {
+    .navbar-inner {
+      #gradient > .vertical(#313364, #13131C);
+    }
+
+    ul.nav {
+      a:hover {
+        background-color: #313364;
+      }
+
+      li.active > a {
+        background-color: #6764A7;
+        &:hover {
+          background-color: #6764A7;
+        }
+
+        &:after {
+          border-top: 16px solid #6764A7;
+          border-top-color: #6764A7;
+        }
+      }
+    }
+  }
 }
 
 /* hide infinite-scroll loading box */
@@ -363,5 +499,22 @@ div.onecolumn {
   }
 }
 
+#collectible_for_sale_0_grid_view_square_big {
+  background: url("/images/frontend/misc/holiday-market/holiday-item-background.jpg") no-repeat 0 0;
 
-
+  &.february {
+    background: url("/images/frontend/misc/holiday-market/february-item-background.jpg") no-repeat 0 0 !important;
+  }
+  &.march {
+    background: url("/images/frontend/misc/holiday-market/march-item-background.jpg") no-repeat 0 0 !important;
+  }
+  &.april {
+    background: url("/images/frontend/misc/holiday-market/april-item-background.jpg") no-repeat 0 0 !important;
+  }
+  &.may {
+    background: url("/images/frontend/misc/holiday-market/may-item-background.jpg") no-repeat 0 0 !important;
+  }
+  &.june {
+    background: url("/images/frontend/misc/holiday-market/june-item-background.jpg") no-repeat 0 0 !important;
+  }
+}

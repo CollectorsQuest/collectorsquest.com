@@ -5,9 +5,10 @@
  */
 
 $_height = 0;
+
 ?>
 
-<div class="carousel-sidebar sidebar-title" id="collectionCollectiblesWidget"
+<div class="carousel-sidebar sidebar-title items<?= $pager->getMaxPerPage() ?>" id="collectionCollectiblesWidget"
      data-page="<?= $pager->getPage() ?>"  data-lastpage="<?= $pager->getLastPage() ?>"
      data-url="<?= url_for('ajax_sidebar', array('section' => 'component', 'page' => 'widgetCollectionCollectibles')); ?>">
 
@@ -64,7 +65,8 @@ $_height = 0;
     window.cq.settings = $.extend(true, {}, window.cq.settings, {
       collectionColletiblesWidget: {
         collection_id: '<?= $pager->getCollection()->getId(); ?>',
-        collectible_id: '<?= $pager->getCollectibleId() ?>'
+        collectible_id: '<?= $pager->getCollectibleId() ?>',
+        limit: '<?= $pager->getMaxPerPage() ?>'
       }
     });
   });

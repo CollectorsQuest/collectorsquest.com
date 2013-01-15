@@ -1,11 +1,10 @@
 <?php
-/**
- * @var  $collectible      Collectible
- * @var  $sf_user          cqFrontendUser
- * @var  $height           stdClass
- * @var  $aetn_show        array
- * @var  $ref_marketplace  boolean
- */
+/* @var  $collectible      Collectible     */
+/* @var  $sf_user          cqFrontendUser  */
+/* @var  $height           stdClass        */
+/* @var  $aetn_show        array           */
+/* @var  $ref_marketplace  boolean         */
+/* @var $sf_request   cqWebRequest         */
 ?>
 
 <?php if (isset($aetn_show)): ?>
@@ -64,8 +63,12 @@
       );
     }
 
-    include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-15'));
-    $height->value -= 110;
+    if ($sf_request->isMobileLayout()):
+      include_partial('aetn/partials/franksPicksPromo_620x67');
+    else:
+      include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-15'));
+      $height->value -= 110;
+    endif;
 
     if (!$collectible->isForSale())
     {

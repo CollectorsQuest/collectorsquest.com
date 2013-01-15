@@ -270,7 +270,7 @@ class miscActions extends cqFrontendActions
     // do we exclude the sidebar and have full page width image?
     $this->no_sidebar = !empty($values['cq_no_sidebar']) ? $values['cq_no_sidebar'] === 'true' : false;
 
-    if (!empty($values['cq_collection_ids']))
+    if ($this->no_sidebar)
     {
       $this->setTemplate('wordPressFeaturedItemsNoSidebar');
     }

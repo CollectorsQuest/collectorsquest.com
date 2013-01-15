@@ -19,18 +19,21 @@ class CollectibleQuery extends BaseCollectibleQuery
    */
   public function filterByTags($tags, $comparison = null)
   {
-    $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
-    $tags = array_map(array('Utf8', 'slugify'), $tags);
+    $tags  = !is_array($tags) ? explode(',', (string) $tags) : $tags;
+    $slugs = array_map(array('Utf8', 'slugify'), $tags);
+    $tags  = array_map(array(Propel::getConnection('propel'), 'quote'), $tags);
+    $slugs = array_map(array(Propel::getConnection('propel'), 'quote'), $slugs);
 
     $where = sprintf("
         Collectible.Id IN (
           SELECT tagging.taggable_id from (
-            SELECT tag.id from tag WHERE tag.is_triple = 0 AND tag.slug %s ('%s')
+            SELECT tag.id from tag WHERE tag.is_triple = 0 AND
+            (tag.slug %s ('%s') OR CONVERT(tag.name USING latin1) %s ('%s'))
           ) res INNER JOIN tagging ON (res.id = tag_id AND taggable_model = 'Collectible')
         )
       ",
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
-      implode("','", $tags)
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $slugs), "',\\"),
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $tags), "',\\")
     );
 
     return $this->where($where);
@@ -44,8 +47,10 @@ class CollectibleQuery extends BaseCollectibleQuery
    */
   public function orderByTags($tags, $comparison = null)
   {
-    $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
-    $tags = array_map(array('Utf8', 'slugify'), $tags);
+    $tags  = !is_array($tags) ? explode(',', (string) $tags) : $tags;
+    $slugs = array_map(array('Utf8', 'slugify'), $tags);
+    $tags  = array_map(array(Propel::getConnection('propel'), 'quote'), $tags);
+    $slugs = array_map(array(Propel::getConnection('propel'), 'quote'), $slugs);
 
     $where = sprintf("
         FIELD(
@@ -57,14 +62,17 @@ class CollectibleQuery extends BaseCollectibleQuery
                 ORDER BY tagging.id ASC
                 SEPARATOR ','
               )
-              FROM tagging INNER JOIN tag ON (tag.id = tagging.tag_id AND tag.is_triple = 0 AND tag.slug %s ('%s'))
+              FROM tagging INNER JOIN tag ON (
+                tag.id = tagging.tag_id AND tag.is_triple = 0 AND
+                (tag.slug %s ('%s') OR CONVERT(tag.name USING latin1) %s ('%s'))
+              )
               WHERE tagging.taggable_model = 'Collectible'
               GROUP BY tagging.taggable_model
           )
         )
       ",
-      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
-      implode("','", $tags)
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $slugs), "',\\"),
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN', trim(implode(',', $tags), "',\\")
     );
 
     return $this->where($where);
