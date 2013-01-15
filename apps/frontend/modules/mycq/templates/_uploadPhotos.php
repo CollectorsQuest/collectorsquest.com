@@ -117,8 +117,10 @@ $(document).ready(function()
 {
   'use strict';
 
-  // Initialize the jQuery File Upload widget:
   var $fileupload = $('#fileupload');
+  var $modal = $('#fileupload-modal');
+
+  // Initialize the jQuery File Upload widget:
   $fileupload.fileupload();
   $fileupload.fileupload('option', 'autoUpload', true);
   $fileupload.fileupload('option', 'dropZone', $('#dropzone'));
@@ -126,17 +128,18 @@ $(document).ready(function()
 
   $fileupload
     .bind('fileuploadstart', function(e, data) {
-      $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
+      $modal.modal({backdrop: 'static', keyboard: false, show: true});
     })
     .bind('fileuploadstop', function(e, data)
     {
       var finish = '<?= url_for('@mycq_upload_finish?batch='. $batch); ?>';
 
-      if ($('#fileupload-modal td.error').length > 0)
+      if ($modal.find('td.error').length > 0)
       {
-        $('#button-fileupload').html('Finish Upload');
-        $('#button-fileupload').removeClass('btn-danger');
-        $('#button-fileupload').attr('href', finish);
+        $('#button-fileupload')
+          .html('Finish Upload')
+          .removeClass('btn-danger')
+          .attr('href', finish);
       }
       else
       {
@@ -171,20 +174,20 @@ $(document).ready(function()
     });
 
   // Enable iframe cross-domain access via redirect option:
-  $('#fileupload').fileupload(
+  $fileupload.fileupload(
     'option', 'redirect',
     window.location.href.replace(
       /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
     )
   );
 
-  $('#fileupload').fileupload('option', {
+  $fileupload.fileupload('option', {
     maxFileSize: <?= cqStatic::getPHPMaxUploadFileSize() // php file upload limit ?>,
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
   });
 
   // Load existing files:
-  $('#fileupload').each(function () {
+  $fileupload.each(function () {
     var that = this;
     $.getJSON(this.action, function (result) {
       if (result && result.length) {

@@ -159,6 +159,9 @@ $(document).ready(function()
 {
   'use strict';
 
+  var $files = $('#files-wz1');
+  var $fileupload = $('#fileupload-wz1');
+  var $dropzone = $('#dropzone-wz1');
 
   /**
    * Tweak for file upload to support two types of previews
@@ -384,8 +387,6 @@ $(document).ready(function()
   };
   fix_main_image();
 
-  var $files = $('#files-wz1');
-
   $files.sortable({
     cursor: "move",
     placeholder: "ui-state-highlight",
@@ -422,7 +423,6 @@ $(document).ready(function()
     }
   });
 
-
   $(document).bind('dragover', function (e)
   {
     var dropZone = $('#fileupload-wz1'),
@@ -439,13 +439,11 @@ $(document).ready(function()
   });
 
   // Initialize the jQuery File Upload widget:
-  var $fileupload = $('#fileupload-wz1');
-
   $fileupload.fileupload({
     url: '<?= url_for('@ajax_mycq?section=collectibles&page=upload'); ?>'
   });
   $fileupload.fileupload('option', 'autoUpload', true);
-  $fileupload.fileupload('option', 'dropZone', $('#dropzone-wz1'));
+  $fileupload.fileupload('option', 'dropZone', $dropzone);
   $fileupload.fileupload('option', 'filesContainer', $files);
   $fileupload.fileupload('option', 'uploadTemplateId', 'template-upload-wz1');
   $fileupload.fileupload('option', 'downloadTemplateId', 'template-download-wz1');
@@ -478,12 +476,12 @@ $(document).ready(function()
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
   });
 
-  $('button.icon-remove-sign', '#dropzone-wz1').live('click', function()
+  $('button.icon-remove-sign', $dropzone).live('click', function()
   {
     console.log(11);
     fix_main_image();
   });
-  $('.template-download i.icon-remove-sign', '#dropzone-wz1').live('click', function()
+  $('.template-download i.icon-remove-sign', $dropzone).live('click', function()
   {
     var $icon = $(this);
 
