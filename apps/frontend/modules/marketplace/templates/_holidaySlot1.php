@@ -4,7 +4,7 @@
 /* @var $sf_request cqWebRequest */
 ?>
 
-<div id="HolidayMarketHeader">
+<div id="HolidayMarketHeader" class="<?= strtolower(date('F', $sf_params->get('time', time()))); ?>">
   <?php if ($show_holiday_adv && !$sf_request->isMobileLayout()): ?>
   <div class="holiday-marker-adv-dialog-below-menu" >
     <a href="<?php echo url_for('@seller_signup?ref=mp_banner'); ?>" class="link" title="Sell Your Stuff with Us"></a>
@@ -15,7 +15,7 @@
 
 <a name="market"></a>
 <div id="holiday-market-body">
-  <div class="holiday-market-menu-wrapper">
+  <div class="holiday-market-menu-wrapper <?= strtolower(date('F', $sf_params->get('time', time()))); ?>">
     <div class="navbar-inner">
       <div id="scrollable" class="centering">
         <ul class="items nav">
@@ -24,7 +24,10 @@
             <?php
               echo link_to(
                 $item['name'], 'ajax_marketplace',
-                array('section' => 'component', 'page' => 'holidayTheme', 't' => $i, 'p' => 1),
+                array(
+                  'section' => 'component', 'page' => 'holidayTheme',
+                  't' => $i, 'p' => 1, 'time' => $sf_params->get('time', time())
+                ),
                 array(
                   'anchor' => 'holiday-market-theme', 'class' => 'ajax', 'data-index' => $i,
                   'data-slug' =>  $item['slug']

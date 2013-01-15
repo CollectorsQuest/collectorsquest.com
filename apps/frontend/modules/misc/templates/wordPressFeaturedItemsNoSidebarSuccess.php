@@ -44,7 +44,7 @@
       expandEffect: 'show',
       expandText: 'Read More',
       expandPrefix: '',
-      userCollapseText: '[^]',
+      userCollapseText: '',
       onSlice: function() { $(this).show(); }
     })
       .show();
