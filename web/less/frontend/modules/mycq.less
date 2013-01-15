@@ -2494,6 +2494,13 @@ div.wpfaqask {
   width: 903px;
 
   .thumbnails li {
+    background-color: #E6F2F9;
+    position: relative;
+    width: 92px;
+    height: 92px;
+    display: block;
+    float: left;
+    cursor: move;
     .error{
       border: 1px solid red;
       background-color: #ffd4d4;
@@ -2509,11 +2516,6 @@ div.wpfaqask {
     &:nth-child(2) {
       padding-bottom: 0!important;
     }
-    position: relative;
-    width: 92px;
-    height: 92px;
-    display: block;
-    float: left;
 
     .big {
       display: none;
@@ -2544,6 +2546,7 @@ div.wpfaqask {
       }
     }
     &:first-child {
+      cursor: auto;
       width: 300px;
       height: auto;
       .big {
@@ -2561,8 +2564,6 @@ div.wpfaqask {
         max-height: 200px;
       }
     }
-
-
     .icon-remove-sign {
       top: -7px;
       right: -14px;
@@ -2585,8 +2586,11 @@ div.wpfaqask {
         display: block;
       }
     }
-
+    &.template-upload{
+      cursor: auto;
+    }
     &#always-last {
+      cursor: auto;
       .thumbnail {
         border: 2px dashed #0A82C2;
         background-color: #E6F2F9;
@@ -2635,82 +2639,3 @@ div.wpfaqask {
   }
 }
 
-#dropzone-wz2 {
-  border: 2px dashed #0A82C2;
-  &.in {
-    border: 2px dashed @red;
-  }
-  padding: 5px;
-  .span3, .span3:first-child {
-    margin: 4px;
-    width: 92px;
-  }
-  ul {
-    margin-bottom: 0;
-  }
-  .thumbnail {
-    background-color: #E6F2F9;
-    height: 92px;
-    margin-bottom: 0;
-    margin-left: 0;
-    position: relative;
-    width: 92px;
-    border: 2px dashed #0A82C2;
-    padding: 0;
-    .border-radius(0);
-    .box-shadow(none);
-    .alt-view-slot {
-      color: #FFFFFF;
-      font-size: 40px;
-      text-align: center;
-    }
-    .info-text {
-      color: #125375;
-      display: block;
-      font-size: 14px;
-      line-height: 18px;
-    }
-    i {
-      padding-top: 8px;
-    }
-    .icon-remove-sign {
-      left: 70px;
-      top: -9px;
-      display: none;
-    }
-    &:hover {
-      .icon-remove-sign {
-        display: block;
-      }
-    }
-    .error {
-      color: @red;
-      padding: 2px;
-      text-align: center;
-      font-size: 12px;
-      line-height: 14px;
-    }
-  }
-
-  button {
-    border: none;
-  }
-  position: relative;
-  .preview {
-    height: 92px;
-    width: 92px;
-    overflow: hidden;
-  }
-  .cancel {}
-  .progress {
-    position: absolute;
-    left: 8px;
-    top: 10px;
-    z-index: 2;
-    width: 76px;
-    max-height: 10px;
-  }
-}
-#fileupload-wz2 {
-  margin-left: -90px;
-}

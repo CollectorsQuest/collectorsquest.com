@@ -39,6 +39,9 @@
         }
         else
         {
+          $dropbox_hide = get_slot('dropbox_hide_collectibles', array());
+          $dropbox_hide[] = $mm->getId();
+          slot('dropbox_hide_collectibles', $dropbox_hide);
           $multimedia = $mm->getPrimaryImage();
           $f = 'upload-' . $mm->getId();
         }

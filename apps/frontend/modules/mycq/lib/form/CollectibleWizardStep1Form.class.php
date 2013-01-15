@@ -8,8 +8,7 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
   {
     $this->widgetSchema['files'] = new sfWidgetFormInputFile(
       array('needs_multipart' => false), array('name' => 'files[]', 'multiple' => 'multiple'));
-    $this->validatorSchema['files'] = new sfValidatorString(
-      array('required' => true));
+    $this->validatorSchema['files'] = new sfValidatorString(array('required' => true));
 
     $this->useFields(array('name', 'files'));
 
@@ -104,6 +103,17 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
           unset($oldMultimedia[$donor->getId()]);
         }
       }
+    }
+
+    /**
+     * Update the Eblob cache
+     */
+    if ($recipient)
+    {
+      $m = iceModelMultimediaPeer::retrieveByModel($recipient);
+
+      $recipient->setEblobElement('multimedia', $m->toXML(true));
+      $recipient->save();
     }
 
     return $recipient;
