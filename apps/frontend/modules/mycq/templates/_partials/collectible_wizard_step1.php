@@ -159,9 +159,9 @@ $(document).ready(function()
 {
   'use strict';
 
-  var $files = $('#files-wz1');
   var $fileupload = $('#fileupload-wz1');
-  var $dropzone = $('#dropzone-wz1');
+  var $dropzone = $('#dropzone-wz1', $fileupload);
+  var $files = $('#files-wz1', $dropzone);
 
   /**
    * Tweak for file upload to support two types of previews
