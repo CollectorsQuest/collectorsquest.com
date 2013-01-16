@@ -27,7 +27,7 @@ else
       <div class="accordion-toggle Chivo webfont">
         Step #1
         <span class="description">
-          Categorization
+          Name & Photos
         </span>
       </div>
     </div>
@@ -51,7 +51,7 @@ else
       <div class="accordion-toggle Chivo webfont">
         Step #2
         <span class="description">
-          Description
+          Categorization
         </span>
       </div>
     </div>
@@ -75,7 +75,7 @@ else
   <div class="accordion-group">
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
-        Step #4
+        Step #3
         <span class="description">
           Finish
         </span>
