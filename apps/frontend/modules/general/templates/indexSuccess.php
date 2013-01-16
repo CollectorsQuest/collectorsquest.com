@@ -17,11 +17,12 @@
     </p>
   </div>
 
+  <br clear="all"/><br/>
   <?php include_partial('general/homepage_blogpost_featured', array('blog_post' => $blog_posts[0])); ?>
   <?php include_partial('general/homepage_blogpost_featured', array('blog_post' => $blog_posts[1])); ?>
-
 </div>
 
+<br/>
 <?php cq_page_title("Now On Display") ?>
 
 <div class="row">
