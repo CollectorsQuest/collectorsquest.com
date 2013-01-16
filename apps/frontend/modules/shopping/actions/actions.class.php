@@ -87,6 +87,7 @@ class shoppingActions extends cqFrontendActions
           }
           catch (PropelException $e)
           {
+            $shopping_cart->reload(true);
             if (preg_match("/1062 Duplicate entry '(\d+)-(\d+)' for key 'PRIMARY'/i", $e->getMessage()))
             {
               $this->getUser()->setFlash(
@@ -132,6 +133,26 @@ class shoppingActions extends cqFrontendActions
       $shopping_cart_collectible->updateShippingFeeAmountFromCountryCode();
       $shopping_cart_collectible->updateShippingTypeFromCountryCode();
       $shopping_cart_collectible->updateTaxAmount();
+
+      if ($shopping_cart_collectible->getSellerPromotionId()
+        && (!$shopping_cart_collectible->getSellerPromotion()
+          || !$shopping_cart_collectible->getSellerPromotion()->isValid(
+            $this->getUser()->getCollector(), $shopping_cart_collectible->getCollectible()
+          )
+        ))
+      {
+        $notices[] = sprintf(
+          '<strong>Note:</strong> Discount code for item <strong>"%s"</strong>
+           has been expired/canceled since you added it to your cart!',
+
+          $shopping_cart_collectible->getName()
+        );
+        $shopping_cart_collectible
+          ->setSellerPromotion(null)
+          ->save();
+
+        continue;
+      }
 
       if ($old_cc->getPriceAmount() != $shopping_cart_collectible->getPriceAmount())
       {

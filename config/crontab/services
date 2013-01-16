@@ -7,10 +7,12 @@ HOME=/www/vhosts/collectorsquest.com/current
 # */5  *  *  *  *  apache  cronic php ./web/blog/wp-cron.php
 
 # Sync with MailChimp.com
-  30 03  *  *  *  apache  cronic ./symfony batch:mailchimp-sync --env=prod
+# 30 03  *  *  *  apache  cronic ./symfony batch:mailchimp-sync --env=prod
 
 # Tasks
  01  05  *  *  *  apache  cronic ./symfony batch:sellers-anonymous --env=prod
+ 05  09  *  *  *  apache  cronic ./symfony batch:autoresponders-week --env=prod
+ 10  09  *  *  *  apache  cronic ./symfony batch:autoresponders-month --env=prod
 
 # Sphinx indexes
  */5  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod --delta=yes

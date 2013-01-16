@@ -94,6 +94,18 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'profile');
 
+    // Delete provider if associated
+    if ($provider = $this->getRequestParameter('remove_provider', null))
+    {
+      CollectorIdentifierQuery::create()
+        ->filterByCollector($this->getCollector())
+        ->filterByProvider($provider)
+        ->delete();
+
+      // Redirect to make sure we remove the $_GET parameter from the URL
+      return $this->redirect('@mycq_profile_account_info');
+    }
+
     $collector_form = new CollectorEditForm($this->getCollector());
     $collector_form->useFields(array(
       'old_password', 'password', 'password_again'
@@ -191,7 +203,7 @@ class mycqActions extends cqFrontendActions
     {
       if ($request->hasParameter($key))
       {
-        $collector->setProperty($property, (boolean)$request->getParameter($key));
+        $collector->setProperty($property, (boolean) $request->getParameter($key));
         $_property_changed = $key;
       }
 
@@ -457,7 +469,7 @@ class mycqActions extends cqFrontendActions
         {
           $this->pm_form = new ComposeAbridgedPrivateMessageForm(
             $this->seller, $this->buyer ?: $this->shopping_order->getBuyerEmail(),
-            $subject, array('attach' => array($collectible))
+            $subject, array('attach' => $this->shopping_order)
           );
 
           return 'Sold';
@@ -465,7 +477,8 @@ class mycqActions extends cqFrontendActions
         else if ($this->getCollector()->isOwnerOf($this->buyer))
         {
           $this->pm_form = new ComposeAbridgedPrivateMessageForm(
-            $this->buyer, $this->seller, $subject, array('attach' => $collectible)
+            $this->buyer, $this->seller,
+            $subject, array('attach' => $this->shopping_rder)
           );
 
           return 'Purchased';
@@ -847,6 +860,39 @@ class mycqActions extends cqFrontendActions
     }
 
     return sfView::SUCCESS;
+  }
+
+  public function executeMarketplacePromoCodes()
+  {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    /* @var $q SellerPromotionQuery */
+    $q = SellerPromotionQuery::create()
+      ->filterByCollectorRelatedBySellerId($this->getUser()->getCollector())
+      ->orderByCreatedAt(Criteria::DESC);
+
+    $pager = new PropelModelPager($q, 5);
+    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMarketplacePromoCodeDelete()
+  {
+    /* @var $seller_promotion SellerPromotion */
+    $seller_promotion = $this->getRoute()->getObject();
+    if ($seller_promotion->getSellerId() == $this->getUser()->getCollector()->getId())
+    {
+      $seller_promotion->delete();
+      $this->getUser()->setFlash(
+        'success', sprintf('Promotion code "%s" is successfully removed.', $seller_promotion->getPromotionName()),
+        true
+      );
+    }
+    $this->redirect('@mycq_marketplace_promo_codes');
   }
 
   public function executeMarketplaceSettings(sfWebRequest $request)

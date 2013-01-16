@@ -21,7 +21,6 @@ holidaySuccess:
     footer: []
 
 holidayMobile:
-  stylesheets: [-frontend/responsive.css]
   javascripts:
     - jquery/autoajax.js
     - jquery/infinitescroll.js

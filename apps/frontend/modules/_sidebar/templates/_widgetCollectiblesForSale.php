@@ -11,7 +11,7 @@ $_height = 0;
 ?>
 
 <?php
-  if (isset($height) && property_exists($height, 'value'))
+/*  if (isset($height) && property_exists($height, 'value'))
   {
     include_partial(
       'marketplace/partials/holidayMarketBuyPackagePromo_300x90',
@@ -21,7 +21,7 @@ $_height = 0;
   else
   {
     include_partial('marketplace/partials/holidayMarketBuyPackagePromo_300x90');
-  }
+  }*/
 ?>
 
 <?php

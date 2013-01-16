@@ -91,7 +91,8 @@ var APP = window.APP = {
       {
         $('#collectionCollectiblesWidget').collectionCollectiblesCarousel({
             collection_id: window.cq.settings.collectionColletiblesWidget.collection_id,
-            collectible_id: window.cq.settings.collectionColletiblesWidget.collectible_id
+            collectible_id: window.cq.settings.collectionColletiblesWidget.collectible_id,
+            limit: window.cq.settings.collectionColletiblesWidget.limit
         });
       }
     }

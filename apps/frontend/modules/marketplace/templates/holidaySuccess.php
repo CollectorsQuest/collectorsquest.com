@@ -114,9 +114,12 @@
 
       var $a = $(this);
       var $div = $('<div></div>');
+      var $container = $(event.target).parents('div');
 
-      $div.appendTo('body').load($(this).attr('href'), function()
+      $container.showLoading();
+      $div.appendTo('body').load($(this).data('ajaxUrl'), function()
       {
+        $container.hideLoading()
         $('.modal', $div).modal('show');
       });
 

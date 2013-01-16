@@ -68,7 +68,7 @@ Scroller = function( settings ) {
 		this.body.bind( 'post-load', { self: self }, self.checkViewportOnLoad );
 	} else if ( type == 'click' ) {
 		this.element.append( self.handle );
-		this.element.on( 'click.infinity', '#infinite-handle', function() {
+		this.element.delegate( '#infinite-handle', 'click.infinity', function() {
 			// Handle the handle
 			$( '#infinite-handle' ).remove();
 			// Fire the refresh
@@ -85,7 +85,7 @@ Scroller = function( settings ) {
  */
 Scroller.prototype.check = function() {
 	var bottom = this.window.scrollTop() + this.window.height(),
-		threshold = this.element.offset().top + this.element.outerHeight() - this.window.height();
+		threshold = this.element.offset().top + this.element.outerHeight(false) - this.window.height();
 
 	return bottom > threshold;
 };
@@ -124,7 +124,7 @@ Scroller.prototype.gotop = function() {
 	blog.attr( 'title', totop );
 
 	// Scroll to top on blog title
-	blog.on( 'click', function( e ) {
+	blog.bind( 'click', function( e ) {
 		$( 'html, body' ).animate( { scrollTop: 0 }, 'fast' );
 		e.preventDefault();
 	});
@@ -140,7 +140,7 @@ Scroller.prototype.thefooter = function() {
 
 	// Check if we have an id for the page wrapper
 	if ( $.type( this.footer.wrap ) === "string" ) {
-		width = $( 'body #' + this.footer.wrap ).outerWidth();
+		width = $( 'body #' + this.footer.wrap ).outerWidth( false );
 
 		// Make the footer match the width of the page
 		if ( width > 479 )
@@ -274,6 +274,10 @@ Scroller.prototype.refresh = function() {
 				if ( stats )
 					new Image().src = document.location.protocol + '//stats.wordpress.com/g.gif?' + stats + '&post=0&baba=' + Math.random();
 
+				// Add new posts to the postflair object
+				if ( 'object' == typeof response.postflair && 'object' == typeof WPCOM_sharing_counts )
+					WPCOM_sharing_counts = $.extend( WPCOM_sharing_counts, response.postflair );
+
 				// Render the results
 				self.render.apply( self, arguments );
 
@@ -308,7 +312,7 @@ Scroller.prototype.ensureFilledViewport = function() {
 		} );
 
 		if ( postsHeight === 0 ) {
-			self.body.off( 'post-load', self.checkViewportOnLoad );
+			self.body.unbind( 'post-load', self.checkViewportOnLoad );
 			return;
 		}
 	}
@@ -330,13 +334,13 @@ Scroller.prototype.ensureFilledViewport = function() {
 		self.refresh();
 	}
 	else {
-		self.body.off( 'post-load', self.checkViewportOnLoad );
+		self.body.unbind( 'post-load', self.checkViewportOnLoad );
 	}
 }
 
 /**
  * Event handler for ensureFilledViewport(), tied to the post-load trigger.
- * Necessary to ensure that the variable `this` contains the scroller when used in ensureFilledViewport(). Since this function is tied to an event, `this` becomes the DOM element related the event is tied to.
+ * Necessary to ensure that the variable `this` contains the scroller when used in ensureFilledViewport(). Since this function is tied to an event, `this` becomes the DOM element the event is tied to.
  */
 Scroller.prototype.checkViewportOnLoad = function( ev ) {
 	ev.data.self.ensureFilledViewport();
@@ -357,14 +361,14 @@ Scroller.prototype.determineURL = function () {
 	$( '.' + self.wrapperClass ).each( function() {
 		var id         = $( this ).attr( 'id' ),
 			setTop     = $( this ).offset().top,
-			setHeight  = $( this ).outerHeight(),
+			setHeight  = $( this ).outerHeight( false ),
 			setBottom  = 0,
 			setPageNum = $( this ).data( 'page-num' );
 
 		// Account for containers that have no height because their children are floated elements.
 		if ( 0 == setHeight ) {
 			$( '> *', this ).each( function() {
-				setHeight += $( this ).outerHeight();
+				setHeight += $( this ).outerHeight( false );
 			} );
 		}
 

@@ -31,6 +31,12 @@ all:
         required_params: [collector, collector_email]
       newsletter_subscription_confirmation:
         subject: "Would you like to continue receiving the Collectors Quest newsletter?"
+      one_week_inactivity_reminder:
+        subject: "Things have been quiet without you, {{ collector.displayName | raw }} ..."
+        required_params: [collector, collector_image]
+      one_month_inactivity_reminder:
+        subject: "Come back to Collectors Quest, {{ collector.displayName | raw }}!"
+        required_params: [collector]
 
 
     Seller:
@@ -50,10 +56,10 @@ all:
         required_params: [oSender, oReceiver, oMessage, sThreadUrl]
       private_message_copy_for_sender:
         subject: "You've Sent a Message on Collectors Quest!"
-        required_params: [oSender, sReceiver, sMessageBody]
+        required_params: [oSender, sReceiver, sMessageBody, sSubject]
       relay_message_to_unregistered_user:
         subject: "You have a new message from {{ oSender.displayName | raw }} on Collectors Quest!"
-        required_params: [oSender, sMessageBody ]
+        required_params: [oSender, sMessageBody, sSubject]
 
     Comments:
       comment_response_notification:

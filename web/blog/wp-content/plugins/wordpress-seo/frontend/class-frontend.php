@@ -136,20 +136,7 @@ class WPSEO_Frontend {
 		if ( !empty( $title ) )
 			return wpseo_replace_vars( $title, (array) $object );
 
-    // try to make the default title fit into 70 characters
-    $default_title = $this->get_title_from_options( 'title-' . $object->post_type, $object );
-    if (strlen($default_title) > 70)
-    {
-      if ($default_title < 79)
-      {
-        $default_title = str_replace('Collectors\' Blog', 'CQ Blog', $default_title);
-      }
-      else
-      {
-        $default_title = str_replace(' | Collectors\' Blog', '', $default_title);
-      }
-    }
-		return $default_title;
+		return $this->get_title_from_options( 'title-' . $object->post_type, $object );
 	}
 
 	/**
@@ -746,12 +733,16 @@ class WPSEO_Frontend {
 
 		$gplus = apply_filters( 'wpseo_author_link', $gplus );
 
-		if ( $gplus )
+		if ( is_front_page() ) {
+			if ( isset( $options['plus-publisher'] ) && !empty( $options['plus-publisher'] ) ) {
+				echo '<link rel="publisher" href="' . esc_attr( $options['plus-publisher'] ) . '"/>' . "\n";
+			} else if ( $gplus ) {
+				echo '<link rel="author" href="' . $gplus . '"/>' . "\n";
+			}
+		} else if ( $gplus ) {
 			echo '<link rel="author" href="' . $gplus . '"/>' . "\n";
-
-		if ( is_front_page() && isset( $options['plus-publisher'] ) && !empty( $options['plus-publisher'] ) ) {
-			echo '<link rel="publisher" href="' . esc_attr( $options['plus-publisher'] ) . '"/>' . "\n";
 		}
+
 	}
 
 	/**
@@ -854,7 +845,7 @@ class WPSEO_Frontend {
 			} else if ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() ) {
 				$post_type = get_post_type();
 				if ( isset( $options['metadesc-ptarchive-' . $post_type] ) && '' != $options['metadesc-ptarchive-' . $post_type] ) {
-					$metadesc = $options['metadesc-ptarchive-' . $post_type];
+					$metadesc = wpseo_replace_vars( $options['metadesc-ptarchive-' . $post_type], (array) $wp_query->get_queried_object() );
 				}
 			}
 		}

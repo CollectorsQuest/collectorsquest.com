@@ -13,8 +13,9 @@
       }
     ?>
 
+    <!--
     <div class="span3">
-    <?php
+      <?php
       if (cqGateKeeper::open('holiday_marketplace', 'page'))
       {
         echo cq_ad_slot(
@@ -25,8 +26,9 @@
           '@marketplace?ref='. cq_link_ref('sidebar')
         );
       }
-    ?>
+      ?>
     </div>
+    //-->
 
     <?php include_partial('general/homepage_blogpost', array('blog_post' => $blog_posts[0])); ?>
 

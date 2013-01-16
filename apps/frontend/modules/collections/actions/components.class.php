@@ -4,20 +4,6 @@ class collectionsComponents extends cqFrontendComponents
 {
   public function executeSidebarIndex()
   {
-    $ids = array(
-      3044,  152,  402,  775,
-       521, 3465, 1209, 3375,
-         2, 1136, 1425, 1559,
-      1755, 3464, 1905, 2266,
-      2836, 3043,
-    );
-
-    $q = ContentCategoryQuery::create()
-      ->filterById($ids, Criteria::IN)
-      ->orderByName(Criteria::ASC)
-      ->limit($this->limit);
-    $this->categories = $q->find();
-
     return sfView::SUCCESS;
   }
 

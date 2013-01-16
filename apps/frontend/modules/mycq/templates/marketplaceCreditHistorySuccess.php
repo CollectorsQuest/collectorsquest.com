@@ -24,7 +24,7 @@
         <!-- Items listing history -->
         <div id="items-for-sale-history" class="row-fluid sidebar-title spacer-top-20" style="margin-bottom: 0;">
           <div class="span8">
-            <h3 class="Chivo webfont">Items for Sale History</h3>
+            <h3 class="Chivo webfont">Listing History</h3>
           </div>
         </div><!-- /.sidebar-title -->
 

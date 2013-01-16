@@ -24,8 +24,8 @@ register_taxonomy(
 add_action('init', 'cq_init_session', 1);
 function cq_init_session()
 {
-  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfStorage.class.php';
-  include_once __DIR__ .'/../../../../../lib/vendor/symfony/lib/storage/sfSessionStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/symfony1/lib/storage/sfStorage.class.php';
+  include_once __DIR__ .'/../../../../../lib/vendor/symfony/symfony1/lib/storage/sfSessionStorage.class.php';
   include_once __DIR__ .'/../../../../../lib/collectorsquest/cqSessionStorage.class.php';
 
   $options = array('session_name' => 'cq_frontend', 'auto_start' => true);
@@ -347,7 +347,7 @@ function cq_custom_post_type_init()
     'query_var'       => false,
     'menu_position'   => 100,
     'taxonomies'      => array('post_tag'),
-    'supports'        => array('title', 'editor', 'tags', 'thumbnail')
+    'supports'        => array('title', 'editor', 'tags', 'thumbnail', 'author')
   ));
 }
 

@@ -67,7 +67,7 @@
     <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
     <?php $has_image = isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia; ?>
     <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
-      <div class="thumbnail drop-zone" data-is-primary="0">
+      <div class="thumbnail drop-zone <?= $has_image ? 'loading-indicator' : ''; ?>" data-is-primary="0">
       <?php if ($has_image): ?>
         <div class="alt-view-img">
           <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>

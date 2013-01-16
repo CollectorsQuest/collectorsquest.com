@@ -2,8 +2,13 @@
     "name": "CollectorsQuest.com",
     "version": "3.0.0",
     "config": {
-        "vendor-dir": ".",
+        "vendor-dir": "lib/vendor",
         "bin-dir": "console/"
+    },
+    "autoload": {
+      "psr-0": {
+        "Everyman\\Neo4j\\": "lib/vendor/neo4jphp/lib"
+      }
     },
     "description": "CollectorsQuest composer file",
     "repositories": {
@@ -12,6 +17,7 @@
             "package": {
                 "name": "plugins/sfGuardPlugin",
                 "version": "4.0.2",
+                "type": "symfony1-plugin",
                 "source": {
                     "url": "git@github.com:CollectorsQuest/sfGuardPlugin-1.3.git",
                     "type": "git",
@@ -22,7 +28,7 @@
         "Jadell/neo4jphp": {
             "type": "package",
             "package": {
-                "name": "lib/vendor/neo4jphp",
+                "name": "neo4jphp",
                 "version": "0.1.0",
                 "dist": {
                     "url": "https://github.com/jadell/neo4jphp/zipball/0.1.0",
@@ -35,47 +41,10 @@
                 }
             }
         },
-        "fzaninotto/faker": {
-            "type": "package",
-            "package": {
-                "name": "lib/vendor/faker",
-                "version": "master-dev",
-                "source": {
-                    "url": "git://github.com/fzaninotto/Faker.git",
-                    "type": "git",
-                    "reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8"
-                }
-            }
-        },
-        "Seldaek/monolog": {
-            "type": "package",
-            "package": {
-                "name": "lib/vendor/monolog",
-                "version": "master-dev",
-                "source": {
-                    "url": "git://github.com/Seldaek/monolog.git",
-                    "type": "git",
-                    "reference": "6c15897ac74bd53572328094eacf03fbb7b8bca7"
-                }
-            }
-        },
-        "Twig/twig": {
-            "type": "package",
-            "package": {
-                "name": "lib/vendor/twig",
-                "version": "1.11.1",
-                "source": {
-                    "url":  "git://github.com/fabpot/Twig.git",
-                    "type": "git",
-                    "reference": "v1.11.1"
-
-                }
-            }
-        },
         "Magnify": {
             "type": "package",
             "package": {
-                "name": "lib/vendor/magnify",
+                "name": "magnify",
                 "version": "1.1",
                 "source": {
                     "url": "git://github.com/CollectorsQuest/magnify-sdk.git",
@@ -83,13 +52,27 @@
                     "reference": "f946c9f572e98f286595cb2b024e6b13423b8610"
                 }
             }
+        },
+        "symfony": {
+          "type": "package",
+          "package": {
+            "name": "symfony/symfony1",
+            "version": "1.4",
+            "dist": {
+              "url": "https://github.com/symfony/symfony1/zipball/1.4",
+              "type": "zip"
+            }
+          }
         }
     },
     "require": {
+        "composer/installers": "v1.0.0",
         "plugins/sfGuardPlugin": "4.0.2",
-        "lib/vendor/neo4jphp": "0.1.0",
-        "lib/vendor/faker": "master-dev",
-        "lib/vendor/twig": "1.11.1",
-        "lib/vendor/magnify": "1.1"
+        "aws/aws-sdk-php": "2.0.3",
+        "neo4jphp": "0.1.0",
+        "fzaninotto/faker": "1.1.*@dev",
+        "twig/twig": "v1.11.1",
+        "magnify": "1.1",
+        "symfony/symfony1": "1.4"
     }
 }

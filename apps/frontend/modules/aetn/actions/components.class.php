@@ -93,4 +93,46 @@ class aetnComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeFranksPicksCollectiblesForSaleMobile()
+  {
+    /* @var $aetn_shows array */
+    $aetn_shows = sfConfig::get('app_aetn_shows', array());
+    $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
+
+    // We cannot continue without the collection
+    if (!$collection)
+    {
+      return sfView::NONE;
+    }
+
+    /*
+     * Collectibles are not public right now, when the become public we should use FrontendQuery
+     *
+     * Do not add 'for sale' to this query as we want to display sold items as well
+     */
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollection($collection)
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
+
+    /* @var $page integer */
+    $page = (integer) $this->getRequestParameter('p', 1);
+
+    $pager = new PropelModelPager($q, 27);
+    $pager->setPage($page);
+    $pager->init();
+    $this->pager = $pager;
+
+    $this->collection = $collection;
+
+    // if we are trying to get an out of bounds page
+    if ($page > 1 && $page > $pager->getLastPage())
+    {
+      // return empty response
+      return sfView::NONE;
+    }
+
+    return sfView::SUCCESS;
+  }
+
 }

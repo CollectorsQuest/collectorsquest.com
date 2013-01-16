@@ -73,7 +73,18 @@
               <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
             </td>
           </tr>
-          <?php if (0 != (int) $shopping_cart_collectible->getTaxAmount()): ?>
+          <?php if ($promotion = $shopping_cart_collectible->getSellerPromotion()): ?>
+            <tr>
+              <td style="color: red;"><?= $promotion->getPromotionCode() ?></td>
+              <td class="text-right" style="color: red;">
+                <?php if (0 != (int) $promotion->getAmount()): ?>
+                  - <?= money_format('%.2n', (float) $shopping_cart_collectible->getPromotionAmount('float')); ?>
+                  <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+                <?php endif ?>
+              </td>
+            </tr>
+          <?php endif; ?>
+          <?php if (0 != $shopping_cart_collectible->getTaxAmount('integer')): ?>
             <tr>
               <td>Tax (<?= $shopping_cart_collectible->getCollectibleForSale()->getTaxPercentage() ?>%):</td>
               <td class="text-right">
@@ -102,6 +113,21 @@
             <td class="text-right">
               <strong><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></strong>
               <small class="text-bold"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="seller-promo">
+              <div class="input-append">
+                <?php
+                  echo $form['promotion_code']->render(array(
+                    'class' => 'input-small', 'placeholder' => 'Promo code...',
+                    'style' => 'width: 105px; height: 20px;'
+                  ));
+                ?>
+                <button type="button" data-collectible-id="<?=$shopping_cart_collectible->getCollectibleId() ?>"
+                        class="btn apply-promo">Apply</button>
+              </div>
+              <div class="red"></div>
             </td>
           </tr>
           <tr>
@@ -148,9 +174,9 @@
                 function()
                 {
                   $container.hideLoading();
-                  $container.find('tr.rainbow-dash')
-                      .animate( { backgroundColor: "#ffffcc" }, 1)
-                      .animate( { backgroundColor: "#f3f1f1" }, 1500);
+//                  $container.find('tr.rainbow-dash')
+//                      .animate( { backgroundColor: "#ffffcc" }, 1)
+//                      .animate( { backgroundColor: "#f3f1f1" }, 1500);
                 }
             );
           }
@@ -184,6 +210,44 @@
 //                      .animate( { backgroundColor: "#f3f1f1" }, 1500);
                 }
             );
+          }
+      ); // getJSON()
+    }); // on country change
+
+    $container.find('.apply-promo').on('click', function()
+    {
+      $('.seller-promo .red', $container).html('');
+      var $this = $(this);
+      var val = $this.closest('div').find('input[name="checkout[promotion_code]"]').val();
+
+      $container.showLoading();
+
+      // execute the JSON request only if a valid value is selected
+      $.getJSON(
+          '<?= url_for('ajax_shopping', array('section'=>'ShoppingCartCollectible', 'page' => 'UpdatePromoCode')) ?>',
+          {
+            collectible_id:  $this.data('collectible-id'),
+            code: val
+          },
+          function (data)
+          {
+            if (data.error)
+            {
+              $('.seller-promo .red', $container).html(data.error);
+              $container.hideLoading();
+            }
+            else
+            {
+              $container
+                  .load(
+                  '<?= url_for('@ajax_shopping?section=component&page=shoppingCartCollectible&collectible_id=' .
+                    $shopping_cart_collectible->getCollectibleId())?>',
+                  function()
+                  {
+                    $container.hideLoading();
+                  }
+              );
+            }
           }
       ); // getJSON()
     }); // on country change

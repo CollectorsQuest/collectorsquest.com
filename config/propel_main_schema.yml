@@ -36,7 +36,7 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectorArchive, archived_at_column: archived_at }
-      sluggable: { slug_pattern: "{DisplayName}", permanent: false }
+      sluggable: { slug_pattern: "{DisplayName}", permanent: false, replace_pattern: '/[^\\pL\\d]+/u' }
       ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
       extra_properties: ~
       timestampable:  ~
@@ -102,6 +102,7 @@ classes:
       id:  ~
       collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
       identifier:    { type: varchar, size: 255, index: unique }
+      provider:      { type: varchar, size: 20 }
       created_at:    ~
 
     propel_behaviors:
@@ -174,7 +175,7 @@ classes:
       eblob: { type: longvarchar, default: null }
 
     propel_behaviors:
-      sluggable: { slug_pattern: "{Name}", permanent: false }
+      sluggable: { slug_pattern: "{Name}", permanent: false, replace_pattern: '/[^\\pL\\d]+/u' }
       ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
       simple_calculations: { columns: [num_views] }
       timestampable:  ~
@@ -188,7 +189,7 @@ classes:
       slug:          { type: varchar, size: 64, required: true }
       description:   { type: longvarchar, required: false }
     propel_behaviors:
-      sluggable:  { slug_pattern: "{Name}", permanent: false }
+      sluggable:  { slug_pattern: "{Name}", permanent: false, replace_pattern: '/[^\\pL\\d]+/u' }
       extra_properties: ~
       nested_set: ~
       aggregate_column:
@@ -212,6 +213,7 @@ classes:
       collector_id:     { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
 
     propel_behaviors:
+      sluggable:  { slug_pattern: "{Name}", permanent: false, replace_pattern: '/[^\\pL\\d]+/u' }
       concrete_inheritance: { extends: collection, copy_data_to_parent: true }
       archivable: { archive_class: CollectorCollectionArchive, archived_at_column: archived_at }
 
@@ -237,6 +239,7 @@ classes:
       eblob:             { type: longvarchar, default: null }
 
     propel_behaviors:
+      sluggable:  { slug_pattern: "{Name}", permanent: false, replace_pattern: '/[^\\pL\\d]+/u' }
       archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
       ratable: { max_rate: 5, user_table: sf_guard_user, dimensions: "Content, Image(s)" }
       simple_calculations: { columns: [num_views] }
@@ -246,8 +249,9 @@ classes:
     columns:
       id:  ~
       thread:        { type: varchar, size: 32 }
-      sender:        { type: integer, required: true, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
-      receiver:      { type: integer, required: true, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
+      sender_id:     { type: integer, required: true, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
+      receiver_id:   { type: integer, required: false, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
+      receiver_email: { type: varchar(255), required: false }
       subject:       { type: varchar, size: 255, required: true }
       body:          { type: longvarchar, required: true }
       is_rich:       { type: boolean, default: false }
@@ -261,7 +265,7 @@ classes:
 
     indexes:
       private_message_I_1: [thread]
-      private_message_I_2: [receiver, sender]
+      private_message_I_2: [receiver_id, sender_id]
 
     propel_behaviors:
       extra_properties: ~

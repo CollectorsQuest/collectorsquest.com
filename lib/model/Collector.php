@@ -105,9 +105,6 @@ require 'lib/model/om/BaseCollector.php';
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
-  /* @var null|integer */
-  private $_graph_id = null;
-
   /** @var array */
   public $_multimedia = array();
 
@@ -183,6 +180,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_OPT_OUT_DEFAULT);
     $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY,
       CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY_DEFAULT);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY,
+      CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY,
+      CollectorPeer::PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY_DEFAULT);
 
     $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_COMMENTS_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_PRIVATE_MESSAGES_AT);
@@ -379,44 +381,61 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return true;
   }
 
-  public function getGraphId()
+  /**
+   * @param     PropelPDO $con
+   * @return    integer|null
+   */
+  public function getGraphId(PropelPDO $con = null)
   {
-    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
+    // if not new object and no graph id set
+    if (!$this->isNew() && null === parent::getGraphId())
+    {
+      // try to create a new graph id for this object
+      $this->setGraphId($this->createGraphId($con));
+      $this->save($con);
+    }
 
-    if (!$this->isNew() && $graph_id === null)
+    return parent::getGraphId();
+  }
+
+  /**
+   * Tries to create a new Neo4j graph id for this object.
+   * Returns the graph id on success or null on failure.
+   *
+   * If a graph id already exists for this object it is returned directly
+   *
+   * @param     PropelPDO $con
+   * @return    integer|null
+   */
+  protected function createGraphId(PropelPDO $con = null)
+  {
+    if (null !== parent::getGraphId())
+    {
+      return parent::getGraphId();
+    }
+
+    // try to create a new graph id
+    try
     {
       $client = cqStatic::getNeo4jClient();
+      $node = $client->makeNode();
+      $node->setProperty('model', 'Collection');
+      $node->setProperty('model_id', $this->getId());
+      $node->save();
 
-      try
-      {
-        $node = $client->makeNode();
-        $node->setProperty('model', 'Collector');
-        $node->setProperty('model_id', $this->getId());
-        $node->save();
-
-        $graph_id = $node->getId();
-      }
-      catch(Everyman\Neo4j\Exception $e)
-      {
-        $this->_graph_id = null;
-      }
-
-      try
-      {
-        $this->setGraphId($this->_graph_id);
-        $this->save();
-      }
-      catch (PropelException $e)
-      {
-        $this->_graph_id = $graph_id;
-      }
+      $graph_id = $node->getId();
     }
-    else
+    catch(Everyman\Neo4j\Exception $e)
     {
-      $this->_graph_id = $graph_id;
+      return null;
     }
 
-    return $this->_graph_id;
+    // check if the graph id is unique
+    return !CollectorQuery::create()
+      ->filterByGraphId($graph_id)
+      ->count($con)
+      ? $graph_id
+      : null;
   }
 
   public function getCollectorId()
@@ -496,7 +515,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
     if ($something instanceof PrivateMessage)
     {
-      return $something->getSender() === $this->getId();
+      return $something->getSenderId() === $this->getId();
     }
     else if ($something instanceof ShoppingOrder)
     {
@@ -693,39 +712,45 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $this->setPrimaryImage($file);
   }
 
-  public function getMessagesCount()
+  /**
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function getMessagesCount(PropelPDO $con = null)
   {
-    $c = new Criteria();
-    $c->add(PrivateMessagePeer::RECEIVER, $this->getId());
-    $c->add(PrivateMessagePeer::IS_DELETED, false);
-    $c->addGroupByColumn(PrivateMessagePeer::THREAD);
-    $c->addDescendingOrderByColumn(PrivateMessagePeer::CREATED_AT);
-
-    return PrivateMessagePeer::doCount($c);
+    return PrivateMessageQuery::create()
+      ->filterByCollectorRelatedByReceiverId($this)
+      ->filterByIsDeleted(false)
+      ->groupByThread()
+      ->count($con);
   }
 
-  public function getReadMessagesCount()
+  /**
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function getReadMessagesCount(PropelPDO $con = null)
   {
-    $c = new Criteria();
-    $c->add(PrivateMessagePeer::RECEIVER, $this->getId());
-    $c->add(PrivateMessagePeer::IS_READ, true);
-    $c->add(PrivateMessagePeer::IS_DELETED, false);
-    $c->addGroupByColumn(PrivateMessagePeer::THREAD);
-    $c->addDescendingOrderByColumn(PrivateMessagePeer::CREATED_AT);
-
-    return PrivateMessagePeer::doCount($c);
+    return PrivateMessageQuery::create()
+      ->filterByCollectorRelatedByReceiverId($this)
+      ->filterByIsDeleted(false)
+      ->filterByIsRead(true)
+      ->groupByThread()
+      ->count($con);
   }
 
-  public function getUnreadMessagesCount()
+  /**
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function getUnreadMessagesCount(PropelPDO $con = null)
   {
-    $c = new Criteria();
-    $c->add(PrivateMessagePeer::RECEIVER, $this->getId());
-    $c->add(PrivateMessagePeer::IS_READ, false);
-    $c->add(PrivateMessagePeer::IS_DELETED, false);
-    $c->addGroupByColumn(PrivateMessagePeer::THREAD);
-    $c->addDescendingOrderByColumn(PrivateMessagePeer::CREATED_AT);
-
-    return PrivateMessagePeer::doCount($c);
+    return PrivateMessageQuery::create()
+      ->filterByCollectorRelatedByReceiverId($this)
+      ->filterByIsDeleted(false)
+      ->filterByIsRead(false)
+      ->groupByThread()
+      ->count($con);
   }
 
   public function getCollectionCategoryIds($criteria = null, PropelPDO $con = null)
@@ -1479,7 +1504,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       ->filterByCollector($this)
       ->delete($con);
 
-    /** @var $collections Collection[] */
+    /* @var $collections Collection[] */
     if ($collections = $this->getCollections())
     {
       foreach ($collections as $collection)
@@ -1488,27 +1513,19 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       }
     }
 
+    // Delete related comments
     CommentQuery::create()
       ->filterByModelObject($this)
       ->delete($con);
 
-    // Deleting private messages
-    $c = new Criteria();
-    $c->add(CollectorPeer::ID, PrivateMessagePeer::RECEIVER);
-    $c->addOr(CollectorPeer::ID, PrivateMessagePeer::SENDER);
+    // Set related private messages as deleted
+    PrivateMessageQuery::create()
+      ->filterByCollectorRelatedBySenderId($this)
+      ->_or()
+      ->filterByCollectorRelatedByReceiverId($this)
+      ->update(array('IsDeleted' => true), $con);
 
-    /** @var $messages PrivateMessage[] */
-    $messages = PrivateMessagePeer::doSelect($c);
-    if (!empty($messages))
-    {
-      foreach ($messages as $message)
-      {
-        $message->setIsDeleted(true);
-        $message->save($con);
-      }
-    }
-
-    /** @var $collector_identifiers CollectorIdentifier[] */
+    /* @var $collector_identifiers CollectorIdentifier[] */
     if ($collector_identifiers = $this->getCollectorIdentifiers($con))
     {
       foreach ($collector_identifiers as $collector_identifier)
@@ -1517,7 +1534,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       }
     }
 
-    /** @var $collector_geocaches CollectorGeoCache[] */
+    /* @var $collector_geocaches CollectorGeoCache[] */
     if ($collector_geocaches = $this->getCollectorGeocaches($con))
     {
       foreach ($collector_geocaches as $collector_geocache)

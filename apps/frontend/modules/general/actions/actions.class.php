@@ -218,7 +218,24 @@ class generalActions extends cqFrontendActions
     {
       $new_collector = false;
       $profile = $auth_info_array['profile'];
-      $collector = CollectorPeer::retrieveByIdentifier($profile['identifier']);
+
+      if ($this->getUser()->isAuthenticated())
+      {
+        $collector = $this->getCollector();
+
+        /** @var $q CollectorIdentifierQuery */
+        $q = CollectorIdentifierQuery::create()
+           ->filterByIdentifier($profile['identifier']);
+
+        $collector_identifier = $q->findOneOrCreate();
+        $collector_identifier->setCollector($collector);
+        $collector_identifier->setProvider($collector_identifier->getProviderFromIdentifier());
+        $collector_identifier->save();
+      }
+      else
+      {
+        $collector = CollectorPeer::retrieveByIdentifier($profile['identifier']);
+      }
 
       if (!$collector)
       {
@@ -367,6 +384,26 @@ class generalActions extends cqFrontendActions
     $this->prependTitle($this->__('Coming Soon'));
 
     return sfView::SUCCESS;
+  }
+
+  public function executeRedirect(cqWebRequest $request)
+  {
+    $this->forward404Unless($route = $request->getParameter('route'));
+    $object = is_callable(array($this->getRoute(), 'getObject')) ? $this->getRoute()->getObject() : null;
+
+    if ($object)
+    {
+      $this->redirect(
+        $route, array('sf_subject' => $object),
+        $request->getParameter('permanent', 'true') == 'true' ? '301' : '302'
+      );
+    }
+    else
+    {
+      $this->redirect(
+        $route, $request->getParameter('permanent', 'true') == 'true' ? '301' : '302'
+      );
+    }
   }
 
   public function executeError404()

@@ -10,13 +10,13 @@
   foreach ($pager->getResults() as $i => $collectible)
   {
     // special case to include holiday promo banner
-    if ($rand == $i)
+/*    if ($rand == $i)
     {
       include_partial('marketplace/partials/holidayMarketBuyPackagePromo_220x170');
-    }
+    }*/
 
     // set the link to open modal dialog
-    $url = url_for('ajax_marketplace',
+    $ajax_url = url_for('ajax_marketplace',
       array(
         'section' => 'collectible',
         'page' => 'forSale',
@@ -24,12 +24,17 @@
       )
     );
 
+    $url = url_for('collectible_by_slug', $collectible);
+
     include_partial(
       'marketplace/collectible_for_sale_masonry_view_big',
       array(
         'collectible_for_sale' => $collectible->getCollectibleForSale(),
         'url' => $url,
-        'link_parameters' => array('class' => 'open-modal zoom-zone')
+        'link_parameters' => array(
+            'class' => 'open-modal zoom-zone',
+            'data-ajax-url' => $ajax_url,
+        ),
       )
     );
   }

@@ -136,6 +136,11 @@
     padding-top: 10px;
   }
 
+  // have padding on texts so they don't start from screen edge
+  .mobile-text-padding {
+    padding: 0 10px;
+  }
+
   /*
    * move the search field and the cart/signup section a to the left
    * so that it is not all the way in the end of the screen
@@ -188,16 +193,49 @@
     }
   }
 
+  #HolidayMarketHeader {
+    .size(237px, 640px) !important;
+    background: url("@{baseUrl}/misc/holiday-market/universal-header-bg-640x236.jpg") no-repeat 0 0;
+
+    &.february {
+      background: url("@{baseUrl}/misc/holiday-market/february-header-640x236.jpg") no-repeat 0 0 !important;
+    }
+    &.march {
+      background: url("@{baseUrl}/misc/holiday-market/march-header-640x236.jpg") no-repeat 0 0 !important;
+    }
+    &.april {
+      background: url("@{baseUrl}/misc/holiday-market/april-header-640x236.jpg") no-repeat 0 0 !important;
+    }
+    &.may {
+      background: url("@{baseUrl}/misc/holiday-market/may-header-640x236.jpg") no-repeat 0 0 !important;
+    }
+    &.june {
+      background: url("@{baseUrl}/misc/holiday-market/june-header-640x236.jpg") no-repeat 0 0 !important;
+    }
+  }
+
+  #body-marketplace-holiday header, #body-marketplace-holiday footer, #body-marketplace-holiday nav, #body-marketplace-holiday #breadcrumbs, #body-marketplace-holiday .slots-container, #body-marketplace-holiday #slot1, #body-marketplace-holiday #slot2, #body-marketplace-holiday #footer-links {
+    width: 640px !important;
+  }
+
+  .holiday-market-menu-wrapper .navbar-inner .centering {
+    width: 460px !important;
+  }
+
   // Collector widget
   .collector-info-sidebar {
     width: 300px;
-    display: block;
-    margin: auto;
+    float: left;
+    margin-right: 20px;
   }
-  .send-pm {
-    width: 290px;
+  .send-pm-mobile {
+    float: left;
+  }
+  #form-private-message textarea {
+    height: 100px !important;
+  }
+  #buttons-private-message {
     display: block;
-    margin: auto;
   }
 
   // items for sale widget to display 4 items on one row

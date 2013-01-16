@@ -117,6 +117,7 @@ function stats_template_redirect() {
 	add_action( 'wp_head', 'stats_add_shutdown_action' );
 
 	$blog = Jetpack::get_option( 'id' );
+	$tz = get_option( 'gmt_offset' );
 	$v = 'ext';
 	$j = sprintf( '%s:%s', JETPACK__API_VERSION, JETPACK__VERSION );
 	if ( $wp_the_query->is_single || $wp_the_query->is_page || $wp_the_query->is_posts_page ) {
@@ -140,7 +141,7 @@ function stats_template_redirect() {
 	$http = is_ssl() ? 'https' : 'http';
 	$week = gmdate( 'YW' );
 
-	$data = stats_array( compact( 'v', 'j', 'blog', 'post' ) );
+	$data = stats_array( compact( 'v', 'j', 'blog', 'post', 'tz' ) );
 
 	$stats_footer = <<<END
 
@@ -375,7 +376,7 @@ function stats_reports_page() {
 		'data' => 'data',
 		'blog_subscribers' => 'int',
 		'comment_subscribers' => null,
-		'type' => array( 'email', 'pending' ),
+		'type' => array( 'wpcom', 'email', 'pending' ),
 		'pagenum' => 'int',
 	);
 	foreach ( $args as $var => $vals ) {

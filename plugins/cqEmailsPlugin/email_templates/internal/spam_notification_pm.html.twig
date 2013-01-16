@@ -5,7 +5,7 @@
   <b>Offending messages:</b>
   <br>
   {% for oMessage in rqMessages %}
-    <b>Author:</b> {{ link_to_collector(oMessage.collectorRelatedBySender, 'text') }}<br />
+    <b>Author:</b> {{ link_to_collector(oMessage.collectorRelatedBySenderId, 'text') }}<br />
     <b>Subject:</b> {{ oMessage.subject }}<br />
     <b>Added on:</b> {{ oMessage.createdAt('M j Y, H:i:s') }}<br />
 

@@ -15,9 +15,9 @@
     <div class="pull-left">
       <span class="title">
         <?php
-          echo link_to_collectible(
-            $collectible_for_sale->getCollectible(), $type = 'text',
-            array('link_to' => array ('target' => '_blank'))
+          echo link_to(
+            $collectible_for_sale->getCollectible(), 'mycq_collectible_by_slug',
+            array('sf_subject' => $collectible_for_sale->getCollectible(), 'return_to' => 'market')
           );
         ?>
       </span>
@@ -31,7 +31,7 @@
   </div>
 </td>
 <td>
-  <?= $collectible_for_sale->getExpiryDate($format = 'F j, Y'); ?>
+  <?= $collectible_for_sale->isForSale() ? $collectible_for_sale->getExpiryDate($format = 'F j, Y') : '-'; ?>
 </td>
 <td class="status">
   <?= ucfirst($collectible_for_sale->getStatus()); ?>

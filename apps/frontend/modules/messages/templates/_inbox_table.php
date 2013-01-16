@@ -12,9 +12,9 @@
         <input type="checkbox" name="ids[]" value="<?= $message->getId() ?>" class="<?= $message->getIsRead() ? 'read' : 'unread' ?>" />
       </td>
       <td class="sender-col">
-        <?= image_tag_collector($message->getCollectorRelatedBySender(),
+        <?= image_tag_collector($message->getCollectorRelatedBySenderId(),
           '50x50', array('class' => 'avatar')); ?>
-        From:&nbsp;<?= link_to_collector($message->getCollectorRelatedBySender()); ?><br/>
+        From:&nbsp;<?= link_to_collector($message->getCollectorRelatedBySenderId()); ?><br/>
         <span class="font10" title="<?= $message->getCreatedAt('c') ?>">
           <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
         </span>

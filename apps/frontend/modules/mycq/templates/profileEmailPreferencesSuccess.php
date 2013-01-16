@@ -1,6 +1,5 @@
 <?php
   /* @var $collector Collector */
-  $newsletter = $collector->getPreferencesNewsletter();
   $comments = $collector->getNotificationsComment();
   $messages = $collector->getNotificationsMessage();
 
@@ -16,19 +15,6 @@
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
-
-        <div class="row">
-          <div class="span12 boolean-selection">
-            <span class="">Receive our weekly newsletters: </span>
-            <?php
-              echo link_to(
-                $newsletter ? 'Yes' : '&nbsp;No&nbsp;',
-                '@mycq_profile_email_preferences?newsletter=' . ((integer) !$newsletter),
-                array('class' => 'pull-right btn btn-mini ' . ($newsletter ? 'btn-success' : 'btn-danger'))
-              );
-            ?>
-          </div>
-        </div>
 
         <div class="row">
           <div class="span12 boolean-selection">

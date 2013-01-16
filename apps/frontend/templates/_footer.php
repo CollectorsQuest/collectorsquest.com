@@ -56,8 +56,13 @@
       <!-- .span4 -->
 
       <div class="span4">
-        <?php if (!$sf_user->isAuthenticated()): ?>
-          <?php
+        <?php
+          if ($sf_user->isAuthenticated())
+          {
+            include_partial('global/footer_authenticated');
+          }
+          else
+          {
             if ($sf_request->isMobileLayout())
             {
               cq_ad_slot(
@@ -83,37 +88,8 @@
                 '@misc_guide_to_collecting'
               );
             }
-          ?>
-        <?php else: ?>
-          <div class="footer-user-container">
-            <div id="footer-user-info"></div>
-            <ul class="footer-profile-box cf">
-              <li class="footer-profile-box-h-list spacer-inner-top-reset">
-                <ul class="row-fluid">
-                  <li class="span6 add-collectible-img link">
-                    <a href="<?= url_for('@mycq_collections?ref='. cq_link_ref('footer'), true) ?>" class="bold-links target">
-                      Upload<br> an item
-                    </a>
-                  </li>
-                  <li class="span6 organize-collection link">
-                    <a href="<?= url_for('@mycq_collections?ref='. cq_link_ref('footer'), true) ?>#my-collections" class="bold-links target">
-                      Organize your<br> collections
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-
-            <div class="row-fluid spacer-inner-top">
-              <div class="span12">
-                <a href="<?= url_for('@mycq_profile?ref='. cq_link_ref('footer'), true); ?>" class="btn btn-primary">
-                  My Profile
-                </a>
-                <b><?= link_to('Log out', '@logout?ref='. cq_link_ref('footer'), array('class' => 'spacer-left logout-link')); ?></b>
-              </div>
-            </div>
-          </div>
-        <?php endif; ?>
+          }
+        ?>
       </div>
       <!-- .span4 -->
 
@@ -176,9 +152,4 @@
   </div>
   <!--/footer-inner-->
 
-  <!--
-    <a id="top-link" href="javascript:void(0)" class="btn btn-large sticky">
-      <i class="icon-arrow-up"></i> Scroll<br> to Top
-    </a>
-  //-->
 </footer>

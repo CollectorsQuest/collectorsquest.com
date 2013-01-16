@@ -177,6 +177,10 @@
 		    background-position: 0% 0%;
 	    }
     }
+
+    sup {
+      color: #cc0000;
+    }
   }
 
   .tab-content-inner {
@@ -2352,4 +2356,62 @@ div.wpfaqask {
 .table-price-purchased {
   margin-bottom: 0;
   .table-no-borders();
+}
+
+.already-connected {
+  position: relative;
+  .size(46px, 128px);
+  float: left;
+  padding: 10px 4px 10px 8px;
+  margin: 30px 20px 30px 20px;
+  background-color: @yellowBackground;
+  border: 1px solid #d9d2cc;
+  color: @brown;
+
+  span {
+    float: left;
+  }
+
+  .facebook-big-icon, .twitter-big-icon, .google-big-icon, .live-id-big-icon {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  .icon-remove-sign {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: none;
+  }
+  &:hover .icon-remove-sign {
+    display: block;
+  }
+}
+
+.connect-to-social-icons {
+  display: table;
+  margin: 0 auto;
+
+  fieldset {
+    border: 1px solid #d9d2cc;
+
+    legend {
+      width: auto;
+      padding: 0 4px;
+      margin: 0 auto; //IE fix
+      font-size: @baseFontSize + 1;
+      text-align: center;
+      color: @brown;
+      border: none;
+    }
+  }
+
+  .icon-container {
+    margin: 2px 8px 16px 8px;
+    text-align: center;
+
+    .facebook-big-icon, .twitter-big-icon, .google-big-icon, .live-id-big-icon {
+      display: inline-block;
+      margin: 0 10px;
+    }
+  }
 }

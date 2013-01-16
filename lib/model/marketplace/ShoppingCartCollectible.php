@@ -4,8 +4,11 @@ require 'lib/model/marketplace/om/BaseShoppingCartCollectible.php';
 
 class ShoppingCartCollectible extends BaseShoppingCartCollectible
 {
-  /** @var ShippingReference */
+  /* @var ShippingReference */
   protected $aShippingReference;
+
+  /* @var SellerPromotion */
+  protected $aSellerPromotion;
 
   /**
    * Pre save hook
@@ -20,7 +23,8 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
       !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_FEE_AMOUNT)
-    ) {
+    )
+    {
       $this->updateShippingFeeAmountFromCountryCode();
     }
 
@@ -29,7 +33,8 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
       !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_TYPE)
-    ) {
+    )
+    {
       $this->updateShippingTypeFromCountryCode();
     }
 
@@ -38,11 +43,24 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     if (
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) ||
       $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_STATE_REGION)
-    ) {
+    )
+    {
       $this->updateTaxAmount();
     }
 
     return parent::preSave($con);
+  }
+
+  public function postDelete(PropelPDO $con = null)
+  {
+    // Remove all not finished orders for this collectible
+    ShoppingOrderQuery::create()
+      ->filterByCollectibleId($this->getCollectibleId())
+      ->filterByShoppingCartId($this->getShoppingCartId())
+      ->filterByShoppingPaymentId(null, Criteria::ISNULL)
+      ->delete();
+
+    return parent::postDelete($con);
   }
 
   public function getCollector(PropelPDO $con = null)
@@ -78,13 +96,14 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
   public function getTotalPrice()
   {
     return bcadd(
-      bcadd($this->getPriceAmount('float'), $this->getTaxAmount('float'), 2),
+      bcadd(bcsub($this->getPriceAmount('float'), $this->getPromotionAmount('float'), 2), $this->getTaxAmount('float'), 2),
       $this->getShippingFeeAmount('float'), 2
     );
   }
 
   /**
    * @param integer|float|double $v
+   * @return ShoppingCartCollectible|void
    */
   public function setPriceAmount($v)
   {
@@ -115,7 +134,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   /**
    * @param integer|float|double $v
-   *
+   * @return ShoppingCartCollectible
    */
   public function setTaxAmount($v)
   {
@@ -196,9 +215,10 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
    * will be overwritten
    *
    * @param     string|null $country_code
+   * @param     bool $update_discount
    * @return    ShoppingCartCollectible
    */
-  public function updateShippingFeeAmountFromCountryCode($country_code = null)
+  public function updateShippingFeeAmountFromCountryCode($country_code = null, $update_discount = true)
   {
     if (!empty($country_code))
     {
@@ -222,6 +242,11 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       $this->setShippingFeeAmount($shipping_amount);
     }
 
+    if ($update_discount)
+    {
+      $this->updateSellerPromotionAmount();
+    }
+
     return $this;
   }
 
@@ -236,8 +261,11 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       (!$collectible_for_sale->getTaxState() || $collectible_for_sale->getTaxState() == $this->getShippingStateRegion())
     )
     {
-      $this->setTaxAmount(round(($this->getPriceAmount() / 100) * $collectible_for_sale->getTaxPercentage(), 2));
+      $this->setTaxAmount(round((bcsub($this->getPriceAmount(), $this->getPromotionAmount(), 2) / 100)
+        * $collectible_for_sale->getTaxPercentage(), 2));
     }
+
+    return $this;
   }
 
   /**
@@ -342,4 +370,115 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     return null;
   }
 
+  public function setPromotionAmount($v)
+  {
+    if (!is_integer($v) && !ctype_digit($v))
+    {
+      $v = bcmul(cqStatic::floatval($v, 3), 100);
+    }
+
+    return parent::setPromotionAmount($v);
+  }
+
+  public function getPromotionAmount($return = 'float')
+  {
+    $amount = parent::getPromotionAmount();
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 3);
+  }
+
+  /**
+   * Get SellerPromotion
+   *
+   * @return SellerPromotion|null
+   */
+  public function getSellerPromotion()
+  {
+    if ($this->aSellerPromotion === null && $this->getSellerPromotionId() != null)
+    {
+      return $this->aSellerPromotion = SellerPromotionQuery::create()->findOneById($this->getSellerPromotionId());
+    }
+    else
+    {
+      return $this->aSellerPromotion;
+    }
+  }
+
+  /**
+   * Set SellerPromotion
+   *
+   * @param SellerPromotion $seller_promotion
+   * @return ShoppingCartCollectible
+   */
+  public function setSellerPromotion($seller_promotion = null)
+  {
+    if ($seller_promotion instanceof SellerPromotion)
+    {
+      $this->setSellerPromotionId($seller_promotion->getId());
+      $this->aSellerPromotion = $seller_promotion;
+    }
+    else
+    {
+      $this->setSellerPromotionId(null);
+      $this->setPromotionAmount(0);
+      $this->aSellerPromotion = null;
+    }
+    $this->updateSellerPromotionAmount();
+
+    return $this;
+  }
+
+  /**
+   * Update SellerPromotion Amount
+   *
+   * @return ShoppingCartCollectible
+   */
+  public function updateSellerPromotionAmount()
+  {
+    /* @var $seller_promotion SellerPromotion */
+    $seller_promotion = $this->getSellerPromotion();
+    if ($seller_promotion instanceof SellerPromotion)
+    {
+      switch ($seller_promotion->getAmountType())
+      {
+        case SellerPromotionPeer::AMOUNT_TYPE_FREE_SHIPPING:
+          $this->setPromotionAmount(0);
+          $this->setRawShippingFeeAmount(0);
+          break;
+        case SellerPromotionPeer::AMOUNT_TYPE_FIXED:
+          $this->setPromotionAmount($seller_promotion->getAmount());
+          if ($this->getRawShippingFeeAmount() == 0)
+          {
+            // Need restore shipping if we change code for free shipping
+            $this->updateShippingFeeAmountFromCountryCode(null, false);
+            $this->updateShippingTypeFromCountryCode();
+          }
+          break;
+        case SellerPromotionPeer::AMOUNT_TYPE_PERCENTAGE:
+          $this->setPromotionAmount(
+            round(($this->getPriceAmount() / 100) * $seller_promotion->getAmount(), 2 )
+          );
+          if ($this->getRawShippingFeeAmount() == 0)
+          {
+            // Need restore shipping if we change code for free shipping
+            $this->updateShippingFeeAmountFromCountryCode(null, false);
+            $this->updateShippingTypeFromCountryCode();
+          }
+          break;
+      }
+    }
+    else
+    {
+      $this->setPromotionAmount(0);
+      if ($this->getRawShippingFeeAmount() == 0)
+      {
+        // Need restore shiping if we remove code for free shipping
+        $this->updateShippingFeeAmountFromCountryCode(null, false);
+        $this->updateShippingTypeFromCountryCode();
+      }
+    }
+    $this->updateTaxAmount();
+
+    return $this;
+  }
 }

@@ -10,8 +10,8 @@
  */
 class CollectorCollection extends BaseCollectorCollection
 {
-  /* @var null|integer */
-  private $_graph_id = null;
+  /* @var boolean */
+  private $_tried_graph_id_creation = false;
 
   /** @var array */
   public $_multimedia = array();
@@ -31,44 +31,69 @@ class CollectorCollection extends BaseCollectorCollection
     return parent::__toString() ?: 'Untitled';
   }
 
-  public function getGraphId()
+  /**
+   * @param     boolean $force Force attempt even if previously failed
+   * @param     PropelPDO $con
+   *
+   * @return    integer|null
+   */
+  public function getGraphId($force = false, PropelPDO $con = null)
   {
-    $graph_id = ($this->_graph_id !== null) ? (integer) $this->_graph_id : parent::getGraphId();
+    // if not new object and no graph id set
+    if (
+      !$this->isNew() &&
+      null === parent::getGraphId()
+      && (!$this->_tried_graph_id_creation || $force)
+    )
+    {
+      // set flag to prevent infinite recursion on save
+      $this->_tried_graph_id_creation = true;
+      // try to create a new graph id for this object
+      $this->setGraphId($this->createGraphId($con));
+      $this->save($con);
+    }
 
-    if (!$this->isNew() && $graph_id === null)
+    return parent::getGraphId();
+  }
+
+  /**
+   * Tries to create a new Neo4j graph id for this object.
+   * Returns the graph id on success or null on failure.
+   *
+   * If a graph id already exists for this object it is returned directly
+   *
+   * @param     PropelPDO $con
+   * @return    integer|null
+   */
+  protected function createGraphId(PropelPDO $con = null)
+  {
+    if (null !== parent::getGraphId())
+    {
+      return parent::getGraphId();
+    }
+
+    // try to create a new graph id
+    try
     {
       $client = cqStatic::getNeo4jClient();
+      $node = $client->makeNode();
+      $node->setProperty('model', 'Collection');
+      $node->setProperty('model_id', $this->getId());
+      $node->save();
 
-      try
-      {
-        $node = $client->makeNode();
-        $node->setProperty('model', 'Collection');
-        $node->setProperty('model_id', $this->getId());
-        $node->save();
-
-        $this->_graph_id = $node->getId();
-      }
-      catch(Everyman\Neo4j\Exception $e)
-      {
-        $this->_graph_id = null;
-      }
-
-      try
-      {
-        $this->setGraphId($this->_graph_id);
-        $this->save();
-      }
-      catch (PropelException $e)
-      {
-        $this->_graph_id = $graph_id;
-      }
+      $graph_id = $node->getId();
     }
-    else
+    catch(Everyman\Neo4j\Exception $e)
     {
-      $this->_graph_id = $graph_id;
+      return null;
     }
 
-    return $this->_graph_id;
+    // check if the graph id is unique
+    return !CollectorCollectionQuery::create()
+      ->filterByGraphId($graph_id)
+      ->count($con)
+      ? $graph_id
+      : null;
   }
 
   /**

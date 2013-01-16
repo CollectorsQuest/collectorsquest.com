@@ -65,6 +65,11 @@ class CollectorPeer extends BaseCollectorPeer
   const PROPERTY_NOTIFICATIONS_BUDDY = 'NOTIFICATIONS_BUDDY';
   const PROPERTY_NOTIFICATIONS_BUDDY_DEFAULT = true;
 
+  const PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY = 'AUTORESPONDERS_ONE_WEEK_INACTIVITY';
+  const PROPERTY_AUTORESPONDERS_ONE_WEEK_INACTIVITY_DEFAULT = false;
+  const PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY = 'AUTORESPONDERS_ONE_MONTH_INACTIVITY';
+  const PROPERTY_AUTORESPONDERS_ONE_MONTH_INACTIVITY_DEFAULT = false;
+
   // Timeouts denote that the user is not allowed to perform a specific action
   // until the timeout datatime is reached
   const PROPERTY_TIMEOUT_COMMENTS_AT = 'TIMEOUT_COMMENTS_AT';
@@ -262,7 +267,7 @@ class CollectorPeer extends BaseCollectorPeer
 
   public static function createFromRPXProfile($profile)
   {
-    $email = !empty($profile['verifiedEmail']) ? $profile['verifiedEmail'] : $profile['email'];
+    $email = !empty($profile['verifiedEmail']) ? $profile['verifiedEmail'] : @$profile['email'];
 
     if (empty($email) || !$collector = CollectorQuery::create()->findOneByEmail($email))
     {
@@ -286,6 +291,7 @@ class CollectorPeer extends BaseCollectorPeer
 
     $collector_identifier = $q->findOneOrCreate();
     $collector_identifier->setCollector($collector);
+    $collector_identifier->setProvider($collector_identifier->getProviderFromIdentifier());
     $collector_identifier->save();
 
     return $collector;

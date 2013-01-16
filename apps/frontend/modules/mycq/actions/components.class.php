@@ -273,6 +273,13 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeCollectorSocialAccounts()
+  {
+    $this->providers = CollectorIdentifierQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->find()
+      ->toKeyValue('Id', 'Provider');
+  }
   public function executeCreditPurchaseHistory()
   {
     // Get the Collector
