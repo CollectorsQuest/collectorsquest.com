@@ -748,10 +748,23 @@ class mycqActions extends cqFrontendActions
     /* @var $collector Collector */
     $collector = $this->getUser()->getCollector();
 
+    if (CollectorCollectionQuery::create()->filterByCollector($collector)->count() == 0)
+    {
+      $this->getUser()->setFlash('error', 'You should create collection first.');
+      $this->redirect('@mycq_collections');
+    }
+
     $collectible = new Collectible();
     $collectible->setCollector($collector);
 
     $this->form = new CollectibleWizardStep1Form($collectible);
+
+    $this->collection = $request->getParameter('collection_id')
+      ? CollectorCollectionQuery::create()
+        ->filterByCollector($collector)
+        ->filterById($request->getParameter('collection_id'))
+        ->findOne()
+      : null;
 
     if ($request->isMethod(sfRequest::POST))
     {
@@ -759,26 +772,25 @@ class mycqActions extends cqFrontendActions
       if ($this->form->isValid())
       {
         $collectible = $this->form->save();
-        $this->redirect('@mycq_collectible_wizard?id=' . $collectible->getId() .
-          ($request->getParameter('collection_id') ? '&collection_id=' . $request->getParameter('collection_id') : '')
+        $this->redirect('@mycq_collectible_wizard?step=2&id=' . $collectible->getId() .
+          ($this->collection ? '&collection_id=' . $this->collection->getId() : '')
           );
       }
     }
 
-    $this->collection = $request->getParameter('collection_id')
-      ? CollectorCollectionQuery::create()
-      ->filterByCollector($collector)
-      ->filterById($request->getParameter('collection_id'))
-      ->findOne()
-      : null;
-
-
+    return sfView::SUCCESS;
   }
 
   public function executeCollectibleWizard(sfWebRequest $request)
   {
     /* @var $collector Collector */
     $collector = $this->getUser()->getCollector();
+
+    if (CollectorCollectionQuery::create()->filterByCollector($collector)->count() == 0)
+    {
+      $this->getUser()->setFlash('error', 'You should create collection first.');
+      $this->redirect('@mycq_collections');
+    }
 
     /* @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
@@ -811,16 +823,9 @@ class mycqActions extends cqFrontendActions
 
     $this->collectible = $collectible;
 
-    $this->step = 2;
-//    if ($collectible->getPrimaryImage())
-//    {
-//      $this->step = 2;
-//    }
-//    if ($collectible->getName())
-//    {
-//      $this->step = 3;
-//    }
+    $this->step = $request->getParameter('step');
 
+    return sfView::SUCCESS;
   }
 
   public function executeMarketplace()
