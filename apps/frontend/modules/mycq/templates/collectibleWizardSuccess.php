@@ -41,7 +41,8 @@ else
   <div class="button-wrapper<?= $step != 1 ? ' hide' : '' ?>">
     <?= link_to('Next Step &nbsp;<i class="icon-caret-right f-16 text-v"></i>', $sf_request->getUri() . '#',
     array(
-      'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'fileupload-wz1', 'data-next' => 'wz-step2'
+      'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'fileupload-wz1',
+      'data-next' => 'wz-step2', 'id' => 'wizard-step1-submit'
     ));?>
   </div>
 

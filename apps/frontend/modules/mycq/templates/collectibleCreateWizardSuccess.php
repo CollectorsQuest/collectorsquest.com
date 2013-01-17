@@ -37,7 +37,7 @@
   <div class="button-wrapper">
     <?= link_to('Next Step &nbsp;<i class="icon-caret-right f-16 text-v"></i>', $sf_request->getUri() . '#',
     array(
-      'class' => 'btn btn-primary pull-right', 'onclick' => "$('#fileupload-wz1').submit(); return false;"
+      'class' => 'btn btn-primary pull-right', 'id' => "wizard-step1-submit"
     ));?>
   </div>
 
@@ -72,3 +72,17 @@
   </div>
 
 </div>
+<script>
+  $(document).ready(function()
+  {
+    'use strict';
+    $('#wizard-step1-submit').click(function()
+    {
+      if (!$(this).hasClass('disabled'))
+      {
+        $('#fileupload-wz1').submit();
+      }
+      return false;
+    });
+  });
+</script>

@@ -162,6 +162,7 @@ $(document).ready(function()
   var $fileupload = $('#fileupload-wz1');
   var $dropzone = $('#dropzone-wz1', $fileupload);
   var $files = $('#files-wz1', $dropzone);
+  var $submitButton = $('#wizard-step1-submit');
 
   /**
    * Tweak for file upload to support two types of previews
@@ -450,16 +451,21 @@ $(document).ready(function()
   $fileupload.fileupload('option', 'previewMaxWidth', 300);
   $fileupload.fileupload('option', 'previewMinWidth', 300);
   $fileupload
-      .bind('fileuploadadd', function (e, data)
+      .bind('fileuploadadded', function (e, data)
       {
+        $submitButton.addClass('disabled');
+        if (($('.template-upload', $fileupload).length - $('.template-upload .error', $fileupload).length) == 0)
+        {
+          $submitButton.removeClass('disabled');
+        }
         fix_main_image();
       })
-      .bind('fileuploadstop', function(e, data)
+      .bind('fileuploadalways', function(e, data)
       {
-        fix_main_image();
-      })
-      .bind('fileuploadfail', function(e, data)
-      {
+        if (($('.template-upload', $fileupload).length - $('.template-upload .error', $fileupload).length) == 0)
+        {
+          $submitButton.removeClass('disabled');
+        }
         fix_main_image();
       });
 
