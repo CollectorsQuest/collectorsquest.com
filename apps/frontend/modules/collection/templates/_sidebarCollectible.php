@@ -29,6 +29,8 @@
       array('collectible' => $collectible, 'height' => &$height)
     );
 
+    echo '<div class="wrapper">';
+
     include_component(
       '_sidebar', 'widgetCollectibleBuy',
       array('collectible' => $collectible, 'height' => &$height)
@@ -62,6 +64,8 @@
         array('collectible' => $collectible, 'height' => &$height)
       );
     }
+
+    echo '</div>';
 
     if ($sf_request->isMobileLayout()):
       include_partial('aetn/partials/franksPicksPromo_620x67');
