@@ -6,6 +6,28 @@
 
 .fixed-right-300 {
   padding-right: 339px;
+
+  .wrapper {
+    background: url(/images/frontend/sidebar-background.png) center repeat-y;
+    width: 300px;
+    padding: 0 10px;
+    padding-top: 10px;
+    padding-bottom: 1px;
+    margin: 0 -10px;
+    margin-top: 20px;
+
+    div.row-fluid:first-child, div.collector-info-sidebar:first-child {
+      margin-top: 0;
+    }
+
+    div.carousel-sidebar:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .wrapper:first-child {
+    margin-top: 0;
+  }
 }
 
 .fixed-right-300 > #sidebar {
@@ -209,6 +231,7 @@
   .thumbnails {
     .span3 {
       border: 1px solid @boxBorder;
+      background: @white;
       width: 132px;
       margin-bottom: 15px;
       font-size: 12px;

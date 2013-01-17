@@ -18,6 +18,7 @@
 ?>
 <?php $height->value -= 250; ?>
 
+<div class="wrapper">
 <?php
   include_component(
     '_sidebar', 'widgetCollector',
@@ -32,20 +33,21 @@
 
 <?php
   include_component(
-     '_sidebar', 'widgetTags',
-    array(
-      'collection' => $collection,
-      'height' => &$height
-    )
-  );
-?>
-
-<?php
-  include_component(
     '_sidebar', 'widgetCollectiblesForSale',
     array(
       'collection' => $collection, 'limit' => 4,
       'fallback' => 'random',
+      'height' => &$height
+    )
+  );
+?>
+</div>
+
+<?php
+  include_component(
+    '_sidebar', 'widgetTags',
+    array(
+      'collection' => $collection,
       'height' => &$height
     )
   );
