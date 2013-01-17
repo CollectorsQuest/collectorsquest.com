@@ -67,10 +67,17 @@
     </td>
     {% } else if (o.files.valid && !i) { %}
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-    <td colspan="2">
+    <td>
       <div class="progress progress-info progress-striped active">
         <div class="bar" style="width:0;"></div>
       </div>
+    </td>
+    <td class="cancel">
+      {% if (!i) { %}
+      <button class="btn btn-warning btn-mini">
+        <span>{%=locale.fileupload.cancel%}</span>
+      </button>
+      {% } %}
     </td>
     {% } %}
   </tr>

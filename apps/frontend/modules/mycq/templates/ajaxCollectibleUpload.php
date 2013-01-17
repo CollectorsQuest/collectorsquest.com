@@ -97,13 +97,6 @@
         <div class="bar" style="width:0;"></div>
       </div>
     </td>
-    <td class="cancel">
-      {% if (!i) { %}
-      <button class="btn btn-warning btn-mini">
-        <span>{%=locale.fileupload.cancel%}</span>
-      </button>
-      {% } %}
-    </td>
     {% } %}
   </tr>
   {% } %}
