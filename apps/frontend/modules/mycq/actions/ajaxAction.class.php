@@ -1241,7 +1241,7 @@ class ajaxAction extends cqAjaxAction
       else
       {
         return $this->output(array('Success' => false,
-          'form' => $this->getPartial(sprintf('mycq/partials/collectible_wizard_st%s',
+          'form' => $this->getPartial(sprintf('mycq/partials/collectible_wizard_step%s',
             $request->getParameter('step')), array('form' => $form))));
       }
     }

@@ -420,11 +420,7 @@ class mycqActions extends cqFrontendActions
       $collectible->save();
     }
 
-    return $this->redirect($this->getController()->genUrl(array(
-      'sf_route'     => 'mycq_collectible_by_slug',
-      'sf_subject'   => $collection_collectible,
-      'suggest_tags' => true,
-    )));
+    return $this->redirect('@mycq_collectible_wizard?step=1&id=' . $collectible->getId());
   }
 
   public function executeCollectible(sfWebRequest $request)
