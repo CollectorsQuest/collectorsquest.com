@@ -31,7 +31,7 @@ class CollectibleWizardStep1Form extends BaseCollectibleForm
     /* @var $multimedias iceModelMultimedia[] */
     $oldMultimedia = array();
     /* @var $multimedias iceModelMultimedia[] */
-    $multimedias = $recipient->getMultimedia();
+    $multimedias = $recipient->getMultimedia() ?: array();
 
     foreach ($multimedias as $multimedia)
     {
