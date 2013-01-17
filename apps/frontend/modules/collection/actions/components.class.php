@@ -41,6 +41,20 @@ class collectionComponents extends cqFrontendComponents
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
     }
 
+    // find Black History Collectible Ids
+    $black_history_wp_post = wpPostQuery::create()->findOneById(34898);
+    $values = $black_history_wp_post->getPostMetaValue('_featured_items');
+    $this->black_history_collectible_ids = array();
+    if (!empty($values['cq_collectible_ids']))
+    {
+      $this->black_history_collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
+    }
+    if (!empty($values['cq_homepage_collectible_ids']))
+    {
+      $homepage_collectible_ids = cqFunctions::explode(',', $values['cq_homepage_collectible_ids']);
+      $this->black_history_collectible_ids = array_merge($homepage_collectible_ids, $this->black_history_collectible_ids);
+    }
+
     return sfView::SUCCESS;
   }
 
