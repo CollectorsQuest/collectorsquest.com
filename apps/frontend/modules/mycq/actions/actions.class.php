@@ -765,6 +765,13 @@ class mycqActions extends cqFrontendActions
       }
     }
 
+    $this->collection = $request->getParameter('collection_id')
+      ? CollectorCollectionQuery::create()
+      ->filterByCollector($collector)
+      ->filterById($request->getParameter('collection_id'))
+      ->findOne()
+      : null;
+
 
   }
 
@@ -784,6 +791,7 @@ class mycqActions extends cqFrontendActions
       ->findTree();
 
     //Setup default collection
+    $this->collection = null;
     if ($request->getParameter('collection_id'))
     {
       $collection = CollectorCollectionQuery::create()
@@ -793,6 +801,7 @@ class mycqActions extends cqFrontendActions
       if ($collection && $collectible->getCollectionId() == null)
       {
         $collectible->setCollection($collection);
+        $this->collection = $collection;
       }
     }
     $this->step1 = new CollectibleWizardStep1Form($collectible);

@@ -39,11 +39,22 @@ else
   </div>
 
   <div class="button-wrapper<?= $step != 1 ? ' hide' : '' ?>">
+
+    <?php if ($collection): ?>
+      <?= link_to('<i class="icon-caret-left f-16 text-v"></i>&nbsp; Back to Collection',
+        '@mycq_collection_by_slug?id=' . $collection->getId() . '&slug='. $collection->getSlug(),
+        array('class' => 'btn pull-left')); ?>
+    <?php else: ?>
+      <?= link_to('<i class="icon-caret-left f-16 text-v"></i>&nbsp; Back to Collections', '@mycq_collections',
+        array('class' => 'btn pull-left')); ?>
+    <?php endif; ?>
+
     <?= link_to('Next Step &nbsp;<i class="icon-caret-right f-16 text-v"></i>', $sf_request->getUri() . '#',
     array(
       'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'fileupload-wz1',
       'data-next' => 'wz-step2', 'id' => 'wizard-step1-submit'
     ));?>
+
   </div>
 
 
