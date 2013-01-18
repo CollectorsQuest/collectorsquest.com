@@ -220,6 +220,12 @@ seo:
         Our Essential Guide to Collecting has tips for everyone, whether you're a new collector or
         an experienced hunter looking for the next item for your collection.
 
+    wordPressFeaturedWeeks:
+      title: Featured Weeks | Collecting Spotlighs | Collectors Quest
+      description: |
+        See all of our Collection and Collector Spotlights in one place! Browse trough
+        your favourites from the world of collecting!
+
   search:
     index:
       title: Search for Collectibles, Collections, Blog Posts, Videos and more!
