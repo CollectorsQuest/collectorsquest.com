@@ -308,4 +308,43 @@ class miscActions extends cqFrontendActions
     $this->featured_weeks = $q->find();
   }
 
+  /**
+   * @param  cqWebRequest  $request
+   * @return string
+   */
+  public function executeWordPressFeaturedWeek(sfWebRequest $request)
+  {
+    /** @var $wp_post wpPost */
+    $wp_post = $this->getRoute()->getObject();
+
+    if ($wp_post instanceof wpPost)
+    {
+      $values = $wp_post->getPostMetaValue('_featured_week_collectibles');
+
+      if (isset($values['cq_collectible_ids']))
+      {
+        $collectible_ids = cqFunctions::explode(',', $values['cq_collectible_ids']);
+
+        /** @var $q FrontendCollectibleQuery */
+        $q = FrontendCollectibleQuery::create()
+          ->filterById($collectible_ids)
+          ->addAscendingOrderByColumn(
+          'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
+        );
+        $this->collectibles = $q->find();
+        $this->collectibles_bottom = array_slice($this->collectibles->getArrayCopy(), 4);
+      }
+
+      $this->wp_post = $wp_post;
+    }
+
+    $this->addBreadcrumb($wp_post->getPostTitle(), null);
+
+    $title = $wp_post->getPostMetaValue('_yoast_wpseo_title') ?:
+      $wp_post->getPostTitle();
+    $this->getResponse()->setTitle($title);
+    $this->getResponse()->addOpenGraphMetaFor($wp_post);
+
+    return $this->wp_post ? sfView::SUCCESS : sfView::NONE;
+  }
 }

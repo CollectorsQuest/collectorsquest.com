@@ -26,3 +26,85 @@
     line-height: 22px;
   }
 }
+
+#weeks-promo-box {
+  background-color: @yellowHighlight;
+  padding: 15px;
+
+  .text-right a {
+    vertical-align: middle;
+  }
+
+  .thumbnails {
+    margin-left: 0;
+
+    li {
+      margin-bottom: 1px;
+    }
+
+    .span6 {
+      overflow: hidden;
+      position: relative;
+      .size(281px, 308px);
+      img {
+        overflow: hidden;
+        max-width: none;
+      }
+    }
+  }
+
+  .span3 {
+    width: 140px;
+    padding-left: 1px;
+  }
+  .white-block {
+    display: block;
+    position: absolute;
+    bottom: 45px;
+    width: 291px;
+    padding: 15px;
+    color: @blueDark;
+    #translucent > .background(white,0.9);
+    bottom-top: 1px solid #b4b0a5;
+    bottom-bottom: 1px solid #b4b0a5;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .weeks-promo-title {
+    .custom-font(20px, 22px, italic, bold);
+    .smooth-font();
+    color: @blueDark;
+  }
+
+  .imageset {
+    margin-left: 0;
+
+    .row {
+      margin-left: -10px;
+
+      .collectible_grid_view_square_small {
+        margin: 0 0 10px 10px !important;
+        padding-left: 0 !important;
+      }
+    }
+  }
+
+  .imageset [class*="span"] {
+    float: left;
+    margin-left: 0;
+    margin-bottom: 1px;
+  }
+}
+
+.onecolumn ul {
+  margin-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+
+  li a {
+    font-size: 12px;
+  }
+}

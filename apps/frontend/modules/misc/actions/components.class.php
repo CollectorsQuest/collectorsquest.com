@@ -26,6 +26,20 @@ class miscComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebarWordPressFeaturedWeek()
+  {
+    /* @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterByPostStatus('publish')
+      ->filterByPostType('featured_week')
+      ->orderByPostTitle();
+
+    $this->featured_weeks = $q->find();
+    $this->wp_post_id = $this->getRequestParameter('id');
+
+    return sfView::SUCCESS;
+  }
+
   public function executeWordPressFeaturedItems()
   {
     /** @var $post_id integer */

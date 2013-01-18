@@ -45,3 +45,7 @@ wordPressFeaturedWeeksSuccess:
   components:
     slot1: [misc, wordPressFeaturedWeeksSlot1]
     breadcrumbs: []
+
+wordPressFeaturedWeekSuccess:
+  components:
+    sidebar_300:  [misc, sidebarWordPressFeaturedWeek]
