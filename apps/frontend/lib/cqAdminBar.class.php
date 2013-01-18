@@ -137,6 +137,25 @@ class cqAdminBar
         )
       );
     }
+
+    // Limitation for the first version
+    if (in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible')))
+    {
+      $url = $this->application->generateBackendUrl(
+        'object_is_public', array(
+          'class' => get_class($object), 'id' => $object->getId()
+        )
+      );
+
+      $this->objects_menu['Make ' . ($object->getIsPublic() ? 'Private' : 'Public')][] = array(
+        'label' => $label,
+        'url' => $url,
+        'attributes' => array(
+          'onclick' => 'return false;', 'href' => $url,
+          'class' => 'open-dialog', 'title' => 'Change visibility status for ' . $object
+        )
+      );
+    }
   }
 
   /**
