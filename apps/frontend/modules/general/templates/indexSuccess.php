@@ -1,78 +1,38 @@
+
 <div class="row">
   <div class="homepage-featured">
-    <h2>Welcome to Collectors Quest!</h2>
-    <p>
-      Get the most out of your collections: post a gallery of your antiques, collectibles and
-      vintage items to share and use as an archive; learn what’s going on in the collecting world,
-      and meet other like-minded collectors.
-    </p>
+    <?= ($cms_slot1 instanceof wpPost) ? $cms_slot1->getPostContent() : null; ?>
   </div>
 
   <div class="homepage-featured">
-    <h2>Shop the Market</h2>
-    <p>
-      Buy and sell antiques, collectibles and vintage items quickly and easily in the CQ Market.
-      <?= link_to('Learn more about selling on CQ', '@misc_guide_to_collecting'); ?> or
-      <?= link_to('start shopping', '@marketplace'); ?>.
-    </p>
+    <?= ($cms_slot2 instanceof wpPost) ? $cms_slot2->getPostContent() : null; ?>
   </div>
 
   <br clear="all"/><br/>
-  <?php include_partial('general/homepage_blogpost_featured', array('blog_post' => $blog_posts[0])); ?>
-  <?php include_partial('general/homepage_blogpost_featured', array('blog_post' => $blog_posts[1])); ?>
+  <?php include_partial('general/homepage_blogposts_featured', array('blog_posts' => $blog_posts)); ?>
+
+  <div class="homepage-featured">
+    <?= ($cms_slot3 instanceof wpPost) ? $cms_slot3->getPostContent() : null; ?>
+  </div>
 </div>
 
 <br/>
-<?php cq_page_title("Now On Display") ?>
+<?php cq_page_title('Now On Display') ?>
 
 <div class="row">
   <div id="homepage" class="row-content">
     <?php
-      for ($i = 0; $i < 9; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
+      $k = rand(2, 5);
+      foreach ($collectibles as $i => $collectible)
       {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
-      }
-    ?>
+        if ($i % $k === 0 && isset($videos[intval($i / $k)]))
+        {
+          include_partial(
+            'general/homepage_video',
+            array('video' => $videos[intval($i / $k)], 'i' => $i)
+          );
+        }
 
-    <?php
-      if (!empty($collections[0]) && $collections[0] instanceof Collection)
-      {
-        include_partial(
-          'general/homepage_collection_tall',
-          array('collection' => $collections[0])
-        );
-      }
-    ?>
-
-    <?php
-      for ($i = 9; $i < 12; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
-      {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
-      }
-    ?>
-
-    <?php
-      if (!empty($collections[1]) && $collections[1] instanceof Collection)
-      {
-        include_partial(
-          'general/homepage_collection_wide',
-          array('collection' => $collections[1])
-        );
-      }
-    ?>
-
-    <?php
-      for ($i = 12; $i < 20; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
-      {
         include_partial(
           'collection/collectible_grid_view_square_small',
           array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())

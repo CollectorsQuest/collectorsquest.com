@@ -280,13 +280,17 @@
   padding-left: 10px;
   width: 442px;
   margin-bottom: 10px;
-  border-left: 10px solid #BD0000;
+
+  &.bordered {
+    border-left: 10px solid #BD0000;
+  }
 
   h2 {
     color: @blueDark;
     line-height: 26px;
     font-size: 22px;
     margin-bottom: 8px;
+    background: url("@{baseUrl}/blue-dotted-line.png") repeat-x bottom;
 
     a.link {
       color: @blueDark;

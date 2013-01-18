@@ -114,9 +114,44 @@ class generalActions extends cqFrontendActions
            ->filterById($collectible_ids, Criteria::IN)
            ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
-        $this->collectibles = $q->limit(24)->find();
+        $this->collectibles = $q->limit(20)->find();
       }
     }
+
+
+    /**
+     * CMS Slots
+     */
+
+    /** @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterById(37168);
+    $this->cms_slot1 = $q->findOne();
+
+    /** @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterById(37170);
+    $this->cms_slot2 = $q->findOne();
+
+    /** @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+      ->filterById(37172);
+    $this->cms_slot3 = $q->findOne();
+
+    /**
+     * Video
+     */
+    $magnify = cqStatic::getMagnifyClient();
+
+    try
+    {
+      $this->videos = $magnify->getContent()->find('featured', 1, 4);
+    }
+    catch (MagnifyException $e)
+    {
+      $this->videos = array();
+    }
+
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl($this->generateUrl('homepage'));
