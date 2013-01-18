@@ -28,7 +28,3 @@ wordpress_featured_week:
   options: { model: wpPost, type: object }
   param: { module: misc, action: wordPressFeaturedWeek }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
-
-wordpress_featured_weeks:
-  url:  /featured-weeks
-  param: { module: misc, action: wordPressFeaturedWeeks }
