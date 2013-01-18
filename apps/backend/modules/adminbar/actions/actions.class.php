@@ -158,4 +158,45 @@ class adminbarActions extends sfActions
     $this->form = $form;
     return sfView::SUCCESS;
   }
+
+  public function executeIspublic(sfWebRequest $request)
+  {
+    sfConfig::set('sf_web_debug', false);
+    $this->setLayout(false);
+
+    $this->class = $request->getParameter('class');
+    $this->id = (integer) $request->getParameter('id');
+    $user_id = $this->getUser()->getGuardUser()->getId();
+
+    // Define classes and methods names
+    $classPeer = sprintf('%sPeer', $this->class);
+    $classForm = sprintf('Base%sForm', $this->class);
+
+    $this->forward404Unless($object = $classPeer::retrieveByPK($this->id));
+
+    // MachineTagForm should extend $classForm
+    eval(sprintf('class IsPublicDynamicExtendForm extends %s {}', $classForm));
+
+    $form = new IsPublicForm($object, array(), false);
+
+    if ($request->isMethod(sfRequest::POST))
+    {
+      $form->bind($request->getParameter($form->getName()));
+      if ($form->isValid())
+      {
+        $values = $form->getValues();
+        $con = Propel::getConnection();
+        $sql = sprintf(
+          'UPDATE %s SET %s = %s WHERE %s = %d',
+          $classPeer::TABLE_NAME, $classPeer::IS_PUBLIC, $values['is_public'] ? 1 : 0,
+          $classPeer::ID, $object->getId()
+        );
+        $con->exec($sql);
+        $form->getObject()->reload();
+      }
+    }
+
+    $this->form = $form;
+    return sfView::SUCCESS;
+  }
 }
