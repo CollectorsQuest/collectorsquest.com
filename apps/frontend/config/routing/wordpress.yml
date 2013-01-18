@@ -21,3 +21,10 @@ wordpress_featured_items:
   options: { model: wpPost, type: object }
   param: { module: misc, action: wordPressFeaturedItems }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+wordpress_featured_week:
+  url:  /featured-week/:id/:slug
+  class: cqPropelRoute
+  options: { model: wpPost, type: object }
+  param: { module: misc, action: wordPressFeaturedWeek }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
