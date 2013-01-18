@@ -18,6 +18,11 @@ object_machine_tags:
   param: { module: adminbar, action: machinetags }
   requirements: { class: "[^/]+", id: '\d+' }
 
+object_is_public:
+  url:   /ajax/switch-public/:class/:id
+  param: { module: adminbar, action: ispublic }
+  requirements: { class: "[^/]+", id: '\d+' }
+
 
 ### MARKETPLACE
 
