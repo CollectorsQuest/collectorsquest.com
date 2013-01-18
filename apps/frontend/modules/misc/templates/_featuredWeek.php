@@ -5,7 +5,7 @@
 
   <?php echo image_tag_wp_post($wp_post, '140x140'); ?>
 
-  <h3><?= !empty($title) ? $title : link_to($wp_post->getPostTitle(), 'wordpress_featured_week', array('sf_subject' => $wp_post)); ?></h3>
+  <h3><?= !empty($title) ? $title : link_to($wp_post->getPostTitle(), array('sf_route' => 'wordpress_featured_week', 'sf_subject' => $wp_post)); ?></h3>
 
   <?= !empty($excerpt) ? $excerpt : $wp_post->getPostExcerpt(270); ?>
 
