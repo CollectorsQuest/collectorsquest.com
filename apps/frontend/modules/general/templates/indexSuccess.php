@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="homepage-featured">
+  <div class="homepage-featured bordered">
     <?= ($cms_slot1 instanceof wpPost) ? $cms_slot1->getPostContent() : null; ?>
   </div>
 
@@ -16,7 +16,6 @@
   </div>
 </div>
 
-<br/>
 <?php cq_page_title('Now On Display') ?>
 
 <div class="row">
