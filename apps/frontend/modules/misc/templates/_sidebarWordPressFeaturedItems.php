@@ -12,6 +12,6 @@
 <?php
   include_component(
     '_sidebar', 'widgetBlogPosts',
-    array('ids' => $wp_post_ids, 'limit' => 2)
+    array('ids' => $wp_post_ids, 'limit' => 3)
   );
 ?>

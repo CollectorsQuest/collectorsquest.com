@@ -29,6 +29,7 @@ if (SF_ENV === 'dev')
   define('WP_DEBUG', true);
   define('SAVEQUERIES', true);
   define('SCRIPT_DEBUG', true);
+  define('FS_METHOD', 'direct');
 }
 else if (is_readable(__DIR__ .'/secure/wp-config.php'))
 {

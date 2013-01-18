@@ -1,10 +1,11 @@
 <?php
 /* @var $pager PropelModelPager */
+/* @var $sf_request cqWebRequest */
 ?>
 
 <div id="holiday-market-theme" class="collectibles-for-sale-3x-big-wrapper">
   <div class="row">
-    <div class="row-content" style="margin-left: 24px;">
+    <div class="row-content" style="margin-left: <?= $sf_request->isMobileLayout() ? '12' : '24'; ?>px;">
 
       <?php if ($pager->getPage() === 1): ?>
         <?php if (!isset($wp_post)): ?>
@@ -23,8 +24,8 @@
           </div>
         <?php else: ?>
           <div id="collectible_for_sale_0_grid_view_square_big"
-               class="span6 collectible_for_sale_grid_view_square_big fade-white link"
-              style="background: url(<?= cq_image_src('frontend/misc/holiday-market/holiday-item-background.jpg') ?>) no-repeat;">
+               class="span6 collectible_for_sale_grid_view_square_big fade-white link
+                      <?= strtolower(date('F', $sf_params->get('time', time()))); ?>">
 
             <div style="color: #fff; padding: 20px; font-size: 14px;">
               <?= $wp_post->getPostContent(); ?>

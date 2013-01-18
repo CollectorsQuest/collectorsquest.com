@@ -1,11 +1,11 @@
 <?php
-/**
- * @var  $collectible      Collectible
- * @var  $sf_user          cqFrontendUser
- * @var  $height           stdClass
- * @var  $aetn_show        array
- * @var  $ref_marketplace  boolean
- */
+/* @var  $collectible      Collectible     */
+/* @var  $sf_user          cqFrontendUser  */
+/* @var  $height           stdClass        */
+/* @var  $aetn_show        array           */
+/* @var  $ref_marketplace  boolean         */
+/* @var $sf_request   cqWebRequest         */
+/* @var $black_history_collectible_ids   array    */
 ?>
 
 <?php if (isset($aetn_show)): ?>
@@ -64,8 +64,29 @@
       );
     }
 
-    include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-15'));
-    $height->value -= 110;
+    if ($sf_request->isMobileLayout())
+    {
+      include_partial('aetn/partials/franksPicksPromo_620x67');
+    }
+    else if (in_array($collectible->getId(), $black_history_collectible_ids))
+    {
+      echo link_to(
+        cq_image_tag('headlines/BlackHistory300x150.jpg',
+          array(
+            'size' => '300x150', 'class' => 'spacer-top-15',
+            'alt' => 'African-American history is filled with the tales of inspiring individuals'
+          )
+        ),
+        'http://www.biography.com/people/groups/black-history',
+        array('target' => '_blank')
+      );
+      $height->value -= 165;
+    }
+    else
+    {
+      include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-15'));
+      $height->value -= 110;
+    }
 
     if (!$collectible->isForSale())
     {

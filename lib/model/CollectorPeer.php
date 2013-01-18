@@ -267,7 +267,7 @@ class CollectorPeer extends BaseCollectorPeer
 
   public static function createFromRPXProfile($profile)
   {
-    $email = !empty($profile['verifiedEmail']) ? $profile['verifiedEmail'] : $profile['email'];
+    $email = !empty($profile['verifiedEmail']) ? $profile['verifiedEmail'] : @$profile['email'];
 
     if (empty($email) || !$collector = CollectorQuery::create()->findOneByEmail($email))
     {
