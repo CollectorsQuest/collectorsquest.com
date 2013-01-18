@@ -8,12 +8,12 @@
 </div>
 
 <?php
-$link = link_to(
+/*$link = link_to(
   'See all &raquo;', '@wordpress_featured_weeks',
   array('class' => 'text-v-middle link-align')
-);
+);*/
 
-cq_sidebar_title('Featured Themes', $link);
+cq_sidebar_title('Featured Themes');
 ?>
 
 <div class="onecolumn cf">
