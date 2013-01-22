@@ -1,6 +1,16 @@
 <?php cq_page_title('Collections Now On Display'); ?>
 
-<?php include_component('collections', 'featuredWeek'); ?>
+<?php
+  if (cqGateKeeper::open('collections_redesign', 'page'))
+  {
+    include_component('collections', 'featuredItems');
+  }
+  else
+  {
+    include_component('collections', 'featuredWeek');
+  }
+
+?>
 
 <?php cq_section_title('Explore Collections') ?>
 <div class="sort-search-box full-length-blue">
