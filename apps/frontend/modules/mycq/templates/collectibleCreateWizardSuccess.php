@@ -11,7 +11,7 @@
 ?>
 
 <div class="collecton-wizard" id="accordion2">
-  <div class="accordion-group<?= $step == 1 ? ' active' : '' ?>">
+  <div class="accordion-group active">
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
         Step #1
@@ -20,14 +20,14 @@
         </span>
       </div>
     </div>
-    <div class="accordion-body collapse<?= $step == 1 ? ' in' : '' ?>">
+    <div class="accordion-body collapse in">
       <div class="accordion-inner">
         <?php include_partial('mycq/partials/collectible_wizard_step1', array('form' => $form)); ?>
       </div>
     </div>
   </div>
 
-  <div class="button-wrapper<?= $step != 1 ? ' hide' : '' ?>">
+  <div class="button-wrapper">
     <?= link_to('Next Step &nbsp;<i class="icon-caret-right f-16 text-v"></i>', $sf_request->getUri() . '#',
     array(
       'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'wz-step1', 'data-next' => 'wz-step2'
@@ -50,7 +50,7 @@
     ));?>
   </div>
 
-  <div class="accordion-group<?= $step == 2 ? ' active' : '' ?>">
+  <div class="accordion-group">
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
         Step #2
