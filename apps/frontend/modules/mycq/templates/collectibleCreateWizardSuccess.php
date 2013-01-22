@@ -28,13 +28,6 @@
   </div>
 
   <div class="button-wrapper">
-    <?= link_to('Next Step &nbsp;<i class="icon-caret-right f-16 text-v"></i>', $sf_request->getUri() . '#',
-    array(
-      'class' => 'btn btn-primary pull-right wz-next', 'data-target' => 'wz-step1', 'data-next' => 'wz-step2'
-    ));?>
-  </div>
-
-  <div class="button-wrapper">
     <?php if ($collection): ?>
       <?= link_to('<i class="icon-caret-left f-16 text-v"></i>&nbsp; Back to Collection',
         '@mycq_collection_by_slug?id=' . $collection->getId() . '&slug='. $collection->getSlug(),
