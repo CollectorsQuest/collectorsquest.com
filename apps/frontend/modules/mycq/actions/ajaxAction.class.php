@@ -337,7 +337,8 @@ class ajaxAction extends cqAjaxAction
         $form->save();
         return $this->renderPartial('global/loading', array(
             'url' =>
-            $request->getParameter('wizard') ? $this->generateUrl('mycq_collectible_wizard', $collectible) :
+            $request->getParameter('wizard') ? $this->generateUrl('mycq_collectible_wizard',
+              array('step' => 2, 'id' => $collectible->getId())) :
             $this->generateUrl('mycq_collectible_by_slug', $collectible),
         ));
       }
