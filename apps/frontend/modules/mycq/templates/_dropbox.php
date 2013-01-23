@@ -32,7 +32,12 @@
   <div class="collectibles-to-sort" id="dropzone">
     <ul class="thumbnails">
       <?php foreach ($collectibles as $collectible): ?>
-      <li class="span2 thumbnail draggable" data-collectible-id="<?= $collectible->getId(); ?>">
+      <li class="span2 thumbnail draggable" data-collectible-id="<?= $collectible->getId(); ?>"
+         <?= $collectible->getPrimaryImage()
+        ? sprintf('data-multimedia-id="%s" data-big-src="%s"',
+          $collectible->getPrimaryImage()->getId(),
+          src_tag_multimedia($collectible->getPrimaryImage(), '300x0'))
+        : ''; ?>>
         <?php
           echo image_tag_collectible(
             $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)

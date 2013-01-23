@@ -90,12 +90,35 @@ class ajaxAction extends cqAjaxAction
             $multimedia->setName($name);
             $multimedia->save();
 
-            $output[] = array(
+            $result = array(
               'name' => $multimedia->getName(),
               'size' => $multimedia->getFileSize(),
+              'multimediaid' => $multimedia->getId(),
               'type' => 'image/jpeg',
-              'thumbnail' => src_tag_multimedia($multimedia, '19:15x60')
+              'donor' => $collectible->getId(),
             );
+            if ($formats = $request->getParameter('formats'))
+            {
+              // $names = $request->getParameter('format_name', array());
+
+              foreach ($formats as $key => $format)
+              {
+                $image_info = $multimedia->getImageInfo($format);
+                $result['thumbnails'][$key] = array(
+                  'src' => src_tag_multimedia($multimedia, $format),
+                  'width' => $image_info['width'],
+                  'height' => $image_info['height'],
+                );
+
+              }
+
+            }
+            else
+            {
+              $result['thumbnail'] = src_tag_multimedia($multimedia, '19:15x60');
+            }
+            $output = array();
+            $output[] = $result;
           }
           else
           {
@@ -265,7 +288,7 @@ class ajaxAction extends cqAjaxAction
 
       // auto-set collection thumbnail if none set yet
       $collection = $recipient->getCollectorCollection();
-      if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+      if ($collection instanceof Collection && 1 == $collection->countCollectibles() && !$collection->hasThumbnail())
       {
         $collection->setPrimaryImage($recipient->getPrimaryImage()
           ->getAbsolutePath('original'));
@@ -303,6 +326,8 @@ class ajaxAction extends cqAjaxAction
     $form->useFields(array('content_category_id'));
     $form->unsetCollectionIdField();
 
+    $this->wizard = $request->getParameter('wizard');
+
     if (sfRequest::POST == $request->getMethod())
     {
       $form->bind($request->getParameter($form->getName()));
@@ -310,9 +335,11 @@ class ajaxAction extends cqAjaxAction
       if ($form->isValid())
       {
         $form->save();
-
         return $this->renderPartial('global/loading', array(
-            'url' => $this->generateUrl('mycq_collectible_by_slug', $collectible),
+            'url' =>
+            $request->getParameter('wizard') ? $this->generateUrl('mycq_collectible_wizard',
+              array('step' => 2, 'id' => $collectible->getId())) :
+            $this->generateUrl('mycq_collectible_by_slug', $collectible),
         ));
       }
     }
@@ -507,6 +534,110 @@ class ajaxAction extends cqAjaxAction
         $values = $form->getValues();
         $file = $values['thumbnail'];
 
+        $this->loadHelpers('cqImages');
+
+//        if ($request->getParameter('set-main') == '1')
+//        {
+//          $collectible = CollectibleQuery::create()->findOneById($values['collectible_id']);
+//
+//          // Get rid of the old primary Multimedia
+//          if ($primary = $collectible->getPrimaryImage())
+//          {
+//            $primary->delete();
+//          }
+//
+//          $output = array();
+//          if ($multimedia = $collectible->setThumbnail($file))
+//          {
+//            $multimedia->setName($file);
+//            $multimedia->save();
+//            $collectible->save();
+//
+//            $output[] = array(
+//              'thumbnail' => src_tag_multimedia($multimedia, '300x0'),
+//              'name' => $multimedia->getName(),
+//              'size' => $multimedia->getFileSize(),
+//              'multimediaid' => $multimedia->getId(),
+//              'type' => 'image/jpeg',
+//            );
+//
+//            return $this->renderText(json_encode($output));
+//          }
+//          else
+//          {
+//            $output[] = array(
+//              'error' => 'This multimedia already exists for this object'
+//            );
+//          }
+//          return $this->renderText(json_encode($output));
+//        }
+//
+//        if ($request->getParameter('set-alter') == '1')
+//        {
+//          $recipient = CollectibleQuery::create()->findOneById($values['collectible_id']);
+//
+//          $collectible = new Collectible();
+//          $collectible->setCollector($collector);
+//          $collectible->setName($file, true);
+//          $collectible->setBatchHash($request->getParameter('batch', null));
+//          $collectible->setIsPublic(false);
+//          $collectible->save();
+//
+//          /** @var $image iceModelMultimedia */
+//          if ($image = $collectible->setThumbnail($file))
+//          {
+//            try
+//            {
+//              $image->setIsPrimary(false);
+//              $image->setModelId($recipient->getId());
+//              $image->setSource($collectible->getId());
+//              // $image->setCreatedAt(time());
+//              $image->save();
+//            }
+//            catch (PropelException $e)
+//            {
+//              if (preg_match('/multimedia_U_1/i', $e->getMessage()))
+//              {
+//                $output = array();
+//                $output[] = array(
+//                  'error' => 'This multimedia already exists for this object'
+//                );
+//                return $this->renderText(json_encode($output));
+//              }
+//
+//              throw $e;
+//            }
+//
+//            $recipient->setUpdatedAt(time());
+//            $recipient->save();
+//
+//            // auto-set collection thumbnail if none set yet
+//            $collection = $recipient->getCollectorCollection();
+//            if ($collection instanceof Collection && 1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+//            {
+//              $collection->setPrimaryImage($recipient->getPrimaryImage()
+//                ->getAbsolutePath('original'));
+//              $collection->save();
+//            }
+//
+//            // Archive the donor $collectible, not needed anymore
+//            $collectible->delete();
+//
+//            $output = array();
+//            $output[] = array(
+//              'thumbnail' => src_tag_multimedia($image, '190x190'),
+//              'name' => $image->getName(),
+//              'size' => $image->getFileSize(),
+//              'multimediaid' => $image->getId(),
+//              'type' => 'image/jpeg',
+//            );
+//
+//            return $this->renderText(json_encode($output));
+//
+//          }
+//
+//        }
+
         try
         {
           $collectible = new Collectible();
@@ -547,21 +678,41 @@ class ajaxAction extends cqAjaxAction
         // change the dropbox open status depending on whether we have stuff
         // left in it
         $this->getUser()->setMycqDropboxOpenState(true);
-        $this->loadHelpers('cqImages');
 
         $output = array();
-        $output[] = array(
+        $result = array(
           'name' => $multimedia->getName(),
           'size' => $multimedia->getFileSize(),
           'type' => 'image/jpeg',
-          'thumbnail' => src_tag_multimedia($multimedia, '19:15x60'),
-          'redirect' => $this->generateUrl('ajax_mycq', array(
+          'donor' => $collectible->getId(),
+          );
+        if ($formats = $request->getParameter('formats'))
+        {
+         // $names = $request->getParameter('format_name', array());
+
+          foreach ($formats as $key => $format)
+          {
+            $image_info = $multimedia->getImageInfo($format);
+            $result['thumbnails'][$key] = array(
+              'src' => src_tag_multimedia($multimedia, $format),
+              'width' => $image_info['width'],
+              'height' => $image_info['height'],
+            );
+
+          }
+
+        }
+        else
+        {
+          $result['thumbnail'] = src_tag_multimedia($multimedia, '19:15x60');
+          $result['redirect'] = $this->generateUrl('ajax_mycq', array(
             'section' => $model,
             'page' => 'create',
             'collectible_id' => $collectible->getId(),
             'collection_id' => $this->collection_id
-          ))
-        );
+          ));
+        }
+        $output[] = $result;
 
         return $this->renderText(json_encode($output));
       }
@@ -1060,5 +1211,42 @@ class ajaxAction extends cqAjaxAction
     }
 
     return $template;
+  }
+
+  public function executeCollectibleWizard(sfWebRequest $request, $template)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    /* @var $collectible Collectible|null */
+    $collectible = CollectibleQuery::create()
+      ->filterById($request->getParameter('collectible_id'))
+      ->filterByCollector($collector)
+      ->findOne();
+
+    $this->forward404Unless($collectible && $request->getParameter('step'));
+
+    $formClass = sprintf('CollectibleWizardStep%sForm', $request->getParameter('step'));
+
+    $form = new $formClass($collectible);
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter($form->getName()));
+
+      if ($form->isValid())
+      {
+        $form->save();
+
+        return $this->success();
+      }
+      else
+      {
+        return $this->output(array('Success' => false,
+          'form' => $this->getPartial(sprintf('mycq/partials/collectible_wizard_step%s',
+            $request->getParameter('step')), array('form' => $form))));
+      }
+    }
+
+    return $this->error('Error', 'Some error');
   }
 }

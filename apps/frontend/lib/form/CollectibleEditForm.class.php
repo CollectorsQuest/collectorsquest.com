@@ -75,14 +75,17 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->validatorSchema->setOption('filter_extra_fields', true);
   }
 
-  protected function setupContentCategoryField()
+  protected function setupContentCategoryField($category_edit_url= null)
   {
-    $category_edit_url = cqContext::getInstance()->getController()->genUrl(array(
+    if ($category_edit_url === null)
+    {
+      $category_edit_url = cqContext::getInstance()->getController()->genUrl(array(
         'sf_route' => 'ajax_mycq',
         'section' => 'collectible',
         'page' => 'changeCategory',
         'collectible_id' => $this->getObject()->getId(),
-    ));
+      ));
+    }
 
     $this->widgetSchema['content_category'] = new cqWidgetFormPlain(array(
         'label' => 'Category:',
@@ -151,7 +154,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
   }
 
-  private function setupCollectorCollectionsField()
+  protected function setupCollectorCollectionsField()
   {
     /** @var $collectible Collectible */
     $collectible = $this->getObject();

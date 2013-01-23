@@ -22,6 +22,10 @@
     </button>
   </div>
 
+  <?php if ($wizard): ?>
+    <input type="hidden" name="wizard" value="1" />
+  <?php endif; ?>
+
 </form>
 
 <script>

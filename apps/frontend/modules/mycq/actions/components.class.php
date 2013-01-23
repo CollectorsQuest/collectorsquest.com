@@ -227,7 +227,14 @@ class mycqComponents extends cqFrontendComponents
     $collector = $this->getCollector();
     $dropbox = $collector->getCollectionDropbox();
 
-    $this->collectibles = $dropbox->getCollectibles();
+    $criteria = new Criteria();
+    $slots = $this->getResponse()->getSlots();
+    if (isset($slots['dropbox_hide_collectibles']))
+    {
+      $criteria->add(CollectiblePeer::ID, $slots['dropbox_hide_collectibles'], Criteria::NOT_IN);
+    }
+    $this->collectibles = $dropbox->getCollectibles($criteria);
+    
     $this->total = $dropbox->countCollectibles();
 
     return sfView::SUCCESS;
@@ -269,6 +276,11 @@ class mycqComponents extends cqFrontendComponents
     }
 
     $this->multimedia = $this->collectible->getMultimedia(0, 'image', false);
+
+    if ($this->getRequestParameter('mainOnly'))
+    {
+      $this->mainOnly = true;
+    }
 
     return sfView::SUCCESS;
   }

@@ -420,11 +420,7 @@ class mycqActions extends cqFrontendActions
       $collectible->save();
     }
 
-    return $this->redirect($this->getController()->genUrl(array(
-      'sf_route'     => 'mycq_collectible_by_slug',
-      'sf_subject'   => $collection_collectible,
-      'suggest_tags' => true,
-    )));
+    return $this->redirect('@mycq_collectible_wizard?step=1&id=' . $collectible->getId());
   }
 
   public function executeCollectible(sfWebRequest $request)
@@ -739,6 +735,91 @@ class mycqActions extends cqFrontendActions
     {
       SmartMenu::setSelected('mycq_menu', 'collections');
     }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCollectibleCreateWizard(sfWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    if (CollectorCollectionQuery::create()->filterByCollector($collector)->count() == 0)
+    {
+      $this->getUser()->setFlash('error', 'You should create collection first.');
+      $this->redirect('@mycq_collections');
+    }
+
+    $collectible = new Collectible();
+    $collectible->setCollector($collector);
+
+    $this->form = new CollectibleWizardStep1Form($collectible);
+
+    $this->collection = $request->getParameter('collection_id')
+      ? CollectorCollectionQuery::create()
+        ->filterByCollector($collector)
+        ->filterById($request->getParameter('collection_id'))
+        ->findOne()
+      : null;
+
+    if ($request->isMethod(sfRequest::POST))
+    {
+      $this->form->bind($request->getParameter($this->form->getName()));
+      if ($this->form->isValid())
+      {
+        $collectible = $this->form->save();
+        $this->redirect('@mycq_collectible_wizard?step=2&id=' . $collectible->getId() .
+          ($this->collection ? '&collection_id=' . $this->collection->getId() : '')
+          );
+      }
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCollectibleWizard(sfWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    if (CollectorCollectionQuery::create()->filterByCollector($collector)->count() == 0)
+    {
+      $this->getUser()->setFlash('error', 'You should create collection first.');
+      $this->redirect('@mycq_collections');
+    }
+
+    /* @var $collectible Collectible */
+    $collectible = $this->getRoute()->getObject();
+
+    $this->forward404Unless($collectible->getCollectorId() == $collector->getId());
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+      ->descendantsOf($root)
+      ->findTree();
+
+    //Setup default collection
+    $this->collection = null;
+    if ($request->getParameter('collection_id'))
+    {
+      $collection = CollectorCollectionQuery::create()
+        ->filterByCollector($collector)
+        ->filterById((int) $request->getParameter('collection_id'))
+        ->findOne();
+      if ($collection && $collectible->getCollectionId() == null)
+      {
+        $collectible->setCollection($collection);
+        $this->collection = $collection;
+      }
+    }
+    $this->step1 = new CollectibleWizardStep1Form($collectible);
+
+    $this->step2 = new CollectibleWizardStep2Form($collectible);
+    $this->step2->setDefault('collectible_id', $collectible->getId());
+
+    $this->collectible = $collectible;
+
+    $this->step = $request->getParameter('step');
 
     return sfView::SUCCESS;
   }

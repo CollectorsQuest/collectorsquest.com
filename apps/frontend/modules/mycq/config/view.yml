@@ -4,6 +4,7 @@ all:
   javascripts:
     - /assets/js/wysihtml5.js
     - /assets/js/bootstrap/wysihtml5.js
+    - /assets/js/bootstrap/collapse.js
     - /assets/js/jquery/chosen.js
 
     - jquery/columnview.js
@@ -43,6 +44,16 @@ collectibleSuccess:
     mycq_dropbox: [mycq, dropbox]
 
 marketplaceSuccess:
+  components:
+    mycq_upload_photos: [mycq, uploadPhotos]
+    mycq_dropbox: [mycq, dropbox]
+
+collectibleCreateWizardSuccess:
+  components:
+    mycq_upload_photos: [mycq, uploadPhotos]
+    mycq_dropbox: [mycq, dropbox]
+
+collectibleWizardSuccess:
   components:
     mycq_upload_photos: [mycq, uploadPhotos]
     mycq_dropbox: [mycq, dropbox]

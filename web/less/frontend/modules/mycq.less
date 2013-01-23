@@ -1457,7 +1457,7 @@ textarea.input-xlarge {
     padding: 8px 3px 0;
   }
   &.single-file.in {
-    border: 2px dashed @red;
+    border: 2px dashed @red!important;
   }
   &.in, &.hover {
     padding: 5px;
@@ -2415,3 +2415,228 @@ div.wpfaqask {
     }
   }
 }
+
+
+#dropzone-wz1 {
+  .hide {display: none!important;}
+  .dropzone-inner {
+    .drop-help {
+      display: none;
+      width: 294px;
+
+      border: 2px dashed @red;
+      margin-bottom: 29px;
+      position: relative;
+      font-size: 28px;
+      height: 210px;
+      font-size: 100px;
+      text-align: center;
+      color: @red;
+      line-height: 1;
+      padding-top: 35px;
+      .info-text {
+        color: @red;
+        display: block;
+        font-size: 20px;
+        height: 100px;
+        left: 45px;
+        line-height: 22px;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: 160px;
+        width: 200px;
+      }
+
+    }
+    .image-view-slot {
+    }
+    &.in {
+      .drop-help {
+        display: block;
+      }
+      .image-view-slot {
+        display: none;
+      }
+    }
+    &.in-progress {
+      .drop-help {
+        display: none;
+      }
+      .image-view-slot {
+        display: none;
+      }
+    }
+
+  }
+}
+
+.collecton-wizard {
+  .tagedit-list {
+    width: 406px;
+  }
+  .chzn-choices {
+    width: 300px;
+  }
+}
+
+#fileupload-wz1 {
+  border: 2px dashed white;
+  margin: 0 0 0 -5px;
+  padding: 5px 0 0 5px;
+  width: 908px;
+  &.in {
+    border: 2px dashed @red;
+  }
+}
+
+#dropzone-wz1 {
+  width: 903px;
+
+  .thumbnails li {
+    background-color: #E6F2F9;
+    position: relative;
+    width: 92px;
+    height: 92px;
+    display: block;
+    float: left;
+    cursor: move;
+    .error{
+      border: 1px solid red;
+      background-color: #ffd4d4;
+    }
+    .error {
+      color: @red;
+      text-align: center;
+      font-size: 10px;
+      padding: 3px;
+      max-height: 82px;
+      overflow: hidden;
+    }
+    &:nth-child(2) {
+      padding-bottom: 0!important;
+    }
+
+    .big {
+      display: none;
+    }
+    .thumbnail {
+      .transition(none);
+      .border-radius(0);
+      .box-shadow(none);
+      padding: 0;
+      border: none;
+      .preview.small {
+        width: 92px;
+        height: 92px;
+        overflow: hidden;
+      }
+    }
+    .progress{
+      .border-radius(0);
+      width: 300px;
+      height: 8px;
+      z-index: 2;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      margin: 0;
+      &.small {
+        width: 92px;
+      }
+    }
+    &:first-child {
+      cursor: auto;
+      width: 300px;
+      height: auto;
+      .big {
+        display: block;
+      }
+      .small {
+        display: none;
+      }
+      .progress{
+        height: 14px;
+      }
+      .error{
+        font-size: 14px;
+        padding: 10px;
+        max-height: 200px;
+      }
+    }
+    .icon-remove-sign {
+      top: -7px;
+      right: -14px;
+      left: auto;
+      z-index: 2;
+      bottom: auto;
+      position: absolute;
+      border: none;
+      display:none;
+    }
+    &:hover {
+      .icon-remove-sign {
+        display: block;
+      }
+    }
+
+    &.ui-state-highlight{ //Show sortable placeholder only for main image
+      display: none;
+      &:first-child {
+        display: block;
+      }
+    }
+    &.template-upload{
+      cursor: auto;
+    }
+    &#always-last {
+      cursor: auto;
+      .thumbnail {
+        border: 2px dashed #0A82C2;
+        background-color: #E6F2F9;
+        margin: 0!important;
+        text-align: center;
+        width: 88px;
+        height: 88px;
+        .icon-plus {
+          color: white;
+          font-size: 40px;
+          padding-top: 6px;
+        }
+        .info-text {
+          font-size: 14px;
+          padding-top: 6px;
+          line-height: 18px;
+        }
+      }
+      &:first-child {
+        .thumbnail {
+          width: 296px;
+          height: 296px;
+          .icon-plus {
+            color: white;
+            font-size: 100px;
+            padding: 30px 0 15px;
+          }
+          .info-text {
+            margin: 0 auto;
+            width: 215px;
+
+          }
+        }
+      }
+    }
+
+  }
+  #form-box {
+    display: block;
+    float: right;
+    width: 592px;
+    overflow: hidden;
+    .spacer {
+      margin: 0; padding: 0;
+    }
+  }
+}
+
