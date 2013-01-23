@@ -96,41 +96,34 @@ else
     <div class="accordion-body collapse">
       <div class="accordion-inner" id="wz-step4">
 
-        <div class="row">
-          <div class="span10 offset4 spacer-bottom-20">
-            <h2>Congratulation your collectible successfully added!</h2>
+        <div class="row-fluid">
+          <div class="span12 offset1 spacer-bottom-20">
+            <h2>Congratulations, your item is now discoverable on Collectors Quest!</h2>
           </div>
         </div>
         <div class="row spacer-bottom-15">
-          <div class="span4 offset5"><p>Please choose your next action:</p></div>
-        </div>
-        <div class="row spacer-bottom-15">
-          <div class="span4 offset5"><p>See this item like other see it</p></div>
+          <div class="span4 offset2"><p>See your item like others see it:</p></div>
           <div class="span3">
             <a href="<?= url_for_collectible($collectible); ?>" class="btn btn-primary">Public View</a>
           </div>
         </div>
         <div class="row spacer-bottom-15">
-          <div class="span4 offset5">Other item configurations</div>
+          <div class="span4 offset2">Edit any of the item details:</div>
           <div class="span3">
-            <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>" class="btn btn-primary">Edit</a>
+            <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>" class="btn btn-primary">Edit Item</a>
           </div>
         </div>
 
-        <?php if ($collection = $collectible->getCollection()): ?>
-          <div class="row spacer-bottom-15">
-            <div class="span4 offset5">Add another item to "<?= $collection->getName() ?>" collection</div>
-            <div class="span3">
-              <a href="<?= url_for('@mycq_collectible_create_wizard?collection_id=' . $collection->getId()); ?>"
-                 class="btn btn-primary">Add Item</a>
-            </div>
+        <div class="row spacer-bottom-15">
+          <div class="span4 offset2">Add another item:</div>
+          <div class="span3">
+            <a href="<?= url_for('@mycq_collectible_create_wizard'); ?>" class="btn btn-primary">Add New Item</a>
           </div>
-        <?php endif; ?>
+        </div>
 
       </div>
     </div>
   </div>
-
 
 </div>
 <script>
