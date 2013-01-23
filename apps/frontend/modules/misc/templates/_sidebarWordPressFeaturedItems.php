@@ -9,6 +9,8 @@
   );
 ?>
 
+<?php include_component('_sidebar', 'widgetPopularTopics'); ?>
+
 <?php
   include_component(
     '_sidebar', 'widgetBlogPosts',
