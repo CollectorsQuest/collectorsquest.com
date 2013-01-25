@@ -1,17 +1,24 @@
 <?php
-/* @var $sf_user cqFrontendUser */
-/* @var $sf_request   cqWebRequest */
+/* @var $sf_user     cqFrontendUser */
+/* @var $sf_request  cqWebRequest */
+/* @var $wp_post     wpPost */
 
-cq_dart_slot('300x250', 'collections', 'landing', 'sidebar');
 ?>
+
+<?php cq_dart_slot('300x250', 'collections', 'landing', 'sidebar'); ?>
 
 <?php
-  if ($sf_request->isMobileLayout()):
+  if ($sf_request->isMobileLayout())
+  {
     include_partial('aetn/partials/franksPicksPromo_620x67', array('class' => 'spacer-top-20'));
-  else:
+  }
+  else
+  {
     include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-20'));
-  endif;
+  }
 ?>
+
+<?php include_component('_sidebar', 'widgetPopularTopics'); ?>
 
 <?php include_component('_sidebar', 'widgetPopularCategories'); ?>
 

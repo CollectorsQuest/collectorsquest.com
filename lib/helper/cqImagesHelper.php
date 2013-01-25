@@ -203,7 +203,7 @@ function src_tag_collectible($collectible, $which = '150x150')
  *
  * @return null|string
  */
-function image_tag_wp_post($wp_post, $which = '150x150')
+function image_tag_wp_post($wp_post, $which = '150x150', $options = array())
 {
   list($width, $height) = explode('x', $which);
 
@@ -212,7 +212,7 @@ function image_tag_wp_post($wp_post, $which = '150x150')
     $src = '/images/'. sfConfig::get('sf_app') .'/multimedia/wpPost/'. $which .'.png';
   }
 
-  return cq_image_tag($src, array('width' => $width, 'height' => $height));
+  return cq_image_tag($src, array_merge($options, array('width' => $width, 'height' => $height)));
 }
 
 
