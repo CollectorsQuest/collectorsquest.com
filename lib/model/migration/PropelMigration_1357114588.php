@@ -13,6 +13,11 @@ class PropelMigration_1357114588
     {
        // update the collector id for the collection
        $collection = CollectorCollectionQuery::create()->findPk(self::COLLECTION_ID);
+       if (!$collection)
+       {
+         return 0;
+       }
+
        $collection->setCollectorId(self::TARGET_COLLECTOR_ID);
        $collection->save();
 
