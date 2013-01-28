@@ -203,6 +203,7 @@ class collectionsComponents extends cqFrontendComponents
     $q = wpPostQuery::create()
       ->filterByPostStatus('publish')
       ->filterByPostType('featured_items')
+      ->filterById(34898, Criteria::NOT_IN)
       ->limit(6)
       ->addAscendingOrderByColumn('RAND()');
 

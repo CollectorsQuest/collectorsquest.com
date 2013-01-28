@@ -10,14 +10,19 @@
     <?php
       $link = link_to(
         $wp_post->getPostTitle(),
-        array('sf_route' => 'wordpress_featured_week', 'sf_subject' => $wp_post)
+        array('sf_route' => 'wordpress_featured_items', 'sf_subject' => $wp_post)
       );
 
       echo !empty($title) ? $title : $link;
     ?>
   </h3>
 
-  <?php echo image_tag_wp_post($wp_post, '300x0', array('style' => 'margin-bottom: 10px;')); ?>
+  <?php
+    echo link_to(
+      image_tag_wp_post($wp_post, '300x0', array('style' => 'margin-bottom: 10px;')),
+      array('sf_route' => 'wordpress_featured_items', 'sf_subject' => $wp_post)
+    );
+  ?>
   <?= !empty($excerpt) ? $excerpt : $wp_post->getPostExcerpt(120); ?>
 
 </div>
