@@ -23,7 +23,7 @@
       array('sf_route' => 'wordpress_featured_items', 'sf_subject' => $wp_post)
     );
   ?>
-  <?= !empty($excerpt) ? $excerpt : $wp_post->getPostExcerpt(120); ?>
+  <?= !empty($excerpt) ? $excerpt : $wp_post->getPostExcerpt(130); ?>
 
 </div>
 <?php endforeach; ?>
