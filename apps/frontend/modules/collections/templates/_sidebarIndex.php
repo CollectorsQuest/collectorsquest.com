@@ -59,4 +59,7 @@
   );*/
 ?>
 
-<?php include_component('_sidebar', 'widgetMagnifyVideos'); ?>
+<?php cq_sidebar_title('Now Playing'); ?>
+<div class="spacer-top">
+  <script type="text/javascript" src="http://video.collectorsquest.com/embed/playlist/BZP5F03BJ1YSYHVZ" language="JavaScript"></script>
+</div>

@@ -1,4 +1,4 @@
-<?php cq_page_title('Collections Now On Display'); ?>
+<?php cq_page_title('Now On Display'); ?>
 
 <?php
   if (cqGateKeeper::open('collections_redesign', 'page'))
@@ -9,7 +9,6 @@
   {
     include_component('collections', 'featuredWeek');
   }
-
 ?>
 
 <?php cq_section_title('Explore Collections') ?>
