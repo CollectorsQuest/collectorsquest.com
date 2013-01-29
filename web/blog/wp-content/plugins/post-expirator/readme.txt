@@ -3,7 +3,7 @@ Contributors: axelseaa
 Tags: expire, posts, pages, schedule
 Requires at least: 3.2
 Tested up to: 3.4
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 
 Allows you to add an expiration date to posts which you can configure to either delete the post, change it to a draft, or update the 
 post categories.
@@ -46,6 +46,12 @@ This section describes how to install the plugin and get it working.
 3. Settings screen
 
 == Changelog ==
+
+**Version 1.6.2**
+
+* Added the ability to configure the post expirator to be enabled by default for all new posts
+* Changed some instances of mktime to time
+* Fixed missing global call for MS installs
 
 **Version 1.6.1**
 

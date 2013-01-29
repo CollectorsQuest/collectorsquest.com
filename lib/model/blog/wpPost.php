@@ -33,7 +33,7 @@ class wpPost extends BasewpPost
       $excerpt = strip_tags($this->getPostContentStripped());
     }
 
-    return $length > 0 ? cqStatic::truncateText($excerpt, $length, $truncate_string) : $excerpt;
+    return $length > 0 ? cqStatic::truncateText($excerpt, $length, $truncate_string, true) : $excerpt;
   }
 
   public function getPostTitle()

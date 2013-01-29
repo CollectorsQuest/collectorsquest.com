@@ -18,7 +18,6 @@
   </div>
 <?php elseif ($pager->getPage() > 1): ?>
   <div class="well clear-both">
-    <i class="icon icon-search"></i>&nbsp;
     <?php
       if ($sf_params->get('q'))
       {
@@ -27,7 +26,7 @@
       else
       {
         echo link_to(
-          'Want to discover more great collectibles? Clicking here to explore more of our latest collections!',
+          'Want to discover more great collectibles? Click here to explore all of our Collections!',
           '@collections_with_sort?sort=latest&page=2'
         );
       }
