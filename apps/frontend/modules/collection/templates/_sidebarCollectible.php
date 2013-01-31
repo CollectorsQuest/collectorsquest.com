@@ -70,7 +70,7 @@
 
     if ($sf_request->isMobileLayout())
     {
-      include_partial('aetn/partials/franksPicksPromo_620x67');
+      // include_partial('aetn/partials/franksPicksPromo_620x67');
     }
     else if (in_array($collectible->getId(), $black_history_collectible_ids))
     {
@@ -88,8 +88,7 @@
     }
     else
     {
-      include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-15'));
-      $height->value -= 110;
+      include_partial('marketplace/partials/marketBecomeSellerPromo_300x250', array('class' => 'spacer-top-15', 'height' => $height));
     }
 
     if (!$collectible->isForSale())

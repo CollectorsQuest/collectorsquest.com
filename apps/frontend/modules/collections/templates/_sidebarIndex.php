@@ -10,11 +10,11 @@
 <?php
   if ($sf_request->isMobileLayout())
   {
-    include_partial('aetn/partials/franksPicksPromo_620x67', array('class' => 'spacer-top-20'));
+    // include_partial('aetn/partials/franksPicksPromo_620x67', array('class' => 'spacer-top-20'));
   }
   else
   {
-    include_partial('aetn/partials/franksPicksPromo_300x90', array('class' => 'spacer-top-20'));
+    include_partial('marketplace/partials/marketBecomeSellerPromo_300x250', array('class' => 'spacer-top-20'));
   }
 ?>
 
@@ -50,13 +50,6 @@
       );
     }
   }
-?>
-
-<?php
-/*  include_partial(
-    'marketplace/partials/holidayMarketBuyPackagePromo_300x90',
-    array('class' => 'spacer-top-20')
-  );*/
 ?>
 
 <?php cq_sidebar_title('Now Playing'); ?>

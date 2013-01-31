@@ -9,11 +9,11 @@
 
 <?php
   if ($sf_request->isMobileLayout()):
-    include_partial('aetn/partials/franksPicksPromo_620x67');
+    // include_partial('aetn/partials/franksPicksPromo_620x67');
     include_partial('aetn/partials/pawnStarsPromo_620x67');
     include_partial('aetn/partials/americanRestorationPromo_620x67');
   else:
-    include_partial('aetn/partials/franksPicksPromo_300x90');
+    include_partial('marketplace/partials/marketBecomeSellerPromo_300x250');
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanRestorationPromo_300x90');
   endif;

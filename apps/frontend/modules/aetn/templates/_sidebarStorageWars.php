@@ -13,7 +13,7 @@
   if (!$sf_request->isMobileLayout()):
     include_partial('aetn/partials/pawnStarsPromo_300x90');
     include_partial('aetn/partials/americanPickersPromo_300x90');
-    include_partial('aetn/partials/franksPicksPromo_300x90');
+    include_partial('marketplace/partials/marketBecomeSellerPromo_300x250');
   endif;
 ?>
 
