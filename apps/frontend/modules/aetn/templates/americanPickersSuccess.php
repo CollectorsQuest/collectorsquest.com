@@ -1,3 +1,7 @@
+<?php
+/* @var $pager PropelModelPager */
+?>
+
 <div class="spacer-bottom-15">
   <?php
     echo link_to(cq_image_tag(
@@ -32,7 +36,7 @@
   <div id="collectibles" class="row-content">
     <?php
     /** @var $collectibles Collectible[] */
-    foreach ($collectibles as $i => $collectible)
+    foreach ($pager->getResults() as $i => $collectible)
     {
       // Show the collectible (in grid, list or hybrid view)
       include_partial(
@@ -42,4 +46,8 @@
     }
     ?>
   </div>
+</div>
+
+<div class="row-fluid text-center">
+  <?php include_component('global', 'pagination', array('pager' => $pager)); ?>
 </div>

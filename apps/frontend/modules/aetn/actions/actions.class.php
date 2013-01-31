@@ -29,7 +29,7 @@ class aetnActions extends cqFrontendActions
     }
   }
 
-  public function executeAmericanPickers()
+  public function executeAmericanPickers(sfWebRequest $request)
   {
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
 
@@ -45,7 +45,11 @@ class aetnActions extends cqFrontendActions
       ->filterByCollectionId($american_pickers['collection'])
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
-    $this->collectibles = $q->find();
+
+    $pager = new PropelModelPager($q, 9);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+    $this->pager = $pager;
 
     // Make the Collection available in the sidebar
     $this->setComponentVar('collection', $collection, 'sidebarAmericanPickers');

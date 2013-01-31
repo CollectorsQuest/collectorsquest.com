@@ -1,7 +1,5 @@
 <?php
-/**
- * @var $pager PropelModelPager
- */
+/* @var $pager PropelModelPager */
 ?>
 
 <div class="spacer-bottom-15">
