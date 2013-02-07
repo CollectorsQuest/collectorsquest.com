@@ -442,6 +442,7 @@ $lastclass = 0;
         </div>
         <?php endif; ?>
       </div>
+      <br clear="all"/>
 
       <?php slidedeck(30032, array( 'width' => '620px', 'height' => '65px')); ?>
 
