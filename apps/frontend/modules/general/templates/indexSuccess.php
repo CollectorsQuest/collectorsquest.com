@@ -1,18 +1,34 @@
 
 <div class="row">
-  <div class="homepage-featured bordered">
-    <?= ($cms_slot1 instanceof wpPost) ? $cms_slot1->getPostContent() : null; ?>
+  <div id="main_homepage">
+    <div class="homepage-featured">
+      <?php echo
+        image_tag(
+          'frontend/misc/20130208_homepage_quest_your_best.png',
+          array('size' => '90x90', 'alt' => 'Quest your best!')
+        );
+      ?>
+      <?= ($cms_slot1 instanceof wpPost) ? $cms_slot1->getPostContent() : null; ?>
+    </div>
+
+    <div class="homepage-featured">
+      <?php echo
+        image_tag(
+          'frontend/misc/20130208_homepage_buy_and_sell_on_CQ.png',
+          array('size' => '90x90', 'alt' => 'Buy and Sell on Collectors Quest!')
+        );
+      ?>
+      <?= ($cms_slot2 instanceof wpPost) ? $cms_slot2->getPostContent() : null; ?>
+    </div>
+
+    <?php include_partial('general/homepage_blogposts_featured', array('blog_posts' => $blog_posts)); ?>
+
+    <br>
   </div>
 
-  <div class="homepage-featured">
-    <?= ($cms_slot2 instanceof wpPost) ? $cms_slot2->getPostContent() : null; ?>
-  </div>
-
-  <br clear="all"/><br/>
-  <?php include_partial('general/homepage_blogposts_featured', array('blog_posts' => $blog_posts)); ?>
-
-  <div class="homepage-featured">
+  <div id="sidebar_homepage">
     <?= ($cms_slot3 instanceof wpPost) ? $cms_slot3->getPostContent() : null; ?>
+    <br>
   </div>
 </div>
 
