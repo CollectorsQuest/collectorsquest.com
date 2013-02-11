@@ -1,68 +1,40 @@
-<?php cq_page_title("Now On Display") ?>
+
+<div class="row">
+  <div id="main_homepage">
+    <div class="homepage-featured">
+      <?= ($cms_slot1 instanceof wpPost) ? $cms_slot1->getPostContent() : null; ?>
+    </div>
+
+    <div class="homepage-featured">
+      <?= ($cms_slot2 instanceof wpPost) ? $cms_slot2->getPostContent() : null; ?>
+    </div>
+
+    <?php include_partial('general/homepage_blogposts_featured', array('blog_posts' => $blog_posts)); ?>
+    <br>
+  </div>
+
+  <div id="sidebar_homepage">
+    <?= ($cms_slot3 instanceof wpPost) ? $cms_slot3->getPostContent() : null; ?>
+    <br>
+  </div>
+</div>
+
+<?php cq_page_title('Now On Display') ?>
 
 <div class="row">
   <div id="homepage" class="row-content">
     <?php
-      for ($i = 0; $i < 4; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
+      $k = rand(2, 5);
+      foreach ($collectibles as $i => $collectible)
       {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
-      }
-    ?>
+        if ($i % $k === 0 && isset($videos[intval($i / $k)]))
+        {
+          include_partial(
+            'general/homepage_video',
+            array('video' => $videos[intval($i / $k)], 'i' => $i)
+          );
+        }
 
-    <?php include_partial('general/homepage_blogpost', array('blog_post' => $blog_posts[0])); ?>
-
-    <?php
-      for ($i = 4; $i < 9; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
-      {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
-      }
-    ?>
-
-    <?php include_partial('general/homepage_blogpost', array('blog_post' => $blog_posts[1])); ?>
-
-    <?php
-      if (!empty($collections[0]) && $collections[0] instanceof Collection)
-      {
-        include_partial(
-          'general/homepage_collection_tall',
-          array('collection' => $collections[0])
-        );
-      }
-    ?>
-
-    <?php
-      for ($i = 9; $i < 12; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
-      {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
-      }
-    ?>
-
-    <?php
-      if (!empty($collections[1]) && $collections[1] instanceof Collection)
-      {
-        include_partial(
-          'general/homepage_collection_wide',
-          array('collection' => $collections[1])
-        );
-      }
-    ?>
-
-    <?php
-      for ($i = 12; $i < 18; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
-      {
         include_partial(
           'collection/collectible_grid_view_square_small',
           array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
