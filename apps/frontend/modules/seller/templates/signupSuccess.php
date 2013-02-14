@@ -80,6 +80,55 @@
     </div>
   </div>
 
+  <div class="row-fluid questions">
+    <div class="question pull-left clearfix">
+      <h3 class="Chivo webfont clearfix">
+        <i class="small-circle-questionmark"></i>
+        How do fees work<br /> on CQ?
+      </h3>
+      <p>
+        On Collectors Quest, you’re only charged a flat fee per listing.
+      </p>
+      <p>
+        CQ provides multiple listing packages for different levels of sellers, from the casual seller to the very active seller. Once you purchase a listing, it’s live on the site for six months, or until your item sells—whichever comes first.
+      </p>
+      <p>
+        You’ll never be charged any final value fees or any other kind of additional fee. You only pay for your original listing, and nothing more. No fancy math necessary!
+      </p>
+    </div>
+
+    <div class="question pull-left clearfix">
+      <h3 class="Chivo webfont clearfix">
+        <i class="small-circle-questionmark"></i>
+        What do I need<br /> to sign up?
+      </h3>
+      <p>
+        All sellers on Collectors Quest need a valid email address, and a PayPal account to receive payments.
+      </p>
+      <p>
+        Items sold on CQ are processed through PayPal, so payments for these items will go into your PayPal account.
+      </p>
+      <p>
+        You can pay for your listing credits with either PayPal or a credit card.
+      </p>
+    </div>
+
+    <div class="question pull-left clearfix">
+      <h3 class="Chivo webfont clearfix">
+        <i class="small-circle-questionmark"></i>
+        What happens when I<br /> sell an item on CQ?
+      </h3>
+      <p>
+        When a buyer decides to purchase an item, the buyer has with multiple payment options with PayPal.
+      </p>
+      <p>
+        After providing shipping information, payment information and any special instructions, payment is processed immediately, and both the buyer and seller will be sent a notification via email with all of this information, as well as a link to access this information on CollectorsQuest.com.
+      </p>
+      <p>
+        You ship the item as soon as you can, and the rest is history!
+      </p>
+    </div>
+  </div>
 </div>
 
 <!--
