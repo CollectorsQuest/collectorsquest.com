@@ -23,11 +23,9 @@
                                                Get started in minutes.</li>
       </ul>
 
-      <!--
       <?= link_to('Sign Up Now!', '@collector_signup', array(
-          'class' => 'btn btn-primary',
+          'class' => 'btn-signup Chivo btn-position',
       )); ?>
-      -->
     </div>
 
     <div class="span6 info-box">
@@ -129,8 +127,20 @@
       </p>
     </div>
   </div>
-</div>
 
+  <!-- copy structure from above -->
+  <div class="row-fluid questions">
+    <div class="question pull-left clearfix">
+      <br />
+      <!-- empty first col -->
+    </div>
+    <div class="question pull-left clearfix">
+      <?= link_to('Sign Up Now!', '@collector_signup', array(
+          'class' => 'btn-signup Chivo',
+      )); ?>
+    </div>
+  </div>
+</div>
 <!--
 <div class="packages-container spacer-top-25">
   <div class="bars-wrapper">

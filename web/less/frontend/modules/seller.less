@@ -452,7 +452,13 @@ span.current-price {
     margin-bottom: -99999px;
     padding: 15px 20px 99999px;
     background-color: #fffaea;
+    position: relative;
 
+    .btn-position {
+      position: absolute;
+      left: 284px;
+      top: 204px;
+    }
     h3 {
       font-size: 20px;
       margin-bottom: 15px;
@@ -471,17 +477,25 @@ span.current-price {
 
     .table {
       font-size: 16px;
+      border-collapse: separate;
 
-      th {
-        font-weight: normal;
-        text-align: center;
-        border-bottom: 1px groove #125375;
+      thead {
+        tr {
+          background: none;
+        }
+        th {
+          font-weight: normal;
+          text-align: center;
+          border-bottom: 1px groove #125375;
+        }
       }
       td {
         font-weight: bold;
         text-align: center;
-        border-top: 0;
-        border-bottom: 1px solid #bac9c7;
+        border: 0;
+      }
+      tr {
+        background: url("@{baseUrl}/blue-dotted-line.png") repeat-x bottom;
       }
     }
 
@@ -499,12 +513,18 @@ span.current-price {
       width: 286px;
       margin-right: 20px;
 
+      .btn-signup {
+        width: 90%;
+      }
+
       h3 {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
         font-size: 20px;
-        margin-bottom: 20px;
+        background: url("@{baseUrl}/blue-dotted-line.png") repeat-x bottom;
 
         i {
-          margin-top: 5px;
+          margin: 5px 3px 0 0;
           display: block;
           float: right;
         }
@@ -513,5 +533,57 @@ span.current-price {
         font-size: 14px;
       }
     }
+  }
+
+  .btn-signup {
+    display: inline-block;
+    .ie7-inline-block();
+    padding: 9px 14px;
+    margin-bottom: 0; // For input.btn
+    font-size: 20px;
+    line-height: 18px;
+    *line-height: 18px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    .buttonBackground(#2093c3, #0971BA, #f0f7fb);
+    .border-radius(3px);
+    .ie7-restore-left-whitespace(); // Give IE7 some love
+    .box-shadow(inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05));
+
+    // Hover state
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      background-position: 0 -15px;
+
+      // transition is only when going to hover, otherwise the background
+      // behind the gradient (there for IE<=9 fallback) gets mismatched
+      .transition(background-position .1s linear);
+    }
+
+    // Focus state for keyboard and accessibility
+    &:focus {
+      .tab-focus();
+    }
+
+    // Active state
+    &.active,
+    &:active {
+      background-image: none;
+      outline: 0;
+      .box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+    }
+
+    // Disabled state
+    &.disabled,
+    &[disabled] {
+      cursor: default;
+      background-image: none;
+      .opacity(65);
+      .box-shadow(none);
+    }
+
   }
 }
