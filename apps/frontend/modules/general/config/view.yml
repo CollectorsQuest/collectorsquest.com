@@ -13,7 +13,6 @@ indexSuccess:
   components:
     breadcrumbs: []
     slot1: [general, indexCarousel]
-    sidebar_160: [general, sidebarIndex]
 
 indexMobile:
   stylesheets: [frontend/modules/homepage.css]
