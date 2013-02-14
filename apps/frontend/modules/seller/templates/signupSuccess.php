@@ -140,7 +140,44 @@
       )); ?>
     </div>
   </div>
+
+  <br />
+  <br />
+  <?php cq_page_title('Checo out our Guides on Selling!'); ?>
+  <br />
+
+  <div class="selling-guides text-center row-fluid">
+    <div class="span4">
+      <?= link_to(
+          image_tag('frontend/cq_market_guide_images.jpg', array(
+              'width' => 305,
+              'height' => 205,
+          )) . 'Guide to Photo Uploading and Editing',
+          '/pages/cq-faqs/guide-selling/'
+      ); ?>
+    </div>
+    <div class="span4">
+      <?= link_to(
+          image_tag('frontend/cq_market_guide_shipping.jpg', array(
+              'width' => 305,
+              'height' => 205,
+          )) . 'Guide to Smart Shiping',
+          '/pages/cq-faqs/guide-to-smart-shipping/'
+      ); ?>
+    </div>
+    <div class="span4">
+      <?= link_to(
+          image_tag('frontend/cq_market_guide_selling.jpg', array(
+              'width' => 305,
+              'height' => 205,
+          )) . 'Guide to Selling',
+          '/pages/cq-faqs/how-to-be-a-good-seller/'
+      ); ?>
+    </div>
+  </div>
+  <br />
 </div>
+
 <!--
 <div class="packages-container spacer-top-25">
   <div class="bars-wrapper">
