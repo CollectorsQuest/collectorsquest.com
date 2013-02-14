@@ -1,5 +1,88 @@
-<?php cq_page_title('Which package is right for you?'); ?>
+<?php cq_page_title('Sell Your Antique, Vintage and Newer Collectibles with Us!'); ?>
 
+
+<div class="marketplace-buy-a-package">
+  <?= image_tag('frontend/cq_market_promo_collectibles_header.jpg', array(
+      'alt' => "Promotional collectibles photos",
+      'class' => 'header-image',
+      'width' => 939,
+      'height' => 229,
+  )); ?>
+
+  <div class="row-fluid">
+    <div class="span6 info-box">
+      <h3 class="Chivo webfont">Why sell with us?</h3>
+      <ul class="unstyled">
+        <li><i class="small-circle-1 ir">1</i> We are an active community of collectors.<br />
+                                               What better place to sell your collectibles?</li>
+        <li><i class="small-circle-2 ir">2</i> The number one question we get asked is<br />
+                                               &ldquo;Where can I buy that?&rdquo;</li>
+        <li><i class="small-circle-3 ir">3</i> No transaction fees &mdash;<br />
+                                               pay for your listings only. </li>
+        <li><i class="small-circle-4 ir">4</i> It's easy to do!<br />
+                                               Get started in minutes.</li>
+      </ul>
+
+      <!--
+      <?= link_to('Sign Up Now!', '@collector_signup', array(
+          'class' => 'btn btn-primary',
+      )); ?>
+      -->
+    </div>
+
+    <div class="span6 info-box">
+      <div class="row-fluid">
+        <div class="span8">
+          <h3 class="Chivo webfont">Price Points</h3>
+          <table cellspacing="0" class="table">
+            <thead class="Chivo webfont">
+              <tr>
+                <th>Listings</th>
+                <th>Price</th>
+                <th>Per Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>$2.50</td>
+                <td>$2.50</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>$20</td>
+                <td>$2.00</td>
+              </tr>
+              <tr>
+                <td>100</td>
+                <td>$150</td>
+                <td>$1.50</td>
+              </tr>
+              <tr>
+                <td>UNLIMITED</td>
+                <td>$250</td>
+                <td>pennies</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="span4">
+          <?= image_tag('frontend/cq_market_package_discounts.png', array(
+              'alt' => 'Package discounts for multiple listings',
+              'width' => 122,
+              'height' => 121,
+          )); ?>
+          <br />
+          <p>Listings last for<br/> six months</p>
+          <p>Unlimited listings<br /> last one year</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!--
 <div class="packages-container spacer-top-25">
   <div class="bars-wrapper">
     <div class="row-fluid">
@@ -110,3 +193,4 @@
   </div>
 
 </div>
+-->
