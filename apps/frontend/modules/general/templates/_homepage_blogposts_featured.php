@@ -3,14 +3,14 @@
   if ($thumbnail = $blog_posts[0]->getPostThumbnail('homepage'))
   {
     echo cq_image_tag(
-      $thumbnail, array('size' => '90x90', 'alt' => $blog_posts[0]->getPostTitle())
+      $thumbnail, array('size' => '90x90', 'alt' => $blog_posts[0]->getPostTitle(), 'style="margin-top: 15px;"')
     );
   }
   else
   {
     echo image_tag_multimedia(
       $blog_posts[0]->getPrimaryImage(), '90x90',
-      array('size' => '90x90', 'alt_title' => $blog_posts[0]->getPostTitle())
+      array('size' => '90x90', 'alt_title' => $blog_posts[0]->getPostTitle(), 'style="margin-top: 15px;"')
     );
   }
   ?>
