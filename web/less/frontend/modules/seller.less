@@ -444,8 +444,13 @@ span.current-price {
 
 .marketplace-buy-a-package {
   color: #125375;
+
+  .info-box-wrap {
+    overflow: hidden;
+  }
   .info-box {
-    padding: 15px 20px;
+    margin-bottom: -99999px;
+    padding: 15px 20px 99999px;
     background-color: #fffaea;
 
     h3 {
@@ -488,7 +493,7 @@ span.current-price {
   }
 
   .questions {
-    padding-left: 20px;
+    padding: 20px 0 0 20px;
 
     .question {
       width: 286px;
@@ -496,8 +501,10 @@ span.current-price {
 
       h3 {
         font-size: 20px;
+        margin-bottom: 20px;
 
         i {
+          margin-top: 5px;
           display: block;
           float: right;
         }

@@ -6,10 +6,10 @@
       'alt' => "Promotional collectibles photos",
       'class' => 'header-image',
       'width' => 939,
-      'height' => 229,
+      'height' => 280,
   )); ?>
 
-  <div class="row-fluid">
+  <div class="row-fluid info-box-wrap">
     <div class="span6 info-box">
       <h3 class="Chivo webfont">Why sell with us?</h3>
       <ul class="unstyled">
