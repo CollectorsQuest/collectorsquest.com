@@ -66,6 +66,10 @@
         <td>Shipping Address:</td>
         <td>
           <?= $shopping_order->getShippingAddressLine1(); ?>
+          <?php
+            $al2 = $shopping_order->getShippingAddressLine2();
+            echo $al2 ? '<br/>'. $al2 : '';
+          ?>
           <p>
             <?= $shopping_order->getShippingCity(); ?>,
             <?= $shopping_order->getShippingStateRegionName(); ?>

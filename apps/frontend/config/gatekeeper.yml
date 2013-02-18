@@ -3,7 +3,7 @@ all:
     holiday_marketplace: true
     marketplace_categories: false
     mycq_incomplete: true
-    collections_redesign: false
+    collections_redesign: true
 
   features:
     shopping_cart: true

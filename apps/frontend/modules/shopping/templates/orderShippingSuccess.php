@@ -50,6 +50,10 @@
         <div class="well <?= $sf_params->get('address_id') == $shipping_address->getId() ? 'highlight' : '' ?>">
           <?= $shipping_address->getFullName(); ?><br/>
           <?= $shipping_address->getAddressLine1(); ?>
+          <?php
+            $al2 = $shipping_address->getAddressLine2();
+            echo $al2 ? '<br/>'. $al2 : '';
+          ?>
           <p>
             <?= $shipping_address->getCity(); ?>,
             <?= $shipping_address->getStateRegion(); ?>

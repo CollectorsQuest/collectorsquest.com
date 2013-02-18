@@ -82,7 +82,7 @@ class aetnActions extends cqFrontendActions
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
-    $pager = new PropelModelPager($q, 9);
+    $pager = new PropelModelPager($q, 12);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
     $this->pager = $pager;
@@ -118,7 +118,7 @@ class aetnActions extends cqFrontendActions
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
-    $pager = new PropelModelPager($q, 9);
+    $pager = new PropelModelPager($q, 12);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
     $this->pager = $pager;
@@ -152,7 +152,7 @@ class aetnActions extends cqFrontendActions
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
-    $pager = new PropelModelPager($q, 9);
+    $pager = new PropelModelPager($q, 12);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
     $this->pager = $pager;
