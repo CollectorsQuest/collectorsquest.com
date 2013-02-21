@@ -23,7 +23,7 @@
                                                Get started in minutes.</li>
       </ul>
 
-      <?= link_to('Sign Up Now!', '@seller_signup', array(
+      <?= link_to('Sign Up Now!', '@collector_signup', array(
           'class' => 'btn-signup Chivo btn-position',
       )); ?>
     </div>
@@ -135,7 +135,7 @@
       <!-- empty first col -->
     </div>
     <div class="question pull-left clearfix">
-      <?= link_to('Sign Up Now!', '@seller_signup', array(
+      <?= link_to('Sign Up Now!', '@collector_signup', array(
           'class' => 'btn-signup Chivo',
       )); ?>
     </div>
