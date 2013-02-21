@@ -23,7 +23,7 @@
                                                Get started in minutes.</li>
       </ul>
 
-      <?= link_to('Sign Up Now!', '@misc_guide_to_collecting', array(
+      <?= link_to('Sign Up Now!', '@seller_signup', array(
           'class' => 'btn-signup Chivo btn-position',
       )); ?>
     </div>
@@ -135,7 +135,7 @@
       <!-- empty first col -->
     </div>
     <div class="question pull-left clearfix">
-      <?= link_to('Sign Up Now!', '@misc_guide_to_collecting', array(
+      <?= link_to('Sign Up Now!', '@seller_signup', array(
           'class' => 'btn-signup Chivo',
       )); ?>
     </div>
@@ -143,7 +143,7 @@
 
   <br />
   <br />
-  <?php cq_page_title('Checo out our Guides on Selling!'); ?>
+  <?php cq_page_title('Check Out Our Guides on Selling!'); ?>
   <br />
 
   <div class="selling-guides text-center row-fluid">
@@ -161,7 +161,7 @@
           image_tag('frontend/cq_market_guide_shipping.jpg', array(
               'width' => 305,
               'height' => 205,
-          )) . 'Guide to Smart Shiping',
+          )) . 'Guide to Smart Shipping',
           '/pages/cq-faqs/guide-to-smart-shipping/'
       ); ?>
     </div>
