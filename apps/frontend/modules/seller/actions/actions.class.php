@@ -94,6 +94,46 @@ class sellerActions extends cqFrontendActions
    */
   public function executePackages(sfWebRequest $request)
   {
+    // if the user is not authenticated, display a signup form
+    if (!$this->getUser()->isAuthenticated())
+    {
+      $this->signupForm = new SellerPackagesSignupForm();
+
+      if ($request->isMethod('post'))
+      {
+        $this->signupForm->bind($request->getParameter($this->signupForm->getName()));
+        if ($this->signupForm->isValid())
+        {
+          $values = $this->signupForm->getValues();
+          // try to guess the collector's country based on IP address
+          $values['country_iso3166'] = cqStatic::getGeoIpCountryCode(
+            $request->getRemoteAddress(), $check_against_geo_country = true
+          );
+
+          // Run the pre create hook
+          $this->getUser()->preCreateHook();
+
+          // create the collector
+          $collector = CollectorPeer::createFromArray($values);
+
+          // Run the post create hook
+          $this->getUser()->postCreateHook($collector);
+
+          // authenticate the collector
+          $this->getUser()->Authenticate(true, $collector, false);
+
+          // add a succesfully created user flash
+          $this->getUser()->setFlash('success', sprintf(
+            'Congradulations %s, you have successfully signed up for your new CollectorsQuest account',
+            $collector->getDisplayName()
+          ));
+
+          // unset signup form after user registration, it's not needed anymore
+          $this->signupForm = null;
+        }
+      }
+    }
+
     $packagesForm = new SellerPackagesForm();
     $packagesForm->setDefault('package_id', $request->getParameter('package'));
 
@@ -140,7 +180,7 @@ class sellerActions extends cqFrontendActions
           trim($packages_request['promo_code']) // propel escapes the value for us
         );
 
-        if ($packagesForm->isValid())
+        if ($packagesForm->isValid() && $this->getUser()->isAuthenticated())
         {
           $promotion = $packagesForm->getPromotion();
           $package = $packagesForm->getPackage();

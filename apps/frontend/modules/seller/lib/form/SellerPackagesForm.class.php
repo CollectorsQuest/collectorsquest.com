@@ -39,6 +39,10 @@ class SellerPackagesForm extends BaseForm
     $this->setupTermsField();
     $this->setupPendingTransactionConfirmationField();
 
+    // disable CSRF to allow user signup in the same request
+    // this form cannot be used maliciously anyways
+    $this->disableCSRFProtection();
+
     $this->widgetSchema->setFormFormatterName('Bootstrap');
     $this->widgetSchema->setNameFormat('packages[%s]');
   }
@@ -264,7 +268,7 @@ class SellerPackagesForm extends BaseForm
     )));
     $this->setValidator('terms', new sfValidatorBoolean(
       array('required' => true),
-      array('required' => 'You need to accept the terms and conditions')
+      array('required' => 'You need to accept the terms and conditions.')
     ));
 
     $this->setWidget('fyi', new sfWidgetFormInputCheckbox(array(
@@ -274,7 +278,7 @@ class SellerPackagesForm extends BaseForm
     )));
     $this->setValidator('fyi', new sfValidatorBoolean(
       array('required' => true),
-      array('required' => 'You need to acknowledge the PayPal<sup>®</sup> account requirement')
+      array('required' => 'You need to acknowledge the PayPal<sup>®</sup> account requirement.')
     ));
   }
 

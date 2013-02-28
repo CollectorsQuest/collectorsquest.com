@@ -1,4 +1,5 @@
 <?php
+  /* @var $signupForm SellerPackagesSignupForm */
   /* @var $packagesForm SellerPackagesForm */
   $tainted_form_values = $sf_request->getParameter($packagesForm->getName());
   $package_id_value = isset($tainted_form_values['package_id'])
@@ -42,12 +43,19 @@
 </div>
 <?php end_slot(); ?>
 
-<?php if ($packagesForm->hasGlobalErrors()): ?>
-  <?= $packagesForm->renderGlobalErrors(); ?>
-<?php endif; ?>
+<?php if (isset($signupForm)) echo $signupForm->renderAllErrors('There were some problems with you signup data'); ?>
+<?php echo $packagesForm->renderAllErrors('There were some problems with your payment data'); ?>
 
-<form action="<?= url_for('seller_packages')?>" method="post""
+<form action="<?= url_for('seller_packages')?>" method="post"
       id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
+
+  <?php if (isset($signupForm)): ?>
+    <?php cq_sidebar_title('Create your account with us:', null, array('class' => 'spacer-top-reset row-fluid sidebar-title')); ?>
+    <fieldset class="signup-form">
+      <?= $signupForm ?>
+    </fieldset>
+  <?php endif; ?>
+
   <?= $packagesForm->renderHiddenFields() ?>
 
   <?php
@@ -89,7 +97,7 @@
 
     cq_sidebar_title(
       'Which package is right for you?', isset($package_id_value) ? $link : '',
-      array('left' => 7, 'right' => 5, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+      array('left' => 7, 'right' => 5, 'class'=>'row-fluid sidebar-title')
     );
     ?>
 
