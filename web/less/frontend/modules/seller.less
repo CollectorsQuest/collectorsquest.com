@@ -221,11 +221,11 @@ span.current-price {
     border: 1px solid #ededed;
     .border-radius(6px);
     .box-shadow( inset 0 0 0 1px #fff);
-    background-color: #fcfaf3;
+    background-color: #FCF9F3;
 
     &:hover {
       background-color: #FFF4CF !important;
-      #gradient > .horizontal(#FFF4CF, #FFF4CF);
+      #gradient > .horizontal(#FFF6D1, #FFF2BD);
       border-color: #ffefbb;
     }
 
@@ -240,21 +240,22 @@ span.current-price {
   .package1 {
     .package();
     width: 180px;
+    #gradient > .horizontal(#FFFAF0, #FFF7E5);
   }
   .package2 {
     .package();
     width: 250px;
-    #gradient > .horizontal(#fcfaf3, #fff7e0);
+    #gradient > .horizontal(#FFFAF0, #FFEEC7);
   }
   .package3 {
     .package();
     width: 360px;
-    #gradient > .horizontal(#fcfaf3, #fff6da);
+    #gradient > .horizontal(#FFFAF0, #FFE7AD);
   }
   .package6 {
     .package();
     width: 550px;
-    #gradient > .horizontal(#fcfaf3, #fff4cf);
+    #gradient > .horizontal(#FFFAF0, #FFDC8A);
   }
   .selected {
     &> span {
@@ -446,10 +447,28 @@ span.current-price {
 	margin-right: 10px !important;
 }
 
+ul.blue-listing li {
+  position: relative;
+  padding: 0 0 8px 38px;
+  padding-bottom: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  color: @blueDark;
 
+  i {
+    display: block;
+    position: absolute;
+    left: 0;
+    margin: 3px 10px 0 0;
+  }
+}
+
+.font-20 {
+  font-size: 20px;
+}
 
 .marketplace-buy-a-package {
-  color: #125375;
+  color: @blueDark;
 
   .info-box-wrap {
     overflow: hidden;
@@ -469,17 +488,6 @@ span.current-price {
       margin-bottom: 15px;
       font-size: 20px;
     }
-    ul li {
-      padding-bottom: 8px;
-      font-size: 16px;
-      font-weight: bold;
-
-      i {
-        display: block;
-        float: left;
-        margin: 3px 10px 0 0;
-      }
-    }
 
     .table {
       font-size: 16px;
@@ -492,7 +500,7 @@ span.current-price {
         th {
           font-weight: normal;
           text-align: center;
-          border-bottom: 1px groove #125375;
+          border-bottom: 1px groove @blueDark;
         }
       }
       td {

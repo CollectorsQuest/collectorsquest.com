@@ -11,8 +11,8 @@
 
   <div class="row-fluid info-box-wrap">
     <div class="span6 info-box">
-      <h3 class="Chivo webfont">Why sell with us?</h3>
-      <ul class="unstyled">
+      <h3 class="Chivo webfont font-20">Why sell with us?</h3>
+      <ul class="unstyled blue-listing">
         <li><i class="small-circle-1 ir">1</i> We are an active community of collectors.<br />
                                                What better place to sell your collectibles?</li>
         <li><i class="small-circle-2 ir">2</i> The number one question we get asked is<br />

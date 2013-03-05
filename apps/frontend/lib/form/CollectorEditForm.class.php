@@ -649,6 +649,9 @@ class CollectorEditForm extends CollectorForm
             : false,
         'with_delete' => $header_image ? true : false,
         'delete_label' => 'Remove the current header image',
+        'template' => $header_image
+            ? '%file%<br />%input%<br />%delete% %delete_label%'
+            : '%input%<br />%delete% %delete_label%',
     ));
 
     $this->validatorSchema['seller_settings_store_header_image'] = new cqValidatorFile(array(
