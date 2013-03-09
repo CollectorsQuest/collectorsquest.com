@@ -2,7 +2,13 @@
 
 <br/>
 <div class="row">
-<?php foreach ($featured_items as $wp_post): ?>
+<?php foreach ($featured_items as $k => $wp_post): ?>
+
+<?php if (0 != $k && 0 == $k % 2): ?>
+</div>
+<div class="row">
+<?php endif; ?>
+
 <div id="wp_post_<?= $wp_post->getId(); ?>_featured"
      data-id="<?= $wp_post->getId(); ?>" class="wp_post_featured span6" style="margin-bottom: 15px;">
 
