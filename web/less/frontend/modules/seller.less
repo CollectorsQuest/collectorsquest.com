@@ -8,7 +8,6 @@
 #body-seller-packages {
 
   #main .form-actions {
-    margin: 0;
     text-align: left;
     background-color: @lightBlue;
     border-top: none;
@@ -24,6 +23,16 @@
     fieldset.signup-form {
       .control-group {
         margin: 0 auto 9px auto;
+
+        .controls {
+          margin-left: 145px;
+        }
+        label {
+          width: 125px;
+        }
+        input {
+          width: 372px;
+        }
       }
     }
 
@@ -68,11 +77,12 @@
       }
       ul.packages {
         float: left;
-        width: 500px;
 
         li {
           float: left;
-          margin-left: 40px;
+          &:first-child {
+            margin-right: 125px;
+          }
         }
       }
     }
@@ -240,22 +250,22 @@ span.current-price {
   .package1 {
     .package();
     width: 180px;
-    #gradient > .horizontal(#FFFAF0, #FFF7E5);
+    #gradient > .horizontal(#FFFAF0, #FFF0CC);
   }
   .package2 {
     .package();
     width: 250px;
-    #gradient > .horizontal(#FFFAF0, #FFEEC7);
+    #gradient > .horizontal(#FFFAF0, #FFE5A8);
   }
   .package3 {
     .package();
     width: 360px;
-    #gradient > .horizontal(#FFFAF0, #FFE7AD);
+    #gradient > .horizontal(#FFFAF0, #FFDC8A);
   }
   .package6 {
     .package();
-    width: 550px;
-    #gradient > .horizontal(#FFFAF0, #FFDC8A);
+    width: 485px;
+    #gradient > .horizontal(#FFFAF0, #FFD166);
   }
   .selected {
     &> span {
@@ -372,7 +382,7 @@ span.current-price {
 
 .credit-card-wrapper {
   .size (auto, 420px);
-  margin-left: 110px;
+  margin-left: 118px;
   margin-bottom: 40px;
   border: 1px solid #D4D4D4;
   background: #f8f8f8; /* Old browsers */
@@ -428,13 +438,13 @@ span.current-price {
 
 #credit-card-info .controls {
   .alert-error {
-    width: 300px;
+    width: 304px;
   }
   input {
-    width: 342px;
+    width: 346px;
   }
   select {
-    width: 350px;
+    width: 360px;
   }
 }
 

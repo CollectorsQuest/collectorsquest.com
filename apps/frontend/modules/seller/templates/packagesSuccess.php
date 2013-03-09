@@ -77,7 +77,7 @@
     );
 
     cq_sidebar_title(
-      'Which package is right for you?', isset($package_id_value) ? $link : '',
+      'Select your package:', isset($package_id_value) ? $link : '',
       array('left' => 7, 'right' => 5, 'class'=>'row-fluid sidebar-title')
     );
     ?>
@@ -116,7 +116,7 @@
     <div class="control-group discount-code-wrapper">
       <?= $packagesForm['promo_code']->renderLabel('Have a promo code?', array('class'=> 'control-label')) ?>
       <div class="controls form-inline">
-        <?= $packagesForm['promo_code']->render() ?>
+        <?= $packagesForm['promo_code']->render(array('placeholder' => 'Promo code')) ?>
         <button type="submit" name="applyPromo" id="applyPromo3" class="btn btn-primary"
                 value="applyPromo" formnovalidate="formnovalidate">
           Apply Discount
@@ -129,7 +129,7 @@
       </div>
     </div>
 
-    <?php cq_section_title('How would you like to pay?', null, array('id' => 'payment-header')); ?>
+    <?php cq_section_title('Choose your payment method:', null, array('id' => 'payment-header')); ?>
     <div class="payment-type">
       <div class="control-group">
         <div class="controls-inline clearfix">
@@ -204,8 +204,7 @@
   </fieldset>
 
   <div class="agreement-checks control-group spacer-bottom-reset">
-    <label class="control-label control-label">&nbsp;</label>
-    <div class="controls form-inline reset-label-colors">
+    <div class="controls form-inline reset-label-colors spacer-left-reset">
       <label for="<?= $packagesForm['terms']->renderId() ?>" class="checkbox">
         <?= $packagesForm['terms']->render() ?>&nbsp;
         <?php
@@ -220,7 +219,7 @@
       </label>
       <?= $packagesForm['terms']->renderError() ?>
     </div>
-    <div class="controls form-inline reset-label-colors">
+    <div class="controls form-inline reset-label-colors spacer-left-reset">
       <label for="<?= $packagesForm['fyi']->renderId() ?>" class="checkbox">
         <?= $packagesForm['fyi']->render(array('class' => 'checkbox-indent')) ?>
         I acknowledge that all payments made to me for items sold on
@@ -230,7 +229,7 @@
     </div>
   </div>
 
-  <div class="form-actions">
+  <div class="form-horizontal form-actions spacer-left spacer-inner-left-reset">
     <button type="submit" class="btn btn-primary">Purchase Package</button>
     <a href="<?= url_for('mycq') ?>" class="btn spacer-left">
       Cancel
