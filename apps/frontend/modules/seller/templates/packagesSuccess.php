@@ -1,4 +1,5 @@
 <?php
+  /* @var $signupForm SellerPackagesSignupForm */
   /* @var $packagesForm SellerPackagesForm */
   $tainted_form_values = $sf_request->getParameter($packagesForm->getName());
   $package_id_value = isset($tainted_form_values['package_id'])
@@ -8,46 +9,34 @@
 
 <?php slot('sidebar_300'); ?>
 <div class="seller-info-box-yellow">
-  <h3>Why Sell on Collectors Quest?</h3>
-  <dl class="text-container">
-
-    <dt>Broader Exposure</dt>
-    <dd>
-      Have your sale items paired with related and relevant content across the site.
-      Check out any page on the site and you'll see!
-    </dd>
-
-    <dt>Flat Rate with No Transaction Fees</dt>
-    <dd>
-      No fancy math needed! Annual subscribers can sell as many items as
-      they'd like at no additional cost.
-    </dd>
-
-    <dt>List for Six Months</dt>
-    <dd>
-      Buy Credits that last for one full year. Once an item is marked for sale,
-      it remains in the Market for up to 6 months.
-    </dd>
-
-    <dt>Payments Processed by PayPal<sup>®</sup></dt>
-    <dd>
-      Collectors Quest uses PayPal<sup>®</sup> to process all payments made to sellers on our site.
-      If you don't have a PayPal<sup>®</sup> account, make sure to
-      <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run"
-         target="_blank">
-        <strong>sign up now</strong>
-      </a>!
-    </dd>
-  </dl>
+  <h3 class="Chivo webfont">Why sell with us?</h3>
+  <br />
+  <ul class="unstyled blue-listing">
+    <li><i class="small-circle-1 ir">1</i> We are an active community of collectors.
+                                           What better place to sell your collectibles?</li>
+    <li><i class="small-circle-2 ir">2</i> The number one question we get asked is
+                                           &ldquo;Where can I buy that?&rdquo;</li>
+    <li><i class="small-circle-3 ir">3</i> No transaction fees &mdash;
+                                           pay for your listings only. </li>
+    <li><i class="small-circle-4 ir">4</i> It's easy to do!
+                                           Get started in minutes.</li>
+  </ul>
 </div>
 <?php end_slot(); ?>
 
-<?php if ($packagesForm->hasGlobalErrors()): ?>
-  <?= $packagesForm->renderGlobalErrors(); ?>
-<?php endif; ?>
+<?php if (isset($signupForm)) echo $signupForm->renderAllErrors('There were some problems with you signup data'); ?>
+<?php echo $packagesForm->renderAllErrors('There were some problems with your payment data'); ?>
 
-<form action="<?= url_for('seller_packages')?>" method="post""
+<form action="<?= url_for('seller_packages')?>" method="post"
       id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
+
+  <?php if (isset($signupForm)): ?>
+    <?php cq_sidebar_title('Create your account with us:', null, array('class' => 'spacer-top-reset row-fluid sidebar-title')); ?>
+    <fieldset class="signup-form">
+      <?= $signupForm ?>
+    </fieldset>
+  <?php endif; ?>
+
   <?= $packagesForm->renderHiddenFields() ?>
 
   <?php
@@ -88,8 +77,8 @@
     );
 
     cq_sidebar_title(
-      'Which package is right for you?', isset($package_id_value) ? $link : '',
-      array('left' => 7, 'right' => 5, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+      'Select your package:', isset($package_id_value) ? $link : '',
+      array('left' => 7, 'right' => 5, 'class'=>'row-fluid sidebar-title')
     );
     ?>
 
@@ -127,7 +116,7 @@
     <div class="control-group discount-code-wrapper">
       <?= $packagesForm['promo_code']->renderLabel('Have a promo code?', array('class'=> 'control-label')) ?>
       <div class="controls form-inline">
-        <?= $packagesForm['promo_code']->render() ?>
+        <?= $packagesForm['promo_code']->render(array('placeholder' => 'Promo code')) ?>
         <button type="submit" name="applyPromo" id="applyPromo3" class="btn btn-primary"
                 value="applyPromo" formnovalidate="formnovalidate">
           Apply Discount
@@ -140,7 +129,7 @@
       </div>
     </div>
 
-    <?php cq_section_title('How would you like to pay?', null, array('id' => 'payment-header')); ?>
+    <?php cq_section_title('Choose your payment method:', null, array('id' => 'payment-header')); ?>
     <div class="payment-type">
       <div class="control-group">
         <div class="controls-inline clearfix">
@@ -215,8 +204,7 @@
   </fieldset>
 
   <div class="agreement-checks control-group spacer-bottom-reset">
-    <label class="control-label control-label">&nbsp;</label>
-    <div class="controls form-inline reset-label-colors">
+    <div class="controls form-inline reset-label-colors spacer-left-reset">
       <label for="<?= $packagesForm['terms']->renderId() ?>" class="checkbox">
         <?= $packagesForm['terms']->render() ?>&nbsp;
         <?php
@@ -231,7 +219,7 @@
       </label>
       <?= $packagesForm['terms']->renderError() ?>
     </div>
-    <div class="controls form-inline reset-label-colors">
+    <div class="controls form-inline reset-label-colors spacer-left-reset">
       <label for="<?= $packagesForm['fyi']->renderId() ?>" class="checkbox">
         <?= $packagesForm['fyi']->render(array('class' => 'checkbox-indent')) ?>
         I acknowledge that all payments made to me for items sold on
@@ -241,7 +229,7 @@
     </div>
   </div>
 
-  <div class="form-actions">
+  <div class="form-horizontal form-actions spacer-left spacer-inner-left-reset">
     <button type="submit" class="btn btn-primary">Purchase Package</button>
     <a href="<?= url_for('mycq') ?>" class="btn spacer-left">
       Cancel

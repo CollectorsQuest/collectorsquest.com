@@ -8,7 +8,6 @@
 #body-seller-packages {
 
   #main .form-actions {
-    margin: 0;
     text-align: left;
     background-color: @lightBlue;
     border-top: none;
@@ -19,6 +18,22 @@
 
     .radio_list {
       margin-top: 3px;
+    }
+
+    fieldset.signup-form {
+      .control-group {
+        margin: 0 auto 9px auto;
+
+        .controls {
+          margin-left: 145px;
+        }
+        label {
+          width: 125px;
+        }
+        input {
+          width: 372px;
+        }
+      }
     }
 
     .control-group {
@@ -62,11 +77,12 @@
       }
       ul.packages {
         float: left;
-        width: 500px;
 
         li {
           float: left;
-          margin-left: 40px;
+          &:first-child {
+            margin-right: 125px;
+          }
         }
       }
     }
@@ -215,11 +231,11 @@ span.current-price {
     border: 1px solid #ededed;
     .border-radius(6px);
     .box-shadow( inset 0 0 0 1px #fff);
-    background-color: #fcfaf3;
+    background-color: #FCF9F3;
 
     &:hover {
       background-color: #FFF4CF !important;
-      #gradient > .horizontal(#FFF4CF, #FFF4CF);
+      #gradient > .horizontal(#FFF6D1, #FFF2BD);
       border-color: #ffefbb;
     }
 
@@ -234,21 +250,22 @@ span.current-price {
   .package1 {
     .package();
     width: 180px;
+    #gradient > .horizontal(#FFFAF0, #FFF0CC);
   }
   .package2 {
     .package();
     width: 250px;
-    #gradient > .horizontal(#fcfaf3, #fff7e0);
+    #gradient > .horizontal(#FFFAF0, #FFE5A8);
   }
   .package3 {
     .package();
     width: 360px;
-    #gradient > .horizontal(#fcfaf3, #fff6da);
+    #gradient > .horizontal(#FFFAF0, #FFDC8A);
   }
   .package6 {
     .package();
-    width: 550px;
-    #gradient > .horizontal(#fcfaf3, #fff4cf);
+    width: 485px;
+    #gradient > .horizontal(#FFFAF0, #FFD166);
   }
   .selected {
     &> span {
@@ -365,7 +382,7 @@ span.current-price {
 
 .credit-card-wrapper {
   .size (auto, 420px);
-  margin-left: 110px;
+  margin-left: 118px;
   margin-bottom: 40px;
   border: 1px solid #D4D4D4;
   background: #f8f8f8; /* Old browsers */
@@ -421,13 +438,13 @@ span.current-price {
 
 #credit-card-info .controls {
   .alert-error {
-    width: 300px;
+    width: 304px;
   }
   input {
-    width: 342px;
+    width: 346px;
   }
   select {
-    width: 350px;
+    width: 360px;
   }
 }
 
@@ -440,3 +457,168 @@ span.current-price {
 	margin-right: 10px !important;
 }
 
+ul.blue-listing li {
+  position: relative;
+  padding: 0 0 8px 38px;
+  padding-bottom: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  color: @blueDark;
+
+  i {
+    display: block;
+    position: absolute;
+    left: 0;
+    margin: 3px 10px 0 0;
+  }
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.marketplace-buy-a-package {
+  color: @blueDark;
+
+  .info-box-wrap {
+    overflow: hidden;
+  }
+  .info-box {
+    position: relative;
+    margin-bottom: -99999px;
+    padding: 15px 20px 99999px;
+    background-color: #fffaea;
+
+    .btn-position {
+      position: absolute;
+      left: 284px;
+      top: 204px;
+    }
+    h3 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .table {
+      font-size: 16px;
+      border-collapse: separate;
+
+      thead {
+        tr {
+          background: none;
+        }
+        th {
+          font-weight: normal;
+          text-align: center;
+          border-bottom: 1px groove @blueDark;
+        }
+      }
+      td {
+        font-weight: bold;
+        text-align: center;
+        border: 0;
+      }
+      tr {
+        background: url("@{baseUrl}/blue-dotted-line.png") repeat-x bottom;
+      }
+    }
+
+    p {
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  .questions {
+    padding: 20px 0 0 20px;
+
+    .question {
+      width: 286px;
+      margin-right: 20px;
+
+      .btn-signup {
+        width: 90%;
+      }
+
+      h3 {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        font-size: 20px;
+        font-weight: 900;
+        background: url("@{baseUrl}/blue-dotted-line.png") repeat-x bottom;
+
+        i {
+          display: block;
+          float: right;
+          margin: 5px 3px 0 0;
+        }
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .selling-guides {
+    a {
+      display: block;
+    }
+    img {
+      max-width: none; // intentionally allow overflow
+    }
+  }
+
+
+  .btn-signup {
+    display: inline-block;
+    .ie7-inline-block();
+    padding: 9px 14px;
+    margin-bottom: 0; // For input.btn
+    font-size: 20px;
+    line-height: 18px;
+    *line-height: 18px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    .buttonBackground(#2093c3, #0971BA, #f0f7fb);
+    .border-radius(3px);
+    .ie7-restore-left-whitespace(); // Give IE7 some love
+    .box-shadow(inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05));
+
+    // Hover state
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      background-position: 0 -15px;
+
+      // transition is only when going to hover, otherwise the background
+      // behind the gradient (there for IE<=9 fallback) gets mismatched
+      .transition(background-position .1s linear);
+    }
+
+    // Focus state for keyboard and accessibility
+    &:focus {
+      .tab-focus();
+    }
+
+    // Active state
+    &.active,
+    &:active {
+      background-image: none;
+      outline: 0;
+      .box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+    }
+
+    // Disabled state
+    &.disabled,
+    &[disabled] {
+      cursor: default;
+      background-image: none;
+      .opacity(65);
+      .box-shadow(none);
+    }
+
+  }
+}

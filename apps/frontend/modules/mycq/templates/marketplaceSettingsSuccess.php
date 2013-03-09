@@ -48,7 +48,7 @@
         <?php cq_section_title('PayPal Account'); ?>
 
         <fieldset class="form-container-center spacer-top-20">
-          <?= $form['seller_settings_paypal_email']->renderRow(); ?>
+          <?= $form['seller_settings_paypal_email']->renderRow(array('placeholder' => 'As it appears on your paypal account.')); ?>
           <?= $form['seller_settings_paypal_fname']->renderRow(); ?>
           <?= $form['seller_settings_paypal_lname']->renderRow(); ?>
           <?php // $form['seller_settings_phone_number']->renderRow(); ?>
@@ -60,9 +60,9 @@
         <fieldset class="form-container-center spacer-top-20">
           <?= $form['seller_settings_store_name']->renderRow() ?>
           <?= $form['seller_settings_store_header_image']->renderRow(array(), null, 'A image to be used as store header that will be resized to 620x67 pixels') ?>
-          <?= $form['seller_settings_store_title']->renderRow() ?>
-          <?= $form['seller_settings_refunds']->renderRow() ?>
-          <?= $form['seller_settings_shipping']->renderRow() ?>
+          <?= $form['seller_settings_store_title']->renderRow(array('placeholder' => 'Tell us what you sell.')) ?>
+          <?= $form['seller_settings_refunds']->renderRow((array('placeholder' => 'No refunds? Only broken items? Let the customer know under what circumstances can they obtain a refund.'))) ?>
+          <?= $form['seller_settings_shipping']->renderRow(array('placeholder' => 'Do you use UPS, Fed Ex or the USPS? Help the customer by explaining your shipping prices.')) ?>
         </fieldset>
 
         <?php cq_section_title('Default Shipping & Handling') ?>
