@@ -4,6 +4,7 @@
  * Avoid direct calls to the load blanancer's web address
  */
 if (
+  isset($_SERVER['HTTP_HOST']) &&
   in_array(
     $_SERVER['HTTP_HOST'],
     array('web-471984672.us-east-1.elb.amazonaws.com', 'd2y8496azcwpd6.cloudfront.net')

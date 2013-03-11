@@ -13,4 +13,4 @@ then
   ctags -R
 fi
 
-SERVER_NAME=${SERVER_NAME} /usr/bin/phpsh config/phpsh.php
+SERVER_NAME=${SERVER_NAME} phpsh config/phpsh.php
