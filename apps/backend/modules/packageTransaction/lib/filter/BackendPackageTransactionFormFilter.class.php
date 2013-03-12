@@ -9,6 +9,11 @@
  */
 class BackendPackageTransactionFormFilter extends BasePackageTransactionFormFilter
 {
+  protected static $is_promo_purchase = array(
+      0 => 'any',
+      1 => 'yes',
+      2 => 'no',
+  );
 
   public function configure()
   {
@@ -40,8 +45,12 @@ class BackendPackageTransactionFormFilter extends BasePackageTransactionFormFilt
 
   protected function setupIsPromoPurchaseField()
   {
-    $this->widgetSchema['is_promo_purchase'] = new sfWidgetFormInputCheckbox();
-    $this->validatorSchema['is_promo_purchase'] = new sfValidatorBoolean();
+    $this->widgetSchema['is_promo_purchase'] = new sfWidgetFormSelect(array(
+        'choices' => self::$is_promo_purchase,
+    ));
+    $this->validatorSchema['is_promo_purchase'] = new sfValidatorChoice(array(
+        'choices' => array_keys(self::$is_promo_purchase),
+    ));
   }
 
   /**
@@ -80,9 +89,14 @@ class BackendPackageTransactionFormFilter extends BasePackageTransactionFormFilt
    */
   public function addIsPromoPurchaseColumnCriteria($q, $field, $value)
   {
-    if ($value)
+    if (1 == $value)
     {
       $q->filterByPromotionTransactionId(null, Criteria::NOT_EQUAL);
+    }
+
+    if (2 == $value)
+    {
+      $q->filterByPromotionTransactionId(null);
     }
   }
 }
