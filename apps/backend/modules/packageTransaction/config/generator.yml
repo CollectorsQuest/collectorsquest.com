@@ -32,7 +32,7 @@ generator:
 
       filter:
         class: BackendPackageTransactionFormFilter
-        display: [collector_id, package_id]
+        display: [collector_id, package_id, created_at, is_promo_purchase]
 
       form: ~
       edit: ~

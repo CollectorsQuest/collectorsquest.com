@@ -13,7 +13,10 @@ class BackendPackageTransactionFormFilter extends BasePackageTransactionFormFilt
   public function configure()
   {
     $this->getWidget('expiry_date')->setOption('with_empty', false);
+
     $this->setupCollectorIdField();
+    $this->setupCreatedAtField();
+    $this->setupIsPromoPurchaseField();
   }
 
   public function setupCollectorIdField()
@@ -23,6 +26,22 @@ class BackendPackageTransactionFormFilter extends BasePackageTransactionFormFilt
     ));
 
     $this->validatorSchema['collector_id'] = new sfValidatorString(array('required'=> false));
+  }
+
+  protected function setupCreatedAtField()
+  {
+    $this->widgetSchema['created_at'] = new sfWidgetFormJQueryDateRange(array(
+      'config' => '{}',
+    ));
+    $this->validatorSchema['created_at'] = new IceValidatorDateRange(array(
+      'required' => false, 'from_date' => 'from', 'to_date' => 'to'
+    ));
+  }
+
+  protected function setupIsPromoPurchaseField()
+  {
+    $this->widgetSchema['is_promo_purchase'] = new sfWidgetFormInputCheckbox();
+    $this->validatorSchema['is_promo_purchase'] = new sfValidatorBoolean();
   }
 
   /**
@@ -52,5 +71,18 @@ class BackendPackageTransactionFormFilter extends BasePackageTransactionFormFilt
     }
 
     return $criteria;
+  }
+
+  /**
+   * @param PackageTransactionQuery $q
+   * @param string $field
+   * @param boolean $value
+   */
+  public function addIsPromoPurchaseColumnCriteria($q, $field, $value)
+  {
+    if ($value)
+    {
+      $q->filterByPromotionTransactionId(null, Criteria::NOT_EQUAL);
+    }
   }
 }
