@@ -61,4 +61,49 @@ class packageTransactionActions extends autoPackageTransactionActions
 
     return sfView::SUCCESS;
   }
+
+  public function executeFilter(sfWebRequest $request)
+  {
+    $this->setPage(1);
+
+    if ($request->hasParameter('_reset'))
+    {
+      $this->setFilters($this->configuration->getFilterDefaults());
+
+      $this->redirect('@package_transaction');
+    }
+
+    $this->filters = $this->configuration->getFilterForm($this->getFilters());
+    unset($this->filters['payment_status']);
+    unset($this->filters['credits']);
+    unset($this->filters['credits_used']);
+    unset($this->filters['package_price']);
+    unset($this->filters['discount']);
+    unset($this->filters['promotion_transaction_id']);
+    unset($this->filters['expiry_date']);
+
+    $this->filters->bind($request->getParameter($this->filters->getName()));
+    if ($this->filters->isValid())
+    {
+      $this->setFilters($this->filters->getValues());
+
+      $filter_action = $request->getParameter('filter_action');
+      if (array_key_exists('calculate_profit_submit', $filter_action))
+      {
+        $profits = $this
+          ->buildQuery()
+          ->withColumn('SUM(PackageTransaction.PackagePrice)', 'Profits')
+          ->select('Profits')
+          ->findOne();
+        $this->getUser()->setFlash('notice', sprintf('Profits for the selected filters: %s', number_format($profits, 2)));
+      }
+
+      $this->redirect('@package_transaction');
+    }
+
+    $this->pager = $this->getPager();
+    $this->sort = $this->getSort();
+
+    $this->setTemplate('index');
+  }
 }
