@@ -106,6 +106,12 @@ class FindsSellersAnonymousTest extends \PHPUnit_Framework_TestCase
         array('not for sale', false),
         array('selling', true),
         array('not selling', false),
+        array('$12', true),
+        array('$ 12', true),
+        array('shipping', true),
+        array('estate sale selling', false),
+        array('estate gablargh sale selling', false),
+        array('bought $12', false),
     );
   }
 }

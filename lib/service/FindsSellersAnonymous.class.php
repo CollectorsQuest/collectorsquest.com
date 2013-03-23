@@ -2,7 +2,17 @@
 
 class FindsSellersAnonymous
 {
+  /**
+   * Offending if it has a currency ammount or the word shipping or the words
+   * "for sale/selling" without a "not" in front
+   */
   const IS_OFFENDING_REGEX = '/((?:\$|£|€)\s*\d+|(?:shipping|(?<!not\s)(for sale|selling)))/iu';
+
+  /**
+   * Ignore offence if the words "estate sale" or "bought " and a currency ammount
+   * are present
+   */
+  const IGNORE_REGEX = '/(?:(estate.+sale)|(bought.+(?:\$|£|€)\s*\d+))/iu';
 
   /**
    * Find offending collectibles
@@ -87,7 +97,8 @@ class FindsSellersAnonymous
    */
   public static function isOffending($string)
   {
-    return preg_match(self::IS_OFFENDING_REGEX, $string);
+    return preg_match(self::IS_OFFENDING_REGEX, $string)
+       &&  !preg_match(self::IGNORE_REGEX, $string);
   }
 
 }
