@@ -28,7 +28,7 @@
 
 .circle .mosaic-overlay {
   display: none;
-  background: url("@{baseUrl}/hover-magnify.png") no-repeat center center;
+  background: url("@{baseUrl}/hover-magnify.png?1") no-repeat center center;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
   filter: alpha(opacity=00);
@@ -38,14 +38,14 @@
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
   filter: alpha(opacity=00);
-  background: url("@{baseUrl}/black.png");
+  background: url("@{baseUrl}/black.png?1");
 }
 
 .fade-white .mosaic-overlay {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
   filter: alpha(opacity=00);
-  background: url("@{baseUrl}/white.png");
+  background: url("@{baseUrl}/white.png?1");
 
   a {
     color: @blueDark;
@@ -55,7 +55,7 @@
 .bar .mosaic-overlay {
   bottom: -50%;
   height: 50%;
-  background: url("@{baseUrl}/black.png");
+  background: url("@{baseUrl}/black.png?1");
 }
 
 .bar2 .mosaic-overlay {
@@ -75,5 +75,5 @@
 .bar3 .mosaic-overlay {
   top: -100px;
   height: 100px;
-  background: url("@{baseUrl}/black.png");
+  background: url("@{baseUrl}/black.png?1");
 }
