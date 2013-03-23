@@ -6,13 +6,13 @@ class FindsSecretSale
    * Offending if it has a currency ammount or the word shipping or the words
    * "for sale/selling" without a "not" in front
    */
-  const IS_OFFENDING_REGEX = '/((?:\$|£|€)\s*\d+|(?:shipping|(?<!not\s)(for sale|selling)))/iu';
+  const IS_OFFENDING_REGEX = '/((?:((?:\$|£|€)\s*\d+)|(\d+\s*(?:usd|gbp|eur|euro)))|(?:shipping|(for sale|selling)))/iu';
 
   /**
    * Ignore offence if the words "estate sale" or "bought " and a currency ammount
    * are present
    */
-  const IGNORE_REGEX = '/(?:(estate.+sale)|(bought.+(?:\$|£|€)\s*\d+))/iu';
+  const IGNORE_REGEX = '/(?:(estate.+sale)|((?:bought|paid|value).+(?:((?:\$|£|€)\s*\d+)|(\d+\s*(?:usd|gbp|eur|euro))))|((?:not|never)( available)? (?:for sale|selling))|((?:((?:\$|£|€)\s*\d+)|(\d+\s*(?:usd|gbp|eur|euro))) on ebay))/iu';
 
   /**
    * Find offending collectibles
