@@ -1,6 +1,6 @@
 <?php
 
-class FindsSellersAnonymous
+class FindsSecretSellers
 {
   /**
    * Offending if it has a currency ammount or the word shipping or the words
@@ -60,13 +60,13 @@ class FindsSellersAnonymous
    * Find offending objects  :)
    *
    * Will check the getters for the supplied fields against
-   * FindsSellersAnonymous::isOffending and
+   * FindsSellersAnonymous::isOffendingString and
    *
    * Expect passed in objects to have a getPrimaryKey method that returns
    * a scalar value
    *
    * @param BaseObject[] $objects
-   * @param array $fields
+   * @param array $fields array of field names
    *
    * @return array
    */
@@ -78,7 +78,7 @@ class FindsSellersAnonymous
       foreach ($fields as $field)
       {
         $string = $object->{'get' . sfInflector::camelize($field)}();
-        if (static::isOffending($string))
+        if (static::isOffendingString($string))
         {
           $output[$object->getPrimaryKey()]['object'] = $object;
           $output[$object->getPrimaryKey()]['offending_strings'][] = $string;
@@ -95,7 +95,7 @@ class FindsSellersAnonymous
    * @param     string $string
    * @return    boolean
    */
-  public static function isOffending($string)
+  public static function isOffendingString($string)
   {
     return preg_match(self::IS_OFFENDING_REGEX, $string)
        &&  !preg_match(self::IGNORE_REGEX, $string);

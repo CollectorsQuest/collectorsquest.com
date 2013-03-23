@@ -3,25 +3,25 @@
 namespace CollectorsQuest\Test;
 
 // tested classes
-require_once get_root_dir() . '/lib/service/FindsSellersAnonymous.class.php';
+require_once get_root_dir() . '/lib/service/FindsSecretSellers.class.php';
 
 // dependencies
 require_once get_root_dir() . '/lib/vendor/symfony/symfony1/lib/util/sfToolkit.class.php';
 require_once get_root_dir() . '/lib/vendor/symfony/symfony1/lib/util/sfInflector.class.php';
 
-class FindsSellersAnonymousTest extends \PHPUnit_Framework_TestCase
+class FindsSecretSellersTest extends \PHPUnit_Framework_TestCase
 {
   public function testForCollectiblesCallsTheProperGetters()
   {
     $collectible = $this->getMock('Collectible', array('getName', 'getDescription', 'getPrimaryKey'));
     $collectibles = array($collectible);
 
-    \FindsSellersAnonymous::forCollectibles($collectibles);
+    \FindsSecretSellers::forCollectibles($collectibles);
   }
 
   public function testForObjectsReturnsOffendingStringsByThingId()
   {
-    $class = $this->getMock('\FindsSellersAnonymous', array('isOffending'));
+    $class = $this->getMock('\FindsSecretSellers', array('isOffendingString'));
     $thing = $this->getMock('Thing', array('getName', 'getDescription', 'getPrimaryKey', 'getCamelCaseTest'));
 
     $thing->expects($this->exactly(2))
@@ -32,7 +32,7 @@ class FindsSellersAnonymousTest extends \PHPUnit_Framework_TestCase
       ->will($this->returnValue('offending_description'));
 
     $class::staticExpects($this->exactly(3))
-      ->method('isOffending')
+      ->method('isOffendingString')
       ->with($this->logicalOr(
           $this->equalTo(null),
           $this->equalTo('offending_description')
@@ -55,7 +55,7 @@ class FindsSellersAnonymousTest extends \PHPUnit_Framework_TestCase
 
   public function testForCollectiblesDelegatesToForObjects()
   {
-    $class = $this->getMock('\FindsSellersAnonymous', array('forObjects'));
+    $class = $this->getMock('\FindsSecretSellers', array('forObjects'));
     $collectibles = array();
 
     $class::staticExpects($this->once())
@@ -67,7 +67,7 @@ class FindsSellersAnonymousTest extends \PHPUnit_Framework_TestCase
 
   public function testForCollectionsDelegatesToForObjects()
   {
-    $class = $this->getMock('\FindsSellersAnonymous', array('forObjects'));
+    $class = $this->getMock('\FindsSecretSellers', array('forObjects'));
     $collections = array();
 
     $class::staticExpects($this->once())
@@ -79,7 +79,7 @@ class FindsSellersAnonymousTest extends \PHPUnit_Framework_TestCase
 
   public function testForCollectorsDelegatesToForObjects()
   {
-    $class = $this->getMock('\FindsSellersAnonymous', array('forObjects'));
+    $class = $this->getMock('\FindsSecretSellers', array('forObjects'));
     $collectors = array();
 
     $class::staticExpects($this->once())
@@ -90,14 +90,14 @@ class FindsSellersAnonymousTest extends \PHPUnit_Framework_TestCase
   }
 
   /**
-   * @dataProvider providerTestIsOffending
+   * @dataProvider providerTestisOffendingString
    */
-  public function testIsOffending($string, $is_offending)
+  public function testisOffendingString($string, $is_offending)
   {
-    $this->assertEquals(\FindsSellersAnonymous::isOffending($string), $is_offending);
+    $this->assertEquals(\FindsSecretSellers::isOffendingString($string), $is_offending);
   }
 
-  public function providerTestIsOffending()
+  public function providerTestisOffendingString()
   {
     return array(
         array('', false),
