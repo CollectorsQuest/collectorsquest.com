@@ -12,6 +12,7 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     $this->setupCollectionIdField();
     $this->setupNewsletterField();
     $this->setupCreatedAtField();
+    $this->setupSecretSellers();
   }
 
   public function setupUsernameField()
@@ -87,4 +88,47 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     return $criteria;
   }
 
+  public function setupSecretSellers()
+  {
+    $this->widgetSchema['secret_sellers'] = new sfWidgetFormInputCheckbox();
+    $this->validatorSchema['secret_sellers'] = new sfValidatorBoolean();
+  }
+
+  protected $secret_sellers_criteria_executing = false;
+  /**
+   * @param CollectorQuery $criteria
+   * @param string $field
+   * @param boolean $value
+   */
+  public function addSecretSellersColumnCriteria($criteria, $field, $value = null)
+  {
+    // we will invoke build criteria again inside this function,
+    // and we have to make sure to prevent infinite recursion
+    if (!$this->secret_sellers_criteria_executing && $value)
+    {
+      // build a temporary criteria, without this field
+      $this->secret_sellers_criteria_executing = true;
+
+      $temp_criteria = $this->buildCriteria($this->getValues() ?: $this->processedValues);
+      $this->secret_sellers_criteria_executing = false;
+
+      // get all the collectors for the selected filters
+      $collectors = $temp_criteria->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)->find();
+      // and filter them for secret sellers
+      $secret_seller_ids = array_keys(FindsSecretSellers::forCollectors($collectors));
+
+      // then force only them as the result
+      $criteria->filterById($secret_seller_ids);
+    }
+  }
+
+  protected $processedValues = array();
+  public function processValues($values)
+  {
+    $values = parent::processValues($values);
+
+    $this->processedValues = $values;
+
+    return $values;
+  }
 }

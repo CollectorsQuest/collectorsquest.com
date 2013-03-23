@@ -54,7 +54,7 @@ generator:
 
       filter:
         class: BackendCollectorFormFilter
-        display: [username, display_name, email, user_type, spaminess, is_spam, newsletter, collection_id, created_at]
+        display: [username, display_name, email, user_type, spaminess, is_spam, newsletter, collection_id, created_at, secret_sellers]
         fields:
           email:
             widgetOptions: { with_empty: false }
