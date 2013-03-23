@@ -26,10 +26,11 @@ generator:
         sort: [created_at, desc]
 
       filter:
+        class: BackendCollectibleFormFilter
         fields:
           collection_id: { label: 'Collection #' }
           id: { label: 'Collectible #' }
-        display: [id, collection_collectible_list, name, created_at]
+        display: [id, collection_collectible_list, name, created_at, secret_sale]
 
       form:    ~
       edit:

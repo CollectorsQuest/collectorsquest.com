@@ -36,7 +36,7 @@ generator:
         fields:
           id: { label: 'Collection #' }
           created_at: { label: 'Date' }
-        display: [id, name, created_at, content_category_id]
+        display: [id, name, created_at, content_category_id, secret_sale]
         class: BackendCollectorCollectionFormFilter
 
       export:

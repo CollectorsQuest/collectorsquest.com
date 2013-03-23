@@ -94,43 +94,21 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     $this->validatorSchema['secret_sale'] = new sfValidatorBoolean();
   }
 
-  protected $secret_sellers_criteria_executing = false;
-  /**
-   * @param CollectorQuery $criteria
-   * @param string $field
-   * @param boolean $value
-   */
   public function addSecretSaleColumnCriteria($criteria, $field, $value = null)
   {
-    // we will invoke build criteria again inside this function,
-    // and we have to make sure to prevent infinite recursion
-    if (!$this->secret_sellers_criteria_executing && $value)
+    if ($value)
     {
-      // build a temporary criteria, without this field
-      $this->secret_sellers_criteria_executing = true;
+      // get all the collectors
+      $collectors = CollectorQuery::create()
+        ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
+        ->find();
 
-      $temp_criteria = $this->buildCriteria($this->getValues() ?: $this->processedValues);
-      $this->secret_sellers_criteria_executing = false;
-
-      // get all the collectors for the selected filters
-      $collectors = $temp_criteria->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)->find();
       // and filter them for secret sellers
       $secret_seller_ids = array_keys(FindsSecretSale::forCollectors($collectors));
 
-      // then force only them as the result
+      // then force the filter to use only them
       $criteria->filterById($secret_seller_ids);
     }
   }
 
-  // fiter values are kept in the session; We need to capture them before
-  // addSecretSaleColumnCriteria is called, in order to do the magics
-  protected $processedValues = array();
-  public function processValues($values)
-  {
-    $values = parent::processValues($values);
-
-    $this->processedValues = $values;
-
-    return $values;
-  }
 }
