@@ -12,7 +12,7 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     $this->setupCollectionIdField();
     $this->setupNewsletterField();
     $this->setupCreatedAtField();
-    $this->setupSecretSellers();
+    $this->setupSecretSale();
   }
 
   public function setupUsernameField()
@@ -88,10 +88,10 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     return $criteria;
   }
 
-  public function setupSecretSellers()
+  public function setupSecretSale()
   {
-    $this->widgetSchema['secret_sellers'] = new sfWidgetFormInputCheckbox();
-    $this->validatorSchema['secret_sellers'] = new sfValidatorBoolean();
+    $this->widgetSchema['secret_sale'] = new sfWidgetFormInputCheckbox();
+    $this->validatorSchema['secret_sale'] = new sfValidatorBoolean();
   }
 
   protected $secret_sellers_criteria_executing = false;
@@ -100,7 +100,7 @@ class BackendCollectorFormFilter extends CollectorFormFilter
    * @param string $field
    * @param boolean $value
    */
-  public function addSecretSellersColumnCriteria($criteria, $field, $value = null)
+  public function addSecretSaleColumnCriteria($criteria, $field, $value = null)
   {
     // we will invoke build criteria again inside this function,
     // and we have to make sure to prevent infinite recursion
@@ -115,13 +115,15 @@ class BackendCollectorFormFilter extends CollectorFormFilter
       // get all the collectors for the selected filters
       $collectors = $temp_criteria->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)->find();
       // and filter them for secret sellers
-      $secret_seller_ids = array_keys(FindsSecretSellers::forCollectors($collectors));
+      $secret_seller_ids = array_keys(FindsSecretSale::forCollectors($collectors));
 
       // then force only them as the result
       $criteria->filterById($secret_seller_ids);
     }
   }
 
+  // fiter values are kept in the session; We need to capture them before
+  // addSecretSaleColumnCriteria is called, in order to do the magics
   protected $processedValues = array();
   public function processValues($values)
   {

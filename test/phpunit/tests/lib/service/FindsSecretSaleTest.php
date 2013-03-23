@@ -3,25 +3,25 @@
 namespace CollectorsQuest\Test;
 
 // tested classes
-require_once get_root_dir() . '/lib/service/FindsSecretSellers.class.php';
+require_once get_root_dir() . '/lib/service/FindsSecretSale.class.php';
 
 // dependencies
 require_once get_root_dir() . '/lib/vendor/symfony/symfony1/lib/util/sfToolkit.class.php';
 require_once get_root_dir() . '/lib/vendor/symfony/symfony1/lib/util/sfInflector.class.php';
 
-class FindsSecretSellersTest extends \PHPUnit_Framework_TestCase
+class FindsSecretSaleTest extends \PHPUnit_Framework_TestCase
 {
   public function testForCollectiblesCallsTheProperGetters()
   {
     $collectible = $this->getMock('Collectible', array('getName', 'getDescription', 'getPrimaryKey'));
     $collectibles = array($collectible);
 
-    \FindsSecretSellers::forCollectibles($collectibles);
+    \FindsSecretSale::forCollectibles($collectibles);
   }
 
   public function testForObjectsReturnsOffendingStringsByThingId()
   {
-    $class = $this->getMock('\FindsSecretSellers', array('isOffendingString'));
+    $class = $this->getMock('\FindsSecretSale', array('isOffendingString'));
     $thing = $this->getMock('Thing', array('getName', 'getDescription', 'getPrimaryKey', 'getCamelCaseTest'));
 
     $thing->expects($this->exactly(2))
@@ -55,7 +55,7 @@ class FindsSecretSellersTest extends \PHPUnit_Framework_TestCase
 
   public function testForCollectiblesDelegatesToForObjects()
   {
-    $class = $this->getMock('\FindsSecretSellers', array('forObjects'));
+    $class = $this->getMock('\FindsSecretSale', array('forObjects'));
     $collectibles = array();
 
     $class::staticExpects($this->once())
@@ -67,7 +67,7 @@ class FindsSecretSellersTest extends \PHPUnit_Framework_TestCase
 
   public function testForCollectionsDelegatesToForObjects()
   {
-    $class = $this->getMock('\FindsSecretSellers', array('forObjects'));
+    $class = $this->getMock('\FindsSecretSale', array('forObjects'));
     $collections = array();
 
     $class::staticExpects($this->once())
@@ -79,7 +79,7 @@ class FindsSecretSellersTest extends \PHPUnit_Framework_TestCase
 
   public function testForCollectorsDelegatesToForObjects()
   {
-    $class = $this->getMock('\FindsSecretSellers', array('forObjects'));
+    $class = $this->getMock('\FindsSecretSale', array('forObjects'));
     $collectors = array();
 
     $class::staticExpects($this->once())
@@ -94,7 +94,7 @@ class FindsSecretSellersTest extends \PHPUnit_Framework_TestCase
    */
   public function testisOffendingString($string, $is_offending)
   {
-    $this->assertEquals(\FindsSecretSellers::isOffendingString($string), $is_offending);
+    $this->assertEquals(\FindsSecretSale::isOffendingString($string), $is_offending);
   }
 
   public function providerTestisOffendingString()

@@ -56,7 +56,7 @@ EOF;
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    $offending_collectibles = FindsSecretSellers::forCollectibles($collectibles);
+    $offending_collectibles = FindsSecretSale::forCollectibles($collectibles);
     foreach ($offending_collectibles as $id => $offending)
     {
       $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject' => $offending['object'])));
@@ -66,7 +66,7 @@ EOF;
         foreach ($offending['offending_strings'] as $offending_string)
         {
           $this->logSection('collectible+', sprintf(
-            '%d: %s', $id, preg_replace(FindsSecretSellers::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
+            '%d: %s', $id, preg_replace(FindsSecretSale::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
           ));
         }
       }
@@ -83,7 +83,7 @@ EOF;
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    $offending_collections = FindsSecretSellers::forCollections($collections);
+    $offending_collections = FindsSecretSale::forCollections($collections);
     foreach ($offending_collections as $id => $offending)
     {
       $body .= sprintf("%s\n", $baseUrl . $routing->generate('collection_by_slug', array('sf_subject' => $offending['object'])));
@@ -93,7 +93,7 @@ EOF;
         foreach ($offending['offending_strings'] as $offending_string)
         {
           $this->logSection('collection+', sprintf(
-            '%d: %s', $id, preg_replace(FindsSecretSellers::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
+            '%d: %s', $id, preg_replace(FindsSecretSale::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
           ));
         }
       }
@@ -110,7 +110,7 @@ EOF;
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    $offending_collectors = FindsSecretSellers::forCollectors($collectors);
+    $offending_collectors = FindsSecretSale::forCollectors($collectors);
     foreach ($offending_collectors as $id => $offending)
     {
       $body .= sprintf("%s\n", $baseUrl . $routing->generate('collector_by_slug', array('sf_subject' => $offending['object'])));
@@ -120,7 +120,7 @@ EOF;
         foreach ($offending['offending_strings'] as $offending_string)
         {
           $this->logSection('collector+', sprintf(
-            '%d: %s', $id, preg_replace(FindsSecretSellers::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
+            '%d: %s', $id, preg_replace(FindsSecretSale::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
           ));
         }
       }

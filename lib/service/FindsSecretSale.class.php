@@ -1,6 +1,6 @@
 <?php
 
-class FindsSecretSellers
+class FindsSecretSale
 {
   /**
    * Offending if it has a currency ammount or the word shipping or the words
@@ -60,7 +60,7 @@ class FindsSecretSellers
    * Find offending objects  :)
    *
    * Will check the getters for the supplied fields against
-   * FindsSellersAnonymous::isOffendingString and
+   * FindsSecretSale::isOffendingString and
    *
    * Expect passed in objects to have a getPrimaryKey method that returns
    * a scalar value
