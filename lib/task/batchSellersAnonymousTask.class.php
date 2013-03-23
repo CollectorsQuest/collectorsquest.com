@@ -56,22 +56,18 @@ EOF;
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    /* @var $collectibles Collectible[] */
-    foreach ($collectibles as $collectible)
+    $offending_collectibles = FindsSellersAnonymous::forCollectibles($collectibles);
+    foreach ($offending_collectibles as $id => $offending)
     {
-      foreach (array('name', 'description') as $field)
+      $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject' => $offending['object'])));
+      $suspicious['collectibles'][] = $id;
+      if ($options['debug'])
       {
-        $string = $collectible->{'get' . ucfirst($field)}();
-        if (preg_match($pattern, $string))
+        foreach ($offending['offending_strings'] as $offending_string)
         {
-          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collectible_by_slug', array('sf_subject' => $collectible)));
-          $suspicious['collectibles'][] = $collectible->getId();
-          if ($options['debug'])
-          {
-            $this->logSection('collectible+', sprintf(
-              '%d: %s', $collectible->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
-            ));
-          }
+          $this->logSection('collectible+', sprintf(
+            '%d: %s', $id, preg_replace(FindsSellersAnonymous::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
+          ));
         }
       }
     }
@@ -87,22 +83,18 @@ EOF;
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    /* @var $collections Collection[] */
-    foreach ($collections as $collection)
+    $offending_collections = FindsSellersAnonymous::forCollections($collections);
+    foreach ($offending_collections as $id => $offending)
     {
-      foreach (array('name', 'description') as $field)
+      $body .= sprintf("%s\n", $baseUrl . $routing->generate('collection_by_slug', array('sf_subject' => $offending['object'])));
+      $suspicious['collections'][] = $id;
+      if ($options['debug'])
       {
-        $string = $collection->{'get' . ucfirst($field)}();
-        if (preg_match($pattern, $string))
+        foreach ($offending['offending_strings'] as $offending_string)
         {
-          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collection_by_slug', array('sf_subject' => $collection)));
-          $suspicious['collections'][] = $collection->getId();
-          if ($options['debug'])
-          {
-            $this->logSection('collection+', sprintf(
-              '%d: %s', $collection->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
-            ));
-          }
+          $this->logSection('collection+', sprintf(
+            '%d: %s', $id, preg_replace(FindsSellersAnonymous::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
+          ));
         }
       }
     }
@@ -118,22 +110,18 @@ EOF;
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->find($connection);
 
-    /* @var $collectors Collector[] */
-    foreach ($collectors as $collector)
+    $offending_collectors = FindsSellersAnonymous::forCollectors($collectors);
+    foreach ($offending_collectors as $id => $offending)
     {
-      foreach (array('displayName') as $field)
+      $body .= sprintf("%s\n", $baseUrl . $routing->generate('collector_by_slug', array('sf_subject' => $offending['object'])));
+      $suspicious['collectors'][] = $id;
+      if ($options['debug'])
       {
-        $string = $collector->{'get' . ucfirst($field)}();
-        if (preg_match($pattern, $string))
+        foreach ($offending['offending_strings'] as $offending_string)
         {
-          $body .= sprintf("%s\n", $baseUrl . $routing->generate('collector_by_slug', array('sf_subject' => $collector)));
-          $suspicious['collectors'][] = $collector->getId();
-          if ($options['debug'])
-          {
-            $this->logSection('collector+', sprintf(
-              '%d: %s', $collector->getId(), preg_replace($pattern, "\033[01;31m$1\033[0m", $string)
-            ));
-          }
+          $this->logSection('collector+', sprintf(
+            '%d: %s', $id, preg_replace(FindsSellersAnonymous::IS_OFFENDING_REGEX, "\033[01;31m$1\033[0m", $offending_string)
+          ));
         }
       }
     }
