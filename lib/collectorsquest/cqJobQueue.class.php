@@ -32,7 +32,7 @@ class cqJobQueue extends Zend_Queue
       $options = array(
         'name'          => $name,
         'driverOptions' => array(
-          'host'      => 'skylight.cwvkronpbfrx.us-east-1.rds.amazonaws.com',
+          'host'      => 'cq-mysql-master',
           'port'      => '3306',
           'username'  => self::$_databases[$env]['queue']['param']['username'],
           'password'  => self::$_databases[$env]['queue']['param']['password'],
