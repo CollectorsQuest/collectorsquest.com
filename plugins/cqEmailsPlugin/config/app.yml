@@ -37,6 +37,9 @@ all:
       one_month_inactivity_reminder:
         subject: "Come back to Collectors Quest, {{ collector.displayName | raw }}!"
         required_params: [collector]
+      become_seller:
+        subject: "Become a seller on Collectors Quest"
+        required_params: [oCollector]
 
 
     Seller:

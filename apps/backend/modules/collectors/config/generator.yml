@@ -48,6 +48,7 @@ generator:
           markAsHam: { label: "Mark as ham", action: markAsHam, params: { confirm: "Are you sure you want to mark as ham this collector?" } }
           togglePostingTimeouts: { label: "Toggle posting timeouts" }
           spamAndDestroy: { label: "Spam & Destroy", params: { confirm: "This will mark the collector as spam and DELETE him. Are you sure?" } }
+          encourageSeller: { label: 'Send a "become seller" email' }
         actions:
           mailchimp: { label: "Sync with MailChimp.com", action: syncWithMailChimp }
           export: { label: "Export to CSV", sf_format: csv }
