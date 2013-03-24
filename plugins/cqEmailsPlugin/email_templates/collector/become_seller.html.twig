@@ -1,0 +1,28 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+<p>
+  Dear {{ oCollector.displayName }},
+</p>
+
+<p>
+  It appears that you have listed some items for sale on the site. However, all items
+  for sale need to be listed in our marketplace (hotlink to seller page) and not in
+  the collection section. There is a fee for listing.
+</p>
+
+<p>
+  We understand sometimes people make honest mistakes so we will give you a week to
+  correct the situation. If you do not remove the items for sale within one week,
+  we will remove those items from the site as you will be violating our terms and conditions...
+</p>
+
+<p>
+  If you have any questions about selling, please contact <a href="mailto:info@cq.com">info@cq.com</a>.
+</p>
+
+<p>
+  Thanks,<br />
+  The Collectors Quest Team
+</p>
+{% endblock %}

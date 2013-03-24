@@ -186,4 +186,24 @@ class collectorsActions extends autoCollectorsActions
     return $this->redirect('@collector');
   }
 
+  public function executeListEncourageSeller()
+  {
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send('Collector/become_seller', array(
+        'to' => $collector->getEmail(),
+        'params' => array(
+            'oCollector' => $collector,
+        ),
+    ));
+    $this->getUser()->setFlash('notice', sprintf(
+      'A "Become Seller" email was sent to %s (%s).',
+      $collector->getDisplayName(),
+      $collector->getEmail()
+    ));
+
+    return $this->redirect('@collector');
+  }
 }

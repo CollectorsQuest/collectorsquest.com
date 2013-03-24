@@ -48,13 +48,14 @@ generator:
           markAsHam: { label: "Mark as ham", action: markAsHam, params: { confirm: "Are you sure you want to mark as ham this collector?" } }
           togglePostingTimeouts: { label: "Toggle posting timeouts" }
           spamAndDestroy: { label: "Spam & Destroy", params: { confirm: "This will mark the collector as spam and DELETE him. Are you sure?" } }
+          encourageSeller: { label: 'Send a "become seller" email' }
         actions:
           mailchimp: { label: "Sync with MailChimp.com", action: syncWithMailChimp }
           export: { label: "Export to CSV", sf_format: csv }
 
       filter:
         class: BackendCollectorFormFilter
-        display: [username, display_name, email, user_type, spaminess, is_spam, newsletter, collection_id, created_at]
+        display: [username, display_name, email, user_type, spaminess, is_spam, newsletter, collection_id, created_at, secret_sale]
         fields:
           email:
             widgetOptions: { with_empty: false }

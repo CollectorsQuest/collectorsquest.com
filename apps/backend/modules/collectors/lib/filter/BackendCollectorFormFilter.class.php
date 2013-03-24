@@ -12,6 +12,7 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     $this->setupCollectionIdField();
     $this->setupNewsletterField();
     $this->setupCreatedAtField();
+    $this->setupSecretSale();
   }
 
   public function setupUsernameField()
@@ -85,6 +86,29 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     }
 
     return $criteria;
+  }
+
+  public function setupSecretSale()
+  {
+    $this->widgetSchema['secret_sale'] = new sfWidgetFormInputCheckbox();
+    $this->validatorSchema['secret_sale'] = new sfValidatorBoolean();
+  }
+
+  public function addSecretSaleColumnCriteria($criteria, $field, $value = null)
+  {
+    if ($value)
+    {
+      // get all the collectors
+      $collectors = CollectorQuery::create()
+        ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
+        ->find();
+
+      // and filter them for secret sellers
+      $secret_seller_ids = array_keys(FindsSecretSale::forCollectors($collectors));
+
+      // then force the filter to use only them
+      $criteria->filterById($secret_seller_ids);
+    }
   }
 
 }
