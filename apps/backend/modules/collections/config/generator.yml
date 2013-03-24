@@ -29,6 +29,10 @@ generator:
         display: [id, content_category, _list_collector, _list_name, tag_string, count_collectibles, created_at]
         sort: [created_at, desc]
         batch_actions: {}
+        object_actions:
+          _edit: ~
+          _delete: ~
+          encourageSeller: { label: 'Send a "become seller" email' }
         actions:
           export: { label: "Export to CSV", action: export, sf_format: csv }
 

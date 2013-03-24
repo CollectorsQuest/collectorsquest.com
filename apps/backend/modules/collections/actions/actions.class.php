@@ -33,4 +33,27 @@ class collectionsActions extends autoCollectionsActions
     return parent::buildQuery();
   }
 
+  public function executeListEncourageSeller()
+  {
+    /* @var $collection CollectorCollection */
+    $collection = $this->getRoute()->getObject();
+    /* @var $collector Collector */
+    $collector = $collection->getCollector();
+
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send('Collector/become_seller', array(
+        'to' => $collector->getEmail(),
+        'params' => array(
+            'oCollector' => $collector,
+        ),
+    ));
+    $this->getUser()->setFlash('notice', sprintf(
+      'A "Become Seller" email was sent to %s (%s).',
+      $collector->getDisplayName(),
+      $collector->getEmail()
+    ));
+
+    return $this->redirect('@collection');
+  }
+
 }
