@@ -38,7 +38,7 @@ all:
         subject: "Come back to Collectors Quest, {{ collector.displayName | raw }}!"
         required_params: [collector]
       become_seller:
-        subject: "Become a seller on Collectors Quest"
+        subject: "Your items listed for sale"
         required_params: [oCollector]
 
 
