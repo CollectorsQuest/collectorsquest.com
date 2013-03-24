@@ -42,7 +42,7 @@ all:
           port: 465
           username: no-reply@collectorsquest.com
           password: gHnyU7wZLtYf3n
-          encryption: tls
+          encryption: ssl
 
   storage:
     class: cqSessionStorage
@@ -54,8 +54,12 @@ all:
 
 dev:
   mailer:
+    class: cqMailer
     param:
-      delivery_strategy: none
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      force_redirect_of_collectorsquest_emails: true
+      logging: false
 
   logger:
     class: sfAggregateLogger
