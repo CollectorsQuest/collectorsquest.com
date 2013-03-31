@@ -13,4 +13,26 @@ require_once dirname(__FILE__).'/../lib/collectiblesGeneratorHelper.class.php';
  */
 class collectiblesActions extends autoCollectiblesActions
 {
+  public function executeListEncourageSeller()
+  {
+    /* @var $collectible Collectible */
+    $collection = $this->getRoute()->getObject();
+    /* @var $collector Collector */
+    $collector = $collection->getCollector();
+
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send('Collector/become_seller', array(
+        'to' => $collector->getEmail(),
+        'params' => array(
+            'oCollector' => $collector,
+        ),
+    ));
+    $this->getUser()->setFlash('notice', sprintf(
+      'A "Become Seller" email was sent to %s (%s).',
+      $collector->getDisplayName(),
+      $collector->getEmail()
+    ));
+
+    return $this->redirect('collectible');
+  }
 }

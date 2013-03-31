@@ -24,12 +24,17 @@ generator:
         title: Collectibles
         display: [id, _list_collector, _list_collection, _list_collectible, score, created_at]
         sort: [created_at, desc]
+        object_actions:
+          _edit: ~
+          _delete: ~
+          encourageSeller: { label: 'Send a "become seller" email' }
 
       filter:
+        class: BackendCollectibleFormFilter
         fields:
           collection_id: { label: 'Collection #' }
           id: { label: 'Collectible #' }
-        display: [id, collection_collectible_list, name, created_at]
+        display: [id, collection_collectible_list, name, created_at, secret_sale]
 
       form:    ~
       edit:
