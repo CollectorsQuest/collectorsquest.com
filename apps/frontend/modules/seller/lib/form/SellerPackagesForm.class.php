@@ -188,7 +188,7 @@ class SellerPackagesForm extends BaseForm
 
     $this->setValidator('cvv_number', new sfValidatorNumber(
       array(
-        'min'      => 100,
+        'min'      => 1,
         'max'      => 9999,
         'required' => true,
       ),
