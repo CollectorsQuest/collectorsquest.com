@@ -52,13 +52,14 @@ class cqAdminBar
               break;
 
             case '_edit':
+              $url = $this->application->generateBackendUrl(
+                $route_name . '_edit', array('sf_subject'=>$object)
+              );
               $this->addMenuItem('Actions', array(
                   'label' => 'Edit',
+                  'url' => $url,
                   'attributes' => array(
                       'target' => '_blank',
-                      'href' => $this->application->generateBackendUrl(
-                          $route_name . '_edit', array('sf_subject'=>$object)
-                      ),
                   ),
               ));
               break;
@@ -70,11 +71,12 @@ class cqAdminBar
               $a_params = array_merge(
                   array('target' => '_blank'), isset($param['params']) ? $param['params'] : array()
               );
-              $a_params['href'] = $this->application->generateBackendUrl(
+              $url = $this->application->generateBackendUrl(
                   $route_name.'_object', array('sf_subject' => $object, 'action' => $action)
               );
               $this->addMenuItem('Actions', array(
                   'label' => $label,
+                  'url' => $url,
                   'attributes' => $a_params,
               ));
           }
@@ -82,13 +84,14 @@ class cqAdminBar
       }
       else
       {
+        $url = $this->application->generateBackendUrl(
+          $route_name . '_edit', array('sf_subject'=>$object)
+        );
         $this->addMenuItem('Edit', array(
             'label' => $label,
+            'url' => $url,
             'attributes' => array(
                 'target' => '_blank',
-                'href' => $this->application->generateBackendUrl(
-                    $route_name . '_edit', array('sf_subject'=>$object)
-                ),
             ),
         ));
       }
@@ -109,8 +112,9 @@ class cqAdminBar
         'url' => $url,
         'info' => sprintf('(%s)', number_format($object->getAverageRating(), 1) ?: 'n/a'),
         'attributes' => array(
-          'onclick' => 'return false;', 'href' => $url,
-          'class' => 'open-dialog', 'title' => 'Rating for ' . $object
+            'onclick' => 'return false;',
+            'class' => 'open-dialog',
+            'title' => 'Rating for ' . $object
         ),
       ));
     }
@@ -128,8 +132,9 @@ class cqAdminBar
         'url' => $url,
         'info' => sprintf('(%s)', count($object->getTags(array('is_triple' => true, 'return' => 'tag')))),
         'attributes' => array(
-            'onclick' => 'return false;', 'href' => $url,
-            'class' => 'open-dialog', 'title' => 'Machine Tags for ' . $object
+            'onclick' => 'return false;',
+            'class' => 'open-dialog',
+            'title' => 'Machine Tags for ' . $object
         ),
       ));
     }
@@ -146,8 +151,9 @@ class cqAdminBar
         'label' => $label,
         'url' => $url,
         'attributes' => array(
-            'onclick' => 'return false;', 'href' => $url,
-            'class' => 'open-dialog', 'title' => 'Change visibility status for ' . $object
+            'onclick' => 'return false;',
+            'class' => 'open-dialog',
+            'title' => 'Change visibility status for ' . $object
         ),
       ));
     }
@@ -266,7 +272,12 @@ class cqAdminBar
       ));
     }
 
-    $item_data = array_merge(array('attributes' => array()), $item_data);
+    if (!isset($item_data['url']))
+    {
+      $item_data['url'] = '#';
+    }
+
+    $item_data = sfToolkit::arrayDeepMerge(array('attributes' => array('href' => $item_data['url'])), $item_data);
 
     $this->objects_menu[$menu_name][] = $item_data;
 
