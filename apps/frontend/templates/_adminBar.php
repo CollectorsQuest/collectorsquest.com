@@ -25,10 +25,10 @@ use_javascript('jquery/autogrow-input.js');
             <?php if (count($sub_item)): ?>
               <?php if (count($sub_item) == 1): ?>
                 <li>
-                  <?= content_tag(
-                    'a', $name . (isset($sub_item[0]['info']) ? ' '.$sub_item[0]['info'] : ''),
-                    $sub_item[0]['attributes']
-                  ) ?>
+                  <?= content_tag('a',
+                    $name . (isset($sub_item[0]['info']) ? ' '.$sub_item[0]['info'] : ''),
+                    _convert_options_to_javascript($sub_item[0]['attributes'])
+                  ); ?>
                 </li>
               <?php else : ?>
                 <li class="dropdown">
@@ -38,10 +38,10 @@ use_javascript('jquery/autogrow-input.js');
                   <ul class="dropdown-menu">
                     <?php foreach ($sub_item as $item): ?>
                       <li>
-                        <?= content_tag(
-                        'a', $item['label'] . (isset($item['info']) ? ' '.$item['info'] : ''),
+                        <?= content_tag('a',
+                          $item['label'] . (isset($item['info']) ? ' '.$item['info'] : ''),
                           _convert_options_to_javascript($item['attributes'])
-                          ) ?>
+                        ); ?>
                       </li>
                     <?php endforeach; ?>
                   </ul>

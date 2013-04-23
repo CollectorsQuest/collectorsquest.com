@@ -149,6 +149,19 @@ class wpPost extends BasewpPost
   }
 
   /**
+   * @param     string $key
+   * @param     mixed $value
+   * @return    integer Updated records
+   */
+  public function setPostMetaValue($key, $value)
+  {
+    return wpPostMetaQuery::create()
+       ->filterBywpPost($this)
+       ->filterByMetaKey($key)
+       ->update(array('MetaValue' => maybe_serialize($value)));
+  }
+
+  /**
    * This is needed for IceMultimediaBehavior to work correctly
    *
    * @param string $name
