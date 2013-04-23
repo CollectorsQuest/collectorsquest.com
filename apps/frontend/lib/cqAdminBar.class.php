@@ -2,10 +2,10 @@
 
 class cqAdminBar
 {
-  private static $instance = null;
-  private $application = null;
-  private $object_params = array();
-  private $objects_menu = array();
+  protected static $instance = null;
+  protected $application = null;
+  protected $object_params = array();
+  protected $objects_menu = array();
 
   public function __construct(frontendConfiguration $application)
   {
@@ -17,7 +17,7 @@ class cqAdminBar
    *
    * @return cqAdminBar
    */
-  private static function getInstance()
+  public static function getInstance()
   {
     if (is_null(self::$instance))
     {
@@ -34,7 +34,7 @@ class cqAdminBar
    *
    * @param BaseObject $object
    */
-  private function addObject($object)
+  protected function addObject($object)
   {
     $label = sfToolkit::pregtr(get_class($object), array('/([A-Z]+)([A-Z][a-z])/' => '\\1 \\2',
                                                          '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
@@ -48,21 +48,21 @@ class cqAdminBar
           switch ($action)
           {
             case '_delete':
-                //no delete for now
-                  break;
+              //no delete for now
+              break;
 
             case '_edit':
-                $this->objects_menu['Actions'][] =
-                    array(
-                        'label' => 'Edit',
-                        'attributes' => array(
-                            'target' => '_blank',
-                            'href' => $this->application->generateBackendUrl(
-                                $route_name . '_edit', array('sf_subject'=>$object)
-                            )
-                        ),
-                    );
-                  break;
+              $url = $this->application->generateBackendUrl(
+                $route_name . '_edit', array('sf_subject'=>$object)
+              );
+              $this->addMenuItem('Actions', array(
+                  'label' => 'Edit',
+                  'url' => $url,
+                  'attributes' => array(
+                      'target' => '_blank',
+                  ),
+              ));
+              break;
             default:
               $action = isset($param['action']) ? $param['action'] : 'List' . ucfirst($action);
               $label = isset($param['label']) ? $param['label']
@@ -71,29 +71,29 @@ class cqAdminBar
               $a_params = array_merge(
                   array('target' => '_blank'), isset($param['params']) ? $param['params'] : array()
               );
-              $a_params['href'] = $this->application->generateBackendUrl(
+              $url = $this->application->generateBackendUrl(
                   $route_name.'_object', array('sf_subject' => $object, 'action' => $action)
               );
-              $this->objects_menu['Actions'][] =
-                  array(
-                      'label' => $label,
-                      'attributes' => $a_params,
-                  );
+              $this->addMenuItem('Actions', array(
+                  'label' => $label,
+                  'url' => $url,
+                  'attributes' => $a_params,
+              ));
           }
         }
       }
       else
       {
-        $this->objects_menu['Edit'][] =
-            array(
-                'label' => $label,
-                'attributes' => array(
-                    'target' => '_blank',
-                    'href' => $this->application->generateBackendUrl(
-                        $route_name . '_edit', array('sf_subject'=>$object)
-                    )
-                ),
-            );
+        $url = $this->application->generateBackendUrl(
+          $route_name . '_edit', array('sf_subject'=>$object)
+        );
+        $this->addMenuItem('Edit', array(
+            'label' => $label,
+            'url' => $url,
+            'attributes' => array(
+                'target' => '_blank',
+            ),
+        ));
       }
 
     }
@@ -107,54 +107,55 @@ class cqAdminBar
         )
       );
 
-      $this->objects_menu['Rating'][] = array(
+      $this->addMenuItem('Rating', array(
         'label' => $label,
         'url' => $url,
         'info' => sprintf('(%s)', number_format($object->getAverageRating(), 1) ?: 'n/a'),
         'attributes' => array(
-          'onclick' => 'return false;', 'href' => $url,
-          'class' => 'open-dialog', 'title' => 'Rating for ' . $object
-        )
-      );
+            'onclick' => 'return false;',
+            'class' => 'open-dialog',
+            'title' => 'Rating for ' . $object
+        ),
+      ));
     }
 
     // Limitation for the first version
     if (in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible')))
     {
       $url = $this->application->generateBackendUrl(
-        'object_machine_tags', array(
-          'class' => get_class($object), 'id' => $object->getId()
-        )
+        'object_machine_tags',
+        array('class' => get_class($object), 'id' => $object->getId())
       );
 
-      $this->objects_menu['Machine Tags'][] = array(
+      $this->addMenuItem('Machine Tags', array(
         'label' => $label,
         'url' => $url,
         'info' => sprintf('(%s)', count($object->getTags(array('is_triple' => true, 'return' => 'tag')))),
         'attributes' => array(
-          'onclick' => 'return false;', 'href' => $url,
-          'class' => 'open-dialog', 'title' => 'Machine Tags for ' . $object
-        )
-      );
+            'onclick' => 'return false;',
+            'class' => 'open-dialog',
+            'title' => 'Machine Tags for ' . $object
+        ),
+      ));
     }
 
     // Limitation for the first version
     if (in_array(get_class($object), array('CollectorCollection', 'Collection', 'Collectible')))
     {
       $url = $this->application->generateBackendUrl(
-        'object_is_public', array(
-          'class' => get_class($object), 'id' => $object->getId()
-        )
+        'object_is_public',
+        array('class' => get_class($object), 'id' => $object->getId())
       );
 
-      $this->objects_menu['Make ' . ($object->getIsPublic() ? 'Private' : 'Public')][] = array(
+      $this->addMenuItem('Make ' . ($object->getIsPublic() ? 'Private' : 'Public'), array(
         'label' => $label,
         'url' => $url,
         'attributes' => array(
-          'onclick' => 'return false;', 'href' => $url,
-          'class' => 'open-dialog', 'title' => 'Change visibility status for ' . $object
-        )
-      );
+            'onclick' => 'return false;',
+            'class' => 'open-dialog',
+            'title' => 'Change visibility status for ' . $object
+        ),
+      ));
     }
   }
 
@@ -165,12 +166,13 @@ class cqAdminBar
    * @param $object
    * @return array|null
    */
-  private function getObjectBackendParameters($object)
+  protected function getObjectBackendParameters($object)
   {
     if (isset($this->object_params[get_class($object)]))
     {
        return $this->object_params[get_class($object)];
     }
+
     $this->object_params[get_class($object)] = null;
     /* @var $routing sfRoute[] */
     $routing = $this->application->getBackendRouting()->getRoutes();
@@ -201,7 +203,7 @@ class cqAdminBar
           );
 
           return $this->object_params[get_class($object)];
-         }
+        }
     }
 
     return $this->object_params[get_class($object)];
@@ -242,4 +244,44 @@ class cqAdminBar
       self::getInstance()->addObject($parameters['object']);
     }
   }
+
+  /**
+   * Add a new menu item for a specific menu
+   *
+   * Menu items are represented by an array and must have a "label"
+   *
+   * menu item fields:
+   *   - label
+   *   - info
+   *   - url
+   *   - attributes (html attributes)
+   *
+   * @param     string $menu_name
+   * @param     array $item_data
+   * @return    cqAdminBar
+   *
+   * @throws    RuntimeException When there are missing required fields for an item
+   */
+  public function addMenuItem($menu_name, $item_data)
+  {
+    if (!isset($item_data['label']))
+    {
+      throw new RuntimeException(spritnf(
+        '[cqAdminBar] Menu items must hava a label. Data given: %s',
+        print_r($item_data, true)
+      ));
+    }
+
+    if (!isset($item_data['url']))
+    {
+      $item_data['url'] = '#';
+    }
+
+    $item_data = sfToolkit::arrayDeepMerge(array('attributes' => array('href' => $item_data['url'])), $item_data);
+
+    $this->objects_menu[$menu_name][] = $item_data;
+
+    return $this;
+  }
+
 }
