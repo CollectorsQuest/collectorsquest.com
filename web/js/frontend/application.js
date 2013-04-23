@@ -1012,7 +1012,14 @@ var ADMIN = window.ADMIN = (function(){
                 MISC.modalAlert('Error: ' + errorThrown + ' ' + textStatus);
             }
           });
-      }
+      },
+      masonryDisplayIdTooltips: function() {
+          $('#collectibles div').tooltip({
+            title: function(){
+                return $(this).data('id');
+            }
+          });
+      },
   }; // ADMIN public interface object literal
 }()); // ADMIN
 

@@ -307,6 +307,12 @@ class miscActions extends cqFrontendActions
             'onclick' => 'javascript:ADMIN.masonryReorderComplete("' . $post_url . '"); return false;',
         ),
     ));
+    cqAdminBar::getInstance()->addMenuItem('Display Item IDs', array(
+        'label' => '',
+        'attributes' => array(
+            'onclick' => 'javascript:ADMIN.masonryDisplayIdTooltips(); return false;',
+        ),
+    ));
 
     return sfView::SUCCESS;
   }
