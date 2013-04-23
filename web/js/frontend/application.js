@@ -732,6 +732,7 @@ var SEARCH = window.SEARCH = (function(){
 
   var defaults = {
     masonry: {
+      isResizable: true,
       add_infinite_scroll: false
     }
   };
@@ -962,5 +963,57 @@ var MISC = window.MISC = (function(){
   }; // MISC public interface object literal
 }()); // MISC
 
+var ADMIN = window.ADMIN = (function(){
+
+  var masonry_in_reorder = false;
+
+  return {
+      masonryReorderStart: function() {
+          MISC.modalAlert('Reordering enabled; You can now drag-drop the images on this page');
+          $('#collectibles').sortable({
+            distance: 12,
+            forcePlaceholderSize: true,
+            placeholder: 'masonry-placeholder collectible_grid_view_square_small',
+            start:  function(event, ui) {
+                ui.item.addClass('masonry-dragging').removeClass('collectible_grid_view_square_small');
+                ui.item.parent().masonry('reload')
+            },
+            change: function(event, ui) {
+                ui.item.parent().masonry('reload');
+            },
+            stop:   function(event, ui) {
+                ui.item.removeClass('masonry-dragging').addClass('collectible_grid_view_square_small');
+                ui.item.parent().masonry('reload');
+            },
+          });
+
+          // disable big target for sortable items
+          $('#collectibles .link').off('click.bigTarget mouseup.bigTarget');
+      },
+      masonryReorderComplete: function(postUrl) {
+          $('#collectibles').sortable('disable');
+          var sorted = $('#collectibles').sortable('serialize', {
+              key: 'sorted[]',
+              attribute: 'data-id',
+              expression: /(\d+)/
+          });
+
+          $.ajax({
+            type: "POST",
+            url: postUrl,
+            data: sorted,
+            beforeSend: function() {
+                MISC.modalAlert('Saving new items order, please wait...');
+            },
+            success: function() {
+                window.location.reload(true);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                MISC.modalAlert('Error: ' + errorThrown + ' ' + textStatus);
+            }
+          });
+      }
+  }; // ADMIN public interface object literal
+}()); // ADMIN
 
 })(this, this.document, jQuery);
