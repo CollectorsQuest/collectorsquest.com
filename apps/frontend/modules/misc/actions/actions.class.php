@@ -259,7 +259,7 @@ class miscActions extends cqFrontendActions
    */
   public function executeWordPressFeaturedItems(sfWebRequest $request)
   {
-    /** @var $wp_post wpPost */
+    /* @var $wp_post wpPost */
     $wp_post = $this->getRoute()->getObject();
 
     $values = $wp_post->getPostMetaValue('_featured_items');
@@ -291,7 +291,45 @@ class miscActions extends cqFrontendActions
     $this->getResponse()->setTitle($title);
     $this->getResponse()->addOpenGraphMetaFor($wp_post);
 
+    cqAdminBar::getInstance()->addMenuItem('Reorder Items', array(
+        'label' => 'Start Reordering',
+        'attributes' => array(
+            'onclick' => 'ADMIN.masonryReorderStart(); return false;',
+        ),
+    ));
+    $post_url = $this->getController()->genUrl(array(
+        'sf_route' => 'ajax_misc_reorder_featured_collectibles',
+        'post_id' => $wp_post->getId(),
+    ));
+    cqAdminBar::getInstance()->addMenuItem('Reorder Items', array(
+        'label' => 'Complete Reordering',
+        'attributes' => array(
+            'onclick' => 'javascript:ADMIN.masonryReorderComplete("' . $post_url . '"); return false;',
+        ),
+    ));
+    cqAdminBar::getInstance()->addMenuItem('Display Item IDs', array(
+        'label' => '',
+        'attributes' => array(
+            'onclick' => 'javascript:ADMIN.masonryDisplayIdTooltips(); return false;',
+        ),
+    ));
+
     return sfView::SUCCESS;
+  }
+
+  public function executeAjaxReorderCollectiblesForPostId(cqWebRequest $request)
+  {
+    $this->forward404Unless($this->getUser()->isAdmin());
+
+    $wpPost = wpPostPeer::retrieveByPK($request->getParameter('post_id'));
+    $this->forward404Unless($wpPost);
+
+    ReordersWpPostMetaItems::reorderFeaturedItems($wpPost, $request->getParameter('sorted'));
+
+    $this->getResponse()->setHeaderOnly();
+    $this->getResponse()->setStatusCode(200);
+
+    return sfView::NONE;
   }
 
   /**

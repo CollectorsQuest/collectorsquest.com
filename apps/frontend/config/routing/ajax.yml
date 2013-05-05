@@ -57,6 +57,10 @@ ajax_misc:
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
+ajax_misc_reorder_featured_collectibles:
+  url:  /ajax/misc/reodred-featured-collectibles-for-post/:post_id
+  param: { module: misc, action: ajaxReorderCollectiblesForPostId }
+
 ajax_shopping:
   url:   /ajax/shopping/:section/:page.:sf_format
   param: { module: shopping, action: ajax, sf_format: html }
