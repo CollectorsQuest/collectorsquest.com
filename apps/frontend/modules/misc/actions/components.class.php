@@ -359,10 +359,13 @@ class miscComponents extends cqFrontendComponents
     }
 
     $q = FrontendCollectibleQuery::create()
-      ->filterById($_collectible_ids)
-      ->addAscendingOrderByColumn(
-      'FIELD(collectible.id, ' . implode(',', $_collectible_ids) . ')'
-    );
+      ->filterById($_collectible_ids);
+
+    if (!empty($_collectible_ids)) {
+      $q->addAscendingOrderByColumn(
+        'FIELD(collectible.id, ' . implode(',', $_collectible_ids) . ')'
+      );
+    }
 
     $pager = new PropelModelPager($q, $limit);
     $page = $this->getRequest()->getParameter('p', 1);

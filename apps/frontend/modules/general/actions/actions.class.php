@@ -111,8 +111,11 @@ class generalActions extends cqFrontendActions
          * @var $q FrontendCollectibleQuery
          */
         $q = FrontendCollectibleQuery::create()
-           ->filterById($collectible_ids, Criteria::IN)
-           ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
+           ->filterById($collectible_ids, Criteria::IN);
+
+        if (!empty($collectible_ids)) {
+           $q->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
+        }
 
         $this->collectibles = $q->limit(20)->find();
       }

@@ -55,10 +55,14 @@ class collectionsComponents extends cqFrontendComponents
         /** @var $q FrontendCollectibleQuery */
         $q = FrontendCollectibleQuery::create()
           ->filterById($collectible_ids)
-          ->limit(4)
-          ->addAscendingOrderByColumn(
+          ->limit(4);
+
+        if (!empty($collectible_ids)) {
+          $q->addAscendingOrderByColumn(
             'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
           );
+        }
+
         $this->collectibles = $q->find();
       }
 
@@ -84,10 +88,14 @@ class collectionsComponents extends cqFrontendComponents
         $q = CollectibleQuery::create()
           ->filterById($collectible_ids)
           ->offset(4)
-          ->limit(12)
-          ->addAscendingOrderByColumn(
+          ->limit(12);
+
+        if (!empty($collectible_ids)) {
+          $q->addAscendingOrderByColumn(
             'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
           );
+        }
+
         $this->collectibles = $q->find();
       }
 
