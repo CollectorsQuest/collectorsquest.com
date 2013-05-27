@@ -1,6 +1,7 @@
 Options +FollowSymLinks
 
 SetEnvIf X-Forwarded-For ^180\.76\. block_me
+SetEnvIf X-Forwarded-For ^65\.170\.173\.250 block_me
 
 Order allow,deny
 Deny  from env=block_me
