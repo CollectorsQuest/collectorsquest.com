@@ -163,14 +163,7 @@ class marketplaceComponents extends cqFrontendComponents
 
   public function executeHolidaySlot1()
   {
-    $this->menu = array(
-      0 => array(
-        'id' => -1, 'active' => true,
-        'name' => "Frank's<br/><strong>Picks</strong>", 'slug' => 'franks-picks',
-        'content' => 'blah blah',
-        'tags' => array()
-      )
-    );
+    $this->menu = array();
 
     /* @var $q wpPostQuery */
     $q = wpPostQuery::create()
@@ -223,70 +216,41 @@ class marketplaceComponents extends cqFrontendComponents
     /* @var $page integer */
     $page = (integer) $this->getRequestParameter('p', 1);
 
-    if ($t == 0)
-    {
-      /* @var $aetn_shows array */
-      $aetn_shows = sfConfig::get('app_aetn_shows', array());
-      $collection = CollectorCollectionQuery::create()->findOneById($aetn_shows['american_pickers']['franks_picks']);
+    /* @var $q wpPostQuery */
+    $q = wpPostQuery::create()
+       ->filterByPostType('market_theme')
+       ->filterByPostParent(0)
+       ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
+       ->orderByPostDate(Criteria::DESC)
+       ->offset($t);
 
-      $q = FrontendCollectionCollectibleQuery::create()
-        ->filterByCollection($collection)
-        ->isForSale()
-        ->orderByPosition(Criteria::ASC)
-        ->orderByUpdatedAt(Criteria::ASC);
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
+
+    /* @var $wp_post wpPost */
+    $wp_post = $q->findOne();
+
+    if ($wp_post && ($tags = $wp_post->getTags('array')))
+    {
+      /* @var $q FrontendCollectionCollectibleQuery */
+      $q = FrontendCollectibleQuery::create()
+         ->isForSale()
+         ->filterByMachineTags($tags, 'market', 'theme')
+         ->clearOrderByColumns()
+         ->orderByAverageRating(Criteria::DESC)
+         ->orderByUpdatedAt(Criteria::DESC);
 
       $pager = new PropelModelPager($q);
-      $pager->setMaxRecordLimit(4);
       $pager->setPage($page);
-      $pager->setMaxPerPage(($page === 1) ? 4 : 6);
+      $pager->setMaxPerPage(($page === 1) ? 5 : 6);
       $pager->init();
 
       $this->pager = $pager;
+      $this->wp_post = $wp_post;
       $this->t = $t;
-
       return sfView::SUCCESS;
-    }
-    else
-    {
-      $offset = $t-1;
-
-      /* @var $q wpPostQuery */
-      $q = wpPostQuery::create()
-        ->filterByPostType('market_theme')
-        ->filterByPostParent(0)
-        ->filterByPostStatus(array('publish', 'draft'), Criteria::IN)
-        ->orderByPostDate(Criteria::DESC)
-        ->offset($offset);
-
-      if (sfConfig::get('sf_environment') === 'prod')
-      {
-        $q->filterByPostStatus('publish');
-      }
-
-      /* @var $wp_post wpPost */
-      $wp_post = $q->findOne();
-
-      if ($wp_post && ($tags = $wp_post->getTags('array')))
-      {
-        /* @var $q FrontendCollectionCollectibleQuery */
-        $q = FrontendCollectibleQuery::create()
-          ->isForSale()
-          ->filterByMachineTags($tags, 'market', 'theme')
-          ->clearOrderByColumns()
-          ->orderByAverageRating(Criteria::DESC)
-          ->orderByUpdatedAt(Criteria::DESC);
-
-        $pager = new PropelModelPager($q);
-        $pager->setPage($page);
-        $pager->setMaxPerPage(($page === 1) ? 5 : 6);
-        $pager->init();
-
-        $this->pager = $pager;
-        $this->wp_post = $wp_post;
-        $this->t = $t;
-
-        return sfView::SUCCESS;
-      }
     }
 
     return sfView::NONE;
