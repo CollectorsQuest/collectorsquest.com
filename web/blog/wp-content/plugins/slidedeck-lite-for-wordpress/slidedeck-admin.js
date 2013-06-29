@@ -1,5 +1,5 @@
 /**
- * SlideDeck for WordPress 1.4.6 - 2011-12-14
+ * SlideDeck for WordPress 1.4.8 - 2011-12-14
  * Copyright 2011 digital-telepathy  (email : support@digital-telepathy.com)
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -25,7 +25,7 @@
  * @subpackage SlideDeck for WordPress
  * 
  * @author digital-telepathy
- * @version 1.4.6
+ * @version 1.4.8
  */
 
 var SlideDeckSlides = {
@@ -146,8 +146,8 @@ var SlideDeckSlides = {
             SlideDeckSlides.deleteSlide(this);
         });
 
-        slide.find('.media-buttons').show();
-        slide.find('.media-buttons a.thickbox').unbind('click.' + this.namespace).bind('click.' + this.namespace, function(){
+        slide.find('.media-buttons, .add_media').show();
+        slide.find('.media-buttons a.thickbox, a.add_media').unbind('click.' + this.namespace).bind('click.' + this.namespace, function(){
             SlideDeckSlides.tb_click(this);
         });
         
@@ -185,6 +185,10 @@ var SlideDeckSlides = {
                     editorid = url[0];
                 }
             }
+            // If data-editor is set on Add Media button - use this value as the prev. Href check will fail - for more recent versions of WordPress
+            if ( jQuery(e).data('editor') )
+                editorid = jQuery(e).data('editor');
+                
             tinyMCE.get(editorid).focus();
             tinyMCE.activeEditor.windowManager.bookmark = tinyMCE.activeEditor.selection.getBookmark('simple');
             jQuery(window).resize();
@@ -303,12 +307,15 @@ var legacy_send_to_editor = function(h){
 }
 var override_send_to_editor = function(h) {
     var ed, mce = typeof(tinymce) != 'undefined', qt = typeof(QTags) != 'undefined', editorid, url = jQuery('#TB_window iframe').attr('src');
-    url = url.split('editor=');
-    if (url.length > 1) {
-        url = url[1];
-        url = url.split('&');
+    
+    if( url != undefined ) {
+        url = url.split('editor=');
         if (url.length > 1) {
-            wpActiveEditor = editorid = url[0];
+            url = url[1];
+            url = url.split('&');
+            if (url.length > 1) {
+                wpActiveEditor = editorid = url[0];
+            }
         }
     }
     
@@ -320,10 +327,8 @@ var override_send_to_editor = function(h) {
             return false;
         }
     } else if ( mce ) {
-        if ( tinymce.activeEditor && (tinymce.activeEditor.id == 'mce_fullscreen' || tinymce.activeEditor.id == 'wp_mce_fullscreen') )
-            ed = tinymce.activeEditor;
-        else
-            ed = tinymce.get(wpActiveEditor);
+        // Removed Full-Screen editor check as that button/feature was removed
+        ed = tinymce.activeEditor;
     }
 
     if ( ed && !ed.isHidden() ) {
@@ -891,7 +896,7 @@ var tb_position = updateTBSize;
             $(this).parent().find('.inside').toggle();
         });
 
-        $('.media-buttons a.thickbox').bind('click.' + SlideDeckSlides.namespace, function(){
+        $('.media-buttons a.thickbox, a.add_media').bind('click.' + SlideDeckSlides.namespace, function(){
             SlideDeckSlides.tb_click(this);
         });
 

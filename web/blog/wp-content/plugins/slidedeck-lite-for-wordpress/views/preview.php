@@ -2,7 +2,7 @@
 /**
  * Preview SlideDeck tempalte
  * 
- * SlideDeck for WordPress 1.4.6 - 2011-12-14
+ * SlideDeck for WordPress 1.4.8 - 2011-12-14
  * Copyright (c) 2011 digital-telepathy (http://www.dtelepathy.com)
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * @subpackage SlideDeck for WordPress
  * 
  * @author digital-telepathy
- * @version 1.4.6
+ * @version 1.4.8
  * 
  * @uses slidedeck()
  * @uses admin_url()

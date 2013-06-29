@@ -2,7 +2,7 @@
 /**
  * SlideDeck Widget control form
  * 
- * SlideDeck for WordPress 1.4.6 - 2011-12-14
+ * SlideDeck for WordPress 1.4.8 - 2011-12-14
  * Copyright 2011 digital-telepathy  (email : support@digital-telepathy.com)
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  * @subpackage SlideDeck for WordPress
  * 
  * @author digital-telepathy
- * @version 1.4.6
+ * @version 1.4.8
  */
 ?>
 <p>Display a SlideDeck in a widget area. <em><strong>NOTE:</strong> since most widget areas are narrow sidebars, your SlideDeck may not appear correctly. We only recommend placing SlideDecks in wider widget areas like headers and footers.</em></p>

@@ -1,5 +1,5 @@
 /**
- * SlideDeck for WordPress 1.4.6 - 2011-12-14
+ * SlideDeck for WordPress 1.4.8 - 2011-12-14
  * Copyright 2011 digital-telepathy  (email : support@digital-telepathy.com)
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -25,7 +25,7 @@
  * @subpackage SlideDeck for WordPress
  * 
  * @author digital-telepathy
- * @version 1.4.6
+ * @version 1.4.8
  */
 
 .slidedeck-wrapper { clear: both; }
@@ -179,9 +179,9 @@ ol.formRows li textarea { width: 99%; }
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;
-	color: #fff;
+	color: #fff !important;
 	text-shadow: none;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 .vertical-editor-area h3.closed {
 	margin-bottom: 4px;
@@ -326,7 +326,7 @@ th.manage-column a.order.desc { background-image: url('images/order_desc.png'); 
 #slidedeck-options .inside a.disabled:focus {
 	background: url('../../../wp-admin/images/white-grad.png') left top #f2f2f2 !important;
 	cursor: default;
-    line-height: 14px;
+    line-height: 24px;
 }
 
 .callout-button { margin-right: 0; }
@@ -737,10 +737,6 @@ a.navigation-type.disabled img, a.navigation-type.disabled:hover img { border-co
     text-align: center;
 }
 
-#callout-sidebar a.button{
-	padding: 5px 10px;
-}
-
 #callout-sidebar a.button .inner{
 	font-size: 11px !important;
 }
@@ -920,4 +916,33 @@ a.navigation-type.disabled img, a.navigation-type.disabled:hover img { border-co
 }
 .upgradeModal{
     width: 450px;
+}
+/* SlideDeck Notification Bar */
+#slidedeck-final-update-notification {
+    display: block;
+    background: #87196c;
+    padding: 10px 20px;
+    font-size: 13px;
+    color: #fff;
+    font-family: sans-serif;
+    border-radius: 3px;
+    border: 1px solid #a82889;
+    margin: 10px;
+}
+#slidedeck-final-update-notification strong { font-weight: bold; }
+#slidedeck-final-update-notification a {
+    color: #5d114a;
+    background-color: #fff;
+    padding: 1px 5px;
+    margin: 0;
+    text-decoration: none;
+}
+#slidedeck-final-update-notification a:hover,
+#slidedeck-final-update-notification a:active {
+    background-color: #ffe8f9;
+}
+
+/*Hiding Full Screen Edit*/
+#slidedeck_form a.mce_fullscreen {
+    display: none;
 }

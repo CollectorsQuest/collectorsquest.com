@@ -1,52 +1,67 @@
 <?php
 /**
  * Overview list of SlideDecks
- *
- * SlideDeck for WordPress 1.4.6 - 2011-12-14
+ * 
+ * SlideDeck for WordPress 1.4.8 - 2011-12-14
  * Copyright 2011 digital-telepathy  (email : support@digital-telepathy.com)
- *
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
- *
+ * 
  * @package SlideDeck
  * @subpackage SlideDeck for WordPress
- *
+ * 
  * @author digital-telepathy
- * @version 1.4.6
- *
+ * @version 1.4.8
+ * 
  * @uses slidedeck_action()
  * @uses slidedeck_show_message()
  * @uses wp_nonce_url()
  */
 ?>
 <div class="slidedeck-wrapper">
-
+    
+    <?php include('_notification_bar.php'); ?>
+    
+    <div id="callout-sidebar">
+        <div class="editPageUpgradeCallout overview">
+            <h4>SlideDeck 2</h4>
+            <div class="inner">
+                <h5>New Everything!</h5>
+                <p>We've taken the content slider to the next level with SlideDeck&nbsp;2. <strong><em>It's all new</em></strong> from the ground up, a WordPress slider like nothing else before it.</p>
+                <a href="<?php echo slidedeck_action( '/upgrade' ); ?>&variation=SlideDeck+Overview+CTA">Upgrade to Pro</a>
+            </div>
+        </div>
+        <div class="follow-twitter callout-button"><p>For tips, tricks &amp; discounts</p><a href="http://twitter.com/slidedeck" target="_blank" class="button"><span class="inner"><img src="<?php echo slidedeck_url( '/images/twitter.png' ); ?>" /> Follow Us on Twitter</span></a></div>
+        <div class="view-screencasts callout-button"><p>For how-to's and troubleshooting</p><a href="http://www.slidedeck.com/screencasts/" target="_blank" class="button"><span class="inner"><img src="<?php echo slidedeck_url( '/images/youtube.png' ); ?>" /> View Our Screencasts</span></a></div>
+        <div class="bug-report callout-button"><p>Help us squash the bugs</p><a href="http://www.getsatisfaction.com/slidedeck/topics" target="_blank" class="button"><span class="inner"><img src="<?php echo slidedeck_url( '/images/bug.png' ); ?>" /> Report a bug for SlideDeck</span></a></div>
+    </div>
     <div class="wrap" id="slidedeck_overview">
     	<div id="icon-edit" class="icon32"></div>
-        <h2>Edit SlideDecks
+        <h2>Edit SlideDecks 
             <a class="button add-new-h2" href="<?php echo slidedeck_action( '/slidedeck_add_new' ); ?>">Add New</a>
             <a class="button add-new-h2" href="<?php echo slidedeck_action( '/slidedeck_dynamic' ); ?>" style="margin-left:0;"><img src="<?php echo slidedeck_url( '/images/icon_dynamic.png' ); ?>" alt="Smart SlideDeck" /> Add Smart SlideDeck</a>
         </h2>
-
+    	
         <?php echo slidedeck_show_message(); ?>
-
+        
         <?php if( (boolean) SLIDEDECK_LEGACY_IMPORT_COMPLETE !== true ): ?>
             <div class="intro-text">
                 <p>It doesn't look like you have run the plugin upgrade yet to import your legacy SlideDecks. Please go to the <a href="<?php echo clean_url( admin_url( 'plugins.php' ) ); ?>">plugins section</a> to deactivate and reactivate this plugin.</p>
             </div>
         <?php endif; ?>
-
+        
     	<?php if( !empty( $slidedecks ) ): ?>
     		<table id="slidedecks" class="widefat post fixed" cellspacing="0">
     			<thead>
@@ -91,6 +106,13 @@
     	</div>
     	<?php endif; ?>
     	<div class="overview-options">
+			<div class="rss-feed">
+			    <div id="slidedeck_blog_feed">
+			        <h3>Product Blog <span>news, tips &amp; trends</span></h3>
+			        <div id="slidedeck-blog-rss-feed">Fetch RSS Feed...</div>
+			    </div>
+			</div>
+			
             <form action="" method="post" id="overview_options_form">
             <div>
                 <h3>Advanced SlideDeck Options</h3>

@@ -11,13 +11,13 @@
  * @global    object    $wpdb
  * 
  * @author digital-telepathy
- * @version 1.4.7
+ * @version 1.4.8
  */
 /*
 Plugin Name: SlideDeck for WordPress - Slider Widget
 Plugin URI: http://www.slidedeck.com/wordpress
 Description: Create SlideDecks on your WordPress blogging platform and insert them into templates and posts. Get started creating SlideDecks from the new SlideDeck menu in the left hand navigation. <a href="http://www.slidedeck.com/upgrade-to-pro/?utm_source=LiteUser&utm_medium=Link&utm_campaign=WPplugin" target="_blank">Upgrade to SlideDeck Pro!</a> | <a href="admin.php?page=slidedeck.php">Manage SlideDecks</a> | <a href="admin.php?page=slidedeck.php/slidedeck_add_new">Add New SlideDeck</a> | <a href="admin.php?page=slidedeck.php/slidedeck_dynamic">Add New Smart SlideDeck</a>
-Version: 1.4.7
+Version: 1.4.8
 Author: digital-telepathy
 Author URI: http://www.dtelepathy.com
 License: GPL2
@@ -97,7 +97,7 @@ define( 'SLIDEDECKS_SLIDES_TABLE',                  $wpdb->prefix . "slidedecks_
 
 define( 'SLIDEDECK_POST_TYPE',                      'slidedeck' );
 define( 'SLIDEDECK_SLIDE_POST_TYPE',                'slidedeck_slide' );
-define( 'SLIDEDECK_VERSION',                        '1.4.7' );
+define( 'SLIDEDECK_VERSION',                        '1.4.8' );
 define( 'SLIDEDECK_TITLE_LENGTH_WITH_IMAGE',        45 ); // characters
 define( 'SLIDEDECK_TITLE_LENGTH_WITHOUT_IMAGE',     60 ); // characters
 define( 'SLIDEDECK_EXCERPT_LENGTH_WITH_IMAGE',      30 ); // words
