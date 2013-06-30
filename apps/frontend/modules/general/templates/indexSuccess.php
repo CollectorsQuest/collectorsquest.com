@@ -25,6 +25,7 @@
   <div id="homepage" class="row-content">
     <?php
       $k = rand(2, 5);
+      $banner_rand = rand(0, count($collectibles));
       foreach ($collectibles as $i => $collectible)
       {
         if ($i % $k === 0 && isset($videos[intval($i / $k)]))
@@ -35,10 +36,20 @@
           );
         }
 
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
+        // randomly replace 1 collectible with a become a seller banner
+        if ($i != $banner_rand)
+        {
+          // normal case, display the collectible
+          include_partial(
+            'collection/collectible_grid_view_square_small',
+            array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
+          );
+        }
+        else
+        {
+          // display the become a seller banner
+          include_partial('marketplace/partials/marketBecomeSellerPromo_140x140');
+        }
       }
     ?>
   </div>
