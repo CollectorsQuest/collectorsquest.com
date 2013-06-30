@@ -9,11 +9,11 @@
   /* @var $pager       PropelModelPager */
   foreach ($pager->getResults() as $i => $collectible)
   {
-    // special case to include holiday promo banner
-/*    if ($rand == $i)
+    // special case to include become a seller banner
+    if ($rand == $i)
     {
-      include_partial('marketplace/partials/holidayMarketBuyPackagePromo_220x170');
-    }*/
+      include_partial('marketplace/partials/marketBecomeSellerPromo_220x170');
+    }
 
     // set the link to open modal dialog
     $ajax_url = url_for('ajax_marketplace',

@@ -20,7 +20,7 @@
           'alt' => 'It\'s easy to make some $$! Open a store and sell you stuff in our Market!'
         )
       ),
-      '@seller_packages'
+      '@seller_signup'
     );
 
     if (isset($height))

@@ -97,6 +97,10 @@ all:
         sent:     { name: 'Sent Messages', icon: share-alt, uri: "messages_sent" }
         compose:  { name: 'Compose Message', icon: edit, uri: "messages_compose" }
 
+  # list possible random banners in different categoires
+  random_banners:
+    sell: [ITS_EASY_BLUE.jpg, ITS_EASY_GREEN_Z.jpg, ITS_EASY_PURPLE.jpg, ITS_EASY_RED_Z.jpg, SELL_IT_BLUE.jpg, SELL_IT_GREEN_Z.jpg, SELL_IT_PURPLE.jpg, SELL_IT_RED_Z.jpg, ITS_EASY_BLUE_Z.jpg, ITS_EASY_ORANGE.jpg, ITS_EASY_PURPLE_Z.jpg, ITS_EASY_YELLOW.jpg, SELL_IT_BLUE_Z.jpg, SELL_IT_ORANGE.jpg, SELL_IT_PURPLE_Z.jpg, SELL_IT_YELLOW.jpg, ITS_EASY_GREEN.jpg, ITS_EASY_ORANGE_Z.jpg, ITS_EASY_RED.jpg, ITS_EASY_YELLOW_Z.jpg, SELL_IT_GREEN.jpg, SELL_IT_ORANGE_Z.jpg, SELL_IT_RED.jpg, SELL_IT_YELLOW_Z.jpg]
+
 stg:
   ssl_redirect:
     # if insecure pages accesed with https should be rerouted to http

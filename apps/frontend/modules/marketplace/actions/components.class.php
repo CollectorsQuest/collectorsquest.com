@@ -426,8 +426,14 @@ class marketplaceComponents extends cqFrontendComponents
         $q, $s1, $s2, $pager->getNextPage()
       );
 
-      // variable used for displaying holiday promo banner
-      // $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
+      // variable used for displaying a random promo banner
+      // original: $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
+      if ($p == 1) {
+        $this->rand = rand(0, 15);
+      } else {
+        // if we are not on the first page, don't display a promo banner
+        $this->rand = -1;
+      }
 
       return sfView::SUCCESS;
     }
@@ -546,7 +552,7 @@ class marketplaceComponents extends cqFrontendComponents
           $query->orderByUpdatedAt(Criteria::DESC);
       }
 
-      $pager = new cqPropelModelPager($query, 15);
+      $pager = new cqPropelModelPager($query, 16);
       $pager->setNbResults(count($pks));
     }
 
@@ -569,8 +575,14 @@ class marketplaceComponents extends cqFrontendComponents
         $q, $s1, $s2, $pager->getNextPage()
       );
 
-      // variable used for displaying holiday promo banner
-      // $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
+      // variable used for displaying a random promo banner
+      // original: $this->rand = rand(($p-1 == 0 ? 0 : 1) * 10, ($p-1 == 0 ? 1 : 2) * 15);
+      if ($p == 1) {
+        $this->rand = rand(0, 15);
+      } else {
+        // if we are not on the first page, don't display a promo banner
+        $this->rand = -1;
+      }
 
       return sfView::SUCCESS;
     }
