@@ -2,10 +2,20 @@
   /** @var $collection Collection */
   foreach ($pager->getResults() as $i => $collection)
   {
-    include_partial(
-      'collection/collection_grid_view_square_small',
-      array('collection' => $collection, 'i' => $collection->getId())
-    );
+    // rand will replace 1 collection with a become a seller banner (only on 1st page)
+    if ($i != $rand)
+    {
+      // normal case, display the collection
+      include_partial(
+        'collection/collection_grid_view_square_small',
+        array('collection' => $collection, 'i' => $collection->getId())
+      );
+    }
+    else
+    {
+      // display the become a seller banner
+      include_partial('marketplace/partials/marketBecomeSellerPromo_140x140');
+    }
   }
 ?>
 

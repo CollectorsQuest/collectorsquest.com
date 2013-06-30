@@ -199,6 +199,14 @@ class collectionsComponents extends cqFrontendComponents
       $this->pager = $pager;
       $this->url = '@search_collections?q='. $q . '&s='. $s .'&page=1';
 
+      // variable used for displaying a random promo banner
+      if ($p == 1) {
+        $this->rand = rand(0, 15);
+      } else {
+        // if we are not on the first page, don't display a promo banner
+        $this->rand = -1;
+      }
+
       return sfView::SUCCESS;
     }
 
