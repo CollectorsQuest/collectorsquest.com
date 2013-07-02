@@ -18,6 +18,14 @@ register_taxonomy(
   )
 );
 
+// Custon taxonomy for video playlist
+register_taxonomy(
+  'playlist', 'video',
+  array(
+    'hierarchical' => true, 'label' => 'Playlist'
+  )
+);
+
 /**
  * @see http://www.kanasolution.com/2011/01/session-variable-in-wordpress/
  */
@@ -349,6 +357,68 @@ function cq_custom_post_type_init()
     'taxonomies'      => array('post_tag'),
     'supports'        => array('title', 'editor', 'tags', 'thumbnail', 'author')
   ));
+
+  register_post_type('video', array(
+    'labels' => array(
+      'name'               => _x('Video Gallery', 'post type general name'),
+      'singular_name'      => _x('Video', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Search Result'),
+      'add_new_item'       => __('Add New Video'),
+      'edit_item'          => __('Edit Video'),
+      'new_item'           => __('New Video'),
+      'view_item'          => __('View Video'),
+      'search_items'       => __('Search Video'),
+      'not_found'          => __('No Videos found'),
+      'not_found_in_trash' => __('No Videos found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => array('slug' => 'video', 'with_front' => false),
+    'query_var'       => true,
+    'menu_position'   => 100,
+    'taxonomies'      => array('playlist'),
+    'supports'        => array('title', 'editor')
+  ));
+}
+
+// Add input for video url
+add_action( 'add_meta_boxes', 'add_video_url_box' );
+function add_video_url_box() {
+  add_meta_box(
+    'myplugin_sectionid',
+    __( 'Video Url'),
+    'video_url_custom_box',
+    'video', 'normal', 'high'
+  );
+}
+
+/** Render video url input */
+function video_url_custom_box( $post ) {
+  $value = get_post_meta( $post->ID, '_video_url', true );
+  echo '<label for="video_url">';
+  _e("YouTube or Vimeo Url");
+  echo '</label> ';
+  echo '<input type="text" id="video_url" name="video_url" value="' . esc_attr($value) . '" required="required" />';
+}
+
+/* Save url for video */
+add_action( 'save_post', 'video_save_postdata' );
+function video_save_postdata( $post_id ) {
+  // Check if the current user is admin and we have correct pos type.
+  if ('video' != $_POST['post_type'] || ! current_user_can('administrator')) {
+      return;
+  }
+
+  $post_ID = $_POST['post_ID'];
+  $url = sanitize_text_field( $_POST['video_url'] );
+
+  add_post_meta($post_ID, '_video_url', $url, true)
+    or
+  update_post_meta($post_ID, '_video_url', $url);
 }
 
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
