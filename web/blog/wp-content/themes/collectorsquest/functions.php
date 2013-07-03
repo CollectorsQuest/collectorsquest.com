@@ -381,7 +381,7 @@ function cq_custom_post_type_init()
     'query_var'       => true,
     'menu_position'   => 100,
     'taxonomies'      => array('playlist'),
-    'supports'        => array('title', 'editor')
+    'supports'        => array('title', 'editor', 'comments')
   ));
 }
 
@@ -400,7 +400,7 @@ function add_video_url_box() {
 function video_url_custom_box( $post ) {
   $value = get_post_meta( $post->ID, '_video_url', true );
   echo '<label for="video_url">';
-  _e("YouTube or Vimeo Url");
+  _e('YouTube or Vimeo Url');
   echo '</label> ';
   echo '<input type="text" id="video_url" name="video_url" value="' . esc_attr($value) . '" required="required" />';
 }
@@ -420,6 +420,55 @@ function video_save_postdata( $post_id ) {
     or
   update_post_meta($post_ID, '_video_url', $url);
 }
+
+function convert_videos($url) {
+
+  preg_match('@^(?:http://)?([^/]+)@i', $url, $matches);
+  $host = $matches[1];
+  preg_match('/[^.]+\.[^.]+$/', $host, $matches);
+
+  // Pega as variáveis da URL
+  switch ($matches[0]) {
+    case ('youtube.com') : parse_str(parse_url($url, PHP_URL_QUERY)); $id = $v; break; //ok
+    case ('youtu.be') : $exp = explode('/', $url); $id = array_pop($exp); break; //ok
+    case ('vimeo.com') : sscanf(parse_url($url, PHP_URL_PATH), '/%d', $id); break; //ok
+  }
+
+  switch ($matches[0]) {
+    // youtube.com
+    case ('youtube.com') :
+      return '
+    <object width="425" height="350">
+    <param name="movie" value="http://www.youtube.com/v/' . $id . '"></param>
+    <embed src="http://www.youtube.com/v/' . $id . '" type="application/x-shockwave-flash"
+    width="425" height="350"></embed>
+    </object>';
+      break;
+    // youtu.be
+    case ('youtu.be') :
+      return '
+    <object width="425" height="350">
+    <param name="movie" value="http://www.youtube.com/v/' . $id . '"></param>
+    <embed src="http://www.youtube.com/v/' . $id . '" type="application/x-shockwave-flash"
+    width="425" height="350"></embed>
+    </object>';
+      break;
+    // vimeo.com
+    case ('vimeo.com') :
+      return '
+    <object width="400" height="300"><param name="allowfullscreen" value="true" />
+    <param name="allowscriptaccess" value="always" />
+    <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=' . $id . '&amp;server=vimeo.com&amp;' .
+      'show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" />
+    <embed src="http://vimeo.com/moogaloop.swf?clip_id=' . $id . '&amp;server=vimeo.com&amp;show_title=1&amp;' .
+      'show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"
+      type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always"
+      width="400" height="300"></embed>
+    </object>';
+      break;
+  }
+
+ }
 
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
 function map_meta_cap_editorial($caps, $cap, $user_id, $args)
