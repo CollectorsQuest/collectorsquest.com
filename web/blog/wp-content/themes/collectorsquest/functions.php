@@ -413,6 +413,9 @@ function video_save_postdata( $post_id ) {
       return;
   }
 
+  if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+    return;
+
   $post_ID = $_POST['post_ID'];
   $url = sanitize_text_field( $_POST['video_url'] );
 

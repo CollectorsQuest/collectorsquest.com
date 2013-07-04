@@ -24,6 +24,14 @@ if ( function_exists('register_sidebar') ) :
     'before_title' => '<h1>',
     'after_title' => '</h1>'
   ));
+
+  register_sidebar(array(
+  'name' => __( 'Video Gallery Sidebar' ),
+  'id' => 'video-gallery-sidebar',
+  'description' => __( 'Widgets in this area will be shown on the right side of video gallery pages.' ),
+  'before_title' => '<h1>',
+  'after_title' => '</h1>'
+));
 endif;
 
 
@@ -32,3 +40,4 @@ require_once 'widget-tags.php';
 require_once 'widget-our-bloggers.php';
 require_once 'widget-other-news.php';
 require_once 'widget-sub-pages.php';
+require_once 'widget-video-playlists.php';

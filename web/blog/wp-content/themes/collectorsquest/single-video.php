@@ -2,6 +2,7 @@
 /**
  * @var $wp_query WP_Query
  */
+
 wp_deregister_script('jquery');
 wp_register_script('jquery', '/wp-content/themes/collectorsquest/js/empty.js', array(), '1.7.2', 1);
 wp_enqueue_script('jquery');
@@ -114,24 +115,13 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
     $layout
   );
 
-
-  if (is_single()) {
-    $sidebar = "singular-sidebar";
-  }
-  elseif (is_page()) {
-    $sidebar = "static-page-sidebar";
-  }
-  else {
-    $sidebar = "non-singular-sidebar";
-  }
-
   $array = array();
   $widgets = get_option('sidebars_widgets');
 
-  if (is_array($widgets[$sidebar]))
+  if (is_array($widgets['video-gallery-sidebar']))
   foreach ($widgets[$sidebar] as $widget) {
     ob_start();
-    $widget = substr($widget,0,strrpos($widget,'-'));
+    $widget = substr($widget, 0, strrpos($widget, '-'));
     the_widget($widget, $args, $instance);
     $widgout = ob_get_clean();
     $array[] = $widgout;
