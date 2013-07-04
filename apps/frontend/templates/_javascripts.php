@@ -132,6 +132,7 @@ if (document.getElementById('social-sharing') !== null)
   $(window).load(function() {
     addthis.init();
     addthis.toolbox('#social-sharing');
+    addthis.toolbox('.social-sharing');
   });
 }
 </script>

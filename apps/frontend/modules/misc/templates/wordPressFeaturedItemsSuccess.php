@@ -3,7 +3,17 @@
 /* @var $cq_layout         string           */
 
   cq_page_title(
-    $wp_post->getPostTitle(), null,
+    $wp_post->getPostTitle() .
+      '<div id="social-sharing" class="pull-right share" style="height: 20px;">' .
+      get_partial(
+        'global/addthis',
+        array(
+          'providers' => array('google+', 'facebook'),
+          'url' => $sf_request->getUri(),
+        )
+      ) .
+      '</div>',
+    null,
     array('class' => 'row-fluid header-bar')
   );
 ?>
@@ -41,6 +51,20 @@
   ?>
 <?php // div not closed intentionally because of pagination ?>
 <?php endif; ?>
+
+<div class="blue-actions-panel spacer-20">
+  <div class="social-sharing pull-right share">
+    <?php
+      include_partial(
+        'global/addthis',
+        array(
+          'image' => $wp_post_image ? cq_image_src($wp_post_image) : '',
+          'url' => $sf_request->getUri(),
+        )
+      );
+    ?>
+  </div>
+</div>
 
 <script>
 $(document).ready(function ()
