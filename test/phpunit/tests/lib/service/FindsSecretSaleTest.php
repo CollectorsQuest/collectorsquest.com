@@ -1,7 +1,5 @@
 <?php
 
-namespace CollectorsQuest\Test;
-
 // tested classes
 require_once get_root_dir() . '/lib/service/FindsSecretSale.class.php';
 
