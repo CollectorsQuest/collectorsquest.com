@@ -18,7 +18,7 @@ class ReordersWpPostMetaItems extends \PHPUnit_Framework_TestCase
   public function testReordersFeaturedItems($input, $reorder, $output)
   {
     $this->assertEquals(
-      \ReordersWpPostMetaItems::getReordereFeaturedItems($input, $reorder),
+      \ReordersWpPostMetaItems::getReorderedFeaturedItems($input, $reorder),
       $output
     );
   }
