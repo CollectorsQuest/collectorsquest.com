@@ -25,19 +25,19 @@ generator:
         batch_actions: {}
         object_actions:
            showHtml:
-             label: "Show Html",
+             label: "Show Html"
              params:
                popup:
                  '0': 'showhtml'
                  '1': 'location,width=720,height=480,top=0,scrollbars=yes'
            showPlain:
-             label: "Show Plain",
+             label: "Show Plain"
              params:
                popup:
                  '0': 'showplain'
                  '1': 'location,width=720,height=480,top=0,scrollbars=yes'
            showHeaders:
-             label: "Show Headers",
+             label: "Show Headers"
              params:
                popup:
                  '0': 'showheaders'
