@@ -22,7 +22,31 @@ register_taxonomy(
 register_taxonomy(
   'playlist', 'video',
   array(
-    'hierarchical' => true, 'label' => 'Playlist'
+    'hierarchical' => true, 'labels' => array(
+    'name'                       => _x( 'Playlists', 'taxonomy general name' ),
+    'singular_name'              => _x( 'Playlist', 'taxonomy singular name' ),
+    'search_items'               => __( 'Search Playlists' ),
+    'popular_items'              => __( 'Popular Playlists' ),
+    'all_items'                  => __( 'All Playlists' ),
+    'parent_item'                => null,
+    'parent_item_colon'          => null,
+    'edit_item'                  => __( 'Edit Playlist' ),
+    'update_item'                => __( 'Update Playlist' ),
+    'add_new_item'               => __( 'Add New Playlist' ),
+    'new_item_name'              => __( 'New Playlist Name' ),
+    'separate_items_with_commas' => __( 'Separate playlists with commas' ),
+    'add_or_remove_items'        => __( 'Add or remove playlists' ),
+    'choose_from_most_used'      => __( 'Choose from the most used playlists' ),
+    'not_found'                  => __( 'No playlists found.' ),
+    'menu_name'                  => __( 'Playlists' ),
+  )
+  )
+);
+// Custon taxonomy for video tags
+register_taxonomy(
+  'video_tag', 'video',
+  array(
+    'hierarchical' => false, 'label' => 'Tags'
   )
 );
 
@@ -381,97 +405,143 @@ function cq_custom_post_type_init()
     'query_var'       => true,
     'menu_position'   => 100,
     'taxonomies'      => array('playlist'),
-    'supports'        => array('title', 'editor', 'comments')
+    'supports'        => array('title', 'editor', 'comments', 'page-attributes')
   ));
 }
 
-// Add input for video url
-add_action( 'add_meta_boxes', 'add_video_url_box' );
-function add_video_url_box() {
-  add_meta_box(
-    'myplugin_sectionid',
-    __( 'Video Url'),
-    'video_url_custom_box',
-    'video', 'normal', 'high'
-  );
+//Configure Video gallery list
+add_filter('manage_video_posts_columns', 'video_columns_head');
+add_action('manage_video_posts_custom_column', 'video_columns_content', 10, 2);
+function video_columns_head($defaults) {
+  $defaults['playlist'] = 'Playlist';
+  $defaults['video_tag'] = 'Tags';
+  $defaults['prev'] = 'Thumbnail';
+
+  if (isset($defaults['thumbnail']))
+  {
+    unset ($defaults['thumbnail']);
+  }
+  return $defaults;
+}
+function video_columns_content($column_name, $post_ID) {
+  if ($column_name == 'prev')
+  {
+    $video_url = get_post_meta($post_ID, '_cq_video_url', true);
+    $prev = video_image($video_url);
+    if ($prev)
+    {
+      echo '<a href="' . $video_url . '" target="_blank"><img class="cq_video_tmb" src="' . $prev . '" /></a>';
+    }
+  }
+  if ($column_name == 'playlist' || $column_name == 'video_tag')
+  {
+    $pls = get_the_terms($post_ID, $column_name);
+    if (is_array($pls))
+    {
+      foreach (array_values($pls) as $k => $pl)
+      {
+        echo sprintf('<a href="%s">%s</a>',
+          admin_url( 'edit-tags.php?action=edit&taxonomy=' . $column_name . '&tag_ID=' . $pl->term_id
+          . '&post_type=video'),
+          $pl->name . ($k+1 < count($pls) ? ', ' : ' '));
+      }
+    }
+  }
 }
 
-/** Render video url input */
-function video_url_custom_box( $post ) {
-  $value = get_post_meta( $post->ID, '_video_url', true );
-  echo '<label for="video_url">';
-  _e('YouTube or Vimeo Url');
-  echo '</label> ';
-  echo '<input type="text" id="video_url" name="video_url" value="' . esc_attr($value) . '" required="required" />';
+//Grab video details to fill in edit form
+add_action('wp_ajax_video_details', 'video_details_callback');
+function video_details_callback() {
+  $data = array();
+
+  $url =  $_POST['url'];
+
+  $data['thumb'] = video_image($url);
+
+  if (strpos($url, 'youtube.com') || strpos($url, 'youtu.be'))
+  {
+    if (strpos($url, 'youtube.com'))
+    {
+      $url = parse_url($url);
+      $vid = parse_str($url['query'], $output);
+      $video_id = $output['v'];
+    }
+    else
+    {
+      $video_id=explode('youtu.be/', $url);
+      $video_id=$video_id[1];
+    }
+    $data['video_type'] = 'youtube';
+    $data['video_id'] = $video_id;
+    $json = json_decode(
+      file_get_contents('http://gdata.youtube.com/feeds/api/videos/' . $video_id . '?v=2&alt=json'), true);
+
+    if (isset($json['entry']))
+    {
+      $json = $json['entry'];
+
+      $data['thumb_1'] = $json['media$group']['media$thumbnail'][0]['url']; // Thumbnail 1
+      $data['thumb_2'] = $json['media$group']['media$thumbnail'][1]['url']; // Thumbnail 2
+      $data['thumb_3'] = $json['media$group']['media$thumbnail'][2]['url']; // Thumbnail 3
+      $data['thumb_large'] = $json['media$thumbnail'][3]['url']; // Large thumbnail
+
+      $data['title'] = nl2br($json['title']['$t']);
+      $data['info'] = nl2br($json['media$group']['media$description']['$t']);
+    }
+
+  } // End Youtube
+
+  // Handle Vimeo
+  else if (strpos($url, 'vimeo.com'))
+  {
+    $video_id=explode('vimeo.com/', $url);
+    $video_id=$video_id[1];
+    $data['video_type'] = 'vimeo';
+    $data['video_id'] = $video_id;
+    $xml = simplexml_load_file('http://vimeo.com/api/v2/video/' . $video_id . '.xml');
+
+    foreach ($xml->video as $video)
+    {
+      $data['title'] = (string) $video->title;
+      $data['info'] = (string) $video->description;
+      $data['url'] = (string) $video->url;
+      $data['thumb_small'] = (string) $video->thumbnail_small;
+      $data['thumb_medium'] = (string) $video->thumbnail_medium;
+      $data['thumb_large'] = (string) $video->thumbnail_large;
+     } // End foreach
+  } // End Vimeo
+
+  echo json_encode($data);
+
+  die();
 }
 
-/* Save url for video */
-add_action( 'save_post', 'video_save_postdata' );
-function video_save_postdata( $post_id ) {
-  // Check if the current user is admin and we have correct pos type.
-  if ('video' != $_POST['post_type'] || ! current_user_can('administrator')) {
-      return;
+/**
+ * Get video thumbnail from youtube or vimeo url
+ *
+ * @param $url
+ * @return string
+ */
+function video_image($url){
+  $image_url = parse_url($url);
+  if ($image_url['host'] == 'www.youtube.com' || $image_url['host'] == 'youtube.com')
+  {
+    $array = explode('&', $image_url['query']);
+    return 'http://img.youtube.com/vi/' . substr($array[0], 2) . '/0.jpg';
+  }
+  else if ($image_url['host'] == 'www.youtu.be' || $image_url['host'] == 'youtu.be')
+  {
+    $array = explode('/', $image_url['path']);
+    return 'http://img.youtube.com/vi/' . $array[1] . '/0.jpg';
+  }
+  else if ($image_url['host'] == 'www.vimeo.com' || $image_url['host'] == 'vimeo.com')
+  {
+    $hash = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . substr($image_url['path'], 1).'.php'));
+    return $hash[0]['thumbnail_medium'];
   }
 
-  if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
-    return;
-
-  $post_ID = $_POST['post_ID'];
-  $url = sanitize_text_field( $_POST['video_url'] );
-
-  add_post_meta($post_ID, '_video_url', $url, true)
-    or
-  update_post_meta($post_ID, '_video_url', $url);
+  return '/images/frontend/multimedia/wpPost/308x301.png';
 }
-
-function convert_videos($url) {
-
-  preg_match('@^(?:http://)?([^/]+)@i', $url, $matches);
-  $host = $matches[1];
-  preg_match('/[^.]+\.[^.]+$/', $host, $matches);
-
-  // Pega as variáveis da URL
-  switch ($matches[0]) {
-    case ('youtube.com') : parse_str(parse_url($url, PHP_URL_QUERY)); $id = $v; break; //ok
-    case ('youtu.be') : $exp = explode('/', $url); $id = array_pop($exp); break; //ok
-    case ('vimeo.com') : sscanf(parse_url($url, PHP_URL_PATH), '/%d', $id); break; //ok
-  }
-
-  switch ($matches[0]) {
-    // youtube.com
-    case ('youtube.com') :
-      return '
-    <object width="425" height="350">
-    <param name="movie" value="http://www.youtube.com/v/' . $id . '"></param>
-    <embed src="http://www.youtube.com/v/' . $id . '" type="application/x-shockwave-flash"
-    width="425" height="350"></embed>
-    </object>';
-      break;
-    // youtu.be
-    case ('youtu.be') :
-      return '
-    <object width="425" height="350">
-    <param name="movie" value="http://www.youtube.com/v/' . $id . '"></param>
-    <embed src="http://www.youtube.com/v/' . $id . '" type="application/x-shockwave-flash"
-    width="425" height="350"></embed>
-    </object>';
-      break;
-    // vimeo.com
-    case ('vimeo.com') :
-      return '
-    <object width="400" height="300"><param name="allowfullscreen" value="true" />
-    <param name="allowscriptaccess" value="always" />
-    <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=' . $id . '&amp;server=vimeo.com&amp;' .
-      'show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" />
-    <embed src="http://vimeo.com/moogaloop.swf?clip_id=' . $id . '&amp;server=vimeo.com&amp;show_title=1&amp;' .
-      'show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"
-      type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always"
-      width="400" height="300"></embed>
-    </object>';
-      break;
-  }
-
- }
 
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
 function map_meta_cap_editorial($caps, $cap, $user_id, $args)
@@ -1382,4 +1452,99 @@ function add_admin_message($message, $error = false)
   } else {
     setcookie('wp-admin-messages-normal', $_COOKIE['wp-admin-messages-normal'] . '@@' . $message, time()+5);
   }
+}
+
+/**
+ * Return array of widgets for sidebar, see dynamic_sidebar()
+ *
+ * @param $index
+ * @return array
+ */
+function get_sidebar_widgets($index)
+{
+  global $wp_registered_sidebars, $wp_registered_widgets;
+  $result = array();
+
+  if ( is_int($index) )
+  {
+    $index = "sidebar-$index";
+  }
+  else
+  {
+    $index = sanitize_title($index);
+    foreach ( (array) $wp_registered_sidebars as $key => $value )
+    {
+      if ( sanitize_title($value['name']) == $index )
+      {
+        $index = $key;
+        break;
+      }
+    }
+  }
+
+  $sidebars_widgets = wp_get_sidebars_widgets();
+  if ( empty( $sidebars_widgets ) )
+    return false;
+
+  if ( empty($wp_registered_sidebars[$index]) || !array_key_exists($index, $sidebars_widgets)
+    || !is_array($sidebars_widgets[$index]) || empty($sidebars_widgets[$index]) )
+    return false;
+
+  $sidebar = $wp_registered_sidebars[$index];
+
+  $did_one = false;
+  foreach ( (array) $sidebars_widgets[$index] as $id )
+  {
+
+    if ( !isset($wp_registered_widgets[$id]) ) continue;
+
+    $params = array_merge(
+      array( array_merge( $sidebar, array('widget_id' => $id, 'widget_name' => $wp_registered_widgets[$id]['name']) ) ),
+      (array) $wp_registered_widgets[$id]['params']
+    );
+
+    // Substitute HTML id and class attributes into before_widget
+    $classname_ = '';
+    foreach ( (array) $wp_registered_widgets[$id]['classname'] as $cn )
+    {
+      if ( is_string($cn) )
+        $classname_ .= '_' . $cn;
+      elseif ( is_object($cn) )
+        $classname_ .= '_' . get_class($cn);
+    }
+    $classname_ = ltrim($classname_, '_');
+    $params[0]['before_widget'] = sprintf($params[0]['before_widget'], $id, $classname_);
+
+    $params = apply_filters( 'dynamic_sidebar_params', $params );
+
+    $callback = $wp_registered_widgets[$id]['callback'];
+
+    do_action( 'dynamic_sidebar', $wp_registered_widgets[$id] );
+
+    if ( is_callable($callback) )
+    {
+      ob_start();
+      call_user_func_array($callback, $params);
+
+      $result[] = ob_get_clean();
+    }
+  }
+
+  return $result;
+}
+
+//Fix for oembed
+add_filter('http_request_args', 'bal_http_request_args', 100, 1);
+function bal_http_request_args($r)
+{
+  $r['timeout'] = 15;
+  
+  return $r;
+}
+
+add_action('http_api_curl', 'bal_http_api_curl', 100, 1);
+function bal_http_api_curl($handle) //called on line 1315
+{
+  curl_setopt( $handle, CURLOPT_CONNECTTIMEOUT, 15 );
+  curl_setopt( $handle, CURLOPT_TIMEOUT, 15 );
 }

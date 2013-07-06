@@ -17,6 +17,6 @@ include_once 'featured-items-spec.php';
 include_once 'seller-spotlight-spec.php';
 include_once 'market-theme-spec.php';
 include_once 'search-results-spec.php';
-
+include_once 'video-url-spec.php';
 
 /* eof */
