@@ -2,6 +2,21 @@
 /**
  * @var $wp_query WP_Query
  */
+$data = array();
+
+$data['title'] = wp_title('', false);
+$data['the_id'] = get_the_ID();
+$data['is_page'] = is_page();
+$data['is_single'] = is_single();
+$data['is_category'] = is_category();
+$data['is_tag'] = is_tag();
+$data['is_front_page'] = is_front_page();
+$data['is_author'] = is_author();
+
+if (function_exists('bcn_display'))
+{
+  $data['breadcrumbs'] = bcn_display(true);
+}
 
 wp_deregister_script('jquery');
 wp_register_script('jquery', '/wp-content/themes/collectorsquest/js/empty.js', array(), '1.7.2', 1);
@@ -39,10 +54,23 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
     <div class="entry-content span12">
       <?php the_content(); ?>
       <div>
-        <?php echo convert_videos(get_post_meta( $post->ID, '_video_url', true )); ?>
+        <?php echo wp_oembed_get(get_post_meta( $post->ID, '_cq_video_url', true ), array('width' => 620)); ?>
       </div>
     </div>
+
     <br clear="all"/>
+
+    <?php if (has_term('', 'video_tag')): ?>
+      <div>
+          <div class="section-title">
+            <h2>Tags</h2>
+          </div>
+          <?php echo get_the_term_list( $post->ID, 'video_tag', '', ' ', '' ) ?>
+      </div>
+    <?php endif; ?>
+
+    <br clear="all"/>
+
     <div class="entry-meta span12" style="width: 608px;">
       <span class="meta-text">
           <span class="author-info">
@@ -67,7 +95,11 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
         </div>
       <?php endif; ?>
     </div>
+
     <br clear="all"/>
+
+
+
     <div id="comments">
       <?php comments_template(); ?>
     </div>
@@ -87,6 +119,14 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
 ?>
 
 <?php
+$key = md5(serialize($data));
+
+if (function_exists('xcache_set')) {
+  xcache_set($key, $data, 10);
+}
+else {
+  zend_shm_cache_store($key, $data, 10);
+}
 
   switch (SF_ENV)
   {
@@ -115,17 +155,7 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
     $layout
   );
 
-  $array = array();
-  $widgets = get_option('sidebars_widgets');
-
-  if (is_array($widgets['video-gallery-sidebar']))
-  foreach ($widgets[$sidebar] as $widget) {
-    ob_start();
-    $widget = substr($widget, 0, strrpos($widget, '-'));
-    the_widget($widget, $args, $instance);
-    $widgout = ob_get_clean();
-    $array[] = $widgout;
-  }
+  $array = get_sidebar_widgets('static-page-sidebar');
 
   // Make sure the array has at least 9 elements
   $array = array_pad($array, 9, '');
