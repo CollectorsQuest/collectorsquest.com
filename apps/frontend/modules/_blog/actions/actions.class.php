@@ -56,4 +56,11 @@ class _blogActions extends cqFrontendActions
 
     return sfView::SUCCESS;
   }
+
+  public function executeIndex180()
+  {
+    return $this->executeIndex();
+  }
+
+
 }
