@@ -155,7 +155,7 @@ else {
     $layout
   );
 
-  $array = get_sidebar_widgets('static-page-sidebar');
+  $array = get_sidebar_widgets('singular-sidebar');
 
   // Make sure the array has at least 9 elements
   $array = array_pad($array, 9, '');

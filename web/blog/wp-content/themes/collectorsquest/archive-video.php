@@ -122,7 +122,7 @@ $layout = str_replace(
   $layout
 );
 
-$array = get_sidebar_widgets('singular-sidebar');
+$array = get_sidebar_widgets('video-gallery-sidebar');
 
 
 // Make sure the array has at least 9 elements
