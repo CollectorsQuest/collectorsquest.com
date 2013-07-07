@@ -397,11 +397,12 @@ function cq_custom_post_type_init()
       'parent_item_colon'  => ''
     ),
     'public'          => true,
+    'has_archive'     => true,
     'show_ui'         => true,
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => array('slug' => 'video', 'with_front' => false),
+    'rewrite'         => array('slug' => 'videos', 'with_front' => false),
     'query_var'       => true,
     'menu_position'   => 100,
     'taxonomies'      => array('playlist'),
@@ -537,7 +538,7 @@ function video_image($url){
   else if ($image_url['host'] == 'www.vimeo.com' || $image_url['host'] == 'vimeo.com')
   {
     $hash = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . substr($image_url['path'], 1).'.php'));
-    return $hash[0]['thumbnail_medium'];
+    return $hash[0]['thumbnail_large'];
   }
 
   return '/images/frontend/multimedia/wpPost/308x301.png';
@@ -1538,7 +1539,7 @@ add_filter('http_request_args', 'bal_http_request_args', 100, 1);
 function bal_http_request_args($r)
 {
   $r['timeout'] = 15;
-  
+
   return $r;
 }
 

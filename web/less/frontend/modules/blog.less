@@ -1,5 +1,6 @@
 @import "../_variables.less";
 @import "../_mixins.less";
+@import "../_videos.less";
 
 body
 {
@@ -575,5 +576,59 @@ div#upprev_box {
   h5 {
     font-size: 15px;
     margin-bottom: 4px;
+  }
+}
+
+.page-numbers {
+  list-style: none;
+  margin: 0;
+  li {
+    display: inline;
+  }
+}
+.playlists-container-sidebar {
+  .nav {
+    border: 1px solid #CCCCCC;
+    li {
+      line-height: 19px;
+      a {
+        padding-left: 15px!important;
+        padding-right: 0;
+        color: #125375;
+        font-family: 'Chivo',Arial,sans-serif;
+        font-size: 15px;
+        .icon-chevron-right {
+          float: right;
+          display: none;
+        }
+        &:hover {
+          .icon-chevron-right {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-videos-sidebar {
+  .form-search {
+    background-color: #DCECF5;
+    height: 30px;
+    padding: 15px 0 15px 10px;
+    .search-query {
+      width: 95px;
+    }
+    .btn {
+      border-width: 1px;
+      padding: 4px 7px;
+    }
+  }
+}
+
+//Temp styles
+.fixed-right-180 {
+  #sidebar {
+    margin-left: 0;
   }
 }
