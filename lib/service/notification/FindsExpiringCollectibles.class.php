@@ -25,8 +25,9 @@ class FindsExpiringCollectibles
             ->filterByIsSold(false)
             ->findPks($expiring_collectible_ids, $con);
 
-        foreach ($collectibles as $collectible) {
+        foreach ($collectibles as $collectible_for_sale) {
             /* @var $collectible Collectible */
+            $collectible = $collectible_for_sale->getCollectible();
 
             if (!isset($ret[$collectible->getCollectorId()])) {
                 $holder = new ExpiringCollectiblesHolder(

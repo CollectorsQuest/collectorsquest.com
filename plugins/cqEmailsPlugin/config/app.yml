@@ -86,6 +86,11 @@ all:
         subject: "Your PayPal payment has been refunded on Collectors Quest"
         required_params: [ oSeller, oShoppingOrder, oCollectible]
 
+    Notify:
+      expiring_collectibles:
+        subject: "You have {% if oCollectiblesHolder|length == 1 %}one collectible{% else %}{{ oCollectiblesHolder|length }} collectibles{% endif %} about to expire"
+        required_params: [ oSeller, oExpireDate, oCollectiblesHolder, bExpiresToday ]
+
     internal:
       spam_notification_comment:
         subject: "Comment spam reported by {{ oReporterCollector | raw }} on {{ oModelObject | raw }}"
