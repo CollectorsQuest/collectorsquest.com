@@ -48,7 +48,7 @@
           {
             $class = 'alert';
           }
-          if ($package_transaction->isExpired())
+          if ($package_transaction->isExpired() || 0 == $package_transaction->getCreditsRemaining())
           {
             $class = 'expired';
           }
