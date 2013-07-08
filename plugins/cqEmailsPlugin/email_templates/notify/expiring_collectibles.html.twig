@@ -20,7 +20,7 @@
         today
     {% else %}
         on {{ oExprieDate|date('F j, l') }}
-    {%- endif -%}:
+    {% endif %}:
 </p>
 
 {% for oCollectible in oCollectiblesHolder %}

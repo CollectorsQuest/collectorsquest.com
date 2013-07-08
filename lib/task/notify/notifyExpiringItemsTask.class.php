@@ -2,7 +2,7 @@
 
 
 /**
- * Description of notifyExpiringItems
+ * Notify seller that an unsold item is about to expire 1 week before and on the day
  *
  * @author      Ivan Plamenov Tanev aka CraftyShadow <vankata.t@gmail.com>
  */
@@ -47,7 +47,7 @@ EOF;
    */
   public function notifyByTime($time, PropelPDO $con = null)
   {
-    $this->log('Searching for items expiring in:' . (string) $time);
+    $this->log('Searching for items expiring in: ' . (string) $time);
 
     $cqEmail = new cqEmail($this->getMailer());
     $finder = new FindsExpiringCollectibles();
