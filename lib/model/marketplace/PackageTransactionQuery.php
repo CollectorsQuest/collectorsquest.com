@@ -51,4 +51,14 @@ class PackageTransactionQuery extends BasePackageTransactionQuery
       ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
   }
 
+  /**
+   * @param   string $column_name
+   * @return  PackageTransactionQuery
+   */
+  public function withCreditsLeftColumn($column_name = 'CreditsLeft')
+  {
+    return $this
+      ->withColumn('SUM(PackageTransaction.Credits) - SUM(PackageTransaction.CreditsUsed)', $column_name);
+  }
+
 }
