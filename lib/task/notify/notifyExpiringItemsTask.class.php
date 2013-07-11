@@ -59,7 +59,7 @@ EOF;
 
     foreach ($expires as $holder)
     {
-      $this->log('Seinding email to: '. $holder->getCollector()->getEmail());
+      $this->log('Sending email to: '. $holder->getCollector()->getEmail());
       /* @var $holder ExpiringCollectiblesHolder */
 
       $cqEmail->send('Notify/expiring_collectibles', array(

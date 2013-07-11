@@ -65,7 +65,7 @@ EOF;
     {
       /* @var $collector Collector */
 
-      $this->log('Seinding email to: '. $collector->getEmail());
+      $this->log('Sending email to: '. $collector->getEmail());
 
       if ($with_discount)
       {

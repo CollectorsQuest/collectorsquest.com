@@ -22,7 +22,7 @@ class FindsOutOfCreditsCollectorsTest extends sfWebTestCase
 
     public function test_it_finds_ran_outs_for_date()
     {
-        $date = new DateTime('+1 week');
+        $date = new DateTime('-1 month');
         $ran_outs = $this->finder->findRanOutOn($date);
         $this->assertCount(0, $ran_outs);
 

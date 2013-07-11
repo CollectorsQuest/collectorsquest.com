@@ -32,13 +32,14 @@ class FindsOutOfCreditsCollectors
         // package on the desired date
         $ran_out_on_date_collector_ids = PackageTransactionCreditQuery::create()
             ->filterByPackageTransactionId($ran_out_package_transaction_ids)
-            ->groupByPackageTransactionId()
             ->joinPackageTransaction()
             ->withColumn('PackageTransaction.CollectorId', 'CollectorId')
             ->withColumn('MAX(PackageTransactionCredit.CreatedAt)', 'LatestCreatedAt')
+            ->groupByPackageTransactionId()
+            ->groupBy('CollectorId')
             ->having('DATE(LatestCreatedAt) = ?', $date->format('Y-m-d'), PDO::PARAM_STR)
-            ->select(array('CollectorId', 'LatestCreatedAt'))
-            ->find($con)->toKeyValue('CollectorId', 'CollectorId');
+            ->select(array('PackageTransactionId', 'CollectorId', 'LatestCreatedAt'))
+            ->find($con)->toKeyValue('PackageTransactionId', 'CollectorId');
 
         // and finally return an array of collector objects, indexed by collector id
         return CollectorQuery::create()
