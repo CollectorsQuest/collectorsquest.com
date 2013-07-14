@@ -8,7 +8,7 @@ class Promotion extends BasePromotion
    */
   public function getAmountTypeString()
   {
-    return PromotionPeer::DISCOUNT_FIXED == $this->getAmountType()
+    return PromotionPeer::AMOUNT_TYPE_FIX == $this->getAmountType()
       ? '$'
       : '%';
   }
