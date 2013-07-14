@@ -90,6 +90,9 @@ all:
       expiring_collectibles:
         subject: "You have {% if oCollectiblesHolder|length == 1 %}one collectible{% else %}{{ oCollectiblesHolder|length }} collectibles{% endif %} about to expire"
         required_params: [ oSeller, oExpireDate, oCollectiblesHolder, bExpiresToday ]
+      ran_out_of_credits:
+        subject: "You have ran out of credits on Collectors quest"
+        required_params: [ oSeller, oRanOutDate, sDiscountCode ]
 
     internal:
       spam_notification_comment:

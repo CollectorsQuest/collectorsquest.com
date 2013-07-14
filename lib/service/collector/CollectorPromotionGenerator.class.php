@@ -27,6 +27,13 @@ class CollectorPromotionGenerator
             $this->generatePromotionName($collector, $type, $amount)
         );
 
+        $promo->setPromotionCode(
+            $this->generatePromotionCode($collector, $type, $amount)
+        );
+
+        $promo->setExpiryDate(new DateTime('+1 month'));
+        $promo->setNoOfTimeUsed(1);
+
         return $promo;
     }
 

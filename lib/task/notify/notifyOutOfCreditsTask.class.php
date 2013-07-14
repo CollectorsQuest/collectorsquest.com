@@ -17,7 +17,7 @@ class notifyOutOfCreditsTask extends sfBaseTask
 
     $this->namespace        = 'notify';
     $this->name             = 'out-of-credits';
-    $this->briefDescription = '';
+    $this->briefDescription = 'Notifies sellers that they have ran out of credits';
     $this->detailedDescription = <<<EOF
 The [notify:out-of-credits|INFO] task notifies collectors that they are out of credits
 and advices them to buy more. The second notification includes a 20% discount
@@ -50,7 +50,7 @@ EOF;
    */
   public function notifyByTime($time, $with_discount, PropelPDO $con = null)
   {
-    $this->log('Searching for sellers out of credits for: ' . (string) $time);
+    $this->log('Searching for sellers that ran out of credits on: ' . (string) $time);
 
     $cqEmail = new cqEmail($this->getMailer());
     $finder = new FindsOutOfCreditsCollectors();
@@ -69,19 +69,21 @@ EOF;
 
       if ($with_discount)
       {
-        $discount = $discounter->forCollector($collector);
+        $promo = $discounter->generateAndSave(
+            $collector, PromotionPeer::AMOUNT_TYPE_PERCENTAGE, 20
+        );
       }
       else
       {
-        $discount = false;
+        $promo = false;
       }
 
-      $cqEmail->send('Notify/out_of_credits', array(
+      $cqEmail->send('Notify/ran_out_of_credits', array(
           'to' => $collector->getEmail(),
           'params' => array(
               'oSeller' => $collector->getSeller($con),
               'oRanOutDate' => $date_ran_out,
-              'sDiscountCode' => $discount,
+              'sDiscountCode' => $promo ? $promo->getPromotionCode() : null,
           ),
       ));
     }

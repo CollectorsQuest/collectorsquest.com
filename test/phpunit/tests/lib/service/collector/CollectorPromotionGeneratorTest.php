@@ -53,11 +53,15 @@ class CollectorPromotionGeneratorTest extends sfWebTestCase
         );
 
         $this->assertInstanceOf('Promotion', $promo);
-        $this->assertEquals($promo->getAmountType(), 'Percentage');
-        $this->assertEquals($promo->getAmount(), 20);
+        $this->assertEquals('Percentage', $promo->getAmountType());
+        $this->assertEquals(20, $promo->getAmount());
         $this->assertEquals(
-            $promo->getPromotionName(), 'Tester - 20% off ['.date('Y-m-d').']'
+            'Tester - 20% off ['.date('Y-m-d').']', $promo->getPromotionName()
         );
+        $this->assertRegExp('/CQ-20\%OFF-\w{8}/', $promo->getPromotionCode());
+        $this->assertNotNull($promo->getExpiryDate());
+        $this->assertGreaterThan(new DateTime(), $promo->getExpiryDate(null));
+        $this->assertEquals($promo->getNoOfTimeUsed(), 1);
     }
 
     public function test_promotion_naming_percent()

@@ -17,7 +17,7 @@ class notifyExpiringItemsTask extends sfBaseTask
 
     $this->namespace        = 'notify';
     $this->name             = 'expiring-items';
-    $this->briefDescription = '';
+    $this->briefDescription = 'Notifies sellers that they have expiring items';
     $this->detailedDescription = <<<EOF
 The [notify:expiring-items|INFO] task notifies collectors of expiring items
 
@@ -68,7 +68,7 @@ EOF;
               'oSeller' => $holder->getCollector()->getSeller($con),
               'oExpireDate' => $holder->getExpireDate(),
               'oCollectiblesHolder' => $holder,
-              // diff between 2 DateTime objects, formatted to `a` - Total number of days
+              // diff between 2 DateTime obj, formatted to "a" (total number of days)
               'bExpiresToday' => 0 == $holder->getExpireDate()->diff($now)->format('%a'),
           ),
       ));
