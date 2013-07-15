@@ -101,38 +101,9 @@ class aetnActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executePawnStars(sfWebRequest $request)
+  public function executePawnStars()
   {
-    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
-
-    $collection = CollectorCollectionQuery::create()->findOneById($pawn_stars['collection']);
-    $this->forward404Unless($collection instanceof CollectorCollection);
-
-    /**
-     * Increment the number of views
-     */
-    $this->incrementCounter($collection, 'NumViews');
-
-    $q = FrontendCollectionCollectibleQuery::create()
-      ->filterByCollectionId($pawn_stars['collection'])
-      ->orderByPosition(Criteria::ASC)
-      ->orderByUpdatedAt(Criteria::ASC);
-
-    $pager = new PropelModelPager($q, 12);
-    $pager->setPage($request->getParameter('page', 1));
-    $pager->init();
-    $this->pager = $pager;
-
-    // Make the Collection available in the sidebar
-    $this->setComponentVar('collection', $collection, 'sidebarPawnStars');
-
-    // Set the OpenGraph meta tags
-    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_pawn_stars'));
-
-    // Set Canonical Url meta tag
-    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_pawn_stars'));
-
-    return sfView::SUCCESS;
+    return $this->redirect('@homepage', 301);
   }
 
   public function executePickedOff(sfWebRequest $request)

@@ -19,9 +19,7 @@ class aetnComponents extends cqFrontendComponents
 
   public function executeSidebarPawnStars()
   {
-    $this->collection = $this->getVar('collection');
-
-    return sfView::SUCCESS;
+    return sfView::NONE;
   }
 
   public function executeSidebarPickedOff()

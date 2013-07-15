@@ -164,7 +164,7 @@ class collectionsComponents extends cqFrontendComponents
           $collection_ids = cqFunctions::explode(',', $values['cq_collection_ids']);
 
           // Adding American Pickers and Pawn Stars at the top
-          $collection_ids = array_merge(array(2842, 2841), $collection_ids);
+          $collection_ids = array_merge(array(2842), $collection_ids);
 
           /** @var $query FrontendCollectorCollectionQuery */
           $query = FrontendCollectorCollectionQuery::create()

@@ -11,10 +11,6 @@ americanRestorationSuccess:
   components:
     sidebar_300: [aetn, sidebarAmericanRestoration]
 
-pawnStarsSuccess:
-  components:
-    sidebar_300: [aetn, sidebarPawnStars]
-
 pickedOffSuccess:
   components:
     sidebar_300: [aetn, sidebarPickedOff]

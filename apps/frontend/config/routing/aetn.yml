@@ -28,7 +28,7 @@ aetn_franks_picks_alternative:
 
 aetn_pawn_stars:
   url: /history/pawn-stars
-  param: { module: aetn, action: pawnStars }
+  param: { module: general, action: redirect, route: 'homepage'}
   requirements: { sf_method: [GET] }
 
 aetn_picked_off:
