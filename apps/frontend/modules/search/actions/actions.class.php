@@ -49,6 +49,7 @@ class searchActions extends cqFrontendActions
     }
 
     // Setting the user preference for the adverts display type (grid or list)
+    /* display toggling currently disabled * /
     if ($request->getParameter('display'))
     {
       switch ($request->getParameter('display'))
@@ -62,6 +63,10 @@ class searchActions extends cqFrontendActions
           break;
       }
     }
+    /* */
+
+    // force display to always be "grid", because "list" templates are missing
+    $this->getUser()->setAttribute('display', 'grid', 'search');
 
     switch ($request->getParameter('s'))
     {
