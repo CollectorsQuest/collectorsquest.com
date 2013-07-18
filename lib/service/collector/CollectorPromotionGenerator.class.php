@@ -19,16 +19,17 @@ class CollectorPromotionGenerator
         $this->validateType($type);
         $this->validateAmount($amount);
 
-        $promo = new Promotion();
+        $promo_code = $this->generatePromotionCode($collector, $type, $amount);
+
+        $promo = PromotionQuery::create()
+            ->filterByPromotionCode($promo_code)
+            ->findOneOrCreate();
+
         $promo->setAmountType($type);
         $promo->setAmount($amount);
 
         $promo->setPromotionName(
             $this->generatePromotionName($collector, $type, $amount)
-        );
-
-        $promo->setPromotionCode(
-            $this->generatePromotionCode($collector, $type, $amount)
         );
 
         $promo->setExpiryDate(new DateTime('+1 month'));
