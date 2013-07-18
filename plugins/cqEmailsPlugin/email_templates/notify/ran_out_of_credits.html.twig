@@ -11,8 +11,8 @@
 
 <p>
   Consider
-  {{ link_to('purchasing more credits', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }}
-  today. We'd love to have you back.
+  {{ link_to('purchasing more credits', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }} today.
+  {{ sDiscountCode ? "Need more incentive?" : "We'd love to have you back." }}
 </p>
 
 {% if sDiscountCode %}

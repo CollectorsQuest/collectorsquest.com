@@ -14,25 +14,33 @@
 
 {% for oCollectible in oCollectiblesHolder %}
 <p>
-  {{ link_to_collectible(oCollectible, 'text', {absolute: true}) }}
+  {{ image_tag_multimedia(oCollectible.getPrimaryImage(), '75x75', {'style': 'float: left;'}) }} <span style="float: left; padding-left: 10px;">{{ link_to_collectible(oCollectible, 'text', {absolute: true}) }}</span>
+  <br style="clear: both" />
 </p>
 {% endfor %}
 
-{% if bExpiresToday and oSeller.hasPackageCredits %}
+{% if bExpiresToday %}
+    {% if oSeller.hasPackageCredits %}
+    <p>
+      <br />
+      Relist your {{ bIsSingleItem ? 'item' : 'items' }} now by
+      {{ link_to('clicking here', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@mycq_marketplace_credit_history?filter_by=expired', true)}", {absolute: true}) }}.
+      <br />
+    </p>
+    {% else %}
+    <p>
+      <br />
+      {{ link_to('Purchase some credits', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }}
+      today and relist your {{ bIsSingleItem ? 'item' : 'items' }}.
+      <br />
+    </p>
+    {% endif %}
+{% else %}
 <p>
-  <br />
-  Consider relisting {{ bIsSingleItem ? 'it' : 'them' }}
-  {{ link_to('here', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@mycq_marketplace_credit_history?filter_by=expired', true)}", {absolute: true}) }}.
-  <br />
-</p>
-{% endif %}
-{% if bExpiresToday and not oSeller.hasPackageCredits %}
-<p>
-  <br />
-  Consider
-  {{ link_to('purchasing some credits', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }}
-  today and relisting your {{ bIsSingleItem ? 'item' : 'items' }}.
-  <br />
+      <br />
+      Extend your {{ bIsSingleItem ? 'listing' : 'listings' }} now by
+      {{ link_to('clicking here', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@mycq_marketplace_credit_history?filter_by=expired', true)}", {absolute: true}) }}.
+      <br />
 </p>
 {% endif %}
 
