@@ -50,9 +50,10 @@ class PackageTransaction extends BasePackageTransaction
    */
   public function isExpired($within = '0 days', $now = null)
   {
-    $now = strtotime($within, null === $now ? time() : $now);
+    $compare = strtotime($within, null === $now ? time() : $now);
+    $compare = DateTime::createFromFormat('U', $now);
 
-    return $this->getExpiryDate('U') < $now;
+    return $this->getExpiryDate(null)->format('Ymd') <= $compare->format('Ymd');
   }
 
 }

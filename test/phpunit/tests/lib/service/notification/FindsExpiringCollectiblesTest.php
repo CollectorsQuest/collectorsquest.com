@@ -28,13 +28,13 @@ class FindsExpiringCollectiblesTest extends sfWebTestCase
 
         $ivan = CollectorPeer::retrieveByUsername('ivan.ivanov');
 
-        $date = new DateTime('+1 day -1 hour');
+        $date = new DateTime('+1 day');
         $expires = $this->finder->findExpiringOn($date);
         $this->assertArrayHasKey($ivan->getId(), $expires);
         $holder = $expires[$ivan->getId()];
         $this->assertInstanceOf('ExpiringCollectiblesHolder', $holder);
         $this->assertCount(1, $holder);
-        $this->assertSame($date, $holder->getExpireDate());
+        $this->assertSame($date->format('Ymd'), $holder->getExpireDate('Ymd'));
     }
 
 }

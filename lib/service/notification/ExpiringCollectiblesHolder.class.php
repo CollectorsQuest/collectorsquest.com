@@ -18,11 +18,18 @@ class ExpiringCollectiblesHolder extends CollectorCollectiblesHolder
     }
 
     /**
-     * @return  DateTime
+     * @param   mixed $format Return a formatted datetime string or DateTime object
+     * @return  DateTime|string
      */
-    public function getExpireDate()
+    public function getExpireDate($format = null)
     {
-        return $this->expire_date;
+        if (null === $format) {
+            return $this->expire_date;
+        } elseif (null !== $this->expire_date) {
+            return $this->expire_date->format($format);
+        } else {
+            return null;
+        }
     }
 
 }

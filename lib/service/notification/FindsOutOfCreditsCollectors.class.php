@@ -22,7 +22,7 @@ class FindsOutOfCreditsCollectors
         // but the package transaction has not yet expired
         $ran_out_package_transaction_ids = PackageTransactionQuery::create()
             ->paidFor()
-            ->where('PackageTransaction.ExpiryDate >= NOW()')
+            ->where('PackageTransaction.ExpiryDate >= DATE(NOW())')
             ->withColumn('MAX(PackageTransaction.Id)', 'LastTransactionId')
             ->withCreditsLeftColumn()
             ->having('CreditsLeft = ?', 0, PDO::PARAM_INT)

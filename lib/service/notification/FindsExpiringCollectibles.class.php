@@ -13,10 +13,7 @@ class FindsExpiringCollectibles
     {
         $ret = array();
         $expiring_collectible_ids = PackageTransactionCreditQuery::create()
-            ->filterByExpiryDate(array(
-                'min' => $date->format('Y-m-d 00:00:00'),
-                'max' => $date->format('Y-m-d 23:59:59'),
-            ))
+            ->filterByExpiryDate($date->format('Y-m-d'))
             ->select('CollectibleId')
             ->find($con)->toArray();
 
