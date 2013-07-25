@@ -47,7 +47,7 @@ EOF;
    */
   public function notifyByTime($time, PropelPDO $con = null)
   {
-    $this->log('Searching for items expiring in: ' . (string) $time);
+    $this->log('Searching for items expiring: ' . (string) $time);
 
     $cqEmail = new cqEmail($this->getMailer());
     $finder = new FindsExpiringCollectibles();

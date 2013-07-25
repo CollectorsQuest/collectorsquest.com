@@ -50,7 +50,7 @@ EOF;
    */
   public function notifyByTime($time, $with_discount, PropelPDO $con = null)
   {
-    $this->log('Searching for sellers that ran out of credits on: ' . (string) $time);
+    $this->log('Searching for sellers that ran out of credits: ' . (string) $time);
 
     $cqEmail = new cqEmail($this->getMailer());
     $finder = new FindsOutOfCreditsCollectors();

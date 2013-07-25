@@ -1,26 +1,15 @@
 {% extends "common/base.html.twig" %}
 
 {% block content %}
+{% set bIsSingleItem = (oCollectiblesHolder | length == 1 ) %}
 
 <p style="margin-bottom: 10px; font-weight: bold;">
   Hello from CollectorsQuest.com!
 </p>
 
 <p>
-  We noticed that you have
-    {% if oCollectiblesHolder | length  == 1 %}
-        one collectible
-    {% else %}
-        some collectibles
-    {% endif %}
-
-    about to expire
-
-    {% if bExpiresToday %}
-        today
-    {% else %}
-        on {{ oExprieDate|date('F j, l') }}
-    {% endif %}:
+  We noticed that you have {{ bIsSingleItem ? 'one collectible' : 'some collectibles' }}
+  about to expire {{ bExpiresToday ? 'today' : 'on ' ~ oExprieDate|date('F j, l') }}:
 </p>
 
 {% for oCollectible in oCollectiblesHolder %}
@@ -31,15 +20,15 @@
 
 {% if bExpiresToday and oSeller.hasPackageCredits %}
 <p>
-  Consider relisting them
-  {{ link_to('here!', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@mycq_marketplace_credit_history?filter_by=expired', true)}", {absolute: true}) }}
+  Consider relisting {{ bIsSingleItem ? 'it' : 'them' }}
+  {{ link_to('here', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@mycq_marketplace_credit_history?filter_by=expired', true)}", {absolute: true}) }}.
 </p>
 {% endif %}
 {% if not oSeller.hasPackageCredits %}
 <p>
   Consider
-  {{ link_to('purchasing some credits today', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }}
-  and relisting your items!
+  {{ link_to('purchasing some credits', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }}
+  today and relisting your {{ bIsSingleItem ? 'item' : 'items' }}.
 </p>
 {% endif %}
 
