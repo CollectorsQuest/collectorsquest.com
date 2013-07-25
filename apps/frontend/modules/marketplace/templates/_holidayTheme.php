@@ -6,62 +6,65 @@
 <div id="holiday-market-theme" class="collectibles-for-sale-3x-big-wrapper">
   <div class="row">
     <div class="row-content" style="margin-left: <?= $sf_request->isMobileLayout() ? '12' : '24'; ?>px;">
+      <?php foreach ($pager->getResults() as $i => $collectible): ?>
 
-      <?php if ($pager->getPage() === 1): ?>
-        <?php if (!isset($wp_post)): ?>
-          <div style="float: left; margin-left: 15px; margin-right: 6px;">
+          <?php if ($pager->getPage() === 1 && $i == 0): ?>
+            <!-- show info block for first page first item -->
+            <?php if (!isset($wp_post)): ?>
+              <div style="float: left; margin-left: 15px; margin-right: 6px;">
+                <?php
+                  echo link_to(
+                    image_tag('headlines/2012-0883_FP_MarketLanding_296x605_FIN.jpg',
+                      array(
+                        'alt' => 'One-of-a-kind finds picked fresh from Frank the host of American Pickers',
+                        'size' => '296x605'
+                      )
+                    ),
+                    '@aetn_franks_picks'
+                  );
+                ?>
+              </div>
+            <?php else: ?>
+              <div id="collectible_for_sale_0_grid_view_square_big"
+                   class="span6 collectible_for_sale_grid_view_square_big fade-white link
+                          <?= strtolower(date('F', $sf_params->get('time', time()))); ?>">
+
+                <div style="color: #fff; padding: 20px; font-size: 14px;">
+                  <?= $wp_post->getPostContent(); ?>
+                </div>
+              </div>
+            <?php endif; ?>
+
+          <?php else: ?>
+            <!-- show a normal item -->
+
             <?php
-              echo link_to(
-                image_tag('headlines/2012-0883_FP_MarketLanding_296x605_FIN.jpg',
-                  array(
-                    'alt' => 'One-of-a-kind finds picked fresh from Frank the host of American Pickers',
-                    'size' => '296x605'
-                  )
-                ),
-                '@aetn_franks_picks'
+              /* @var $collectible Collectible */
+              // set the link to open modal dialog
+              $ajax_url = url_for('ajax_marketplace',
+                array(
+                  'section' => 'collectible',
+                  'page' => 'forSale',
+                  'id' => $collectible->getId()
+                )
+              );
+              $url = url_for('collectible_by_slug', $collectible);
+
+              include_partial(
+                'marketplace/collectible_for_sale_grid_view_square_big',
+                array(
+                  'collectible_for_sale' => $collectible->getCollectibleForSale(),
+                  'url' => $url, 'i' => $collectible->getId(),
+                  'lazy_image' => false,
+                  'link_parameters' => array(
+                    'data-ajax-url' => $ajax_url
+                  ),
+                )
               );
             ?>
-          </div>
-        <?php else: ?>
-          <div id="collectible_for_sale_0_grid_view_square_big"
-               class="span6 collectible_for_sale_grid_view_square_big fade-white link
-                      <?= strtolower(date('F', $sf_params->get('time', time()))); ?>">
 
-            <div style="color: #fff; padding: 20px; font-size: 14px;">
-              <?= $wp_post->getPostContent(); ?>
-            </div>
-          </div>
         <?php endif; ?>
-      <?php endif; ?>
-
-      <?php
-        /* @var $collectible Collectible */
-        foreach ($pager->getResults() as $collectible)
-        {
-          // set the link to open modal dialog
-          $ajax_url = url_for('ajax_marketplace',
-            array(
-              'section' => 'collectible',
-              'page' => 'forSale',
-              'id' => $collectible->getId()
-            )
-          );
-          $url = url_for('collectible_by_slug', $collectible);
-
-          include_partial(
-            'marketplace/collectible_for_sale_grid_view_square_big',
-            array(
-              'collectible_for_sale' => $collectible->getCollectibleForSale(),
-              'url' => $url, 'i' => $collectible->getId(),
-              'lazy_image' => false,
-              'link_parameters' => array(
-                'data-ajax-url' => $ajax_url
-              ),
-            )
-          );
-        }
-      ?>
-
+      <?php endforeach; ?>
     </div>
   </div>
   <div id="pages" class="spacer-bottom-15">

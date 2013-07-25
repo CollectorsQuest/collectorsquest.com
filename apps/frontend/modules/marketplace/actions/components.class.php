@@ -244,12 +244,13 @@ class marketplaceComponents extends cqFrontendComponents
 
       $pager = new PropelModelPager($q);
       $pager->setPage($page);
-      $pager->setMaxPerPage(($page === 1) ? 5 : 6);
+      $pager->setMaxPerPage(6);
       $pager->init();
 
       $this->pager = $pager;
       $this->wp_post = $wp_post;
       $this->t = $t;
+
       return sfView::SUCCESS;
     }
 
