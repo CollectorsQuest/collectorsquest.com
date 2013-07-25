@@ -849,14 +849,14 @@ class mycqActions extends cqFrontendActions
     $this->has_no_credits = true;
     foreach ($this->package_transactions as $package)
     {
-      $now = new DateTime();
       /* @var $package PackageTransaction */
       if (
-        $package->getCredits() - $package->getCreditsUsed() > 0 &&
-        $package->getExpiryDate(null) > $now
+        $package->getCreditsRemaining() > 0 &&
+        !$package->isExpired()
       )
       {
         $this->has_no_credits = false;
+        break;
       }
     }
 
