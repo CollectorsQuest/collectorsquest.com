@@ -31,7 +31,7 @@
   </div>
 </td>
 <td>
-  <?= $collectible_for_sale->isForSale() ? $collectible_for_sale->getExpiryDate($format = 'F j, Y') : '-'; ?>
+  <?= $collectible_for_sale->isForSale() ? $collectible_for_sale->getExpiryDate($format = 'F jS, Y') : '-'; ?>
 </td>
 <td class="status">
   <?= ucfirst($collectible_for_sale->getStatus()); ?>

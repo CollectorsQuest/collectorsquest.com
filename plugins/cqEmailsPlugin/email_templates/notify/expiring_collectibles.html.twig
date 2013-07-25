@@ -9,7 +9,7 @@
 
 <p>
   We noticed that you have {{ bIsSingleItem ? 'one collectible' : 'some collectibles' }}
-  about to expire {{ bExpiresToday ? 'today' : 'on ' ~ oExprieDate|date('F j, l') }}:
+  about to expire {{ bExpiresToday ? 'today' : 'on ' ~ oExpiryDate|date('F jS, l') }}:
 </p>
 
 {% for oCollectible in oCollectiblesHolder %}

@@ -28,6 +28,7 @@
     <th>Credits Remaining</th>
     <th>Purchased On</th>
     <th>Expires On</th>
+
     <th>Status</th>
   </tr>
   </thead>
@@ -65,8 +66,8 @@
     <td><?= PackagePeer::PACKAGE_ID_UNLIMITED == $package_transaction->getPackageId()
       ? 'unlimited'
       : $package_transaction->getCreditsRemaining(); ?></td>
-    <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
-    <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
+    <td><?= $package_transaction->getCreatedAt('F jS, Y'); ?></td>
+    <td><?= $package_transaction->getExpiryDate('F jS, Y'); ?></td>
     <td>
       <?php
       switch ($class) {
