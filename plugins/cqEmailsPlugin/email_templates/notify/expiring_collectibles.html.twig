@@ -20,15 +20,19 @@
 
 {% if bExpiresToday and oSeller.hasPackageCredits %}
 <p>
+  <br />
   Consider relisting {{ bIsSingleItem ? 'it' : 'them' }}
   {{ link_to('here', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@mycq_marketplace_credit_history?filter_by=expired', true)}", {absolute: true}) }}.
+  <br />
 </p>
 {% endif %}
-{% if not oSeller.hasPackageCredits %}
+{% if bExpiresToday and not oSeller.hasPackageCredits %}
 <p>
+  <br />
   Consider
   {{ link_to('purchasing some credits', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }}
   today and relisting your {{ bIsSingleItem ? 'item' : 'items' }}.
+  <br />
 </p>
 {% endif %}
 

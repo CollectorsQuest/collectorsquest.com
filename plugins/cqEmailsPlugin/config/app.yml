@@ -91,7 +91,7 @@ all:
         subject: "You have {% if oCollectiblesHolder|length == 1 %}one collectible{% else %}{{ oCollectiblesHolder|length }} collectibles{% endif %} about to expire {{ bExpiresToday ? 'today' : 'on ' ~ oExpiryDate|date('F jS, l') }}"
         required_params: [ oSeller, oExpiryDate, oCollectiblesHolder, bExpiresToday ]
       ran_out_of_credits:
-        subject: "You have ran out of credits on Collectors quest"
+        subject: "You have ran out of credits on Collectors quest {% if sDiscountCode %} - start selling again with a 20% discount from us{% endif %}"
         required_params: [ oSeller, oRanOutDate, sDiscountCode ]
 
     internal:
