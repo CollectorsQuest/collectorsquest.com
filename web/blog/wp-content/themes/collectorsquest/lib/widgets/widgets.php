@@ -28,10 +28,18 @@ if ( function_exists('register_sidebar') ) :
   register_sidebar(array(
   'name' => __( 'Video Gallery Sidebar' ),
   'id' => 'video-gallery-sidebar',
-  'description' => __( 'Widgets in this area will be shown on the right side of video gallery pages.' ),
+  'description' => __( 'Widgets in this area will be shown on the right side of video gallery pages. Width 180px.' ),
   'before_title' => '<h1>',
   'after_title' => '</h1>'
-));
+  ));
+
+  register_sidebar(array(
+    'name' => __( 'Video Page Sidebar' ),
+    'id' => 'video-page-sidebar',
+    'description' => __( 'Widgets in this area will be shown on the right side of single video pages.' ),
+    'before_title' => '<h1>',
+    'after_title' => '</h1>'
+  ));
 endif;
 
 

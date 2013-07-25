@@ -10,7 +10,7 @@ class cq_search_videos_widget extends WP_Widget {
   public function __construct() {
     parent::__construct(
       'cq_search_videos_widget', // Base ID
-      'Search Videos Box', // Name
+      'Videos Search Box', // Name
       array( 'description' => __( 'Input box for video search.', 'text_domain' ), ) // Args
     );
   }
