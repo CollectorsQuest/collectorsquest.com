@@ -34,7 +34,7 @@ class FindsExpiringCollectiblesTest extends sfWebTestCase
         $holder = $expires[$ivan->getId()];
         $this->assertInstanceOf('ExpiringCollectiblesHolder', $holder);
         $this->assertCount(1, $holder);
-        $this->assertSame($date->format('Ymd'), $holder->getExpireDate('Ymd'));
+        $this->assertSame($date->format('Ymd'), $holder->getExpiryDate('Ymd'));
     }
 
 }

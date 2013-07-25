@@ -51,7 +51,6 @@ EOF;
 
     $cqEmail = new cqEmail($this->getMailer());
     $finder = new FindsExpiringCollectibles();
-    $now = new DateTime();
 
     $expires = $finder->findExpiringOn(new DateTime($time), $con);
 
@@ -66,10 +65,9 @@ EOF;
           'to' => $holder->getCollector()->getEmail(),
           'params' => array(
               'oSeller' => $holder->getCollector()->getSeller($con),
-              'oExpireDate' => $holder->getExpireDate(),
+              'oExpiryDate' => $holder->getExpiryDate(),
               'oCollectiblesHolder' => $holder,
-              // diff between 2 DateTime obj, formatted to "a" (total number of days)
-              'bExpiresToday' => 0 == $holder->getExpireDate()->diff($now)->format('%a'),
+              'bExpiresToday' => date('Ymd') == $holder->getExpiryDate('Ymd'),
           ),
       ));
     }

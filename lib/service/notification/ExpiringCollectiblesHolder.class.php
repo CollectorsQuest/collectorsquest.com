@@ -7,26 +7,26 @@
  */
 class ExpiringCollectiblesHolder extends CollectorCollectiblesHolder
 {
-    protected $expire_date;
+    protected $expiry_date;
 
     /**
-     * @param   DateTime $expire_date
+     * @param   DateTime $expiry_date
      */
-    public function setExpireDate(DateTime $expire_date)
+    public function setExpiryDate(DateTime $expiry_date)
     {
-        $this->expire_date = $expire_date;
+        $this->expiry_date = $expiry_date;
     }
 
     /**
      * @param   mixed $format Return a formatted datetime string or DateTime object
      * @return  DateTime|string
      */
-    public function getExpireDate($format = null)
+    public function getExpiryDate($format = null)
     {
         if (null === $format) {
-            return $this->expire_date;
-        } elseif (null !== $this->expire_date) {
-            return $this->expire_date->format($format);
+            return $this->expiry_date;
+        } elseif (null !== $this->expiry_date) {
+            return $this->expiry_date->format($format);
         } else {
             return null;
         }

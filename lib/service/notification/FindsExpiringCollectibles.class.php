@@ -30,7 +30,7 @@ class FindsExpiringCollectibles
                 $holder = new ExpiringCollectiblesHolder(
                     $collectible->getCollector($con)
                 );
-                $holder->setExpireDate($date);
+                $holder->setExpiryDate($date);
 
                 $ret[$collectible->getCollectorId()] = $holder;
             }
