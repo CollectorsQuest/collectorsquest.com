@@ -2,7 +2,34 @@
 /**
  * @var $wp_query WP_Query
  */
-query_posts($query_string.'&showposts=6');
+
+$recent_videos = 2;
+$showposts = 6;
+if (is_search())
+{
+  $recent_videos = 0;
+  $total = $wp_query->found_posts;
+}
+else
+{
+  $total = wp_count_posts('video')->publish;
+}
+if (!$recent_videos) {
+  query_posts($query_string . '&showposts=' . $showposts);
+}
+else
+{
+  if ($wp_query->is_paged)
+  {
+    query_posts($query_string . '&showposts=' . $showposts . '&offset='
+    . ($recent_videos+ ( ($wp_query->query_vars['paged']-1) * $showposts )) );
+  }
+  else
+  {
+    query_posts($query_string . '&showposts=' . $showposts . '&offset=' . $recent_videos);
+  }
+}
+
 $data = array();
 
 $data['title'] = wp_title('', false);
@@ -13,6 +40,7 @@ $data['is_category'] = is_category();
 $data['is_tag'] = is_tag();
 $data['is_front_page'] = is_front_page();
 $data['is_author'] = is_author();
+
 
 if (function_exists('bcn_display'))
 {
@@ -42,38 +70,64 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
 ?>
 
   <div class="row-fluid header-bar">
-
     <div class="span7">
       <h1 class="Chivo webfont" style="visibility: visible; ">Video Gallery</h1>
     </div>
-    <div class="back-nav span5">
-      <!--    <a href="/blog/">Back to Latest News &rarr;</a>-->
+    <div class="back-nav span5 white">
+      <strong>Total Videos: <?php echo $total ?></strong>
     </div>
   </div>
-  <div id="blog-contents" class="not-singular thumbnails video_gallery_grid">
-
-        <?php
-      if(have_posts()) : while(have_posts()) : the_post();
-          $video_url = get_post_meta( $post->ID, '_cq_video_url', true );
-          ?>
-
-          <div class="span4 post">
-            <a href="<?php the_permalink() ?>" class="thumbnail<?= strpos($video_url, 'vimeo.com') ? ' vimeo' : '' ?>">
-              <img src="<?= video_image($video_url) ?>" alt="<?php the_title(); ?>">
+<div id="blog-contents">
+  <?php
+  if ($recent_videos):
+  $queryObject = new WP_Query('post_type=video&posts_per_page=' . $recent_videos);
+  // The Loop!
+  if ($queryObject->have_posts()) :
+    while ($queryObject->have_posts()) :
+        $queryObject->the_post(); ?>
+      <div class="row-fluid recent-video spacer-top">
+        <div class="span8">
+          <?php echo wp_oembed_get(get_post_meta( $post->ID, '_cq_video_url', true ), array('width' => 487)); ?>
+        </div>
+        <div class="span4">
+          <h4>
+            <a href="<?php the_permalink() ?>">
+              <?php the_title(); ?>
             </a>
-            <h4>
-              <a href="<?php the_permalink() ?>">
-                <?php the_title(); ?>
-              </a>
-            </h4>
-            <span class="sidebar-video-play-button" onclick="location.href = '<?php the_permalink() ?>';"></span>
-          </div>
+          </h4>
+          <?php echo wp_trim_words( get_the_content(), 50 ); ?>
+          <a href="<?php the_permalink() ?>">
+           More
+          </a>
+        </div>
+      </div>
+      <?php endwhile;  endif; endif; ?>
 
+  <div class="not-singular thumbnails video_gallery_grid">
+
+    <?php
+
+    if(have_posts()) :
+      while(have_posts()) : the_post();
+      $video_url = get_post_meta( $post->ID, '_cq_video_url', true );
+      ?>
+
+      <div class="span4 post">
+        <a href="<?php the_permalink() ?>" class="thumbnail<?= strpos($video_url, 'vimeo.com') ? ' vimeo' : '' ?>">
+          <img src="<?= video_image($video_url) ?>" alt="<?php the_title(); ?>">
+        </a>
+        <h4>
+          <a href="<?php the_permalink() ?>">
+            <?php the_title(); ?>
+          </a>
+        </h4>
+        <span class="sidebar-video-play-button" onclick="location.href = '<?php the_permalink() ?>';"></span>
+      </div>
 
     <?php endwhile; endif; ?>
-
-
   </div>
+</div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php
