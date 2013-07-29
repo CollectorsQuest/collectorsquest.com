@@ -1,22 +1,42 @@
 <?php
 /**
- * Data object containing the SQL and PHP code to migrate the database
- * up to version 1374856008.
- * Generated on 2013-07-26 12:26:48 by root
+ * Import videos from magnify to wordpress
  */
 class PropelMigration_1374856008
 {
-  private $tag_count = array();
-  private $video_ids = array();
+  const POST_AUTHOR_LOGIN = 'admin';
+  private $tag_count = array(), $wp_author_id = null;
 
   public function preUp($manager)
   {
+    //Lets find admin
+    /** @var wpUser $admin */
+    $admin = wpUserQuery::create()->findOneByUserLogin(self::POST_AUTHOR_LOGIN);
+    if (!$admin)
+    {
+      throw new Exception('User with login "' . self::POST_AUTHOR_LOGIN
+      . '" didn\'t found at wordpress DB, can not determinate post author ID');
+    }
+
+    $this->wp_author_id = $admin->getId();
+
+
     $magnify = cqStatic::getMagnifyClient();
 
     /** @var ContentFeed $videos */
     $total = $magnify->getContent()->browse(1, 1);
+
+    //Lets cher magnify version
+    if (!method_exists($total->first(), 'getCategory'))
+    {
+      throw new Exception('You use old version of magnify SDK, please update it at /lib/vendor/magnify');
+    }
+
+
     $limit = 10;
     $i = 0;
+
+    echo "\n Total videos: " . $total->getTotalResults() . "\n";
 
     for ($page = 1; $page <= floor($total->getTotalResults() / $limit); $page++)
     {
@@ -25,22 +45,31 @@ class PropelMigration_1374856008
       foreach ($videos as $video)
       {
         $i++;
+
+        echo sprintf("\r Completed: %.2f%% %u. %s     ",
+          round($i/$total->getTotalResults(), 4) * 100, $i, $video->getTitle());
+
         if ($videoUrl = $this->getSourceUrl($video->getIframeUrl()))
         {
           if (strpos($videoUrl, 'youtube.com') || strpos($videoUrl, 'vimeo.com') || strpos($videoUrl, 'youtu.be'))
           {
             $video->url = $videoUrl;
 
-            $this->video_ids[$video->getId()] = $this->addEntry($video);
+            $this->addEntry($video, $i);
+          }
+          else
+          {
+            echo sprintf("\r IGNORING - Video not supported %u. %s\n", $i, $video->getTitle());
           }
         }
-
-        echo $i . ' ' . $video->getTitle(). "\n";
+        else
+        {
+          echo sprintf("\r IGNORING - Source url not detected %u. %s\n", $i, $video->getTitle());
+        }
       }
     }
 
-    //TO DO Add playlists 
-
+    echo "\r Completed: 100.00%             \n";
   }
 
   public function postUp($manager)
@@ -123,30 +152,40 @@ class PropelMigration_1374856008
    * Save video as new post in wordpress
    *
    * @param ContentEntry $data
+   * @param int
    * @return int
    */
-  private function addEntry(ContentEntry $data)
+  private function addEntry(ContentEntry $data, $index)
   {
     $postmeta = new wpPostMeta();
     $postmeta
       ->setMetaKey('_cq_video_url')
       ->setMetaValue($data->url);
 
+    $postmeta_2 = new wpPostMeta();
+    $postmeta_2
+      ->setMetaKey('_video_url_fields')
+      ->setMetaValue('a:1:{i:0;s:13:"_cq_video_url";}');
+
     $slug = explode('/', $data->alternate);
     $slug = strtolower(end($slug));
 
+    //Add time shift to save original order
+    $date = date('Y-m-d H:i', strtotime($data->updated_at) - $index * 1000);
+
     $post = new wpPost();
     $post
-      ->setPostAuthor(1) //TO DO do not use hardcoded id
-      ->setPostDate($data->getUpdatedAt())     //TO DO wrong date
-      ->setPostDateGmt($data->getUpdatedAt())
+      ->setPostAuthor($this->wp_author_id)
+      ->setPostDate($date)
+      ->setPostDateGmt($date)
       ->setPostContent($data->getContent())
       ->setPostTitle($data->getTitle())
       ->setPostStatus('publish')
       ->setPostName($slug)
       ->setPostType('video')
 
-      ->addwpPostMeta($postmeta) //TO DO no url in wp admin
+      ->addwpPostMeta($postmeta)
+      ->addwpPostMeta($postmeta_2)
     ;
 
     $post->save();
@@ -156,11 +195,11 @@ class PropelMigration_1374856008
     {
       if (isset($this->tag_count[strtolower($cat['term'])]))
       {
-        $this->tag_count[strtolower($cat['term'])] ++ ;
+        $this->tag_count[strtolower($cat['term'])] ++;
       }
       else
       {
-        $this->tag_count[strtolower($cat['term'])] = 1 ;
+        $this->tag_count[strtolower($cat['term'])] = 1;
       }
 
       $term = wpTermQuery::create()
@@ -189,8 +228,8 @@ class PropelMigration_1374856008
         ->save();
     }
 
-    $post->setGuid('http://www.collectorsquest.dev/blog/?post_type=video&#038;p=' . $post->getId())
-      ->save(); //TO DO use domain from configs
+    $post->setGuid('http://'. sfConfig::get('app_www_domain').'/blog/?post_type=video&#038;p=' . $post->getId())
+      ->save();
 
     return $post->getId();
   }
