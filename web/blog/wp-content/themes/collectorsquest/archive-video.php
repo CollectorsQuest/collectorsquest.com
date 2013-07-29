@@ -3,9 +3,10 @@
  * @var $wp_query WP_Query
  */
 
-$recent_videos = 2;
+$recent_videos = 1;
 $showposts = 6;
-if (is_search())
+
+if (is_search() || is_tag() || is_category() || is_tax())
 {
   $recent_videos = 0;
   $total = $wp_query->found_posts;
@@ -40,6 +41,7 @@ $data['is_category'] = is_category();
 $data['is_tag'] = is_tag();
 $data['is_front_page'] = is_front_page();
 $data['is_author'] = is_author();
+$data['menu'] = 'video';
 
 
 if (function_exists('bcn_display'))
@@ -77,7 +79,7 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
       <strong>Total Videos: <?php echo $total ?></strong>
     </div>
   </div>
-<div id="blog-contents">
+<div>
   <?php
   if ($recent_videos):
   $queryObject = new WP_Query('post_type=video&posts_per_page=' . $recent_videos);
@@ -86,24 +88,28 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
     while ($queryObject->have_posts()) :
         $queryObject->the_post(); ?>
       <div class="row-fluid recent-video spacer-top">
-        <div class="span8">
-          <?php echo wp_oembed_get(get_post_meta( $post->ID, '_cq_video_url', true ), array('width' => 487)); ?>
+        <div class="span12">
+          <?php $vp = wp_oembed_get(get_post_meta( $post->ID, '_cq_video_url', true ), array('width' => 740));
+          if (empty($vp)): ?>
+            <div class="alert alert-danger">Sorry, This video is temporarily unavailable. Please try again later.</div>
+          <?php else : echo $vp; endif; ?>
+
         </div>
-        <div class="span4">
-          <h4>
-            <a href="<?php the_permalink() ?>">
-              <?php the_title(); ?>
-            </a>
-          </h4>
-          <?php echo wp_trim_words( get_the_content(), 50 ); ?>
-          <a href="<?php the_permalink() ?>">
-           More
-          </a>
-        </div>
+<!--        <div class="span4">-->
+<!--          <h4>-->
+<!--            <a href="--><?php //the_permalink() ?><!--">-->
+<!--              --><?php //the_title(); ?>
+<!--            </a>-->
+<!--          </h4>-->
+<!--          --><?php //echo wp_trim_words( get_the_content(), 50 ); ?>
+<!--          <a href="--><?php //the_permalink() ?><!--">-->
+<!--           More-->
+<!--          </a>-->
+<!--        </div>-->
       </div>
       <?php endwhile;  endif; endif; ?>
 
-  <div class="not-singular thumbnails video_gallery_grid">
+  <div id="blog-contents" class="not-singular thumbnails video_gallery_grid">
 
     <?php
 

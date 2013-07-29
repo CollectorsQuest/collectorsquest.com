@@ -12,7 +12,7 @@ class cq_video_playlists_widget extends WP_Widget {
   public function __construct() {
     parent::__construct(
       'cq_video_playlists_widget', // Base ID
-      'Video Playlists', // Name
+      'Video Category', // Name
       array( 'description' => __( 'Video playlists widget.', 'text_domain' ), ) // Args
     );
   }
@@ -29,7 +29,7 @@ class cq_video_playlists_widget extends WP_Widget {
     echo $before_widget; ?>
     <div class="row-fluid sidebar-title">
       <div class="span8">
-        <h3 class="Chivo webfont" style="visibility: visible;">Playlists</h3>
+        <h3 class="Chivo webfont" style="visibility: visible;">Category</h3>
       </div>
     </div>
     <div class="playlists-container-sidebar">

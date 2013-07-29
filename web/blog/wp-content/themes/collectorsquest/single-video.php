@@ -12,6 +12,7 @@ $data['is_category'] = is_category();
 $data['is_tag'] = is_tag();
 $data['is_front_page'] = is_front_page();
 $data['is_author'] = is_author();
+$data['menu'] = 'video';
 
 if (function_exists('bcn_display'))
 {
@@ -49,12 +50,15 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
     <!--    <a href="/blog/">Back to Latest News &rarr;</a>-->
   </div>
 </div>
-<div id="blog-contents" class="singular">
+<div id="blog-contents" class="singular spacer-top-15">
   <div id="post-<?= $post->ID ?>" class="post row-fluid">
     <div class="entry-content span12">
       <?php the_content(); ?>
       <div>
-        <?php echo wp_oembed_get(get_post_meta( $post->ID, '_cq_video_url', true ), array('width' => 620)); ?>
+        <?php $vp = wp_oembed_get(get_post_meta( $post->ID, '_cq_video_url', true ), array('width' => 620));
+        if (empty($vp)): ?>
+          <div class="alert alert-danger">Sorry, This video is temporarily unavailable. Please try again later.</div>
+        <?php else : echo $vp; endif; ?>
       </div>
     </div>
 
