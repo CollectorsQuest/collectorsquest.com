@@ -176,7 +176,7 @@ class PropelMigration_1374856008
     $slug = strtolower(end($slug));
 
     //Add time shift to save original order
-    $date = date('Y-m-d H:i', strtotime($data->updated_at) - $index * 1000);
+    $date = date('Y-m-d H:i', strtotime($data->getUpdatedAt()) - $index * 1000);
 
     $post = new wpPost();
     $post
