@@ -5,10 +5,15 @@
 class PropelMigration_1374856008
 {
   const POST_AUTHOR_LOGIN = 'admin';
+
   private $tag_count = array(), $wp_author_id = null;
 
   public function preUp($manager)
   {
+    if (!sfConfig::get('app_www_domain'))
+    {
+      throw new Exception('You should choose environment. Use parameter --env=');
+    }
     //Lets find admin
     /** @var wpUser $admin */
     $admin = wpUserQuery::create()->findOneByUserLogin(self::POST_AUTHOR_LOGIN);
@@ -228,7 +233,7 @@ class PropelMigration_1374856008
         ->save();
     }
 
-    $post->setGuid('http://'. sfConfig::get('app_www_domain').'/blog/?post_type=video&#038;p=' . $post->getId())
+    $post->setGuid('http://'. sfConfig::get('app_www_domain') . '/blog/?post_type=video&#038;p=' . $post->getId())
       ->save();
 
     return $post->getId();
