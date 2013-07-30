@@ -1,42 +1,17 @@
 <?php
 /**
+ * Template Name: Featured Video Page
+ *
+ * Selectable from a dropdown menu on the edit page screen.
  * @var $wp_query WP_Query
  */
-
-$recent_videos = 0; //No need for now
-$showposts = 12;
-
-if (is_search() || is_tag() || is_category() || is_tax())
-{
-  $recent_videos = 0;
-  $total = $wp_query->found_posts;
-}
-else
-{
-  $total = wp_count_posts('video')->publish;
-}
-if (!$recent_videos) {
-  query_posts($query_string . '&showposts=' . $showposts);
-}
-else
-{
-  if ($wp_query->is_paged)
-  {
-    query_posts($query_string . '&showposts=' . $showposts . '&offset='
-    . ($recent_videos+ ( ($wp_query->query_vars['paged']-1) * $showposts )) );
-  }
-  else
-  {
-    query_posts($query_string . '&showposts=' . $showposts . '&offset=' . $recent_videos);
-  }
-}
 
 $data = array();
 
 $data['title'] = wp_title('', false);
 $data['the_id'] = get_the_ID();
 $data['is_page'] = is_page();
-$data['is_single'] = is_single();
+$data['is_single'] = true;
 $data['is_category'] = is_category();
 $data['is_tag'] = is_tag();
 $data['is_front_page'] = is_front_page();
@@ -72,40 +47,77 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
 ?>
 
   <div class="row-fluid header-bar">
+
     <div class="span7">
-      <h1 class="Chivo webfont" style="visibility: visible; ">Video Gallery</h1>
-    </div>
-    <div class="back-nav span5 white">
-      <strong>Total Videos: <?php echo $total ?></strong>
+      <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>
     </div>
   </div>
-  <div>
+  <div id="blog-contents" class="singular">
     <?php
-    if ($recent_videos):
-      $queryObject = new WP_Query('post_type=video&posts_per_page=' . $recent_videos);
-      // The Loop!
-      if ($queryObject->have_posts()) :
-        while ($queryObject->have_posts()) :
-          $queryObject->the_post(); ?>
-          <div class="row-fluid recent-video spacer-top">
-            <div class="span12">
-              <?php $vp = wp_oembed_get(get_post_meta( $post->ID, '_cq_video_url', true ), array('width' => 740));
-              if (empty($vp)): ?>
-                <div class="alert alert-danger">Sorry, This video is temporarily unavailable. Please try again later.</div>
-              <?php else : echo $vp; endif; ?>
-              <div>
-                <?php the_content() ?>
-              </div>
+
+    $queryObject = new WP_Query('post_type=video&meta_key=_cq_video_featured&meta_value=1');
+    // The Loop!
+    if ($queryObject->have_posts()) :
+      while ($queryObject->have_posts()) :
+        $queryObject->the_post(); ?>
+        <div class="row-fluid recent-video spacer-top">
+          <div class="span12">
+            <h2><?php the_excerpt() ?></h2>
+            <?php $vp = wp_oembed_get(get_post_meta( $post->ID, '_cq_video_url', true ), array('width' => 740));
+            if (empty($vp)): ?>
+              <div class="alert alert-danger">Sorry, This video is temporarily unavailable. Please try again later.</div>
+            <?php else : echo $vp; endif; ?>
+            <div>
+              <?php the_content() ?>
             </div>
           </div>
-        <?php endwhile;  endif; endif; ?>
+        </div>
+      <?php endwhile;  endif;
+    ?>
 
-    <div id="blog-contents" class="not-singular thumbnails video_gallery_grid">
 
-      <?php
+    <?php
+    $current_page = get_query_var('paged') ? get_query_var('paged') : 1;
+    $mypost = array(
+      'post_type' => 'video',
+      'posts_per_page' => 6,
+      'paged' => $current_page,
+      'tax_query' => array(
+        array(
+          'taxonomy' => 'playlist',
+          'field' => 'slug',
+          'terms' => 'video-top',
+          'include_children' => true
+        )
+      ));
+    $loop = new WP_Query( $mypost );
+    ?>
 
-      if(have_posts()):
-        while(have_posts()) : the_post();
+
+    <div class="row-fluid">
+      <ul class="page-numbers left">
+        <?php
+        if($loop->have_posts())
+        {
+          $format = get_option('permalink_structure') ? 'page/%#%/' : '&page=%#%';
+          $page_links = paginate_links(array('base' => get_pagenum_link(1) . '%_%', 'format' => $format,
+            'current' => $current_page, 'total' => $loop->max_num_pages, 'mid_size' => 4, 'type' => 'array'
+          ));
+          echo (count($page_links) ? '<li>' : '') . join("</li>\n\t<li>", $page_links);
+        }
+        ?>
+        <li class="pull-right"><a href="<?php echo get_post_type_archive_link('video'); ?>">
+            View all <?php echo wp_count_posts('video')->publish ?> recent items</a>
+        </li>
+      </ul>
+    </div>
+
+    <?php if($loop->have_posts()): ?>
+      <div class="thumbnails video_gallery_grid not-singular">
+        <?php
+
+        while ($loop->have_posts()):
+          $loop->the_post();
           $video_url = get_post_meta( $post->ID, '_cq_video_url', true );
           ?>
 
@@ -120,9 +132,12 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
             </h4>
             <span class="sidebar-video-play-button" onclick="location.href = '<?php the_permalink() ?>';"></span>
           </div>
+        <?php endwhile; ?>
+      </div>
+    <?php endif; ?>
 
-        <?php endwhile; endif; ?>
-    </div>
+    <?php wp_reset_query(); ?>
+
   </div>
 
 <?php $content = ob_get_clean(); ?>

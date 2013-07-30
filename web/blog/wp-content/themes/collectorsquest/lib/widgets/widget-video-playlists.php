@@ -34,8 +34,11 @@ class cq_video_playlists_widget extends WP_Widget {
     </div>
     <div class="playlists-container-sidebar">
       <ul class="nav nav-list">
-        <?php echo str_replace('</a>', '<i class="icon-chevron-right"></i></a>',
-          wp_list_categories(array('taxonomy' => 'playlist', 'hierarchical' => 0, 'title_li' => '', 'echo' => 0))); ?>
+        <?php
+        $exclude = get_term_by('slug', 'video-top', 'playlist');
+        echo str_replace('</a>', '<i class="icon-chevron-right"></i></a>',
+          wp_list_categories(array('taxonomy' => 'playlist', 'hierarchical' => 0, 'title_li' => '',
+            'echo' => 0, 'exclude' => (string) $exclude->term_id))); ?>
       </ul>
     </div>
     <?php

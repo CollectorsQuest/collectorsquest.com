@@ -22,24 +22,7 @@ register_taxonomy(
 register_taxonomy(
   'playlist', 'video',
   array(
-    'hierarchical' => true, 'labels' => array(
-    'name'                       => _x( 'Playlists', 'taxonomy general name' ),
-    'singular_name'              => _x( 'Playlist', 'taxonomy singular name' ),
-    'search_items'               => __( 'Search Playlists' ),
-    'popular_items'              => __( 'Popular Playlists' ),
-    'all_items'                  => __( 'All Playlists' ),
-    'parent_item'                => null,
-    'parent_item_colon'          => null,
-    'edit_item'                  => __( 'Edit Playlist' ),
-    'update_item'                => __( 'Update Playlist' ),
-    'add_new_item'               => __( 'Add New Playlist' ),
-    'new_item_name'              => __( 'New Playlist Name' ),
-    'separate_items_with_commas' => __( 'Separate playlists with commas' ),
-    'add_or_remove_items'        => __( 'Add or remove playlists' ),
-    'choose_from_most_used'      => __( 'Choose from the most used playlists' ),
-    'not_found'                  => __( 'No playlists found.' ),
-    'menu_name'                  => __( 'Playlists' ),
-  )
+    'hierarchical' => true
   )
 );
 // Custon taxonomy for video tags
@@ -406,7 +389,7 @@ function cq_custom_post_type_init()
     'query_var'       => true,
     'menu_position'   => 100,
     'taxonomies'      => array('playlist'),
-    'supports'        => array('title', 'editor', 'comments', 'page-attributes')
+    'supports'        => array('title', 'editor', 'comments', 'excerpt')
   ));
 }
 
