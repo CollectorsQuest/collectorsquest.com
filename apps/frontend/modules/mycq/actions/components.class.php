@@ -302,8 +302,8 @@ class mycqComponents extends cqFrontendComponents
     {
       /* @var $package PackageTransaction */
       if (
-        $package->getCredits() - $package->getCreditsUsed() > 0 &&
-        $package->getExpiryDate('YmdHis') > date('YmdHis')
+        $package->getCreditsRemaining() > 0 &&
+        !$package->isExpired()
       )
       {
         $this->has_no_credits = false;

@@ -23,3 +23,7 @@ Collector:
     password: p4ssw0rd2
     email: ivan.ivanov2@example.com
     salt: 3e98285dd88240cc67ba135e7a24af11
+
+  ran_out_of_credits:
+    username: ran_out
+    displayname: Ran out of credits

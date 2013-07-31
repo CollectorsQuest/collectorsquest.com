@@ -174,7 +174,7 @@ class Seller
       ->filterByCollector($this->collector)
       ->paidFor()
       ->notExpired()
-      ->withColumn('SUM(PackageTransaction.Credits) - SUM(PackageTransaction.CreditsUsed)', 'CreditsLeft')
+      ->withCreditsLeftColumn()
       ->select('CreditsLeft')
       ->findOne();
   }

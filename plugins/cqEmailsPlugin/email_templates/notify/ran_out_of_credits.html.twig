@@ -1,0 +1,24 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hello from CollectorsQuest.com!
+</p>
+
+<p>
+  We noticed that you ran out of credits on {{ oRanOutDate|date('F jS') }}.
+</p>
+
+<p>
+  Consider
+  {{ link_to('purchasing more credits', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }} today.
+  {{ sDiscountCode ? "Need more incentive?" : "We'd love to have you back." }}
+</p>
+
+{% if sDiscountCode %}
+<p>
+  We will even give you a 20% discount to help you out:
+  <strong>{{ sDiscountCode }}</strong>
+</p>
+{% endif %}
+{% endblock %}

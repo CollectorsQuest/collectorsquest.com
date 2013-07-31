@@ -2,20 +2,32 @@ PackageTransactionCredit:
   for_active:
     collectible_id: active
     package_transaction_id: for_status_change_testing
-    expiry_date: "<?= date('Y-m-d H:i:s', strtotime('+1 day')) ?>"
+    expiry_date: "<?= date('Y-m-d', strtotime('+1 day')) ?>"
   for_inactive:
     collectible_id: inactive
     package_transaction_id: for_status_change_testing
-    expiry_date: "<?= date('Y-m-d H:i:s', strtotime('+1 day')) ?>"
+    expiry_date: "<?= date('Y-m-d', strtotime('+1 day')) ?>"
   for_expired:
     collectible_id: expired
     package_transaction_id: for_status_change_testing
-    expiry_date: "<?= date('Y-m-d H:i:s', strtotime('-1 day')) ?>"
+    expiry_date: "<?= date('Y-m-d', strtotime('-1 day')) ?>"
   for_sold:
     collectible_id: sold
     package_transaction_id: for_status_change_testing
-    expiry_date: "<?= date('Y-m-d H:i:s', strtotime('+1 day')) ?>"
+    expiry_date: "<?= date('Y-m-d', strtotime('+1 day')) ?>"
   for_second_sold:
     collectible_id: second_sold
     package_transaction_id: for_status_change_testing
-    expiry_date: "<?= date('Y-m-d H:i:s', strtotime('+1 day')) ?>"
+    expiry_date: "<?= date('Y-m-d', strtotime('+1 day')) ?>"
+
+  older_for_ran_out:
+    collectible_id: active
+    package_transaction_id: for_ran_out_testing
+    expiry_date: "<?= date('Y-m-d', strtotime('+1 month')) ?>"
+    created_at: "<?= date('Y-m-d', strtotime('-1 month')) ?>"
+
+  newer_for_ran_out:
+    collectible_id: inactive
+    package_transaction_id: for_ran_out_testing
+    expiry_date: "<?= date('Y-m-d', strtotime('+1 month')) ?>"
+    created_at: "<?= date('Y-m-d', strtotime('-1 week')) ?>"

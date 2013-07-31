@@ -333,7 +333,7 @@ class SellerPackagesForm extends BaseForm
     {
       $error = new sfValidatorError($validator, 'Sorry! That code has expired.');
     }
-    else if (time() > $promo->getExpiryDate('U'))
+    else if (date('Ymd') > $promo->getExpiryDate('Ymd'))
     {
       $error = new sfValidatorError($validator, 'Sorry! That code has expired.');
     }

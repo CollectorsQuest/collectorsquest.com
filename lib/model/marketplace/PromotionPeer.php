@@ -5,8 +5,8 @@ require 'lib/model/marketplace/om/BasePromotionPeer.php';
 class PromotionPeer extends BasePromotionPeer
 {
 
-  const DISCOUNT_FIXED   = 'Fix';
-  const DISCOUNT_PERCENT = 'Percentage';
+  const DISCOUNT_FIXED   = self::AMOUNT_TYPE_FIX;
+  const DISCOUNT_PERCENT = self::AMOUNT_TYPE_PERCENTAGE;
 
   /**
    * Check if promo code exists

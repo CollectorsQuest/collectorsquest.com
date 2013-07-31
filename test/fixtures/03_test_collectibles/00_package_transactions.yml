@@ -1,13 +1,21 @@
 Package:
-  for_status_change_testing:
+  casual:
     plan_type: Casual
     package_name: '7 credits'
     credits: 7
 
 PackageTransaction:
   for_status_change_testing:
-    package_id: for_status_change_testing
+    package_id: casual
     collector_id: ivan_ivanov
     payment_status: paid
     credits: 7
-    expiry_date: "<?= date('Y-m-d H:i:s', strtotime('1 day')) ?>"
+    expiry_date: "<?= date('Y-m-d', strtotime('1 day')) ?>"
+
+  for_ran_out_testing:
+    package_id: casual
+    collector_id: ran_out_of_credits
+    payment_status: paid
+    credits: 2
+    credits_used: 2
+    expiry_date: "<?= date('Y-m-d', strtotime('+ 1 month')) ?>"

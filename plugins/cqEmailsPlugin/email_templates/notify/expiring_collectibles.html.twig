@@ -1,0 +1,47 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+{% set bIsSingleItem = (oCollectiblesHolder | length == 1 ) %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hello from CollectorsQuest.com!
+</p>
+
+<p>
+  We noticed that you have {{ bIsSingleItem ? 'one collectible' : 'some collectibles' }}
+  about to expire {{ bExpiresToday ? 'today' : 'on ' ~ oExpiryDate|date('F jS, l') }}:
+</p>
+
+{% for oCollectible in oCollectiblesHolder %}
+<p>
+  {{ image_tag_multimedia(oCollectible.getPrimaryImage(), '75x75', {'style': 'float: left;'}) }} <span style="float: left; padding-left: 10px;">{{ link_to_collectible(oCollectible, 'text', {absolute: true}) }}</span>
+  <br style="clear: both" />
+</p>
+{% endfor %}
+
+{% if bExpiresToday %}
+    {% if oSeller.hasPackageCredits %}
+    <p>
+      <br />
+      Relist your {{ bIsSingleItem ? 'item' : 'items' }} now by
+      {{ link_to('clicking here', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@mycq_marketplace_credit_history?filter_by=expired', true)}", {absolute: true}) }}.
+      <br />
+    </p>
+    {% else %}
+    <p>
+      <br />
+      {{ link_to('Purchase some credits', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@seller_packages', true)}", {absolute: true}) }}
+      today and relist your {{ bIsSingleItem ? 'item' : 'items' }}.
+      <br />
+    </p>
+    {% endif %}
+{% else %}
+<p>
+      <br />
+      Extend your {{ bIsSingleItem ? 'listing' : 'listings' }} now by
+      {{ link_to('clicking here', "@auto_login?hash=#{oSeller.getCollector.autoLoginHash}&r=#{url_for('@mycq_marketplace_credit_history?filter_by=expired', true)}", {absolute: true}) }}.
+      <br />
+</p>
+{% endif %}
+
+{% endblock %}

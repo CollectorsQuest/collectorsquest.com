@@ -35,9 +35,12 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
           ->joinPackageTransactionCredit(null, Criteria::INNER_JOIN)
           ->addJoinCondition(
             'PackageTransactionCredit',
-            'package_transaction_credit.EXPIRY_DATE >= NOW()'
+            'package_transaction_credit.EXPIRY_DATE >= DATE(NOW())'
           )
-        ->endUse();
+        ->endUse()
+        // we don't want to return multiple results when a collectible for sale
+        // has more than one package transaction credit associated to it
+        ->groupBy('CollectibleId');
     }
     else
     {
