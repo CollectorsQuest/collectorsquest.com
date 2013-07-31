@@ -28,7 +28,7 @@ class ReordersWpPostMetaItems
     {
       if (isset($featured_items[$collectibles_array_key]))
       {
-        $featured_items[$collectibles_array_key] = static::getReordereFeaturedItems(
+        $featured_items[$collectibles_array_key] = static::getReorderedFeaturedItems(
           $featured_items[$collectibles_array_key],
           $order
         );
@@ -49,7 +49,7 @@ class ReordersWpPostMetaItems
    * @param     string|array $order
    * @return    string
    */
-  public static function getReordereFeaturedItems($input, $order)
+  public static function getReorderedFeaturedItems($input, $order)
   {
     if (!is_array($input))
     {

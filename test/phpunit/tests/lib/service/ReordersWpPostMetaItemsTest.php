@@ -1,7 +1,5 @@
 <?php
 
-namespace CollectorsQuest\Test;
-
 // tested classes
 require_once get_root_dir() . '/lib/service/ReordersWpPostMetaItems.class.php';
 
@@ -9,7 +7,7 @@ require_once get_root_dir() . '/lib/service/ReordersWpPostMetaItems.class.php';
 require_once get_root_dir() . '/plugins/iceLibsPlugin/lib/IceFunctions.class.php';
 require_once get_root_dir() . '/lib/collectorsquest/cqFunctions.class.php';
 
-class ReordersWpPostMetaItems extends \PHPUnit_Framework_TestCase
+class ReordersWpPostMetaItemsTest extends \PHPUnit_Framework_TestCase
 {
 
   /**
@@ -18,7 +16,7 @@ class ReordersWpPostMetaItems extends \PHPUnit_Framework_TestCase
   public function testReordersFeaturedItems($input, $reorder, $output)
   {
     $this->assertEquals(
-      \ReordersWpPostMetaItems::getReordereFeaturedItems($input, $reorder),
+      \ReordersWpPostMetaItems::getReorderedFeaturedItems($input, $reorder),
       $output
     );
   }
