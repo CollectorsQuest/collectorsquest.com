@@ -55,7 +55,7 @@ all:
       items:
         collections:  { name: Collections, uri: "collections", target: '_top' }
         blog:         { name: Blog, uri: "blog", target: '_top' }
-        video:        { name: Video, uri: "video", target: '_top' }
+#        video:        { name: Video, uri: "video", target: '_top' }
         marketplace:  { name: Market, uri: "marketplace", target: '_top' }
       template:
         normal: '<li id="header_menu_%id%"><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
