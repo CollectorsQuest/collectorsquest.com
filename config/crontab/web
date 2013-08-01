@@ -18,3 +18,7 @@ HOME=/www/vhosts/collectorsquest.com/current
    *  *  *  *  *  apache  solo -silent -port=2050 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_thumbs
   30  *  *  *  *  apache  solo -silent -port=2051 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_colors
  */2  *  *  *  *  apache  solo -silent -port=2052 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_rotate
+
+# Notification Emails
+  00 07  *  *  *  apache  cronic ./symfony notify:expiring-items --env=prod
+  00 07  *  *  *  apache  cronic ./symfony notify:out-of-credits --env=prod
