@@ -87,7 +87,7 @@ class packageTransactionActions extends autoPackageTransactionActions
     {
       $this->setFilters($this->filters->getValues());
 
-      $filter_action = $request->getParameter('filter_action');
+      $filter_action = $request->getParameter('filter_action', array());
       if (array_key_exists('calculate_profit_submit', $filter_action))
       {
         $profits = $this
