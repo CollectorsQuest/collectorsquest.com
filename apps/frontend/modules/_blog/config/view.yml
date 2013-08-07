@@ -10,3 +10,7 @@ all:
     title: ~
     description: ~
     keywords: ~
+
+index180Success:
+  components:
+    sidebar_180: [_blog, sidebar]
