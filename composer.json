@@ -45,11 +45,11 @@
             "type": "package",
             "package": {
                 "name": "magnify",
-                "version": "1.1",
+                "version": "1.2",
                 "source": {
                     "url": "git://github.com/CollectorsQuest/magnify-sdk.git",
                     "type": "git",
-                    "reference": "f946c9f572e98f286595cb2b024e6b13423b8610"
+                    "reference": "08bc6ece35f18aa20f4d029495b18228f94a728d"
                 }
             }
         },
@@ -72,7 +72,7 @@
         "neo4jphp": "0.1.0",
         "fzaninotto/faker": "1.1.*@dev",
         "twig/twig": "v1.11.1",
-        "magnify": "1.1",
+        "magnify": "1.2",
         "symfony/symfony1": "1.4"
     }
 }
