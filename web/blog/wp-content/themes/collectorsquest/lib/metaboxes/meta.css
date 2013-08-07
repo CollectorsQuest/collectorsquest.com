@@ -16,3 +16,12 @@
 .my_meta_control h4
 { color:#999; font-size:1em; margin:15px 6px; text-transform:uppercase; }
 
+.video_url_box
+{width: 680px}
+.video_url_box .video_url_input
+{width: 500px}
+.video_url_box .video_tmb
+{max-width: 200px; height: auto}
+
+.cq_video_tmb
+{max-width: 150px; height: auto}

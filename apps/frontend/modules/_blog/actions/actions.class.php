@@ -54,6 +54,18 @@ class _blogActions extends cqFrontendActions
     // Set the right title based on data from the blog
     $this->getResponse()->setTitle($this->data['title']);
 
+    if (isset($this->data['menu']))
+    {
+      SmartMenu::setSelected('header', $this->data['menu']);
+    }
+
     return sfView::SUCCESS;
   }
+
+  public function executeIndex180()
+  {
+    return $this->executeIndex();
+  }
+
+
 }

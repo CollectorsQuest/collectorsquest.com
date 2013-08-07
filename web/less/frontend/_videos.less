@@ -22,3 +22,35 @@
     margin: 10px;
   }
 }
+
+.video_gallery_grid {
+  margin-left: -13px;
+  .post {
+    margin-left: 13px;
+    width: 238px;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+    a {
+      border: 0;
+      padding: 0;
+      .border-radius(0);
+      &.thumbnail {
+        height: 179px;
+        background-color: #000000;
+        overflow: hidden;
+        &.vimeo {
+          padding-top: 23px;
+          height: 156px;
+        }
+      }
+    }
+
+    h4 {
+      margin-top: 10px;
+    }
+    .sidebar-video-play-button {
+      height: 79%;
+    }
+  }
+}
