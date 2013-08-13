@@ -117,7 +117,7 @@ class generalActions extends cqFrontendActions
            $q->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
         }
 
-        $this->collectibles = $q->limit(20)->find();
+        $this->collectibles = $q->limit(24)->find();
       }
     }
 

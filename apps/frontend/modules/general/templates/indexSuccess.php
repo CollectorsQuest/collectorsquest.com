@@ -24,17 +24,8 @@
 <div class="row">
   <div id="homepage" class="row-content">
     <?php
-      $k = rand(2, 5);
       foreach ($collectibles as $i => $collectible)
       {
-        if ($i % $k === 0 && isset($videos[intval($i / $k)]))
-        {
-          include_partial(
-            'general/homepage_video',
-            array('video' => $videos[intval($i / $k)], 'i' => $i)
-          );
-        }
-
         include_partial(
           'collection/collectible_grid_view_square_small',
           array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
