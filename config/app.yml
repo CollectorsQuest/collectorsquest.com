@@ -41,6 +41,9 @@ all:
       franks_picks:
         name: Frank's Picks
         collection: 4224
+      counting_cars:
+        name: Counting Cars
+        collection: 5782
 
     # Leave this for now for BC
     american_pickers:
@@ -53,6 +56,9 @@ all:
     picked_off:
       collector: 13389
       collection: 3751
+    counting_cars:
+      collector: 24429
+      collection: 5782
 
 
   credentials:
