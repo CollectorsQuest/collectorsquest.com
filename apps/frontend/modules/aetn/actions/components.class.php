@@ -29,6 +29,13 @@ class aetnComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebarCountingCars()
+  {
+    $this->collection = $this->getVar('collection');
+
+    return sfView::SUCCESS;
+  }
+
   public function executeSidebarStorageWars()
   {
     return sfView::SUCCESS;

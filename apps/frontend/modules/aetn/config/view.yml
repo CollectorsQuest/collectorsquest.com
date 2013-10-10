@@ -15,6 +15,10 @@ pickedOffSuccess:
   components:
     sidebar_300: [aetn, sidebarPickedOff]
 
+countingCarsSuccess:
+  components:
+    sidebar_300: [aetn, sidebarCountingCars]
+
 franksPicksSuccess:
   javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
   components:

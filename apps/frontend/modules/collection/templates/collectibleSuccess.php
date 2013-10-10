@@ -40,7 +40,7 @@
       if ($aetn_show['id'] === 'american_pickers')
       {
         echo link_to(
-          cq_image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg',
+          cq_image_tag('headlines/2013-1009-H_AP_620x67_C2[2].jpg',
             array(
               'width' => '620', 'height' => '67',
               'alt' => 'Check out items seen on American Pickers'

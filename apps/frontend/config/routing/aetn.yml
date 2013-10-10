@@ -41,6 +41,11 @@ aetn_storage_wars:
   param: { module: aetn, action: storageWars }
   requirements: { sf_method: [GET] }
 
+aetn_counting_cars:
+  url: /history/counting-cars
+  param: { module: aetn, action: countingCars }
+  requirements: { sf_method: [GET] }
+
 aetn_mwba:
   url: /history/the-men-who-built-america
   param: { module: aetn, action: mwba }

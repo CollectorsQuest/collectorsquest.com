@@ -142,6 +142,42 @@ class aetnActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeCountingCars(sfWebRequest $request)
+  {
+    $couting_cars = sfConfig::get('app_aetn_counting_cars');
+
+    $collection = CollectorCollectionQuery::create()->findOneById($couting_cars['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    $this->incrementCounter($collection, 'NumViews');
+
+    $q = FrontendCollectionCollectibleQuery::create()
+        ->filterByCollectionId($couting_cars['collection'])
+        ->orderByPosition(Criteria::ASC)
+        ->orderByUpdatedAt(Criteria::ASC);
+
+    $pager = new PropelModelPager($q, 12);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+    $this->pager = $pager;
+
+    $this->collection = $collection;
+
+    // Make the Collection available in the sidebar
+    $this->setComponentVar('collection', $collection, 'sidebarCountingCars');
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection, array('route' => 'aetn_counting_cars'));
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_counting_cars'));
+
+    return sfView::SUCCESS;
+  }
+
   public function executeFranksPicks(sfWebRequest $request)
   {
     /* @var $aetn_shows array */

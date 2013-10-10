@@ -5,7 +5,7 @@
 <div class="spacer-bottom-15">
   <?php
     echo link_to(cq_image_tag(
-      'headlines/2012-0420_AP_Promo_Space_620x180_FIN.jpg',
+      'headlines/2013-1009-H_AP_620x180_C1[1].jpg',
       array('alt_title' => 'Check out items seen on American Pickers')
     ), 'http://www.history.com/shows/american-pickers', array('target' => '_blank'));
   ?>
