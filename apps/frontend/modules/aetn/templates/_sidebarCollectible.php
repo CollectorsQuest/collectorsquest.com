@@ -47,29 +47,43 @@ switch ($aetn_show['id'])
 {
   case 'american_pickers':
     if ($sf_request->isMobileLayout()):
-      include_partial('aetn/partials/franksPicksPromo_620x67');
       include_partial('aetn/partials/americanRestorationPromo_620x67');
+      include_partial('aetn/partials/countingCarsPromo_620x67');
     else:
       include_partial('marketplace/partials/marketBecomeSellerPromo_300x250');
       include_partial('aetn/partials/americanRestorationPromo_300x90');
+      include_partial('aetn/partials/countingCarsPromo_300x90');
     endif;
     break;
   case 'picked_off':
     if ($sf_request->isMobileLayout()):
-      include_partial('aetn/partials/franksPicksPromo_620x67');
       include_partial('aetn/partials/americanPickersPromo_620x67');
+      include_partial('aetn/partials/countingCarsPromo_620x67');
     else:
       include_partial('marketplace/partials/marketBecomeSellerPromo_300x250');
       include_partial('aetn/partials/americanPickersPromo_300x90');
+      include_partial('aetn/partials/countingCarsPromo_300x90');
     endif;
     break;
   case 'american_restoration':
     if ($sf_request->isMobileLayout()):
-      include_partial('aetn/partials/franksPicksPromo_620x67');
       include_partial('aetn/partials/americanPickersPromo_620x67');
+      include_partial('aetn/partials/countingCarsPromo_300x90');
     else:
       include_partial('marketplace/partials/marketBecomeSellerPromo_300x250');
       include_partial('aetn/partials/americanPickersPromo_300x90');
+      include_partial('aetn/partials/countingCarsPromo_300x90');
+    endif;
+    break;
+  case 'counting_cars':
+    if ($sf_request->isMobileLayout()):
+      include_partial('aetn/partials/franksPicksPromo_620x67');
+      include_partial('aetn/partials/americanPickersPromo_620x67');
+      include_partial('aetn/partials/americanRestorationPromo_620x67');
+    else:
+      include_partial('marketplace/partials/marketBecomeSellerPromo_300x250');
+      include_partial('aetn/partials/americanPickersPromo_300x90');
+      include_partial('aetn/partials/americanRestorationPromo_300x90');
     endif;
     break;
   case 'franks_picks':

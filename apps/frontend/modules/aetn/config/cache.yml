@@ -18,6 +18,11 @@ pickedOff:
   with_layout: false
   lifetime:    3600
 
+countingCars:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
+
 franksPicks:
   enabled:     true
   with_layout: false

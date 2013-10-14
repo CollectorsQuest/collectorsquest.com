@@ -19,6 +19,7 @@ ice_breadcrumbs:
     americanPickers: [{ name: 'As Seen on American Pickers' }]
     americanRestoration: [{ name: 'As Seen on American Restoration' }]
     pickedOff: [{ name: 'As Seen on Picked Off' }]
+    countingCars: [{ name: 'As Seen on Counting Cars' }]
     storageWars: [{ name: 'As Seen on Storage Wars' }]
     franksPicks: [{ name: "Frank's Picks" }]
 
