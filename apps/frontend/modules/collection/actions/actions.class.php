@@ -45,15 +45,13 @@ class collectionActions extends cqFrontendActions
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
     $american_restoration = sfConfig::get('app_aetn_american_restoration');
     $picked_off = sfConfig::get('app_aetn_picked_off');
+    $counting_cars = sfConfig::get('app_aetn_counting_cars');
 
-    if (
-      in_array($collection->getId(), array(
+    if (in_array($collection->getId(), array(
         $pawn_stars['collection'], $american_pickers['collection'],
         $american_restoration['collection'], $picked_off['collection'],
-        $american_pickers['franks_picks']
-      ))
-    )
-    {
+        $american_pickers['franks_picks'], $counting_cars['collection']
+    ))) {
       if ($collection->getId() == $pawn_stars['collection'])
       {
         $this->redirect('@aetn_pawn_stars', 301);
@@ -73,6 +71,10 @@ class collectionActions extends cqFrontendActions
       else if ($collection->getId() == $american_pickers['franks_picks'])
       {
         $this->redirect('@aetn_franks_picks', 301);
+      }
+      else if ($collection->getId() == $counting_cars['collection'])
+      {
+        $this->redirect('@aetn_counting_cars', 301);
       }
     }
 
