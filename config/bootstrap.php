@@ -72,8 +72,12 @@ if (!defined('GIT_REVISION'))
 
     if (empty($git) || (isset($success) && $success !== true))
     {
-      $git = `git rev-parse HEAD`;
-      $git = trim($git);
+      if (is_readable(__DIR__ .'/../.git/refs/heads/master')) {
+        $git = file_get_contents(__DIR__ .'/../.git/refs/heads/master');
+        $git = trim($git);
+      } else {
+        $git = null;
+      }
 
       if (strlen($git) !== 40)
       {
@@ -81,7 +85,7 @@ if (!defined('GIT_REVISION'))
       }
       if (function_exists('apc_store'))
       {
-        apc_store('GIT_REVISION', $git, 60);
+        apc_store('GIT_REVISION', $git, 360);
       }
     }
   }
