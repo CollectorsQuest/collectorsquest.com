@@ -320,9 +320,6 @@ $lastclass = 0;
             <span class="author-info">
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
                   title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
-              <span class="entry-date">| Posted
-                <?= get_the_date('M jS, Y'); ?>
-              </span>
               <?php edit_post_link('Edit', ' | ', ''); ?>
             </span>
           </span>
@@ -421,9 +418,6 @@ $lastclass = 0;
           <span class="author-info">
           By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
                 title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
-            <span class="entry-date">| Posted
-              <?= get_the_date('M jS, Y'); ?>
-            </span>
             <?php edit_post_link('Edit', ' | ', ''); ?>
           </span>
         </span>

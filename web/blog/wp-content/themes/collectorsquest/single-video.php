@@ -78,9 +78,6 @@ $is_mobile = (boolean) @$_SERVER['mobile'];
     <div class="entry-meta span12" style="width: 608px;">
       <span class="meta-text">
           <span class="author-info">
-            <span class="entry-date">Posted
-              <?= get_the_date('M jS, Y'); ?>
-            </span>
             <?php edit_post_link('Edit', ' | ', ''); ?>
           </span>
         </span>
