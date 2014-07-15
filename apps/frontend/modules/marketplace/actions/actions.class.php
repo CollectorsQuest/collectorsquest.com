@@ -79,7 +79,7 @@ class marketplaceActions extends cqFrontendActions
     $this->categories = ContentCategoryQuery::create()
       ->filterById(array(2, 402, 674, 1767, 1367, 1425, 1677, 1755, 1604, 3043))
       ->hasCollectiblesForSale()
-      ->groupByCollectionCategoryId()
+      ->groupById()
       ->orderByName(Criteria::ASC)
       ->find();
 
