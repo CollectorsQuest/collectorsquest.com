@@ -35,6 +35,8 @@
     <div class="cf spacer-7 text-center">
       <button type="submit" class="btn btn-primary-long">Sign Up</button>
     </div>
+
+    <?= cqStatic::getAyahClient()->getPublisherHTML(); ?>
   </form>
 
 </div><!-- #footer-form-signup -->

@@ -120,6 +120,10 @@ class CollectorSignupStep1Form extends BaseForm
         'spam' => 'We are sorry we cannot create an account at this time. Please try again later.',
     )));
 
+    $this->mergePostValidator(new AyahValidatorSchema(array(), array(
+        'spam' => 'We are sorry we cannot create an account at this time. Please try again later.',
+    )));
+
     $this->setDefault('seller', 0);
 
     $this->widgetSchema->setNameFormat('signup_step1[%s]');

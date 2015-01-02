@@ -1367,7 +1367,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->setSpamScore(100);
     $this->save();
 
-    $this->sendToDefensioMark(false);
+    // $this->sendToDefensioMark(false);
 
     return $this;
   }
@@ -1378,7 +1378,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->setSpamScore(5);
     $this->save();
 
-    $this->sendToDefensioMark(true);
+    // $this->sendToDefensioMark(true);
 
     return $this;
   }

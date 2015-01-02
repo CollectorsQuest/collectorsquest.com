@@ -147,6 +147,7 @@
       <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
         <i class="mail-icon-mini"></i> &nbsp;Send message
       </button>
+      <?= cqStatic::getAyahClient()->getPublisherHTML(); ?>
       <?= '</form>'; ?>
     </div>
   </div>

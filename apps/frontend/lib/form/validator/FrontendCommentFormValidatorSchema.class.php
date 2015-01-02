@@ -23,7 +23,6 @@ class FrontendCommentFormValidatorSchema extends sfValidatorSchema
     $this->addMessage('spam', 'Comment was recognized as spam');
   }
 
-
   protected function doClean($values)
   {
     $errorSchema = new sfValidatorErrorSchema($this);

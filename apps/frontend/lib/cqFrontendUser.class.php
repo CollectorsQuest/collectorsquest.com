@@ -458,7 +458,7 @@ class cqFrontendUser extends cqBaseUser
     }
 
     // Defensio request
-    $collector->sendToDefensio('UPDATE');
+    // $collector->sendToDefensio('UPDATE');
 
     return true;
   }
