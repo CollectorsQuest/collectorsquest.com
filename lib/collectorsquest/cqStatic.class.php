@@ -77,6 +77,13 @@ class cqStatic extends IceStatic
     return new Defensio(sfConfig::get('app_credentials_defensio'));
   }
 
+  static public function getAyahClient()
+  {
+    include_once __DIR__ . '/../vendor/ayah/ayah.php';
+
+    return new AYAH();
+  }
+
   /**
    * Get an IceSphinxClient object
    *
