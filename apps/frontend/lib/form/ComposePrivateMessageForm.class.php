@@ -96,6 +96,10 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         'spam' => 'We are sorry we could not send your private message. Please try again later.',
     )));
 
+    $this->mergePostValidator(new AyahValidatorSchema(array(), array(
+        'spam' => 'We are sorry we could not send your private message. Please try again later.',
+    )));
+
     $this->mergePostValidator(new cqValidatorSchemaTimeoutCheck($this->sf_user, array(
         'type' => cqValidatorSchemaTimeoutCheck::TIMEOUT_TYPE_PRIVATE_MESSAGES,
         'threshold' => sfConfig::get('app_private_messages_timeout_threshold', 6),

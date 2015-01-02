@@ -131,9 +131,10 @@ class collectorActions extends cqFrontendActions
   public function executeSignup(sfWebRequest $request)
   {
     // Redirect to the community if already signed up
-    $this->redirectIf($this->getUser()->isAuthenticated()
-          && $this->getUser()->getCollector()->getHasCompletedRegistration(),
-      '@mycq');
+    $this->redirectIf(
+      $this->getUser()->isAuthenticated() && $this->getUser()->getCollector()->getHasCompletedRegistration(),
+      '@mycq'
+    );
 
     // if we are comming from seller signup page, and the user
     // has selected package to pay for after sign up we need to save it here

@@ -127,8 +127,9 @@
       </div>
     </div>
     <div class="form-actions">
-      <input type="submit" class="btn btn-primary" value="Send reply" />
+      <input type="submit" class="btn btn-primary" value="Send reply" id="submit-message-compose" />
     </div>
   </fieldset>
+  <?= cqStatic::getAyahClient()->getPublisherHTML(array('buttonid' => 'submit-message-compose')); ?>
   </form>
 </div>

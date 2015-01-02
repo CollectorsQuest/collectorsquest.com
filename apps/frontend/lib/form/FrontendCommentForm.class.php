@@ -67,6 +67,10 @@ class FrontendCommentForm extends BaseCommentForm
         'spam' => 'We are sorry we could not add your comment. Please try again later.',
     )));
 
+    $this->mergePostValidator(new AyahValidatorSchema(array(), array(
+        'spam' => 'We are sorry we could not add your comment. Please try again later.',
+    )));
+
     $this->mergePostValidator(new cqValidatorSchemaTimeoutCheck($this->sf_user, array(
         'type' => cqValidatorSchemaTimeoutCheck::TIMEOUT_TYPE_COMMENTS,
         'threshold' => sfConfig::get('app_comments_timeout_threshold', 6),

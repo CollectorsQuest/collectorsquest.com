@@ -64,6 +64,7 @@ $_height = 0;
           <i class="mail-icon-mini"></i> &nbsp;Send message
         </button>
       </div>
+      <?= cqStatic::getAyahClient()->getPublisherHTML(); ?>
     </form>
   </div>
   <?php $_height -= 58; ?>

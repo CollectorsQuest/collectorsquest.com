@@ -37,6 +37,8 @@
       <input type="submit" class="btn btn-primary" value="Send" />
     </div>
   </fieldset>
+
+<?= cqStatic::getAyahClient()->getPublisherHTML(); ?>
 <?= '</form>'; ?>
 
 <script>

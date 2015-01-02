@@ -54,6 +54,8 @@ cq_page_title(
         <input type="submit" class="btn btn-primary" value="Sign Up" />
       </div>
     </fieldset>
+
+    <?= cqStatic::getAyahClient()->getPublisherHTML(); ?>
     <?= '</form>' ?>
   </div>
 </div>

@@ -20,13 +20,15 @@
 
       <?= $form['body']->render(array('class' => 'shrink', 'placeholder' => ' What do you think?')); ?>
       <button type="button" class="btn btn-large fake">Comment</button>
-      <button type="submit" class="btn btn-large hidden">Comment</button>
+      <button type="submit" class="btn btn-large hidden" id="submit-comment-add">Comment</button>
 
       <div class="extra-fields clearfix spacer-top non-optional">
         <label class="checkbox" for="comment_is_notify">
           <?= $form['is_notify']; ?> Notify me of follow-up comments by email.
         </label>
       </div>
+
+      <?= cqStatic::getAyahClient()->getPublisherHTML(array('buttonid' => 'submit-comment-add')); ?>
     </form>
   </div>
 </div>

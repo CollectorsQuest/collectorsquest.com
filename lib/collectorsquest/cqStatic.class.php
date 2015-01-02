@@ -10,6 +10,8 @@ class cqStatic extends IceStatic
 
   static private $_neo4j_client = null;
 
+  static private $_ayah_client = null;
+
   /**
    * Get a Memcache() object
    *
@@ -65,16 +67,15 @@ class cqStatic extends IceStatic
     return $client;
   }
 
-  /**
-   * Get an Defensio() object
-   *
-   * @return Defensio
-   */
-  static public function getDefensioClient()
+  static public function getAyahClient()
   {
-    include_once __DIR__.'/../vendor/Defensio.class.php';
+    if (self::$_ayah_client === null) {
+      include_once __DIR__ . '/../vendor/ayah/ayah.php';
 
-    return new Defensio(sfConfig::get('app_credentials_defensio'));
+      self::$_ayah_client = new AYAH();
+    }
+
+    return self::$_ayah_client;
   }
 
   /**

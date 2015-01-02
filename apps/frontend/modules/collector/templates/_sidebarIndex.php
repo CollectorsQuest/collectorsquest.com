@@ -56,6 +56,7 @@
           <i class="mail-icon-mini"></i> &nbsp;Send message
         </button>
       </div>
+      <?= cqStatic::getAyahClient()->getPublisherHTML(); ?>
     </form>
   </div>
 </div>
