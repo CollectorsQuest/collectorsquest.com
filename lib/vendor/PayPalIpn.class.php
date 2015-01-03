@@ -30,7 +30,7 @@ class PayPalIPN
    *
    * @var boolean
    */
-  public $force_ssl_v3 = true;
+  public $force_ssl_v3 = false;
 
   /**
    *  If true, cURL will use the CURLOPT_FOLLOWLOCATION to follow any

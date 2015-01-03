@@ -432,7 +432,7 @@ dev:
     domain: "cqcdns.dev"
 
   paypal:
-    ipn_domain: 'http://manhattan.dyndns-office.com'
+    ipn_domain: 'http://kirilatcq.ddns.net:443'
 
 test:
   domain_name: "example.com"
