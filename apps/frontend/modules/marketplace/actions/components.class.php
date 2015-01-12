@@ -330,7 +330,9 @@ class marketplaceComponents extends cqFrontendComponents
       /** @var $query FrontendCollectibleQuery */
       $query = FrontendCollectibleQuery::create()
         ->hasThumbnail()
-        ->filterByAverageRating(3, Criteria::GREATER_THAN)
+        ->filterByAverageRating(1, Criteria::GREATER_THAN)
+          ->_or()
+        ->filterByAverageRating(null, Criteria::ISNULL)
         ->useCollectibleForSaleQuery()
           ->isForSale()
         ->endUse()
@@ -473,7 +475,9 @@ class marketplaceComponents extends cqFrontendComponents
       /** @var $query FrontendCollectibleQuery */
       $query = FrontendCollectibleQuery::create()
         ->hasThumbnail()
-        ->filterByAverageRating(3, Criteria::GREATER_THAN)
+        ->filterByAverageRating(1, Criteria::GREATER_THAN)
+          ->_or()
+        ->filterByAverageRating(null, Criteria::ISNULL)
         ->useCollectibleForSaleQuery()
           ->isForSale()
         ->endUse()

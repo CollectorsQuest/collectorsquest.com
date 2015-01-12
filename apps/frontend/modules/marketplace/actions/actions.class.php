@@ -94,10 +94,9 @@ class marketplaceActions extends cqFrontendActions
 
     /** @var $q FrontendCollectibleForSaleQuery */
     $q = FrontendCollectibleForSaleQuery::create();
-
-     $q->filterByContentCategoryWithDescendants($content_category)
-       ->isForSale()
-       ->orderByUpdatedAt(Criteria::DESC);
+    $q->filterByContentCategoryWithDescendants($content_category)
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
 
     $search = array();
     if ($request->getParameter('page'))
